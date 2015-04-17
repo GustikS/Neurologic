@@ -1,0 +1,83 @@
+package discoverer;
+
+import java.util.*;
+import static org.junit.Assert.*;
+import org.junit.*;
+
+public class DrawTest {
+    @Ignore
+    public void test1() {
+        //String[] rules = FileToStringListJava6.convert("../data/rules_2_2.txt", Integer.MAX_VALUE);
+        String[] rules = {
+            "l21(X) :- atom(X,cl), atom(X,cl).",
+            "l22(X) :- atom(X,br), atom(cl,cl).",
+            "l23(X) :- atom(X,na).",
+            "l24(X) :- atom(X,f).",
+
+            "1.1 k21(X) :- l21(X).",
+            "1.1 k22(X) :- l21(X).",
+            "1.5 k22(DMY) :- l21(X), l22(X).",
+            "1.1 k22(X) :- l22(X).",
+            "1.1 k22(X) :- l23(X).",
+            "1.1 k23(X) :- l23(X).",
+            "1.1 k23(X) :- l24(X).",
+
+            "l11(X) :- k21(X), k22(Y).",
+            "l12(X) :- k21(X), k22(Y).",
+            "l13(X) :- k22(X), k23(Y).",
+
+            "0.1 k11(X) :- l11(X).",
+            "0.1 k11(X) :- l12(X).",
+            "0.9 k12(X) :- l11(X).",
+            "0.10 k12(X) :- l12(X).",
+            "0.11 k12(X) :- l13(X).",
+            "0.12 k13(X) :- l11(X).",
+            "0.13 k13(X) :- l12(X).",
+            "0.14 k13(X) :- l13(X).",
+
+            "final(X) :- k11(X).",
+        };
+        NetFactory nf = new NetFactory();
+        KL last = nf.construct(rules);
+
+        //Dotter.draw(last);
+    }
+
+    @Test
+    public void test2() {
+        String[] rules = {
+            "lg(X) :- light_green(X)",
+            "dg(X) :- dark_green(X)",
+            "d(X) :- dark(X)",
+            "r(X) :- red(X)",
+            "db(X) :- dark_blue(X)",
+            "lb(X) :- light_blue(X)",
+
+            "0.4 blue(X) :- lg(X).",
+            "0.9 blue(X) :- db(X).",
+            "0.6 blue(X) :- dg(X).",
+            "0.7 blue(X) :- d(X).",
+            "0.5 blue(X) :- r(X).",
+            "0.8 blue(X) :- lb(X).",
+
+            "blueist(DMY) :- edge(1,B), edge(B,C), edge(C,4), blue(B), blue(C).",
+
+            "1.0 output(DMY) :- blueist(DMY2)."
+        };
+
+
+        String ex = "1.0 edge(1,6),edge(6,5),edge(5,4),edge(1,2),edge(2,3),edge(3,4),"+
+               "light_green(1),dark_green(2),dark(3),red(4),dark_blue(5),light_blue(6).";
+        NetFactory nf = new NetFactory();
+        KL last = nf.construct(rules);
+
+        ExampleFactory ef = new ExampleFactory();
+        Example e = ef.construct(ex);
+
+        Ball b = Solvator.solve(last, e);
+
+        Dotter.draw(last, b.getActiveRules());
+        GroundDotter.draw(b);
+    }
+
+}
