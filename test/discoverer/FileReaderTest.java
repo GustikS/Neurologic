@@ -1,5 +1,6 @@
 package discoverer;
 
+import discoverer.global.FileToStringList;
 import static org.junit.Assert.*;
 import java.util.*;
 

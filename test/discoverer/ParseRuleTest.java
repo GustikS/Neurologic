@@ -1,5 +1,6 @@
 package discoverer;
 
+import discoverer.construction.Parser;
 import static org.junit.Assert.*;
 import org.junit.*;
 

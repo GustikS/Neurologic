@@ -1,5 +1,15 @@
 package discoverer;
 
+import discoverer.construction.network.rules.KappaRule;
+import discoverer.construction.NetworkFactory;
+import discoverer.construction.network.KL;
+import discoverer.grounding.network.GroundKappa;
+import discoverer.grounding.network.GroundLambda;
+import discoverer.construction.ExampleFactory;
+import discoverer.construction.example.Example;
+import discoverer.global.Tuple;
+import discoverer.grounding.evaluation.Ball;
+import discoverer.grounding.Grounder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,7 +55,7 @@ public class RuleCountTest {
         };
 
         String[] ex = { "1.0 b(a,b), b(b,c), b(c,a), b(c,d), b(c,e), atom(a,c), atom(b,c), atom(c,c), atom(d,cl), atom(d,br).", };
-        NetFactory nf = new NetFactory();
+        NetworkFactory nf = new NetworkFactory();
         KL last = nf.construct(rules);
 
         ExampleFactory eFactory = new ExampleFactory();

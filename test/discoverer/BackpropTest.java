@@ -1,5 +1,18 @@
 package discoverer;
 
+import discoverer.learning.Weights;
+import discoverer.construction.network.rules.KappaRule;
+import discoverer.construction.network.Kappa;
+import discoverer.construction.NetworkFactory;
+import discoverer.construction.network.KL;
+import discoverer.construction.ExampleFactory;
+import discoverer.construction.example.Example;
+import discoverer.global.Batch;
+import discoverer.global.Global;
+import discoverer.grounding.evaluation.Evaluator;
+import discoverer.grounding.evaluation.Ball;
+import discoverer.grounding.Grounder;
+import discoverer.learning.backprop.BackpropGroundKappa;
 import java.util.*;
 import static org.junit.Assert.*;
 import org.junit.*;
@@ -52,7 +65,7 @@ public class BackpropTest {
          *String[] ex = { "0.0 bond(tr000_4, tr000_2, 0), cl(tr000_4), c(tr000_2), 1(0), bond(tr000_2, tr000_4, 0), bond(tr000_5, tr000_2, 1), h(tr000_5), 1(1), bond(tr000_2, tr000_5, 1), bond(tr000_3, tr000_2, 2), cl(tr000_3), 1(2), bond(tr000_2, tr000_3, 2), bond(tr000_2, tr000_1, 3), cl(tr000_1), 1(3), bond(tr000_1, tr000_2, 3).", };
          */
 
-        NetFactory nf = new NetFactory();
+        NetworkFactory nf = new NetworkFactory();
         KL last = nf.construct(rules);
 
         ExampleFactory eFactory = new ExampleFactory();

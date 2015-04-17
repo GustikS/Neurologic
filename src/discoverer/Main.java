@@ -1,5 +1,8 @@
 package discoverer;
 
+import discoverer.global.Global;
+import discoverer.global.Batch;
+import discoverer.global.FileToStringListJava6;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.HelpFormatter;
@@ -154,7 +157,7 @@ public class Main {
         //get rules one by one from file
         String[] rules = FileToStringListJava6.convert(cmd.getOptionValue("r"), Integer.MAX_VALUE);
 
-        Solver solver = new Solver();
+        Crossvalidation solver = new Crossvalidation();
 
         //main solver method
         solver.solve(folds, rules, ex, batch, steps, epochs, restartCount, learnRate);

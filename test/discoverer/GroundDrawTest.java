@@ -1,5 +1,13 @@
 package discoverer;
 
+import discoverer.construction.NetworkFactory;
+import discoverer.construction.network.KL;
+import discoverer.construction.ExampleFactory;
+import discoverer.construction.example.Example;
+import discoverer.drawing.Dotter;
+import discoverer.drawing.GroundDotter;
+import discoverer.grounding.evaluation.Ball;
+import discoverer.grounding.Grounder;
 import static org.junit.Assert.*;
 
 import org.junit.Ignore;
@@ -43,7 +51,7 @@ public class GroundDrawTest {
         };
 
         String[] ex = { "1.0 b(b,b), b(a,b), b(b,c), b(c,a), b(c,d), b(c,e), atom(a,c), atom(b,c), atom(c,c), atom(d,cl), atom(d,br).", };
-        NetFactory nf = new NetFactory();
+        NetworkFactory nf = new NetworkFactory();
         KL last = nf.construct(rules);
 
         ExampleFactory eFactory = new ExampleFactory();
@@ -84,7 +92,7 @@ public class GroundDrawTest {
         };
 
         String[] ex = { "1.0 b(b,b), b(a,b), b(b,c), b(c,a), b(c,d), b(c,e), b(d,e), atom(a,c), atom(b,c), atom(c,c), atom(d,cl), atom(d,br).", };
-        NetFactory nf = new NetFactory();
+        NetworkFactory nf = new NetworkFactory();
         KL last = nf.construct(rules);
 
         ExampleFactory eFactory = new ExampleFactory();

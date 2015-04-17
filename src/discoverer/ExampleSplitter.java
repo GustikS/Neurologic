@@ -1,5 +1,6 @@
 package discoverer;
 
+import discoverer.construction.example.Example;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

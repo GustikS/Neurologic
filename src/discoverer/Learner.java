@@ -1,5 +1,24 @@
 package discoverer;
 
+import discoverer.grounding.evaluation.struct.ParentCounter;
+import discoverer.global.Batch;
+import discoverer.construction.example.Example;
+import discoverer.global.Global;
+import discoverer.construction.network.KL;
+import discoverer.construction.network.Kappa;
+import discoverer.construction.network.rules.KappaRule;
+import discoverer.grounding.evaluation.Ball;
+import discoverer.grounding.Grounder;
+import discoverer.learning.backprop.BackpropGroundKappa;
+import discoverer.learning.backprop.BackpropDownAvg;
+import discoverer.grounding.evaluation.Evaluator;
+import discoverer.grounding.evaluation.EvaluatorAvg;
+import discoverer.learning.Invalidator;
+import discoverer.learning.Result;
+import discoverer.learning.Results;
+import discoverer.learning.Sample;
+import discoverer.learning.Saver;
+import discoverer.learning.Weights;
 import java.util.*;
 
 /**
@@ -16,11 +35,11 @@ public class Learner {
      * @param last output node
      * @return list with balls from first run
      */
-    public List<RoundElement> firstRun(List<Example> examples, KL last) {
-        List<RoundElement> roundStore = new ArrayList<RoundElement>();
+    public List<Sample> firstRun(List<Example> examples, KL last) {
+        List<Sample> roundStore = new ArrayList<Sample>();
         for (Example e : examples) {
             Ball b = Grounder.solve(last, e);
-            roundStore.add(new RoundElement(e, b));
+            roundStore.add(new Sample(e, b));
         }
 
         return roundStore;
@@ -68,7 +87,7 @@ public class Learner {
      */
     public double solve(KL last, List<Example> examples, int learningSteps, int learningEpochs, int restartCount, double learnRate) {
         //find max. substitution for all examples
-        List<RoundElement> roundStore = firstRun(examples, last);
+        List<Sample> roundStore = firstRun(examples, last);
 
         Results results = null;
 
@@ -80,7 +99,7 @@ public class Learner {
                 for (int i = 0; i < learningSteps; i++) {       //learningSteps = backpropagation steps
                     Results res = new Results();
                     System.out.println("------learning step: " + i);
-                    for (RoundElement result : roundStore) {     //for each example(result)
+                    for (Sample result : roundStore) {     //for each example(result)
                         Example e = result.getExample();
                         Ball b = result.getBall();
                         Weights w = BackpropGroundKappa.getNewWeights(b, e, Batch.NO, learnRate);  //backpropagation
@@ -96,7 +115,7 @@ public class Learner {
 
                 //max. subst. search again
                 results = new Results();
-                for (RoundElement roundElement : roundStore) {
+                for (Sample roundElement : roundStore) {
                     Example e = roundElement.getExample();
                     Ball b = Grounder.solve(last, e);    // resubstitution for every example
                     roundElement.setBall(b);
@@ -125,7 +144,7 @@ public class Learner {
         Saver.load();
         System.out.println("Saver loaded the best one");
         results = new Results();
-        for (RoundElement roundElement : roundStore) {
+        for (Sample roundElement : roundStore) {
             Example e = roundElement.getExample();
             Ball b = Grounder.solve(last, e);
             roundElement.setBall(b);
@@ -150,10 +169,10 @@ public class Learner {
      */
     public double solveAvg(KL last, List<Example> examples, int learningSteps, int learningEpochs, int restartCount, double learnRate) {
         //find max. and average substitution for all examples
-        List<RoundElement> roundStore = firstRun(examples, last);   //this stays as with no pruning both avg and max are found
+        List<Sample> roundStore = firstRun(examples, last);   //this stays as with no pruning both avg and max are found
 
         //here calculate for each avg-proof-tree(=Ball b) numbers of parents for each GroundKappa/Lambda
-        for (RoundElement result : roundStore) {
+        for (Sample result : roundStore) {
             Ball b = result.getBall();
             ParentCounter.countParents(b);
         }
@@ -164,7 +183,7 @@ public class Learner {
             for (int i = 0; i < learningSteps; i++) {       //learningSteps = backpropagation steps
                 Results res = new Results();
                 System.out.println("---learning step: " + i);
-                for (RoundElement result : roundStore) {     //for each example(result)
+                for (Sample result : roundStore) {     //for each example(result)
                     Example e = result.getExample();
                     Ball b = result.getBall();
                     Weights w = BackpropDownAvg.getNewWeights(b, e, Batch.NO, learnRate);  //backpropagation
@@ -195,7 +214,7 @@ public class Learner {
         Saver.load();   //loading the weights for Kappa-Lambda program
         System.out.println("Saver loaded the best one");
         Results results = new Results();    //we didn't store the whole ground networks(one for each example), just the weights of program
-        for (RoundElement roundElement : roundStore) {  //so we need to calculate the avg-proof-tree output again
+        for (Sample roundElement : roundStore) {  //so we need to calculate the avg-proof-tree output again
             Example e = roundElement.getExample();
             Ball b = Grounder.solve(last, e);   //so again create the avg-proof-tree
             roundElement.setBall(b);

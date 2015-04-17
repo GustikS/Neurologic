@@ -1,5 +1,13 @@
 package discoverer;
 
+import discoverer.construction.NetworkFactory;
+import discoverer.construction.network.KL;
+import discoverer.construction.ExampleFactory;
+import discoverer.construction.example.Example;
+import discoverer.drawing.Dotter;
+import discoverer.drawing.GroundDotter;
+import discoverer.grounding.evaluation.Ball;
+import discoverer.grounding.Grounder;
 import java.util.*;
 import static org.junit.Assert.*;
 import org.junit.*;
@@ -38,7 +46,7 @@ public class DrawTest {
 
             "final(X) :- k11(X).",
         };
-        NetFactory nf = new NetFactory();
+        NetworkFactory nf = new NetworkFactory();
         KL last = nf.construct(rules);
 
         Dotter.draw(last,"chemie");
@@ -69,7 +77,7 @@ public class DrawTest {
 
         String ex = "1.0 edge(1,6),edge(6,5),edge(5,4),edge(1,2),edge(2,3),edge(3,4),"+
                "light_green(1),dark_green(2),dark(3),red(4),dark_blue(5),light_blue(6).";
-        NetFactory nf = new NetFactory();
+        NetworkFactory nf = new NetworkFactory();
         KL last = nf.construct(rules);
 
         ExampleFactory ef = new ExampleFactory();

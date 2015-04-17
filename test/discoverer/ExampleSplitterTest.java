@@ -1,5 +1,8 @@
 package discoverer;
 
+import discoverer.construction.ExampleFactory;
+import discoverer.construction.example.Example;
+import discoverer.global.FileToStringListJava6;
 import java.util.ArrayList;
 import java.util.List;
 

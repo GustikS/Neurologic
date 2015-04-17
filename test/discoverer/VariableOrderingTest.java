@@ -1,5 +1,10 @@
 package discoverer;
 
+import discoverer.construction.Terminal;
+import discoverer.construction.network.rules.LambdaRule;
+import discoverer.construction.NetworkFactory;
+import discoverer.construction.network.Lambda;
+import discoverer.global.Global;
 import java.util.*;
 import static org.junit.Assert.*;
 import org.junit.*;
@@ -16,7 +21,7 @@ public class VariableOrderingTest {
             "l21(X) :- atom(X,Y), atom(Z,cl), atom(Q,a,R,c,d).",
         };
 
-        NetFactory nf = new NetFactory();
+        NetworkFactory nf = new NetworkFactory();
         Lambda l = (Lambda) nf.construct(rules);
         LambdaRule lr = l.getRule();
 

@@ -1,5 +1,13 @@
 package discoverer;
 
+import discoverer.construction.NetworkFactory;
+import discoverer.construction.network.KL;
+import discoverer.construction.ExampleFactory;
+import discoverer.construction.example.Example;
+import discoverer.global.Global;
+import discoverer.grounding.evaluation.Evaluator;
+import discoverer.grounding.evaluation.Ball;
+import discoverer.grounding.Grounder;
 import java.util.*;
 import static org.junit.Assert.*;
 import org.junit.*;
@@ -708,7 +716,7 @@ public class SolveAndEvalTest {
         //String[] ex = { "1.0 bond(tr000_4, tr000_2, 0), cl(tr000_4), c(tr000_2), 1(0), bond(tr000_2, tr000_4, 0), bond(tr000_5, tr000_2, 1), h(tr000_5), 1(1), bond(tr000_2, tr000_5, 1), bond(tr000_3, tr000_2, 2), cl(tr000_3), 1(2), bond(tr000_2, tr000_3, 2), bond(tr000_2, tr000_1, 3), cl(tr000_1), 1(3), bond(tr000_1, tr000_2, 3).", };
         //OUT  =  .7246309752556929
 
-        NetFactory nf = new NetFactory();
+        NetworkFactory nf = new NetworkFactory();
         KL last = nf.construct(rules);
 
         ExampleFactory eFactory = new ExampleFactory();
@@ -1057,7 +1065,7 @@ public class SolveAndEvalTest {
         String[] ex = {
             "1.0 bond(tr000_4, tr000_2, 0), cl(tr000_4), c(tr000_2), 1(0), bond(tr000_2, tr000_4, 0), bond(tr000_5, tr000_2, 1), h(tr000_5), 1(1), bond(tr000_2, tr000_5, 1), bond(tr000_3, tr000_2, 2), cl(tr000_3), 1(2), bond(tr000_2, tr000_3, 2), bond(tr000_2, tr000_1, 3), cl(tr000_1), 1(3), bond(tr000_1, tr000_2, 3).",};
 
-        NetFactory nf = new NetFactory();
+        NetworkFactory nf = new NetworkFactory();
         KL last = nf.construct(rules);
 
         ExampleFactory eFactory = new ExampleFactory();
@@ -1106,7 +1114,7 @@ public class SolveAndEvalTest {
 
         String[] ex = {"1.0 atom(z,c), atom(d,cl), atom(d,br).",};
 
-        NetFactory nf = new NetFactory();
+        NetworkFactory nf = new NetworkFactory();
         KL last = nf.construct(rules);
 
         ExampleFactory eFactory = new ExampleFactory();
@@ -1165,7 +1173,7 @@ public class SolveAndEvalTest {
 
         String[] ex = {"1.0 b(a,b), b(b,c), b(c,a), b(c,d), b(c,e), atom(a,c), atom(b,c), atom(c,c), atom(d,cl), atom(d,br).",};
 
-        NetFactory nf = new NetFactory();
+        NetworkFactory nf = new NetworkFactory();
         KL last = nf.construct(rules);
 
         ExampleFactory eFactory = new ExampleFactory();
@@ -1219,7 +1227,7 @@ public class SolveAndEvalTest {
         String[] ex = {"1.0 b(a,b), b(b,c), b(c,a), b(c,d), b(c,e), atom(a,c), atom(b,c), atom(c,c), atom(d,cl), atom(d,br).",};
         //String[] ex = { "1.0 atom(d,cl), atom(d,br).", };
 
-        NetFactory nf = new NetFactory();
+        NetworkFactory nf = new NetworkFactory();
         KL last = nf.construct(rules);
 
         ExampleFactory eFactory = new ExampleFactory();
@@ -1281,7 +1289,7 @@ public class SolveAndEvalTest {
 
         String[] ex = {"1.0 b(a,b), b(b,c), b(c,a), b(c,d), b(c,e), atom(a,c), atom(b,c), atom(c,c), atom(d,cl), atom(d,br).",};
 
-        NetFactory nf = new NetFactory();
+        NetworkFactory nf = new NetworkFactory();
         KL last = nf.construct(rules);
 
         ExampleFactory eFactory = new ExampleFactory();
@@ -1302,7 +1310,7 @@ public class SolveAndEvalTest {
 
         String[] ex = {"1.0 b(a,b), b(b,c), b(c,a), b(c,d), b(c,e), atom(a,c), atom(b,c), atom(c,c), atom(d,cl), atom(d,br).",};
 
-        NetFactory nf = new NetFactory();
+        NetworkFactory nf = new NetworkFactory();
         KL last = nf.construct(rules);
 
         ExampleFactory eFactory = new ExampleFactory();
@@ -1336,7 +1344,7 @@ public class SolveAndEvalTest {
             "0.1 k11(QQ) :- l11(Q11).",};
 
         String[] ex = {"1.0 b(a,b), b(b,c), b(c,a), b(c,d), b(c,e), atom(a,c), atom(b,c), atom(c,c), atom(d,cl), atom(d,br).",};
-        NetFactory nf = new NetFactory();
+        NetworkFactory nf = new NetworkFactory();
         KL last = nf.construct(rules);
 
         ExampleFactory eFactory = new ExampleFactory();
