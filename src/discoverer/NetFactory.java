@@ -13,10 +13,19 @@ public class NetFactory {
 
     private static List<KappaRule> kappaRules = new ArrayList<KappaRule>();
 
+    public NetFactory(){
+        ConstantFactory.clearConstantFactory();
+    }
+    
     public static List<KappaRule> getKappaRules() {
         return kappaRules;
     }
 
+    /**
+     * creates network from rules, returns last row KL node as output (kappa-lambda superclass)
+     * @param rules
+     * @return 
+     */
     public KL construct(String[] rules) {
         KL kl = null;
         for (int x = 0; x < rules.length; x++) {
@@ -24,6 +33,7 @@ public class NetFactory {
 
             boolean isLambdaLine = tokens[0][0].isEmpty();
 
+            //the self handling of each K/L rule, adding it to base
             kl = isLambdaLine ? handleLambdaLine(tokens) : handleKappaLine(tokens);
 
             vFactory.clear();
@@ -38,6 +48,21 @@ public class NetFactory {
         return isVariable ? vFactory.construct(s) : ConstantFactory.construct(s);
     }
 
+    /**
+     * takes a lambda row token string (conjunction with no weights) and <p>
+     * adds lambda node to lambda-Factory <p>
+     * creates grounded Lambda node sl <p>
+     * adds every head variable as Terminal to variable-Factory <p>
+     * creates LambdaRule with sl as head<p>
+     * <p>
+     * creates Kappa node and its grounding for every literal in body<p>
+     * for each variable in the literal adds corresponding Terminal's as variable's to the Kappa grounding<p>
+     * <p>
+     * adds every body literal with all its variables to the rule
+     * sets current rule to this Lambda (head) node (has just this one)
+     * @param tokens
+     * @return 
+     */
     private Lambda handleLambdaLine(String[][] tokens) {
         Lambda l = lFactory.construct(tokens[1][0]);
         SubL sl = new SubL(l);
@@ -62,6 +87,23 @@ public class NetFactory {
         return l;
     }
 
+    /**
+     * takes a Kappa row token string (disjunction with weights) and <p>
+     * adds Kappa node to kappa-Factory <p>
+     * creates grounded Kappa node sk <p>
+     * adds every head variable as Terminal to variable-Factory <p>
+     * creates KappaRule with sk as head<p>
+     * <p>
+     * adds KappaRule to list kappaRules
+     * <p>
+     * creates Lambda node and its grounding for every literal in body<p>
+     * for each variable in the literal adds corresponding Terminal's as variable's to the Lambda grounding<p>
+     * <p>
+     * sets the last body literal (there should be only one for Kappa rule line) with its variables to the rule
+     * adds current rule to this Kappa (head) node (may have more)
+     * @param tokens
+     * @return 
+     */
     private Kappa handleKappaLine(String[][] tokens) {
         Double w = Double.parseDouble(tokens[0][0]);
         Kappa k = kFactory.construct(tokens[1][0]);

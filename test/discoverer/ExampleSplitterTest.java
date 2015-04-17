@@ -10,7 +10,7 @@ import org.junit.Test;
 public class ExampleSplitterTest {
     @Test
     public void test() {
-        String[] ex = FileToStringListJava6.convert("/home/asch/study/dp/data/1/examples.txt", 700);
+        String[] ex = FileToStringListJava6.convert("../in/muta/examples", 700);
 
         ExampleFactory eFactory = new ExampleFactory();
         List<Example> examples = new ArrayList<Example>();

@@ -8,9 +8,15 @@ import java.util.*;
 public class Example {
     private double expVal;
     private Chunks chunks;
+    //map of existing chunks from other examples
     private Map<Integer, List<Integer>> possibleChunks;
     private int constCount;
 
+    /**
+     * new example from expected value and map of literal occurrences
+     * @param exp
+     * @param map 
+     */
     public Example(Double exp, Map<Integer, List<Integer>> map) {
         expVal = exp;
         chunks = new Chunks();

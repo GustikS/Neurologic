@@ -7,6 +7,12 @@ import java.io.*;
  * Ugly java6 filetostring
  */
 public class FileToStringListJava6 {
+    /**
+     * converts a given string into a string array line by line
+     * @param p
+     * @param maxLineLength
+     * @return 
+     */
     public static String[] convert(String p, int maxLineLength) {
         List<String> lines = new ArrayList<String>();
         BufferedReader buffReader = null;
@@ -30,6 +36,9 @@ public class FileToStringListJava6 {
         return ListToArray(lines);
     }
 
+    /*
+    converts a given list into array
+    */
     private static String[] ListToArray(List<String> list) {
         String[] ret = new String[list.size()];
         for (int i = 0; i < ret.length; i++)

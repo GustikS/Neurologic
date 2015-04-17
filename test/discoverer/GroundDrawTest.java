@@ -1,8 +1,8 @@
 package discoverer;
 
 import static org.junit.Assert.*;
-import org.junit.Ignore;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class GroundDrawTest {
@@ -49,7 +49,7 @@ public class GroundDrawTest {
         ExampleFactory eFactory = new ExampleFactory();
         Example e = eFactory.construct(ex[0]);
 
-        Ball b = Solvator.solve(last, e);
+        Ball b = Grounder.solve(last, e);
 
         Dotter.draw(last, b.getActiveRules());
         GroundDotter.draw(b);
@@ -90,7 +90,7 @@ public class GroundDrawTest {
         ExampleFactory eFactory = new ExampleFactory();
         Example e = eFactory.construct(ex[0]);
 
-        Ball b = Solvator.solve(last, e);
+        Ball b = Grounder.solve(last, e);
 
         Dotter.draw(last, b.getActiveRules());
         GroundDotter.draw(b);

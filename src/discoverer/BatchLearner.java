@@ -21,7 +21,7 @@ public class BatchLearner {
     public List<RoundElement> firstRun(List<Example> examples, KL last) {
         List<RoundElement> roundStore = new ArrayList<RoundElement>();
         for (Example e: examples) {
-            Ball b = Solvator.solve(last,e);
+            Ball b = Grounder.solve(last,e);
             roundStore.add(new RoundElement(e,b));
         }
 
@@ -77,7 +77,7 @@ public class BatchLearner {
                     for (RoundElement result: roundStore) {
                         Example e = result.getExample();
                         Ball b = result.getBall();
-                        Weights w = Backpropagation2.getNewWeights(b, e, Batch.YES, learnRate);
+                        Weights w = BackpropGroundKappa.getNewWeights(b, e, Batch.YES, learnRate);
                         refreshWeights(w);
                         GroundInvalidator.invalidate(b);
                         b.val = Evaluator.evaluate(b);
@@ -102,7 +102,7 @@ public class BatchLearner {
                 results = new Results();
                 for (RoundElement roundElement: roundStore) {
                     Example e = roundElement.getExample();
-                    Ball b = Solvator.solve(last,e);
+                    Ball b = Grounder.solve(last,e);
                     roundElement.setBall(b);
                     results.add(new Result(b.val, e.getExpectedValue()));
                     System.out.println("Chance to resubstitute, output for\t" + e + "\t->\t" + b.val);
@@ -140,7 +140,7 @@ public class BatchLearner {
         results = new Results();
         for (RoundElement roundElement: roundStore) {
             Example e = roundElement.getExample();
-            Ball b = Solvator.solve(last,e);
+            Ball b = Grounder.solve(last,e);
             roundElement.setBall(b);
             results.add(new Result(b.val, e.getExpectedValue()));
             System.out.println("Substitution:\t" + e + "->\t" + b.val);

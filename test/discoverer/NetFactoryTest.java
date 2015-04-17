@@ -36,7 +36,7 @@ public class NetFactoryTest {
         NetFactory nf = new NetFactory();
         Kappa last = (Kappa) nf.construct(rules);
 
-        System.out.println("id:\t" + last.id);
+        System.out.println("id:\t" + last.getId());
 
         System.out.println("rules v");
         for (Rule r: last.getRules())

@@ -12,7 +12,7 @@ public class Kappa extends KL {
     public double step;
     public double deltaW;
     private Double gradient;
-    public Integer id;
+    private Integer id;
 
     public Kappa(String name, Double d) {
         super(name);

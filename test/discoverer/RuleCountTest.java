@@ -50,7 +50,7 @@ public class RuleCountTest {
 
         ExampleFactory eFactory = new ExampleFactory();
         Example e = eFactory.construct(ex[0]);
-        Ball b = Solvator.solve(last, e);
+        Ball b = Grounder.solve(last, e);
 
         getAllKappaRules(b);
 

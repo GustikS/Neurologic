@@ -21,6 +21,10 @@ public abstract class Rule {
         lastBindedVar = term;
     }
 
+    /**
+     * unifying of (un)binding of this Rule head's variables/terms and consumed list of variables(must be same size)
+     * @param vars 
+     */
     public void consumeVars(List<Terminal> vars) {
         if (vars == null || vars.size() == 0)
             return;
@@ -38,6 +42,9 @@ public abstract class Rule {
         }
     }
 
+    /**
+     * unbind all of head's Terms(Terminals)
+     */
     public void unconsumeVars() {
         SubKL head = getHead();
         for (Terminal v: head.getTerms())

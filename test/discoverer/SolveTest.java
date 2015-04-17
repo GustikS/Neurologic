@@ -10,7 +10,7 @@ public class SolveTest {
     @Before
     public void initRandom() {
         Global.rg = new Random(1L);
-        String[] rules = FileToStringListJava6.convert("../data/rules_3_3.txt", Integer.MAX_VALUE);
+        String[] rules = FileToStringListJava6.convert("../in/muta2/rules", Integer.MAX_VALUE);
         NetFactory nf = new NetFactory();
         network = nf.construct(rules);
     }
@@ -44,7 +44,7 @@ public class SolveTest {
 
     @Ignore
     public void test2() {
-        String[] rules = FileToStringListJava6.convert("../data/rules_3_3.txt", Integer.MAX_VALUE);
+        String[] rules = FileToStringListJava6.convert("../in/muta2/rules", Integer.MAX_VALUE);
         String[] ex = { "1.0 bond(tr000_4, tr000_2, 0), cl(tr000_4), c(tr000_2), 1(0), bond(tr000_2, tr000_4, 0), bond(tr000_5, tr000_2, 1), h(tr000_5), 1(1), bond(tr000_2, tr000_5, 1), bond(tr000_3, tr000_2, 2), cl(tr000_3), 1(2), bond(tr000_2, tr000_3, 2), bond(tr000_2, tr000_1, 3), cl(tr000_1), 1(3), bond(tr000_1, tr000_2, 3).", };
         NetFactory nf = new NetFactory();
         KL network = nf.construct(rules);
@@ -54,7 +54,7 @@ public class SolveTest {
     }
 
     private void print(Example e, KL network) {
-        Ball b = Solvator.solve(network, e);
+        Ball b = Grounder.solve(network, e);
         System.out.println(b.val);
 
 /*

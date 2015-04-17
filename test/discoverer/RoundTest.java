@@ -51,7 +51,10 @@ public class RoundTest {
         ExampleFactory eFactory = new ExampleFactory();
         for (int i = 0; i < ex.length; i++) {
             Example e = eFactory.construct(ex[i]);
-            Ball b = Solvator.solve(last, e);
+            Ball b = Grounder.solve(last, e);
+            if (b == null) {
+                b = new Ball(-1);
+            }
             roundStore.put(e, b);
             System.out.println("Original output #" + i + "\t" + b.val);
         }
@@ -59,7 +62,10 @@ public class RoundTest {
         while (true) {
             for (Map.Entry<Example, Ball> entry : roundStore.entrySet()) {
                 Example e = entry.getKey();
-                Ball b = Solvator.solve(last, e);
+                Ball b = Grounder.solve(last, e);
+                if (b == null) {
+                    b = new Ball(-1);
+                }
                 roundStore.put(e, b);
                 System.out.println("New subs #" + "\t" + b.val);
             }
@@ -68,20 +74,26 @@ public class RoundTest {
                 for (Map.Entry<Example, Ball> entry : roundStore.entrySet()) {
                     Example e = entry.getKey();
                     Ball b = entry.getValue();
+                    if (b == null) {
+                        continue;
+                    }
 
-                    Weights w = Backpropagation.getNewWeights(b, e, Batch.NO, 0.05);
+                    Weights w = BackpropGroundKappa.getNewWeights(b, e, Batch.NO, 0.05);
 
                     for (Map.Entry<Object, Double> t : w.getWeights().entrySet()) {
-                        if (debugEnabled) {
-                            if (t.getKey() instanceof Kappa) {
-                                Kappa k = (Kappa) t.getKey();
-                                System.out.println("Changing bias weights\t" + k + "\t" + k.getWeight() + "\t->\t" + t.getValue() + "\t(" + (k.getWeight() - t.getValue()) + ")");
-                                k.setWeight(t.getValue());
-                            } else if (t.getKey() instanceof KappaRule) {
-                                KappaRule k = (KappaRule) t.getKey();
-                                System.out.println("Changing rule weights\t" + k + "\t" + k.getWeight() + "\t->\t" + t.getValue() + "\t(" + (k.getWeight() - t.getValue()) + ")");
-                                k.setWeight(t.getValue());
+                        Object o = t.getKey();
+                        if (o instanceof KappaRule) {
+                            KappaRule kr = (KappaRule) o;
+                            if (debugEnabled) {
+                                System.out.println("Changing rule weights\t" + kr + "\t" + kr.getWeight() + "\t->\t" + t.getValue() + "\t(" + (kr.getWeight() - t.getValue()) + ")");
                             }
+                            kr.setWeight(t.getValue());
+                        } else {
+                            Kappa kap = (Kappa) o;
+                            if (debugEnabled) {
+                                System.out.println("Changing bias weights\t\t" + kap + "\t" + kap.getWeight() + "\t->\t" + t.getValue() + "\t(" + (kap.weight - t.getValue()) + ")");
+                            }
+                            kap.setWeight(t.getValue());
                         }
                     }
 

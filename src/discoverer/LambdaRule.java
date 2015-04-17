@@ -47,6 +47,11 @@ public class LambdaRule extends Rule {
     }
 
 
+    /**
+     * adds grounded Kappa literal to body
+     * adds every not Binded variable to unbound Terminal List
+     * @param e 
+     */
     public void addBodyEl(SubK e) {
         body.add(e);
         for (Terminal t: e.getTerms())

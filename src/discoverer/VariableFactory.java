@@ -4,10 +4,14 @@ import java.util.*;
 
 /**
  * Factory for variables
+ * - ensures same name variables will refer to the same variable instance with hashmap
  */
 public class VariableFactory {
     private Map<String, Terminal> varMap;
 
+    /**
+     * stores hashmap of terminals
+     */
     public VariableFactory() {
         varMap = new HashMap<String, Terminal>();
     }
@@ -21,8 +25,6 @@ public class VariableFactory {
             if (name.contains("DMY"))
                 t.setDummy();
         }
-
-
         return t;
     }
 

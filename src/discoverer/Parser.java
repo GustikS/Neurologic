@@ -21,6 +21,11 @@ public class Parser {
         return tokens;
     }
 
+    /**
+     * turns examples string(set of literals) into (weight,{literal(variables)})
+     * @param example
+     * @return 
+     */
     public static String[][] parseExample(String example) {
         int expLen = getWeightLen(example);
         String expected = example.substring(0,expLen).replaceAll(" ", "");

@@ -8,16 +8,34 @@ import java.util.List;
  * Wrapper for running test with n-fold stratification
  */
 public class Solver {
+
+    /**
+     * Main solving method from input arguments, performs example splitting and
+     * majority testing
+     *
+     * @param folds
+     * @param rules
+     * @param ex
+     * @param batch
+     * @param steps
+     * @param epochs
+     * @param restartCount
+     * @param learnRate
+     */
     public void solve(int folds, String[] rules, String[] ex, Batch batch, int steps, int epochs, int restartCount, double learnRate) {
+        //factory + subfactories initialization
         NetFactory nf = new NetFactory();
+        //constructs the whole L-K network from rules with support of grounded classes and element mappers, return LAST line rule's literal(=KL)!
         KL network = nf.construct(rules);
+        //creates examples with corresponding ID mapping and chunk representations
         List<Example> examples = createExamples(ex);
+        //k-fold stratified example(same #positives in folds) splitting structure
         ExampleSplitter es = new ExampleSplitter(folds, examples);
 
         double testErr = 0;
         double testMaj = 0;
         int i;
-        for (i = 0; es.hasNext(); es.next()) {
+        for (i = 0; es.hasNext(); es.next()) { //iterating the test fold
             double thresh = train(batch, network, es.getTrain(), steps, epochs, restartCount, learnRate);
             testErr += test(network, thresh, es.getTest());
             testMaj += testM(es.getTest(), es.getTrain());
@@ -33,19 +51,25 @@ public class Solver {
 
     private double testM(List<Example> test, List<Example> train) {
         int pos = 0;
-        for (Example e: train)
-            if (e.getExpectedValue() == 1)
+        for (Example e : train) {
+            if (e.getExpectedValue() == 1) {
                 pos++;
+            }
+        }
 
         double err = 0;
-        if (pos >= (double) train.size()/2) {
-            for (Example e: test)
-                if (e.getExpectedValue() == 0)
+        if (pos >= (double) train.size() / 2) {
+            for (Example e : test) {
+                if (e.getExpectedValue() == 0) {
                     err++;
+                }
+            }
         } else {
-            for (Example e: test)
-                if (e.getExpectedValue() == 1)
+            for (Example e : test) {
+                if (e.getExpectedValue() == 1) {
                     err++;
+                }
+            }
         }
 
         err /= test.size();
@@ -53,10 +77,18 @@ public class Solver {
         return err;
     }
 
+    /**
+     * creates shuffled list of Examples from descriptions(conjunction of
+     * literals)
+     *
+     * @param ex
+     * @return
+     */
     public List<Example> createExamples(String[] ex) {
         ExampleFactory eFactory = new ExampleFactory();
         List<Example> examples = new ArrayList<Example>();
         for (int i = 0; i < ex.length; i++) {
+            //main creation of an example
             Example e = eFactory.construct(ex[i]);
             examples.add(e);
         }
@@ -65,9 +97,25 @@ public class Solver {
         return examples;
     }
 
+    /**
+     * the whole network training
+     *
+     * @param batch
+     * @param network
+     * @param examples
+     * @param learningStepCount
+     * @param learningEpochs
+     * @param restartCount
+     * @param learnRate
+     * @return
+     */
     public double train(Batch batch, KL network, List<Example> examples, int learningStepCount, int learningEpochs, int restartCount, double learnRate) {
         double thresh;
-        if (batch == Batch.NO) {
+
+        if (Global.grounding.equalsIgnoreCase("avg")) {
+            Learner s = new Learner();
+            thresh = s.solveAvg(network, examples, learningStepCount, learningEpochs, restartCount, learnRate);
+        } else if (batch == Batch.NO && Global.grounding.equalsIgnoreCase("max")) {
             Learner s = new Learner();
             thresh = s.solve(network, examples, learningStepCount, learningEpochs, restartCount, learnRate);
         } else {
@@ -80,12 +128,23 @@ public class Solver {
 
     public double test(KL network, double thresh, List<Example> examples) {
         double error = 0.0;
-        for (Example example: examples) {
-            Ball b = Solvator.solve(network, example);
-            double clas = b.val > thresh ? 1.0 : 0.0;
-            System.out.println("Classified -> " + clas + " Expected -> " + example.getExpectedValue() + " Out -> " + b.val + " Thresh -> " + thresh);
-            if (clas != example.getExpectedValue())
+        for (Example example : examples) {
+            Ball b = Grounder.solve(network, example);
+
+            double ballValue = -1;
+            if (b != null) {
+                if (Global.grounding.equalsIgnoreCase("avg")) {
+                    ballValue = b.valAvg;
+                } else {
+                    ballValue = b.val;
+                }
+            }
+
+            double clas = ballValue > thresh ? 1.0 : 0.0;
+            System.out.println("Classified -> " + clas + " Expected -> " + example.getExpectedValue() + " Out -> " + ballValue + " Thresh -> " + thresh);
+            if (clas != example.getExpectedValue()) {
                 error += 1.0;
+            }
         }
 
         double err = error / examples.size();

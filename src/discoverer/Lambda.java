@@ -13,6 +13,10 @@ public class Lambda extends KL {
     public double getInitialW()       { return initialW; }
     public LambdaRule getRule()       { return rule; }
 
+    /**
+     * - offset by the number of conjuncts
+     * @param lr 
+     */
     public void setRule(LambdaRule lr) {
         rule = lr;
         initialW = -rule.getBodyLen() + 0.0;

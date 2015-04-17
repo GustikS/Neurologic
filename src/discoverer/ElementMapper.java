@@ -3,12 +3,18 @@ package discoverer;
 import java.util.*;
 
 /**
- * Mapping for elements String -> Integer
+ * Mapping for all elements(literals in rules and examples) String -> Integer
  */
 public class ElementMapper {
     private static Map<String, Integer> elMap = new HashMap<String, Integer>();
     private static int elId = 0;
 
+    /**
+     * assigns this String a unique incrementing Integer<p>
+     * as stored in elMap here
+     * @param s
+     * @return 
+     */
     public static int map(String s) {
         if (elMap.containsKey(s))
             return elMap.get(s);

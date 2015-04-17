@@ -6,23 +6,36 @@ import java.util.*;
  * Weights in graph
  */
 public class Weights {
+
     private Map<Object, Double> weights;
+    private List<Tuple<Object, Double>> updates;
     private Map<Object, Double> diffs;
-    private Map<Object, Integer> addedWeightsCount;
+    private Map<Object, Integer> addedWeightsCount; //number of particular edge-weight updates
 
     public Weights() {
         weights = new HashMap<Object, Double>();
+        updates = new LinkedList<>();
+
         diffs = new HashMap<Object, Double>();
         addedWeightsCount = new HashMap<Object, Integer>();
     }
 
     public void clear() {
         weights.clear();
+        updates.clear();
+
         diffs.clear();
         addedWeightsCount.clear();
     }
 
+    /**
+     * kapparule weight update
+     *
+     * @param kr
+     * @param d
+     */
     public void addW(KappaRule kr, Double d) {
+        updates.add(new Tuple<>(kr, d));
         if (weights.containsKey(kr)) {
             weights.put(kr, weights.get(kr) + d);
             addedWeightsCount.put(kr, addedWeightsCount.get(kr) + 1);
@@ -33,6 +46,7 @@ public class Weights {
     }
 
     public void addW(Kappa k, Double d) {
+        updates.add(new Tuple<>(k, d));
         if (weights.containsKey(k)) {
             weights.put(k, weights.get(k) + d);
             addedWeightsCount.put(k, addedWeightsCount.get(k) + 1);
@@ -63,7 +77,16 @@ public class Weights {
 
         return weights;
     }
-    public Map<Object, Double> getDiffs() { return diffs; }
-    public double getWeight(Object o) { return weights.get(o); }
-    public double getDiffs(Object o) { return diffs.get(o); }
+
+    public Map<Object, Double> getDiffs() {
+        return diffs;
+    }
+
+    public double getWeight(Object o) {
+        return weights.get(o);
+    }
+
+    public double getDiffs(Object o) {
+        return diffs.get(o);
+    }
 }

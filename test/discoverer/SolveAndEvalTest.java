@@ -717,7 +717,7 @@ public class SolveAndEvalTest {
         Ball bb = null;
         Double dd = null;
         //while (true) {
-        bb = Solvator.solve(last, e);
+        bb = Grounder.solve(last, e);
         //assertEquals("Output", 0.6428072668247082, bb.val, 0);
         System.out.println(bb.val);
         //assertEquals("Output", 0.6428072668247082, dd, 0);
@@ -725,7 +725,7 @@ public class SolveAndEvalTest {
             //System.out.println(bb.getActiveRules());
         //Backpropagation.changeWeights(bb, e);
 
-            //while (true) {
+        //while (true) {
         //bb = Solvator.solve(last,e);
         //assertEquals("Output", 0.6428072668247082, bb.val, 0);
         //System.out.println(bb.val);
@@ -1063,7 +1063,7 @@ public class SolveAndEvalTest {
         ExampleFactory eFactory = new ExampleFactory();
         Example e = eFactory.construct(ex[0]);
 
-        Ball bb = Solvator.solve(last, e);
+        Ball bb = Grounder.solve(last, e);
         //assertEquals("Output", 0.6428072668247082, bb.val, 0);
         System.out.println(bb.val);
         //System.out.println(bb.getLast());
@@ -1112,12 +1112,12 @@ public class SolveAndEvalTest {
         ExampleFactory eFactory = new ExampleFactory();
         Example e = eFactory.construct(ex[0]);
 
-        Ball bb = Solvator.solve(last, e);
+        Ball bb = Grounder.solve(last, e);
         //assertEquals("Output", 0.6428072668247082, bb.val, 0);
         System.out.println(bb.val);
         //System.out.println(bb.getLast());
         System.out.println(Evaluator.evaluate(bb));
-        bb = Solvator.solve(last, e);
+        bb = Grounder.solve(last, e);
         System.out.println(bb.val);
         System.out.println(Evaluator.evaluate(bb));
         //System.out.println(bb.getActiveRules());
@@ -1171,7 +1171,7 @@ public class SolveAndEvalTest {
         ExampleFactory eFactory = new ExampleFactory();
         Example e = eFactory.construct(ex[0]);
 
-        Ball bb = Solvator.solve(last, e);
+        Ball bb = Grounder.solve(last, e);
         System.out.println(bb.val);
         //assertEquals("Output", 0.6428072668247082, bb.val, 0);
 
@@ -1179,7 +1179,7 @@ public class SolveAndEvalTest {
         System.out.println(dd);
         //assertEquals("Output", 0.6428072668247082, dd, 0);
         //
-        bb = Solvator.solve(last, e);
+        bb = Grounder.solve(last, e);
         System.out.println(bb.val);
 
         dd = Evaluator.evaluate(bb);
@@ -1225,11 +1225,11 @@ public class SolveAndEvalTest {
         ExampleFactory eFactory = new ExampleFactory();
         Example e = eFactory.construct(ex[0]);
 
-        Ball bb = Solvator.solve(last, e);
+        Ball bb = Grounder.solve(last, e);
         System.out.println(bb.val);
         System.out.println(Evaluator.evaluate(bb));
 
-        bb = Solvator.solve(last, e);
+        bb = Grounder.solve(last, e);
         System.out.println(bb.val);
         System.out.println(Evaluator.evaluate(bb));
 
@@ -1287,7 +1287,7 @@ public class SolveAndEvalTest {
         ExampleFactory eFactory = new ExampleFactory();
         Example e = eFactory.construct(ex[0]);
 
-        Ball bb = Solvator.solve(last, e);
+        Ball bb = Grounder.solve(last, e);
         //assertEquals("Output", 0.7310585786300049, bb.val, 0);
         System.out.println(bb.val);
 
@@ -1308,7 +1308,7 @@ public class SolveAndEvalTest {
         ExampleFactory eFactory = new ExampleFactory();
         Example e = eFactory.construct(ex[0]);
 
-        Ball bb = Solvator.solve(last, e);
+        Ball bb = Grounder.solve(last, e);
         assertEquals("Output", 0.0, bb.val, 0);
         System.out.println(bb.val);
 
@@ -1342,14 +1342,14 @@ public class SolveAndEvalTest {
         ExampleFactory eFactory = new ExampleFactory();
         Example e = eFactory.construct(ex[0]);
 
-        Ball bb = Solvator.solve(last, e);
+        Ball bb = Grounder.solve(last, e);
         //assertEquals("Output", 0.6792981617480565, bb.val, 0);
+//
+//        for (Map.Entry<KL, Double> ee : bb.getActiveRules().entrySet()) {
+//            System.out.println(ee.getKey() + " --> " + ee.getValue());
+//        }
 
-        for (KappaRule ee : bb.getActiveRules()) {
-            System.out.println(ee.deltaW + " , " + ee.weight);
-        }
-
-       //System.out.println(bb.getActives());
+        //System.out.println(bb.getActives());
         System.out.println(bb.val);
 
         Double dd = Evaluator.evaluate(bb);

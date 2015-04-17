@@ -1,7 +1,8 @@
 package discoverer;
 
 /**
- * Class for terminals
+ * Class for terminals - variables with binding<p>
+ * Terminals are unique objects for every variable in the rules, unless with the same name in the same rule
  */
 public class Terminal extends Element {
     private Integer bind;

@@ -1,19 +1,32 @@
 package discoverer;
 
-import org.apache.commons.cli.*;
+import org.apache.commons.cli.CommandLine;
+import org.apache.commons.cli.CommandLineParser;
+import org.apache.commons.cli.HelpFormatter;
+import org.apache.commons.cli.OptionBuilder;
+import org.apache.commons.cli.Options;
+import org.apache.commons.cli.ParseException;
+import org.apache.commons.cli.PosixParser;
 
 /**
- * Main class
- * Params handling and calling appropriate methods
+ * Main class Params handling and calling appropriate methods
  */
 public class Main {
+
+    //cutoff on example number
     private static final String defaultMaxExample = "1000";
-    private static final String defaultLearningSteps = "10";
-    private static final String defaultLearningEpochs = "7";
-    private static final String defaultFolds = "4";
+    //
+    private static String defaultLearningSteps = "10";
+    //
+    private static String defaultLearningEpochs = "7";
+    //crossval
+    private static final String defaultFolds = "2";
     private static final String defaultLearningRate = "0.05";
     private static final String defaultRestartCount = "3";
+    //max-avg
+    public static final String defaultGrounding = "max";
 
+    //public static boolean avg = true;
     public static Options getOptions() {
         Options options = new Options();
         OptionBuilder.withLongOpt("rules");
@@ -66,6 +79,12 @@ public class Main {
         OptionBuilder.hasArg();
         options.addOption(OptionBuilder.create("rs"));
 
+        OptionBuilder.withLongOpt("grounding");
+        OptionBuilder.withDescription("grounding variant (default: " + defaultGrounding + ")");
+        OptionBuilder.withArgName("GROUNDING");
+        OptionBuilder.hasArg();
+        options.addOption(OptionBuilder.create("gr"));
+
         OptionBuilder.withLongOpt("batch");
         OptionBuilder.withDescription("Enable batch learning(RPROP) (default: off)");
         options.addOption(OptionBuilder.create("b"));
@@ -93,12 +112,23 @@ public class Main {
         return cmd;
     }
 
-
     public static void main(String[] args) {
         CommandLine cmd = parseArguments(args);
-        if (cmd == null)
+        if (cmd == null) {
             return;
+        }
 
+        String ground = cmd.getOptionValue("gr", defaultGrounding);
+
+        if (ground.equalsIgnoreCase("avg")) {
+            Global.setAvg();
+            defaultLearningEpochs = "0";
+            defaultLearningSteps = "100";
+        } else {
+            Global.setMax();
+        }
+
+        //parsing command line options - needs external library commons-CLI
         Batch batch = cmd.hasOption("b") ? Batch.YES : Batch.NO;
 
         String tmp = cmd.getOptionValue("s", defaultMaxExample);
@@ -119,10 +149,14 @@ public class Main {
         tmp = cmd.getOptionValue("rs", defaultRestartCount);
         int restartCount = Integer.parseInt(tmp);
 
+        //get examples one by one from file
         String[] ex = FileToStringListJava6.convert(cmd.getOptionValue("e"), maxLine);
+        //get rules one by one from file
         String[] rules = FileToStringListJava6.convert(cmd.getOptionValue("r"), Integer.MAX_VALUE);
 
         Solver solver = new Solver();
+
+        //main solver method
         solver.solve(folds, rules, ex, batch, steps, epochs, restartCount, learnRate);
     }
 }

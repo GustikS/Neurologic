@@ -14,6 +14,11 @@ public class ExampleSplitter {
     private int testFold = 0;
     private List<List<Example>> folds;
 
+    /**
+     * stratified split of examples(same #positive examples) for k-fold crossvalidation
+     * @param k
+     * @param ex 
+     */
     public ExampleSplitter(int k, List<Example> ex) {
         folds = new ArrayList<List<Example>>();
 
@@ -21,6 +26,7 @@ public class ExampleSplitter {
         List<Example> negatives = getNegatives(ex);
 
         int foldLen = (int) Math.floor((double) ex.size() / k);
+        //repaired fold count - extra fold for remaining samples
         foldCount = (int) Math.ceil((double) ex.size() / foldLen);
         int positivesInFold = (int) Math.ceil((double) positives.size() / ex.size() * foldLen);
 

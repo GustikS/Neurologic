@@ -3,7 +3,7 @@ package discoverer;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Backpropagation {
+public class BackpropKappa {
     private static Set<Kappa> activeKappas = new HashSet<Kappa>();
     private static Weights weights = new Weights();
 
@@ -19,8 +19,12 @@ public class Backpropagation {
         Object o = b.getLast();
         activeKappas.clear();
         weights.clear();
+        if (o == null) {
+            return weights;
+        }
 
-        double base = -2 * (e.getExpectedValue() - b.val);
+        //double base = -2 * (e.getExpectedValue() - b.val);
+        double base = -1 * (e.getExpectedValue() - b.val);
 
         for (KappaRule kr: b.getActiveRules()) {
             activeKappas.add(kr.getHead().getParent());

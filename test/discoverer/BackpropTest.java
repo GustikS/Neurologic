@@ -58,13 +58,13 @@ public class BackpropTest {
         ExampleFactory eFactory = new ExampleFactory();
         Example e = eFactory.construct(ex[0]);
 
-        Ball b = Solvator.solve(last, e);
+        Ball b = Grounder.solve(last, e);
         System.out.println(b.val);
         double learnRate = 0.15;
-        Weights w = Backpropagation2.getNewWeights(b, e, Batch.NO, learnRate);
+        Weights w = BackpropGroundKappa.getNewWeights(b, e, Batch.NO, learnRate);
         print(w);
         System.out.println(Evaluator.evaluate(b));
-        b = Solvator.solve(last, e);
+        b = Grounder.solve(last, e);
         System.out.println(b.val);
         System.out.println(Evaluator.evaluate(b));
         System.out.println(b.getActiveRules().size());
