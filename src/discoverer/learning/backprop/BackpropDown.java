@@ -13,7 +13,7 @@ import discoverer.grounding.network.GroundKL;
 import discoverer.grounding.network.GroundKappa;
 import discoverer.grounding.network.GroundLambda;
 import discoverer.construction.network.rules.KappaRule;
-import discoverer.learning.backprop.functions.Sigmoid;
+import discoverer.learning.backprop.functions.Activations;
 import discoverer.global.Tuple;
 import discoverer.learning.Weights;
 import java.util.HashSet;
@@ -59,11 +59,9 @@ public class BackpropDown {
         gk.addGroundParentDerivative(derivative);   //aggregating(summing) the derivative from ground parent nodes
         gk.incrGroundParentsChecked();
 
-        double myDerivative = 0;
-
         if (gk.getGroundParentsChecked() == gk.getGroundParents()) { //all parents checked
-            double firstDerivative = firstPartKappaDerivative(gk);
-            myDerivative = gk.getGroundParentDerivative() * firstDerivative;
+            double firstDerivative = kappaActivationDerivative(gk);
+            double myDerivative = gk.getGroundParentDerivative() * firstDerivative;
             weights.addW(gk.getGeneral(), -learnRate * myDerivative);   //updating offset weight (it's inner derivative is just 1, so no more computations needed)
 
             for (Tuple<GroundLambda, KappaRule> tup : gk.getDisjuncts()) {
@@ -81,7 +79,7 @@ public class BackpropDown {
         gl.incrGroundParentsChecked();
 
         if (gl.getGroundParentsChecked() == gl.getGroundParents()) {    //all parent's derivatives evaluated
-            double firstDerivative = firstPartLambdaDerivative(gl);
+            double firstDerivative = lambdaActivationDerivative(gl);
             for (GroundKappa gk : gl.getConjuncts()) {
                 derive(gk, gl.getGroundParentDerivative() * firstDerivative);
             }
@@ -89,22 +87,23 @@ public class BackpropDown {
 
     }
 
-//-----------------------the actual-level derivative(no recursion) based on GroundKappa/Lambda's output value(within a derived Sigmoid)
-    private static double firstPartKappaDerivative(GroundKappa gk) {
+//-----------------------the actual-level derivative(no recursion) based on GroundKappa/Lambda's output value(within a derived activation function)
+//---- the input value calculation could be skipped for the identity activation function derivative x -> 1, but generally is needed for x -> f'(x)
+    private static double kappaActivationDerivative(GroundKappa gk) {
         double result = gk.getGeneral().getWeight();
         for (Tuple<GroundLambda, KappaRule> t : gk.getDisjuncts()) {
-            result += t.x.getValue() * t.y.getWeight();     //we need to sum it up again because the value we have is after sigmoid
+            result += t.x.getValue() * t.y.getWeight();     //we need to sum it up again because the value we have is after activaiton function
         }
-        result = Sigmoid.sigmoidDerived(result);    //and we need to feed it through a DERIVED sigmoid
+        result = Activations.kappaActivationDerived(result);    //and we need to feed it through a DERIVED activaiton function
         return result;
     }
 
-    private static double firstPartLambdaDerivative(GroundLambda gl) {
+    private static double lambdaActivationDerivative(GroundLambda gl) {
         double result = gl.getGeneral().getInitialW();
         for (GroundKappa gk : gl.getConjuncts()) {
             result += gk.getValue();
         }
-        result = Sigmoid.sigmoidDerived(result);
+        result = Activations.lambdaActivationDerived(result);
         return result;
     }
 }

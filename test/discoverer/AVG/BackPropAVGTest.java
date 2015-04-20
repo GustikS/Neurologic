@@ -2,7 +2,7 @@ package discoverer.AVG;
 
 import discoverer.learning.backprop.BackpropDown;
 import discoverer.learning.backprop.BackpropDownAvg;
-import discoverer.learning.backprop.BackpropGroundKappa;
+import extras.BackpropGroundKappa;
 import discoverer.grounding.evaluation.Ball;
 import discoverer.global.Batch;
 import discoverer.drawing.Dotter;

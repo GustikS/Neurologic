@@ -5,7 +5,7 @@ import discoverer.construction.network.rules.KappaRule;
 import discoverer.construction.network.Lambda;
 import discoverer.construction.network.rules.SubK;
 import discoverer.construction.example.Example;
-import discoverer.learning.backprop.functions.Sigmoid;
+import discoverer.learning.backprop.functions.Activations;
 import java.util.WeakHashMap;
 
 /**
@@ -36,7 +36,7 @@ public class Estimator {
         for (KappaRule kr: k.getRules())
             est += estimate(kr.getBody().getParent()) * kr.getWeight();
 
-        est = Sigmoid.sigmoid(est);
+        est = Activations.kappaActivation(est);
         cache.put(k, est);
         return est;
     }
@@ -49,7 +49,7 @@ public class Estimator {
         for (SubK sk: l.getRule().getBody())
             est += estimate(sk.getParent());
 
-        est = Sigmoid.sigmoid(est);
+        est = Activations.lambdaActivation(est);
         cache.put(l, est);
         return est;
     }

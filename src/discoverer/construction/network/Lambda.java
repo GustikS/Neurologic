@@ -21,6 +21,7 @@ public class Lambda extends KL {
      */
     public void setRule(LambdaRule lr) {
         rule = lr;
-        initialW = -rule.getBodyLen() + 0.0;
+        //initialW = -rule.getBodyLen() + 0.0;
+        initialW = 0.0;
     }
 }

@@ -12,7 +12,7 @@ import discoverer.grounding.network.GroundKL;
 import discoverer.grounding.network.GroundKappa;
 import discoverer.grounding.network.GroundLambda;
 import discoverer.construction.network.rules.KappaRule;
-import discoverer.learning.backprop.functions.Sigmoid;
+import discoverer.learning.backprop.functions.Activations;
 import discoverer.global.Tuple;
 import discoverer.learning.Weights;
 import java.util.HashMap;
@@ -90,7 +90,7 @@ public class BackpropDownAvg {
         for (Tuple<HashSet<GroundLambda>, KappaRule> t : gk.getDisjunctsAvg()) {
             result += GroundKL.getAvgValFrom(t.x) * t.y.getWeight();     //we need to sum it up again because the value we have is after sigmoid
         }
-        result = Sigmoid.sigmoidDerived(result);    //and we need to feed it through a DERIVED sigmoid
+        result = Activations.kappaActivationDerived(result);    //and we need to feed it through a DERIVED sigmoid
         return result;
     }
 
@@ -101,7 +101,7 @@ public class BackpropDownAvg {
             avg += gk.getKey().getValueAvg() * gk.getValue();
         }
         avg /= gl.getConjunctsCountForAvg();    //they are all averaged by the number of body groundings
-        result = Sigmoid.sigmoidDerived(result + avg);    //
+        result = Activations.lambdaActivationDerived(result + avg);    //
         return result;
     }
 }

@@ -1,4 +1,4 @@
-package discoverer.grounding;
+package extras;
 
 import discoverer.grounding.evaluation.Ball;
 import discoverer.construction.example.Example;
@@ -15,8 +15,8 @@ import discoverer.construction.network.rules.Rule;
 import discoverer.construction.network.rules.SubK;
 import discoverer.construction.network.rules.SubL;
 import discoverer.construction.Terminal;
+import discoverer.grounding.ForwardChecker;
 import discoverer.learning.backprop.functions.Activations;
-import java.awt.Desktop;
 import java.util.List;
 import java.util.WeakHashMap;
 import java.util.HashMap;
@@ -24,9 +24,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * substitution solver
+ * Maximal substitution solver
  */
-public class Grounder {
+public class Solvator {
 
     private static final boolean forwardCheckEnabled = Global.forwardCheckEnabled;
     private static final boolean cacheEnabled = Global.cacheEnabled;
@@ -54,7 +54,6 @@ public class Grounder {
      * @return
      */
     public static Ball solve(KL kl, Example e) {
-        //return Solvator.solve(kl, e);
         if (debugEnabled) {
             System.out.println("Entering to solve\t" + kl);
         }
@@ -64,14 +63,10 @@ public class Grounder {
 
         Ball b = kl instanceof Kappa ? solve2((Kappa) kl, null) : solve2((Lambda) kl, null);    //always Kappa only...first literal is without variables(ignoring them)
 
-        if (b == null) {
-            return new Ball(Global.falseAtomValue);
-        }
-
         ForwardChecker.printRuns();
         //ForwardChecker.clear();
 
-        return b;   //warning - now can return null if the given KL program and Example e have no grounded solution! //replaced with -1 empty Ball
+        return b;
     }
 
     /**
@@ -92,14 +87,12 @@ public class Grounder {
         Ball b = new Ball();
         GroundKappa gk = new GroundKappa(k, vars);
 
-        boolean cancel = true;
         for (KappaRule r : k.getRules()) {
-            Ball tmp = solve(r, vars);  //tmp.val is consisten but valAvg is not, needs to be computed here
-            if (tmp == null || tmp.getLast() == null) { //only if there is no true grounding found for this rule then skip
+            Ball tmp = solve(r, vars);
+            if (tmp.val == 0) { // 0= non-entailed or entailed with 0 weight?
                 continue;
             }
 
-            cancel = false;
             double w = r.weight;
 
             // HERE I need to get back a list of GroundLambda
@@ -109,7 +102,7 @@ public class Grounder {
             tmp.setValAvg(GroundKL.getAvgValFrom(lastAvg));
             tmp.weightAvgWith(w);
             b.addAvg(tmp);
-            //b.addActiveRule(r);   //we omit active rules completely in the new version
+            //b.addActiveRule(r);
             //---
             //---previous max.subst. part of code
             GroundLambda t = (GroundLambda) tmp.getLast();
@@ -117,17 +110,17 @@ public class Grounder {
             tmp.weightItWith(w);    //weight the disjunct
             b.add(tmp);         //summing disjuncts' contributions
             //---
-            //b.addActiveRule(r);
-        }
-        if (cancel) {
-            return null;    //if I didn't find any of this Kappa's disjuncts(with the vars given), there is nothing to return!
+            b.addActiveRule(r);
         }
 
-        b.val += k.weight;  //node offset
-        b.val = Activations.kappaActivation(b.val);    // + sigmoid
-        //---
-        b.valAvg += k.weight;
-        b.valAvg = Activations.kappaActivation(b.valAvg);
+        if (b.val != 0) {   //what if the rules sum up to 0?
+
+            b.val += k.weight;  //node offset
+            b.val = Activations.kappaActivation(b.val);    // + sigmoid
+            //---
+            b.valAvg += k.weight;
+            b.valAvg = Activations.kappaActivation(b.valAvg);
+        }
 
         gk.setValue(b.val);
         //--
@@ -154,33 +147,29 @@ public class Grounder {
 
         Ball b = solve(l.getRule(), vars);      //there is only one rule for lambda node
 
-        if (b == null || b.getLast() == null) {
-            return null;    //if I didn't solve this Lambda's rule(+vars), there is nothing to send!
-        }
-
         // HERE I need to get back a list of GroundKappa groundings(weighted), but
         // but the results is a Set of the same groundings of this Lambda(same rule's head with different bodies) with sumed up conjuncts values
         //- calculate the average
-        Set<GroundLambda> lastAvg = b.getLastAvg(); //this shouldn't be empty now
-        GroundLambda gl = (GroundLambda) b.getLast();   //as well as this
+        Set<GroundLambda> lastAvg = b.getLastAvg();
+        GroundLambda gl = (GroundLambda) b.getLast();
 
-        //the body should also be non-zero now
-        b.val += l.initialW;    //add offset = -1*number_of_conjuncts
-        b.val = Activations.lambdaActivation(b.val);
-        //---calculate the average value
-        b.setValAvg(GroundKL.getAvgValFrom(lastAvg));
-        b.valAvg += l.initialW;
-        b.valAvg = Activations.lambdaActivation(b.valAvg);
-
-        gl.setValue(b.val);
-        //---
-        gl.setValueAvg(b.valAvg);
-        gl.addConjuctsAvgFrom(lastAvg); //extracting all the groundings of conjuncts into a hashmap (weighted occurrence) - this is important as adding
-
-        if (Global.debugEnabled) {
-            System.out.println(l + "\t->\t" + b.valAvg);
+        if (b.val != 0) {   //this should always be true for entailed body of kappas
+            b.val += l.initialW;    //add offset = -1*number_of_conjuncts
+            b.val = Activations.lambdaActivation(b.val);
+            //---calculate the average value
+            b.setValAvg(GroundKL.getAvgValFrom(lastAvg));
+            b.valAvg += l.initialW;
+            b.valAvg = Activations.lambdaActivation(b.valAvg);
         }
 
+        if (gl != null) {
+            gl.setValue(b.val);
+            //---
+            gl.setValueAvg(b.valAvg);
+            gl.addConjuctsAvgFrom(lastAvg); //extracting all the groundings of conjuncts into a hashmap (weighted occurrence)
+        }
+
+        //System.out.println(l + "\t->\t" + b.val);
         return b;
     }
 
@@ -199,8 +188,10 @@ public class Grounder {
         r.consumeVars(vars);    //head -> body variable binding/unification
         r.setLastBindedVar(null);
 
-        //-------------------//we will assemble the average on the level of rules(bodies)
-        return bindAll(r, new Ball());  //extensive combination binding of unbound variables
+        //-------------------
+        Ball b = new Ball();
+        b.setLastAvg(new HashSet());    //we will assemble the average on the level of rules(bodies)
+        return bindAll(r, b);  //extensive combination binding of unbound variables
     }
 
     /**
@@ -213,8 +204,8 @@ public class Grounder {
      * returning the best found ball
      *
      * <p>
-     * NOTE - when calling this(except the no-variables finalKappa) the rule's
-     * head is always fully bound
+     * NOTE - when calling this(except the finalKappa) the rule's head is always
+     * fully bound
      *
      * @param r
      * @param best
@@ -226,22 +217,18 @@ public class Grounder {
         }
 
         if (forwardCheckEnabled && !ForwardChecker.shouldContinue(r, example)) {
-            //return new Ball();
-            return null;
+            return new Ball();
         }
 
         if (r.isBound()) {  //no more unbound variables
-            Ball solvedBound = solveBound(r, best); // all variables are bound -> dispatch this concrete grounding (the bind variables(Term) information is in SubKL-termsList)
-            //HERE  - is the aggregation of all groundings
-            if (solvedBound != null) {
-                best.addGroundRule((GroundLambda) solvedBound.getLast());   //the final node is either one GroundLambda for a KappaRule's body, or one GroundLamda for LambdaRule's head(with sumed up body as value)
-                solvedBound.addLastAvg(best.getLastAvg());
-                //solvedBound.setValAvg(best.getValAvg());
-            }            //----here                                                  //i.e. it's always a sumation of the one grounded rule's body value(s)
+            Ball solvedBound = solveBound(r, best); // all variables are bound -> dispatch
+            //HERE
+            best.addGroundRule((GroundLambda) solvedBound.getLast());
+            //----here
             return solvedBound;
         }
 
-        Terminal toBind = r.getNextUnbound();   //get next unbound variable from all body literals
+        Terminal toBind = r.getNextUnbound();   //get next unbound variable
         for (int i = 0; i < example.getConstCount(); i++) { // all possible bindings of variables in rule r
             if (debugEnabled) {
                 System.out.println("\t toBind=" + toBind + " -> " + (i + 1) + " of " + example.getConstCount());
@@ -250,10 +237,9 @@ public class Grounder {
             r.setLastBindedVar(toBind);
             Ball b = bindAll(r, best);  //and bind the rest recursively
 
-            //------------this is not really pruning, just holding the best so far Ball.val(doesn't hurt the average grounding agregation)
-            if ((b != null) && ((best.val == null) || (b.val >= best.val)))  {    //if this binding of current toBind variable to i-th constant is best so far
-                b.addLastAvg(best.getLastAvg()); //we need to keep all the so-far found solutions for averaging (the best Ball should already contain all of them so "adding" shouldn't be necessary, just setting)
-                b.setValAvg(best.getValAvg());  //not necessary, we do not work with the ball's average value, it is aggregated from the last GroundLambdas
+            //------------
+            if (b.val >= best.val) {    //if this binding of current toBind variable to i-th constant is best so far
+                b.addLastAvg(best.getLastAvg()); //we need to keep all the so-far found solutions for averaging
                 best = b;   //replace it
             }
             //----------
@@ -265,10 +251,11 @@ public class Grounder {
                 break;
             }
         }
-        return best;    //the valAvg is not consistent at this state
+
+        return best;
     }
 
-//------------------------------------------------------ bounded - ground rule/nodes solving from here ---------------------------------------------------------
+//------------------------------------------------------ bounded - ground nodes solving from here
     /**
      * solving a rule with all variables in it bounded
      *
@@ -323,26 +310,24 @@ public class Grounder {
         GroundLambda gl = new GroundLambda(lr.getHead().getParent(), lr.getHead().getTerms());
 
         Ball out = new Ball();
+        boolean cancel = false;
         int i = 1;
         for (SubK sk : lr.getBody()) {
-            Ball tmp = cachedSolve(sk); //go solve one of body's ground kappa literal SubK
-            if (tmp == null) {   //HERE - now I only care if I got this grounding entailed/confirmed
-                return null;  //if I didn't I have no information to send (not just setting value to 0)
+            Ball tmp = cachedSolve(sk);
+            if (tmp.val == 0.0) {
+                cancel = true;      //if one fails - the whole conjunction has no solution -> cancel
+                return new Ball();  //skip the rest of conjuncts and return empty result
             }
 
             gl.addConjunct((GroundKappa) tmp.getLast());
-            //gl.addConjunctAvg((GroundKappa) tmp.getLast());  //also add to avg - but shouldn't be necessary - corrected this is actually wrong (would be sumed up twice if best)
-
             out.add(tmp);   //sum the conjuncts in the Ball out
             out.addAvg(tmp);
 
             //-------------------------
-            if (Global.pruning) {
-                double upperBound = out.val + lr.getBodyLen() - i;
-                if (best.val != null && best.val >= upperBound) {
-                    //HERE - pruning
-                    return null;          //pruning if this solution is necesarily worse - this must be off in the avg variant!!
-                }
+            double upperBound = out.val + lr.getBodyLen() - i;
+            if (best.val >= upperBound) {
+                //HERE - no pruning
+                //    return new Ball();          //pruning if this solution is necesarily worse!!
             }
             //-------------------------
 
@@ -353,9 +338,12 @@ public class Grounder {
             i++;
         }
 
+        if (cancel) {
+            out.val = 0.0;  //delete the result if some middle conjunct has failed
+        }
         //HERE set intermediate value to this GroundLambda(only sumation, no offset and sigmoid)
         //it will be later averaged and evaluated in solve2(Lambda...)
-        gl.setValue(out.val); //should not be necessary
+        //gl.setValue(out.val); //should not be necessary
         gl.setValueAvg(out.valAvg);
 
         out.setLast(gl);
@@ -371,6 +359,7 @@ public class Grounder {
      */
     public static Ball solve(Object o) {
         if (o instanceof SubK) {
+            SubK sk = (SubK) o;
             return solve((SubK) o);
         } else {
             return solve((SubL) o);
@@ -394,17 +383,10 @@ public class Grounder {
 
         Ball b;
         if (parent.isElement()) {   //= literal with no rules
-            double val;
-            if (example.contains(sk)) {
-                val = 1.0;    //assigning values from example - ignoring example value?
-            } else {
-                return null;    //HERE - this is different, if this ground kappa SubK is not entailed return false/null, not just a zero value
-            }
-
+            double val = example.contains(sk) ? 1.0 : 0.0;          //assigning values from example - ignoring example value?
             if (debugEnabled) {
                 System.out.println(sk + " is found: " + val);
             }
-
             b = new Ball(val);
             GroundKappa gk = new GroundKappa(sk.getParent(), sk.getTerms());        //this GroundKappa is with no Sigmoid
             gk.setValue(val);
@@ -432,7 +414,7 @@ public class Grounder {
         }
 
         Lambda parent = sl.getParent();
-        return solve2(parent, sl.getTerms());   //go solve Lambda parent of this ground lambda literal
+        return solve2(parent, sl.getTerms());
     }
 
     /**
@@ -454,28 +436,23 @@ public class Grounder {
         Ball b;
         if (o instanceof SubK) {
             SubK sk = (SubK) o;
-            if (cache.containsKey(sk)) {
-                b = cache.get(sk);
-            } else {
-                b = solve(sk);   //go solve one ground kappa literal SubK
-                cache.put(sk.clone(), b);    //I'll save it even if it's null (so as to remember it is not entailed)
+            b = cache.get((SubK) o);
+            if (b == null) {
+                b = solve(o);
+                SubK s = (SubK) o;
+                cache.put(s.clone(), b);
             }
         } else {
-            SubL sl = (SubL) o;
-            if (cache.containsKey(sl)) {
-                b = cache.get(sl);
-            } else {
-                b = solve(sl);   //if the solved lambda grounding is false I store it anyway
-                cache.put(sl.clone(), b);    //we store this (false) SubL with corresponding (empty) ball
+            b = cache.get((SubL) o);
+            if (b == null) {
+                b = solve(o);
+                SubL s = (SubL) o;
+                cache.put(s.clone(), b);
             }
         }
-        if (b != null) {
-            return b.clone();
-        }
-        return null;
+        return b.clone();
     }
 
-//a question - how does a Ball of an empty/false substitution look like?    
     /*
      *    public static Ball cachedSolve(Object o) {
      *        if (!cacheEnabled)

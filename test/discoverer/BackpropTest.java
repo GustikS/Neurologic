@@ -12,7 +12,7 @@ import discoverer.global.Global;
 import discoverer.grounding.evaluation.Evaluator;
 import discoverer.grounding.evaluation.Ball;
 import discoverer.grounding.Grounder;
-import discoverer.learning.backprop.BackpropGroundKappa;
+import extras.BackpropGroundKappa;
 import java.util.*;
 import static org.junit.Assert.*;
 import org.junit.*;

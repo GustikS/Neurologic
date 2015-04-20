@@ -6,11 +6,12 @@ import discoverer.construction.example.Example;
 import discoverer.construction.network.KL;
 import discoverer.construction.network.Kappa;
 import discoverer.construction.network.rules.KappaRule;
+import discoverer.drawing.GroundDotter;
 import discoverer.global.Glogger;
 import discoverer.grounding.ForwardChecker;
 import discoverer.grounding.evaluation.Ball;
 import discoverer.grounding.Grounder;
-import discoverer.learning.backprop.BackpropGroundKappa;
+import extras.BackpropGroundKappa;
 import discoverer.learning.backprop.BackpropDownAvg;
 import discoverer.grounding.evaluation.Evaluator;
 import discoverer.grounding.evaluation.EvaluatorAvg;
@@ -40,8 +41,10 @@ public class Learner {
     public List<Sample> firstRun(List<Example> examples, KL last) {
         List<Sample> roundStore = new ArrayList<Sample>();
         ForwardChecker.exnum = 0;
+        int i = 0;
         for (Example e : examples) {
             Ball b = Grounder.solve(last, e);
+            //GroundDotter.draw(b, "sigSig" + i++);
             Glogger.info("bval: " + b.val + ", avg: " + b.valAvg);
             roundStore.add(new Sample(e, b));
         }

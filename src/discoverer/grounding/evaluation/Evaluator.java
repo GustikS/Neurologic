@@ -4,7 +4,7 @@ import discoverer.global.Global;
 import discoverer.grounding.network.GroundKappa;
 import discoverer.grounding.network.GroundLambda;
 import discoverer.construction.network.rules.KappaRule;
-import discoverer.learning.backprop.functions.Sigmoid;
+import discoverer.learning.backprop.functions.Activations;
 import discoverer.global.Tuple;
 
 /**
@@ -43,7 +43,7 @@ public class Evaluator {
             out += evaluate(t.x) * t.y.getWeight();
         }
 
-        out = Sigmoid.sigmoid(out);
+        out = Activations.kappaActivation(out);
         gk.setValue(out);
         return out;
     }
@@ -59,7 +59,7 @@ public class Evaluator {
             out += evaluate(gk);
         }
 
-        out = Sigmoid.sigmoid(out);
+        out = Activations.lambdaActivation(out);
         gl.setValue(out);
         return out;
     }

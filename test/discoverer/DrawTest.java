@@ -85,9 +85,9 @@ public class DrawTest {
 
         Ball b = Grounder.solve(last, e);
 
-        Dotter.draw(last, "modra");
-        GroundDotter.draw(b,"modraGround");
-        GroundDotter.drawAVG(b, "modraAVG");
+        Dotter.draw(last, "modra3");
+        GroundDotter.draw(b,"modraGround3");
+        GroundDotter.drawAVG(b, "modraAVG3");
     }
 
 }

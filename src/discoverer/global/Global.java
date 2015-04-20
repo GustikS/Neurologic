@@ -5,7 +5,7 @@ import java.util.*;
 //settings
 
 public class Global {
-    private static final int seed = 1;
+    private static final int seed = 2;
     /**
      *  generating random weights and offsets
      */
@@ -15,6 +15,7 @@ public class Global {
     public static final boolean debugEnabled = false;
     public static boolean pruning = true;
     public static double falseAtomValue = -1;   //non-entailed example output
+    public static boolean lambdaSigmoid = false;
 
     public static String grounding = Main.defaultGrounding;
 

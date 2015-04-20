@@ -4,7 +4,8 @@ import discoverer.grounding.network.GroundKL;
 import discoverer.grounding.network.GroundKappa;
 import discoverer.grounding.network.GroundLambda;
 import discoverer.construction.network.rules.KappaRule;
-import discoverer.learning.backprop.functions.Sigmoid;
+import discoverer.global.Global;
+import discoverer.learning.backprop.functions.Activations;
 import discoverer.global.Tuple;
 import java.util.HashSet;
 import java.util.Map;
@@ -46,12 +47,12 @@ public class EvaluatorAvg {
                 avg += evaluate(gl);
             }
             /*if (t.x.isEmpty()){
-                System.out.println("problem");
-            }*/
+             System.out.println("problem");
+             }*/
             avg /= t.x.size();
             out += avg * t.y.getWeight();
         }
-        out = Sigmoid.sigmoid(out);
+        out = Activations.kappaActivation(out);
         gk.setValueAvg(out);
         return out;
     }
@@ -69,7 +70,8 @@ public class EvaluatorAvg {
         }
         avg /= gl.getConjunctsCountForAvg();    //they are all averaged by the number of body groundings
 
-        out = Sigmoid.sigmoid(out+avg);
+        out = Activations.lambdaActivation(out + avg);
+
         gl.setValueAvg(out);
         return out;
     }

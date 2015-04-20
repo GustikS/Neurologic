@@ -3,7 +3,6 @@ package discoverer.grounding.evaluation;
 import discoverer.grounding.network.GroundKL;
 import discoverer.grounding.network.GroundLambda;
 import discoverer.construction.network.rules.KappaRule;
-import discoverer.learning.backprop.functions.Sigmoid;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -17,8 +16,8 @@ public class Ball {
     private Set<KappaRule> activeRules;
 
     public Ball() {
-        val = 0.0;
-        valAvg = 0.0;
+        val = null;
+        valAvg = null;
         activeRules = new HashSet<KappaRule>();
         lastAvg = new HashSet<>();
     }
@@ -50,21 +49,21 @@ public class Ball {
         setValAvg((Double) (getValAvg() * w));
     }
 
-    public void sigmoid() {
-        val = Sigmoid.sigmoid(val);
-    }
-
-    public void sigmoidAvg() {
-        valAvg = Sigmoid.sigmoid(valAvg);
-    }
-
     public void add(Ball b) {
-        val += b.val;
+        if (val == null) {
+            val = b.val;
+        } else {
+            val += b.val;
+        }
         //activeRules.addAll(b.getActiveRules());
     }
 
     public void addAvg(Ball b) {
-        valAvg += b.valAvg;
+        if (valAvg == null) {
+            valAvg = b.valAvg;
+        } else {
+            valAvg += b.valAvg;
+        }
         //activeRules.addAll(b.getActiveRules());
     }
 

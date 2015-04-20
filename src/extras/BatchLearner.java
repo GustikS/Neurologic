@@ -8,7 +8,6 @@ import discoverer.construction.network.Kappa;
 import discoverer.construction.network.rules.KappaRule;
 import discoverer.grounding.evaluation.Ball;
 import discoverer.grounding.Grounder;
-import discoverer.learning.backprop.BackpropGroundKappa;
 import discoverer.grounding.evaluation.Evaluator;
 import discoverer.learning.Invalidator;
 import discoverer.learning.Result;
