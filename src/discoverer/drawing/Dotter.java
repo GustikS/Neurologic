@@ -6,6 +6,7 @@ import discoverer.construction.network.rules.KappaRule;
 import discoverer.construction.network.Lambda;
 import discoverer.construction.network.rules.LambdaRule;
 import discoverer.construction.network.rules.SubK;
+import discoverer.global.Glogger;
 import java.io.*;
 
 import java.text.DecimalFormat;
@@ -41,7 +42,7 @@ public class Dotter {
             }
             out.close();
         } catch (Exception e) {
-            System.out.println(e);
+            Glogger.err(e.toString());
         }
     }
 
@@ -52,7 +53,7 @@ public class Dotter {
             Process p = r.exec(path + "dot -T" + imgtype + " -o" + outPath + name + "." + imgtype + " graph.dot");
             p.waitFor();
         } catch (Exception e) {
-            System.out.println(e);
+            Glogger.err(e.toString());
         }
     }
 

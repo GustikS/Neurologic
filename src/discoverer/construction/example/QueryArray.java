@@ -1,6 +1,7 @@
 package discoverer.construction.example;
 
 import discoverer.construction.example.IntArray;
+import discoverer.global.Glogger;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -61,7 +62,7 @@ public class QueryArray {
             return true;
         }
 
-        System.out.println("Unexpected type!");
+        Glogger.err("Unexpected type!");
         return false;
     }
 }

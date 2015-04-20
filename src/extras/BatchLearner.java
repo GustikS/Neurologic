@@ -79,7 +79,7 @@ public class BatchLearner {
      * @param learnRate lrate
      * @param restartCount experimental restarted strategy
      */
-    public double solve(KL last, List<Example> examples, int learningSteps, int learningEpochs, int restartCount, double learnRate) {
+    public Results solve(KL last, List<Example> examples, int learningSteps, int learningEpochs, int restartCount, double learnRate) {
         List<Sample> roundStore = firstRun(examples, last);
 
         Results results = null;
@@ -163,6 +163,6 @@ public class BatchLearner {
         }
         System.out.println("Saved Learning error after resubstition =\t" + results.getLearningError() + " (maj: " + results.getMajorityClass() + ")" + " (th: " + results.getThreshold() + ")" +" (disp: " + results.getDispersion() + ")");
 
-        return results.getThreshold();
+        return results;
     }
 }

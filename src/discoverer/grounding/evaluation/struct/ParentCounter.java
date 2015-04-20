@@ -48,7 +48,7 @@ public class ParentCounter {
                 System.out.println("counts: " + groundKappa + " - " + groundKappa.getGroundParents());
             }
         }
-        if (true){
+        if (Global.debugEnabled){
             for (GroundKL groundKL : groundKLs) {
                 System.out.println("avgvals: " + groundKL + " -> " + groundKL.getValueAvg());
             }

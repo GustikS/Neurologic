@@ -150,7 +150,7 @@ public class Solvator {
         //- calculate the average
         Set<GroundLambda> lastAvg = b.getLastAvg();
         GroundLambda gl = (GroundLambda) b.getLast();
-        
+
         if (b.val != 0) {   //this should always be true for entailed body of kappas
             b.val += l.initialW;    //add offset = -1*number_of_conjuncts
             b.sigmoid();

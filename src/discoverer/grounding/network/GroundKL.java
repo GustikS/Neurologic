@@ -46,6 +46,13 @@ public class GroundKL {
             }
         }
     }
+    
+    public void invalidate(){
+        groundParentsChecked = 0;
+        groundParentDerivative = 0;
+        value = null;
+        valueAvg = null;
+    }
 
     /**
      * @return the groundParents

@@ -10,12 +10,14 @@ import discoverer.construction.network.rules.SubL;
 import discoverer.construction.Terminal;
 import discoverer.construction.example.Example;
 import discoverer.global.Global;
+import discoverer.global.Glogger;
 import java.util.*;
 
 /**
  * Forward checking in kl-network
  */
 public class ForwardChecker {
+
     private static Example example;
     private static HashMap<Object, Boolean> cache;
 
@@ -23,8 +25,10 @@ public class ForwardChecker {
     private static final boolean debugEnabled = Global.debugEnabled;
     private static int runs = 0;
 
+    public static int exnum = 0;
+    
     public static void printRuns() {
-        System.out.print("(" + runs + ")");
+        Glogger.info(exnum++ + " example -> #forward checker runs:(" + runs + ")");
         runs = 0;
     }
 
@@ -38,30 +42,34 @@ public class ForwardChecker {
             example = e;
 
             if (cacheEnabled) {
-                if (cache == null)
+                if (cache == null) {
                     cache = new HashMap<Object, Boolean>();
-                else
+                } else {
                     cache.clear();
+                }
             }
         }
 
-        if (debugEnabled)
+        if (debugEnabled) {
             System.out.print("[ForwardChecker]\t" + r + "\t-->\t" + r.unbound);
+        }
 
         boolean ret = r instanceof KappaRule ? check((KappaRule) r, null) : check((LambdaRule) r, null);
 
-        if (debugEnabled)
+        if (debugEnabled) {
             System.out.print("" + "\t-->\t" + ret + '\n');
+        }
 
         return ret;
     }
 
     public static boolean check(Object o) {
         if (!cacheEnabled) {
-            if (o instanceof SubK)
+            if (o instanceof SubK) {
                 return checkCompute((SubK) o);
-            else
+            } else {
                 return checkCompute((SubL) o);
+            }
         }
 
         Boolean b;
@@ -85,8 +93,9 @@ public class ForwardChecker {
     }
 
     private static boolean checkCompute(SubK sk) {
-        if (sk.isElement())
+        if (sk.isElement()) {
             return example.contains(sk);
+        }
 
         Kappa k = sk.getParent();
         return check(k, sk.getTerms());
@@ -97,9 +106,11 @@ public class ForwardChecker {
     }
 
     private static boolean check(Kappa k, List<Terminal> vars) {
-        for (KappaRule kr: k.getRules())
-            if (check(kr, vars))
+        for (KappaRule kr : k.getRules()) {
+            if (check(kr, vars)) {
                 return true;
+            }
+        }
 
         return false;
     }
@@ -112,25 +123,30 @@ public class ForwardChecker {
         kr.consumeVars(vars);
         SubL sl = kr.getBody();
         boolean ret = check(sl);
-        if (vars != null)
+        if (vars != null) {
             kr.unconsumeVars();
+        }
         return ret;
     }
 
     private static boolean checkConstrainedToVar(LambdaRule lr, Terminal lastBinded) {
-        for (SubK sk: lr.getBody())
-            if (sk.contains(lastBinded) && !check(sk))
+        for (SubK sk : lr.getBody()) {
+            if (sk.contains(lastBinded) && !check(sk)) {
                 return false;
+            }
+        }
 
         return true;
     }
 
     private static boolean checkAll(LambdaRule lr) {
-            for (SubK sk: lr.getBody())
-                if (!check(sk))
-                    return false;
+        for (SubK sk : lr.getBody()) {
+            if (!check(sk)) {
+                return false;
+            }
+        }
 
-            return true;
+        return true;
     }
 
     private static boolean check(LambdaRule lr, List<Terminal> vars) {
@@ -139,8 +155,9 @@ public class ForwardChecker {
 
         boolean ret = lastBindedTerm == null ? checkAll(lr) : checkConstrainedToVar(lr, lastBindedTerm);
 
-        if (vars != null)
+        if (vars != null) {
             lr.unconsumeVars();
+        }
 
         return ret;
     }

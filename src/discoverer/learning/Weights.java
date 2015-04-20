@@ -16,11 +16,36 @@ public class Weights {
     private Map<Object, Integer> addedWeightsCount; //number of particular edge-weight updates
 
     public Weights() {
-        weights = new HashMap<Object, Double>();
+        weights = new LinkedHashMap<>();
         updates = new LinkedList<>();
 
-        diffs = new HashMap<Object, Double>();
-        addedWeightsCount = new HashMap<Object, Integer>();
+        diffs = new HashMap<>();
+        addedWeightsCount = new HashMap<>();
+    }
+
+    public Weights compareTo(Weights w) {
+        Weights res = new Weights();
+        for (Map.Entry<Object, Double> wt : w.weights.entrySet()) {
+            if (weights.containsKey(wt.getKey())) {
+                if ((wt.getValue() - weights.get(wt.getKey())) < 0.000000000001) {
+                    //ok
+                } else {
+                    res.getWeights().put(wt.getKey(), wt.getValue() - weights.get(wt.getKey()));
+                }
+            } else {
+                res.getWeights().put(wt.getKey(), 1000.0);
+            }
+        }
+        return res;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (Map.Entry<Object, Double> w : weights.entrySet()) {
+            sb.append(w.getKey()).append(" += ").append(w.getValue()).append("\n");
+        }
+        return sb.toString();
     }
 
     public void clear() {

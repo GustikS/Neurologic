@@ -1,6 +1,7 @@
 package discoverer;
 
 import discoverer.construction.example.Example;
+import discoverer.global.Global;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -11,14 +12,17 @@ import java.util.HashSet;
  * Splitter for performing n-fold crossval
  */
 public class ExampleSplitter {
+
     private int foldCount;
     private int testFold = 0;
     private List<List<Example>> folds;
 
     /**
-     * stratified split of examples(same #positive examples) for k-fold crossvalidation
+     * stratified split of examples(same #positive examples) for k-fold
+     * crossvalidation
+     *
      * @param k
-     * @param ex 
+     * @param ex
      */
     public ExampleSplitter(int k, List<Example> ex) {
         folds = new ArrayList<List<Example>>();
@@ -44,7 +48,7 @@ public class ExampleSplitter {
                 fold.add(negatives.get(n++));
             }
 
-            Collections.shuffle(fold);
+            Collections.shuffle(fold, Global.rg);
             folds.add(fold);
         }
 
@@ -52,9 +56,10 @@ public class ExampleSplitter {
 
     private List<Example> getPositives(List<Example> ex) {
         List<Example> positives = new ArrayList<Example>();
-        for (Example e: ex) {
-            if (e.getExpectedValue() == 1)
+        for (Example e : ex) {
+            if (e.getExpectedValue() == 1) {
                 positives.add(e);
+            }
         }
 
         return positives;
@@ -62,16 +67,17 @@ public class ExampleSplitter {
 
     private List<Example> getNegatives(List<Example> ex) {
         List<Example> negatives = new ArrayList<Example>();
-        for (Example e: ex) {
-            if (e.getExpectedValue() == 0)
+        for (Example e : ex) {
+            if (e.getExpectedValue() == 0) {
                 negatives.add(e);
+            }
         }
 
         return negatives;
     }
 
     public boolean hasNext() {
-        return testFold+1 < foldCount;
+        return testFold + 1 <= foldCount;
     }
 
     public void next() {
@@ -81,11 +87,13 @@ public class ExampleSplitter {
     public List<Example> getTrain() {
         List<Example> tmp = new ArrayList<Example>();
         int i = 0;
-        for (List<Example> fold: folds)
-            if (i++ != testFold)
+        for (List<Example> fold : folds) {
+            if (i++ != testFold) {
                 tmp.addAll(fold);
+            }
+        }
 
-        Collections.shuffle(tmp);
+        Collections.shuffle(tmp, Global.rg);
         return tmp;
     }
 

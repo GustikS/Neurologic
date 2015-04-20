@@ -7,6 +7,7 @@ import discoverer.construction.network.rules.KappaRule;
 import discoverer.global.Tuple;
 import discoverer.grounding.evaluation.Ball;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 /**
@@ -14,7 +15,7 @@ import java.util.Set;
  * <p>Also computes parent counts
  */
 public class GroundKappaGetter {
-    private static Set<GroundKappa> groundKappas  = new HashSet<GroundKappa>();
+    private static Set<GroundKappa> groundKappas  = new LinkedHashSet<GroundKappa>();
 
     /**
      * for a given Ball(=result of maximal substitution) retrieves all grounded Kappa(only) nodes recursively<p>

@@ -7,6 +7,7 @@ import discoverer.construction.network.rules.SubK;
 import discoverer.construction.network.KL;
 import discoverer.global.Tuple;
 import discoverer.*;
+import discoverer.global.Glogger;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -55,7 +56,7 @@ public class Saver {
         for (Tuple<Kappa, Double> t: saveK)
             t.x.setWeight(t.y);
 
-        System.out.println("Loading: " + learnError + ", " + threshold);
+        Glogger.process("Loading: trainError: " + learnError + ", threshold: " + threshold);
         learnError = null;
         threshold = null;
         dispersion = null;

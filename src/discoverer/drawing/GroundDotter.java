@@ -3,6 +3,7 @@ package discoverer.drawing;
 import discoverer.grounding.network.GroundKappa;
 import discoverer.grounding.network.GroundLambda;
 import discoverer.construction.network.rules.KappaRule;
+import discoverer.global.Glogger;
 import discoverer.global.Tuple;
 import discoverer.grounding.evaluation.Ball;
 import java.io.BufferedWriter;
@@ -33,7 +34,7 @@ public class GroundDotter extends Dotter {
             }
             out.close();
         } catch (Exception e) {
-            System.out.println(e);
+            Glogger.err(e.toString());
         }
     }
 
@@ -44,7 +45,7 @@ public class GroundDotter extends Dotter {
             Process p = r.exec(path + "dot -T" + imgtype + " -o" + outPath + name + "." + imgtype + " graph.dot");
             p.waitFor();
         } catch (Exception e) {
-            System.out.println(e);
+            Glogger.err(e.toString());
         }
     }
 

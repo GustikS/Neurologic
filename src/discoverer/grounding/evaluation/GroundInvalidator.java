@@ -54,8 +54,7 @@ public class GroundInvalidator {
         for (Tuple<GroundLambda, KappaRule> t : gk.getDisjuncts()) {
             invalidate(t.x);
         }
-
-        gk.setValue(null);
+        gk.invalidate();
     }
 
     private static void invalidateAVG(GroundKappa gk) {
@@ -69,7 +68,7 @@ public class GroundInvalidator {
             }
         }
 
-        gk.setValueAvg(null);
+        gk.invalidate();
     }
 
     private static void invalidate(GroundLambda gl) {
@@ -77,7 +76,7 @@ public class GroundInvalidator {
             invalidate(gk);
         }
 
-        gl.setValue(null);
+        gl.invalidate();
     }
 
     private static void invalidateAVG(GroundLambda gl) {
@@ -85,6 +84,6 @@ public class GroundInvalidator {
             invalidateAVG(wgk.getKey());
         }
 
-        gl.setValueAvg(null);
+        gl.invalidate();
     }
 }

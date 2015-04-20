@@ -26,7 +26,7 @@ import java.util.Set;
 public class BackpropDown {
 
     private static Weights weights = new Weights(); //storing intermediate weight updates(Kappa + Double tuple updates)
-    static double learnRate = 0.1;
+    static double learnRate;
 
     public static Weights getNewWeights(Ball b, Example e, Batch batch, double learnRat) {
         learnRate = learnRat;
@@ -36,7 +36,7 @@ public class BackpropDown {
             return weights;
         }
 
-        double baseDerivative = /*-1**/ (e.getExpectedValue() - b.val);  //output error-level derivative
+        double baseDerivative = -1 * (e.getExpectedValue() - b.val);  //output error-level derivative
 
         if (o instanceof GroundKappa) {
             derive((GroundKappa) o, baseDerivative);
@@ -64,10 +64,10 @@ public class BackpropDown {
         if (gk.getGroundParentsChecked() == gk.getGroundParents()) { //all parents checked
             double firstDerivative = firstPartKappaDerivative(gk);
             myDerivative = gk.getGroundParentDerivative() * firstDerivative;
-            weights.addW(gk.getGeneral(), learnRate * myDerivative);   //updating offset weight (it's inner derivative is just 1, so no more computations needed)
+            weights.addW(gk.getGeneral(), -learnRate * myDerivative);   //updating offset weight (it's inner derivative is just 1, so no more computations needed)
 
             for (Tuple<GroundLambda, KappaRule> tup : gk.getDisjuncts()) {
-                weights.addW(tup.y, learnRate * myDerivative * tup.x.getValue());    //updating Kappa-rule's weight (it's inner derivative is just the value of corresponding GroundLambda)
+                weights.addW(tup.y, -learnRate * myDerivative * tup.x.getValue());    //updating Kappa-rule's weight (it's inner derivative is just the value of corresponding GroundLambda)
                 derive(tup.x, myDerivative * tup.y.getWeight());    //dive into solving the corresponding GroundLambda
             }
         }

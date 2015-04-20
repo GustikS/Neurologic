@@ -3,6 +3,8 @@ package discoverer;
 import discoverer.global.Global;
 import discoverer.global.Batch;
 import discoverer.global.FileToStringListJava6;
+import discoverer.global.Glogger;
+import discoverer.global.Settings;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.HelpFormatter;
@@ -17,13 +19,13 @@ import org.apache.commons.cli.PosixParser;
 public class Main {
 
     //cutoff on example number
-    private static final String defaultMaxExample = "1000";
+    private static final String defaultMaxExample = "100000";
     //
     private static String defaultLearningSteps = "10";
     //
     private static String defaultLearningEpochs = "7";
     //crossval
-    private static final String defaultFolds = "2";
+    private static final String defaultFolds = "5";
     private static final String defaultLearningRate = "0.05";
     private static final String defaultRestartCount = "3";
     //max-avg
@@ -107,7 +109,7 @@ public class Main {
         try {
             cmd = parser.parse(options, args);
         } catch (ParseException exception) {
-            System.out.println(exception.getMessage());
+            Glogger.err(exception.getMessage());
             printHelp(options);
             return null;
         }
@@ -126,7 +128,7 @@ public class Main {
         if (ground.equalsIgnoreCase("avg")) {
             Global.setAvg();
             defaultLearningEpochs = "0";
-            defaultLearningSteps = "100";
+            defaultLearningSteps = "10000";
         } else {
             Global.setMax();
         }
@@ -157,6 +159,9 @@ public class Main {
         //get rules one by one from file
         String[] rules = FileToStringListJava6.convert(cmd.getOptionValue("r"), Integer.MAX_VALUE);
 
+        Settings.create(ground, folds, steps, epochs, restartCount, learnRate);
+        Glogger.init();
+        
         Crossvalidation solver = new Crossvalidation();
 
         //main solver method

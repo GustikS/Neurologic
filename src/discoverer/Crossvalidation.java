@@ -8,8 +8,11 @@ import discoverer.construction.ExampleFactory;
 import discoverer.global.Global;
 import discoverer.construction.network.KL;
 import discoverer.construction.NetworkFactory;
+import discoverer.global.Glogger;
+import discoverer.grounding.ForwardChecker;
 import discoverer.grounding.evaluation.Ball;
 import discoverer.grounding.Grounder;
+import discoverer.learning.Results;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -44,19 +47,25 @@ public class Crossvalidation {
 
         double testErr = 0;
         double testMaj = 0;
+        double trainErr = 0;
         int i;
         for (i = 0; es.hasNext(); es.next()) { //iterating the test fold
-            double thresh = train(batch, network, es.getTrain(), steps, epochs, restartCount, learnRate);
-            testErr += test(network, thresh, es.getTest());
+            Glogger.process("--------------------processing new fold----------------------");
+            Results res = train(batch, network, es.getTrain(), steps, epochs, restartCount, learnRate);
+            trainErr += res.getLearningError();
+            testErr += test(network, res, es.getTest());
             testMaj += testM(es.getTest(), es.getTrain());
             Invalidator.invalidate(network);
             i++;
         }
 
+        trainErr /= i;
         testErr /= i;
         testMaj /= i;
-        System.out.println("Final error: " + testErr);
-        System.out.println("Final majority error: " + testMaj);
+        Glogger.LogRes("--------------");
+        Glogger.LogRes("Final train error: " + trainErr);
+        Glogger.LogRes("Final test error: " + testErr);
+        Glogger.LogRes("Final majority error: " + testMaj);
     }
 
     private double testM(List<Example> test, List<Example> train) {
@@ -83,7 +92,7 @@ public class Crossvalidation {
         }
 
         err /= test.size();
-        System.out.println("Majority for this fold -> " + err);
+        Glogger.LogRes("Majority for this fold -> " + err + "\n");
         return err;
     }
 
@@ -103,7 +112,7 @@ public class Crossvalidation {
             examples.add(e);
         }
 
-        Collections.shuffle(examples);
+        Collections.shuffle(examples, Global.rg);
         return examples;
     }
 
@@ -119,24 +128,26 @@ public class Crossvalidation {
      * @param learnRate
      * @return
      */
-    public double train(Batch batch, KL network, List<Example> examples, int learningStepCount, int learningEpochs, int restartCount, double learnRate) {
-        double thresh;
-
+    public Results train(Batch batch, KL network, List<Example> examples, int learningStepCount, int learningEpochs, int restartCount, double learnRate) {
+        //double thresh;
+        Results res;
+        
         if (Global.grounding.equalsIgnoreCase("avg")) {
             Learner s = new Learner();
-            thresh = s.solveAvg(network, examples, learningStepCount, learningEpochs, restartCount, learnRate);
+            res = s.solveAvg(network, examples, learningStepCount, learningEpochs, restartCount, learnRate);
         } else if (batch == Batch.NO && Global.grounding.equalsIgnoreCase("max")) {
             Learner s = new Learner();
-            thresh = s.solve(network, examples, learningStepCount, learningEpochs, restartCount, learnRate);
+            res = s.solve(network, examples, learningStepCount, learningEpochs, restartCount, learnRate);
         } else {
             BatchLearner bs = new BatchLearner();
-            thresh = bs.solve(network, examples, learningStepCount, learningEpochs, restartCount, learnRate);
+            res = bs.solve(network, examples, learningStepCount, learningEpochs, restartCount, learnRate);
         }
 
-        return thresh;
+        return res;
     }
 
-    public double test(KL network, double thresh, List<Example> examples) {
+    public double test(KL network, Results res, List<Example> examples) {
+        ForwardChecker.exnum = 0;
         double error = 0.0;
         for (Example example : examples) {
             Ball b = Grounder.solve(network, example);
@@ -150,15 +161,16 @@ public class Crossvalidation {
                 }
             }
 
-            double clas = ballValue > thresh ? 1.0 : 0.0;
-            System.out.println("Classified -> " + clas + " Expected -> " + example.getExpectedValue() + " Out -> " + ballValue + " Thresh -> " + thresh);
+            double clas = ballValue > res.getThreshold() ? 1.0 : 0.0;
+            Glogger.info("Classified -> " + clas + " Expected -> " + example.getExpectedValue() + " Out -> " + ballValue + " Thresh -> " + res.getThreshold());
             if (clas != example.getExpectedValue()) {
                 error += 1.0;
             }
         }
 
         double err = error / examples.size();
-        System.out.println("Error for this fold -> " + err);
+        Glogger.LogRes("Fold Train error : " + res.getLearningError());
+        Glogger.LogRes("Fold Test error : " + err);
         return err;
     }
 }

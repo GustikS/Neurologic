@@ -1,0 +1,12 @@
+Fold Train error : 0.2127659574468085
+Fold Test error : 0.2765957446808511
+Majority for this fold -> 0.32978723404255317
+
+Fold Train error : 0.2127659574468085
+Fold Test error : 0.26595744680851063
+Majority for this fold -> 0.3404255319148936
+
+--------------
+Final train error: 0.2712765957446809
+Final test error: 0.2712765957446809
+Final majority error: 0.3351063829787234

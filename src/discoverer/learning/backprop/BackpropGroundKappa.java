@@ -157,7 +157,7 @@ public class BackpropGroundKappa {
                 return result;
             }
         } else {
-            for (Tuple<GroundLambda, KappaRule> t : gk.getDisjuncts()) { // when gk is an example's element(isElement) (has no disijuncts) this is skipped and we return from recursion
+            for (Tuple<GroundLambda, KappaRule> t : gk.getDisjuncts()) { // when gk is an example's element(isElement) (has no disjuncts) this is skipped and we return from recursion
                 Triple triple = (Triple) kr;
                 if (t.x == triple.gl && t.y == triple.kr && gk == triple.gk) {
                     //System.out.println(t.x + " = " + t.x.getValue());

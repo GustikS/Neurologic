@@ -4,6 +4,7 @@ import discoverer.global.Global;
 import java.util.*;
 
 public class Chunks {
+
     private Set<Object> chunkStore;
     private static int headerSize = 2;
     private static int partSize = 3;
@@ -12,24 +13,28 @@ public class Chunks {
         chunkStore = new HashSet<Object>();
     }
 
-/*
- *    @Override
- *    public String toString() {
- *        String string = "";
- *        for(IntArray chunk: chunkStore)
- *            string += chunk + "\n";
- *
- *        return string;
- *    }
- */
-
+    /*
+     *    @Override
+     *    public String toString() {
+     *        String string = "";
+     *        for(IntArray chunk: chunkStore)
+     *            string += chunk + "\n";
+     *
+     *        return string;
+     *    }
+     */
     private static final int[][] splitArrayToChunks(int partSize, int[] array) {
         /* [1|1,2,3,4,5,6,7,8,9] -> [1,1|1,2,3],[1,2|4,5,6],[1,3|7,8,9] */
         int id = array[0];                                                /* first int is id of literal */
+
         int bodyLen = array.length - 1;                                   /* array minus id */
-        int totalPartsCount = (int) Math.ceil((double) bodyLen/partSize); /* number of created parts */
-        int fullFilledPartsCount = bodyLen/partSize;                      /* number of fullfilled parts */
+
+        int totalPartsCount = (int) Math.ceil((double) bodyLen / partSize); /* number of created parts */
+
+        int fullFilledPartsCount = bodyLen / partSize;                      /* number of fullfilled parts */
+
         int lastPartSize = bodyLen - (fullFilledPartsCount) * partSize;   /* size of last part */
+
         int[][] parts = new int[totalPartsCount][partSize + headerSize];
 
         /* split long array into fullfilled parts */
@@ -66,7 +71,9 @@ public class Chunks {
     }
 
     public void insert(int[] literal) {
-        if (Global.debugEnabled) System.out.println("Inserting literal:\t" + literal);
+        if (Global.debugEnabled) {
+            System.out.println("Inserting literal:\t" + literal);
+        }
         /* [1|1,2,3,4,5,6,7,8,9...] -> iserted into db */
         int[][] chunksWithoutJokers = splitArrayToChunks(partSize, literal);
 
@@ -87,9 +94,11 @@ public class Chunks {
     public boolean containsNG(List<Integer> query) {
         List<QueryArray> ch = splitArrayToChunksNG(partSize, query);
 
-        for (QueryArray qa: ch)
-            if (!chunkStore.contains(qa))
+        for (QueryArray qa : ch) {
+            if (!chunkStore.contains(qa)) {
                 return false;
+            }
+        }
 
         return true;
     }
@@ -98,10 +107,15 @@ public class Chunks {
         /* [1|1,2,3,4,5,6,7,8,9] -> [1,1|1,2,3],[1,2|4,5,6],[1,3|7,8,9] */
         int id = array.get(0);
         int bodyLen = array.size() - 1;                                   /* array minus id */
-        int totalPartsCount = (int) Math.ceil((double) bodyLen/partSize); /* number of created parts */
-        int fullFilledPartsCount = bodyLen/partSize;                      /* number of fullfilled parts */
+
+        int totalPartsCount = (int) Math.ceil((double) bodyLen / partSize); /* number of created parts */
+
+        int fullFilledPartsCount = bodyLen / partSize;                      /* number of fullfilled parts */
+
         int lastPartSize = bodyLen - (fullFilledPartsCount) * partSize;   /* size of last part */
+
         //int[][] parts = new int[totalPartsCount][partSize + headerSize];
+
         List<QueryArray> parts = new ArrayList<QueryArray>();
 
         /* split long array into fullfilled parts */
@@ -109,7 +123,7 @@ public class Chunks {
             QueryArray q = new QueryArray();
             q.add(id);
             q.add(i);
-            q.addAll(array.subList(1+i*partSize,1+i*partSize+partSize));
+            q.addAll(array.subList(1 + i * partSize, 1 + i * partSize + partSize));
             parts.add(q);
 
             /* split the long array, the +1 means, that we are not copying the id, thus everything is shifted */
@@ -121,10 +135,11 @@ public class Chunks {
             QueryArray q = new QueryArray();
             q.add(id);
             q.add(fullFilledPartsCount);
-            q.addAll(array.subList(1+fullFilledPartsCount*partSize,1+fullFilledPartsCount*partSize+lastPartSize));
+            q.addAll(array.subList(1 + fullFilledPartsCount * partSize, 1 + fullFilledPartsCount * partSize + lastPartSize));
 
-            while (q.size() != partSize + headerSize)
+            while (q.size() != partSize + headerSize) {
                 q.add(0);
+            }
 
             parts.add(q);
 
@@ -141,8 +156,9 @@ public class Chunks {
         /* each chunk is checked against database */
         for (int i = 0; i < queryChunks.length; i++) {
             IntArray chunk = new IntArray(queryChunks[i], true);
-            if (!chunkStore.contains(chunk))
+            if (!chunkStore.contains(chunk)) {
                 return false;
+            }
         }
 
         return true;
