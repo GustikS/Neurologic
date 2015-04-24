@@ -35,7 +35,7 @@ public class Saver {
         if (k.isElement())
             return;
 
-        saveK.add(new Tuple<Kappa, Double>(k, k.getWeight()));
+        saveK.add(new Tuple<Kappa, Double>(k, k.getOffset()));
         for (KappaRule kr: k.getRules()) {
             Tuple<KappaRule, Double> t = new Tuple<KappaRule, Double>(kr, kr.getWeight());
             save.add(t);
@@ -54,7 +54,7 @@ public class Saver {
             t.x.setWeight(t.y);
 
         for (Tuple<Kappa, Double> t: saveK)
-            t.x.setWeight(t.y);
+            t.x.setOffset(t.y);
 
         Glogger.process("Loading: trainError: " + learnError + ", threshold: " + threshold);
         learnError = null;

@@ -22,13 +22,14 @@ public class Invalidator {
         if (k.isElement())
             return;
 
-        k.setWeight(WeightInitializator.init());
+        //k.setWeight(WeightInitializator.init());
+        k.initOffset();
         for (KappaRule kr: k.getRules())
             invalidate(kr);
     }
 
     private static void invalidate(KappaRule kr) {
-        kr.setWeight(WeightInitializator.init());
+        kr.setWeight(WeightInitializator.getWeight());
         invalidate(kr.getBody().getParent());
     }
 

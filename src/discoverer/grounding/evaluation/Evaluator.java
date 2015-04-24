@@ -19,7 +19,7 @@ public class Evaluator {
         GroundInvalidator.invalidate(b);    //this means to delete all values of all ground literals
         Object top = b.getLast();
         if (top == null) {
-            return b.val;
+            return b.valMax;
         }
         if (top instanceof GroundKappa) {
             return evaluate((GroundKappa) top);
@@ -38,7 +38,7 @@ public class Evaluator {
             return out;
         }
 
-        out = gk.getGeneral().getWeight();
+        out = gk.getGeneral().getOffset();
         for (Tuple<GroundLambda, KappaRule> t : gk.getDisjuncts()) {
             out += evaluate(t.x) * t.y.getWeight();
         }
@@ -54,7 +54,7 @@ public class Evaluator {
             return out;
         }
 
-        out = gl.getGeneral().getInitialW();
+        out = gl.getGeneral().getOffset();
         for (GroundKappa gk : gl.getConjuncts()) {
             out += evaluate(gk);
         }

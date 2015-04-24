@@ -109,7 +109,7 @@ public class BackPropAVGTest {
         //GroundDotter.draw(b);
         //GroundDotter.drawAVG(b, "tavg");
         //------
-        System.out.println("val: " + b.val);
+        System.out.println("val: " + b.valMax);
         System.out.println("avgVal: " + b.valAvg);
 
         //-------backprop------
@@ -137,7 +137,7 @@ public class BackPropAVGTest {
 
         System.out.println("check:" + Evaluator.evaluate(b));
         b = Grounder.solve(last, e);
-        System.out.println("val " + b.val);
+        System.out.println("val " + b.valMax);
         System.out.println("eval " + Evaluator.evaluate(b));
         //System.out.println(b.getActiveRules().size());
     }
@@ -222,14 +222,14 @@ public class BackPropAVGTest {
         //GroundDotter.draw(b);
         GroundDotter.drawAVG(b, "stateground0");
         //------
-        System.out.println("val: " + b.val);
+        System.out.println("val: " + b.valMax);
         System.out.println("avgVal: " + b.valAvg);
         System.out.println("Avg: " + EvaluatorAvg.evaluate(b));
         System.out.println("val: " + Evaluator.evaluate(b));
         b = Grounder.solve(last, e);
         //GroundDotter.drawAVG(b, "backprGroundAvg0");
         System.out.println("grounder...");
-        System.out.println("val: " + b.val);
+        System.out.println("val: " + b.valMax);
         System.out.println("avgVal: " + b.valAvg);
         System.out.println("val: " + Evaluator.evaluate(b));
         System.out.println("Avg: " + EvaluatorAvg.evaluate(b));
@@ -262,12 +262,12 @@ public class BackPropAVGTest {
         System.out.println("avg " + b.valAvg);
         System.out.println("avg " + EvaluatorAvg.evaluate(b));
         GroundDotter.drawAVG(b, "backprGroundAvg2");
-        System.out.println("val" + b.val);
+        System.out.println("val" + b.valMax);
         System.out.println("val" + Evaluator.evaluate(b));
         System.out.println("grounder...");
         b = Grounder.solve(last, e);
         System.out.println("avg" + b.valAvg);
-        System.out.println("val" + b.val);
+        System.out.println("val" + b.valMax);
         //System.out.println(b.getActiveRules().size());
         //sigmoid(0.5*2.500012561461216 + 0.10002512292243233)
     }
@@ -278,9 +278,9 @@ public class BackPropAVGTest {
             Double newWeight = entryWeights.getValue();
             if (o instanceof Kappa) {
                 Kappa k = (Kappa) o;
-                double old = k.getWeight();
-                k.setWeight(k.getWeight() + newWeight);
-                System.out.println(k + " : " + old + " + " + Dotter.df.format(newWeight) + "\t->\t" + k.getWeight());
+                double old = k.getOffset();
+                k.setOffset(k.getOffset() + newWeight);
+                System.out.println(k + " : " + old + " + " + Dotter.df.format(newWeight) + "\t->\t" + k.getOffset());
             } else {
                 KappaRule kr = (KappaRule) o;
                 double old = kr.getWeight();

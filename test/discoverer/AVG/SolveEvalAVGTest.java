@@ -62,13 +62,13 @@ public class SolveEvalAVGTest {
             bb = Grounder.solve(last, e);
             //assertEquals("Output", 0.6428072668247082, bb.val, 0);
             System.out.println("avg Ball: " + bb.valAvg);
-            System.out.println("val Ball: " + bb.val);
+            System.out.println("val Ball: " + bb.valMax);
             //assertEquals("Output", 0.6428072668247082, dd, 0);
             double avg = EvaluatorAvg.evaluate(bb);
             double val = Evaluator.evaluate(bb);
             System.out.println("EvaluatorAVG: " + avg);
             System.out.println("Evaluator: " + Evaluator.evaluate(bb));
-            assertEquals(bb.valAvg - bb.val, 0, 0.00000000000000000001);
+            assertEquals(bb.valAvg - bb.valMax, 0, 0.00000000000000000001);
             assertEquals(avg - val, 0, 0.00000000000000000001);
         }
         System.out.println("-------------------");
@@ -94,7 +94,7 @@ public class SolveEvalAVGTest {
 
         Ball bb = Grounder.solve(last, e);
         //assertEquals("Output", 0.6428072668247082, bb.val, 0);
-        System.out.println(bb.val);
+        System.out.println(bb.valMax);
         //System.out.println(bb.getLast());
         System.out.println(Evaluator.evaluate(bb));
         //bb = Grounder.solve(last, e);
@@ -104,7 +104,7 @@ public class SolveEvalAVGTest {
         double val = Evaluator.evaluate(bb);
         System.out.println("EvaluatorAVG: " + avg);
         System.out.println("Evaluator: " + val);
-        assertEquals(bb.valAvg - bb.val, 0, 0.00000000000000000001);
+        assertEquals(bb.valAvg - bb.valMax, 0, 0.00000000000000000001);
         assertEquals(avg - val, 0, 0.00000000000000000001);
         System.out.println("---------------");
     }
@@ -148,17 +148,17 @@ public class SolveEvalAVGTest {
 
             Ball bb = Grounder.solve(last, e);
             //assertEquals("Output", 0.6428072668247082, bb.val, 0);
-            System.out.println("val:" + bb.val);
+            System.out.println("val:" + bb.valMax);
             //System.out.println(bb.getLast());
             System.out.println(Evaluator.evaluate(bb));
             //bb = Grounder.solve(last, e);
             System.out.println("valAVG:" + bb.valAvg);
             System.out.println(EvaluatorAvg.evaluate(bb));
 
-            if (bb.val != -1) {
-                assertFalse(Math.abs(bb.valAvg - bb.val) < 0.000000000000001);
+            if (bb.valMax != -1) {
+                assertFalse(Math.abs(bb.valAvg - bb.valMax) < 0.000000000000001);
             } else {
-                assertEquals(bb.valAvg, bb.val);
+                assertEquals(bb.valAvg, bb.valMax);
             }
         }
         System.out.println("---------------");
@@ -189,7 +189,7 @@ public class SolveEvalAVGTest {
         Example e = eFactory.construct(ex[0]);
 
         Ball bb = Grounder.solve(last, e);
-        System.out.println(bb.val);
+        System.out.println(bb.valMax);
         //assertEquals("Output", 0.6428072668247082, bb.val, 0);
 
         Double dd = Evaluator.evaluate(bb);
@@ -197,7 +197,7 @@ public class SolveEvalAVGTest {
         //assertEquals("Output", 0.6428072668247082, dd, 0);
         //
         bb = Grounder.solve(last, e);
-        System.out.println(bb.val);
+        System.out.println(bb.valMax);
 
         dd = Evaluator.evaluate(bb);
         System.out.println(dd);
@@ -243,11 +243,11 @@ public class SolveEvalAVGTest {
         Example e = eFactory.construct(ex[0]);
 
         Ball bb = Grounder.solve(last, e);
-        System.out.println(bb.val);
+        System.out.println(bb.valMax);
         System.out.println(Evaluator.evaluate(bb));
 
         bb = Grounder.solve(last, e);
-        System.out.println(bb.val);
+        System.out.println(bb.valMax);
         System.out.println(Evaluator.evaluate(bb));
 
         //System.out.println(bb.getActiveRules());
@@ -306,11 +306,11 @@ public class SolveEvalAVGTest {
 
         Ball bb = Grounder.solve(last, e);
         //assertEquals("Output", 0.7310585786300049, bb.val, 0);
-        System.out.println(bb.val);
+        System.out.println(bb.valMax);
 
         Double dd = Evaluator.evaluate(bb);
         //assertEquals("Output", 0.7310585786300049, dd, 0);
-        System.out.println(bb.val);
+        System.out.println(bb.valMax);
     }
 
     @Ignore
@@ -326,8 +326,8 @@ public class SolveEvalAVGTest {
         Example e = eFactory.construct(ex[0]);
 
         Ball bb = Grounder.solve(last, e);
-        assertEquals("Output", 0.0, bb.val, 0);
-        System.out.println(bb.val);
+        assertEquals("Output", 0.0, bb.valMax, 0);
+        System.out.println(bb.valMax);
 
         Double dd = Evaluator.evaluate(bb);
         assertEquals("Output", 0.0, dd, 0);
@@ -367,10 +367,10 @@ public class SolveEvalAVGTest {
 //        }
 
         //System.out.println(bb.getActives());
-        System.out.println(bb.val);
+        System.out.println(bb.valMax);
 
         Double dd = Evaluator.evaluate(bb);
-        System.out.println(dd + " -- " + bb.val);
+        System.out.println(dd + " -- " + bb.valMax);
         //assertEquals("Output", 0.6792981617480565, dd, 0);
     }
 }

@@ -34,7 +34,7 @@ public class BackpropKappa {
         }
 
         //double base = -2 * (e.getExpectedValue() - b.val);
-        double base = -1 * (e.getExpectedValue() - b.val);
+        double base = -1 * (e.getExpectedValue() - b.valMax);
 
         for (KappaRule kr: b.getActiveRules()) {
             activeKappas.add(kr.getHead().getParent());
@@ -125,7 +125,7 @@ public class BackpropKappa {
      * @return derivative of first part of kappa node
      */
     public static double firstPartKappaDerivative(GroundKappa gk) {
-        double result = gk.getGeneral().getWeight();
+        double result = gk.getGeneral().getOffset();
         for (Tuple<GroundLambda, KappaRule> t: gk.getDisjuncts())
             result += t.x.getValue() * t.y.getWeight();
 
@@ -139,7 +139,7 @@ public class BackpropKappa {
      * @return derivative of first part of lambda node
      */
     public static double firstPartLambdaDerivative(GroundLambda gl) {
-        double result = gl.getGeneral().getInitialW();
+        double result = gl.getGeneral().getOffset();
         for (GroundKappa gk: gl.getConjuncts())
             result += gk.getValue();
 

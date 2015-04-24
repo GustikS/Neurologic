@@ -88,7 +88,7 @@ public class BackpropGroundKappa {
         }
 
         //double base = -2 * (e.getExpectedValue() - b.val);
-        double base = -1 * (e.getExpectedValue() - b.val);
+        double base = -1 * (e.getExpectedValue() - b.valMax);
 
         double gradient = base * weightDerivation;
         double weight;
@@ -121,7 +121,7 @@ public class BackpropGroundKappa {
         }
 
         //double base = -2 * (e.getExpectedValue() - b.val);
-        double base = -1 * (e.getExpectedValue() - b.val);  //base example error derivative
+        double base = -1 * (e.getExpectedValue() - b.valMax);  //base example error derivative
 
         double gradient = base * weightDerivation;
         double weight;
@@ -193,7 +193,7 @@ public class BackpropGroundKappa {
 
 //-----------------------the actual-level derivative(no recursion) based on GroundKappa/Lambda's output value(within a derived Sigmoid)
     private static double firstPartKappaDerivative(GroundKappa gk) {
-        double result = gk.getGeneral().getWeight();
+        double result = gk.getGeneral().getOffset();
         for (Tuple<GroundLambda, KappaRule> t : gk.getDisjuncts()) {
             result += t.x.getValue() * t.y.getWeight();     //we need to sum it up again because the value we have is after sigmoid
         }
@@ -202,7 +202,7 @@ public class BackpropGroundKappa {
     }
 
     private static double firstPartLambdaDerivative(GroundLambda gl) {
-        double result = gl.getGeneral().getInitialW();
+        double result = gl.getGeneral().getOffset();
         for (GroundKappa gk : gl.getConjuncts()) {
             result += gk.getValue();
         }

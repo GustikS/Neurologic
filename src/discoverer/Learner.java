@@ -45,7 +45,7 @@ public class Learner {
         for (Example e : examples) {
             Ball b = Grounder.solve(last, e);
             //GroundDotter.draw(b, "sigSig" + i++);
-            Glogger.info("bval: " + b.val + ", avg: " + b.valAvg);
+            Glogger.info("example: " + e + " , maxVal: " + b.valMax + ", avgVal: " + b.valAvg);
             roundStore.add(new Sample(e, b));
         }
         
@@ -64,7 +64,7 @@ public class Learner {
             Double newWeight = entryWeights.getValue();
             if (o instanceof Kappa) {
                 Kappa k = (Kappa) o;
-                k.setWeight(k.getWeight() + newWeight);
+                k.setOffset(k.getOffset() + newWeight);
             } else {
                 KappaRule kr = (KappaRule) o;
                 kr.setWeight(kr.getWeight() + newWeight);
@@ -124,10 +124,10 @@ public class Learner {
                         //Weights compare = w.compareTo(w2);
                         //Glogger.info(compare.toString());
                         refreshWeights(w);  //update
-                        double old = b.val;
-                        b.val = Evaluator.evaluate(b);  //forward propagation
-                        res.add(new Result(b.val, e.getExpectedValue()));
-                        Glogger.debug("Example: " + e + "\t : Weight learning: " + old + " -> " + b.val);
+                        double old = b.valMax;
+                        b.valMax = Evaluator.evaluate(b);  //forward propagation
+                        res.add(new Result(b.valMax, e.getExpectedValue()));
+                        Glogger.debug("Example: " + e + "\t : Weight learning: " + old + " -> " + b.valMax);
                     }   //learning errors on this fixed ground tree (found as max subst before learning)
                     Glogger.LogTrain("bp_step", new Double[]{res.getLearningError(), res.getDispersion(), res.getMajorityClass(), res.getThreshold()});
                     Glogger.process("Training error before max. subst. =\t" + res.getLearningError() + " (maj: " + res.getMajorityClass() + ")" + " (disp: " + res.getDispersion() + ")");
@@ -141,8 +141,9 @@ public class Learner {
                     Ball b = Grounder.solve(last, e);    // resubstitution for every example
                     ParentCounter.countParents(b);
                     roundElement.setBall(b);
-                    results.add(new Result(b.val, e.getExpectedValue()));
-                    Glogger.debug("Substitution:\t" + e + "->\t" + b.val);
+                    results.add(new Result(b.valMax, e.getExpectedValue()));
+                    Glogger.info("example: " + e + " , bval: " + b.valMax + ", avg: " + b.valAvg);
+                    Glogger.debug("Substitution:\t" + e + "->\t" + b.valMax);
                     //GroundDotter.draw(b);
                 }
                 Glogger.LogTrain("resub", new Double[]{results.getLearningError(), results.getDispersion(), results.getMajorityClass(), results.getThreshold()});
@@ -154,7 +155,7 @@ public class Learner {
                 if (Saver.isBetterThenBest(le, th, disp)) {
                     Saver.save(last, le, th, disp);     //save the best network (last = output node)
                 }
-                Kappa llast = (Kappa) last;
+                //KL llast =  last;
                 //Dotter.draw(last, new HashSet(llast.getRules()));
             }
             Glogger.LogTrain("...restart " + a);
@@ -171,8 +172,8 @@ public class Learner {
             Example e = roundElement.getExample();
             Ball b = Grounder.solve(last, e);
             roundElement.setBall(b);
-            results.add(new Result(b.val, e.getExpectedValue()));
-            Glogger.info("Substitution:\t" + e + "->\t" + b.val);
+            results.add(new Result(b.valMax, e.getExpectedValue()));
+            Glogger.info("Substitution:\t" + e + "->\t" + b.valMax);
         }
         Glogger.LogTrain("final_train", new Double[]{results.getLearningError(), results.getDispersion(), results.getMajorityClass(), results.getThreshold()});
         Glogger.process("Saved Learning error after resubstition and all restarts =\t" + results.getLearningError() + " (maj: " + results.getMajorityClass() + ")" + " (th: " + results.getThreshold() + ")" + " (th: " + results.getDispersion() + ")");
@@ -231,7 +232,7 @@ public class Learner {
                 if (Saver.isBetterThenBest(le, th, disp)) {
                     Saver.save(last, le, th, disp);     //save the best network (last = output node)
                 }
-                Kappa llast = (Kappa) last;
+                //Kappa llast = (Kappa) last;
                 //Dotter.draw(last, new HashSet(llast.getRules()));
             }
             Glogger.LogTrain("...restart " + a);

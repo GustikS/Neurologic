@@ -126,7 +126,7 @@ public class Dotter {
     private static void draw(KappaRule kr) {
         //if (!visited.contains(kr) && actives.contains(kr)) {
         if (!visited.contains(kr)) {
-            String s = "\"" + kr.getHead().getParent().getName() + "\noffset: " + kr.getHead().getParent().weight + "\" -> \"" + kr.getBody().getParent().getName() + "\" [ label = \"" + df.format(kr.getWeight()) + "\" ];";
+            String s = "\"" + kr.getHead().getParent().getName() + "\noffset: " + kr.getHead().getParent().offset + "\" -> \"" + kr.getBody().getParent().getName() + "\" [ label = \"" + df.format(kr.getWeight()) + "\" ];";
             dot.add(s);
             visited.add(kr);
         }
@@ -140,7 +140,7 @@ public class Dotter {
     private static void draw(LambdaRule lr) {
         for (SubK sk : lr.getBody()) {
             if (!visited.contains(lr)) {
-                String s = "\"" + lr.getHead().getParent().getName() + "\" -> \"" + sk.getParent().getName() + "\noffset: " + sk.getParent().weight + "\";";
+                String s = "\"" + lr.getHead().getParent().getName() + "\" -> \"" + sk.getParent().getName() + "\noffset: " + sk.getParent().offset + "\";";
                 dot.add(s);
             }
             draw(sk.getParent());

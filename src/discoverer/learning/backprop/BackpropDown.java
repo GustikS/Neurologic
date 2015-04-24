@@ -36,7 +36,7 @@ public class BackpropDown {
             return weights;
         }
 
-        double baseDerivative = -1 * (e.getExpectedValue() - b.val);  //output error-level derivative
+        double baseDerivative = -1 * (e.getExpectedValue() - b.valMax);  //output error-level derivative
 
         if (o instanceof GroundKappa) {
             derive((GroundKappa) o, baseDerivative);
@@ -90,7 +90,7 @@ public class BackpropDown {
 //-----------------------the actual-level derivative(no recursion) based on GroundKappa/Lambda's output value(within a derived activation function)
 //---- the input value calculation could be skipped for the identity activation function derivative x -> 1, but generally is needed for x -> f'(x)
     private static double kappaActivationDerivative(GroundKappa gk) {
-        double result = gk.getGeneral().getWeight();
+        double result = gk.getGeneral().getOffset();
         for (Tuple<GroundLambda, KappaRule> t : gk.getDisjuncts()) {
             result += t.x.getValue() * t.y.getWeight();     //we need to sum it up again because the value we have is after activaiton function
         }
@@ -99,7 +99,7 @@ public class BackpropDown {
     }
 
     private static double lambdaActivationDerivative(GroundLambda gl) {
-        double result = gl.getGeneral().getInitialW();
+        double result = gl.getGeneral().getOffset();
         for (GroundKappa gk : gl.getConjuncts()) {
             result += gk.getValue();
         }

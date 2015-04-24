@@ -39,7 +39,7 @@ public class EvaluatorAvg {
             return out;
         }
 
-        out = gk.getGeneral().getWeight();
+        out = gk.getGeneral().getOffset();
 
         for (Tuple<HashSet<GroundLambda>, KappaRule> t : gk.getDisjunctsAvg()) {
             double avg = 0;
@@ -63,7 +63,7 @@ public class EvaluatorAvg {
             return out;
         }
 
-        out = gl.getGeneral().getInitialW();
+        out = gl.getGeneral().getOffset();
         double avg = 0;
         for (Map.Entry<GroundKappa, Integer> gk : gl.getConjunctsAvg().entrySet()) {
             avg += evaluate(gk.getKey()) * gk.getValue();

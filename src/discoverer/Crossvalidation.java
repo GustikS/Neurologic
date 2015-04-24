@@ -157,7 +157,7 @@ public class Crossvalidation {
                 if (Global.grounding.equalsIgnoreCase("avg")) {
                     ballValue = b.valAvg;
                 } else {
-                    ballValue = b.val;
+                    ballValue = b.valMax;
                 }
             }
 

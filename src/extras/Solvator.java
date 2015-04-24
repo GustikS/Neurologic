@@ -89,7 +89,7 @@ public class Solvator {
 
         for (KappaRule r : k.getRules()) {
             Ball tmp = solve(r, vars);
-            if (tmp.val == 0) { // 0= non-entailed or entailed with 0 weight?
+            if (tmp.valMax == 0) { // 0= non-entailed or entailed with 0 weight?
                 continue;
             }
 
@@ -113,16 +113,16 @@ public class Solvator {
             b.addActiveRule(r);
         }
 
-        if (b.val != 0) {   //what if the rules sum up to 0?
+        if (b.valMax != 0) {   //what if the rules sum up to 0?
 
-            b.val += k.weight;  //node offset
-            b.val = Activations.kappaActivation(b.val);    // + sigmoid
+            b.valMax += k.offset;  //node offset
+            b.valMax = Activations.kappaActivation(b.valMax);    // + sigmoid
             //---
-            b.valAvg += k.weight;
+            b.valAvg += k.offset;
             b.valAvg = Activations.kappaActivation(b.valAvg);
         }
 
-        gk.setValue(b.val);
+        gk.setValue(b.valMax);
         //--
         gk.setValueAvg(b.valAvg);
 
@@ -153,17 +153,17 @@ public class Solvator {
         Set<GroundLambda> lastAvg = b.getLastAvg();
         GroundLambda gl = (GroundLambda) b.getLast();
 
-        if (b.val != 0) {   //this should always be true for entailed body of kappas
-            b.val += l.initialW;    //add offset = -1*number_of_conjuncts
-            b.val = Activations.lambdaActivation(b.val);
+        if (b.valMax != 0) {   //this should always be true for entailed body of kappas
+            b.valMax += l.getOffset();    //add offset = -1*number_of_conjuncts
+            b.valMax = Activations.lambdaActivation(b.valMax);
             //---calculate the average value
             b.setValAvg(GroundKL.getAvgValFrom(lastAvg));
-            b.valAvg += l.initialW;
+            b.valAvg += l.getOffset();
             b.valAvg = Activations.lambdaActivation(b.valAvg);
         }
 
         if (gl != null) {
-            gl.setValue(b.val);
+            gl.setValue(b.valMax);
             //---
             gl.setValueAvg(b.valAvg);
             gl.addConjuctsAvgFrom(lastAvg); //extracting all the groundings of conjuncts into a hashmap (weighted occurrence)
@@ -238,7 +238,7 @@ public class Solvator {
             Ball b = bindAll(r, best);  //and bind the rest recursively
 
             //------------
-            if (b.val >= best.val) {    //if this binding of current toBind variable to i-th constant is best so far
+            if (b.valMax >= best.valMax) {    //if this binding of current toBind variable to i-th constant is best so far
                 b.addLastAvg(best.getLastAvg()); //we need to keep all the so-far found solutions for averaging
                 best = b;   //replace it
             }
@@ -314,7 +314,7 @@ public class Solvator {
         int i = 1;
         for (SubK sk : lr.getBody()) {
             Ball tmp = cachedSolve(sk);
-            if (tmp.val == 0.0) {
+            if (tmp.valMax == 0.0) {
                 cancel = true;      //if one fails - the whole conjunction has no solution -> cancel
                 return new Ball();  //skip the rest of conjuncts and return empty result
             }
@@ -324,8 +324,8 @@ public class Solvator {
             out.addAvg(tmp);
 
             //-------------------------
-            double upperBound = out.val + lr.getBodyLen() - i;
-            if (best.val >= upperBound) {
+            double upperBound = out.valMax + lr.getBodyLen() - i;
+            if (best.valMax >= upperBound) {
                 //HERE - no pruning
                 //    return new Ball();          //pruning if this solution is necesarily worse!!
             }
@@ -339,7 +339,7 @@ public class Solvator {
         }
 
         if (cancel) {
-            out.val = 0.0;  //delete the result if some middle conjunct has failed
+            out.valMax = 0.0;  //delete the result if some middle conjunct has failed
         }
         //HERE set intermediate value to this GroundLambda(only sumation, no offset and sigmoid)
         //it will be later averaged and evaluated in solve2(Lambda...)

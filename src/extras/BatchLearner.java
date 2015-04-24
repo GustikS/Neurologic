@@ -56,7 +56,7 @@ public class BatchLearner {
                 try {
                     weightAccumulator.put(k, weightAccumulator.get(k) + newWeight);
                 } catch (Exception exception) {
-                    weightAccumulator.put(k, k.getWeight());
+                    weightAccumulator.put(k, k.getOffset());
                 }
             } else {
                 KappaRule kr = (KappaRule) o;
@@ -95,9 +95,9 @@ public class BatchLearner {
                         Weights w = BackpropGroundKappa.getNewWeights(b, e, Batch.YES, learnRate);
                         refreshWeights(w);
                         GroundInvalidator.invalidate(b);
-                        b.val = Evaluator.evaluate(b);
-                        results.add(new Result(b.val, e.getExpectedValue()));
-                        System.out.println("New output for example with expected value " + e + ":\t" + b.val);
+                        b.valMax = Evaluator.evaluate(b);
+                        results.add(new Result(b.valMax, e.getExpectedValue()));
+                        System.out.println("New output for example with expected value " + e + ":\t" + b.valMax);
                     }
                     System.out.println("Learning error =\t" + results.getLearningError() + " (maj: " + results.getMajorityClass() + ")" + " (th: " + results.getThreshold() + ")");
 
@@ -109,7 +109,7 @@ public class BatchLearner {
                             kr.setWeight(dr1);
                         } else {
                             Kappa k = (Kappa) o;
-                            k.setWeight(dr1);
+                            k.setOffset(dr1);
                         }
                     }
                 }
@@ -119,8 +119,8 @@ public class BatchLearner {
                     Example e = roundElement.getExample();
                     Ball b = Grounder.solve(last,e);
                     roundElement.setBall(b);
-                    results.add(new Result(b.val, e.getExpectedValue()));
-                    System.out.println("Chance to resubstitute, output for\t" + e + "\t->\t" + b.val);
+                    results.add(new Result(b.valMax, e.getExpectedValue()));
+                    System.out.println("Chance to resubstitute, output for\t" + e + "\t->\t" + b.valMax);
 
                     for (Map.Entry<Object, Double> entr: weightAccumulator.entrySet()) {
                         Object o = entr.getKey();
@@ -157,8 +157,8 @@ public class BatchLearner {
             Example e = roundElement.getExample();
             Ball b = Grounder.solve(last,e);
             roundElement.setBall(b);
-            results.add(new Result(b.val, e.getExpectedValue()));
-            System.out.println("Substitution:\t" + e + "->\t" + b.val);
+            results.add(new Result(b.valMax, e.getExpectedValue()));
+            System.out.println("Substitution:\t" + e + "->\t" + b.valMax);
         }
         System.out.println("Saved Learning error after resubstition =\t" + results.getLearningError() + " (maj: " + results.getMajorityClass() + ")" + " (th: " + results.getThreshold() + ")" +" (disp: " + results.getDispersion() + ")");
 

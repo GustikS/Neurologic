@@ -50,6 +50,10 @@ public class NetworkFactory {
 
             vFactory.clear();
         }
+        
+        for (Kappa kappa : kFactory.getKappas()) {
+            kappa.initOffset();
+        }
 
         return kl;
     }

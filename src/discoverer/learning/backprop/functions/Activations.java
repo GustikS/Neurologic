@@ -1,25 +1,54 @@
 package discoverer.learning.backprop.functions;
 
+import discoverer.global.Global;
+
 public class Activations {
 
+    public static String lambda = Global.lambdaActivation;
+    public static String kappa = Global.kappaActivation;
+
     public static final double kappaActivation(double x) {
-        return sigmoid(x);
-        //return identity(x);
+        switch (kappa) {
+            case "sig":
+                return sigmoid(x);
+            case "id":
+                return identity(x);
+            default:
+                throw new AssertionError();
+        }
     }
 
     public static final double kappaActivationDerived(double x) {
-        return sigmoidDerived(x);
-        //return identityDerived(x);
+        switch (kappa) {
+            case "sig":
+                return sigmoidDerived(x);
+            case "id":
+                return identityDerived(x);
+            default:
+                throw new AssertionError();
+        }
     }
 
     public static final double lambdaActivation(double x) {
-        //return identity(x);
-        return sigmoid(x);   //test-mode
+        switch (lambda) {
+            case "sig":
+                return sigmoid(x);
+            case "id":
+                return identity(x);
+            default:
+                throw new AssertionError();
+        }
     }
 
     public static final double lambdaActivationDerived(double x) {
-        //return identityDerived(x);
-        return sigmoidDerived(x);
+        switch (lambda) {
+            case "sig":
+                return sigmoidDerived(x);
+            case "id":
+                return identityDerived(x);
+            default:
+                throw new AssertionError();
+        }
     }
 
     public static final double identity(double x) {

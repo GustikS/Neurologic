@@ -32,7 +32,7 @@ public class Estimator {
         if (k.isElement())
             return example.containsLiteral(k) ? 1.0 : 0.0;
 
-        double est = k.getWeight();
+        double est = k.getOffset();
         for (KappaRule kr: k.getRules())
             est += estimate(kr.getBody().getParent()) * kr.getWeight();
 
@@ -45,7 +45,7 @@ public class Estimator {
         Double ret = cache.get(l);
         if (ret != null) return ret;
 
-        double est = l.getInitialW();
+        double est = l.getOffset();
         for (SubK sk: l.getRule().getBody())
             est += estimate(sk.getParent());
 

@@ -86,7 +86,7 @@ public class BackpropDownAvg {
 
 //-----------------------the actual-level derivative(no recursion) based on GroundKappa/Lambda's output value(within a derived Sigmoid)
     private static double firstPartKappaDerivative(GroundKappa gk) {
-        double result = gk.getGeneral().getWeight();
+        double result = gk.getGeneral().getOffset();
         for (Tuple<HashSet<GroundLambda>, KappaRule> t : gk.getDisjunctsAvg()) {
             result += GroundKL.getAvgValFrom(t.x) * t.y.getWeight();     //we need to sum it up again because the value we have is after sigmoid
         }
@@ -95,7 +95,7 @@ public class BackpropDownAvg {
     }
 
     private static double firstPartLambdaDerivative(GroundLambda gl) {
-        double result = gl.getGeneral().getInitialW();
+        double result = gl.getGeneral().getOffset();
         double avg = 0;
         for (Map.Entry<GroundKappa, Integer> gk : gl.getConjunctsAvg().entrySet()) {
             avg += gk.getKey().getValueAvg() * gk.getValue();

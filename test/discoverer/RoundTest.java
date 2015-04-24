@@ -69,7 +69,7 @@ public class RoundTest {
                 b = new Ball(-1);
             }
             roundStore.put(e, b);
-            System.out.println("Original output #" + i + "\t" + b.val);
+            System.out.println("Original output #" + i + "\t" + b.valMax);
         }
 
         while (true) {
@@ -80,7 +80,7 @@ public class RoundTest {
                     b = new Ball(-1);
                 }
                 roundStore.put(e, b);
-                System.out.println("New subs #" + "\t" + b.val);
+                System.out.println("New subs #" + "\t" + b.valMax);
             }
 
             for (int i = 0; i < 5; i++) {
@@ -104,14 +104,14 @@ public class RoundTest {
                         } else {
                             Kappa kap = (Kappa) o;
                             if (debugEnabled) {
-                                System.out.println("Changing bias weights\t\t" + kap + "\t" + kap.getWeight() + "\t->\t" + t.getValue() + "\t(" + (kap.weight - t.getValue()) + ")");
+                                System.out.println("Changing bias weights\t\t" + kap + "\t" + kap.getOffset() + "\t->\t" + t.getValue() + "\t(" + (kap.offset - t.getValue()) + ")");
                             }
-                            kap.setWeight(t.getValue());
+                            kap.setOffset(t.getValue());
                         }
                     }
 
                     double out = Evaluator.evaluate(b);
-                    b.val = out;
+                    b.valMax = out;
                     System.out.println("Learned output:\t" + out);
                 }
             }

@@ -22,8 +22,8 @@ public class KappaRule extends Rule {
     public String toString() { return head.toString() + ":-" + body.toString(); }
 
     public KappaRule (double w) {
-        step = 0.01;
-        weight = w != 0 ? w : WeightInitializator.init();
+        //step = 0.01;
+        weight = w != 0 ? w : WeightInitializator.getWeight();
         drawn = false;
     }
 

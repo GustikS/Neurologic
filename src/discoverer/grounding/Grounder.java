@@ -123,13 +123,13 @@ public class Grounder {
             return null;    //if I didn't find any of this Kappa's disjuncts(with the vars given), there is nothing to return!
         }
 
-        b.val += k.weight;  //node offset
-        b.val = Activations.kappaActivation(b.val);    // + sigmoid
+        b.valMax += k.offset;  //node offset
+        b.valMax = Activations.kappaActivation(b.valMax);    // + sigmoid
         //---
-        b.valAvg += k.weight;
+        b.valAvg += k.offset;
         b.valAvg = Activations.kappaActivation(b.valAvg);
 
-        gk.setValue(b.val);
+        gk.setValue(b.valMax);
         //--
         gk.setValueAvg(b.valAvg);
 
@@ -165,14 +165,14 @@ public class Grounder {
         GroundLambda gl = (GroundLambda) b.getLast();   //as well as this
 
         //the body should also be non-zero now
-        b.val += l.initialW;    //add offset = -1*number_of_conjuncts
-        b.val = Activations.lambdaActivation(b.val);
+        b.valMax += l.getOffset();    //add offset = -1*number_of_conjuncts
+        b.valMax = Activations.lambdaActivation(b.valMax);
         //---calculate the average value
         b.setValAvg(GroundKL.getAvgValFrom(lastAvg));
-        b.valAvg += l.initialW;
+        b.valAvg += l.getOffset();
         b.valAvg = Activations.lambdaActivation(b.valAvg);
 
-        gl.setValue(b.val);
+        gl.setValue(b.valMax);
         //---
         gl.setValueAvg(b.valAvg);
         gl.addConjuctsAvgFrom(lastAvg); //extracting all the groundings of conjuncts into a hashmap (weighted occurrence) - this is important as adding
@@ -251,7 +251,7 @@ public class Grounder {
             Ball b = bindAll(r, best);  //and bind the rest recursively
 
             //------------this is not really pruning, just holding the best so far Ball.val(doesn't hurt the average grounding agregation)
-            if ((b != null) && ((best.val == null) || (b.val >= best.val)))  {    //if this binding of current toBind variable to i-th constant is best so far
+            if ((b != null) && ((best.valMax == null) || (b.valMax >= best.valMax)))  {    //if this binding of current toBind variable to i-th constant is best so far
                 b.addLastAvg(best.getLastAvg()); //we need to keep all the so-far found solutions for averaging (the best Ball should already contain all of them so "adding" shouldn't be necessary, just setting)
                 b.setValAvg(best.getValAvg());  //not necessary, we do not work with the ball's average value, it is aggregated from the last GroundLambdas
                 best = b;   //replace it
@@ -338,8 +338,8 @@ public class Grounder {
 
             //-------------------------
             if (Global.pruning) {
-                double upperBound = out.val + lr.getBodyLen() - i;
-                if (best.val != null && best.val >= upperBound) {
+                double upperBound = out.valMax + lr.getBodyLen() - i;
+                if (best.valMax != null && best.valMax >= upperBound) {
                     //HERE - pruning
                     return null;          //pruning if this solution is necesarily worse - this must be off in the avg variant!!
                 }
@@ -355,7 +355,7 @@ public class Grounder {
 
         //HERE set intermediate value to this GroundLambda(only sumation, no offset and sigmoid)
         //it will be later averaged and evaluated in solve2(Lambda...)
-        gl.setValue(out.val); //should not be necessary
+        gl.setValue(out.valMax); //should not be necessary
         gl.setValueAvg(out.valAvg);
 
         out.setLast(gl);

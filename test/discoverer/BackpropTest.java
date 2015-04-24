@@ -72,13 +72,13 @@ public class BackpropTest {
         Example e = eFactory.construct(ex[0]);
 
         Ball b = Grounder.solve(last, e);
-        System.out.println(b.val);
+        System.out.println(b.valMax);
         double learnRate = 0.15;
         Weights w = BackpropGroundKappa.getNewWeights(b, e, Batch.NO, learnRate);
         print(w);
         System.out.println(Evaluator.evaluate(b));
         b = Grounder.solve(last, e);
-        System.out.println(b.val);
+        System.out.println(b.valMax);
         System.out.println(Evaluator.evaluate(b));
         System.out.println(b.getActiveRules().size());
     }
@@ -89,9 +89,9 @@ public class BackpropTest {
             Double newWeight = entryWeights.getValue();
             if (o instanceof Kappa) {
                 Kappa k = (Kappa) o;
-                double old = k.getWeight();
-                k.setWeight(k.getWeight() + newWeight);
-                System.out.println(old + "\t->\t" + k.getWeight());
+                double old = k.getOffset();
+                k.setOffset(k.getOffset() + newWeight);
+                System.out.println(old + "\t->\t" + k.getOffset());
             } else {
                 KappaRule kr = (KappaRule) o;
                 double old = kr.getWeight();

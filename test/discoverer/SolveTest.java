@@ -63,7 +63,7 @@ public class SolveTest {
 
     private void print(Example e, KL network) {
         Ball b = Grounder.solve(network, e);
-        System.out.println(b.val);
+        System.out.println(b.valMax);
 
 /*
  *        b = Solvator.solve(network, e);

@@ -17,14 +17,16 @@ public class Settings {
     private static int epochs;
     private static int restart;
     private static double learnRate;
+    private static String activations;
 
-    public static void create(String iground, int ifolds, int isteps, int iepochs, int irestartCount, double ilearnRate) {
+    public static void create(String iground, int ifolds, int isteps, int iepochs, int irestartCount, double ilearnRate, String act) {
         setGrounding(iground);
         setFolds(ifolds);
         setSteps(isteps);
         setEpochs(iepochs);
         setRestart(irestartCount);
         setLearnRate(ilearnRate);
+        setActivations(act);
     }
     
     public static String getString(){
@@ -35,6 +37,7 @@ public class Settings {
         sb.append("e-").append(epochs).append("_");
         sb.append("s-").append(steps).append("_");
         sb.append("l-").append(learnRate).append("_");
+        sb.append("ac-").append(activations).append("_");
         return sb.toString();
     }
 
@@ -120,6 +123,20 @@ public class Settings {
      */
     public static void setLearnRate(double aLearnRate) {
         learnRate = aLearnRate;
+    }
+
+    /**
+     * @return the activations
+     */
+    public static String getActivations() {
+        return activations;
+    }
+
+    /**
+     * @param aActivations the activations to set
+     */
+    public static void setActivations(String aActivations) {
+        activations = aActivations;
     }
 
 }

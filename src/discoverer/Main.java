@@ -30,6 +30,7 @@ public class Main {
     private static final String defaultRestartCount = "3";
     //max-avg
     public static final String defaultGrounding = "max";
+    public static String defaultActivation = "sig-id";
 
     //public static boolean avg = true;
     public static Options getOptions() {
@@ -90,6 +91,12 @@ public class Main {
         OptionBuilder.hasArg();
         options.addOption(OptionBuilder.create("gr"));
 
+        OptionBuilder.withLongOpt("activations");
+        OptionBuilder.withDescription("activation functions (default: " + defaultActivation + ")");
+        OptionBuilder.withArgName("ACTIVATION");
+        OptionBuilder.hasArg();
+        options.addOption(OptionBuilder.create("ac"));
+
         OptionBuilder.withLongOpt("batch");
         OptionBuilder.withDescription("Enable batch learning(RPROP) (default: off)");
         options.addOption(OptionBuilder.create("b"));
@@ -129,9 +136,12 @@ public class Main {
             Global.setAvg();
             defaultLearningEpochs = "0";
             defaultLearningSteps = "10000";
-        } else {
+        } else if (ground.equalsIgnoreCase("max")) {
             Global.setMax();
         }
+
+        String activation = cmd.getOptionValue("ac", defaultActivation);
+        Global.setActivations(activation);
 
         //parsing command line options - needs external library commons-CLI
         Batch batch = cmd.hasOption("b") ? Batch.YES : Batch.NO;
@@ -159,9 +169,9 @@ public class Main {
         //get rules one by one from file
         String[] rules = FileToStringListJava6.convert(cmd.getOptionValue("r"), Integer.MAX_VALUE);
 
-        Settings.create(ground, folds, steps, epochs, restartCount, learnRate);
+        Settings.create(ground, folds, steps, epochs, restartCount, learnRate, activation);
         Glogger.init();
-        
+
         Crossvalidation solver = new Crossvalidation();
 
         //main solver method

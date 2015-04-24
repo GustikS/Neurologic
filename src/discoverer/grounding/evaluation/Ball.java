@@ -9,14 +9,14 @@ import java.util.Set;
 /* object for representing the result of maximal substitution */
 public class Ball {
 
-    public Double val;  //the value is always synchronized with the value of the Object last
+    public Double valMax;  //the value is always synchronized with the value of the Object last
     public Double valAvg;
     private GroundKL last;    // GroundLambda or GroundKappa literal(new superClass)
     private Set<GroundLambda> lastAvg;
     private Set<KappaRule> activeRules;
 
     public Ball() {
-        val = null;
+        valMax = null;
         valAvg = null;
         activeRules = new HashSet<KappaRule>();
         lastAvg = new HashSet<>();
@@ -24,13 +24,13 @@ public class Ball {
 
     public Ball(double d) {
         this();
-        val = d;
+        valMax = d;
         valAvg = d;
     }
 
     @Override
     public String toString() {
-        return "val: " + val.toString() + ", avgVal: " + valAvg.toString();
+        return "val: " + valMax.toString() + ", avgVal: " + valAvg.toString();
     }
 
     public GroundKL getLast() {
@@ -42,7 +42,7 @@ public class Ball {
     }
 
     public void weightItWith(double w) {
-        val *= w;
+        valMax *= w;
     }
 
     public void weightAvgWith(double w) {
@@ -50,10 +50,10 @@ public class Ball {
     }
 
     public void add(Ball b) {
-        if (val == null) {
-            val = b.val;
+        if (valMax == null) {
+            valMax = b.valMax;
         } else {
-            val += b.val;
+            valMax += b.valMax;
         }
         //activeRules.addAll(b.getActiveRules());
     }
@@ -71,7 +71,7 @@ public class Ball {
     public Ball clone() {
         Ball clone = new Ball();
         clone.setLast(last);
-        clone.val = val;
+        clone.valMax = valMax;
         clone.activeRules = activeRules;
         //--here
         clone.valAvg = valAvg;
