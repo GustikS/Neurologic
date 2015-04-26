@@ -21,7 +21,7 @@ public class Main {
     //cutoff on example number
     private static final String defaultMaxExample = "100000";
     //
-    private static String defaultLearningSteps = "10";
+    public static String defaultLearningSteps = "10";
     //
     private static String defaultLearningEpochs = "7";
     //crossval
@@ -30,7 +30,13 @@ public class Main {
     private static final String defaultRestartCount = "3";
     //max-avg
     public static final String defaultGrounding = "max";
-    public static String defaultActivation = "sig-id";
+    public static String defaultActivation = "sig_sig";
+    public static String defaultInitialization = "handmade";
+    //offsets
+    public static boolean defaultKappaAdaptiveOffsetOn = false;
+    public static String defaultLambdaAdaptiveOffset = "1";
+    public static String defaultKappaAdaptiveOffset = "0";
+    public static String defaultSeed = "1";
 
     //public static boolean avg = true;
     public static Options getOptions() {
@@ -92,14 +98,38 @@ public class Main {
         options.addOption(OptionBuilder.create("gr"));
 
         OptionBuilder.withLongOpt("activations");
-        OptionBuilder.withDescription("activation functions (default: " + defaultActivation + ")");
+        OptionBuilder.withDescription("lambda-kappa activation functions (default: " + defaultActivation + ")");
         OptionBuilder.withArgName("ACTIVATION");
         OptionBuilder.hasArg();
         options.addOption(OptionBuilder.create("ac"));
 
+        OptionBuilder.withLongOpt("initialization");
+        OptionBuilder.withDescription("weight initialization method (default: " + defaultInitialization + ")");
+        OptionBuilder.withArgName("INITIALIZATION");
+        OptionBuilder.hasArg();
+        options.addOption(OptionBuilder.create("wi"));
+
         OptionBuilder.withLongOpt("batch");
         OptionBuilder.withDescription("Enable batch learning(RPROP) (default: off)");
         options.addOption(OptionBuilder.create("b"));
+
+        OptionBuilder.withLongOpt("kappaAdaptiveOffset");
+        OptionBuilder.withDescription("Enable kappa offset based on number of input literals (default: off)");
+        OptionBuilder.withArgName("kappaAdaptiveOffset");
+        OptionBuilder.hasArg();
+        options.addOption(OptionBuilder.create("ko"));
+
+        OptionBuilder.withLongOpt("lambdaAdaptiveOffset");
+        OptionBuilder.withDescription("Enable lambda offset based on number of input literals (default: off)");
+        OptionBuilder.withArgName("lambdaAdaptiveOffset");
+        OptionBuilder.hasArg();
+        options.addOption(OptionBuilder.create("lo"));
+
+        OptionBuilder.withLongOpt("seed");
+        OptionBuilder.withDescription("Number of restarts (default: " + 1 + ")");
+        OptionBuilder.withArgName("seed");
+        OptionBuilder.hasArg();
+        options.addOption(OptionBuilder.create("sd"));
 
         return options;
     }
@@ -131,17 +161,24 @@ public class Main {
         }
 
         String ground = cmd.getOptionValue("gr", defaultGrounding);
-
-        if (ground.equalsIgnoreCase("avg")) {
-            Global.setAvg();
-            defaultLearningEpochs = "0";
-            defaultLearningSteps = "10000";
-        } else if (ground.equalsIgnoreCase("max")) {
-            Global.setMax();
-        }
+        Global.setGrounding(ground);
 
         String activation = cmd.getOptionValue("ac", defaultActivation);
         Global.setActivations(activation);
+
+        String initialization = cmd.getOptionValue("wi", defaultInitialization);
+        Global.setInitialization(initialization);
+
+        Global.kappaAdaptiveOffset = cmd.hasOption("ko");
+
+        String koffset = cmd.getOptionValue("ko", defaultKappaAdaptiveOffset);
+        Global.initKappaAdaptiveOffset = Double.parseDouble(koffset);
+
+        String loffset = cmd.getOptionValue("lo", defaultLambdaAdaptiveOffset);
+        Global.initLambdaAdaptiveOffset = Double.parseDouble(loffset);
+        
+        String seed = cmd.getOptionValue("sd", defaultSeed);
+        Global.seed = Integer.parseInt(seed);
 
         //parsing command line options - needs external library commons-CLI
         Batch batch = cmd.hasOption("b") ? Batch.YES : Batch.NO;
@@ -166,15 +203,30 @@ public class Main {
 
         //get examples one by one from file
         String[] ex = FileToStringListJava6.convert(cmd.getOptionValue("e"), maxLine);
+
         //get rules one by one from file
         String[] rules = FileToStringListJava6.convert(cmd.getOptionValue("r"), Integer.MAX_VALUE);
+        if (Global.kappaActivation == Global.activationSet.id) {
+            rules = addFinalLambda(rules);  //a hack to end with lambda
+        }
 
-        Settings.create(ground, folds, steps, epochs, restartCount, learnRate, activation);
+        Settings.create(ground, folds, steps, epochs, restartCount, learnRate, activation, initialization, loffset, koffset, seed);
         Glogger.init();
 
         Crossvalidation solver = new Crossvalidation();
 
         //main solver method
         solver.solve(folds, rules, ex, batch, steps, epochs, restartCount, learnRate);
+    }
+
+    private static String[] addFinalLambda(String[] rules) {
+
+        String[] rls = new String[rules.length + 1];
+        for (int i = 0; i < rules.length; i++) {
+            rls[i] = rules[i];
+        }
+        rls[rls.length - 1] = "finalLambda :- finalKappa(DMY).";
+
+        return rls;
     }
 }

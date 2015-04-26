@@ -14,10 +14,18 @@ public class WeightInitializator {
         //double rand = (rg.nextDouble() / 10) - 0.05;
         //double rand = (rg.nextDouble()) - 0.5;
         //double rand = 0.1;
-        //double rand = rg.nextDouble() > 0.1 ? 0.1 : 0.9;
-        //double rand = 0.3;
-        double rand = longTail();
-        return rand;
+        switch (Global.weightInit) {
+            case handmade:
+                return getHandMade();
+            case longtail:
+                return longTail();
+            default:
+                throw new AssertionError();
+        }
+    }
+
+    public static double getHandMade() {
+        return rg.nextDouble() > 0.1 ? 0.1 : 0.9;
     }
 
     /**

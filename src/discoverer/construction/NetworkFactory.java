@@ -52,7 +52,7 @@ public class NetworkFactory {
         }
         
         for (Kappa kappa : kFactory.getKappas()) {
-            kappa.initOffset();
+            //kappa.initOffset();
         }
 
         return kl;

@@ -32,7 +32,7 @@ public class ExampleSplitter {
 
         int foldLen = (int) Math.floor((double) ex.size() / k);
         //repaired fold count - extra fold for remaining samples
-        foldCount = (int) Math.ceil((double) ex.size() / foldLen);
+        foldCount = (int) Math.floor((double) ex.size() / foldLen);
         int positivesInFold = (int) Math.ceil((double) positives.size() / ex.size() * foldLen);
 
         int n = 0;

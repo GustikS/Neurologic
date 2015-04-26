@@ -4,14 +4,14 @@ import discoverer.global.Global;
 
 public class Activations {
 
-    public static String lambda = Global.lambdaActivation;
-    public static String kappa = Global.kappaActivation;
+    public static Global.activationSet lambda = Global.lambdaActivation;
+    public static Global.activationSet kappa = Global.kappaActivation;
 
     public static final double kappaActivation(double x) {
         switch (kappa) {
-            case "sig":
+            case sig:
                 return sigmoid(x);
-            case "id":
+            case id:
                 return identity(x);
             default:
                 throw new AssertionError();
@@ -20,9 +20,9 @@ public class Activations {
 
     public static final double kappaActivationDerived(double x) {
         switch (kappa) {
-            case "sig":
+            case sig:
                 return sigmoidDerived(x);
-            case "id":
+            case id:
                 return identityDerived(x);
             default:
                 throw new AssertionError();
@@ -31,9 +31,9 @@ public class Activations {
 
     public static final double lambdaActivation(double x) {
         switch (lambda) {
-            case "sig":
+            case sig:
                 return sigmoid(x);
-            case "id":
+            case id:
                 return identity(x);
             default:
                 throw new AssertionError();
@@ -42,9 +42,9 @@ public class Activations {
 
     public static final double lambdaActivationDerived(double x) {
         switch (lambda) {
-            case "sig":
+            case sig:
                 return sigmoidDerived(x);
-            case "id":
+            case id:
                 return identityDerived(x);
             default:
                 throw new AssertionError();

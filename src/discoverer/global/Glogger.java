@@ -27,6 +27,7 @@ public class Glogger {
 
     static Writer training;
     static Writer results;
+    static Writer test;
 
     public static void init() {
         StringBuffer file = new StringBuffer();
@@ -55,6 +56,10 @@ public class Glogger {
                     System.out.println("DIR created");
                 }
             }
+            test = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("results/testfile"), "utf-8"));
+            test.write("metacetrum file test : " + time);
+            test.close();
+
             training = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("results/training_" + file.toString() + ".csv"), "utf-8"));
             training.write("state, learning_error, dispersion, majority_error, threshold \n");
             results = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("results/results_" + file.toString() + ".csv"), "utf-8"));

@@ -18,8 +18,12 @@ public class Settings {
     private static int restart;
     private static double learnRate;
     private static String activations;
+    private static String initials;
+    private static String loffset;
+    private static String koffset;
+    private static String seed;
 
-    public static void create(String iground, int ifolds, int isteps, int iepochs, int irestartCount, double ilearnRate, String act) {
+    public static void create(String iground, int ifolds, int isteps, int iepochs, int irestartCount, double ilearnRate, String act, String initial, String loff, String koff, String iseed) {
         setGrounding(iground);
         setFolds(ifolds);
         setSteps(isteps);
@@ -27,9 +31,13 @@ public class Settings {
         setRestart(irestartCount);
         setLearnRate(ilearnRate);
         setActivations(act);
+        setInitials(initial);
+        setLoffset(loff);
+        setKoffset(koff);
+        setSeed(iseed);
     }
-    
-    public static String getString(){
+
+    public static String getString() {
         StringBuilder sb = new StringBuilder();
         sb.append("gr-").append(grounding).append("_");
         sb.append("f-").append(folds).append("_");
@@ -38,6 +46,10 @@ public class Settings {
         sb.append("s-").append(steps).append("_");
         sb.append("l-").append(learnRate).append("_");
         sb.append("ac-").append(activations).append("_");
+        sb.append("wi-").append(initials).append("_");
+        sb.append("lo-").append(loffset).append("_");
+        sb.append("ko-").append(koffset).append("_");
+        sb.append("sd-").append(getSeed()).append("_");
         return sb.toString();
     }
 
@@ -138,5 +150,62 @@ public class Settings {
     public static void setActivations(String aActivations) {
         activations = aActivations;
     }
+
+    /**
+     * @return the initials
+     */
+    public static String getInitials() {
+        return initials;
+    }
+
+    /**
+     * @param aInitials the initials to set
+     */
+    public static void setInitials(String aInitials) {
+        initials = aInitials;
+    }
+
+    /**
+     * @return the loffset
+     */
+    public static String getLoffset() {
+        return loffset;
+    }
+
+    /**
+     * @param aLoffset the loffset to set
+     */
+    public static void setLoffset(String aLoffset) {
+        loffset = aLoffset;
+    }
+
+    /**
+     * @return the koffset
+     */
+    public static String getKoffset() {
+        return koffset;
+    }
+
+    /**
+     * @param aKoffset the koffset to set
+     */
+    public static void setKoffset(String aKoffset) {
+        koffset = aKoffset;
+    }
+
+    /**
+     * @return the seed
+     */
+    public static String getSeed() {
+        return seed;
+    }
+
+    /**
+     * @param aSeed the seed to set
+     */
+    public static void setSeed(String aSeed) {
+        seed = aSeed;
+    }
+
 
 }

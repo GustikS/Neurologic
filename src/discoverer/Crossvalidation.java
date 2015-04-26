@@ -131,11 +131,11 @@ public class Crossvalidation {
     public Results train(Batch batch, KL network, List<Example> examples, int learningStepCount, int learningEpochs, int restartCount, double learnRate) {
         //double thresh;
         Results res;
-        
-        if (Global.grounding.equalsIgnoreCase("avg")) {
+
+        if (Global.grounding == Global.groundingSet.avg) {
             Learner s = new Learner();
             res = s.solveAvg(network, examples, learningStepCount, learningEpochs, restartCount, learnRate);
-        } else if (batch == Batch.NO && Global.grounding.equalsIgnoreCase("max")) {
+        } else if (batch == Batch.NO && Global.grounding == Global.groundingSet.max) {
             Learner s = new Learner();
             res = s.solve(network, examples, learningStepCount, learningEpochs, restartCount, learnRate);
         } else {
@@ -154,10 +154,12 @@ public class Crossvalidation {
 
             double ballValue = -1;
             if (b != null) {
-                if (Global.grounding.equalsIgnoreCase("avg")) {
+                if (Global.grounding == Global.groundingSet.avg) {
                     ballValue = b.valAvg;
-                } else {
+                } else if (Global.grounding == Global.groundingSet.max) {
                     ballValue = b.valMax;
+                } else {
+                    throw new AssertionError();
                 }
             }
 

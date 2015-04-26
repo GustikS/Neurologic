@@ -34,7 +34,7 @@ public class Lambda extends KL {
      */
     public void setRule(LambdaRule lr) {
         rule = lr;
-        setOffset(-rule.getBodyLen() / Global.initLambdaOffsetK + 0.0);
+        setOffset(-rule.getBodyLen() / Global.initLambdaAdaptiveOffset + 0.0);
         //initialW = 0.0;
     }
 }

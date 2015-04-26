@@ -7,7 +7,7 @@ import java.util.*;
 
 public class Global {
 
-    private static final int seed = 2;
+    public static int seed = 1;
     /**
      * generating random weights and offsets
      */
@@ -18,31 +18,91 @@ public class Global {
     public static boolean pruning = true;
     public static double falseAtomValue = -1;   //non-entailed example output
     //public static boolean lambdaSigmoid = false;
-    public static double initLambdaOffsetK = 2;
-    public static double initKappaOffsetK = 1;
-
-    public static String grounding = Main.defaultGrounding;
-    public static String activation = Main.defaultActivation;
+    public static double initLambdaAdaptiveOffset;
+    public static double initKappaAdaptiveOffset;
+    public static boolean kappaAdaptiveOffset;
     
-    public static String lambdaActivation;
-    public static String kappaActivation;
+    //----taken as parameters from Main
+    public static enum groundingSet {
+
+        max, avg
+    };
+
+    public static enum activationSet {
+
+        sig, id
+    };
+
+    public static enum weightInitSet {
+
+        handmade, longtail
+    };
+
+    public static groundingSet grounding;
+    public static activationSet lambdaActivation;
+    public static activationSet kappaActivation;
+    public static weightInitSet weightInit;
 
     public static void setAvg() {
-        grounding = "avg";
+        grounding = groundingSet.avg;
         pruning = false;    //important!
         forwardCheckEnabled = true;
+        Main.defaultLearningSteps = "2000";
     }
 
     public static void setMax() {
-        grounding = "max";
+        grounding = groundingSet.max;
         pruning = true;
         forwardCheckEnabled = true;
     }
 
-    public static void setActivations(String act) {
-        String[] acts = act.split("-");
-        lambdaActivation = acts[0];
-        kappaActivation = acts[1];
+    public static void setGrounding(String ground) {
+        switch (ground) {
+            case "max":
+                setMax();
+                break;
+            case "avg":
+                setAvg();
+                break;
+            default:
+                throw new AssertionError();
+        }
     }
 
+    public static void setActivations(String act) {
+        String[] acts = act.split("_");
+        switch (acts[0]) {
+            case "sig":
+                lambdaActivation = activationSet.sig;
+                break;
+            case "id":
+                lambdaActivation = activationSet.id;
+                break;
+            default:
+                throw new AssertionError();
+        }
+        switch (acts[1]) {
+            case "sig":
+                kappaActivation = activationSet.sig;
+                break;
+            case "id":
+                kappaActivation = activationSet.id;
+                break;
+            default:
+                throw new AssertionError();
+        }
+    }
+
+    public static void setInitialization(String init) {
+        switch (init) {
+            case "handmade":
+                weightInit = weightInitSet.handmade;
+                break;
+            case "longtail":
+                weightInit = weightInitSet.longtail;
+                break;
+            default:
+                throw new AssertionError();
+        }
+    }
 }
