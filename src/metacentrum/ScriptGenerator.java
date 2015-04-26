@@ -26,9 +26,9 @@ public class ScriptGenerator {
     static Writer script;
     static Writer qsub;
 
-    private static String memory = "20gb";
-    private static String walltime = "2d";
-    private static String procesors = "4";
+    private static String memory = "10gb";
+    private static String walltime = "30h";
+    private static String procesors = "3";
 
     public static String directName;
 

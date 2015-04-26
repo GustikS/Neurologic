@@ -6,11 +6,16 @@ import discoverer.grounding.network.GroundLambda;
 import discoverer.construction.network.rules.KappaRule;
 import discoverer.learning.backprop.functions.Activations;
 import discoverer.global.Tuple;
+import discoverer.grounding.network.GroundKL;
+import java.util.HashSet;
+import java.util.Map;
 
 /**
  * Evaluating lk-network output
  */
 public class Evaluator {
+
+    public static boolean ignoreDropout = true;
 
     public static double evaluate(Ball b) {
         if (b == null) {
@@ -29,6 +34,10 @@ public class Evaluator {
     }
 
     private static double evaluate(GroundKappa gk) {
+        if (!ignoreDropout && gk.dropMe) {
+            return 0;
+        }
+
         if (gk.isElement()) {
             return gk.getValue();
         }
@@ -49,6 +58,10 @@ public class Evaluator {
     }
 
     private static double evaluate(GroundLambda gl) {
+        if (!ignoreDropout && gl.dropMe) {
+            return 0;
+        }
+
         Double out = gl.getValue();
         if (out != null) {
             return out;
@@ -61,6 +74,75 @@ public class Evaluator {
 
         out = Activations.lambdaActivation(out);
         gl.setValue(out);
+        return out;
+    }
+
+    public static double evaluateAvg(Ball b) {
+        GroundInvalidator.invalidateAVG(b);    //this means to delete all values of all ground literals (will work as caching)
+        GroundKL top = b.getLast();
+        if (top == null) {
+            return b.valAvg;
+        }
+        if (top instanceof GroundKappa) {
+            return evaluateAvg((GroundKappa) top);
+        } else {
+            return evaluateAvg((GroundLambda) top);
+        }
+    }
+
+    private static double evaluateAvg(GroundKappa gk) {
+        if (!ignoreDropout && gk.dropMe) {
+            return 0;
+        }
+
+        if (gk.isElement()) {
+            return gk.getValueAvg();
+            //return gk.getValue(); //-should be the same
+        }
+
+        Double out = gk.getValueAvg();
+        if (out != null) {
+            return out;
+        }
+
+        out = gk.getGeneral().getOffset();
+
+        for (Tuple<HashSet<GroundLambda>, KappaRule> t : gk.getDisjunctsAvg()) {
+            double avg = 0;
+            for (GroundLambda gl : t.x) {
+                avg += evaluateAvg(gl);
+            }
+            /*if (t.x.isEmpty()){
+             System.out.println("problem");
+             }*/
+            avg /= t.x.size();
+            out += avg * t.y.getWeight();
+        }
+        out = Activations.kappaActivation(out);
+        gk.setValueAvg(out);
+        return out;
+    }
+
+    private static double evaluateAvg(GroundLambda gl) {
+        if (!ignoreDropout && gl.dropMe) {
+            return 0;
+        }
+
+        Double out = gl.getValueAvg();
+        if (out != null) {
+            return out;
+        }
+
+        out = gl.getGeneral().getOffset();
+        double avg = 0;
+        for (Map.Entry<GroundKappa, Integer> gk : gl.getConjunctsAvg().entrySet()) {
+            avg += evaluateAvg(gk.getKey()) * gk.getValue();
+        }
+        avg /= gl.getConjunctsCountForAvg();    //they are all averaged by the number of body groundings
+
+        out = Activations.lambdaActivation(out + avg);
+
+        gl.setValueAvg(out);
         return out;
     }
 }

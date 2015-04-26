@@ -14,9 +14,11 @@ import java.util.Set;
  *
  * @author Gusta
  */
-public class GroundKL {
+public abstract class GroundKL {
 
     private static int counter = 0;
+
+    public boolean dropMe = false;
 
     private int groundParents;
     private int groundParentsChecked;
@@ -30,7 +32,8 @@ public class GroundKL {
 
     /**
      * this is a truly ground K/L
-     * @param terms 
+     *
+     * @param terms
      */
     public GroundKL(List<Terminal> terms) {
         groundParents = 0;
@@ -46,8 +49,18 @@ public class GroundKL {
             }
         }
     }
-    
-    public void invalidate(){
+
+    public GroundKL() {
+        groundParents = 0;
+        groundParentsChecked = 0;
+        groundParentDerivative = 0;
+
+        id = counter++;
+    }
+
+    public abstract GroundKL cloneMe();
+
+    public void invalidate() {
         groundParentsChecked = 0;
         groundParentDerivative = 0;
         value = null;
@@ -166,12 +179,12 @@ public class GroundKL {
 
     /**
      * @param gls
-     * @return 
+     * @return
      */
     public static double getAvgValFrom(Set<GroundLambda> gls) {
         /*if (gls == null) {
-            return 0;
-        }*/
+         return 0;
+         }*/
 
         double avg = 0;
         for (GroundKL gl : gls) {

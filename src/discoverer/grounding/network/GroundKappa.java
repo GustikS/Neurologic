@@ -12,26 +12,42 @@ import java.util.Set;
 /**
  * Grounded kappa node
  */
-public class GroundKappa extends GroundKL{
-    
+public class GroundKappa extends GroundKL {
+
     private Kappa general;
-    
+
     private List<Tuple<GroundLambda, KappaRule>> disjuncts;
-    private List<Tuple<HashSet<GroundLambda>, KappaRule>> disjunctsAvg; 
+    private List<Tuple<HashSet<GroundLambda>, KappaRule>> disjunctsAvg;
     //the hashset average value could be pre-calculated for speedup
-    
+
+    @Override
+    public GroundKappa cloneMe() {
+        GroundKappa gk = new GroundKappa(general);
+        gk.disjuncts.addAll(disjuncts);
+        gk.disjunctsAvg.addAll(disjunctsAvg);
+        gk.setTermList(getTermList());
+        return gk;
+    }
+
+    public GroundKappa(Kappa k) {
+        super();
+        general = k;
+        disjuncts = new ArrayList<Tuple<GroundLambda, KappaRule>>();
+        disjunctsAvg = new ArrayList<>();
+    }
 
     /**
-     * term list is full and final = this Kappa is really fully grounded at the time of creation
+     * term list is full and final = this Kappa is really fully grounded at the
+     * time of creation
+     *
      * @param k
-     * @param terms 
+     * @param terms
      */
     public GroundKappa(Kappa k, List<Terminal> terms) {
         super(terms);
         general = k;
         disjuncts = new ArrayList<Tuple<GroundLambda, KappaRule>>();
         disjunctsAvg = new ArrayList<>();
-        
     }
 
     public void addDisjunct(GroundLambda gl, KappaRule kr) {
@@ -39,10 +55,10 @@ public class GroundKappa extends GroundKL{
         t = new Tuple<GroundLambda, KappaRule>(gl, kr);
         disjuncts.add(t);
     }
-    
+
     public void addDisjunctAvg(Set<GroundLambda> gl, KappaRule kr) {
         Tuple<HashSet<GroundLambda>, KappaRule> t;
-        t = new Tuple<>((HashSet<GroundLambda>)gl, kr);
+        t = new Tuple<>((HashSet<GroundLambda>) gl, kr);
         getDisjunctsAvg().add(t);
     }
 
@@ -52,7 +68,8 @@ public class GroundKappa extends GroundKL{
 
     /**
      * return all disjuncts(rule right sides) for this Kappa
-     * @return 
+     *
+     * @return
      */
     public List<Tuple<GroundLambda, KappaRule>> getDisjuncts() {
         return disjuncts;
@@ -65,7 +82,7 @@ public class GroundKappa extends GroundKL{
     @Override
     public String toString() {
         String s = general.getName() + "(";
-        for (Integer i: getTermList()) {
+        for (Integer i : getTermList()) {
             s += i + ",";
         }
         s = s.substring(0, s.length() - 1);

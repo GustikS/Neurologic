@@ -5,6 +5,7 @@ import discoverer.global.Batch;
 import discoverer.global.FileToStringListJava6;
 import discoverer.global.Glogger;
 import discoverer.global.Settings;
+import java.util.Random;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.HelpFormatter;
@@ -23,20 +24,22 @@ public class Main {
     //
     public static String defaultLearningSteps = "10";
     //
-    private static String defaultLearningEpochs = "7";
+    public static String defaultLearningEpochs = "7";
     //crossval
     private static final String defaultFolds = "5";
     private static final String defaultLearningRate = "0.05";
     private static final String defaultRestartCount = "3";
     //max-avg
     public static final String defaultGrounding = "max";
-    public static String defaultActivation = "sig_sig";
+    public static String defaultActivations = "sig_sig";    //lambda_kappa
     public static String defaultInitialization = "handmade";
     //offsets
     public static boolean defaultKappaAdaptiveOffsetOn = false;
     public static String defaultLambdaAdaptiveOffset = "1";
     public static String defaultKappaAdaptiveOffset = "0";
     public static String defaultSeed = "1";
+
+    public static String defaultDropoutRate = "0";
 
     //public static boolean avg = true;
     public static Options getOptions() {
@@ -98,7 +101,7 @@ public class Main {
         options.addOption(OptionBuilder.create("gr"));
 
         OptionBuilder.withLongOpt("activations");
-        OptionBuilder.withDescription("lambda-kappa activation functions (default: " + defaultActivation + ")");
+        OptionBuilder.withDescription("lambda-kappa activation functions (default: " + defaultActivations + ")");
         OptionBuilder.withArgName("ACTIVATION");
         OptionBuilder.hasArg();
         options.addOption(OptionBuilder.create("ac"));
@@ -126,10 +129,16 @@ public class Main {
         options.addOption(OptionBuilder.create("lo"));
 
         OptionBuilder.withLongOpt("seed");
-        OptionBuilder.withDescription("Number of restarts (default: " + 1 + ")");
-        OptionBuilder.withArgName("seed");
+        OptionBuilder.withDescription("seed value (default: " + defaultSeed + ")");
+        OptionBuilder.withArgName("SEED");
         OptionBuilder.hasArg();
         options.addOption(OptionBuilder.create("sd"));
+
+        OptionBuilder.withLongOpt("dropout");
+        OptionBuilder.withDescription("dropout rate (default: " + defaultDropoutRate + ")");
+        OptionBuilder.withArgName("DROPOUT");
+        OptionBuilder.hasArg();
+        options.addOption(OptionBuilder.create("dr"));
 
         return options;
     }
@@ -163,7 +172,7 @@ public class Main {
         String ground = cmd.getOptionValue("gr", defaultGrounding);
         Global.setGrounding(ground);
 
-        String activation = cmd.getOptionValue("ac", defaultActivation);
+        String activation = cmd.getOptionValue("ac", defaultActivations);
         Global.setActivations(activation);
 
         String initialization = cmd.getOptionValue("wi", defaultInitialization);
@@ -176,9 +185,13 @@ public class Main {
 
         String loffset = cmd.getOptionValue("lo", defaultLambdaAdaptiveOffset);
         Global.initLambdaAdaptiveOffset = Double.parseDouble(loffset);
-        
+
         String seed = cmd.getOptionValue("sd", defaultSeed);
         Global.seed = Integer.parseInt(seed);
+        Global.rg = new Random(Global.seed);
+
+        String drop = cmd.getOptionValue("dr", defaultDropoutRate);
+        Global.dropout = Double.parseDouble(drop);
 
         //parsing command line options - needs external library commons-CLI
         Batch batch = cmd.hasOption("b") ? Batch.YES : Batch.NO;

@@ -11,39 +11,55 @@ import java.util.Set;
  * Grounded node -- lambda
  */
 public class GroundLambda extends GroundKL {
-
+    
     private Lambda general;
-
+    
     private List<GroundKappa> conjuncts;
     private HashMap<GroundKappa, Integer> conjunctsAvg;
     private int conjunctsCountForAvg = 0;
-
+    
     public GroundLambda(Lambda l, List<Terminal> terms) {
         super(terms);
         general = l;
         conjuncts = new ArrayList<GroundKappa>();
         conjunctsAvg = new HashMap<>();
     }
-
+    
+    @Override
+    public GroundLambda cloneMe() {
+        GroundLambda gl = new GroundLambda(general);
+        gl.conjuncts.addAll(conjuncts);
+        gl.conjunctsAvg.putAll(conjunctsAvg);
+        gl.setTermList(getTermList());
+        return gl;
+    }
+    
+    public GroundLambda(Lambda k) {
+        super();
+        general = k;
+        conjuncts = new ArrayList<GroundKappa>();
+        conjunctsAvg = new HashMap<>();
+    }
+    
     public void addConjunct(GroundKappa gk) {
         conjuncts.add(gk);
     }
-
+    
     private void addConjunctAvg(GroundKappa gk) {
         if (!conjunctsAvg.containsKey(gk)) {
             getConjunctsAvg().put(gk, 0);
         }
         getConjunctsAvg().put(gk, getConjunctsAvg().get(gk) + 1);
     }
-
+    
     public List<GroundKappa> getConjuncts() {
         return conjuncts;
     }
-
+    
     public Lambda getGeneral() {
         return general;
     }
-
+    
     @Override
     public String toString() {
         String s = general.getName() + "(";
@@ -54,12 +70,12 @@ public class GroundLambda extends GroundKL {
         s += ")#" + getId();
         return s;
     }
-
+    
     public void addConjuctsAvgFrom(Set<GroundLambda> gls) {
         if (gls == null) {
             return;
         }
-
+        
         conjunctsCountForAvg += gls.size();  //the number of body groundings
 
         for (GroundLambda gl : gls) {   //all GroundLambdas are the same here
@@ -99,5 +115,5 @@ public class GroundLambda extends GroundKL {
     public void setConjunctsCountForAvg(int conjunctsCountForAvg) {
         this.conjunctsCountForAvg = conjunctsCountForAvg;
     }
-
+    
 }

@@ -7,7 +7,6 @@ import discoverer.grounding.evaluation.Ball;
 import discoverer.global.Batch;
 import discoverer.drawing.Dotter;
 import discoverer.grounding.evaluation.Evaluator;
-import discoverer.grounding.evaluation.EvaluatorAvg;
 import discoverer.construction.example.Example;
 import discoverer.construction.ExampleFactory;
 import discoverer.global.Global;
@@ -216,7 +215,7 @@ public class BackPropAVGTest {
         ExampleFactory eFactory = new ExampleFactory();
         Example e = eFactory.construct(ex[0]);
 
-        Dotter.draw(last,"state0");
+        Dotter.draw(last, "state0");
         //-----------solving
         Ball b = Grounder.solve(last, e);
         //GroundDotter.draw(b);
@@ -224,7 +223,7 @@ public class BackPropAVGTest {
         //------
         System.out.println("val: " + b.valMax);
         System.out.println("avgVal: " + b.valAvg);
-        System.out.println("Avg: " + EvaluatorAvg.evaluate(b));
+        System.out.println("Avg: " + Evaluator.evaluateAvg(b));
         System.out.println("val: " + Evaluator.evaluate(b));
         b = Grounder.solve(last, e);
         //GroundDotter.drawAVG(b, "backprGroundAvg0");
@@ -232,8 +231,8 @@ public class BackPropAVGTest {
         System.out.println("val: " + b.valMax);
         System.out.println("avgVal: " + b.valAvg);
         System.out.println("val: " + Evaluator.evaluate(b));
-        System.out.println("Avg: " + EvaluatorAvg.evaluate(b));
-        
+        System.out.println("Avg: " + Evaluator.evaluateAvg(b));
+
         //-------backprop------
         double learnRate = 0.1;
         //Dotter.draw(last, "backpr0");
@@ -245,22 +244,22 @@ public class BackPropAVGTest {
         w = BackpropDownAvg.getNewWeights(b, e, Batch.NO, learnRate);
         printUpdate(w);
         //---
-        System.out.println("downvalAvg: " + EvaluatorAvg.evaluate(b));
+        System.out.println("downvalAvg: " + Evaluator.evaluateAvg(b));
         GroundDotter.drawAVG(b, "backprGroundAvg1");
-        System.out.println("downvalAvg: " + EvaluatorAvg.evaluate(b));
+        System.out.println("downvalAvg: " + Evaluator.evaluateAvg(b));
         //--
         System.out.println("corruptedMax: " + Evaluator.evaluate(b));
         //GroundDotter.draw(b, "backprGroundMax1");
         System.out.println("corruptedMax: " + Evaluator.evaluate(b));
 
-        System.out.println("avg:" + EvaluatorAvg.evaluate(b));
+        System.out.println("avg:" + Evaluator.evaluateAvg(b));
         //Dotter.draw(last, "before");
         System.out.println("grounder..");
         //GroundInvalidator.invalidate(b);
         b = Grounder.solve(last, e);
         Dotter.draw(last, "after");
         System.out.println("avg " + b.valAvg);
-        System.out.println("avg " + EvaluatorAvg.evaluate(b));
+        System.out.println("avg " + Evaluator.evaluateAvg(b));
         GroundDotter.drawAVG(b, "backprGroundAvg2");
         System.out.println("val" + b.valMax);
         System.out.println("val" + Evaluator.evaluate(b));

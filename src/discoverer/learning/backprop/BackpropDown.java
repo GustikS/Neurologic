@@ -13,6 +13,7 @@ import discoverer.grounding.network.GroundKL;
 import discoverer.grounding.network.GroundKappa;
 import discoverer.grounding.network.GroundLambda;
 import discoverer.construction.network.rules.KappaRule;
+import discoverer.global.Glogger;
 import discoverer.learning.backprop.functions.Activations;
 import discoverer.global.Tuple;
 import discoverer.learning.Weights;
@@ -24,10 +25,10 @@ import java.util.Set;
  * @author Gusta
  */
 public class BackpropDown {
-
+    
     private static Weights weights = new Weights(); //storing intermediate weight updates(Kappa + Double tuple updates)
     static double learnRate;
-
+    
     public static Weights getNewWeights(Ball b, Example e, Batch batch, double learnRat) {
         learnRate = learnRat;
         weights.clear();
@@ -35,7 +36,7 @@ public class BackpropDown {
         if (o == null) {
             return weights;
         }
-
+        
         double baseDerivative = -1 * (e.getExpectedValue() - b.valMax);  //output error-level derivative
 
         if (o instanceof GroundKappa) {
@@ -43,22 +44,27 @@ public class BackpropDown {
         } else {
             derive((GroundLambda) o, baseDerivative);
         }
-
+        
         return weights;
     }
-
+    
     private static void derive(GroundKappa gk, double derivative) {
+        if (gk.dropMe) {
+            Glogger.debug("dropping " + gk);
+            return;
+        }
+        
         if (Global.debugEnabled) {
             System.out.println("deriving: " + gk);
         }
-
+        
         if (gk.isElement()) {
             return; //we do not update the weights for example atoms (but it would be possible and might be interesting)
         }
-
+        
         gk.addGroundParentDerivative(derivative);   //aggregating(summing) the derivative from ground parent nodes
         gk.incrGroundParentsChecked();
-
+        
         if (gk.getGroundParentsChecked() == gk.getGroundParents()) { //all parents checked
             double firstDerivative = kappaActivationDerivative(gk);
             double myDerivative = gk.getGroundParentDerivative() * firstDerivative;
@@ -70,21 +76,26 @@ public class BackpropDown {
             }
         }
     }
-
+    
     private static void derive(GroundLambda gl, double derivative) {
+        if (gl.dropMe) {
+            Glogger.debug("dropping " + gl);
+            return;
+        }
+        
         if (Global.debugEnabled) {
             System.out.println("deriving: " + gl);
         }
         gl.addGroundParentDerivative(derivative);
         gl.incrGroundParentsChecked();
-
+        
         if (gl.getGroundParentsChecked() == gl.getGroundParents()) {    //all parent's derivatives evaluated
             double firstDerivative = lambdaActivationDerivative(gl);
             for (GroundKappa gk : gl.getConjuncts()) {
                 derive(gk, gl.getGroundParentDerivative() * firstDerivative);
             }
         }
-
+        
     }
 
 //-----------------------the actual-level derivative(no recursion) based on GroundKappa/Lambda's output value(within a derived activation function)
@@ -97,7 +108,7 @@ public class BackpropDown {
         result = Activations.kappaActivationDerived(result);    //and we need to feed it through a DERIVED activaiton function
         return result;
     }
-
+    
     private static double lambdaActivationDerivative(GroundLambda gl) {
         double result = gl.getGeneral().getOffset();
         for (GroundKappa gk : gl.getConjuncts()) {

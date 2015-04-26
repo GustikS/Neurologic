@@ -14,7 +14,7 @@ import discoverer.grounding.Grounder;
 import extras.BackpropGroundKappa;
 import discoverer.learning.backprop.BackpropDownAvg;
 import discoverer.grounding.evaluation.Evaluator;
-import discoverer.grounding.evaluation.EvaluatorAvg;
+import discoverer.grounding.evaluation.struct.Dropout;
 import discoverer.learning.Invalidator;
 import discoverer.learning.Result;
 import discoverer.learning.Results;
@@ -118,6 +118,7 @@ public class Learner {
                     for (Sample result : roundStore) {     //for each example(result)
                         Example e = result.getExample();
                         Ball b = result.getBall();
+                        Dropout.dropout(b);
                         Weights w = BackpropDown.getNewWeights(b, e, Batch.NO, learnRate);  //backpropagation
                         //Weights w = BackpropGroundKappa.getNewWeights(b, e, Batch.NO, learnRate);  //backpropagation
                         //Glogger.info(w.toString());
@@ -214,10 +215,11 @@ public class Learner {
                 for (Sample result : roundStore) {     //for each example(result)
                     Example e = result.getExample();
                     Ball b = result.getBall();
+                    Dropout.dropoutAvg(b);
                     Weights w = BackpropDownAvg.getNewWeights(b, e, Batch.NO, learnRate);  //backpropagation
                     refreshWeights(w);  //update
                     double old = b.valAvg;
-                    b.valAvg = EvaluatorAvg.evaluate(b);  //forward propagation
+                    b.valAvg = Evaluator.evaluateAvg(b);  //forward propagation
                     res.add(new Result(b.valAvg, e.getExpectedValue()));    //store the average value output in the result
                     Glogger.debug("Example: " + e + "Weight learning: " + old + " -> " + b.valAvg);
                 }

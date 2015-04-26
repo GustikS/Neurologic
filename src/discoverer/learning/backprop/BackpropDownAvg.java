@@ -12,6 +12,7 @@ import discoverer.grounding.network.GroundKL;
 import discoverer.grounding.network.GroundKappa;
 import discoverer.grounding.network.GroundLambda;
 import discoverer.construction.network.rules.KappaRule;
+import discoverer.global.Glogger;
 import discoverer.learning.backprop.functions.Activations;
 import discoverer.global.Tuple;
 import discoverer.learning.Weights;
@@ -47,6 +48,10 @@ public class BackpropDownAvg {
     }
 
     private static void derive(GroundKappa gk, double derivative) {
+        if (gk.dropMe) {
+            Glogger.debug("dropping " + gk);
+            return;
+        }
 
         if (gk.isElement()) {
             return; //we do not update the weights for example atoms (but it would be possible and might be interesting)
@@ -55,11 +60,9 @@ public class BackpropDownAvg {
         gk.addGroundParentDerivative(derivative);   //aggregating(summing) the derivative from ground parent nodes
         gk.incrGroundParentsChecked();
 
-        double myDerivative = 0;
-
         if (gk.getGroundParentsChecked() == gk.getGroundParents()) { //all parents checked
             double firstDerivative = firstPartKappaDerivative(gk);
-            myDerivative = gk.getGroundParentDerivative() * firstDerivative;
+            double myDerivative = gk.getGroundParentDerivative() * firstDerivative;
             weights.addW(gk.getGeneral(), myDerivative);   //updating offset weight (it's inner derivative is just 1, so no more computations needed)
 
             for (Tuple<HashSet<GroundLambda>, KappaRule> tup : gk.getDisjunctsAvg()) {
@@ -72,6 +75,11 @@ public class BackpropDownAvg {
     }
 
     private static void derive(GroundLambda gl, double derivative) {
+        if (gl.dropMe) {
+            Glogger.debug("dropping " + gl);
+            return;
+        }
+
         gl.addGroundParentDerivative(derivative);
         gl.incrGroundParentsChecked();
 

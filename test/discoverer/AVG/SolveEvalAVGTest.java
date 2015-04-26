@@ -2,7 +2,6 @@ package discoverer.AVG;
 
 import discoverer.grounding.evaluation.Ball;
 import discoverer.grounding.evaluation.Evaluator;
-import discoverer.grounding.evaluation.EvaluatorAvg;
 import discoverer.construction.example.Example;
 import discoverer.construction.ExampleFactory;
 import discoverer.global.Global;
@@ -64,7 +63,7 @@ public class SolveEvalAVGTest {
             System.out.println("avg Ball: " + bb.valAvg);
             System.out.println("val Ball: " + bb.valMax);
             //assertEquals("Output", 0.6428072668247082, dd, 0);
-            double avg = EvaluatorAvg.evaluate(bb);
+            double avg = Evaluator.evaluateAvg(bb);
             double val = Evaluator.evaluate(bb);
             System.out.println("EvaluatorAVG: " + avg);
             System.out.println("Evaluator: " + Evaluator.evaluate(bb));
@@ -99,8 +98,8 @@ public class SolveEvalAVGTest {
         System.out.println(Evaluator.evaluate(bb));
         //bb = Grounder.solve(last, e);
         System.out.println(bb.valAvg);
-        System.out.println(EvaluatorAvg.evaluate(bb));
-        double avg = EvaluatorAvg.evaluate(bb);
+        System.out.println(Evaluator.evaluateAvg(bb));
+        double avg = Evaluator.evaluateAvg(bb);
         double val = Evaluator.evaluate(bb);
         System.out.println("EvaluatorAVG: " + avg);
         System.out.println("Evaluator: " + val);
@@ -153,7 +152,7 @@ public class SolveEvalAVGTest {
             System.out.println(Evaluator.evaluate(bb));
             //bb = Grounder.solve(last, e);
             System.out.println("valAVG:" + bb.valAvg);
-            System.out.println(EvaluatorAvg.evaluate(bb));
+            System.out.println(Evaluator.evaluateAvg(bb));
 
             if (bb.valMax != -1) {
                 assertFalse(Math.abs(bb.valAvg - bb.valMax) < 0.000000000000001);
