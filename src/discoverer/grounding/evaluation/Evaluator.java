@@ -7,8 +7,11 @@ import discoverer.construction.network.rules.KappaRule;
 import discoverer.learning.backprop.functions.Activations;
 import discoverer.global.Tuple;
 import discoverer.grounding.network.GroundKL;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * Evaluating lk-network output
@@ -17,7 +20,7 @@ public class Evaluator {
 
     public static boolean ignoreDropout = true;
 
-    public static double evaluate(Ball b) {
+    public static double evaluateMax(Ball b) {
         if (b == null) {
             return Global.falseAtomValue;
         }
@@ -35,6 +38,7 @@ public class Evaluator {
 
     private static double evaluate(GroundKappa gk) {
         if (!ignoreDropout && gk.dropMe) {
+            gk.setValue(0.0);
             return 0;
         }
 
@@ -47,18 +51,21 @@ public class Evaluator {
             return out;
         }
 
-        out = gk.getGeneral().getOffset();
+        //out = gk.getGeneral().getOffset();
+        List<Double> inputs = new ArrayList<>();
         for (Tuple<GroundLambda, KappaRule> t : gk.getDisjuncts()) {
-            out += evaluate(t.x) * t.y.getWeight();
+            //out += evaluate(t.x) * t.y.getWeight();
+            inputs.add(evaluate(t.x) * t.y.getWeight());
         }
 
-        out = Activations.kappaActivation(out);
+        out = Activations.kappaActivation(inputs, gk.getGeneral().getOffset());
         gk.setValue(out);
         return out;
     }
 
     private static double evaluate(GroundLambda gl) {
         if (!ignoreDropout && gl.dropMe) {
+            gl.setValue(0.0);
             return 0;
         }
 
@@ -67,12 +74,14 @@ public class Evaluator {
             return out;
         }
 
-        out = gl.getGeneral().getOffset();
+        //out = gl.getGeneral().getOffset();
+        List<Double> inputs = new ArrayList<>();
         for (GroundKappa gk : gl.getConjuncts()) {
-            out += evaluate(gk);
+            //out += evaluate(gk);
+            inputs.add(evaluate(gk));
         }
 
-        out = Activations.lambdaActivation(out);
+        out = Activations.lambdaActivation(inputs, gl.getGeneral().getOffset());
         gl.setValue(out);
         return out;
     }
@@ -92,6 +101,7 @@ public class Evaluator {
 
     private static double evaluateAvg(GroundKappa gk) {
         if (!ignoreDropout && gk.dropMe) {
+            gk.setValue(0.0);
             return 0;
         }
 
@@ -105,8 +115,8 @@ public class Evaluator {
             return out;
         }
 
-        out = gk.getGeneral().getOffset();
-
+        //out = gk.getGeneral().getOffset();
+        List<Double> inputs = new ArrayList<>();
         for (Tuple<HashSet<GroundLambda>, KappaRule> t : gk.getDisjunctsAvg()) {
             double avg = 0;
             for (GroundLambda gl : t.x) {
@@ -116,15 +126,17 @@ public class Evaluator {
              System.out.println("problem");
              }*/
             avg /= t.x.size();
-            out += avg * t.y.getWeight();
+            //out += avg * t.y.getWeight();
+            inputs.add(avg * t.y.getWeight());
         }
-        out = Activations.kappaActivation(out);
+        out = Activations.kappaActivation(inputs, gk.getGeneral().getOffset());
         gk.setValueAvg(out);
         return out;
     }
 
     private static double evaluateAvg(GroundLambda gl) {
         if (!ignoreDropout && gl.dropMe) {
+            gl.setValue(0.0);
             return 0;
         }
 
@@ -133,14 +145,16 @@ public class Evaluator {
             return out;
         }
 
-        out = gl.getGeneral().getOffset();
-        double avg = 0;
+        //out = gl.getGeneral().getOffset();
+        List<Double> inputs = new ArrayList<>();
+        //double avg = 0;
         for (Map.Entry<GroundKappa, Integer> gk : gl.getConjunctsAvg().entrySet()) {
-            avg += evaluateAvg(gk.getKey()) * gk.getValue();
+            //avg += evaluateAvg(gk.getKey()) * gk.getValue();
+            inputs.add(evaluateAvg(gk.getKey()) * gk.getValue() / gl.getConjunctsCountForAvg());
         }
-        avg /= gl.getConjunctsCountForAvg();    //they are all averaged by the number of body groundings
+        //avg /= gl.getConjunctsCountForAvg();    //they are all averaged by the number of body groundings
 
-        out = Activations.lambdaActivation(out + avg);
+        out = Activations.lambdaActivation(inputs, gl.getGeneral().getOffset());
 
         gl.setValueAvg(out);
         return out;

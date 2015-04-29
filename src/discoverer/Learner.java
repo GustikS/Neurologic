@@ -7,6 +7,7 @@ import discoverer.construction.network.KL;
 import discoverer.construction.network.Kappa;
 import discoverer.construction.network.rules.KappaRule;
 import discoverer.drawing.GroundDotter;
+import discoverer.global.Global;
 import discoverer.global.Glogger;
 import discoverer.grounding.ForwardChecker;
 import discoverer.grounding.evaluation.Ball;
@@ -30,6 +31,54 @@ import java.util.*;
 public class Learner {
 
     /**
+     * AVG variant with no grounding-epochae implements strategy for number of
+     * learning steps based on a restart number
+     *
+     * @param restart
+     * @return
+     */
+    private int stepsForRestart(int restart) {
+        int steps = 10 + restart * restart;
+        Glogger.process("steps for restart " + restart + " = " + steps);
+        Glogger.LogTrain("steps for restart " + restart + " = " + steps);
+        return steps;   //quadratic for AVG
+    }
+
+    /**
+     * number of grounding-epochae to perform for a given restart number
+     * similarly to the stragety of learrning steps for a restart
+     *
+     * @param restart
+     * @return
+     */
+    private int epochaeForRestart(int restart) {
+        int steps = 1 + restart * restart;
+        Glogger.process("epochae for restart " + restart + " = " + steps);
+        Glogger.LogTrain("epochae for restart " + restart + " = " + steps);
+        return steps;   //quadratic for AVG
+    }
+
+    /**
+     * number of learning steps for a specific grounding-epocha running with a
+     * specific restart can be a static number (10,100) or a strategy
+     *
+     * @param epocha
+     * @param restart
+     * @return
+     */
+    private int stepsForEpocha(int epocha, int restart) {
+        int steps = 10 + 10 * epocha * restart;
+        //int steps = 100;
+        Glogger.process("steps for epocha " + epocha + " = " + steps);
+        Glogger.LogTrain("steps for epocha " + epocha + " = " + steps);
+        return steps;   //quadratic for AVG
+    }
+
+    private double learnDecay(int step, double learnRate) {
+        return Global.learnDecayA / (Global.learnDecayB + step);
+    }
+
+    /**
      * Method for handling the first learning run<p>
      * for each example finds it's maximal and average substitution's Ball
      * result returned as couples in RoundElement
@@ -38,7 +87,10 @@ public class Learner {
      * @param last output node
      * @return list with balls from first run
      */
-    public List<Sample> firstRun(List<Example> examples, KL last) {
+    public List<Sample> prepareGroundings(List<Example> examples, KL last) {
+        //find max. and average substitution for all examples
+        ForwardChecker.exnum = 0;
+        Glogger.process("searching for initial substition trees for each example...");
         List<Sample> roundStore = new ArrayList<Sample>();
         ForwardChecker.exnum = 0;
         int i = 0;
@@ -48,8 +100,47 @@ public class Learner {
             Glogger.info("example: " + e + " , maxVal: " + b.valMax + ", avgVal: " + b.valAvg);
             roundStore.add(new Sample(e, b));
         }
-        
+
+        Glogger.process("...done with intial grounding");
+
+        //here calculate for each proof-tree(=Ball b) numbers of parents for each GroundKappa/Lambda
+        for (Sample result : roundStore) {
+            Ball b = result.getBall();
+            if (Global.grounding == Global.groundingSet.avg) {
+                ParentCounter.countParentsAVG(b);
+            } else if (Global.grounding == Global.groundingSet.max) {
+                ParentCounter.countParents(b);
+            }
+        }
+
         return roundStore;
+    }
+
+    private Results endTraining(List<Sample> roundStore, KL last) {
+        //learning finished!
+        Glogger.process("backpropagation on fold finished");
+        Saver.load();   //loading the weights for Kappa-Lambda program
+        Glogger.process("...Saver loaded the best network template");
+        Glogger.process("Grounding the best template...");
+        Results results = new Results();    //we didn't store the whole ground networks(one for each example), just the weights of program
+        ForwardChecker.exnum = 0;
+        for (Sample roundElement : roundStore) {  //so we need to calculate the proof-tree output again
+            Example e = roundElement.getExample();
+            Ball b = Grounder.solve(last, e);   //so again create the proof-tree
+            roundElement.setBall(b);
+            if (Global.grounding == Global.groundingSet.avg) {
+                results.add(new Result(b.valAvg, e.getExpectedValue()));
+                Glogger.info("example: " + e + " -> avgVal: " + b.valAvg);
+            } else if (Global.grounding == Global.groundingSet.max) {
+                results.add(new Result(b.valMax, e.getExpectedValue()));
+                Glogger.info("example: " + e + " -> maxVal: " + b.valMax);
+            } else {
+                throw new AssertionError();
+            }
+        }
+        Glogger.LogTrain("final_train", new Double[]{results.getLearningError(), results.getDispersion(), results.getMajorityClass(), results.getThreshold()});
+        Glogger.process("Saved training error as best of all restarts =\t" + results.getLearningError() + " (maj: " + results.getMajorityClass() + ")" + " (th: " + results.getThreshold() + ")" + " (disp: " + results.getDispersion() + ")");
+        return results;
     }
 
     /**
@@ -92,93 +183,55 @@ public class Learner {
      * @param learnRate
      * @return
      */
-    public Results solve(KL last, List<Example> examples, int learningSteps, int learningEpochs, int restartCount, double learnRate) {
-        //find max. substitution for all examples
-        ForwardChecker.exnum = 0;
-        Glogger.process("searching for initial max substition for each example...");
-        List<Sample> roundStore = firstRun(examples, last);
-        Glogger.process("...done with intial grounding");
-        
-        //here calculate for each avg-proof-tree(=Ball b) numbers of parents for each GroundKappa/Lambda
-        for (Sample result : roundStore) {
-            Ball b = result.getBall();
-            ParentCounter.countParents(b);
-        }
-        
+    public Results solveMax(KL last, List<Example> examples, int learningSteps, int learningEpochs, int restartCount, double learnRate) {
+
+        List<Sample> roundStore = prepareGroundings(examples, last);
+
         Results results;
-        
+        Glogger.process("-------------solveMax----------------");
         for (int a = 0; a < restartCount; a++) {    //restarting the whole procedure
             Glogger.process("---------------------------------------------------------------------------------------------------------------------");
             Glogger.process("------------Restart: " + a);
             for (int x = 0; x < learningEpochs; x++) {      //learningEpochs = maximal substitution cycles for all examples
                 Glogger.process("-------epochae: " + x);
                 for (int i = 0; i < learningSteps; i++) {       //learningSteps = backpropagation steps
-                    Results res = new Results();
+                    if (Global.learnDecay) {
+                        learnRate = learnDecay(i + (x * learningSteps), learnRate);
+                    }
+                    //Results res = new Results();
                     Glogger.process("------learning step: " + i);
+                    if (Global.SGD) {
+                        Collections.shuffle(roundStore, Global.rg);    //stochastic gradient descend!
+                    }
                     for (Sample result : roundStore) {     //for each example(result)
                         Example e = result.getExample();
                         Ball b = result.getBall();
-                        Dropout.dropout(b);
-                        Weights w = BackpropDown.getNewWeights(b, e, Batch.NO, learnRate);  //backpropagation
-                        //Weights w = BackpropGroundKappa.getNewWeights(b, e, Batch.NO, learnRate);  //backpropagation
-                        //Glogger.info(w.toString());
-                        //Weights compare = w.compareTo(w2);
-                        //Glogger.info(compare.toString());
-                        refreshWeights(w);  //update
                         double old = b.valMax;
-                        b.valMax = Evaluator.evaluate(b);  //forward propagation
-                        res.add(new Result(b.valMax, e.getExpectedValue()));
-                        Glogger.debug("Example: " + e + "\t : Weight learning: " + old + " -> " + b.valMax);
+                        if (Global.dropout > 0) {
+                            Dropout.dropoutMax(b);
+                            Evaluator.ignoreDropout = false;
+                            b.valMax = Evaluator.evaluateMax(b);
+                            Evaluator.ignoreDropout = true;
+                        } else {
+                            b.valMax = Evaluator.evaluateMax(b);  //forward propagation
+                        }
+                        Glogger.debug("Example: " + e + "Example's weight change from last minibatch (after 1-bp over all other examples) " + old + " -> " + b.valAvg);
+                        Weights w = BackpropDown.getNewWeights(b, e, Batch.NO, learnRate);  //backpropagation
+                        refreshWeights(w);  //update weights
                     }   //learning errors on this fixed ground tree (found as max subst before learning)
-                    Glogger.LogTrain("bp_step", new Double[]{res.getLearningError(), res.getDispersion(), res.getMajorityClass(), res.getThreshold()});
-                    Glogger.process("Training error before max. subst. =\t" + res.getLearningError() + " (maj: " + res.getMajorityClass() + ")" + " (disp: " + res.getDispersion() + ")");
+                    if (Global.save) {
+                        saveTemplate(roundStore, last);
+                    }
                 }
-
-                //max. subst. search again
-                results = new Results();
-                ForwardChecker.exnum = 0;
-                for (Sample roundElement : roundStore) {
-                    Example e = roundElement.getExample();
-                    Ball b = Grounder.solve(last, e);    // resubstitution for every example
-                    ParentCounter.countParents(b);
-                    roundElement.setBall(b);
-                    results.add(new Result(b.valMax, e.getExpectedValue()));
-                    Glogger.info("example: " + e + " , bval: " + b.valMax + ", avg: " + b.valAvg);
-                    Glogger.debug("Substitution:\t" + e + "->\t" + b.valMax);
-                    //GroundDotter.draw(b);
-                }
-                Glogger.LogTrain("resub", new Double[]{results.getLearningError(), results.getDispersion(), results.getMajorityClass(), results.getThreshold()});
-                Glogger.process("Training error after resubstition =\t" + results.getLearningError() + " (maj: " + results.getMajorityClass() + ")" + " (th: " + results.getThreshold() + ")" + " (disp: " + results.getDispersion() + ")");
-                double le = results.getLearningError();
-                double th = results.getThreshold();
-                double disp = results.getDispersion();
-                
-                if (Saver.isBetterThenBest(le, th, disp)) {
-                    Saver.save(last, le, th, disp);     //save the best network (last = output node)
-                }
-                //KL llast =  last;
-                //Dotter.draw(last, new HashSet(llast.getRules()));
+                endEpocha(roundStore, last);
             }
+            saveTemplate(roundStore, last);
             Glogger.LogTrain("...restart " + a);
             Invalidator.invalidate(last);       //reset all weights before restart
         }
 
-        //learning finished!
-        Saver.load();
-        Glogger.process("...Saver loaded the best network template");
-        Glogger.process("Grounding the best template...");
-        results = new Results();
-        ForwardChecker.exnum = 0;
-        for (Sample roundElement : roundStore) {
-            Example e = roundElement.getExample();
-            Ball b = Grounder.solve(last, e);
-            roundElement.setBall(b);
-            results.add(new Result(b.valMax, e.getExpectedValue()));
-            Glogger.info("Substitution:\t" + e + "->\t" + b.valMax);
-        }
-        Glogger.LogTrain("final_train", new Double[]{results.getLearningError(), results.getDispersion(), results.getMajorityClass(), results.getThreshold()});
-        Glogger.process("Saved Learning error after resubstition and all restarts =\t" + results.getLearningError() + " (maj: " + results.getMajorityClass() + ")" + " (th: " + results.getThreshold() + ")" + " (th: " + results.getDispersion() + ")");
-        
+        results = endTraining(roundStore, last);
+
         return results;
     }
 
@@ -194,69 +247,304 @@ public class Learner {
      * @return
      */
     public Results solveAvg(KL last, List<Example> examples, int learningSteps, int learningEpochs, int restartCount, double learnRate) {
-        //find max. and average substitution for all examples
-        ForwardChecker.exnum = 0;
-        Glogger.process("searching for initial avg substition for each example...");
-        List<Sample> roundStore = firstRun(examples, last);   //this stays as with no pruning both avg and max are found
-        Glogger.process("...done with intial grounding");
 
-        //here calculate for each avg-proof-tree(=Ball b) numbers of parents for each GroundKappa/Lambda
-        for (Sample result : roundStore) {
-            Ball b = result.getBall();
-            ParentCounter.countParentsAVG(b);
-        }
-        
+        List<Sample> roundStore = prepareGroundings(examples, last);   //this stays as with no pruning both avg and max are found
+
         for (int a = 0; a < restartCount; a++) {    //restarting the whole procedure
             Glogger.process("-------------------------------------------------------------------------------------------------------------------------------");
             Glogger.process("------------Restart: " + a);
             for (int i = 0; i < learningSteps; i++) {       //learningSteps = backpropagation steps
-                Results res = new Results();
+                if (Global.learnDecay) {
+                    learnRate = learnDecay(i, learnRate);
+                }
                 Glogger.process("---learning step: " + i);
+                if (Global.SGD) {
+                    Collections.shuffle(roundStore, Global.rg);    //stochastic gradient descend!
+                }
                 for (Sample result : roundStore) {     //for each example(result)
                     Example e = result.getExample();
                     Ball b = result.getBall();
-                    Dropout.dropoutAvg(b);
-                    Weights w = BackpropDownAvg.getNewWeights(b, e, Batch.NO, learnRate);  //backpropagation
-                    refreshWeights(w);  //update
                     double old = b.valAvg;
-                    b.valAvg = Evaluator.evaluateAvg(b);  //forward propagation
-                    res.add(new Result(b.valAvg, e.getExpectedValue()));    //store the average value output in the result
-                    Glogger.debug("Example: " + e + "Weight learning: " + old + " -> " + b.valAvg);
+                    if (Global.dropout > 0) {
+                        Dropout.dropoutAvg(b);
+                        Evaluator.ignoreDropout = false;
+                        b.valAvg = Evaluator.evaluateAvg(b);
+                        Evaluator.ignoreDropout = true;
+                    } else {
+                        b.valAvg = Evaluator.evaluateAvg(b);  //forward propagation
+                    }
+                    Glogger.debug("Example: " + e + "Weight change from last minibatch (after 1-bp over all other examples) " + old + " -> " + b.valAvg);
+                    Weights w = BackpropDownAvg.getNewWeights(b, e, Batch.NO, learnRate);  //backpropagation
+                    refreshWeights(w);  //update weights
                 }
-                
-                double le = res.getLearningError();
-                double th = res.getThreshold();
-                double disp = res.getDispersion();
-                
-                Glogger.LogTrain("bp_step", new Double[]{res.getLearningError(), res.getDispersion(), res.getMajorityClass(), res.getThreshold()});
-                Glogger.process("Training error = " + res.getLearningError() + " (maj: " + res.getMajorityClass() + ")" + " (disp: " + res.getDispersion() + ")");
-                
-                if (Saver.isBetterThenBest(le, th, disp)) {
-                    Saver.save(last, le, th, disp);     //save the best network (last = output node)
+                if (Global.save) {
+                    saveTemplate(roundStore, last);
                 }
-                //Kappa llast = (Kappa) last;
-                //Dotter.draw(last, new HashSet(llast.getRules()));
+            }
+            saveTemplate(roundStore, last);
+            Glogger.LogTrain("...restart " + a);
+            Invalidator.invalidate(last);       //reset all weights before restart
+        }
+
+        Results results = endTraining(roundStore, last);
+
+        return results;
+    }
+
+    /**
+     * iterative AVG version is principally different - new procedure
+     *
+     * @param last
+     * @param examples
+     * @param learningSteps
+     * @param learningEpochs
+     * @param restartCount
+     * @param learnRate
+     * @return
+     */
+    public Results solveAvgIterative(KL last, List<Example> examples, int learningSteps, int learningEpochs, int restartCount, double learnRate) {
+
+        List<Sample> roundStore = prepareGroundings(examples, last);   //this stays as with no pruning both avg and max are found
+
+        int restart = 0;
+        int step = 0;
+        boolean learn = true;
+        while (learn) {    //restarting the whole procedure
+            Glogger.process("-------------------------------------------------------------------------------------------------------------------------------");
+            Glogger.process("------------Restart: " + restart);
+            int i = 0;
+            int sfr = stepsForRestart(restart);
+            while (i++ < sfr) {       //learningSteps = backpropagation steps
+                if (step++ >= Global.cumMaxSteps) {
+                    learn = false;
+                    break;
+                }
+                if (Global.learnDecay) {
+                    learnRate = learnDecay(i, learnRate);
+                }
+                Glogger.process("---learning step: " + i);
+                if (Global.SGD) {
+                    Collections.shuffle(roundStore, Global.rg);    //stochastic gradient descend!
+                }
+                for (Sample result : roundStore) {     //for each example(result)
+                    Example e = result.getExample();
+                    Ball b = result.getBall();
+                    double old = b.valAvg;
+                    if (Global.dropout > 0) {
+                        Dropout.dropoutAvg(b);
+                        Evaluator.ignoreDropout = false;
+                        b.valAvg = Evaluator.evaluateAvg(b);
+                        Evaluator.ignoreDropout = true;
+                    } else {
+                        b.valAvg = Evaluator.evaluateAvg(b);  //forward propagation
+                    }
+                    Glogger.debug("Example: " + e + "Weight change from last minibatch (after 1-bp over all other examples) " + old + " -> " + b.valAvg);
+                    Weights w = BackpropDownAvg.getNewWeights(b, e, Batch.NO, learnRate);  //backpropagation
+                    refreshWeights(w);  //update weights
+                }
+
+                if (Global.save) {
+                    saveTemplate(roundStore, last);
+                }
+            }
+            saveTemplate(roundStore, last);
+            Glogger.LogTrain("...end of restart " + restart);
+            Invalidator.invalidate(last);       //reset all weights before restart
+            restart++;
+        }
+
+        Results results = endTraining(roundStore, last);
+
+        return results;
+    }
+
+    /**
+     * iterative max version
+     *
+     * @param last
+     * @param examples
+     * @param learningSteps
+     * @param learningEpochs
+     * @param restartCount
+     * @param learnRate
+     * @return
+     */
+    public Results solveMaxIterative(KL last, List<Example> examples, int learningSteps, int learningEpochs, int restartCount, double learnRate) {
+
+        List<Sample> roundStore = prepareGroundings(examples, last);
+        Results results;
+
+        int restart = 0;
+        int step = 0;
+        boolean learn = true;
+        while (learn) {    //restarting the whole procedure
+            Glogger.process("-------------------------------------------------------------------------------------------------------------------------------");
+            Glogger.process("------------Restart: " + restart);
+            int epochae = 0;
+            int efr = epochaeForRestart(restart);
+            while (learn & epochae++ < efr) {       //learningSteps = backpropagation steps
+
+                if (Global.SGD) {
+                    Collections.shuffle(roundStore, Global.rg);    //stochastic gradient descend!
+                }
+
+                Glogger.process("-------epochae: " + epochae);
+                int sfe = stepsForEpocha(epochae, restart);
+                for (int i = 0; i < sfe; i++) {       //learningSteps = backpropagation steps
+                    //Results res = new Results();
+                    Glogger.process("------learning step: " + i);
+                    if (step++ >= Global.cumMaxSteps) {
+                        learn = false;
+                        break;
+                    }
+                    if (Global.learnDecay) {
+                        learnRate = learnDecay(i + (epochae * sfe), learnRate);
+                    }
+                    if (Global.SGD) {
+                        Collections.shuffle(roundStore, Global.rg);    //stochastic gradient descend!
+                    }
+                    for (Sample result : roundStore) {     //for each example(result)
+                        Example e = result.getExample();
+                        Ball b = result.getBall();
+                        double old = b.valMax;
+                        if (Global.dropout > 0) {
+                            Dropout.dropoutMax(b);
+                            Evaluator.ignoreDropout = false;
+                            b.valMax = Evaluator.evaluateMax(b);
+                            Evaluator.ignoreDropout = true;
+                        } else {
+                            b.valMax = Evaluator.evaluateMax(b);  //forward propagation
+                        }
+                        Glogger.debug("Example: " + e + "Example's weight change from last minibatch (after 1-bp over all other examples) " + old + " -> " + b.valAvg);
+                        Weights w = BackpropDown.getNewWeights(b, e, Batch.NO, learnRate);  //backpropagation
+                        refreshWeights(w);  //update weights
+                    }   //learning errors on this fixed ground tree (found as max subst before learning)}
+
+                    if (Global.save) {
+                        saveTemplate(roundStore, last);
+                    }
+                }
+                endEpocha(roundStore, last);
+            }
+            saveTemplate(roundStore, last);
+            Glogger.LogTrain("...restart " + restart);
+            Invalidator.invalidate(last);       //reset all weights before restart
+            restart++;
+        }
+
+        results = endTraining(roundStore, last);
+
+        return results;
+    }
+
+    private void saveTemplate(List<Sample> roundStore, KL last) {
+        //need to evaluate results for the whole batch separatelly (after all example evaluations)
+        Results res = new Results();
+        for (Sample result : roundStore) {
+            Example e = result.getExample();
+            Ball b = result.getBall();
+            if (Global.grounding == Global.groundingSet.avg) {
+                double old = b.valAvg;
+                b.valAvg = Evaluator.evaluateAvg(b);  //forward propagation
+                res.add(new Result(b.valAvg, e.getExpectedValue()));    //store the average value output in the result
+                Glogger.debug("Example: " + e + "Weight learned at the end of a minibatch: " + old + " -> " + b.valAvg);
+            } else if (Global.grounding == Global.groundingSet.max) {
+                double old = b.valMax;
+                b.valMax = Evaluator.evaluateMax(b);  //forward propagation
+                res.add(new Result(b.valMax, e.getExpectedValue()));    //store the average value output in the result
+                Glogger.debug("Example: " + e + "Weight learned at the end of a minibatch: " + old + " -> " + b.valMax);
+            } else {
+                throw new AssertionError();
+            }
+        }
+
+        Glogger.LogTrain("bp_step", new Double[]{res.getLearningError(), res.getDispersion(), res.getMajorityClass(), res.getThreshold()});
+        Glogger.process("Training error = " + res.getLearningError() + " (maj: " + res.getMajorityClass() + ")" + " (disp: " + res.getDispersion() + ")");
+
+        double le = res.getLearningError();
+        double th = res.getThreshold();
+        double disp = res.getDispersion();
+
+        if (Saver.isBetterThenBest(le, th, disp)) {
+            Saver.save(last, le, th, disp);     //save the best network (last = output node)
+        }
+        //Kappa llast = (Kappa) last;
+        //Dotter.draw(last, new HashSet(llast.getRules()));
+    }
+
+    private void endEpocha(List<Sample> roundStore, KL last) {
+        Results results;
+        //max. subst. search again
+        results = new Results();
+        ForwardChecker.exnum = 0;
+        for (Sample roundElement : roundStore) {
+            Example e = roundElement.getExample();
+            Ball b = Grounder.solve(last, e);    // resubstitution for every example
+            ParentCounter.countParents(b);
+            roundElement.setBall(b);
+            results.add(new Result(b.valMax, e.getExpectedValue()));
+            Glogger.info("example: " + e + " , bval: " + b.valMax + ", avg: " + b.valAvg);
+            Glogger.debug("Substitution:\t" + e + "->\t" + b.valMax);
+            //GroundDotter.draw(b);
+        }
+        Glogger.LogTrain("resub", new Double[]{results.getLearningError(), results.getDispersion(), results.getMajorityClass(), results.getThreshold()});
+        Glogger.process("Training error after resubstition =\t" + results.getLearningError() + " (maj: " + results.getMajorityClass() + ")" + " (th: " + results.getThreshold() + ")" + " (disp: " + results.getDispersion() + ")");
+
+        if (Global.save) {
+            double le = results.getLearningError();
+            double th = results.getThreshold();
+            double disp = results.getDispersion();
+            if (Saver.isBetterThenBest(le, th, disp)) {
+                Saver.save(last, le, th, disp);     //save the best network (last = output node)
+            }
+        }
+        //KL llast =  last;
+        //Dotter.draw(last, new HashSet(llast.getRules()));
+    }
+
+    public Results checkback(KL last, List<Example> examples, int learningSteps, int learningEpochs, int restartCount, double learnRate) {
+
+        List<Sample> roundStore = prepareGroundings(examples, last);
+
+        Results results;
+        Glogger.process("-------------checkBack----------------");
+        for (int a = 0; a < restartCount; a++) {    //restarting the whole procedure
+            Glogger.process("---------------------------------------------------------------------------------------------------------------------");
+            Glogger.process("------------Restart: " + a);
+            for (int x = 0; x < learningEpochs; x++) {      //learningEpochs = maximal substitution cycles for all examples
+                Glogger.process("-------epochae: " + x);
+                for (int i = 0; i < learningSteps; i++) {       //learningSteps = backpropagation steps
+                    Results res = new Results();
+                    Glogger.process("------learning step: " + i);
+                    for (Sample result : roundStore) {     //for each example(result)
+                        Example e = result.getExample();
+                        Ball b = result.getBall();
+                        double old = b.valMax;
+                        //b.valMax = Evaluator.evaluateMax(b);  //forward propagation
+                        //double old = b.valMax;
+                        Weights w = BackpropDown.getNewWeights(b, e, Batch.NO, learnRate);  //backpropagation
+                        refreshWeights(w);  //update
+                        b.valMax = Evaluator.evaluateMax(b);  //forward propagation
+                        res.add(new Result(b.valMax, e.getExpectedValue()));
+                        Glogger.debug("Example: " + e + "\t : Weight learning: " + old + " -> " + b.valMax);
+                    }   //learning errors on this fixed ground tree (found as max subst before learning)
+                    Glogger.LogTrain("bp_step", new Double[]{res.getLearningError(), res.getDispersion(), res.getMajorityClass(), res.getThreshold()});
+                    Glogger.process("Training error before max. subst. =\t" + res.getLearningError() + " (maj: " + res.getMajorityClass() + ")" + " (disp: " + res.getDispersion() + ")");
+
+                    Glogger.process("-----------proper evaluation at the end of bp-step (minibatch)");
+                    saveTemplate(roundStore, last);
+                    Glogger.process("---<");
+                }
+
+                endEpocha(roundStore, last);
             }
             Glogger.LogTrain("...restart " + a);
             Invalidator.invalidate(last);       //reset all weights before restart
         }
 
-        //learning finished!
-        Saver.load();   //loading the weights for Kappa-Lambda program
-        Glogger.process("...Saver loaded the best network template");
-        Glogger.process("Grounding the best template...");
-        Results results = new Results();    //we didn't store the whole ground networks(one for each example), just the weights of program
-        ForwardChecker.exnum = 0;
-        for (Sample roundElement : roundStore) {  //so we need to calculate the avg-proof-tree output again
-            Example e = roundElement.getExample();
-            Ball b = Grounder.solve(last, e);   //so again create the avg-proof-tree
-            roundElement.setBall(b);
-            results.add(new Result(b.valAvg, e.getExpectedValue()));
-            Glogger.info("example: " + e + " -> avgVal: " + b.valAvg);
-        }
-        Glogger.LogTrain("final_train", new Double[]{results.getLearningError(), results.getDispersion(), results.getMajorityClass(), results.getThreshold()});
-        Glogger.process("Saved Learning error as best of all restarts =\t" + results.getLearningError() + " (maj: " + results.getMajorityClass() + ")" + " (th: " + results.getThreshold() + ")" + " (th: " + results.getDispersion() + ")");
-        
+        results = endTraining(roundStore, last);
+
         return results;
     }
+
 }

@@ -26,9 +26,9 @@ public class ScriptGenerator {
     static Writer script;
     static Writer qsub;
 
-    private static String memory = "10gb";
-    private static String walltime = "30h";
-    private static String procesors = "3";
+    private static String memory = "15gb";
+    private static String walltime = "40h";
+    private static String procesors = "4";
 
     public static String directName;
 
@@ -36,17 +36,23 @@ public class ScriptGenerator {
 
     public static void main(String[] args) {
         try {
+            String common = "-f 1 ";
             LinkedList<String[]> scripts = new LinkedList<>();
-            scripts.add(Configurations.groundings);
-            scripts.add(Configurations.initials);
             scripts.add(Configurations.seeds);
-            generate("seeds", "ground_inits", scripts);
+            //scripts.add(Configurations.sgd);
+            scripts.add(Configurations.learnDecay);
+            scripts.add(Configurations.activations);
+            //scripts.add(Configurations.initials);
+            scripts.add(Configurations.groundings);
+            scripts.add(Configurations.cumSteps);
+
+            generate("trainingOnly", "trainingOnly", scripts, common);
         } catch (IOException ex) {
             Logger.getLogger(ScriptGenerator.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    static void generate(String projectDir, String scriptDir, LinkedList<String[]> scripts) throws IOException {
+    static void generate(String projectDir, String scriptDir, LinkedList<String[]> scripts, String common) throws IOException {
         directName = scriptDir;
         File theDir = new File("metacentrum/" + scriptDir);
         if (!theDir.exists()) {
@@ -62,19 +68,20 @@ public class ScriptGenerator {
                 System.out.println("DIR created");
             }
         }
-        createScripts(projectDir, scriptDir, scripts);
+        createScripts(projectDir, scriptDir, scripts, common);
     }
 
-    private static void createScripts(String neuroDir, String scriptDir, LinkedList<String[]> scripts) throws IOException {
+    private static void createScripts(String neuroDir, String scriptDir, LinkedList<String[]> scripts, String common) throws IOException {
         String path = "cd /storage/brno2/home/souregus/neuro_builds/" + neuroDir;
         head = path + "/dist/ \nmodule add jdk-8 \njava -jar neurologic.jar -e ../in/muta/examples -r ../in/muta/rules ";
         qsub = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("metacentrum/" + scriptDir + "/qsub.sh"), "utf-8"));
 
         LinkedList<String> configurations = Configurations.getConfigurations(scripts);
         for (String configuration : configurations) {
-            String name = "script_" + configuration.replaceAll(" ", "_").replaceAll("-", "_");
+            String name = "script_" + (common + configuration).replaceAll(" ", "_").replaceAll("-", "_");
             script = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("metacentrum/" + scriptDir + "/" + name + ".sh"), "utf-8"));
             script.write(head);
+            script.write(common);
             script.write(configuration);
             script.flush();
             qsub.write("qsub -l walltime=" + walltime + " -l mem=" + memory + " -l scratch=50mb -l nodes=1:ppn=" + procesors + "  " + name + ".sh\n"

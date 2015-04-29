@@ -19,6 +19,8 @@ public class WeightInitializator {
                 return getHandMade();
             case longtail:
                 return longTail();
+            case uniform:
+                return uniform();
             default:
                 throw new AssertionError();
         }
@@ -41,5 +43,10 @@ public class WeightInitializator {
         double y = Global.rg.nextDouble();
         double x = x1 - (Math.pow(((Math.pow(x1, (power + 1)) - Math.pow(x0, (power + 1))) * y + Math.pow(x0, (power + 1))), (1 / (power + 1))));
         return x;
+    }
+
+    private static double uniform() {
+        double range = 1;
+        return range * rg.nextDouble();
     }
 }

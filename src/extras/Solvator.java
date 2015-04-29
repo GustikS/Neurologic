@@ -23,6 +23,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
+
 /**
  * Maximal substitution solver
  */
@@ -108,7 +109,7 @@ public class Solvator {
             GroundLambda t = (GroundLambda) tmp.getLast();
             gk.addDisjunct(t, r);
             tmp.weightItWith(w);    //weight the disjunct
-            b.add(tmp);         //summing disjuncts' contributions
+            b.addMax(tmp);         //summing disjuncts' contributions
             //---
             b.addActiveRule(r);
         }
@@ -116,10 +117,10 @@ public class Solvator {
         if (b.valMax != 0) {   //what if the rules sum up to 0?
 
             b.valMax += k.offset;  //node offset
-            b.valMax = Activations.kappaActivation(b.valMax);    // + sigmoid
+//            b.valMax = Activations.kappaActivation(b.valMax);    // + sigmoid
             //---
             b.valAvg += k.offset;
-            b.valAvg = Activations.kappaActivation(b.valAvg);
+//            b.valAvg = Activations.kappaActivation(b.valAvg);
         }
 
         gk.setValue(b.valMax);
@@ -155,11 +156,11 @@ public class Solvator {
 
         if (b.valMax != 0) {   //this should always be true for entailed body of kappas
             b.valMax += l.getOffset();    //add offset = -1*number_of_conjuncts
-            b.valMax = Activations.lambdaActivation(b.valMax);
+//            b.valMax = Activations.lambdaActivation(b.valMax);
             //---calculate the average value
             b.setValAvg(GroundKL.getAvgValFrom(lastAvg));
             b.valAvg += l.getOffset();
-            b.valAvg = Activations.lambdaActivation(b.valAvg);
+//            b.valAvg = Activations.lambdaActivation(b.valAvg);
         }
 
         if (gl != null) {
@@ -320,7 +321,7 @@ public class Solvator {
             }
 
             gl.addConjunct((GroundKappa) tmp.getLast());
-            out.add(tmp);   //sum the conjuncts in the Ball out
+            out.addMax(tmp);   //sum the conjuncts in the Ball out
             out.addAvg(tmp);
 
             //-------------------------

@@ -16,8 +16,9 @@ import discoverer.global.Glogger;
 import discoverer.learning.backprop.functions.Activations;
 import discoverer.global.Tuple;
 import discoverer.learning.Weights;
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -94,22 +95,26 @@ public class BackpropDownAvg {
 
 //-----------------------the actual-level derivative(no recursion) based on GroundKappa/Lambda's output value(within a derived Sigmoid)
     private static double firstPartKappaDerivative(GroundKappa gk) {
-        double result = gk.getGeneral().getOffset();
+        //double result = gk.getGeneral().getOffset();
+        List<Double> inputs = new ArrayList<>();
         for (Tuple<HashSet<GroundLambda>, KappaRule> t : gk.getDisjunctsAvg()) {
-            result += GroundKL.getAvgValFrom(t.x) * t.y.getWeight();     //we need to sum it up again because the value we have is after sigmoid
+            inputs.add(GroundKL.getAvgValFrom(t.x) * t.y.getWeight());
+            //result += GroundKL.getAvgValFrom(t.x) * t.y.getWeight();     //we need to sum it up again because the value we have is after sigmoid
         }
-        result = Activations.kappaActivationDerived(result);    //and we need to feed it through a DERIVED sigmoid
+        double result = Activations.kappaActivationDerived(inputs, gk.getGeneral().getOffset());    //and we need to feed it through a DERIVED sigmoid
         return result;
     }
 
     private static double firstPartLambdaDerivative(GroundLambda gl) {
-        double result = gl.getGeneral().getOffset();
-        double avg = 0;
+        //double result = gl.getGeneral().getOffset();
+        //double avg = 0;
+        List<Double> inputs = new ArrayList<>();
         for (Map.Entry<GroundKappa, Integer> gk : gl.getConjunctsAvg().entrySet()) {
-            avg += gk.getKey().getValueAvg() * gk.getValue();
+            //avg += gk.getKey().getValueAvg() * gk.getValue();
+            inputs.add(gk.getKey().getValueAvg() * gk.getValue() / gl.getConjunctsCountForAvg());
         }
-        avg /= gl.getConjunctsCountForAvg();    //they are all averaged by the number of body groundings
-        result = Activations.lambdaActivationDerived(result + avg);    //
+        //avg /= gl.getConjunctsCountForAvg();    //they are all averaged by the number of body groundings
+        double result = Activations.lambdaActivationDerived(inputs, gl.getGeneral().getOffset());    //
         return result;
     }
 }

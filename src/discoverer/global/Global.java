@@ -12,16 +12,30 @@ public class Global {
      * generating random weights and offsets
      */
     public static Random rg;
+    /**
+     * stochastic gradient descend (shuffling examples at each learning step)
+     */
     public static boolean cacheEnabled = true;
     public static boolean forwardCheckEnabled = true;
     public static final boolean debugEnabled = false;
+    public static boolean infoEnabled = true;
     public static boolean pruning = true;
     public static double falseAtomValue = -1;   //non-entailed example output
     //public static boolean lambdaSigmoid = false;
     public static double initLambdaAdaptiveOffset;
     public static double initKappaAdaptiveOffset;
     public static boolean kappaAdaptiveOffset;
+    //
+    public static boolean SGD;
     public static double dropout;
+    public static int cumMaxSteps;
+    public static boolean cumulativeRestarts;
+    public static boolean save;
+    public static double learnDecayA = 30;  //reasonable to keep this
+    public static double learnDecayB = 200; //how fast it degrades (1=very fast)
+    public static boolean learnDecay;    //learn rate decay yes or no  
+    //---
+    public static boolean checkback = false;    //compatibility test with Vojta's version (keep false unless testing)
 
     //----taken as parameters from Main
     public static enum groundingSet {
@@ -31,12 +45,12 @@ public class Global {
 
     public static enum activationSet {
 
-        sig, id
+        sig, id, relu, softmax
     };
 
     public static enum weightInitSet {
 
-        handmade, longtail
+        handmade, longtail, uniform
     };
 
     public static groundingSet grounding;
@@ -48,7 +62,7 @@ public class Global {
         grounding = groundingSet.avg;
         pruning = false;    //important!
         forwardCheckEnabled = true;
-        Main.defaultLearningSteps = "2000";
+        Main.defaultLearningSteps = "" + Integer.parseInt(Main.defaultLearningEpochs) * Integer.parseInt(Main.defaultLearningSteps) * 2;
         Main.defaultLearningEpochs = "0";
     }
 
@@ -103,6 +117,8 @@ public class Global {
             case "longtail":
                 weightInit = weightInitSet.longtail;
                 break;
+            case "uniform":
+                weightInit = weightInitSet.uniform;
             default:
                 throw new AssertionError();
         }

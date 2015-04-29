@@ -88,7 +88,7 @@ public class ExampleSplitter {
         List<Example> tmp = new ArrayList<Example>();
         int i = 0;
         for (List<Example> fold : folds) {
-            if (i++ != testFold) {
+            if (i++ != testFold || foldCount == 1) {    //or just a training set
                 tmp.addAll(fold);
             }
         }

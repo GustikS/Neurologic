@@ -21,9 +21,15 @@ public class Settings {
     private static String initials;
     private static String loffset;
     private static String koffset;
+    private static String dropout;
     private static String seed;
+    private static String SGD;
+    private static String cumSteps;
+    private static String save;
+    private static String lrDecay;
 
-    public static void create(String iground, int ifolds, int isteps, int iepochs, int irestartCount, double ilearnRate, String act, String initial, String loff, String koff, String iseed) {
+    public static void create(String iground, int ifolds, int isteps, int iepochs, int irestartCount, double ilearnRate, String act,
+            String initial, String loff, String koff, String drop, String cum, String isgd, String isave, String idecay, String iseed) {
         setGrounding(iground);
         setFolds(ifolds);
         setSteps(isteps);
@@ -35,6 +41,11 @@ public class Settings {
         setLoffset(loff);
         setKoffset(koff);
         setSeed(iseed);
+        setDropout(drop);
+        setCumSteps(cum);
+        setSGD(isgd);
+        setSave(isave);
+        setLrDecay(idecay);
     }
 
     public static String getString() {
@@ -45,11 +56,16 @@ public class Settings {
         sb.append("e-").append(epochs).append("_");
         sb.append("s-").append(steps).append("_");
         sb.append("l-").append(learnRate).append("_");
+        sb.append("lrd-").append(getLrDecay()).append("_");
         sb.append("ac-").append(activations).append("_");
         sb.append("wi-").append(initials).append("_");
         sb.append("lo-").append(loffset).append("_");
         sb.append("ko-").append(koffset).append("_");
+        sb.append("dr-").append(getDropout()).append("_");
         sb.append("sd-").append(getSeed()).append("_");
+        sb.append("cum-").append(getCumSteps()).append("_");
+        sb.append("sgd-").append(getSGD()).append("_");
+        sb.append("save-").append(getSave()).append("_");
         return sb.toString();
     }
 
@@ -207,5 +223,74 @@ public class Settings {
         seed = aSeed;
     }
 
+    /**
+     * @return the dropout
+     */
+    public static String getDropout() {
+        return dropout;
+    }
+
+    /**
+     * @param aDropout the dropout to set
+     */
+    public static void setDropout(String aDropout) {
+        dropout = aDropout;
+    }
+
+    /**
+     * @return the SGD
+     */
+    public static String getSGD() {
+        return SGD;
+    }
+
+    /**
+     * @param aSGD the SGD to set
+     */
+    public static void setSGD(String aSGD) {
+        SGD = aSGD;
+    }
+
+    /**
+     * @return the cumSteps
+     */
+    public static String getCumSteps() {
+        return cumSteps;
+    }
+
+    /**
+     * @param aCumSteps the cumSteps to set
+     */
+    public static void setCumSteps(String aCumSteps) {
+        cumSteps = aCumSteps;
+    }
+
+    /**
+     * @return the save
+     */
+    public static String getSave() {
+        return save;
+    }
+
+    /**
+     * @param aSave the save to set
+     */
+    public static void setSave(String aSave) {
+        save = aSave;
+    }
+
+    /**
+     * @return the lrDecay
+     */
+    public static String getLrDecay() {
+        return lrDecay;
+    }
+
+    /**
+     * @param aLrDecay the lrDecay to set
+     */
+    public static void setLrDecay(String aLrDecay) {
+        lrDecay = aLrDecay;
+    }
 
 }

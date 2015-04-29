@@ -36,7 +36,7 @@ public class Estimator {
         for (KappaRule kr: k.getRules())
             est += estimate(kr.getBody().getParent()) * kr.getWeight();
 
-        est = Activations.kappaActivation(est);
+//        est = Activations.kappaActivation(est);
         cache.put(k, est);
         return est;
     }
@@ -49,7 +49,7 @@ public class Estimator {
         for (SubK sk: l.getRule().getBody())
             est += estimate(sk.getParent());
 
-        est = Activations.lambdaActivation(est);
+//        est = Activations.lambdaActivation(est);
         cache.put(l, est);
         return est;
     }

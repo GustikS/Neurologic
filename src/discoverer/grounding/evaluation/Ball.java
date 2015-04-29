@@ -14,6 +14,8 @@ public class Ball {
     private GroundKL last;    // GroundLambda or GroundKappa literal(new superClass)
     private Set<GroundLambda> lastAvg;
     private Set<KappaRule> activeRules;
+    //public Set<Double> inputsMax = new HashSet<>();
+    //public Set<Double> inputsAvg = new HashSet<>();
 
     public Ball() {
         valMax = null;
@@ -49,12 +51,16 @@ public class Ball {
         setValAvg((Double) (getValAvg() * w));
     }
 
-    public void add(Ball b) {
+    public void addMax(Ball b) {
         if (valMax == null) {
             valMax = b.valMax;
         } else {
             valMax += b.valMax;
         }
+        /*if (inputsMax == null) {
+         inputsMax = new HashSet<>();
+         }
+         inputsMax.add(b.valMax);*/
         //activeRules.addAll(b.getActiveRules());
     }
 
@@ -64,6 +70,10 @@ public class Ball {
         } else {
             valAvg += b.valAvg;
         }
+        /*if (inputsAvg == null) {
+         inputsAvg = new HashSet<>();
+         }
+         inputsAvg.add(b.valAvg);*/
         //activeRules.addAll(b.getActiveRules());
     }
 

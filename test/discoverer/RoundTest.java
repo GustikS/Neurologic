@@ -110,7 +110,7 @@ public class RoundTest {
                         }
                     }
 
-                    double out = Evaluator.evaluate(b);
+                    double out = Evaluator.evaluateMax(b);
                     b.valMax = out;
                     System.out.println("Learned output:\t" + out);
                 }

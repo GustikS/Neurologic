@@ -76,10 +76,10 @@ public class BackpropTest {
         double learnRate = 0.15;
         Weights w = BackpropGroundKappa.getNewWeights(b, e, Batch.NO, learnRate);
         print(w);
-        System.out.println(Evaluator.evaluate(b));
+        System.out.println(Evaluator.evaluateMax(b));
         b = Grounder.solve(last, e);
         System.out.println(b.valMax);
-        System.out.println(Evaluator.evaluate(b));
+        System.out.println(Evaluator.evaluateMax(b));
         System.out.println(b.getActiveRules().size());
     }
 

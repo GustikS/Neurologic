@@ -22,7 +22,7 @@ import java.util.Map;
  */
 public class Dropout {
 
-    public static void dropout(Ball b) {
+    public static void dropoutMax(Ball b) {
         GroundKL kl = b.getLast();
         if (kl instanceof GroundKappa) {
             drop((GroundKappa) kl);
@@ -30,7 +30,7 @@ public class Dropout {
             drop((GroundLambda) kl);
         }
         Evaluator.ignoreDropout = false;
-        b.valMax = Evaluator.evaluate(b);
+        b.valMax = Evaluator.evaluateMax(b);
         Evaluator.ignoreDropout = true;
     }
 
@@ -55,9 +55,6 @@ public class Dropout {
         } else {
             dropAvg((GroundLambda) kl);
         }
-        Evaluator.ignoreDropout = false;
-        b.valAvg = Evaluator.evaluateAvg(b);
-        Evaluator.ignoreDropout = true;
     }
 
     private static void dropAvg(GroundKappa last) {

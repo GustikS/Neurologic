@@ -729,7 +729,7 @@ public class SolveAndEvalTest {
         //assertEquals("Output", 0.6428072668247082, bb.val, 0);
         System.out.println(bb.valMax);
         //assertEquals("Output", 0.6428072668247082, dd, 0);
-        System.out.println(Evaluator.evaluate(bb));
+        System.out.println(Evaluator.evaluateMax(bb));
             //System.out.println(bb.getActiveRules());
         //Backpropagation.changeWeights(bb, e);
 
@@ -1075,7 +1075,7 @@ public class SolveAndEvalTest {
         //assertEquals("Output", 0.6428072668247082, bb.val, 0);
         System.out.println(bb.valMax);
         //System.out.println(bb.getLast());
-        System.out.println(Evaluator.evaluate(bb));
+        System.out.println(Evaluator.evaluateMax(bb));
         //System.out.println(bb.getActiveRules());
         //Backpropagation.changeWeights(bb, e);
         //Double dd = Evaluator.eval(last, bb);
@@ -1124,10 +1124,10 @@ public class SolveAndEvalTest {
         //assertEquals("Output", 0.6428072668247082, bb.val, 0);
         System.out.println(bb.valMax);
         //System.out.println(bb.getLast());
-        System.out.println(Evaluator.evaluate(bb));
+        System.out.println(Evaluator.evaluateMax(bb));
         bb = Grounder.solve(last, e);
         System.out.println(bb.valMax);
-        System.out.println(Evaluator.evaluate(bb));
+        System.out.println(Evaluator.evaluateMax(bb));
         //System.out.println(bb.getActiveRules());
         //Backpropagation.changeWeights(bb, e);
         //Double dd = Evaluator.eval(last, bb);
@@ -1183,14 +1183,14 @@ public class SolveAndEvalTest {
         System.out.println(bb.valMax);
         //assertEquals("Output", 0.6428072668247082, bb.val, 0);
 
-        Double dd = Evaluator.evaluate(bb);
+        Double dd = Evaluator.evaluateMax(bb);
         System.out.println(dd);
         //assertEquals("Output", 0.6428072668247082, dd, 0);
         //
         bb = Grounder.solve(last, e);
         System.out.println(bb.valMax);
 
-        dd = Evaluator.evaluate(bb);
+        dd = Evaluator.evaluateMax(bb);
         System.out.println(dd);
         //assertEquals("Output", 0.6428072668247082, dd, 0);
 
@@ -1235,11 +1235,11 @@ public class SolveAndEvalTest {
 
         Ball bb = Grounder.solve(last, e);
         System.out.println(bb.valMax);
-        System.out.println(Evaluator.evaluate(bb));
+        System.out.println(Evaluator.evaluateMax(bb));
 
         bb = Grounder.solve(last, e);
         System.out.println(bb.valMax);
-        System.out.println(Evaluator.evaluate(bb));
+        System.out.println(Evaluator.evaluateMax(bb));
 
         //System.out.println(bb.getActiveRules());
         //Backpropagation.changeWeights(bb, e);
@@ -1299,7 +1299,7 @@ public class SolveAndEvalTest {
         //assertEquals("Output", 0.7310585786300049, bb.val, 0);
         System.out.println(bb.valMax);
 
-        Double dd = Evaluator.evaluate(bb);
+        Double dd = Evaluator.evaluateMax(bb);
         //assertEquals("Output", 0.7310585786300049, dd, 0);
         System.out.println(bb.valMax);
     }
@@ -1320,7 +1320,7 @@ public class SolveAndEvalTest {
         assertEquals("Output", 0.0, bb.valMax, 0);
         System.out.println(bb.valMax);
 
-        Double dd = Evaluator.evaluate(bb);
+        Double dd = Evaluator.evaluateMax(bb);
         assertEquals("Output", 0.0, dd, 0);
         System.out.println(dd);
     }
@@ -1360,7 +1360,7 @@ public class SolveAndEvalTest {
         //System.out.println(bb.getActives());
         System.out.println(bb.valMax);
 
-        Double dd = Evaluator.evaluate(bb);
+        Double dd = Evaluator.evaluateMax(bb);
         System.out.println(dd + " -- " + bb.valMax);
         //assertEquals("Output", 0.6792981617480565, dd, 0);
     }

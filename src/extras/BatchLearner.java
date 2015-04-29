@@ -95,7 +95,7 @@ public class BatchLearner {
                         Weights w = BackpropGroundKappa.getNewWeights(b, e, Batch.YES, learnRate);
                         refreshWeights(w);
                         GroundInvalidator.invalidate(b);
-                        b.valMax = Evaluator.evaluate(b);
+                        b.valMax = Evaluator.evaluateMax(b);
                         results.add(new Result(b.valMax, e.getExpectedValue()));
                         System.out.println("New output for example with expected value " + e + ":\t" + b.valMax);
                     }

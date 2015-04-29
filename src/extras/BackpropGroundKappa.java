@@ -197,7 +197,7 @@ public class BackpropGroundKappa {
         for (Tuple<GroundLambda, KappaRule> t : gk.getDisjuncts()) {
             result += t.x.getValue() * t.y.getWeight();     //we need to sum it up again because the value we have is after sigmoid
         }
-        result = Activations.kappaActivationDerived(result);    //and we need to feed it through a DERIVED sigmoid
+//        result = Activations.kappaActivationDerived(result);    //and we need to feed it through a DERIVED sigmoid
         return result;
     }
 
@@ -207,7 +207,7 @@ public class BackpropGroundKappa {
             result += gk.getValue();
         }
 
-        result = Activations.lambdaActivationDerived(result);
+//        result = Activations.lambdaActivationDerived(result);
         return result;
     }
 }

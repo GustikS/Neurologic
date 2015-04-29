@@ -64,9 +64,9 @@ public class SolveEvalAVGTest {
             System.out.println("val Ball: " + bb.valMax);
             //assertEquals("Output", 0.6428072668247082, dd, 0);
             double avg = Evaluator.evaluateAvg(bb);
-            double val = Evaluator.evaluate(bb);
+            double val = Evaluator.evaluateMax(bb);
             System.out.println("EvaluatorAVG: " + avg);
-            System.out.println("Evaluator: " + Evaluator.evaluate(bb));
+            System.out.println("Evaluator: " + Evaluator.evaluateMax(bb));
             assertEquals(bb.valAvg - bb.valMax, 0, 0.00000000000000000001);
             assertEquals(avg - val, 0, 0.00000000000000000001);
         }
@@ -95,12 +95,12 @@ public class SolveEvalAVGTest {
         //assertEquals("Output", 0.6428072668247082, bb.val, 0);
         System.out.println(bb.valMax);
         //System.out.println(bb.getLast());
-        System.out.println(Evaluator.evaluate(bb));
+        System.out.println(Evaluator.evaluateMax(bb));
         //bb = Grounder.solve(last, e);
         System.out.println(bb.valAvg);
         System.out.println(Evaluator.evaluateAvg(bb));
         double avg = Evaluator.evaluateAvg(bb);
-        double val = Evaluator.evaluate(bb);
+        double val = Evaluator.evaluateMax(bb);
         System.out.println("EvaluatorAVG: " + avg);
         System.out.println("Evaluator: " + val);
         assertEquals(bb.valAvg - bb.valMax, 0, 0.00000000000000000001);
@@ -149,7 +149,7 @@ public class SolveEvalAVGTest {
             //assertEquals("Output", 0.6428072668247082, bb.val, 0);
             System.out.println("val:" + bb.valMax);
             //System.out.println(bb.getLast());
-            System.out.println(Evaluator.evaluate(bb));
+            System.out.println(Evaluator.evaluateMax(bb));
             //bb = Grounder.solve(last, e);
             System.out.println("valAVG:" + bb.valAvg);
             System.out.println(Evaluator.evaluateAvg(bb));
@@ -191,14 +191,14 @@ public class SolveEvalAVGTest {
         System.out.println(bb.valMax);
         //assertEquals("Output", 0.6428072668247082, bb.val, 0);
 
-        Double dd = Evaluator.evaluate(bb);
+        Double dd = Evaluator.evaluateMax(bb);
         System.out.println(dd);
         //assertEquals("Output", 0.6428072668247082, dd, 0);
         //
         bb = Grounder.solve(last, e);
         System.out.println(bb.valMax);
 
-        dd = Evaluator.evaluate(bb);
+        dd = Evaluator.evaluateMax(bb);
         System.out.println(dd);
         //assertEquals("Output", 0.6428072668247082, dd, 0);
 
@@ -243,11 +243,11 @@ public class SolveEvalAVGTest {
 
         Ball bb = Grounder.solve(last, e);
         System.out.println(bb.valMax);
-        System.out.println(Evaluator.evaluate(bb));
+        System.out.println(Evaluator.evaluateMax(bb));
 
         bb = Grounder.solve(last, e);
         System.out.println(bb.valMax);
-        System.out.println(Evaluator.evaluate(bb));
+        System.out.println(Evaluator.evaluateMax(bb));
 
         //System.out.println(bb.getActiveRules());
         //Backpropagation.changeWeights(bb, e);
@@ -307,7 +307,7 @@ public class SolveEvalAVGTest {
         //assertEquals("Output", 0.7310585786300049, bb.val, 0);
         System.out.println(bb.valMax);
 
-        Double dd = Evaluator.evaluate(bb);
+        Double dd = Evaluator.evaluateMax(bb);
         //assertEquals("Output", 0.7310585786300049, dd, 0);
         System.out.println(bb.valMax);
     }
@@ -328,7 +328,7 @@ public class SolveEvalAVGTest {
         assertEquals("Output", 0.0, bb.valMax, 0);
         System.out.println(bb.valMax);
 
-        Double dd = Evaluator.evaluate(bb);
+        Double dd = Evaluator.evaluateMax(bb);
         assertEquals("Output", 0.0, dd, 0);
         System.out.println(dd);
     }
@@ -368,7 +368,7 @@ public class SolveEvalAVGTest {
         //System.out.println(bb.getActives());
         System.out.println(bb.valMax);
 
-        Double dd = Evaluator.evaluate(bb);
+        Double dd = Evaluator.evaluateMax(bb);
         System.out.println(dd + " -- " + bb.valMax);
         //assertEquals("Output", 0.6792981617480565, dd, 0);
     }

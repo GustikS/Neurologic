@@ -129,7 +129,7 @@ public class BackpropKappa {
         for (Tuple<GroundLambda, KappaRule> t: gk.getDisjuncts())
             result += t.x.getValue() * t.y.getWeight();
 
-        result = Activations.kappaActivationDerived(result);
+//        result = Activations.kappaActivationDerived(result);
         return result;
     }
 
@@ -143,7 +143,7 @@ public class BackpropKappa {
         for (GroundKappa gk: gl.getConjuncts())
             result += gk.getValue();
 
-        result = Activations.lambdaActivationDerived(result);
+//        result = Activations.lambdaActivationDerived(result);
         return result;
     }
 }

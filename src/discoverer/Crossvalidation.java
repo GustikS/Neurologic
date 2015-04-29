@@ -50,8 +50,9 @@ public class Crossvalidation {
         double trainErr = 0;
         int i;
         for (i = 0; es.hasNext(); es.next()) { //iterating the test fold
-            Glogger.process("--------------------processing new fold----------------------");
+            Glogger.process("--------------------processing fold " + i + "----------------------");
             Results res = train(batch, network, es.getTrain(), steps, epochs, restartCount, learnRate);
+            Glogger.process("-------finished trainin fold " + i + ", going to test----------------------");
             trainErr += res.getLearningError();
             testErr += test(network, res, es.getTest());
             testMaj += testM(es.getTest(), es.getTrain());
@@ -130,17 +131,30 @@ public class Crossvalidation {
      */
     public Results train(Batch batch, KL network, List<Example> examples, int learningStepCount, int learningEpochs, int restartCount, double learnRate) {
         //double thresh;
-        Results res;
+        Results res = null;
 
-        if (Global.grounding == Global.groundingSet.avg) {
+        if (Global.checkback) {
             Learner s = new Learner();
-            res = s.solveAvg(network, examples, learningStepCount, learningEpochs, restartCount, learnRate);
-        } else if (batch == Batch.NO && Global.grounding == Global.groundingSet.max) {
-            Learner s = new Learner();
-            res = s.solve(network, examples, learningStepCount, learningEpochs, restartCount, learnRate);
-        } else {
+            res = s.checkback(network, examples, learningStepCount, learningEpochs, restartCount, learnRate);
+        } else if (batch == Batch.YES) {
             BatchLearner bs = new BatchLearner();
             res = bs.solve(network, examples, learningStepCount, learningEpochs, restartCount, learnRate);
+        } else if (Global.cumulativeRestarts) {
+            if (Global.grounding == Global.groundingSet.avg) {
+                Learner s = new Learner();
+                res = s.solveAvgIterative(network, examples, learningStepCount, learningEpochs, restartCount, learnRate);
+            } else if (Global.grounding == Global.groundingSet.max) {
+                Learner s = new Learner();
+                res = s.solveMaxIterative(network, examples, learningStepCount, learningEpochs, restartCount, learnRate);
+            }
+        } else {
+            if (Global.grounding == Global.groundingSet.avg) {
+                Learner s = new Learner();
+                res = s.solveAvg(network, examples, learningStepCount, learningEpochs, restartCount, learnRate);
+            } else if (Global.grounding == Global.groundingSet.max) {
+                Learner s = new Learner();
+                res = s.solveMax(network, examples, learningStepCount, learningEpochs, restartCount, learnRate);
+            }
         }
 
         return res;
