@@ -16,13 +16,13 @@ import java.util.Set;
  */
 public class Saver {
 
-    private static Set<Tuple<KappaRule, Double>> save = new HashSet<Tuple<KappaRule, Double>>();
-    private static Set<Tuple<Kappa, Double>> saveK = new HashSet<Tuple<Kappa, Double>>();
+    private static Set<Tuple<KappaRule, Double>> rules = new HashSet<Tuple<KappaRule, Double>>();
+    private static Set<Tuple<Kappa, Double>> offsets = new HashSet<Tuple<Kappa, Double>>();
     private static Double learnError, threshold, dispersion;
 
     public static void save(KL network, double le, double th, double disp) {
-        save.clear();
-        saveK.clear();
+        rules.clear();
+        offsets.clear();
         learnError = le;
         threshold = th;
         dispersion = disp;
@@ -38,12 +38,12 @@ public class Saver {
             return;
         }
 
-        saveK.add(new Tuple<>(k, k.getOffset()));
+        offsets.add(new Tuple<>(k, k.getOffset()));
         Glogger.debug(k + " -> " + k.getOffset());
         for (KappaRule kr : k.getRules()) {
             Tuple<KappaRule, Double> t = new Tuple<>(kr, kr.getWeight());
             Glogger.debug(kr + " -> " + kr.getWeight());
-            save.add(t);
+            rules.add(t);
             save(kr.getBody().getParent());
         }
     }
@@ -55,12 +55,12 @@ public class Saver {
     }
 
     public static void load() {
-        for (Tuple<KappaRule, Double> t : save) {
+        for (Tuple<KappaRule, Double> t : rules) {
             Glogger.debug(t.x + " : " + t.x.getWeight() + " -> " + t.y);
             t.x.setWeight(t.y);
         }
 
-        for (Tuple<Kappa, Double> t : saveK) {
+        for (Tuple<Kappa, Double> t : offsets) {
             Glogger.debug(t.x + " : " + t.x.getOffset() + " -> " + t.y);
             t.x.setOffset(t.y);
         }

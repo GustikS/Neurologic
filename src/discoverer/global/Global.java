@@ -30,12 +30,20 @@ public class Global {
     public static double dropout;
     public static int cumMaxSteps;
     public static boolean cumulativeRestarts;
+    public static boolean cumulativeDiffRestarts;
     public static boolean save;
-    public static double learnDecayA = 30;  //reasonable to keep this
-    public static double learnDecayB = 200; //how fast it degrades (1=very fast)
+    //learn decay curve
+    public static double learnDecayA = 700;  //how high it goes (divided with B)
+    public static double learnDecayB = 500; //how fast it degrades (1=very fast)
     public static boolean learnDecay;    //learn rate decay yes or no  
     //---
     public static boolean checkback = false;    //compatibility test with Vojta's version (keep false unless testing)
+    public static boolean outputFolds = true;
+    //convergence criteria for AVG (max is within function bellow)
+    public static double convergenceLimit = 0.01;
+    public static int history = 200;
+    
+    public static boolean initWithAVG = false;
 
     //----taken as parameters from Main
     public static enum groundingSet {
@@ -62,8 +70,7 @@ public class Global {
         grounding = groundingSet.avg;
         pruning = false;    //important!
         forwardCheckEnabled = true;
-        Main.defaultLearningSteps = "" + Integer.parseInt(Main.defaultLearningEpochs) * Integer.parseInt(Main.defaultLearningSteps) * 2;
-        Main.defaultLearningEpochs = "0";
+        Main.defaultLearningSteps = "" + Integer.parseInt(Main.defaultLearningEpochs) * Integer.parseInt(Main.defaultLearningSteps);
     }
 
     public static void setMax() {
@@ -119,8 +126,60 @@ public class Global {
                 break;
             case "uniform":
                 weightInit = weightInitSet.uniform;
+                break;
             default:
                 throw new AssertionError();
+        }
+    }
+
+    public static void setCumSteps(String cum) {
+
+        switch (cum) {
+            case "on":
+                cumulativeRestarts = true;
+                cumulativeDiffRestarts = false;
+                if (grounding == groundingSet.max) {
+                    cumMaxSteps = Integer.parseInt(Main.defaultLearningEpochs) * Integer.parseInt(Main.defaultLearningSteps) * Integer.parseInt(Main.defaultRestartCount);
+                } else {
+                    cumMaxSteps = Integer.parseInt(Main.defaultLearningSteps) * Integer.parseInt(Main.defaultRestartCount);
+                }
+                break;
+            case "diff":
+                cumulativeRestarts = true;
+                cumulativeDiffRestarts = true;
+                if (grounding == groundingSet.max) {
+                    Global.history = 5;
+                    Global.convergenceLimit = 0.03;
+                    cumMaxSteps = Integer.parseInt(Main.defaultLearningEpochs) * Integer.parseInt(Main.defaultLearningSteps) * Integer.parseInt(Main.defaultRestartCount);
+                } else {
+                    cumMaxSteps = Integer.parseInt(Main.defaultLearningSteps) * Integer.parseInt(Main.defaultRestartCount);
+                }
+                break;
+            default:
+                try {
+                    cumMaxSteps = Integer.parseInt(cum);
+                    cumulativeRestarts = cumMaxSteps > 0;
+                } catch (Exception e) {
+                    cumulativeRestarts = false;
+                    cumulativeDiffRestarts = false;
+                    Glogger.err(e.getMessage());
+                }
+        }
+    }
+
+    public static void setLearnDecay(String decay) {
+        switch (decay) {
+            case "on":
+                learnDecay = true;
+                break;
+            default:
+                try {
+                    learnDecayB = Integer.parseInt(decay);
+                    learnDecay = learnDecayB > 0;
+                } catch (Exception e) {
+                    learnDecay = false;
+                    Glogger.err(e.getMessage());
+                }
         }
     }
 }

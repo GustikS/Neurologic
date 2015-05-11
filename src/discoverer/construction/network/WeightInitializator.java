@@ -37,15 +37,15 @@ public class WeightInitializator {
      * @return
      */
     public static double longTail() {
-        double power = 10;
+        double power = 50;
         double x0 = 0;
-        double x1 = 2;
+        double x1 = 10;
         double y = Global.rg.nextDouble();
         double x = x1 - (Math.pow(((Math.pow(x1, (power + 1)) - Math.pow(x0, (power + 1))) * y + Math.pow(x0, (power + 1))), (1 / (power + 1))));
         return x;
     }
 
-    private static double uniform() {
+    public static double uniform() {
         double range = 1;
         return range * rg.nextDouble();
     }

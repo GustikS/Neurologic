@@ -28,6 +28,7 @@ public class Glogger {
     static Writer training;
     static Writer results;
     static Writer test;
+    private static String resultsDir = "../results";
 
     public static void init() {
         StringBuffer file = new StringBuffer();
@@ -42,32 +43,36 @@ public class Glogger {
         glob += Global.cacheEnabled ? "ch1" : "ch0";
         file.append(glob);
         try {
-            File theDir = new File("results");
-            if (!theDir.exists()) {
-                System.out.println("creating directory results");
-                boolean result = false;
-                try {
-                    theDir.mkdir();
-                    result = true;
-                } catch (SecurityException se) {
-                    Glogger.err(se.getMessage());
-                }
-                if (result) {
-                    System.out.println("DIR created");
-                }
-            }
-            test = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("results/testfile"), "utf-8"));
+            createDir(resultsDir);
+            test = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(resultsDir + "/testfile"), "utf-8"));
             test.write("metacetrum file test : " + time);
             test.close();
 
-            training = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("results/training_" + file.toString() + ".csv"), "utf-8"));
+            training = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(resultsDir + "/training_" + file.toString() + ".csv"), "utf-8"));
             training.write("state, learning_error, dispersion, majority_error, threshold \n");
-            results = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("results/results_" + file.toString() + ".csv"), "utf-8"));
+            results = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(resultsDir + "/results_" + file.toString() + ".csv"), "utf-8"));
             training.flush();
         } catch (UnsupportedEncodingException | FileNotFoundException ex) {
             Logger.getLogger(Glogger.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(Glogger.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public static void createDir(String name) {
+        File theDir = new File(name);
+        if (!theDir.exists()) {
+            System.out.println("creating directory :" + name);
+            boolean result = false;
+            try {
+                theDir.mkdir();
+                result = true;
+            } catch (SecurityException se) {
+                Glogger.err(se.getMessage());
+            }
+            if (result) {
+                Glogger.process("DIR created");
+            }
         }
     }
 
@@ -86,6 +91,7 @@ public class Glogger {
     }
 
     public static void LogTrain(String res) {
+        Glogger.process(res);
         try {
             training.write(res + "\n");
             training.flush();

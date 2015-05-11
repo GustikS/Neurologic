@@ -7,6 +7,8 @@ package extra;
 
 import discoverer.construction.network.WeightInitializator;
 import discoverer.global.Global;
+import java.util.Random;
+import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -17,8 +19,18 @@ public class Distributions {
 
     @Test
     public void longTail() {
+        Global.rg = new Random(2);
         for (int i = 0; i < 1000; i++) {
             double t = WeightInitializator.longTail();
+            System.out.println(t);
+        }
+    }
+    
+    @Ignore
+    public void uniform() {
+        Global.rg = new Random(2);
+        for (int i = 0; i < 1000; i++) {
+            double t = WeightInitializator.uniform();
             System.out.println(t);
         }
     }

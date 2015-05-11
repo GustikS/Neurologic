@@ -20,6 +20,20 @@ public class Evaluator {
 
     public static boolean ignoreDropout = true;
 
+    /**
+     * @param gls
+     * @return
+     */
+    public static double getAvgValFrom(Set<GroundLambda> gls) {
+
+        double avg = 0;
+        for (GroundKL gl : gls) {
+            avg += gl.getValueAvg();    //we will recursively sum up the average values valAvg (the max. values are calculated separately in val)
+        }
+        avg /= gls.size();
+        return avg;
+    }
+
     public static double evaluateMax(Ball b) {
         if (b == null) {
             return Global.falseAtomValue;
@@ -101,7 +115,7 @@ public class Evaluator {
 
     private static double evaluateAvg(GroundKappa gk) {
         if (!ignoreDropout && gk.dropMe) {
-            gk.setValue(0.0);
+            gk.setValueAvg(0.0);
             return 0;
         }
 
@@ -136,7 +150,7 @@ public class Evaluator {
 
     private static double evaluateAvg(GroundLambda gl) {
         if (!ignoreDropout && gl.dropMe) {
-            gl.setValue(0.0);
+            gl.setValueAvg(0.0);
             return 0;
         }
 

@@ -10,6 +10,7 @@ import java.util.*;
  * Factory for examples
  */
 public class ExampleFactory {
+
     private static Map<String, Integer> constMap;
     //map of all example elements -> ID, unique only within the scope of an example!
     private static Map<String, Integer> elMap;
@@ -21,8 +22,13 @@ public class ExampleFactory {
     //position of actual(increasing) literal in example
     private static int possId;
 
-    public int getElId() { return elId; }
-    public int getPossId() { return possId; }
+    public int getElId() {
+        return elId;
+    }
+
+    public int getPossId() {
+        return possId;
+    }
 
     /**
      * stores map of constants, elements(literals) and their IDs
@@ -30,7 +36,7 @@ public class ExampleFactory {
     public ExampleFactory() {
         constMap = new HashMap<String, Integer>();
         elMap = new HashMap<String, Integer>();
-        idMap= new HashMap<Integer, List<Integer>>();
+        idMap = new HashMap<Integer, List<Integer>>();
         constId = ConstantFactory.getConstCount();
         elId = ElementMapper.getElCount();
         possId = 0;
@@ -39,14 +45,15 @@ public class ExampleFactory {
     /**
      * constructs example from literal conjunction<p>
      * adds chunk from numeric representation of every ground literal(variables)
+     *
      * @param ex
-     * @return 
+     * @return
      */
     public Example construct(String ex) {
         String[][] tokens = Parser.parseExample(ex);
         double w = Double.parseDouble(tokens[0][0]);
         //new example, contains idMap of literal IDs -> occurences
-        Example e = new Example(w, idMap);
+        Example e = new Example(w, idMap, ex);
 
         for (int i = 1; i < tokens.length; i++) {
             //encode this literal(variables) into numeric IDs properly(hashmaps)
@@ -71,41 +78,49 @@ public class ExampleFactory {
     }
 
     /**
-     * takes literal(variables) in String form and encodes it into int[]<p>
+     * takes literal(variables) in String form and encodes it into int[]
+     * <p>
      * through the use of Element and Constant mappers<p>
      * the IDs are unique only within an example (reset after each example)
+     *
      * @param tokens
-     * @return 
+     * @return
      */
     private int[] encode(String[] tokens) {
         int[] raw = new int[tokens.length];
 
         //literal name to ID
         raw[0] = mapEl(tokens[0]);
-        for (int i = 1; i < raw.length; i++)
-            //every constant name to ID
+        for (int i = 1; i < raw.length; i++) //every constant name to ID
+        {
             raw[i] = mapConst(tokens[i]);
+        }
 
         return raw;
     }
 
     private int mapConst(String name) {
-        if (ConstantFactory.contains(name))
+        if (ConstantFactory.contains(name)) {
             return ConstantFactory.getMap(name);
+        }
 
-        if (constMap.containsKey(name))
+        if (constMap.containsKey(name)) {
             return constMap.get(name);
+        }
 
         constMap.put(name, constId);
         constId++;
-        return constId-1;
+        return constId - 1;
     }
 
     /**
-     * maps literal name onto a unique ID <p>
-     * builds idMap representation (literal ID -> occurrence indices) in the process
+     * maps literal name onto a unique ID
+     * <p>
+     * builds idMap representation (literal ID -> occurrence indices) in the
+     * process
+     *
      * @param name
-     * @return 
+     * @return
      */
     private int mapEl(String name) {
         if (ElementMapper.contains(name)) {
@@ -124,7 +139,7 @@ public class ExampleFactory {
             elMap.put(name, elId++);
             ArrayList<Integer> ali = new ArrayList<Integer>();
             ali.add(possId);
-            idMap.put(elId-1, ali);
+            idMap.put(elId - 1, ali);
         }
         return possId++;
     }

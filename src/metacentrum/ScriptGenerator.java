@@ -26,27 +26,34 @@ public class ScriptGenerator {
     static Writer script;
     static Writer qsub;
 
-    private static String memory = "15gb";
-    private static String walltime = "40h";
-    private static String procesors = "4";
+    static String dataset = "ptcmr";
+
+    private static final String walltime = "4d";
+    private static final String queue = "-q q_" + walltime + "@wagap.cerit-sc.cz";
+    private static final String javaPars = " -XX:+UseSerialGC -XX:NewSize=2000m -Xms4096m -Xmx12g";
+    private static final String memory = "15gb";
+
+    private static final String procesors = "1";
 
     public static String directName;
 
     static String head;
+    private static final String metaDir = "../metacentrum";
 
     public static void main(String[] args) {
         try {
-            String common = "-f 1 ";
+            String common = "-f 10 ";
             LinkedList<String[]> scripts = new LinkedList<>();
             scripts.add(Configurations.seeds);
             //scripts.add(Configurations.sgd);
-            scripts.add(Configurations.learnDecay);
+            //scripts.add(Configurations.learnDecay);
             scripts.add(Configurations.activations);
+            //scripts.add(Configurations.cumSteps);
             //scripts.add(Configurations.initials);
             scripts.add(Configurations.groundings);
-            scripts.add(Configurations.cumSteps);
-
-            generate("trainingOnly", "trainingOnly", scripts, common);
+            //scripts.add(Configurations.cumSteps);
+            scripts.add(Configurations.dropouts);
+            generate("testik", "testik", scripts, common);
         } catch (IOException ex) {
             Logger.getLogger(ScriptGenerator.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -54,9 +61,9 @@ public class ScriptGenerator {
 
     static void generate(String projectDir, String scriptDir, LinkedList<String[]> scripts, String common) throws IOException {
         directName = scriptDir;
-        File theDir = new File("metacentrum/" + scriptDir);
+        File theDir = new File(metaDir + "/" + scriptDir);
         if (!theDir.exists()) {
-            System.out.println("creating directory metacentrum/" + scriptDir);
+            System.out.println("creating directory " + metaDir + "/" + scriptDir);
             boolean result = false;
             try {
                 theDir.mkdir();
@@ -73,21 +80,20 @@ public class ScriptGenerator {
 
     private static void createScripts(String neuroDir, String scriptDir, LinkedList<String[]> scripts, String common) throws IOException {
         String path = "cd /storage/brno2/home/souregus/neuro_builds/" + neuroDir;
-        head = path + "/dist/ \nmodule add jdk-8 \njava -jar neurologic.jar -e ../in/muta/examples -r ../in/muta/rules ";
-        qsub = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("metacentrum/" + scriptDir + "/qsub.sh"), "utf-8"));
+        head = path + "/dist/ \nmodule add jdk-8 \njava " + javaPars + " -jar neurologic.jar -e ../in/" + dataset + "/examples -r ../in/" + dataset + "/rules ";
+        qsub = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(metaDir + "/" + scriptDir + "/qsub.sh"), "utf-8"));
 
         LinkedList<String> configurations = Configurations.getConfigurations(scripts);
         for (String configuration : configurations) {
             String name = "script_" + (common + configuration).replaceAll(" ", "_").replaceAll("-", "_");
-            script = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("metacentrum/" + scriptDir + "/" + name + ".sh"), "utf-8"));
+            script = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(metaDir + "/" + scriptDir + "/" + name + ".sh"), "utf-8"));
             script.write(head);
             script.write(common);
             script.write(configuration);
             script.flush();
-            qsub.write("qsub -l walltime=" + walltime + " -l mem=" + memory + " -l scratch=50mb -l nodes=1:ppn=" + procesors + "  " + name + ".sh\n"
+            qsub.write("qsub " + queue + " -l walltime=" + walltime + " -l mem=" + memory + " -l scratch=50mb -l nodes=1:ppn=" + procesors + "  " + name + ".sh\n"
             );
         }
         qsub.flush();
     }
-
 }

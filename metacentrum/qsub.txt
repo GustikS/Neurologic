@@ -1,3 +1,0 @@
-qsub -l walltime=1d -l mem=10000mb -l scratch=400mb -l nodes=1:ppn=6
-
-qsub -l walltime=1d -l mem=4000mb -l scratch=400mb -l nodes=1:ppn=4

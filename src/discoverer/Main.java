@@ -20,31 +20,36 @@ import org.apache.commons.cli.PosixParser;
 public class Main {
 
     //cutoff on example number
-    private static final String defaultMaxExample = "100000";
+    private static final String defaultMaxExamples = "1000";   //not used, only for too big datasets
     //
-    public static String defaultLearningSteps = "1000";
-    //
-    public static String defaultLearningEpochs = "10";
-    //crossval
-    private static final String defaultFolds = "1";
-    private static final String defaultLearningRate = "0.05";
-    private static final String defaultRestartCount = "3";
+    public static String defaultLearningSteps = "20";  //learnSteps per epocha
+    public static String defaultLearningEpochs = "10";  //learn epochae = grounding cycles
+    //  learnEpochae * LearningSteps = learning steps for AVG variant
+    private static final String defaultFolds = "2"; // 1 = training only
+    private static final String defaultLearningRate = "0.4"; //0.05 default from Vojta, it's good to increase, reasonable <0.1 , 1>
+    //learnRate = 5 -> gets stuck very soon (<=10 steps) around 23% acc (+ jumping), unable to learn
+    //learnRate = 1 -> plato around 600 steps with 10% acc (+ BIG jumping +-3%, but also +10%)
+    //learnRate = 0.5 -> plato around 1000 steps with 8% acc (+ jumping +-3%) -> can break into some best results (0.3%) with saving
+    //learnRate = 0.3 -> plato around 1000 steps with 8% acc, just a very mild jumping, very good apparent behavior
+    //learnRate = 0.1 -> stable plato around 600 steps with 11% (no jumping, very stable, stuck)
+    public static final String defaultRestartCount = "2";  //#restarts per fold
     //max-avg
-    public static final String defaultGrounding = "max";
-    public static String defaultActivations = "sig_sig";    //lambda_kappa
-    public static String defaultInitialization = "handmade";    //handmade = 0.9:0.1
+    public static final String defaultGrounding = "avg";    //avg or max
+    public static String defaultActivations = "sig_id";    //lambda_kappa activation functions
+    public static String defaultInitialization = "longtail";    //handmade = 0.9:0.1
     //offsets
-    public static boolean defaultKappaAdaptiveOffsetOn = false;
-    public static String defaultLambdaAdaptiveOffset = "0.0";
-    public static String defaultKappaAdaptiveOffset = "0";  //must stay zero as default if false
-    public static String defaultSeed = "1";
+    public static boolean defaultKappaAdaptiveOffsetOn = false; //kappa offset is initialized based on number of input lambdas
+    public static String defaultKappaAdaptiveOffset = "0";  //must stay zero as default if defaultKappaAdaptiveOffsetOn = false    
+    public static String defaultLambdaAdaptiveOffset = "0"; //lambda offset add to the -1* (number of input kappas)
 
-    private static String defaultSaving = "1"; // >0 => saving is ON after each bp-step (minibatch)  --> add 10% extra computation time
+    public static String defaultSeed = "2"; //seeds the whole algorithm (shuffling, etc.), should make it completely deterministic
 
-    public static String defaultDropoutRate = "0";  // >0 => dropout is ON, at the particular rate
-    private static String defaultSGD = "0";     // >0 => stochastic gradient descend is ON
-    private static String defaultCumSteps = "0"; // >0 => cumulative restart strategy is ON
-    private static String defaultLearnDecay = "0"; // >0 => learnRate decay is ON
+    private static String defaultSaving = "1"; // >0 => saving of template is ON after each bp-step (minibatch)  --> adds 10% extra computation time
+
+    public static String defaultDropoutRate = "0.1";  // >0 => dropout is ON, at the particular rate
+    private static String defaultSGD = "1";     // >0 => stochastic gradient descend is ON
+    private static String defaultCumSteps = "0"; // "on" or number of steps, <= 0 => OFF
+    private static String defaultLearnDecay = "0"; // >0 => learnRate decay strategy is ON
 
     public static Options getOptions() {
         Options options = new Options();
@@ -63,10 +68,10 @@ public class Main {
         options.addOption(OptionBuilder.create("e"));
 
         OptionBuilder.withLongOpt("example-size");
-        OptionBuilder.withDescription("Maximal size of example to pick (default: " + defaultMaxExample + ")");
+        OptionBuilder.withDescription("Maximal size of example to pick (default: " + defaultMaxExamples + ")");
         OptionBuilder.withArgName("SIZE");
         OptionBuilder.hasArg();
-        options.addOption(OptionBuilder.create("s"));
+        options.addOption(OptionBuilder.create("size"));
 
         OptionBuilder.withLongOpt("learning-steps");
         OptionBuilder.withDescription("Number of learning steps before resubstitution (default: " + defaultLearningSteps + ")");
@@ -221,21 +226,18 @@ public class Main {
         Global.SGD = Double.parseDouble(sgd) > 0;
 
         String cum = cmd.getOptionValue("cum", defaultCumSteps);
-        Global.cumMaxSteps = Integer.parseInt(cum);
-
-        Global.cumulativeRestarts = Global.cumMaxSteps > 0;
+        Global.setCumSteps(cum);
 
         String save = cmd.getOptionValue("save", defaultSaving);
         Global.save = Integer.parseInt(save) > 0;
 
         String decay = cmd.getOptionValue("lrd", defaultLearnDecay);
-        Global.learnDecay = Double.parseDouble(decay) > 0;
-        Global.learnDecayB = Double.parseDouble(decay);
+        Global.setLearnDecay(decay);
 
         //parsing command line options - needs external library commons-CLI
         Batch batch = cmd.hasOption("b") ? Batch.YES : Batch.NO;
 
-        String tmp = cmd.getOptionValue("s", defaultMaxExample);
+        String tmp = cmd.getOptionValue("size", defaultMaxExamples);
         int maxLine = Integer.parseInt(tmp);
 
         tmp = cmd.getOptionValue("ls", defaultLearningSteps);
@@ -254,23 +256,30 @@ public class Main {
         int restartCount = Integer.parseInt(tmp);
 
         //get examples one by one from file
-        String[] ex = FileToStringListJava6.convert(cmd.getOptionValue("e"), maxLine);
+        String[] ex = FileToStringListJava6.convert(cmd.getOptionValue("e"),10000);
 
         //get rules one by one from file
-        String[] rules = FileToStringListJava6.convert(cmd.getOptionValue("r"), Integer.MAX_VALUE);
+        String[] rules = FileToStringListJava6.convert(cmd.getOptionValue("r"),10000);
         if (Global.kappaActivation == Global.activationSet.id) {
             rules = addFinalLambda(rules);  //a hack to end with lambda
         }
 
         Settings.create(ground, folds, steps, epochs, restartCount, learnRate, activation, initialization, loffset, koffset, drop, cum, sgd, save, decay, seed);
         Glogger.init();
+        
+        Glogger.process(Settings.getString());
 
         Crossvalidation solver = new Crossvalidation();
 
         //main solver method
-        solver.solve(folds, rules, ex, batch, steps, epochs, restartCount, learnRate);
+        solver.solve(folds, rules, ex, batch, steps, epochs, restartCount, learnRate, maxLine);
     }
 
+    /**
+     * hack to end sith lambda if there is no sigmoid on finalKappa
+     * @param rules
+     * @return 
+     */
     private static String[] addFinalLambda(String[] rules) {
 
         String[] rls = new String[rules.length + 1];

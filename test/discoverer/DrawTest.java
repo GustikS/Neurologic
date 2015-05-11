@@ -6,6 +6,7 @@ import discoverer.construction.ExampleFactory;
 import discoverer.construction.example.Example;
 import discoverer.drawing.Dotter;
 import discoverer.drawing.GroundDotter;
+import discoverer.global.Global;
 import discoverer.grounding.evaluation.Ball;
 import discoverer.grounding.Grounder;
 import java.util.*;
@@ -13,16 +14,19 @@ import static org.junit.Assert.*;
 import org.junit.*;
 
 public class DrawTest {
-    
+
     @Test
     public void test1() {
+        Global.lambdaActivation = Global.activationSet.sig;
+        Global.kappaActivation = Global.activationSet.sig;
+        Global.weightInit = Global.weightInitSet.handmade;
+        Global.rg = new Random(1);
         //String[] rules = FileToStringListJava6.convert("../data/rules_2_2.txt", Integer.MAX_VALUE);
         String[] rules = {
             "l21(X) :- atom(X,cl), atom(X,cl).",
             "l22(X) :- atom(X,br), atom(cl,cl).",
             "l23(X) :- atom(X,na).",
             "l24(X) :- atom(X,f).",
-
             "1.12 k21(X) :- l21(X).",
             "1.13 k22(X) :- l21(X).",
             "1.545 k22(DMY) :- l21(X), l22(X).",
@@ -30,11 +34,9 @@ public class DrawTest {
             "1.12 k22(X) :- l23(X).",
             "1.135 k23(X) :- l23(X).",
             "1.144 k23(X) :- l24(X).",
-
             "l11(X) :- k21(X), k22(Y).",
             "l12(X) :- k21(X), k22(Y).",
             "l13(X) :- k22(X), k23(Y).",
-
             "0.1 k11(X) :- l11(X).",
             "0.1 k11(X) :- l12(X).",
             "0.9 k12(X) :- l11(X).",
@@ -43,17 +45,20 @@ public class DrawTest {
             "0.12 k13(X) :- l11(X).",
             "0.13 k13(X) :- l12(X).",
             "0.14 k13(X) :- l13(X).",
+            "final(X) :- k11(X).",};
 
-            "final(X) :- k11(X).",
-        };
         NetworkFactory nf = new NetworkFactory();
         KL last = nf.construct(rules);
 
-        Dotter.draw(last,"chemie");
+        Dotter.draw(last, "chemieee");
     }
 
     @Test
     public void blueTest() {
+        Global.lambdaActivation = Global.activationSet.sig;
+        Global.kappaActivation = Global.activationSet.sig;
+        Global.weightInit = Global.weightInitSet.handmade;
+        Global.rg = new Random(1);
         String[] rules = {
             "lg(X) :- light_green(X)",
             "dg(X) :- dark_green(X)",
@@ -61,22 +66,18 @@ public class DrawTest {
             "r(X) :- red(X)",
             "db(X) :- dark_blue(X)",
             "lb(X) :- light_blue(X)",
-
             "0.4 blue(X) :- lg(X).",
             "0.9 blue(X) :- db(X).",
             "0.6 blue(X) :- dg(X).",
             "0.7 blue(X) :- d(X).",
             "0.5 blue(X) :- r(X).",
             "0.8 blue(X) :- lb(X).",
-
             "blueist(DMY) :- edge(1,B), edge(B,C), edge(C,4), blue(B), blue(C).",
-
             "1.0 output(DMY) :- blueist(DMY2)."
         };
 
-
-        String ex = "1.0 edge(1,6),edge(6,5),edge(5,4),edge(1,2),edge(2,3),edge(3,4),"+
-               "light_green(1),dark_green(2),dark(3),red(4),dark_blue(5),light_blue(6).";
+        String ex = "1.0 edge(1,6),edge(6,5),edge(5,4),edge(1,2),edge(2,3),edge(3,4),"
+                + "light_green(1),dark_green(2),dark(3),red(4),dark_blue(5),light_blue(6).";
         NetworkFactory nf = new NetworkFactory();
         KL last = nf.construct(rules);
 
@@ -86,7 +87,7 @@ public class DrawTest {
         Ball b = Grounder.solve(last, e);
 
         Dotter.draw(last, "modra3");
-        GroundDotter.draw(b,"modraGround3");
+        GroundDotter.draw(b, "modraGround3");
         GroundDotter.drawAVG(b, "modraAVG3");
     }
 

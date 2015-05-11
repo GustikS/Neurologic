@@ -14,9 +14,9 @@ import java.util.LinkedList;
 public class Configurations {
 
     //some prepared parameter-value configurations to choose from if one wants to try out a parameter
-    public static String[] folds = new String[]{"-f", "2", "3", "5", "10"};
+    public static String[] folds = new String[]{"-f", "1", "5", "10"};
     public static String[] groundings = new String[]{"-gr", "max", "avg"};
-    public static String[] learnRates = new String[]{"-lr", "0.01", "0.02", "0.05", "0.1", "0.2"};
+    public static String[] learnRates = new String[]{"-lr", "0.1", "0.3", "0.5", "1"};
     public static String[] bpSteps = new String[]{"-ls", "10", "20", "50", "100", "1000", "3000"};
     public static String[] restarts = new String[]{"-rs", "1", "2", "3"};
     public static String[] epochs = new String[]{"-le", "7", "10"};
@@ -30,8 +30,8 @@ public class Configurations {
 
     public static String[] seeds = new String[]{"-sd", "1", "2", "3"};
     public static String[] sgd = new String[]{"-sgd", "0", "1"};
-    public static String[] cumSteps = new String[]{"-cum", "0", "50000"};
-    public static String[] learnDecay = new String[]{"-lrd", "0", "10", "20", "100"};
+    public static String[] cumSteps = new String[]{"-cum", "0", "diff"};    //on,diff,number
+    public static String[] learnDecay = new String[]{"-lrd", "0", "on"};    //on,number
 
     public static LinkedList<String> configurations;
 

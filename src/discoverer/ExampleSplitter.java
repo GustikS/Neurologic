@@ -2,24 +2,34 @@ package discoverer;
 
 import discoverer.construction.example.Example;
 import discoverer.global.Global;
+import discoverer.global.Glogger;
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.HashSet;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Splitter for performing n-fold crossval
  */
 public class ExampleSplitter {
 
-    private int foldCount;
-    private int testFold = 0;
+    public int foldCount;
+    public int testFold = 0;
     private List<List<Example>> folds;
 
     /**
      * stratified split of examples(same #positive examples) for k-fold
-     * crossvalidation
+     * cross-validation
      *
      * @param k
      * @param ex
@@ -32,7 +42,8 @@ public class ExampleSplitter {
 
         int foldLen = (int) Math.floor((double) ex.size() / k);
         //repaired fold count - extra fold for remaining samples
-        foldCount = (int) Math.floor((double) ex.size() / foldLen);
+        foldCount = k;
+        //foldCount = (int) Math.floor((double) ex.size() / foldLen);
         int positivesInFold = (int) Math.ceil((double) positives.size() / ex.size() * foldLen);
 
         int n = 0;
@@ -52,6 +63,35 @@ public class ExampleSplitter {
             folds.add(fold);
         }
 
+        //distribute the last corrupted fold
+        if (folds.size() > k) {
+            int i = 0;
+            for (Example negative : folds.get(k)) {
+                folds.get(i++).add(negative);
+            }
+            folds.remove(k);
+        }
+
+        if (Global.outputFolds) {
+            Glogger.createDir("folds");
+            int i = 1;
+            for (List<Example> fold : folds) {
+                try {
+                    int a = 0;
+                    BufferedWriter pw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("folds/fold" + i++), "utf-8"));
+                    for (Example exa : fold) {
+                        pw.write(a++ + " : " + exa.hash + "\n");
+                        pw.flush();
+                    }
+                } catch (FileNotFoundException ex1) {
+                    Logger.getLogger(ExampleSplitter.class.getName()).log(Level.SEVERE, null, ex1);
+                } catch (UnsupportedEncodingException ex1) {
+                    Logger.getLogger(ExampleSplitter.class.getName()).log(Level.SEVERE, null, ex1);
+                } catch (IOException ex1) {
+                    Logger.getLogger(ExampleSplitter.class.getName()).log(Level.SEVERE, null, ex1);
+                }
+            }
+        }
     }
 
     private List<Example> getPositives(List<Example> ex) {
@@ -77,7 +117,7 @@ public class ExampleSplitter {
     }
 
     public boolean hasNext() {
-        return testFold + 1 <= foldCount;
+        return testFold < foldCount;
     }
 
     public void next() {
@@ -88,7 +128,7 @@ public class ExampleSplitter {
         List<Example> tmp = new ArrayList<Example>();
         int i = 0;
         for (List<Example> fold : folds) {
-            if (i++ != testFold || foldCount == 1) {    //or just a training set
+            if (i++ != testFold || foldCount == 1) {    //or just a training set (that shouldnt cause anything in crossval)
                 tmp.addAll(fold);
             }
         }

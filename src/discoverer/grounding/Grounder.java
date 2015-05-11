@@ -15,6 +15,7 @@ import discoverer.construction.network.rules.Rule;
 import discoverer.construction.network.rules.SubK;
 import discoverer.construction.network.rules.SubL;
 import discoverer.construction.Terminal;
+import discoverer.grounding.evaluation.Evaluator;
 import discoverer.learning.backprop.functions.Activations;
 import java.awt.Desktop;
 import java.util.ArrayList;
@@ -110,7 +111,7 @@ public class Grounder {
             //- calculate the average, weight it and add
             Set<GroundLambda> lastAvg = tmp.getLastAvg();   //this set of GroundLambda must have already been evaluated(the have value set) through solve2(Lambda..)
             gk.addDisjunctAvg(lastAvg, r);
-            tmp.setValAvg(GroundKL.getAvgValFrom(lastAvg));
+            tmp.setValAvg(Evaluator.getAvgValFrom(lastAvg));
             tmp.weightAvgWith(w);
             b.addAvg(tmp);
             //b.addActiveRule(r);   //we omit active rules completely in the new version

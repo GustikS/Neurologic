@@ -12,6 +12,10 @@ public abstract class KL extends Element {
 
     public KL(String name) {
         super(name);
-        dropout = Global.dropout;
+        if (name.startsWith("final")) {
+            dropout = -1;
+        } else {
+            dropout = Global.dropout;
+        }
     }
 }

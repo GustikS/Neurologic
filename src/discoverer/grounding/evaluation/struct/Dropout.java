@@ -29,9 +29,6 @@ public class Dropout {
         } else {
             drop((GroundLambda) kl);
         }
-        Evaluator.ignoreDropout = false;
-        b.valMax = Evaluator.evaluateMax(b);
-        Evaluator.ignoreDropout = true;
     }
 
     private static void drop(GroundKappa last) {

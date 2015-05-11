@@ -176,22 +176,4 @@ public abstract class GroundKL {
     public void addGroundParentDerivative(double gParentDerivative) {
         this.groundParentDerivative += gParentDerivative;
     }
-
-    /**
-     * @param gls
-     * @return
-     */
-    public static double getAvgValFrom(Set<GroundLambda> gls) {
-        /*if (gls == null) {
-         return 0;
-         }*/
-
-        double avg = 0;
-        for (GroundKL gl : gls) {
-            avg += gl.getValueAvg();    //we will recursively sum up the average values valAvg (the max. values are calculated separately in val)
-        }
-        avg /= gls.size();
-        return avg;
-    }
-
 }
