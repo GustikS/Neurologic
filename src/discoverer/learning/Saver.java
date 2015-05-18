@@ -72,6 +72,7 @@ public class Saver {
     }
 
     public static boolean isBetterThenBest(double le, double th, double disp) {
+        Glogger.process("best error so far = " + learnError);
         if (learnError == null) {
             return true;
         }

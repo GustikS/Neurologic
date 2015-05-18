@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package extras;
+package templates;
 
 import discoverer.construction.ExampleFactory;
 import discoverer.construction.Parser;
@@ -96,8 +96,8 @@ public class Convertor {
 
         writeOut(examples, out);
         writeOut(allLiterals, out + "_literalSet");
-
     }
+    
 
     static void writeOut(HashSet<String> literals, String outfile) {
         Writer test;

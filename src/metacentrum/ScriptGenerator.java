@@ -26,12 +26,12 @@ public class ScriptGenerator {
     static Writer script;
     static Writer qsub;
 
-    static String dataset = "ptcmr";
+    static String dataset = "gi50";
 
     private static final String walltime = "4d";
     private static final String queue = "-q q_" + walltime + "@wagap.cerit-sc.cz";
-    private static final String javaPars = " -XX:+UseSerialGC -XX:NewSize=2000m -Xms4096m -Xmx12g";
-    private static final String memory = "15gb";
+    private static final String javaPars = " -XX:+UseSerialGC -XX:NewSize=2000m -Xms4096m -Xmx14g";
+    private static final String memory = "16gb";
 
     private static final String procesors = "1";
 
@@ -42,7 +42,7 @@ public class ScriptGenerator {
 
     public static void main(String[] args) {
         try {
-            String common = "-f 10 ";
+            String common = "-f 5 ";
             LinkedList<String[]> scripts = new LinkedList<>();
             scripts.add(Configurations.seeds);
             //scripts.add(Configurations.sgd);
@@ -52,8 +52,8 @@ public class ScriptGenerator {
             //scripts.add(Configurations.initials);
             scripts.add(Configurations.groundings);
             //scripts.add(Configurations.cumSteps);
-            scripts.add(Configurations.dropouts);
-            generate("testik", "testik", scripts, common);
+            //scripts.add(Configurations.dropouts);
+            generate("ptcmrExtra", "gi50", scripts, common);
         } catch (IOException ex) {
             Logger.getLogger(ScriptGenerator.class.getName()).log(Level.SEVERE, null, ex);
         }

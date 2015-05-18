@@ -26,7 +26,7 @@ public class Configurations {
     public static String[] lambdaOffsets = new String[]{"-lo", "1", "2"};
     public static String[] kappaOffsets = new String[]{"-ko", "0.01", "0.1", "1", "5"};
 
-    public static String[] dropouts = new String[]{"-dr", "0", "0.2", "0.5"};
+    public static String[] dropouts = new String[]{"-dr", "0", "0.01", "0.05", "0.2"};
 
     public static String[] seeds = new String[]{"-sd", "1", "2", "3"};
     public static String[] sgd = new String[]{"-sgd", "0", "1"};

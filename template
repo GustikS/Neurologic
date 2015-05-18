@@ -1,0 +1,74 @@
+atomLambda_0(X) :- er(X).
+atomLambda_0(X) :- ge(X).
+atomLambda_0(X) :- o_2(X).
+0.0 bondKappa_0(X :- bondLambda_0(X) .
+atomLambda_0(X) :- sn(X).
+0.0 atomKappa_7(X :- atomLambda_0(X) .
+0.0 bondKappa_4(X :- bondLambda_0(X) .
+atomLambda_0(X) :- n_am(X).
+bondLambda_0(X) :- 3(X).
+0.0 atomKappa_0(X :- atomLambda_0(X) .
+atomLambda_0(X) :- i(X).
+atomLambda_0(X) :- n_4(X).
+atomLambda_0(X) :- se(X).
+0.0 bondKappa_7(X :- bondLambda_0(X) .
+bondLambda_0(X) :- 2(X).
+0.0 atomKappa_4(X :- atomLambda_0(X) .
+atomLambda_0(X) :- zn(X).
+atomLambda_0(X) :- n_3(X).
+atomLambda_0(X) :- mn(X).
+atomLambda_0(X) :- f(X).
+atomLambda_0(X) :- n_2(X).
+0.0 bondKappa_1(X :- bondLambda_0(X) .
+bondLambda_0(X) :- 1(X).
+bondLambda_0(X) :- am(X).
+atomLambda_0(X) :- n_pl3(X).
+0.0 atomKappa_8(X :- atomLambda_0(X) .
+atomLambda_0(X) :- ag(X).
+atomLambda_0(X) :- c_3(X).
+atomLambda_0(X) :- fe(X).
+atomLambda_0(X) :- na(X).
+0.0 bondKappa_8(X :- bondLambda_0(X) .
+atomLambda_0(X) :- n_1(X).
+0.0 atomKappa_1(X :- atomLambda_0(X) .
+atomLambda_0(X) :- bi(X).
+atomLambda_0(X) :- cl(X).
+atomLambda_0(X) :- cu(X).
+atomLambda_0(X) :- cd(X).
+atomLambda_0(X) :- br(X).
+atomLambda_0(X) :- ru(X).
+0.0 atomKappa_9(X :- atomLambda_0(X) .
+0.0 bondKappa_2(X :- bondLambda_0(X) .
+atomLambda_0(X) :- p_3(X).
+0.0 atomKappa_5(X :- atomLambda_0(X) .
+atomLambda_0(X) :- c_1(X).
+atomLambda_0(X) :- si(X).
+0.0 bondKappa_9(X :- bondLambda_0(X) .
+atomLambda_0(X) :- v(X).
+atomLambda_0(X) :- s_o(X).
+0.0 atomKappa_2(X :- atomLambda_0(X) .
+atomLambda_0(X) :- hg(X).
+atomLambda_0(X) :- au(X).
+atomLambda_0(X) :- co(X).
+atomLambda_0(X) :- cr(X).
+0.0 bondKappa_5(X :- bondLambda_0(X) .
+atomLambda_0(X) :- s_3(X).
+atomLambda_0(X) :- n_ar(X).
+atomLambda_0(X) :- c_2(X).
+atomLambda_0(X) :- c_ar(X).
+atomLambda_0(X) :- sb(X).
+atomLambda_0(X) :- s_2(X).
+atomLambda_0(X) :- pb(X).
+0.0 atomKappa_6(X :- atomLambda_0(X) .
+0.0 bondKappa_3(X :- bondLambda_0(X) .
+atomLambda_0(X) :- rh(X).
+atomLambda_0(X) :- eu(X).
+atomLambda_0(X) :- s_o2(X).
+atomLambda_0(X) :- o_co2(X).
+0.0 atomKappa_3(X :- atomLambda_0(X) .
+0.0 bondKappa_6(X :- bondLambda_0(X) .
+atomLambda_0(X) :- o_3(X).
+atomLambda_0(X) :- pt(X).
+atomLambda_0(X) :- pd(X).
+atomLambda_0(X) :- as(X).
+bondLambda_0(X) :- ar(X).
