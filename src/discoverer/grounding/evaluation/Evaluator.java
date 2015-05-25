@@ -36,7 +36,7 @@ public class Evaluator {
 
     public static double evaluateMax(Ball b) {
         if (b == null) {
-            return Global.falseAtomValue;
+            return Global.getFalseAtomValue();
         }
         GroundInvalidator.invalidate(b);    //this means to delete all values of all ground literals
         Object top = b.getLast();

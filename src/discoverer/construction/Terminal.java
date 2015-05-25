@@ -1,11 +1,14 @@
 package discoverer.construction;
 
+import java.io.Serializable;
+
 /**
- * Very general class
- * Class for terminals - variables with binding<p>
- * Terminals are unique objects for every variable in the rules, unless with the same name in the same rule
+ * Very general class Class for terminals - variables with binding<p>
+ * Terminals are unique objects for every variable in the rules, unless with the
+ * same name in the same rule
  */
-public class Terminal extends Element {
+public class Terminal extends Element implements Serializable {
+
     private Integer bind;
     private boolean dummy;
 
@@ -30,9 +33,11 @@ public class Terminal extends Element {
     public boolean isBind() {
         return bind != null;
     }
+
     public Integer getBind() {
         return bind;
     }
+
     public String getName() {
         return name;
     }

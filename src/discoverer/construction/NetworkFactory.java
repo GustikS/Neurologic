@@ -12,6 +12,7 @@ import discoverer.construction.network.Kappa;
 import discoverer.construction.network.KappaFactory;
 import discoverer.construction.network.Lambda;
 import discoverer.construction.network.LambdaFactory;
+import discoverer.construction.network.Network;
 import discoverer.global.Global;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,13 +26,13 @@ public class NetworkFactory {
     private LambdaFactory lFactory = new LambdaFactory();
     private VariableFactory vFactory = new VariableFactory();
 
-    private static List<KappaRule> kappaRules = new ArrayList<KappaRule>();
+    private List<KappaRule> kappaRules = new ArrayList<KappaRule>();
 
     public NetworkFactory() {
         ConstantFactory.clearConstantFactory();
     }
 
-    public static List<KappaRule> getKappaRules() {
+    public List<KappaRule> getKappaRules() {
         return kappaRules;
     }
 
@@ -42,7 +43,7 @@ public class NetworkFactory {
      * @param rules
      * @return
      */
-    public KL construct(String[] rules) {
+    public Network construct(String[] rules) {
         KL kl = null;
         for (int x = 0; x < rules.length; x++) {
             String[][] tokens = Parser.parseRule(rules[x]);
@@ -50,21 +51,22 @@ public class NetworkFactory {
             boolean isLambdaLine = tokens[0][0].isEmpty();
 
             //the self handling of each K/L rule, adding it to base
-            kl = isLambdaLine ? handleLambdaLine(tokens) : handleKappaLine(tokens);
+            kl = isLambdaLine ? handleLambdaLine(tokens, rules[x]) : handleKappaLine(tokens, rules[x]);
 
             vFactory.clear();
         }
 
         kl.dropout = -1;
 
-        if (Global.kappaAdaptiveOffset) {
+        if (Global.isKappaAdaptiveOffset()) {
             for (Kappa kappa : kFactory.getKappas()) {
                 kappa.initOffset();
             }
         }
-
-        //printWeights();
-        return kl;
+        //setup network
+        Network network = new Network(kl);  //a wrapper for the last KL
+        //---
+        return network;
     }
 
     private Terminal constructTerm(String s) {
@@ -94,7 +96,7 @@ public class NetworkFactory {
      * @param tokens
      * @return
      */
-    private Lambda handleLambdaLine(String[][] tokens) {
+    private Lambda handleLambdaLine(String[][] tokens, String original) {
         Lambda l = lFactory.construct(tokens[1][0]);
         SubL sl = new SubL(l);
         for (int i = 1; i < tokens[1].length; i++) {
@@ -115,6 +117,7 @@ public class NetworkFactory {
         }
 
         l.setRule(lr);
+        lr.original = original;
         return l;
     }
 
@@ -142,7 +145,7 @@ public class NetworkFactory {
      * @param tokens
      * @return
      */
-    private Kappa handleKappaLine(String[][] tokens) {
+    private Kappa handleKappaLine(String[][] tokens, String original) {
         Double w = Double.parseDouble(tokens[0][0]);
         Kappa k = kFactory.construct(tokens[1][0]);
         SubK sk = new SubK(k, true);
@@ -165,6 +168,7 @@ public class NetworkFactory {
         }
 
         k.addRule(kr);
+        kr.original = original;
         return k;
     }
 
@@ -177,8 +181,19 @@ public class NetworkFactory {
         System.out.println("----------------ruleweights--------------");
         i = 0;
         for (KappaRule kappaRule : kappaRules) {
-            System.out.println(i++ + " -> " + kappaRule.weight);
+            System.out.println(i++ + " -> " + kappaRule.getWeight());
         }
 
+    }
+
+    /**
+     * merge saved network with a new one - replace some with pretrained weights
+     *
+     * @param network
+     * @param savedNet
+     * @return
+     */
+    public KL merge(KL network, KL savedNet) {
+        return null;
     }
 }

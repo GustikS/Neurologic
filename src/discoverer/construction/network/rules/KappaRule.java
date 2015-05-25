@@ -1,29 +1,50 @@
 package discoverer.construction.network.rules;
 
 import discoverer.construction.Terminal;
+import discoverer.construction.network.Kappa;
 import discoverer.construction.network.rules.SubL;
 import discoverer.construction.network.rules.SubK;
 import discoverer.construction.network.WeightInitializator;
-
+import java.io.Serializable;
 
 /**
  * Kappa clause
  */
-public class KappaRule extends Rule {
-    public double weight;
+public class KappaRule extends Rule implements Serializable {
+
+    private double weight;    //I don't want this to be a mutable object anymore
     public double step;
     private Double gradient;
     public double deltaW;
     private SubK head;
     private SubL body;
     private boolean drawn;
+    
+    @Override
+    public String toString() {
+        return String.format("%.15f", getWeight()) + " " + head.toString() + " :- " + body.toString() + ".";
+    }
 
     @Override
-    public String toString() { return head.toString() + ":-" + body.toString(); }
+    public boolean equals(Object o) {
+        if (o == null) {
+            return false;
+        }
+        if (!(o instanceof KappaRule)) {
+            return false;
+        }
 
-    public KappaRule (double w) {
+        KappaRule kr = (KappaRule) o;
+
+        if (this.toString().equals(kr.toString())) {
+            return true;
+        }
+        return false;
+    }
+
+    public KappaRule(double w) {
         //step = 0.01;
-        weight = w != 0 ? w : WeightInitializator.getWeight();
+        setWeight(w != 0 ? w : WeightInitializator.getWeight());
         drawn = false;
     }
 
@@ -35,36 +56,62 @@ public class KappaRule extends Rule {
         drawn = b;
     }
 
-    public double getGradient() { return gradient; }
-    public boolean gradientIsNull() { return gradient == null; }
-    public void setGradient(double g) { gradient = g; }
-    public void eraseGradient() { gradient = null; }
+    public double getGradient() {
+        return gradient;
+    }
 
-    public void addHead(SubK h) { head = h; }
+    public boolean gradientIsNull() {
+        return gradient == null;
+    }
+
+    public void setGradient(double g) {
+        gradient = g;
+    }
+
+    public void eraseGradient() {
+        gradient = null;
+    }
+
+    public void addHead(SubK h) {
+        head = h;
+    }
 
     public void setBody(SubL b) {
         body = b;
-        for (Terminal t: b.getTermsList())
-            if (!t.isBind())
+        for (Terminal t : b.getTermsList()) {
+            if (!t.isBind()) {
                 unbound.add(t);
+            }
+        }
     }
 
     public void increaseWeight(double d) {
-        weight += d;
+        setWeight(getWeight() + d);
     }
 
-    public SubL getBody() { return body; }
+    public SubL getBody() {
+        return body;
+    }
 
-    public double getWeight() { return weight; }
-    public void setWeight(double d) { weight = d; }
+    public double getWeight() {
+        return weight;
+    }
 
-    public SubK getHead() { return head; }
+    public final void setWeight(double d) {
+        weight = d;
+    }
+
+    public SubK getHead() {
+        return head;
+    }
 
     @Override
     public Terminal getNextUnbound() {
-        for (Terminal var: unbound)
-            if (var.isDummy())
+        for (Terminal var : unbound) {
+            if (var.isDummy()) {
                 return var;
+            }
+        }
 
         return super.unbound.iterator().next();
     }

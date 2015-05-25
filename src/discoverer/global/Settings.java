@@ -5,18 +5,24 @@
  */
 package discoverer.global;
 
+import java.util.Random;
+
 /**
  *
  * @author Gusta
  */
 public class Settings {
 
-    private static String grounding;
-    private static int folds;
-    private static int steps;
-    private static int epochs;
-    private static int restart;
-    private static double learnRate;
+    public static String grounding;
+
+    public static int folds;
+    public static int learningSteps;
+    public static int learningEpochs;
+    public static int restartCount;
+    public static int maxExamples;
+
+    public static double learnRate;
+
     private static String activations;
     private static String initials;
     private static String loffset;
@@ -27,14 +33,38 @@ public class Settings {
     private static String cumSteps;
     private static String save;
     private static String lrDecay;
+    private static String dataset;
+    private static String rules;
+    private static String pretrained;
 
+    /**
+     * outdated...new way of creating Settings is directly! to synchronize with
+     * Global
+     *
+     * @param iground
+     * @param ifolds
+     * @param isteps
+     * @param iepochs
+     * @param irestartCount
+     * @param ilearnRate
+     * @param act
+     * @param initial
+     * @param loff
+     * @param koff
+     * @param drop
+     * @param cum
+     * @param isgd
+     * @param isave
+     * @param idecay
+     * @param iseed
+     */
     public static void create(String iground, int ifolds, int isteps, int iepochs, int irestartCount, double ilearnRate, String act,
             String initial, String loff, String koff, String drop, String cum, String isgd, String isave, String idecay, String iseed) {
         setGrounding(iground);
         setFolds(ifolds);
-        setSteps(isteps);
-        setEpochs(iepochs);
-        setRestart(irestartCount);
+        setLearningSteps(isteps);
+        setLearningEpochs(iepochs);
+        setRestartCount(irestartCount);
         setLearnRate(ilearnRate);
         setActivations(act);
         setInitials(initial);
@@ -50,11 +80,17 @@ public class Settings {
 
     public static String getString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("gr-").append(grounding).append("_");
+        //datapart
+        sb.append("dat-").append(dataset).append("_");
+        sb.append("rul-").append(rules).append("_");
+        sb.append("tem-").append(pretrained).append("_");
+        sb.append("count-").append(maxExamples).append("_");
+        //learning
         sb.append("f-").append(folds).append("_");
-        sb.append("r-").append(restart).append("_");
-        sb.append("e-").append(epochs).append("_");
-        sb.append("s-").append(steps).append("_");
+        sb.append("gr-").append(grounding).append("_");
+        sb.append("r-").append(restartCount).append("_");
+        sb.append("e-").append(learningEpochs).append("_");
+        sb.append("s-").append(learningSteps).append("_");
         sb.append("l-").append(learnRate).append("_");
         sb.append("lrd-").append(getLrDecay()).append("_");
         sb.append("ac-").append(activations).append("_");
@@ -65,6 +101,7 @@ public class Settings {
         sb.append("sd-").append(getSeed()).append("_");
         sb.append("cum-").append(getCumSteps()).append("_");
         sb.append("sgd-").append(getSGD()).append("_");
+        //others
         sb.append("save-").append(getSave()).append("_");
         return sb.toString();
     }
@@ -80,6 +117,7 @@ public class Settings {
      * @param aGrounding the grounding to set
      */
     public static void setGrounding(String aGrounding) {
+        Global.setGrounding(aGrounding);
         grounding = aGrounding;
     }
 
@@ -100,43 +138,43 @@ public class Settings {
     /**
      * @return the steps
      */
-    public static int getSteps() {
-        return steps;
+    public static int getLearningSteps() {
+        return learningSteps;
     }
 
     /**
      * @param aSteps the steps to set
      */
-    public static void setSteps(int aSteps) {
-        steps = aSteps;
+    public static void setLearningSteps(int aSteps) {
+        learningSteps = aSteps;
     }
 
     /**
      * @return the epochs
      */
-    public static int getEpochs() {
-        return epochs;
+    public static int getLearningEpochs() {
+        return learningEpochs;
     }
 
     /**
      * @param aEpochs the epochs to set
      */
-    public static void setEpochs(int aEpochs) {
-        epochs = aEpochs;
+    public static void setLearningEpochs(int aEpochs) {
+        learningEpochs = aEpochs;
     }
 
     /**
      * @return the restart
      */
-    public static int getRestart() {
-        return restart;
+    public static int getRestartCount() {
+        return restartCount;
     }
 
     /**
      * @param aRestart the restart to set
      */
-    public static void setRestart(int aRestart) {
-        restart = aRestart;
+    public static void setRestartCount(int aRestart) {
+        restartCount = aRestart;
     }
 
     /**
@@ -164,6 +202,7 @@ public class Settings {
      * @param aActivations the activations to set
      */
     public static void setActivations(String aActivations) {
+        Global.setActivations(aActivations);
         activations = aActivations;
     }
 
@@ -178,6 +217,7 @@ public class Settings {
      * @param aInitials the initials to set
      */
     public static void setInitials(String aInitials) {
+        Global.setInitialization(aInitials);
         initials = aInitials;
     }
 
@@ -192,6 +232,7 @@ public class Settings {
      * @param aLoffset the loffset to set
      */
     public static void setLoffset(String aLoffset) {
+        Global.setInitLambdaAdaptiveOffset(Double.parseDouble(aLoffset));
         loffset = aLoffset;
     }
 
@@ -206,6 +247,7 @@ public class Settings {
      * @param aKoffset the koffset to set
      */
     public static void setKoffset(String aKoffset) {
+        Global.setInitKappaAdaptiveOffset(Double.parseDouble(aKoffset));
         koffset = aKoffset;
     }
 
@@ -220,6 +262,7 @@ public class Settings {
      * @param aSeed the seed to set
      */
     public static void setSeed(String aSeed) {
+        Global.setSeed(Integer.parseInt(aSeed));
         seed = aSeed;
     }
 
@@ -234,6 +277,7 @@ public class Settings {
      * @param aDropout the dropout to set
      */
     public static void setDropout(String aDropout) {
+        Global.setDropout(Double.parseDouble(aDropout));
         dropout = aDropout;
     }
 
@@ -248,6 +292,7 @@ public class Settings {
      * @param aSGD the SGD to set
      */
     public static void setSGD(String aSGD) {
+        Global.setSGD(Double.parseDouble(aSGD) > 0);
         SGD = aSGD;
     }
 
@@ -262,6 +307,7 @@ public class Settings {
      * @param aCumSteps the cumSteps to set
      */
     public static void setCumSteps(String aCumSteps) {
+        Global.setCumSteps(aCumSteps);
         cumSteps = aCumSteps;
     }
 
@@ -276,6 +322,7 @@ public class Settings {
      * @param aSave the save to set
      */
     public static void setSave(String aSave) {
+        Global.setSave(Integer.parseInt(aSave) > 0);
         save = aSave;
     }
 
@@ -290,7 +337,67 @@ public class Settings {
      * @param aLrDecay the lrDecay to set
      */
     public static void setLrDecay(String aLrDecay) {
+        Global.setLearnDecay(aLrDecay);
         lrDecay = aLrDecay;
+    }
+
+    /**
+     * @return the maxExamples
+     */
+    public static int getMaxExamples() {
+        return maxExamples;
+    }
+
+    /**
+     * @param aMaxExamples the maxExamples to set
+     */
+    public static void setMaxExamples(int aMaxExamples) {
+        maxExamples = aMaxExamples;
+    }
+
+    /**
+     * @return the dataset
+     */
+    public static String getDataset() {
+        return dataset;
+    }
+
+    /**
+     * @param aDataset the dataset to set
+     */
+    public static void setDataset(String aDataset) {
+        dataset = aDataset.replace("/", "-");
+    }
+
+    /**
+     * @return the pretrained
+     */
+    public static String getPretrained() {
+        return pretrained;
+    }
+
+    /**
+     * @param aPretrained the pretrained to set
+     */
+    public static void setPretrained(String aPretrained) {
+        if (aPretrained == null) {
+            aPretrained = "none";
+        }
+        pretrained = aPretrained.replace("/", "-");
+    }
+
+    /**
+     * @return the rules
+     */
+    public static String getRules() {
+        return rules;
+    }
+
+    /**
+     * @param aRules the rules to set
+     */
+    public static void setRules(String aRules) {
+        rules = aRules.replace("/", "-");
     }
 
 }

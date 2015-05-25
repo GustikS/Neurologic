@@ -17,10 +17,10 @@ public class DrawTest {
 
     @Test
     public void test1() {
-        Global.lambdaActivation = Global.activationSet.sig;
-        Global.kappaActivation = Global.activationSet.sig;
-        Global.weightInit = Global.weightInitSet.handmade;
-        Global.rg = new Random(1);
+        Global.setLambdaActivation(Global.activationSet.sig);
+        Global.setKappaActivation(Global.activationSet.sig);
+        Global.setWeightInit(Global.weightInitSet.handmade);
+        Global.setRg(new Random(1));
         //String[] rules = FileToStringListJava6.convert("../data/rules_2_2.txt", Integer.MAX_VALUE);
         String[] rules = {
             "l21(X) :- atom(X,cl), atom(X,cl).",
@@ -55,10 +55,10 @@ public class DrawTest {
 
     @Test
     public void blueTest() {
-        Global.lambdaActivation = Global.activationSet.sig;
-        Global.kappaActivation = Global.activationSet.sig;
-        Global.weightInit = Global.weightInitSet.handmade;
-        Global.rg = new Random(1);
+        Global.setLambdaActivation(Global.activationSet.sig);
+        Global.setKappaActivation(Global.activationSet.sig);
+        Global.setWeightInit(Global.weightInitSet.handmade);
+        Global.setRg(new Random(1));
         String[] rules = {
             "lg(X) :- light_green(X)",
             "dg(X) :- dark_green(X)",

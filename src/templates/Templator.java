@@ -12,12 +12,14 @@ import java.util.LinkedHashSet;
 import static templates.Convertor.writeOut;
 
 /**
- *
+ * the templator operates on Neurologic example data format, to convert the examples first use convertor
  * @author Gusta
  */
 public class Templator extends Convertor {
 
-    static String[] variables = new String[]{"X", "Y", "Z"};
+    static int clusterCount = 3;    //the width of a template (each cluster multiplies the underneath layer)
+    
+    static String[] variables = new String[]{"X", "Y", "Z", "U", "V", "W"};
     static String defWeight = "0.0";
 
     static HashSet<String> atoms = new HashSet();
@@ -26,17 +28,19 @@ public class Templator extends Convertor {
     static HashSet<String> atomSignatures = new HashSet();
     static HashSet<String> otherSignatures = new HashSet();
 
-    //static String in = "in\\ptcmrExtra\\fr\\examples";
-    static String in = "in\\muta\\examples";
-    //static String out = "in\\ptcmrExtra\\fr\\literals";
-    static String out = "in\\muta\\literals";
+    //static String in = "in\\mutaGeneral\\examples";
+    //static String in = "in\\muta\\examples";
+    //static String out = "in\\mutaGeneral\\literals";
+    //static String out = "in\\muta\\literals";
+    
+    static String in = "in\\ncigi\\examples";
+    static String out = "in\\ncigi\\literals";
 
     public static void main(String[] args) {
 
         String[] ex = FileToStringListJava6.convert(in, 10000);
 
         createTemplates(ex);
-        createCILP(ex);
     }
 
     static void createTemplates(String[] ex) {
@@ -48,7 +52,7 @@ public class Templator extends Convertor {
 
             //dictionary resolvation:
             //String[] literals = example.substring(2).replaceAll("[ .]", "").split("\\)[,]");
-            String[] literals = example.substring(3).replaceAll(" ", "").split("\\)[,]");
+            String[] literals = example.substring(example.indexOf(" ")).replaceAll(" ", "").split("\\)[,]");
 
             createSignatures(literals);
 
@@ -62,9 +66,9 @@ public class Templator extends Convertor {
         ArrayList<String> bondrules = createLambdaBindings(bondSignatures, "bond");
         ArrayList<String> otherrules = createLambdaBindings(otherSignatures, "other");
 
-        ArrayList<String> atomClusters = createKappaClusters(atomrules, 3);
-        ArrayList<String> bondClusters = createKappaClusters(bondrules, 3);
-        ArrayList<String> otherClusters = createKappaClusters(otherrules, 3);
+        ArrayList<String> atomClusters = createKappaClusters(atomrules, clusterCount);
+        ArrayList<String> bondClusters = createKappaClusters(bondrules, clusterCount);
+        ArrayList<String> otherClusters = createKappaClusters(otherrules, clusterCount);
 
         HashSet<String> template = new LinkedHashSet<>();
         template.addAll(atomrules);
@@ -72,20 +76,6 @@ public class Templator extends Convertor {
         template.addAll(atomClusters);
         template.addAll(bondClusters);
         writeOut(template, out + "clusters");
-    }
-
-    static void createCILP(String[] ex) {
-        HashSet<String> newExs = new LinkedHashSet<>();
-        for (int i = 0; i < ex.length; i++) {
-            String example = ex[i];
-            example = example.replace("0.0", "~class:-");
-            example = example.replace("1.0", "class:-");
-            example = example.replaceAll("([^)]),", "$1;");
-            example = example.replace(".", "");
-            example = example.replaceAll(" ", "");
-            newExs.add(example);
-        }
-        writeOut(newExs, out + "CILP");
     }
 
     static void createSignatures(String[] literals) {

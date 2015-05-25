@@ -12,7 +12,7 @@ public class ConstantFactory {
     private static int nextConst = 0;
 
     public static void clearConstantFactory() {
-        if (Global.debugEnabled) {
+        if (Global.isDebugEnabled()) {
             System.out.println("before constructing, we need to do some extra cleaning here (in case this isn't a clean first run)!");
         }
         constMap.clear();

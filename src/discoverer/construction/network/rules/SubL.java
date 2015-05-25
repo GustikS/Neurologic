@@ -2,36 +2,48 @@ package discoverer.construction.network.rules;
 
 import discoverer.construction.Terminal;
 import discoverer.construction.network.Lambda;
+import java.io.Serializable;
 
 /**
  * partially grounded lambda
  */
-public class SubL extends SubKL {
+public class SubL extends SubKL implements Serializable {
+
     private Lambda parent;
-
-    public SubL(Lambda l) { parent = l; }
-
-    @Override
-    public Lambda getParent() { return parent; }
 
     @Override
     public String toString() {
-        String s = parent.toString();
-        for (Terminal v: super.getTermsList()) {
-            s += v;
-            s += ",";
+        StringBuilder sb = new StringBuilder();
+        sb.append(parent.toString());
+        if (getTermsList().size() > 0) {
+            sb.append("(");
+            for (Terminal v : getTermsList()) {
+                sb.append(v);
+                sb.append(",");
+            }
+            sb.replace(sb.length() - 1, sb.length(), ")");
         }
-        return s;
+        return sb.toString();
+    }
+
+    public SubL(Lambda l) {
+        parent = l;
+    }
+
+    @Override
+    public Lambda getParent() {
+        return parent;
     }
 
     @Override
     public int hashCode() {
         int hash = 17;
         hash = 31 * hash + parent.hashCode();
-        for (Terminal term: termsList) {
+        for (Terminal term : termsList) {
             Integer bind = term.getBind();
-            if (bind != null)
+            if (bind != null) {
                 hash = 31 * hash + bind.hashCode();
+            }
         }
 
         return hash;
@@ -39,20 +51,34 @@ public class SubL extends SubKL {
 
     @Override
     public boolean equals(Object o) {
-        if (o == null) return false;
-        if (!(o instanceof SubL)) return false;
+        if (o == null) {
+            return false;
+        }
+        if (!(o instanceof SubL)) {
+            return false;
+        }
 
         SubL sl = (SubL) o;
 
-        if (sl.getParent() != this.getParent()) return false;
+        if (sl.getParent() != this.getParent()) {
+            return false;
+        }
 
         for (int i = 0; i < getTermsList().size(); i++) {
             Integer bind1 = this.getTerms().get(i).getBind();
             Integer bind2 = sl.getTerms().get(i).getBind();
-            if (bind1 == null && bind2 != null) return false;
-            if (bind1 != null && bind2 == null) return false;
-            if (bind1 == null && bind2 == null) continue;
-            if (!bind1.equals(bind2)) return false;
+            if (bind1 == null && bind2 != null) {
+                return false;
+            }
+            if (bind1 != null && bind2 == null) {
+                return false;
+            }
+            if (bind1 == null && bind2 == null) {
+                continue;
+            }
+            if (!bind1.equals(bind2)) {
+                return false;
+            }
         }
 
         return true;
@@ -60,7 +86,7 @@ public class SubL extends SubKL {
 
     public SubL clone() {
         SubL sl = new SubL(this.getParent());
-        for (Terminal t: this.getTerms()) {
+        for (Terminal t : this.getTerms()) {
             Terminal tt = new Terminal("");
             tt.setBind(t.getBind());
             sl.addVariable(tt);

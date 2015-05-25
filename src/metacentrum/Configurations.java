@@ -13,10 +13,14 @@ import java.util.LinkedList;
  */
 public class Configurations {
 
+    public static String dataPath = "../in/";
+
+    private static final String[] data = new String[]{"ncigi"};
+
     //some prepared parameter-value configurations to choose from if one wants to try out a parameter
     public static String[] folds = new String[]{"-f", "1", "5", "10"};
     public static String[] groundings = new String[]{"-gr", "max", "avg"};
-    public static String[] learnRates = new String[]{"-lr", "0.1", "0.3", "0.5", "1"};
+    public static String[] learnRates = new String[]{"-lr", "0.05", "0.4"};
     public static String[] bpSteps = new String[]{"-ls", "10", "20", "50", "100", "1000", "3000"};
     public static String[] restarts = new String[]{"-rs", "1", "2", "3"};
     public static String[] epochs = new String[]{"-le", "7", "10"};
@@ -33,7 +37,20 @@ public class Configurations {
     public static String[] cumSteps = new String[]{"-cum", "0", "diff"};    //on,diff,number
     public static String[] learnDecay = new String[]{"-lrd", "0", "on"};    //on,number
 
+    //datasets
+    public static String[] datasets = setUpDatasets();
+    public static String[] templates = new String[]{"-t", "none", "weights/rules.w"};    //none serves as dummy
+    
     public static LinkedList<String> configurations;
+
+    public static final String[] setUpDatasets() {
+        String[] exs = new String[data.length + 1];
+        exs[0] = "-e";
+        for (int i = 0; i < data.length; i++) {
+            exs[i + 1] = dataPath + data[i] + "/examples " + "-r " + dataPath + data[i] + "/rules";
+        }
+        return exs;
+    }
 
     public static LinkedList<String> getConfigurations(LinkedList<String[]> pars) {
         configurations = new LinkedList<>();

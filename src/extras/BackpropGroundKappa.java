@@ -2,11 +2,11 @@ package extras;
 
 import discoverer.grounding.evaluation.struct.GroundKappaGetter;
 import discoverer.grounding.evaluation.Ball;
-import discoverer.global.Batch;
 import discoverer.construction.example.Example;
 import discoverer.grounding.network.GroundKappa;
 import discoverer.grounding.network.GroundLambda;
 import discoverer.construction.network.rules.KappaRule;
+import discoverer.global.Global;
 import discoverer.learning.backprop.functions.Activations;
 import discoverer.global.Tuple;
 import discoverer.learning.Weights;
@@ -21,6 +21,7 @@ import discoverer.learning.Weights;
  * b.getActiveRules())
  */
 public class BackpropGroundKappa {
+    
 
     private static Weights weights = new Weights();
 
@@ -38,7 +39,7 @@ public class BackpropGroundKappa {
      * @param learnRate learn rate
      * @return modified weights
      */
-    public static Weights getNewWeights(Ball b, Example e, Batch batch, double learnRate) {
+    public static Weights getNewWeights(Ball b, Example e, Global.batch batch, double learnRate) {
         weights.clear();
         Object o = b.getLast(); //final Kappa node
         if (o == null) {
@@ -61,7 +62,7 @@ public class BackpropGroundKappa {
      * @param batch
      * @param learnRate
      */
-    private static void backpropLines(Object o, GroundKappa gk, Ball b, Example e, Batch batch, double learnRate) {
+    private static void backpropLines(Object o, GroundKappa gk, Ball b, Example e, Global.batch batch, double learnRate) {
         for (Tuple<GroundLambda, KappaRule> t : gk.getDisjuncts()) {
             Triple triple = new Triple(gk, t.x, t.y);
             tripleLearn(o, triple, b, e, batch, learnRate); //derivative of a KAPPA RULE
@@ -79,7 +80,7 @@ public class BackpropGroundKappa {
      * @param batch
      * @param learnRate
      */
-    private static void soloLearn(Object o, GroundKappa gk, Ball b, Example e, Batch batch, double learnRate) {
+    private static void soloLearn(Object o, GroundKappa gk, Ball b, Example e, Global.batch batch, double learnRate) {
         double weightDerivation;
         if (o instanceof GroundKappa) {
             weightDerivation = kappaDerivative((GroundKappa) o, (Object) gk);
@@ -92,7 +93,7 @@ public class BackpropGroundKappa {
 
         double gradient = base * weightDerivation;
         double weight;
-        if (batch == Batch.YES) //weight = Rprop.computeWeight(gradient, kr);
+        if (batch == Global.batch.YES) //weight = Rprop.computeWeight(gradient, kr);
         {
             weight = -learnRate * gradient;
         } else {
@@ -112,7 +113,7 @@ public class BackpropGroundKappa {
      * @param batch
      * @param learnRate
      */
-    private static void tripleLearn(Object o, Triple t, Ball b, Example e, Batch batch, double learnRate) {
+    private static void tripleLearn(Object o, Triple t, Ball b, Example e, Global.batch batch, double learnRate) {
         double weightDerivation;
         if (o instanceof GroundKappa) {
             weightDerivation = kappaDerivative((GroundKappa) o, (Object) t);
@@ -125,7 +126,7 @@ public class BackpropGroundKappa {
 
         double gradient = base * weightDerivation;
         double weight;
-        if (batch == Batch.YES) //weight = Rprop.computeWeight(gradient, kr);
+        if (batch == Global.batch.YES) //weight = Rprop.computeWeight(gradient, kr);
         {
             weight = -learnRate * gradient;
         } else {

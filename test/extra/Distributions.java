@@ -19,7 +19,7 @@ public class Distributions {
 
     @Test
     public void longTail() {
-        Global.rg = new Random(2);
+        Global.setRg(new Random(2));
         for (int i = 0; i < 1000; i++) {
             double t = WeightInitializator.longTail();
             System.out.println(t);
@@ -28,7 +28,7 @@ public class Distributions {
     
     @Ignore
     public void uniform() {
-        Global.rg = new Random(2);
+        Global.setRg(new Random(2));
         for (int i = 0; i < 1000; i++) {
             double t = WeightInitializator.uniform();
             System.out.println(t);

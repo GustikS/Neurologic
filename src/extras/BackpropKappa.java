@@ -1,12 +1,12 @@
 package extras;
 
 import discoverer.grounding.evaluation.Ball;
-import discoverer.global.Batch;
 import discoverer.construction.example.Example;
 import discoverer.grounding.network.GroundKappa;
 import discoverer.grounding.network.GroundLambda;
 import discoverer.construction.network.Kappa;
 import discoverer.construction.network.rules.KappaRule;
+import discoverer.global.Global;
 import discoverer.learning.backprop.functions.Activations;
 import discoverer.global.Tuple;
 import discoverer.learning.Weights;
@@ -25,7 +25,7 @@ public class BackpropKappa {
      * @param learnRate learn rate
      * @return modified weights
      */
-    public static Weights getNewWeights(Ball b, Example e, Batch batch, double learnRate) {
+    public static Weights getNewWeights(Ball b, Example e, Global.batch batch, double learnRate) {
         Object o = b.getLast();
         activeKappas.clear();
         weights.clear();
@@ -45,7 +45,7 @@ public class BackpropKappa {
                 weightDerivation = lambdaDerivative((GroundLambda) o, (Object) kr);
             double gradient = base * weightDerivation;
             double weight;
-            if (batch == Batch.YES)
+            if (batch == Global.batch.YES)
                 //weight = Rprop.computeWeight(gradient, kr);
                 weight = - learnRate * gradient;
             else
@@ -62,7 +62,7 @@ public class BackpropKappa {
                 weightDerivation = lambdaDerivative((GroundLambda) o, (Object) k);
             double gradient = base * weightDerivation;
             double weight;
-            if (batch == Batch.YES)
+            if (batch == Global.batch.YES)
                 //weight = Rprop.computeWeight(gradient, k);
                 weight = - learnRate * gradient;
             else

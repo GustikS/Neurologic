@@ -8,13 +8,13 @@ import java.util.Random;
  */
 public class WeightInitializator {
 
-    private static Random rg = Global.rg;
+    private static Random rg = Global.getRg();
 
     public static final double getWeight() {
         //double rand = (rg.nextDouble() / 10) - 0.05;
         //double rand = (rg.nextDouble()) - 0.5;
         //double rand = 0.1;
-        switch (Global.weightInit) {
+        switch (Global.getWeightInit()) {
             case handmade:
                 return getHandMade();
             case longtail:
@@ -40,7 +40,7 @@ public class WeightInitializator {
         double power = 50;
         double x0 = 0;
         double x1 = 10;
-        double y = Global.rg.nextDouble();
+        double y = Global.getRg().nextDouble();
         double x = x1 - (Math.pow(((Math.pow(x1, (power + 1)) - Math.pow(x0, (power + 1))) * y + Math.pow(x0, (power + 1))), (1 / (power + 1))));
         return x;
     }

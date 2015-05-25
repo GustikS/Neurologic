@@ -12,7 +12,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -26,9 +25,7 @@ public class ScriptGenerator {
     static Writer script;
     static Writer qsub;
 
-    static String dataset = "gi50";
-
-    private static final String walltime = "4d";
+    private static final String walltime = "2w";
     private static final String queue = "-q q_" + walltime + "@wagap.cerit-sc.cz";
     private static final String javaPars = " -XX:+UseSerialGC -XX:NewSize=2000m -Xms4096m -Xmx14g";
     private static final String memory = "16gb";
@@ -44,16 +41,18 @@ public class ScriptGenerator {
         try {
             String common = "-f 5 ";
             LinkedList<String[]> scripts = new LinkedList<>();
-            scripts.add(Configurations.seeds);
+            scripts.add(Configurations.datasets);
+            //scripts.add(Configurations.templates);
+            //scripts.add(Configurations.seeds);
             //scripts.add(Configurations.sgd);
+            scripts.add(Configurations.learnRates);
             //scripts.add(Configurations.learnDecay);
             scripts.add(Configurations.activations);
-            //scripts.add(Configurations.cumSteps);
             //scripts.add(Configurations.initials);
             scripts.add(Configurations.groundings);
             //scripts.add(Configurations.cumSteps);
             //scripts.add(Configurations.dropouts);
-            generate("ptcmrExtra", "gi50", scripts, common);
+            generate("allDatasets", "allDatasetsNCIGI", scripts, common);
         } catch (IOException ex) {
             Logger.getLogger(ScriptGenerator.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -80,12 +79,12 @@ public class ScriptGenerator {
 
     private static void createScripts(String neuroDir, String scriptDir, LinkedList<String[]> scripts, String common) throws IOException {
         String path = "cd /storage/brno2/home/souregus/neuro_builds/" + neuroDir;
-        head = path + "/dist/ \nmodule add jdk-8 \njava " + javaPars + " -jar neurologic.jar -e ../in/" + dataset + "/examples -r ../in/" + dataset + "/rules ";
+        head = path + "/dist/ \nmodule add jdk-8 \njava " + javaPars + " -jar neurologic.jar ";
         qsub = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(metaDir + "/" + scriptDir + "/qsub.sh"), "utf-8"));
 
         LinkedList<String> configurations = Configurations.getConfigurations(scripts);
         for (String configuration : configurations) {
-            String name = "script_" + (common + configuration).replaceAll(" ", "_").replaceAll("-", "_");
+            String name = "script_" + (common + configuration).replaceAll(" ", "_").replaceAll("-", "").replaceAll("/", "_").replaceAll("\\.", "");
             script = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(metaDir + "/" + scriptDir + "/" + name + ".sh"), "utf-8"));
             script.write(head);
             script.write(common);

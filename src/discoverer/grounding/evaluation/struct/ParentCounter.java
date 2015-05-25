@@ -43,12 +43,12 @@ public class ParentCounter {
             getAllGroundKappasAVG((GroundLambda) o);
         }
 
-        if (Global.debugEnabled) {
+        if (Global.isDebugEnabled()) {
             for (GroundKL groundKappa : groundKLs) {
                 System.out.println("counts: " + groundKappa + " - " + groundKappa.getGroundParents());
             }
         }
-        if (Global.debugEnabled){
+        if (Global.isDebugEnabled()){
             for (GroundKL groundKL : groundKLs) {
                 System.out.println("avgvals: " + groundKL + " -> " + groundKL.getValueAvg());
             }
@@ -74,7 +74,7 @@ public class ParentCounter {
     }
 
     private static void getAllGroundKappasAVG(GroundKappa gk) {
-        if (Global.debugEnabled) {
+        if (Global.isDebugEnabled()) {
             System.out.println("counting: " + gk);
         }
 
@@ -97,7 +97,7 @@ public class ParentCounter {
     }
 
     private static void getAllGroundKappasAVG(GroundLambda gl) {
-        if (Global.debugEnabled) {
+        if (Global.isDebugEnabled()) {
             System.out.println("counting: " + gl);
         }
 

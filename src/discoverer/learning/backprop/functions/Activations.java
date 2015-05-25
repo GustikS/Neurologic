@@ -6,8 +6,8 @@ import java.util.Set;
 
 public class Activations {
 
-    public static Global.activationSet lambda = Global.lambdaActivation;
-    public static Global.activationSet kappa = Global.kappaActivation;
+    public static Global.activationSet lambda = Global.getLambdaActivation();
+    public static Global.activationSet kappa = Global.getKappaActivation();
 
     private static double switchMe(Global.activationSet literal, List<Double> inputs, double offset) throws AssertionError {
         switch (literal) {

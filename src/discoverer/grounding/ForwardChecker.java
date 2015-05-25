@@ -21,8 +21,8 @@ public class ForwardChecker {
     private static Example example;
     private static HashMap<Object, Boolean> cache;
 
-    private static final boolean cacheEnabled = Global.cacheEnabled;
-    private static final boolean debugEnabled = Global.debugEnabled;
+    private static final boolean cacheEnabled = Global.isCacheEnabled();
+    private static final boolean debugEnabled = Global.isDebugEnabled();
     private static int runs = 0;
 
     public static int exnum = 0;

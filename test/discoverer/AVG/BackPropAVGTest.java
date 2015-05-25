@@ -25,7 +25,7 @@ public class BackPropAVGTest {
 
     @Before
     public void initRandom() {
-        Global.rg = new Random(1L);
+        Global.setRg(new Random(1L));
     }
 
     @Ignore

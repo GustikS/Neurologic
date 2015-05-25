@@ -27,13 +27,13 @@ public class FileToStringListJava6 {
                 }
             }
 
-        } catch (IOException ioe) {
-            ioe.printStackTrace();
+        } catch (Exception ioe) {
+            Glogger.err(ioe.getMessage() + "- file not found");
         } finally {
             try {
                 buffReader.close();
-            } catch (IOException ioe1) {
-                //Leave It
+            } catch (Exception ioe1) {
+                //Glogger.err(ioe1.getMessage());
             }
         }
 

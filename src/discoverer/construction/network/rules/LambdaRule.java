@@ -4,12 +4,14 @@ import discoverer.construction.Terminal;
 import discoverer.construction.network.rules.SubL;
 import discoverer.construction.network.rules.SubK;
 import discoverer.global.Global;
+import java.io.Serializable;
 import java.util.*;
 
 /**
  * Lambda clause
  */
-public class LambdaRule extends Rule {
+public class LambdaRule extends Rule implements Serializable {
+
     private SubL head;
     private List<SubK> body;
     private Double lowerBound;
@@ -18,9 +20,18 @@ public class LambdaRule extends Rule {
         body = new ArrayList<SubK>();
         drawn = false;
     }
-    public int getBodyLen() { return body.size(); }
-    public List<SubK> getBody() { return body; }
-    public void addHead(SubL h) { head = h; }
+
+    public int getBodyLen() {
+        return body.size();
+    }
+
+    public List<SubK> getBody() {
+        return body;
+    }
+
+    public void addHead(SubL h) {
+        head = h;
+    }
     public boolean drawn;
 
     public boolean isDrawn() {
@@ -41,40 +52,50 @@ public class LambdaRule extends Rule {
 
     @Override
     public String toString() {
-        String s = head.toString();
-        s += ":-";
-        for (SubK sk: body) {
-            s += sk.toString();
-            s += ",";
+        StringBuilder sb = new StringBuilder();
+        sb.append(head.toString());
+        sb.append(" :- ");
+        if (body.size() > 0) {
+            for (SubK sk : body) {
+                sb.append(sk.toString());
+                sb.append(",");
+            }
+            sb.replace(sb.length() - 1, sb.length(), ".");
         }
-        return s;
+        return sb.toString();
     }
 
-
     /**
-     * adds grounded Kappa literal to body
-     * adds every not Binded variable to unbound Terminal List
-     * @param e 
+     * adds grounded Kappa literal to body adds every not Binded variable to
+     * unbound Terminal List
+     *
+     * @param e
      */
     public void addBodyEl(SubK e) {
         body.add(e);
-        for (Terminal t: e.getTerms())
-            if (!t.isBind())
+        for (Terminal t : e.getTerms()) {
+            if (!t.isBind()) {
                 unbound.add(t);
+            }
+        }
     }
 
-    public SubL getHead() { return head; }
+    public SubL getHead() {
+        return head;
+    }
 
     @Override
     public Terminal getNextUnbound() {
-        for (Terminal var: unbound)
-            if (var.isDummy())
+        for (Terminal var : unbound) {
+            if (var.isDummy()) {
                 return var;
+            }
+        }
 
         ArrayList<Terminal> winners = new ArrayList<Terminal>();
         int highestScore = 0;
 
-        for (Terminal var: unbound) {
+        for (Terminal var : unbound) {
             int newScore = countScoreFor(var);
 
             if (newScore == highestScore) {
@@ -86,14 +107,15 @@ public class LambdaRule extends Rule {
             }
         }
 
-        int randomIndex = Global.rg.nextInt(winners.size());
+        int randomIndex = Global.getRg().nextInt(winners.size());
         return winners.get(randomIndex);
     }
 
     public int countScoreFor(Terminal var) {
         int score = 0;
-        for (SubK sk: body)
+        for (SubK sk : body) {
             score += sk.countScoreFor(var);
+        }
 
         return score;
     }

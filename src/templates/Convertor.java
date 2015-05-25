@@ -20,6 +20,8 @@ import java.util.ArrayList;
 import java.util.BitSet;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -32,55 +34,60 @@ public class Convertor {
 
     static HashSet<String> allLiterals = new HashSet();
 
-    //static String in = "in\\ptcmrExtra\\predictive_toxicology\\ptc_mm.txt";
-    static String in = "in\\gi50\\786.txt";
-    //static String out = "in\\ptcmrExtra\\mm\\examples";
-    static String out = "in\\gi50\\examples";
+    //static String in = "..\\extras\\predictive_toxicology\\ptc_fm.txt";
+    //static String in = "in\\mutaGeneral\\examples";
+    //static String out = "in\\ptc\\fm\\examples";
+    //static String out = "in\\mutaGeneral\\examplesGeneral";
+    
+    static String in = "..\\extras\\NCIGI\\ncigi.txt";
+    static String out = "in\\ncigi\\examples";
+
+    private static boolean cutTogeneral = false;
 
     public static void main(String[] args) {
 
-        String[] ex = FileToStringListJava6.convert(in,10000);
+        String[] ex = FileToStringListJava6.convert(in, 10000);
 
-        ArrayList<ArrayList<String>> examples = new ArrayList<>();
+        createCILP(ex);
 
+        ArrayList<LinkedHashSet<String>> examples = transformExamples(ex);
+
+        writeOut(examples, out);
+        writeOut(allLiterals, out + "_literalSet");
+    }
+
+    static void createCILP(String[] ex) {
+        HashSet<String> newExs = new LinkedHashSet<>();
         for (int i = 0; i < ex.length; i++) {
             String example = ex[i];
-            ArrayList<String> newEx = new ArrayList<>();
-            if (example.startsWith("+")) {
-                newEx.add("1.0");
-            } else {
-                newEx.add("0.0");
-            }
-            String newLit;
+            example = example.replace("0.0", "~class:-");
+            example = example.replace("1.0", "class:-");
+            example = example.replaceAll("([^)]),", "$1;");
+            example = example.replace(".", "");
+            example = example.replaceAll(" ", "");
+            newExs.add(example);
+        }
+        writeOut(newExs, out + "_CILP");
+    }
 
-            //dictionary resolvation:
-            //String[] literals = example.substring(2).replaceAll("[ .]", "").split("\\)[,]");
-            String[] literals = example.substring(2).replaceAll(" ", "").split("\\)[,]");
+    static ArrayList<LinkedHashSet<String>> transformExamples(String[] ex) {
+        ArrayList<LinkedHashSet<String>> examples = new ArrayList<>();
+        for (int i = 0; i < ex.length; i++) {
+            String example = ex[i];
+            LinkedHashSet<String> newEx = new LinkedHashSet<>();
+
+            int headSeparator = example.indexOf(" ");
+            String eClass = example.substring(0, headSeparator);    //I hope it's always separated by a space
+            example = example.substring(headSeparator, example.length());
+            setClass(eClass, newEx);
+
+            example = example.replaceAll(" ", "");  //no spaces needed from now on
+            if (example.endsWith(".")) {    //we dont want this terminal
+                example = example.substring(0, example.length() - 1);
+            }
+            String[] literals = example.split("\\)[,]");
             for (String literal : literals) {
-                if (literal.startsWith("bond")) {
-                    String[] split = literal.replace("(", ",").replace(")", "").split(",");
-                    if (split[1].equals(split[2])) {    //short duplicated bond,e.g.: bond(16, 16, 13, 13, 1)
-                        newLit = "bond(" + split[1] + "," + split[3] + "," + getNumber(split[1], split[3]) + ")";
-                        newEx.add(newLit);
-                        newLit = split[5] + "(" + getNumber(split[1], split[3]) + ")";
-                        newEx.add(newLit);
-                    } else {    //long complete bond e.g., bond(tr000_4, tr000_2, cl, c, singlebond)
-                        newLit = "bond(" + split[1] + "," + split[2] + "," + getNumber(split[1], split[2]) + ")";
-                        newEx.add(newLit);
-                        newLit = split[3] + "(" + split[1] + ")";
-                        newEx.add(newLit);
-                        newLit = split[4] + "(" + split[2] + ")";
-                        newEx.add(newLit);
-                        newLit = split[5] + "(" + getNumber(split[1], split[2]) + ")";
-                        newEx.add(newLit);
-                    }
-                } else if (literal.startsWith("atom")) { //e.g., atom(tr000, tr000_4)
-                    //skip this thing
-                } else if (literal.startsWith("atm")) { // e.g., atm(8, C.3, 0.167)
-                    String[] split = literal.replace("(", ",").split(",");
-                    newLit = split[2].toLowerCase().replace(".", "_") + "(" + split[1] + ")";
-                    newEx.add(newLit);
-                }
+                addFromDictionary(literal, newEx);
             }
             for (String literal : newEx) {
                 int ind = literal.indexOf("(");
@@ -93,11 +100,72 @@ public class Convertor {
         for (String literal : allLiterals) {
             System.out.println(literal);
         }
-
-        writeOut(examples, out);
-        writeOut(allLiterals, out + "_literalSet");
+        return examples;
     }
-    
+
+    static void setClass(String eClass, LinkedHashSet<String> newEx) {
+        if (eClass.contains("+")) {
+            newEx.add("1.0");
+        } else if (eClass.contains("-")) {
+            newEx.add("0.0");
+        } else { //keep it the same way
+            newEx.add(eClass);
+        }
+    }
+
+    /**
+     * the dictionary is not really nice, but it should cover the basic datasets
+     * we work with
+     *
+     * @param literal
+     * @param newEx
+     */
+    static void addFromDictionary(String literal, LinkedHashSet<String> newEx) {
+        String newLit;
+        String[] split = literal.replace("(", ",").replace(")", "").split(",");
+        if (literal.startsWith("bond")) {
+            if (split[1].equals(split[2])) {    //short duplicated bond,e.g.: bond(16, 16, 13, 13, 1) = NCIGI
+                newLit = "bond(" + split[1] + ", " + split[3] + ", " + getNumber(split[1], split[3]) + ")";
+                newEx.add(newLit);
+                newLit = split[5] + "(" + getNumber(split[1], split[3]) + ")";
+                newEx.add(newLit);
+            } else if (split.length == 6) {    //long complete bond e.g., bond(tr000_4, tr000_2, cl, c, singlebond) = PTC
+                newLit = "bond(" + split[1] + ", " + split[2] + ", " + getNumber(split[1], split[2]) + ")";
+                newEx.add(newLit);
+                newLit = split[3] + "(" + split[1] + ")";
+                newEx.add(newLit);
+                newLit = split[4] + "(" + split[2] + ")";
+                newEx.add(newLit);
+                newLit = split[5] + "(" + getNumber(split[1], split[2]) + ")";
+                newEx.add(newLit);
+            } else {    // our default format bond(d59_23, d59_5, 0), or some other bond = keep it
+                if (literal.contains("(") && !literal.contains(")")) {
+                    newEx.add(literal + ")");
+                } else {
+                    newEx.add(literal);
+                }
+            }
+        } else if (literal.startsWith("atom")) { //e.g., atom(tr000, tr000_4)
+            //skip this thing
+        } else if (literal.startsWith("atm")) { // e.g., atm(8, C.3, 0.167)
+            newLit = split[2].toLowerCase().replace(".", "_") + "(" + split[1] + ")";
+            newEx.add(newLit);
+        } else {    //some unknown literal, probably some specific atom/bond type
+            if (cutTogeneral) {
+                String head = literal.substring(0, literal.indexOf("("));
+                if (head.contains("_")) {
+                    head = head.substring(0, head.indexOf("_"));    //generalization
+                    String body = literal.substring(literal.indexOf("("), literal.length());
+                    literal = head + body;
+                }
+            }
+            if (literal.contains("(") && !literal.contains(")")) {
+                newEx.add(literal + ")");
+            } else {
+                newEx.add(literal);
+            }
+        }
+    }
 
     static void writeOut(HashSet<String> literals, String outfile) {
         Writer test;
@@ -117,18 +185,24 @@ public class Convertor {
         }
     }
 
-    static void writeOut(ArrayList<ArrayList<String>> examples, String outfile) {
+    static void writeOut(ArrayList<LinkedHashSet<String>> examples, String outfile) {
         Writer test;
         try {
             test = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(outfile), "utf-8"));
-            for (ArrayList<String> example : examples) {
-                test.write(example.get(0) + " ");
-                for (int i = 1; i < example.size() - 1; i++) {
-                    String lit = example.get(i);
-                    test.write(lit + ", ");
+            for (LinkedHashSet<String> example : examples) {
+                StringBuilder sb = new StringBuilder();
+                Iterator<String> ite = example.iterator();
+
+                sb.append(ite.next()).append(" ");  //the head is separate
+
+                while (ite.hasNext()) {
+                    sb.append(ite.next()).append(", ");
                 }
-                test.write(example.get(example.size() - 1));
+                sb.replace(sb.length() - 2, sb.length(), ".");  //the termination
+
+                test.write(sb.toString());
                 test.write("\n");
+
             }
             test.close();
         } catch (UnsupportedEncodingException ex1) {
@@ -144,11 +218,17 @@ public class Convertor {
     static int a = 0;
 
     private static String getNumber(String lit1, String lit2) {
-        if (couples.containsKey(lit1 + "-" + lit2)) {
-            return couples.get(lit1 + "-" + lit2);
+        String join;
+        if (lit1.compareToIgnoreCase(lit2) < 0) {
+            join = lit1 + "-" + lit2;
+        } else {
+            join = lit2 + "-" + lit1;
+        }
+        if (couples.containsKey(join)) {
+            return couples.get(join);
         } else {
             String put = "b_" + a++;
-            couples.put(lit1 + "-" + lit2, put);
+            couples.put(join, put);
             return put;
         }
     }

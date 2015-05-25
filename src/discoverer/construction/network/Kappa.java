@@ -20,9 +20,12 @@ public class Kappa extends KL {
         super(name);
         rules = new ArrayList<KappaRule>();
         step = 0.01;
-        if (!Global.kappaAdaptiveOffset) {
+        if (!Global.isKappaAdaptiveOffset()) {
             initOffset();   //HERE and in the netfactory CHANGE to make possible for adaptive initialization
         }
+    }
+
+    public Kappa() {
     }
 
     public Kappa(String name, Double d) {
@@ -33,8 +36,8 @@ public class Kappa extends KL {
     }
 
     public void initOffset() {
-        if (Global.initKappaAdaptiveOffset > 0) {
-            offset = 1 / (2 * (Global.rg.nextDouble() - 0.5) * Global.initKappaAdaptiveOffset * rules.size());
+        if (Global.getInitKappaAdaptiveOffset() > 0) {
+            offset = 1 / (2 * (Global.getRg().nextDouble() - 0.5) * Global.getInitKappaAdaptiveOffset() * rules.size());
         } else {
             offset = WeightInitializator.getWeight();
         }

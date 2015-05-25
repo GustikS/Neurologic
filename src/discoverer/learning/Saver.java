@@ -5,11 +5,29 @@ import discoverer.construction.network.Kappa;
 import discoverer.construction.network.Lambda;
 import discoverer.construction.network.rules.SubK;
 import discoverer.construction.network.KL;
+import discoverer.construction.network.Network;
 import discoverer.global.Tuple;
-import discoverer.*;
 import discoverer.global.Glogger;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 
 /**
  * Saver for the best learned network so far
@@ -20,7 +38,9 @@ public class Saver {
     private static Set<Tuple<Kappa, Double>> offsets = new HashSet<Tuple<Kappa, Double>>();
     private static Double learnError, threshold, dispersion;
 
-    public static void save(KL network, double le, double th, double disp) {
+    public static void save(Network net, double le, double th, double disp) {
+        KL network = net.last;  //this recursion could be shortcutted too!
+        
         rules.clear();
         offsets.clear();
         learnError = le;

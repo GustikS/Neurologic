@@ -71,7 +71,7 @@ public class Chunks {
     }
 
     public void insert(int[] literal) {
-        if (Global.debugEnabled) {
+        if (Global.isDebugEnabled()) {
             System.out.println("Inserting literal:\t" + literal);
         }
         /* [1|1,2,3,4,5,6,7,8,9...] -> iserted into db */

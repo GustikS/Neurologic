@@ -59,7 +59,7 @@ public class ExampleSplitter {
                 fold.add(negatives.get(n++));
             }
 
-            Collections.shuffle(fold, Global.rg);
+            Collections.shuffle(fold, Global.getRg());
             folds.add(fold);
         }
 
@@ -72,7 +72,7 @@ public class ExampleSplitter {
             folds.remove(k);
         }
 
-        if (Global.outputFolds) {
+        if (Global.isOutputFolds()) {
             Glogger.createDir("folds");
             int i = 1;
             for (List<Example> fold : folds) {
@@ -133,7 +133,7 @@ public class ExampleSplitter {
             }
         }
 
-        Collections.shuffle(tmp, Global.rg);
+        Collections.shuffle(tmp, Global.getRg());
         return tmp;
     }
 

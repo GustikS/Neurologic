@@ -103,7 +103,7 @@ public class Parser {
     private static int getWeightLen(String line) {
         for (int i = 0; i < line.length(); i++) {
             char c = line.charAt(i);
-            if (!(c == '.' || c == ' ' || (c >= '0' && c <= '9')))
+            if (!(c == '.' || c == ' ' || c == '-' || (c >= '0' && c <= '9')))
                 return i;
         }
 

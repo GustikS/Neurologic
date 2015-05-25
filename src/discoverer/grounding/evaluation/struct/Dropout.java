@@ -32,14 +32,14 @@ public class Dropout {
     }
 
     private static void drop(GroundKappa last) {
-        last.dropMe = Global.rg.nextDouble() < last.getGeneral().dropout;
+        last.dropMe = Global.getRg().nextDouble() < last.getGeneral().dropout;
         for (Tuple<GroundLambda, KappaRule> disj : last.getDisjuncts()) {
             drop(disj.x);
         }
     }
 
     private static void drop(GroundLambda last) {
-        last.dropMe = Global.rg.nextDouble() < last.getGeneral().dropout;
+        last.dropMe = Global.getRg().nextDouble() < last.getGeneral().dropout;
         for (GroundKappa conj : last.getConjuncts()) {
             drop(conj);
         }
@@ -55,7 +55,7 @@ public class Dropout {
     }
 
     private static void dropAvg(GroundKappa last) {
-        last.dropMe = Global.rg.nextDouble() < last.getGeneral().dropout;
+        last.dropMe = Global.getRg().nextDouble() < last.getGeneral().dropout;
         for (Tuple<HashSet<GroundLambda>, KappaRule> disj : last.getDisjunctsAvg()) {
             for (GroundLambda gl : disj.x) {
                 dropAvg(gl);
@@ -64,7 +64,7 @@ public class Dropout {
     }
 
     private static void dropAvg(GroundLambda last) {
-        last.dropMe = Global.rg.nextDouble() < last.getGeneral().dropout;
+        last.dropMe = Global.getRg().nextDouble() < last.getGeneral().dropout;
         for (Map.Entry<GroundKappa, Integer> conj : last.getConjunctsAvg().entrySet()) {
             dropAvg(conj.getKey());
         }

@@ -31,9 +31,9 @@ import java.util.Set;
  */
 public class Grounder {
     
-    private static final boolean forwardCheckEnabled = Global.forwardCheckEnabled;
-    private static final boolean cacheEnabled = Global.cacheEnabled;
-    private static final boolean debugEnabled = Global.debugEnabled;
+    private static final boolean forwardCheckEnabled = Global.isForwardCheckEnabled();
+    private static final boolean cacheEnabled = Global.isCacheEnabled();
+    private static final boolean debugEnabled = Global.isDebugEnabled();
     
     private static Example example;
     private static HashMap<Object, Ball> cache;
@@ -68,7 +68,7 @@ public class Grounder {
         Ball b = kl instanceof Kappa ? solve2((Kappa) kl, null) : solve2((Lambda) kl, null);    //always Kappa only...first literal is without variables(ignoring them)
 
         if (b == null) {
-            return new Ball(Global.falseAtomValue);
+            return new Ball(Global.getFalseAtomValue());
         }
         
         ForwardChecker.printRuns();
@@ -105,7 +105,7 @@ public class Grounder {
             }
             
             cancel = false;
-            double w = r.weight;
+            double w = r.getWeight();
 
             // HERE I need to get back a list of GroundLambda
             //- calculate the average, weight it and add
@@ -196,7 +196,7 @@ public class Grounder {
         //---
         gl.setValueAvg(b.valAvg);
         
-        if (Global.debugEnabled) {
+        if (Global.isDebugEnabled()) {
             System.out.println(l + "\t->\t" + b.valAvg);
         }
         
@@ -356,7 +356,7 @@ public class Grounder {
             out.addAvg(tmp);
 
             //-------------------------
-            if (Global.pruning) {
+            if (Global.isPruning()) {
                 double upperBound = out.valMax + lr.getBodyLen() - i;
                 if (best.valMax != null && best.valMax >= upperBound) {
                     //HERE - pruning

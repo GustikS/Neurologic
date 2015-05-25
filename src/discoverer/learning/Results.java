@@ -14,19 +14,19 @@ public class Results {
     private List<Result> results;
     private LearnStep actual;
     public ArrayList<LearnStep> past;
-    int history = Global.history;
+    int history = Global.getHistory();
 
     public boolean convergence() {
         if (past.size() > 0) {
             int last = past.size() >= history ? history : past.size();
             last = past.size() - last;
-            if ((past.get(last).sum100 / past.get(last).count100 - actual.sum100 / actual.count100) < Global.convergenceLimit) {
-                Glogger.info("converged: " + past.get(last).sum100 / past.get(last).count100 + " - " + actual.sum100 / actual.count100 + " < " + Global.convergenceLimit);
+            if ((past.get(last).sum100 / past.get(last).count100 - actual.sum100 / actual.count100) < Global.getConvergenceLimit()) {
+                Glogger.info("converged: " + past.get(last).sum100 / past.get(last).count100 + " - " + actual.sum100 / actual.count100 + " < " + Global.getConvergenceLimit());
                 if (past.size() > history) {
                     return true;
                 }
             }
-            Glogger.info("not yet converged: " + past.get(last).sum100 / past.get(last).count100 + " - " + actual.sum100 / actual.count100 + " > " + Global.convergenceLimit);
+            Glogger.info("not yet converged: " + past.get(last).sum100 / past.get(last).count100 + " - " + actual.sum100 / actual.count100 + " > " + Global.getConvergenceLimit());
         }
         return false;
     }
@@ -34,7 +34,7 @@ public class Results {
     public Results() {
         actual = new LearnStep();
         results = new ArrayList<Result>();
-        past = new ArrayList<>(Global.cumMaxSteps);
+        past = new ArrayList<>(Global.getCumMaxSteps());
     }
 
     public void clear() {

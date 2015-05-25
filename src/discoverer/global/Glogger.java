@@ -28,22 +28,28 @@ public class Glogger {
     static Writer training;
     static Writer results;
     static Writer test;
-    private static String resultsDir = "../results";
+    private static final String resultsDir = "../results";
 
     public static void init() {
-        StringBuffer file = new StringBuffer();
+        StringBuilder file = new StringBuilder();
+
+        file.append(Settings.getString());
+        String glob = "_";
+        glob += Global.isPruning() ? "pr1" : "pr0";
+        glob += Global.isForwardCheckEnabled() ? "fw1" : "fw0";
+        glob += Global.isCacheEnabled() ? "ch1" : "ch0";
+        glob += "_";
+        file.append(glob);
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd_HH-mm");
         Date date = new Date();
         String time = dateFormat.format(date); //2014/08/06 15:59:48
         file.append(time).append("_");
-        file.append(Settings.getString());
-        String glob = "_";
-        glob += Global.pruning ? "pr1" : "pr0";
-        glob += Global.forwardCheckEnabled ? "fw1" : "fw0";
-        glob += Global.cacheEnabled ? "ch1" : "ch0";
-        file.append(glob);
+
         try {
             createDir(resultsDir);
+            test = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(resultsDir + "/testfile"), "utf-8"));
+            test.write("metacetrum file test : " + time);
+            test.close();
             test = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(resultsDir + "/testfile"), "utf-8"));
             test.write("metacetrum file test : " + time);
             test.close();
@@ -119,13 +125,13 @@ public class Glogger {
     }
 
     public static void info(String string) {
-        if (Global.infoEnabled) {
+        if (Global.isInfoEnabled()) {
             System.out.println(string);
         }
     }
 
     public static void debug(String string) {
-        if (Global.debugEnabled) {
+        if (Global.isDebugEnabled()) {
             System.out.println(string);
         }
     }

@@ -7,6 +7,10 @@ public abstract class Element {
 
     public final String name;
 
+    public Element() {
+        name = null;
+    }
+
     @Override
     public String toString() {
         return name;

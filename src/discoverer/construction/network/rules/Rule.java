@@ -8,6 +8,7 @@ import java.util.*;
  * One line with rule
  */
 public abstract class Rule {
+    public String original;
     public Set<Terminal> unbound;
     private Terminal lastBindedVar;
 
