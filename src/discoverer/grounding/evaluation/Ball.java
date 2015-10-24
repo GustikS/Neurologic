@@ -1,27 +1,34 @@
 package discoverer.grounding.evaluation;
 
+import discoverer.grounding.evaluation.struct.GroundNetworkParser;
 import discoverer.grounding.network.GroundKL;
 import discoverer.grounding.network.GroundLambda;
 import discoverer.construction.network.rules.KappaRule;
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /* object for representing the result of maximal substitution */
-public class Ball {
+public class Ball implements Serializable{
 
     public Double valMax;  //the value is always synchronized with the value of the Object last
     public Double valAvg;
     private GroundKL last;    // GroundLambda or GroundKappa literal(new superClass)
-    private Set<GroundLambda> lastAvg;
+    private Set<GroundLambda> lastAvg; //set of different body-substitutions
+    //
     private Set<KappaRule> activeRules;
     //public Set<Double> inputsMax = new HashSet<>();
     //public Set<Double> inputsAvg = new HashSet<>();
+    public List<GroundKL> groundNeurons;
 
     public Ball() {
         valMax = null;
         valAvg = null;
         activeRules = new HashSet<KappaRule>();
         lastAvg = new HashSet<>();
+        groundNeurons = new ArrayList<>();
     }
 
     public Ball(double d) {
@@ -135,6 +142,21 @@ public class Ball {
         /*if (lastAvg == null){
          lastAvg = new HashSet<>();
          }*/
-        lastAvg.addAll(gls);
+        lastAvg.addAll(gls);    //too time-consuming!!
+    }
+    
+    public void loadGroundNeurons(Set<GroundKL> neurons){
+        for (GroundKL neuron : neurons) {
+            
+        }
+        //GroundNetworkParser.parseMAX(this);
+        groundNeurons.clear();
+        groundNeurons.addAll(neurons);
+    }
+    
+    public void invalidateNeurons(){
+        for (GroundKL gkl : groundNeurons) {
+            gkl.invalidate();
+        }
     }
 }

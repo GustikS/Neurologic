@@ -28,7 +28,7 @@ public class FileToStringListJava6 {
             }
 
         } catch (Exception ioe) {
-            Glogger.err(ioe.getMessage() + "- file not found");
+            Glogger.out(ioe.getMessage() + "- file not found");
         } finally {
             try {
                 buffReader.close();

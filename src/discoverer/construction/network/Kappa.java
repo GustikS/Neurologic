@@ -5,7 +5,7 @@ import discoverer.global.Global;
 import java.util.*;
 
 /**
- * Kappa node
+ * Kappa node = atom neuron
  */
 public class Kappa extends KL {
 

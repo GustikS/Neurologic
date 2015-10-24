@@ -27,6 +27,7 @@ public class ScriptGenerator {
 
     private static final String walltime = "2w";
     private static final String queue = "-q q_" + walltime + "@wagap.cerit-sc.cz";
+    //private static final String queue = "";
     private static final String javaPars = " -XX:+UseSerialGC -XX:NewSize=2000m -Xms4096m -Xmx14g";
     private static final String memory = "16gb";
 
@@ -39,20 +40,20 @@ public class ScriptGenerator {
 
     public static void main(String[] args) {
         try {
-            String common = "-f 5 ";
+            String common = "";
             LinkedList<String[]> scripts = new LinkedList<>();
             scripts.add(Configurations.datasets);
             //scripts.add(Configurations.templates);
             //scripts.add(Configurations.seeds);
             //scripts.add(Configurations.sgd);
-            scripts.add(Configurations.learnRates);
+            //scripts.add(Configurations.learnRates);
             //scripts.add(Configurations.learnDecay);
-            scripts.add(Configurations.activations);
+            //scripts.add(Configurations.activations);
             //scripts.add(Configurations.initials);
             scripts.add(Configurations.groundings);
             //scripts.add(Configurations.cumSteps);
             //scripts.add(Configurations.dropouts);
-            generate("allDatasets", "allDatasetsNCIGI", scripts, common);
+            generate("randomNCI", "randomNCI", scripts, common);
         } catch (IOException ex) {
             Logger.getLogger(ScriptGenerator.class.getName()).log(Level.SEVERE, null, ex);
         }

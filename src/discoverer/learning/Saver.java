@@ -39,8 +39,29 @@ public class Saver {
     private static Double learnError, threshold, dispersion;
 
     public static void save(Network net, double le, double th, double disp) {
+        rules.clear();
+        offsets.clear();
+        learnError = le;
+        threshold = th;
+        dispersion = disp;
+
+        for (Kappa k : net.getKappas()) {
+            if (!k.isElement()) {
+                offsets.add(new Tuple<>(k, k.getOffset()));
+                Glogger.debug(k + " -> " + k.getOffset());
+
+                for (KappaRule kr : k.getRules()) {
+                    Tuple<KappaRule, Double> t = new Tuple<>(kr, kr.getWeight());
+                    Glogger.debug(kr + " -> " + kr.getWeight());
+                    rules.add(t);
+                }
+            }
+        }
+    }
+
+    public static void save2(Network net, double le, double th, double disp) {
         KL network = net.last;  //this recursion could be shortcutted too!
-        
+
         rules.clear();
         offsets.clear();
         learnError = le;

@@ -10,15 +10,20 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * Grounded kappa node
+ * Grounded kappa node = atom neuron
  */
 public class GroundKappa extends GroundKL {
 
     private Kappa general;
 
+    //change this into static arrays for performance!!
+    
     private List<Tuple<GroundLambda, KappaRule>> disjuncts;
     private List<Tuple<HashSet<GroundLambda>, KappaRule>> disjunctsAvg;
     //the hashset average value could be pre-calculated for speedup
+    
+    public GroundLambda[] atoms;
+    public KappaRule[] rules;
 
     @Override
     public GroundKappa cloneMe() {
@@ -32,7 +37,7 @@ public class GroundKappa extends GroundKL {
     public GroundKappa(Kappa k) {
         super();
         general = k;
-        disjuncts = new ArrayList<Tuple<GroundLambda, KappaRule>>();
+        disjuncts = new ArrayList<>();
         disjunctsAvg = new ArrayList<>();
     }
 
@@ -104,4 +109,14 @@ public class GroundKappa extends GroundKL {
         this.disjunctsAvg = disjunctsAvg;
     }
 
+    @Override
+    public void transform2Arrays() {
+        atoms = new GroundLambda[disjunctsAvg.size()];
+        rules = new KappaRule[disjunctsAvg.size()];
+        int i =0;
+        for (Tuple<HashSet<GroundLambda>, KappaRule> disjunct : disjunctsAvg) {
+            atoms[i] = disjunct.x.iterator().next();
+            rules[i++] = disjunct.y;
+        }
+    }
 }

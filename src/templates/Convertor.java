@@ -10,6 +10,7 @@ import discoverer.construction.Parser;
 import discoverer.construction.example.Example;
 import discoverer.global.FileToStringListJava6;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -38,17 +39,41 @@ public class Convertor {
     //static String in = "in\\mutaGeneral\\examples";
     //static String out = "in\\ptc\\fm\\examples";
     //static String out = "in\\mutaGeneral\\examplesGeneral";
-    
-    static String in = "..\\extras\\NCIGI\\ncigi.txt";
-    static String out = "in\\ncigi\\examples";
-
+    //static String in = "..\\extras\\NCIGI\\ncigi.txt";
+    //static String out = "in\\ncigi\\examples";
     private static boolean cutTogeneral = false;
+    //static String path = "C:\\Users\\IBM_ADMIN\\Google Drive\\Neuralogic\\sourcecodes\\gusta\\extra-data\\NCIGI\\DATA\\out\\";
+    static String path = "C:/ncigi/";
+
+    public static void main2(String[] args) {
+        File[] files = new File(path).listFiles();
+
+        for (File file : files) {
+            if (file.isFile()) {
+                ArrayList<String> doubleToSingle = doubleToSingle(file.getAbsolutePath());
+                writeSimple(doubleToSingle, file.getParent() + "/nfoil/" + file.getName());
+            }
+        }
+    }
 
     public static void main(String[] args) {
+        File[] files = new File(path).listFiles();
+
+        for (File file : files) {
+            if (file.isFile()) {
+                new File(path + file.getName() + "-data").mkdirs();
+                convert(path + file.getName(), path + file.getName() + "-data/examples");
+                String[] ex = FileToStringListJava6.convert(path + file.getName() + "-data/examples", 200000);
+                Templator.createTemplate(ex, path + file.getName() + "-data/", 2, 4);
+            }
+        }
+    }
+
+    public static void convert(String in, String out) {
 
         String[] ex = FileToStringListJava6.convert(in, 10000);
 
-        createCILP(ex);
+        //createCILP(ex, out);
 
         ArrayList<LinkedHashSet<String>> examples = transformExamples(ex);
 
@@ -56,7 +81,7 @@ public class Convertor {
         writeOut(allLiterals, out + "_literalSet");
     }
 
-    static void createCILP(String[] ex) {
+    static void createCILP(String[] ex, String out) {
         HashSet<String> newExs = new LinkedHashSet<>();
         for (int i = 0; i < ex.length; i++) {
             String example = ex[i];
@@ -167,7 +192,7 @@ public class Convertor {
         }
     }
 
-    static void writeOut(HashSet<String> literals, String outfile) {
+    public static void writeOut(HashSet<String> literals, String outfile) {
         Writer test;
         try {
             test = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(outfile), "utf-8"));
@@ -185,7 +210,7 @@ public class Convertor {
         }
     }
 
-    static void writeOut(ArrayList<LinkedHashSet<String>> examples, String outfile) {
+    public static void writeOut(ArrayList<LinkedHashSet<String>> examples, String outfile) {
         Writer test;
         try {
             test = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(outfile), "utf-8"));
@@ -214,6 +239,24 @@ public class Convertor {
         }
     }
 
+    public static void writeSimple(ArrayList<String> examples, String outfile) {
+        Writer test;
+        try {
+            test = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(outfile), "utf-8"));
+            for (String example : examples) {
+                test.write(example);
+                test.write("\n");
+            }
+            test.close();
+        } catch (UnsupportedEncodingException ex1) {
+            Logger.getLogger(Convertor.class.getName()).log(Level.SEVERE, null, ex1);
+        } catch (FileNotFoundException ex1) {
+            Logger.getLogger(Convertor.class.getName()).log(Level.SEVERE, null, ex1);
+        } catch (IOException ex1) {
+            Logger.getLogger(Convertor.class.getName()).log(Level.SEVERE, null, ex1);
+        }
+    }
+
     private static HashMap<String, String> couples = new HashMap();
     static int a = 0;
 
@@ -231,5 +274,37 @@ public class Convertor {
             couples.put(join, put);
             return put;
         }
+    }
+
+    public static ArrayList<String> doubleToSingle(String in) {
+        ArrayList<String> out = new ArrayList<>();
+        String[] ex = FileToStringListJava6.convert(in, 10000);
+        for (String row : ex) {
+            HashMap<String, String> atoms = new HashMap<>();
+            String[] split = (row.substring(3, row.length())).split("\\), ");
+            //add all atom types
+            for (int i = 0; i < split.length; i++) {
+                if (split[i].startsWith("atm")) {
+                    String[] atm = split[i].split(" ");
+                    atoms.put(atm[0].substring(atm[0].indexOf("(") + 1, atm[0].indexOf(",")), atm[1].substring(0, atm[1].indexOf(",") + 1));
+                }
+            }
+            String bb = row.substring(0, 1);
+            for (int i = 0; i < split.length; i++) {
+                if (split[i].startsWith("bond")) {
+                    String[] bond = split[i].split(" ");
+                    bb += ",";
+                    String prvni = bond[0].substring(bond[0].indexOf("(") + 1, bond[0].indexOf(","));
+                    bb += "bond(" + prvni + "," + bond[3] + atoms.get(prvni) + atoms.get(bond[3].substring(0, bond[3].indexOf(","))) + bond[4] + ")";
+                }
+            }
+            String fin = bb.replaceFirst(",", " ");
+            fin = fin.replaceAll("\\.", "");
+            fin = fin.replaceAll("\\)\\)", ")");
+            fin = fin.replaceAll(",", ", ");
+            fin = fin.toLowerCase();
+            out.add(fin);
+        }
+        return out;
     }
 }

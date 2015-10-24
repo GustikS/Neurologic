@@ -4,17 +4,15 @@ import discoverer.learning.Weights;
 import discoverer.construction.network.rules.KappaRule;
 import discoverer.construction.network.Kappa;
 import discoverer.construction.NetworkFactory;
-import discoverer.construction.network.KL;
 import discoverer.construction.ExampleFactory;
 import discoverer.construction.example.Example;
-import discoverer.global.Batch;
+import discoverer.construction.network.Network;
 import discoverer.global.Global;
 import discoverer.grounding.evaluation.Evaluator;
 import discoverer.grounding.evaluation.Ball;
 import discoverer.grounding.Grounder;
 import extras.BackpropGroundKappa;
 import java.util.*;
-import static org.junit.Assert.*;
 import org.junit.*;
 
 public class RoundTest {
@@ -59,12 +57,12 @@ public class RoundTest {
             "1.0 b(a,b), b(b,c), b(c,a), b(c,d), b(c,e), atom(a,c), atom(b,c), atom(c,c), atom(d,cl), atom(d,br).",};
 
         NetworkFactory nf = new NetworkFactory();
-        KL last = nf.construct(rules);
+        Network last = nf.construct(rules);
 
         ExampleFactory eFactory = new ExampleFactory();
         for (int i = 0; i < ex.length; i++) {
             Example e = eFactory.construct(ex[i]);
-            Ball b = Grounder.solve(last, e);
+            Ball b = Grounder.solve(last.last, e);
             if (b == null) {
                 b = new Ball(-1);
             }
@@ -75,7 +73,7 @@ public class RoundTest {
         while (true) {
             for (Map.Entry<Example, Ball> entry : roundStore.entrySet()) {
                 Example e = entry.getKey();
-                Ball b = Grounder.solve(last, e);
+                Ball b = Grounder.solve(last.last, e);
                 if (b == null) {
                     b = new Ball(-1);
                 }
@@ -91,7 +89,7 @@ public class RoundTest {
                         continue;
                     }
 
-                    Weights w = BackpropGroundKappa.getNewWeights(b, e, Batch.NO, 0.05);
+                    Weights w = BackpropGroundKappa.getNewWeights(b, e, Global.batch.NO, 0.05);
 
                     for (Map.Entry<Object, Double> t : w.getWeights().entrySet()) {
                         Object o = t.getKey();

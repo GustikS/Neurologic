@@ -8,26 +8,58 @@ import discoverer.global.Global;
 import discoverer.construction.network.KL;
 import discoverer.construction.NetworkFactory;
 import discoverer.construction.network.Network;
+import discoverer.construction.network.rules.KappaRule;
 import discoverer.construction.network.rules.Rule;
+import discoverer.drawing.Dotter;
+import discoverer.drawing.GroundDotter;
 import discoverer.global.Glogger;
 import discoverer.global.Settings;
+import discoverer.global.Tuple;
 import discoverer.grounding.ForwardChecker;
 import discoverer.grounding.evaluation.Ball;
 import discoverer.grounding.Grounder;
+import discoverer.grounding.network.GroundKappa;
+import discoverer.grounding.network.GroundLambda;
 import discoverer.learning.Result;
 import discoverer.learning.Results;
 import discoverer.learning.Sample;
 import discoverer.learning.Saver;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Wrapper for running test with n-fold stratification
  */
 public class Crossvalidation {
+
+    /**
+     * simple version with no merging etc.
+     *
+     * @param train
+     * @param test
+     * @param rules
+     */
+    public void trainTest(String[] train, String[] test, String[] rules) {
+        Network network = createNetwork(rules, "network"); // 2nd
+        List<Example> trainEx = createExamples(train, Settings.maxExamples);
+        List<Example> testEx = createExamples(test, Settings.maxExamples);
+
+        Results res = train(network, trainEx);
+        Glogger.process("------finished training--------");
+        double trainErr = res.getLearningError();
+        double testErr = test(network, res, testEx);
+        double testMaj = testM(testEx, trainEx);
+
+        Glogger.LogRes("--------------");
+        Glogger.LogRes("Final train error: " + trainErr);   //do NOT change the texts here (used in excel macro)
+        Glogger.LogRes("Final test error: " + testErr);
+        Glogger.LogRes("Final majority error: " + testMaj);
+    }
 
     /**
      * Main solving method
@@ -40,9 +72,21 @@ public class Crossvalidation {
 
         Network template = createNetwork(pretrained, "pretrained"); // 1st
         Network network = createNetwork(rules, "network"); // 2nd
-        network.merge(template); // 3rd
-        network.exportTemplate("merged");
-        network.exportWeightMatrix("merged");
+
+        if (Global.getMerging() == Global.mergingOptions.weights) {
+            network.merge(template); // 3rd
+            Glogger.process("merged weights with template of : " + template);
+        }
+        if (Global.getMerging() == Global.mergingOptions.onTop) {
+            network = network.mergeOnTop(template); // 3rd
+            Glogger.process("merged structure on top with template of : " + template);
+        }
+        //Dotter.draw(network.last);
+
+        if (Global.exporting) {
+            network.exportTemplate("merged");
+            network.exportWeightMatrix("merged");
+        }
 
         //creates examples with corresponding ID mapping and chunk representations
         List<Example> examples = createExamples(ex, Settings.maxExamples);
@@ -54,7 +98,9 @@ public class Crossvalidation {
         double trainErr = 0;
 
         for (es.testFold = 0; es.testFold < es.foldCount; es.testFold++) { //iterating the test fold
-            network.exportWeightMatrix("init-fold" + es.testFold);
+            if (Global.exporting) {
+                network.exportWeightMatrix("init-fold" + es.testFold);
+            }
 
             Glogger.process("--------------------processing fold " + es.testFold + "----------------------");
             Results res = train(network, es.getTrain());
@@ -63,12 +109,19 @@ public class Crossvalidation {
             testErr += test(network, res, es.getTest());
             testMaj += testM(es.getTest(), es.getTrain());
 
-            network.exportTemplate("learned-fold" + es.testFold);
-            network.exportWeightMatrix("learned-fold" + es.testFold);
-            Network.saveNetwork(network, "learned-fold" + es.testFold);
+            if (Global.exporting) {
+                network.exportTemplate("learned-fold" + es.testFold);
+                network.exportWeightMatrix("learned-fold" + es.testFold);
+                Network.saveNetwork(network, "learned-fold" + es.testFold);
+            }
+            if (Global.drawing){
+                Dotter.draw(network.last, "learned_fold" + es.testFold);
+            }
             //Network nn = Network.loadNetwork();
 
-            Invalidator.invalidate(network); //1st
+            //Invalidator.invalidate(network); //1st
+            network.invalidateWeights();
+            
             network.merge(template); // 2nd
         }
 
@@ -88,7 +141,7 @@ public class Crossvalidation {
         Network network = null;
 
         if (rules.length == 0) {
-            Glogger.err("network template -" + name + "- is empty, may try to load manually if GUI is on...");
+            Glogger.out("network template -" + name + "- is empty, may try to load manually if GUI is on...");
             if (Global.isManualLoadNetwork()) {
                 network = Network.loadNetwork();
                 return network;
@@ -235,6 +288,8 @@ public class Crossvalidation {
         double error = 0.0;
 
         Results results = new Results();    //we didn't store the whole ground networks(one for each example), just the weights of program
+        HashMap<String, Double> ballvalues = new HashMap<>();
+        HashMap<String, Double> atoms = new HashMap<>();
 
         for (Example example : examples) {
             Ball b = Grounder.solve(network, example);
@@ -248,6 +303,81 @@ public class Crossvalidation {
                 } else {
                     throw new AssertionError();
                 }
+            }
+            //ballvalues.add(ballValue);
+
+            GroundKappa toxic;
+            if (b.getLast() instanceof GroundLambda) {
+                GroundLambda last = (GroundLambda) b.getLast();
+                List<GroundKappa> conjuncts = last.getConjuncts();
+                toxic = conjuncts.get(0);
+            } else {
+                GroundKappa last = (GroundKappa) b.getLast();
+                toxic = last;
+            }
+
+            GroundLambda ring5 = null;
+            GroundLambda ring4 = null;
+            GroundLambda ring3 = null;
+            for (int i = 0; i < toxic.getDisjuncts().size(); i++) {
+                if (toxic.getDisjuncts().get(i).x.getGeneral().getName().contains("ring5")) {
+                    ring5 = toxic.getDisjuncts().get(i).x;
+                }
+                if (toxic.getDisjuncts().get(i).x.getGeneral().getName().contains("ring4")) {
+                    ring4 = toxic.getDisjuncts().get(i).x;
+                }
+                if (toxic.getDisjuncts().get(i).x.getGeneral().getName().contains("ring3")) {
+                    ring3 = toxic.getDisjuncts().get(i).x;
+                }
+            }
+            if (ring5 != null) {
+                String r5 = "";
+                for (GroundKappa gk : ring5.getConjuncts()) {
+                    //r5 += example.constantNames.get(term) + "-";
+                    r5 += gk.getDisjuncts().get(0).x.getConjuncts().get(0).getGeneral().getName() + "-";
+                }
+                r5 += ring5.getConjuncts().get(ring5.getConjuncts().size() - 1).getDisjuncts().get(0).x.getConjuncts().get(1).getGeneral().getName();
+                atoms.put(r5, ring5.getValueAvg());
+
+                r5 = "";
+                for (Integer term : ring5.getTermList()) {
+                    r5 += example.constantNames.get(term) + "-";
+                }
+                ballvalues.put(r5, ring5.getValueAvg());
+            }
+
+            if (ring4 != null) {
+                String r4 = "";
+                for (GroundKappa gk : ring4.getConjuncts()) {
+                    //r5 += example.constantNames.get(term) + "-";
+                    r4 += gk.getDisjuncts().get(0).x.getConjuncts().get(0).getGeneral().getName() + "-";
+                }
+                r4 += ring4.getConjuncts().get(ring4.getConjuncts().size() - 1).getDisjuncts().get(0).x.getConjuncts().get(1).getGeneral().getName();
+                atoms.put(r4, ring4.getValueAvg());
+
+                r4 = "";
+                for (Integer term : ring4.getTermList()) {
+                    r4 += example.constantNames.get(term) + "-";
+                }
+                ballvalues.put(r4, ring4.getValueAvg());
+            }
+
+            if (ring3 != null) {
+                String r3 = "";
+                for (GroundKappa gk : ring3.getConjuncts()) {
+                    //r5 += example.constantNames.get(term) + "-";
+                    r3 += gk.getDisjuncts().get(0).x.getConjuncts().get(0).getGeneral().getName() + "-";
+                }
+                r3 += ring3.getConjuncts().get(ring3.getConjuncts().size() - 1).getDisjuncts().get(0).x.getConjuncts().get(1).getGeneral().getName();
+                atoms.put(r3, ring3.getValueAvg());
+
+                r3 = "";
+                for (Integer term : ring3.getTermList()) {
+                    r3 += example.constantNames.get(term) + "-";
+                }
+                ballvalues.put(r3, ring3.getValueAvg());
+            } else {
+                //ballvalues.add(-1.0);
             }
 
             results.add(new Result(ballValue, example.getExpectedValue()));
@@ -263,6 +393,18 @@ public class Crossvalidation {
         Glogger.LogRes("Fold Train error : " + res.getLearningError());
         Glogger.LogRes("Fold Test error : " + err);
         Glogger.LogRes("Fold re-calculated threshold Test error : " + results.getLearningError());
+
+        Glogger.LogTrain("------test sample values-----");
+        int a = 0;
+        for (Map.Entry<String, Double> ent : ballvalues.entrySet()) {
+            System.out.println(a++ + " : " + ent.getKey() + " : " + ent.getValue());
+        }
+        Glogger.LogTrain("--------------samples---------------");
+        for (Map.Entry<String, Double> ent : atoms.entrySet()) {
+            System.out.println(a++ + " : " + ent.getKey() + " : " + ent.getValue());
+        }
+        Glogger.LogTrain("------end of test sample values-----");
+
         return err;
     }
 }

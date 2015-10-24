@@ -1,0 +1,56 @@
+atomLambda_1(A) :- o(A).
+atomLambda_2(A) :- n(A).
+atomLambda_3(A) :- c(A).
+atomLambda_4(A) :- cl(A).
+atomLambda_5(A) :- f(A).
+atomLambda_6(A) :- i(A).
+atomLambda_7(A) :- h(A).
+atomLambda_8(A) :- br(A).
+bondLambda_1(A) :- 1(A).
+bondLambda_2(A) :- 2(A).
+bondLambda_3(A) :- 3(A).
+bondLambda_4(A) :- 4(A).
+bondLambda_5(A) :- 5(A).
+bondLambda_6(A) :- 7(A).
+0.0 atomKappa_1(A) :- atomLambda_1(A).
+0.0 atomKappa_1(A) :- atomLambda_2(A).
+0.0 atomKappa_1(A) :- atomLambda_3(A).
+0.0 atomKappa_1(A) :- atomLambda_4(A).
+0.0 atomKappa_1(A) :- atomLambda_5(A).
+0.0 atomKappa_1(A) :- atomLambda_6(A).
+0.0 atomKappa_1(A) :- atomLambda_7(A).
+0.0 atomKappa_1(A) :- atomLambda_8(A).
+0.0 atomKappa_2(A) :- atomLambda_1(A).
+0.0 atomKappa_2(A) :- atomLambda_2(A).
+0.0 atomKappa_2(A) :- atomLambda_3(A).
+0.0 atomKappa_2(A) :- atomLambda_4(A).
+0.0 atomKappa_2(A) :- atomLambda_5(A).
+0.0 atomKappa_2(A) :- atomLambda_6(A).
+0.0 atomKappa_2(A) :- atomLambda_7(A).
+0.0 atomKappa_2(A) :- atomLambda_8(A).
+0.0 atomKappa_3(A) :- atomLambda_1(A).
+0.0 atomKappa_3(A) :- atomLambda_2(A).
+0.0 atomKappa_3(A) :- atomLambda_3(A).
+0.0 atomKappa_3(A) :- atomLambda_4(A).
+0.0 atomKappa_3(A) :- atomLambda_5(A).
+0.0 atomKappa_3(A) :- atomLambda_6(A).
+0.0 atomKappa_3(A) :- atomLambda_7(A).
+0.0 atomKappa_3(A) :- atomLambda_8(A).
+0.0 bondKappa_1(A) :- bondLambda_1(A).
+0.0 bondKappa_1(A) :- bondLambda_2(A).
+0.0 bondKappa_1(A) :- bondLambda_3(A).
+0.0 bondKappa_1(A) :- bondLambda_4(A).
+0.0 bondKappa_1(A) :- bondLambda_5(A).
+0.0 bondKappa_1(A) :- bondLambda_6(A).
+0.0 bondKappa_2(A) :- bondLambda_1(A).
+0.0 bondKappa_2(A) :- bondLambda_2(A).
+0.0 bondKappa_2(A) :- bondLambda_3(A).
+0.0 bondKappa_2(A) :- bondLambda_4(A).
+0.0 bondKappa_2(A) :- bondLambda_5(A).
+0.0 bondKappa_2(A) :- bondLambda_6(A).
+0.0 bondKappa_3(A) :- bondLambda_1(A).
+0.0 bondKappa_3(A) :- bondLambda_2(A).
+0.0 bondKappa_3(A) :- bondLambda_3(A).
+0.0 bondKappa_3(A) :- bondLambda_4(A).
+0.0 bondKappa_3(A) :- bondLambda_5(A).
+0.0 bondKappa_3(A) :- bondLambda_6(A).

@@ -8,11 +8,11 @@ import discoverer.construction.network.WeightInitializator;
 import java.io.Serializable;
 
 /**
- * Kappa clause
+ * Kappa clause - THIS IS NOT A REAL RULE!! (just a construct to accommodate disjunction)
  */
 public class KappaRule extends Rule implements Serializable {
 
-    private double weight;    //I don't want this to be a mutable object anymore
+    private double weight;    //I don't want this to be a public object anymore
     public double step;
     private Double gradient;
     public double deltaW;

@@ -67,7 +67,7 @@ public class BackpropDown {
         gk.addGroundParentDerivative(derivative);   //aggregating(summing) the derivative from ground parent nodes
         gk.incrGroundParentsChecked();
 
-        if (gk.getGroundParentsChecked() == gk.getGroundParents()) { //all parents checked
+        if (gk.getGroundParentsChecked() >= gk.getGroundParents()) { //all parents checked
             double firstDerivative = kappaActivationDerivative(gk);
             double myDerivative = gk.getGroundParentDerivative() * firstDerivative;
             weights.addW(gk.getGeneral(), -learnRate * myDerivative);   //updating offset weight (it's inner derivative is just 1, so no more computations needed)

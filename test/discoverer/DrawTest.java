@@ -4,8 +4,10 @@ import discoverer.construction.NetworkFactory;
 import discoverer.construction.network.KL;
 import discoverer.construction.ExampleFactory;
 import discoverer.construction.example.Example;
+import discoverer.construction.network.Network;
 import discoverer.drawing.Dotter;
 import discoverer.drawing.GroundDotter;
+import discoverer.global.FileToStringListJava6;
 import discoverer.global.Global;
 import discoverer.grounding.evaluation.Ball;
 import discoverer.grounding.Grounder;
@@ -15,6 +17,20 @@ import org.junit.*;
 
 public class DrawTest {
 
+    @Test
+    public void stringTest() {
+        Global.setLambdaActivation(Global.activationSet.sig);
+        Global.setKappaActivation(Global.activationSet.sig);
+        Global.setWeightInit(Global.weightInitSet.handmade);
+        Global.setRg(new Random(1));
+        String[] rules = FileToStringListJava6.convert("in/strings/easy-rules.txt", Integer.MAX_VALUE);
+        
+        NetworkFactory nf = new NetworkFactory();
+        Network last = nf.construct(rules);
+
+        Dotter.draw(last.last, "strings");
+    }
+    
     @Test
     public void test1() {
         Global.setLambdaActivation(Global.activationSet.sig);
@@ -48,9 +64,9 @@ public class DrawTest {
             "final(X) :- k11(X).",};
 
         NetworkFactory nf = new NetworkFactory();
-        KL last = nf.construct(rules);
+        Network last = nf.construct(rules);
 
-        Dotter.draw(last, "chemieee");
+        Dotter.draw(last.last, "chemieee");
     }
 
     @Test
@@ -79,14 +95,14 @@ public class DrawTest {
         String ex = "1.0 edge(1,6),edge(6,5),edge(5,4),edge(1,2),edge(2,3),edge(3,4),"
                 + "light_green(1),dark_green(2),dark(3),red(4),dark_blue(5),light_blue(6).";
         NetworkFactory nf = new NetworkFactory();
-        KL last = nf.construct(rules);
+        Network last = nf.construct(rules);
 
         ExampleFactory ef = new ExampleFactory();
         Example e = ef.construct(ex);
 
-        Ball b = Grounder.solve(last, e);
+        Ball b = Grounder.solve(last.last, e);
 
-        Dotter.draw(last, "modra3");
+        Dotter.draw(last.last, "modra3");
         GroundDotter.draw(b, "modraGround3");
         GroundDotter.drawAVG(b, "modraAVG3");
     }

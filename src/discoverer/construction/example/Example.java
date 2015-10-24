@@ -3,12 +3,13 @@ package discoverer.construction.example;
 import discoverer.construction.network.Kappa;
 import discoverer.construction.network.rules.SubK;
 import discoverer.construction.Terminal;
+import java.io.Serializable;
 import java.util.*;
 
 /**
  * lk-sample representation
  */
-public class Example {
+public class Example implements Serializable{
 
     private double expVal;
     private Chunks chunks;
@@ -16,6 +17,8 @@ public class Example {
     private Map<Integer, List<Integer>> possibleChunks;
     private int constCount;
     public String hash;
+    //new feature - constant IDs to their original names!
+    public HashMap<Integer,String> constantNames = new HashMap<>();
 
     /**
      * new example from expected value and map of literal occurrences

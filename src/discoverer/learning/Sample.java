@@ -2,11 +2,12 @@ package discoverer.learning;
 
 import discoverer.construction.example.Example;
 import discoverer.grounding.evaluation.Ball;
+import java.io.Serializable;
 
 /**
  * one grounded network for example
  */
-public class Sample {
+public class Sample implements Serializable{
     private Example example;
     private Ball ball;
 

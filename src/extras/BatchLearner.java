@@ -1,6 +1,5 @@
 package extras;
 
-import discoverer.grounding.evaluation.GroundInvalidator;
 import discoverer.construction.example.Example;
 import discoverer.construction.network.KL;
 import discoverer.construction.network.Kappa;
@@ -96,7 +95,8 @@ public class BatchLearner {
                         Ball b = result.getBall();
                         Weights w = BackpropGroundKappa.getNewWeights(b, e, Global.batch.YES, Settings.learnRate);
                         refreshWeights(w);
-                        GroundInvalidator.invalidate(b);
+                        //GroundInvalidator.invalidate(b);
+                        b.invalidateNeurons();
                         b.valMax = Evaluator.evaluateMax(b);
                         results.add(new Result(b.valMax, e.getExpectedValue()));
                         System.out.println("New output for example with expected value " + e + ":\t" + b.valMax);

@@ -2,21 +2,29 @@ package discoverer.grounding.network;
 
 import discoverer.construction.network.Lambda;
 import discoverer.construction.Terminal;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 /**
- * Grounded node -- lambda
+ * Grounded node -- lambda = rule neuron
  */
-public class GroundLambda extends GroundKL {
+public class GroundLambda extends GroundKL implements Serializable{
     
     private Lambda general;
     
+    //change this into static arrays for performance!!
+    
     private List<GroundKappa> conjuncts;
     private HashMap<GroundKappa, Integer> conjunctsAvg;
-    private int conjunctsCountForAvg = 0;
+    
+    public GroundKappa[] bodyLiterals;
+    public int[] bodyLiteralCounts;
+    
+    private int conjunctsCountForAvg = 0; //number of all body-groundings for AVG
     
     public GroundLambda(Lambda l, List<Terminal> terms) {
         super(terms);
@@ -114,6 +122,16 @@ public class GroundLambda extends GroundKL {
      */
     public void setConjunctsCountForAvg(int conjunctsCountForAvg) {
         this.conjunctsCountForAvg = conjunctsCountForAvg;
+    }
+
+    @Override
+    public void transform2Arrays() {
+        bodyLiterals = new GroundKappa[conjunctsAvg.size()];
+        int i=0;
+        for (Map.Entry<GroundKappa, Integer> bodylit : conjunctsAvg.entrySet()) {
+            bodyLiterals[i] = bodylit.getKey();
+            bodyLiteralCounts[i++] = bodylit.getValue();
+        }
     }
     
 }

@@ -8,7 +8,7 @@ import java.io.Serializable;
 import java.util.*;
 
 /**
- * Lambda clause
+ * Lambda clause - a real conjunctive rule
  */
 public class LambdaRule extends Rule implements Serializable {
 

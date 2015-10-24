@@ -23,40 +23,46 @@ import java.util.logging.Logger;
  *
  * @author Gusta
  */
-public class Glogger {
-
+public final class Glogger {
+    
     static Writer training;
     static Writer results;
     static Writer test;
     private static final String resultsDir = "../results";
-
+    
     public static void init() {
         StringBuilder file = new StringBuilder();
-
-        file.append(Settings.getString());
+        StringBuilder options = new StringBuilder();
+        
+        options.append(Settings.getString());
         String glob = "_";
         glob += Global.isPruning() ? "pr1" : "pr0";
         glob += Global.isForwardCheckEnabled() ? "fw1" : "fw0";
         glob += Global.isCacheEnabled() ? "ch1" : "ch0";
         glob += "_";
-        file.append(glob);
+        options.append(glob);
+        
+        if (Global.longName) {
+            file.append(options);
+        } else {
+            file.append(Settings.getDataset());
+        }
+        
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd_HH-mm");
         Date date = new Date();
         String time = dateFormat.format(date); //2014/08/06 15:59:48
-        file.append(time).append("_");
-
+        file.append("_").append(time);
+        
         try {
             createDir(resultsDir);
             test = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(resultsDir + "/testfile"), "utf-8"));
             test.write("metacetrum file test : " + time);
             test.close();
-            test = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(resultsDir + "/testfile"), "utf-8"));
-            test.write("metacetrum file test : " + time);
-            test.close();
-
+            
             training = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(resultsDir + "/training_" + file.toString() + ".csv"), "utf-8"));
             training.write("state, learning_error, dispersion, majority_error, threshold \n");
             results = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(resultsDir + "/results_" + file.toString() + ".csv"), "utf-8"));
+            LogRes(options.toString());
             training.flush();
         } catch (UnsupportedEncodingException | FileNotFoundException ex) {
             Logger.getLogger(Glogger.class.getName()).log(Level.SEVERE, null, ex);
@@ -64,7 +70,7 @@ public class Glogger {
             Logger.getLogger(Glogger.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
     public static void createDir(String name) {
         File theDir = new File(name);
         if (!theDir.exists()) {
@@ -81,8 +87,8 @@ public class Glogger {
             }
         }
     }
-
-    public static void LogTrain(String state, Double[] res) {
+    
+    public static final void LogTrain(String state, Double[] res) {
         StringBuilder row = new StringBuilder();
         row.append(state).append(",");
         for (Double re : res) {
@@ -95,8 +101,8 @@ public class Glogger {
             Logger.getLogger(Glogger.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
-    public static void LogTrain(String res) {
+    
+    public static final void LogTrain(String res) {
         Glogger.process(res);
         try {
             training.write(res + "\n");
@@ -105,8 +111,8 @@ public class Glogger {
             Logger.getLogger(Glogger.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
-    public static void LogRes(String res) {
+    
+    public static final void LogRes(String res) {
         out(res);
         try {
             results.write(res + "\n");
@@ -115,28 +121,28 @@ public class Glogger {
             Logger.getLogger(Glogger.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
-    public static void out(String msg) {
+    
+    public static final void out(String msg) {
         System.out.println(msg);
     }
-
-    public static void err(String msg) {
+    
+    public static final void err(String msg) {
         System.err.println(msg);
     }
-
-    public static void info(String string) {
+    
+    public static final void info(String string) {
         if (Global.isInfoEnabled()) {
             System.out.println(string);
         }
     }
-
-    public static void debug(String string) {
+    
+    public static final void debug(String string) {
         if (Global.isDebugEnabled()) {
             System.out.println(string);
         }
     }
-
-    public static void process(String msg) {
+    
+    public static final void process(String msg) {
         System.out.println(msg);
     }
 }

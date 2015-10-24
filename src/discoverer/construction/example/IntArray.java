@@ -1,8 +1,9 @@
 package discoverer.construction.example;
 
+import java.io.Serializable;
 import java.util.*;
 
-public class IntArray {
+public class IntArray implements Serializable{
     /** Value representing joker -- don't care when searching for a part */
     private static final int joker = -1;
 

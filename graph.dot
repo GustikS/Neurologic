@@ -1,55 +1,4228 @@
 digraph G {
-"output)#0
-valAVG: 0.604023920429843
-offset: 0.1" -> "kapR{[blueist(0)#1]}" [ label = "1" ];
-"kapR{[blueist(0)#1]}" -> "blueist(0)#1
-valAvg: 0.3222599962071387
-#ground: 1" [ label = "1x" ];
-"blueist(0)#1
-valAvg: 0.3222599962071387
-#ground: 1" -> "blue(3)#8
-valAVG: 0.6341355910108007
-offset: 0.1" [ label = "1x" ];
-"blue(3)#8
-valAVG: 0.6341355910108007
-offset: 0.1" -> "kapR{[db(3)#9]}" [ label = "0.9" ];
-"kapR{[db(3)#9]}" -> "db(3)#9
-valAvg: 0.5
-#ground: 1" [ label = "1x" ];
-"db(3)#9
-valAvg: 0.5
-#ground: 1" -> "dark_blue(3)#10
-valAVG: 1
-offset: N/A" [ label = "1x" ];
-"blueist(0)#1
-valAvg: 0.3222599962071387
-#ground: 1" -> "edge(2,3)#3
-valAVG: 1
-offset: N/A" [ label = "1x" ];
-"blueist(0)#1
-valAvg: 0.3222599962071387
-#ground: 1" -> "edge(0,2)#2
-valAVG: 1
-offset: N/A" [ label = "1x" ];
-"blueist(0)#1
-valAvg: 0.3222599962071387
-#ground: 1" -> "blue(2)#5
-valAVG: 0.6224593312018546
-offset: 0.1" [ label = "1x" ];
-"blue(2)#5
-valAVG: 0.6224593312018546
-offset: 0.1" -> "kapR{[lb(2)#6]}" [ label = "0.8" ];
-"kapR{[lb(2)#6]}" -> "lb(2)#6
-valAvg: 0.5
-#ground: 1" [ label = "1x" ];
-"lb(2)#6
-valAvg: 0.5
-#ground: 1" -> "light_blue(2)#7
-valAVG: 1
-offset: N/A" [ label = "1x" ];
-"blueist(0)#1
-valAvg: 0.3222599962071387
-#ground: 1" -> "edge(3,1)#4
-valAVG: 1
-offset: N/A" [ label = "1x" ];
+"finalLambda" -> "finalKappa
+offset: 0.294480083596957";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_0" [ label = "0.01851354504304581" ];
+"lambda_0" -> "atomKappa_1
+offset: 0.04258833147689067";
+"atomKappa_1
+offset: 0.04258833147689067" -> "atomLambda_1" [ label = "0.15906315891004041" ];
+"atomLambda_1" -> "c_28
+offset: 0.1553786209677881";
+"atomKappa_1
+offset: 0.04258833147689067" -> "atomLambda_2" [ label = "0.15023261611978533" ];
+"atomLambda_2" -> "c_14
+offset: 0.6751024060697954";
+"atomKappa_1
+offset: 0.04258833147689067" -> "atomLambda_3" [ label = "0.031166628665745932" ];
+"atomLambda_3" -> "c_16
+offset: 0.0012541920998465628";
+"atomKappa_1
+offset: 0.04258833147689067" -> "atomLambda_4" [ label = "0.13428322708237594" ];
+"atomLambda_4" -> "n_31
+offset: 0.06204766955646335";
+"atomKappa_1
+offset: 0.04258833147689067" -> "atomLambda_5" [ label = "0.0015860806304743846" ];
+"atomLambda_5" -> "o_40
+offset: 0.36934201972892033";
+"atomKappa_1
+offset: 0.04258833147689067" -> "atomLambda_6" [ label = "0.006118159220623198" ];
+"atomLambda_6" -> "i_95
+offset: 0.5726789781020845";
+"atomKappa_1
+offset: 0.04258833147689067" -> "atomLambda_7" [ label = "0.2020460083732427" ];
+"atomLambda_7" -> "o_51
+offset: 0.3888771717961532";
+"atomKappa_1
+offset: 0.04258833147689067" -> "atomLambda_8" [ label = "0.5808711436166103" ];
+"atomLambda_8" -> "c_25
+offset: 0.07667685473700558";
+"atomKappa_1
+offset: 0.04258833147689067" -> "atomLambda_9" [ label = "0.503794084159054" ];
+"atomLambda_9" -> "n_36
+offset: 0.16792332047733005";
+"atomKappa_1
+offset: 0.04258833147689067" -> "atomLambda_10" [ label = "0.6699826176672623" ];
+"atomLambda_10" -> "c_21
+offset: 0.3761301466022182";
+"atomKappa_1
+offset: 0.04258833147689067" -> "atomLambda_11" [ label = "0.14141256354760046" ];
+"atomLambda_11" -> "cl_93
+offset: 0.4209794928501438";
+"atomKappa_1
+offset: 0.04258833147689067" -> "atomLambda_12" [ label = "0.005577030871528166" ];
+"atomLambda_12" -> "n_34
+offset: 0.28103690212275545";
+"atomKappa_1
+offset: 0.04258833147689067" -> "atomLambda_13" [ label = "0.0021453581981951686" ];
+"atomLambda_13" -> "o_52
+offset: 0.3776245047212239";
+"atomKappa_1
+offset: 0.04258833147689067" -> "atomLambda_14" [ label = "0.051765988781648176" ];
+"atomLambda_14" -> "o_41
+offset: 0.07769285050552277";
+"atomKappa_1
+offset: 0.04258833147689067" -> "atomLambda_15" [ label = "0.1344519447528416" ];
+"atomLambda_15" -> "br_94
+offset: 0.0667251758603733";
+"atomKappa_1
+offset: 0.04258833147689067" -> "atomLambda_16" [ label = "0.2639889672580402" ];
+"atomLambda_16" -> "c_194
+offset: 0.003393397122929187";
+"atomKappa_1
+offset: 0.04258833147689067" -> "atomLambda_17" [ label = "0.22754804043276344" ];
+"atomLambda_17" -> "n_35
+offset: 0.11767828036143158";
+"atomKappa_1
+offset: 0.04258833147689067" -> "atomLambda_18" [ label = "0.03221152279397366" ];
+"atomLambda_18" -> "o_49
+offset: 0.0769738603625143";
+"atomKappa_1
+offset: 0.04258833147689067" -> "atomLambda_19" [ label = "0.5629245386084385" ];
+"atomLambda_19" -> "c_29
+offset: 0.23222031233149565";
+"atomKappa_1
+offset: 0.04258833147689067" -> "atomLambda_20" [ label = "0.860289750048894" ];
+"atomLambda_20" -> "o_45
+offset: 0.5137881859165656";
+"atomKappa_1
+offset: 0.04258833147689067" -> "atomLambda_21" [ label = "0.20164005968422316" ];
+"atomLambda_21" -> "n_32
+offset: 0.04896618549471121";
+"atomKappa_1
+offset: 0.04258833147689067" -> "atomLambda_22" [ label = "0.46807618960890984" ];
+"atomLambda_22" -> "c_27
+offset: 0.7651232026502832";
+"atomKappa_1
+offset: 0.04258833147689067" -> "atomLambda_23" [ label = "0.03174411809629163" ];
+"atomLambda_23" -> "f_92
+offset: 0.04633500340247032";
+"atomKappa_1
+offset: 0.04258833147689067" -> "atomLambda_24" [ label = "1.0409006044612052" ];
+"atomLambda_24" -> "c_19
+offset: 0.02159102680496794";
+"atomKappa_1
+offset: 0.04258833147689067" -> "atomLambda_25" [ label = "0.22833367840012286" ];
+"atomLambda_25" -> "n_38
+offset: 0.05515355427770352";
+"atomKappa_1
+offset: 0.04258833147689067" -> "atomLambda_26" [ label = "0.12312743814364957" ];
+"atomLambda_26" -> "h_8
+offset: 0.05777766280907848";
+"atomKappa_1
+offset: 0.04258833147689067" -> "atomLambda_27" [ label = "0.01658845168252654" ];
+"atomLambda_27" -> "c_232
+offset: 0.032724125452906705";
+"atomKappa_1
+offset: 0.04258833147689067" -> "atomLambda_28" [ label = "0.24842680351320112" ];
+"atomLambda_28" -> "c_22
+offset: 0.09652909909713792";
+"atomKappa_1
+offset: 0.04258833147689067" -> "atomLambda_29" [ label = "0.02631334631524318" ];
+"atomLambda_29" -> "o_42
+offset: 0.14496293106813773";
+"atomKappa_1
+offset: 0.04258833147689067" -> "atomLambda_30" [ label = "0.0964904011547354" ];
+"atomLambda_30" -> "c_230
+offset: 0.18682049932226086";
+"atomKappa_1
+offset: 0.04258833147689067" -> "atomLambda_31" [ label = "0.01876808600127866" ];
+"atomLambda_31" -> "h_3
+offset: 0.7272893275270107";
+"atomKappa_1
+offset: 0.04258833147689067" -> "atomLambda_32" [ label = "0.5920400487182924" ];
+"atomLambda_32" -> "c_26
+offset: 0.30453230070713744";
+"atomKappa_1
+offset: 0.04258833147689067" -> "atomLambda_33" [ label = "0.0850938869479112" ];
+"atomLambda_33" -> "c_10
+offset: 0.009776179662049245";
+"atomKappa_1
+offset: 0.04258833147689067" -> "atomLambda_34" [ label = "0.13623218594963227" ];
+"atomLambda_34" -> "c_195
+offset: 0.019223454718783728";
+"atomKappa_1
+offset: 0.04258833147689067" -> "atomLambda_35" [ label = "0.13241607373218933" ];
+"atomLambda_35" -> "h_1
+offset: 0.2908055558250222";
+"atomKappa_1
+offset: 0.04258833147689067" -> "atomLambda_36" [ label = "0.12714608790844295" ];
+"atomLambda_36" -> "o_50
+offset: 0.11370423999294665";
+"lambda_0" -> "bond
+offset: 0.08604400208965401";
+"lambda_0" -> "bondKappa_1
+offset: 0.09563271011442609";
+"bondKappa_1
+offset: 0.09563271011442609" -> "bondLambda_1" [ label = "0.3317140245082655" ];
+"bondLambda_1" -> "2
+offset: 0.5358928266075136";
+"bondKappa_1
+offset: 0.09563271011442609" -> "bondLambda_2" [ label = "0.29463749273969597" ];
+"bondLambda_2" -> "3
+offset: 0.045608859055956685";
+"bondKappa_1
+offset: 0.09563271011442609" -> "bondLambda_3" [ label = "0.030786589182882906" ];
+"bondLambda_3" -> "7
+offset: 0.24094573489536586";
+"bondKappa_1
+offset: 0.09563271011442609" -> "bondLambda_4" [ label = "0.8693512192201389" ];
+"bondLambda_4" -> "1
+offset: 0.7225902026744393";
+"bondKappa_1
+offset: 0.09563271011442609" -> "bondLambda_5" [ label = "0.07184770970691723" ];
+"bondLambda_5" -> "4
+offset: 0.40336136112823695";
+"bondKappa_1
+offset: 0.09563271011442609" -> "bondLambda_6" [ label = "0.0507845426409137" ];
+"bondLambda_6" -> "5
+offset: 0.5216477524902157";
+"lambda_0" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_0" -> "bond
+offset: 0.08604400208965401";
+"lambda_0" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_0" -> "atomKappa_1
+offset: 0.04258833147689067";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_1" [ label = "0.7442478065572669" ];
+"lambda_1" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_1" -> "bond
+offset: 0.08604400208965401";
+"lambda_1" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_1" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_1" -> "bond
+offset: 0.08604400208965401";
+"lambda_1" -> "bondKappa_2
+offset: 0.06619413040225908";
+"bondKappa_2
+offset: 0.06619413040225908" -> "bondLambda_1" [ label = "0.3002591699859902" ];
+"bondKappa_2
+offset: 0.06619413040225908" -> "bondLambda_2" [ label = "0.04782731389573058" ];
+"bondKappa_2
+offset: 0.06619413040225908" -> "bondLambda_3" [ label = "0.011017020885750739" ];
+"bondKappa_2
+offset: 0.06619413040225908" -> "bondLambda_4" [ label = "0.7999087773430897" ];
+"bondKappa_2
+offset: 0.06619413040225908" -> "bondLambda_5" [ label = "0.1808713168349101" ];
+"bondKappa_2
+offset: 0.06619413040225908" -> "bondLambda_6" [ label = "0.03094596129917626" ];
+"lambda_1" -> "atomKappa_1
+offset: 0.04258833147689067";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_2" [ label = "0.2505075823234755" ];
+"lambda_2" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_2" -> "bond
+offset: 0.08604400208965401";
+"lambda_2" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_2" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_2" -> "bond
+offset: 0.08604400208965401";
+"lambda_2" -> "bondKappa_3
+offset: 0.04709356031785461";
+"bondKappa_3
+offset: 0.04709356031785461" -> "bondLambda_1" [ label = "0.001284122616553418" ];
+"bondKappa_3
+offset: 0.04709356031785461" -> "bondLambda_2" [ label = "0.024345189030668735" ];
+"bondKappa_3
+offset: 0.04709356031785461" -> "bondLambda_3" [ label = "0.34115150632802305" ];
+"bondKappa_3
+offset: 0.04709356031785461" -> "bondLambda_4" [ label = "0.0075793204260872216" ];
+"bondKappa_3
+offset: 0.04709356031785461" -> "bondLambda_5" [ label = "0.0630467814689748" ];
+"bondKappa_3
+offset: 0.04709356031785461" -> "bondLambda_6" [ label = "0.07609352336621988" ];
+"lambda_2" -> "atomKappa_1
+offset: 0.04258833147689067";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_3" [ label = "0.07856814966055481" ];
+"lambda_3" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_3" -> "bond
+offset: 0.08604400208965401";
+"lambda_3" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_3" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_3" -> "bond
+offset: 0.08604400208965401";
+"lambda_3" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_3" -> "atomKappa_1
+offset: 0.04258833147689067";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_4" [ label = "0.24120468365827286" ];
+"lambda_4" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_4" -> "bond
+offset: 0.08604400208965401";
+"lambda_4" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_4" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_4" -> "bond
+offset: 0.08604400208965401";
+"lambda_4" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_4" -> "atomKappa_1
+offset: 0.04258833147689067";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_5" [ label = "0.5247483929427155" ];
+"lambda_5" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_5" -> "bond
+offset: 0.08604400208965401";
+"lambda_5" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_5" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_5" -> "bond
+offset: 0.08604400208965401";
+"lambda_5" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_5" -> "atomKappa_1
+offset: 0.04258833147689067";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_6" [ label = "0.28718023387854785" ];
+"lambda_6" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_6" -> "bond
+offset: 0.08604400208965401";
+"lambda_6" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_6" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_6" -> "bond
+offset: 0.08604400208965401";
+"lambda_6" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_6" -> "atomKappa_1
+offset: 0.04258833147689067";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_7" [ label = "0.37808565558441387" ];
+"lambda_7" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_7" -> "bond
+offset: 0.08604400208965401";
+"lambda_7" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_7" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_7" -> "bond
+offset: 0.08604400208965401";
+"lambda_7" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_7" -> "atomKappa_1
+offset: 0.04258833147689067";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_8" [ label = "0.09848427336467047" ];
+"lambda_8" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_8" -> "bond
+offset: 0.08604400208965401";
+"lambda_8" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_8" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_8" -> "bond
+offset: 0.08604400208965401";
+"lambda_8" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_8" -> "atomKappa_1
+offset: 0.04258833147689067";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_9" [ label = "0.062120116672229386" ];
+"lambda_9" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_9" -> "bond
+offset: 0.08604400208965401";
+"lambda_9" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_9" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_9" -> "bond
+offset: 0.08604400208965401";
+"lambda_9" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_9" -> "atomKappa_2
+offset: 0.19496395014487078";
+"atomKappa_2
+offset: 0.19496395014487078" -> "atomLambda_1" [ label = "0.14383871540944426" ];
+"atomKappa_2
+offset: 0.19496395014487078" -> "atomLambda_2" [ label = "0.06859112398276501" ];
+"atomKappa_2
+offset: 0.19496395014487078" -> "atomLambda_3" [ label = "0.2192896871055794" ];
+"atomKappa_2
+offset: 0.19496395014487078" -> "atomLambda_4" [ label = "0.8359308445895035" ];
+"atomKappa_2
+offset: 0.19496395014487078" -> "atomLambda_5" [ label = "0.06940349770943577" ];
+"atomKappa_2
+offset: 0.19496395014487078" -> "atomLambda_6" [ label = "0.05746124269734665" ];
+"atomKappa_2
+offset: 0.19496395014487078" -> "atomLambda_7" [ label = "0.09731782340655926" ];
+"atomKappa_2
+offset: 0.19496395014487078" -> "atomLambda_8" [ label = "0.2798949576898586" ];
+"atomKappa_2
+offset: 0.19496395014487078" -> "atomLambda_9" [ label = "0.18340799361661198" ];
+"atomKappa_2
+offset: 0.19496395014487078" -> "atomLambda_10" [ label = "0.018159647343306773" ];
+"atomKappa_2
+offset: 0.19496395014487078" -> "atomLambda_11" [ label = "0.34440672404188355" ];
+"atomKappa_2
+offset: 0.19496395014487078" -> "atomLambda_12" [ label = "1.0299375752964686" ];
+"atomKappa_2
+offset: 0.19496395014487078" -> "atomLambda_13" [ label = "0.25711116358416675" ];
+"atomKappa_2
+offset: 0.19496395014487078" -> "atomLambda_14" [ label = "0.02220544548986325" ];
+"atomKappa_2
+offset: 0.19496395014487078" -> "atomLambda_15" [ label = "0.2348668612630771" ];
+"atomKappa_2
+offset: 0.19496395014487078" -> "atomLambda_16" [ label = "0.16461456553691" ];
+"atomKappa_2
+offset: 0.19496395014487078" -> "atomLambda_17" [ label = "0.07318545749219574" ];
+"atomKappa_2
+offset: 0.19496395014487078" -> "atomLambda_18" [ label = "0.1740117470482634" ];
+"atomKappa_2
+offset: 0.19496395014487078" -> "atomLambda_19" [ label = "0.20207515821227595" ];
+"atomKappa_2
+offset: 0.19496395014487078" -> "atomLambda_20" [ label = "0.07770753845452028" ];
+"atomKappa_2
+offset: 0.19496395014487078" -> "atomLambda_21" [ label = "0.05875640990206321" ];
+"atomKappa_2
+offset: 0.19496395014487078" -> "atomLambda_22" [ label = "0.021851149169187067" ];
+"atomKappa_2
+offset: 0.19496395014487078" -> "atomLambda_23" [ label = "0.10625498564730051" ];
+"atomKappa_2
+offset: 0.19496395014487078" -> "atomLambda_24" [ label = "0.13087415282719483" ];
+"atomKappa_2
+offset: 0.19496395014487078" -> "atomLambda_25" [ label = "0.22581315985491202" ];
+"atomKappa_2
+offset: 0.19496395014487078" -> "atomLambda_26" [ label = "0.12001157783207717" ];
+"atomKappa_2
+offset: 0.19496395014487078" -> "atomLambda_27" [ label = "0.005343780417961241" ];
+"atomKappa_2
+offset: 0.19496395014487078" -> "atomLambda_28" [ label = "0.09529805715656359" ];
+"atomKappa_2
+offset: 0.19496395014487078" -> "atomLambda_29" [ label = "0.6825819593978615" ];
+"atomKappa_2
+offset: 0.19496395014487078" -> "atomLambda_30" [ label = "0.07277090620585014" ];
+"atomKappa_2
+offset: 0.19496395014487078" -> "atomLambda_31" [ label = "0.09009684928402706" ];
+"atomKappa_2
+offset: 0.19496395014487078" -> "atomLambda_32" [ label = "0.03935209433560516" ];
+"atomKappa_2
+offset: 0.19496395014487078" -> "atomLambda_33" [ label = "0.05857190260769585" ];
+"atomKappa_2
+offset: 0.19496395014487078" -> "atomLambda_34" [ label = "0.0897454623470324" ];
+"atomKappa_2
+offset: 0.19496395014487078" -> "atomLambda_35" [ label = "0.22402592180149838" ];
+"atomKappa_2
+offset: 0.19496395014487078" -> "atomLambda_36" [ label = "0.056158060313732605" ];
+"finalKappa
+offset: 0.294480083596957" -> "lambda_10" [ label = "0.23085723060550478" ];
+"lambda_10" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_10" -> "bond
+offset: 0.08604400208965401";
+"lambda_10" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_10" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_10" -> "bond
+offset: 0.08604400208965401";
+"lambda_10" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_10" -> "atomKappa_2
+offset: 0.19496395014487078";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_11" [ label = "0.09162140732658663" ];
+"lambda_11" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_11" -> "bond
+offset: 0.08604400208965401";
+"lambda_11" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_11" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_11" -> "bond
+offset: 0.08604400208965401";
+"lambda_11" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_11" -> "atomKappa_2
+offset: 0.19496395014487078";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_12" [ label = "0.6320827542117531" ];
+"lambda_12" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_12" -> "bond
+offset: 0.08604400208965401";
+"lambda_12" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_12" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_12" -> "bond
+offset: 0.08604400208965401";
+"lambda_12" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_12" -> "atomKappa_2
+offset: 0.19496395014487078";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_13" [ label = "0.14394931779918885" ];
+"lambda_13" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_13" -> "bond
+offset: 0.08604400208965401";
+"lambda_13" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_13" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_13" -> "bond
+offset: 0.08604400208965401";
+"lambda_13" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_13" -> "atomKappa_2
+offset: 0.19496395014487078";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_14" [ label = "0.4557034118166712" ];
+"lambda_14" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_14" -> "bond
+offset: 0.08604400208965401";
+"lambda_14" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_14" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_14" -> "bond
+offset: 0.08604400208965401";
+"lambda_14" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_14" -> "atomKappa_2
+offset: 0.19496395014487078";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_15" [ label = "0.06675819989298049" ];
+"lambda_15" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_15" -> "bond
+offset: 0.08604400208965401";
+"lambda_15" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_15" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_15" -> "bond
+offset: 0.08604400208965401";
+"lambda_15" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_15" -> "atomKappa_2
+offset: 0.19496395014487078";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_16" [ label = "0.1622736029771925" ];
+"lambda_16" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_16" -> "bond
+offset: 0.08604400208965401";
+"lambda_16" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_16" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_16" -> "bond
+offset: 0.08604400208965401";
+"lambda_16" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_16" -> "atomKappa_2
+offset: 0.19496395014487078";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_17" [ label = "0.038991818150398316" ];
+"lambda_17" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_17" -> "bond
+offset: 0.08604400208965401";
+"lambda_17" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_17" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_17" -> "bond
+offset: 0.08604400208965401";
+"lambda_17" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_17" -> "atomKappa_2
+offset: 0.19496395014487078";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_18" [ label = "0.09820520795533483" ];
+"lambda_18" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_18" -> "bond
+offset: 0.08604400208965401";
+"lambda_18" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_18" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_18" -> "bond
+offset: 0.08604400208965401";
+"lambda_18" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_18" -> "atomKappa_3
+offset: 0.3201694158754762";
+"atomKappa_3
+offset: 0.3201694158754762" -> "atomLambda_1" [ label = "0.40333338664958696" ];
+"atomKappa_3
+offset: 0.3201694158754762" -> "atomLambda_2" [ label = "0.06602978732770026" ];
+"atomKappa_3
+offset: 0.3201694158754762" -> "atomLambda_3" [ label = "0.013579761289655323" ];
+"atomKappa_3
+offset: 0.3201694158754762" -> "atomLambda_4" [ label = "0.22634278579919354" ];
+"atomKappa_3
+offset: 0.3201694158754762" -> "atomLambda_5" [ label = "0.12388509296538608" ];
+"atomKappa_3
+offset: 0.3201694158754762" -> "atomLambda_6" [ label = "0.33172465862804046" ];
+"atomKappa_3
+offset: 0.3201694158754762" -> "atomLambda_7" [ label = "0.41705222885800985" ];
+"atomKappa_3
+offset: 0.3201694158754762" -> "atomLambda_8" [ label = "0.07421016242835243" ];
+"atomKappa_3
+offset: 0.3201694158754762" -> "atomLambda_9" [ label = "0.18831403283104642" ];
+"atomKappa_3
+offset: 0.3201694158754762" -> "atomLambda_10" [ label = "0.1021267271151185" ];
+"atomKappa_3
+offset: 0.3201694158754762" -> "atomLambda_11" [ label = "0.011998180576103579" ];
+"atomKappa_3
+offset: 0.3201694158754762" -> "atomLambda_12" [ label = "0.12220537613254834" ];
+"atomKappa_3
+offset: 0.3201694158754762" -> "atomLambda_13" [ label = "0.2976128042087627" ];
+"atomKappa_3
+offset: 0.3201694158754762" -> "atomLambda_14" [ label = "0.21288253944097058" ];
+"atomKappa_3
+offset: 0.3201694158754762" -> "atomLambda_15" [ label = "0.2677524758458887" ];
+"atomKappa_3
+offset: 0.3201694158754762" -> "atomLambda_16" [ label = "0.060044470843692466" ];
+"atomKappa_3
+offset: 0.3201694158754762" -> "atomLambda_17" [ label = "0.4588054635721779" ];
+"atomKappa_3
+offset: 0.3201694158754762" -> "atomLambda_18" [ label = "0.25736261514909664" ];
+"atomKappa_3
+offset: 0.3201694158754762" -> "atomLambda_19" [ label = "0.32172369870226447" ];
+"atomKappa_3
+offset: 0.3201694158754762" -> "atomLambda_20" [ label = "0.2347426378213182" ];
+"atomKappa_3
+offset: 0.3201694158754762" -> "atomLambda_21" [ label = "0.054059403726466115" ];
+"atomKappa_3
+offset: 0.3201694158754762" -> "atomLambda_22" [ label = "0.5835385645681761" ];
+"atomKappa_3
+offset: 0.3201694158754762" -> "atomLambda_23" [ label = "0.4695238352090385" ];
+"atomKappa_3
+offset: 0.3201694158754762" -> "atomLambda_24" [ label = "0.022335489090032468" ];
+"atomKappa_3
+offset: 0.3201694158754762" -> "atomLambda_25" [ label = "0.12202661196577225" ];
+"atomKappa_3
+offset: 0.3201694158754762" -> "atomLambda_26" [ label = "0.4704515610374216" ];
+"atomKappa_3
+offset: 0.3201694158754762" -> "atomLambda_27" [ label = "0.1232207244128265" ];
+"atomKappa_3
+offset: 0.3201694158754762" -> "atomLambda_28" [ label = "0.4992552331974771" ];
+"atomKappa_3
+offset: 0.3201694158754762" -> "atomLambda_29" [ label = "0.3340786007227319" ];
+"atomKappa_3
+offset: 0.3201694158754762" -> "atomLambda_30" [ label = "0.024262507614986717" ];
+"atomKappa_3
+offset: 0.3201694158754762" -> "atomLambda_31" [ label = "0.20350588320307672" ];
+"atomKappa_3
+offset: 0.3201694158754762" -> "atomLambda_32" [ label = "0.0027828362225932324" ];
+"atomKappa_3
+offset: 0.3201694158754762" -> "atomLambda_33" [ label = "0.1076194980317382" ];
+"atomKappa_3
+offset: 0.3201694158754762" -> "atomLambda_34" [ label = "0.0982924589792109" ];
+"atomKappa_3
+offset: 0.3201694158754762" -> "atomLambda_35" [ label = "0.25127648309119266" ];
+"atomKappa_3
+offset: 0.3201694158754762" -> "atomLambda_36" [ label = "0.12995511225905787" ];
+"finalKappa
+offset: 0.294480083596957" -> "lambda_19" [ label = "0.07756674200773084" ];
+"lambda_19" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_19" -> "bond
+offset: 0.08604400208965401";
+"lambda_19" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_19" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_19" -> "bond
+offset: 0.08604400208965401";
+"lambda_19" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_19" -> "atomKappa_3
+offset: 0.3201694158754762";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_20" [ label = "0.15532172523745835" ];
+"lambda_20" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_20" -> "bond
+offset: 0.08604400208965401";
+"lambda_20" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_20" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_20" -> "bond
+offset: 0.08604400208965401";
+"lambda_20" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_20" -> "atomKappa_3
+offset: 0.3201694158754762";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_21" [ label = "0.2067513515271031" ];
+"lambda_21" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_21" -> "bond
+offset: 0.08604400208965401";
+"lambda_21" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_21" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_21" -> "bond
+offset: 0.08604400208965401";
+"lambda_21" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_21" -> "atomKappa_3
+offset: 0.3201694158754762";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_22" [ label = "0.253893332238178" ];
+"lambda_22" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_22" -> "bond
+offset: 0.08604400208965401";
+"lambda_22" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_22" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_22" -> "bond
+offset: 0.08604400208965401";
+"lambda_22" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_22" -> "atomKappa_3
+offset: 0.3201694158754762";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_23" [ label = "0.05751505015046732" ];
+"lambda_23" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_23" -> "bond
+offset: 0.08604400208965401";
+"lambda_23" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_23" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_23" -> "bond
+offset: 0.08604400208965401";
+"lambda_23" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_23" -> "atomKappa_3
+offset: 0.3201694158754762";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_24" [ label = "0.30487999255690035" ];
+"lambda_24" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_24" -> "bond
+offset: 0.08604400208965401";
+"lambda_24" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_24" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_24" -> "bond
+offset: 0.08604400208965401";
+"lambda_24" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_24" -> "atomKappa_3
+offset: 0.3201694158754762";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_25" [ label = "0.3657422417468492" ];
+"lambda_25" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_25" -> "bond
+offset: 0.08604400208965401";
+"lambda_25" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_25" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_25" -> "bond
+offset: 0.08604400208965401";
+"lambda_25" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_25" -> "atomKappa_3
+offset: 0.3201694158754762";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_26" [ label = "0.016256794796635887" ];
+"lambda_26" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_26" -> "bond
+offset: 0.08604400208965401";
+"lambda_26" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_26" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_26" -> "bond
+offset: 0.08604400208965401";
+"lambda_26" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_26" -> "atomKappa_3
+offset: 0.3201694158754762";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_27" [ label = "0.0731452515775981" ];
+"lambda_27" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_27" -> "bond
+offset: 0.08604400208965401";
+"lambda_27" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_27" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_27" -> "bond
+offset: 0.08604400208965401";
+"lambda_27" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_27" -> "atomKappa_1
+offset: 0.04258833147689067";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_28" [ label = "0.017038805808144986" ];
+"lambda_28" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_28" -> "bond
+offset: 0.08604400208965401";
+"lambda_28" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_28" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_28" -> "bond
+offset: 0.08604400208965401";
+"lambda_28" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_28" -> "atomKappa_1
+offset: 0.04258833147689067";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_29" [ label = "0.6340749075350764" ];
+"lambda_29" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_29" -> "bond
+offset: 0.08604400208965401";
+"lambda_29" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_29" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_29" -> "bond
+offset: 0.08604400208965401";
+"lambda_29" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_29" -> "atomKappa_1
+offset: 0.04258833147689067";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_30" [ label = "0.3153039228101182" ];
+"lambda_30" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_30" -> "bond
+offset: 0.08604400208965401";
+"lambda_30" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_30" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_30" -> "bond
+offset: 0.08604400208965401";
+"lambda_30" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_30" -> "atomKappa_1
+offset: 0.04258833147689067";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_31" [ label = "0.1075810882238688" ];
+"lambda_31" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_31" -> "bond
+offset: 0.08604400208965401";
+"lambda_31" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_31" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_31" -> "bond
+offset: 0.08604400208965401";
+"lambda_31" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_31" -> "atomKappa_1
+offset: 0.04258833147689067";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_32" [ label = "0.006986378770305279" ];
+"lambda_32" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_32" -> "bond
+offset: 0.08604400208965401";
+"lambda_32" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_32" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_32" -> "bond
+offset: 0.08604400208965401";
+"lambda_32" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_32" -> "atomKappa_1
+offset: 0.04258833147689067";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_33" [ label = "0.21402303412101276" ];
+"lambda_33" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_33" -> "bond
+offset: 0.08604400208965401";
+"lambda_33" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_33" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_33" -> "bond
+offset: 0.08604400208965401";
+"lambda_33" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_33" -> "atomKappa_1
+offset: 0.04258833147689067";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_34" [ label = "0.38062669673143645" ];
+"lambda_34" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_34" -> "bond
+offset: 0.08604400208965401";
+"lambda_34" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_34" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_34" -> "bond
+offset: 0.08604400208965401";
+"lambda_34" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_34" -> "atomKappa_1
+offset: 0.04258833147689067";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_35" [ label = "0.44657273938543796" ];
+"lambda_35" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_35" -> "bond
+offset: 0.08604400208965401";
+"lambda_35" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_35" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_35" -> "bond
+offset: 0.08604400208965401";
+"lambda_35" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_35" -> "atomKappa_1
+offset: 0.04258833147689067";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_36" [ label = "0.03890934424968684" ];
+"lambda_36" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_36" -> "bond
+offset: 0.08604400208965401";
+"lambda_36" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_36" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_36" -> "bond
+offset: 0.08604400208965401";
+"lambda_36" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_36" -> "atomKappa_2
+offset: 0.19496395014487078";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_37" [ label = "0.07824027229768404" ];
+"lambda_37" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_37" -> "bond
+offset: 0.08604400208965401";
+"lambda_37" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_37" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_37" -> "bond
+offset: 0.08604400208965401";
+"lambda_37" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_37" -> "atomKappa_2
+offset: 0.19496395014487078";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_38" [ label = "0.16462206393719825" ];
+"lambda_38" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_38" -> "bond
+offset: 0.08604400208965401";
+"lambda_38" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_38" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_38" -> "bond
+offset: 0.08604400208965401";
+"lambda_38" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_38" -> "atomKappa_2
+offset: 0.19496395014487078";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_39" [ label = "0.14290655992230583" ];
+"lambda_39" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_39" -> "bond
+offset: 0.08604400208965401";
+"lambda_39" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_39" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_39" -> "bond
+offset: 0.08604400208965401";
+"lambda_39" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_39" -> "atomKappa_2
+offset: 0.19496395014487078";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_40" [ label = "0.036564273632659905" ];
+"lambda_40" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_40" -> "bond
+offset: 0.08604400208965401";
+"lambda_40" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_40" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_40" -> "bond
+offset: 0.08604400208965401";
+"lambda_40" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_40" -> "atomKappa_2
+offset: 0.19496395014487078";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_41" [ label = "0.12025973751566532" ];
+"lambda_41" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_41" -> "bond
+offset: 0.08604400208965401";
+"lambda_41" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_41" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_41" -> "bond
+offset: 0.08604400208965401";
+"lambda_41" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_41" -> "atomKappa_2
+offset: 0.19496395014487078";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_42" [ label = "0.10477321817050367" ];
+"lambda_42" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_42" -> "bond
+offset: 0.08604400208965401";
+"lambda_42" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_42" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_42" -> "bond
+offset: 0.08604400208965401";
+"lambda_42" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_42" -> "atomKappa_2
+offset: 0.19496395014487078";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_43" [ label = "0.10050905602747129" ];
+"lambda_43" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_43" -> "bond
+offset: 0.08604400208965401";
+"lambda_43" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_43" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_43" -> "bond
+offset: 0.08604400208965401";
+"lambda_43" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_43" -> "atomKappa_2
+offset: 0.19496395014487078";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_44" [ label = "0.19079857809905043" ];
+"lambda_44" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_44" -> "bond
+offset: 0.08604400208965401";
+"lambda_44" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_44" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_44" -> "bond
+offset: 0.08604400208965401";
+"lambda_44" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_44" -> "atomKappa_2
+offset: 0.19496395014487078";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_45" [ label = "1.1815481348921661" ];
+"lambda_45" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_45" -> "bond
+offset: 0.08604400208965401";
+"lambda_45" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_45" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_45" -> "bond
+offset: 0.08604400208965401";
+"lambda_45" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_45" -> "atomKappa_3
+offset: 0.3201694158754762";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_46" [ label = "0.07263227009729434" ];
+"lambda_46" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_46" -> "bond
+offset: 0.08604400208965401";
+"lambda_46" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_46" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_46" -> "bond
+offset: 0.08604400208965401";
+"lambda_46" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_46" -> "atomKappa_3
+offset: 0.3201694158754762";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_47" [ label = "0.0659046548983202" ];
+"lambda_47" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_47" -> "bond
+offset: 0.08604400208965401";
+"lambda_47" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_47" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_47" -> "bond
+offset: 0.08604400208965401";
+"lambda_47" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_47" -> "atomKappa_3
+offset: 0.3201694158754762";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_48" [ label = "0.5100765763960702" ];
+"lambda_48" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_48" -> "bond
+offset: 0.08604400208965401";
+"lambda_48" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_48" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_48" -> "bond
+offset: 0.08604400208965401";
+"lambda_48" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_48" -> "atomKappa_3
+offset: 0.3201694158754762";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_49" [ label = "0.13369548184684454" ];
+"lambda_49" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_49" -> "bond
+offset: 0.08604400208965401";
+"lambda_49" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_49" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_49" -> "bond
+offset: 0.08604400208965401";
+"lambda_49" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_49" -> "atomKappa_3
+offset: 0.3201694158754762";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_50" [ label = "0.07210840849284672" ];
+"lambda_50" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_50" -> "bond
+offset: 0.08604400208965401";
+"lambda_50" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_50" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_50" -> "bond
+offset: 0.08604400208965401";
+"lambda_50" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_50" -> "atomKappa_3
+offset: 0.3201694158754762";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_51" [ label = "0.043460146090954055" ];
+"lambda_51" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_51" -> "bond
+offset: 0.08604400208965401";
+"lambda_51" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_51" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_51" -> "bond
+offset: 0.08604400208965401";
+"lambda_51" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_51" -> "atomKappa_3
+offset: 0.3201694158754762";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_52" [ label = "0.06376860963188058" ];
+"lambda_52" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_52" -> "bond
+offset: 0.08604400208965401";
+"lambda_52" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_52" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_52" -> "bond
+offset: 0.08604400208965401";
+"lambda_52" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_52" -> "atomKappa_3
+offset: 0.3201694158754762";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_53" [ label = "0.20845417795242227" ];
+"lambda_53" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_53" -> "bond
+offset: 0.08604400208965401";
+"lambda_53" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_53" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_53" -> "bond
+offset: 0.08604400208965401";
+"lambda_53" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_53" -> "atomKappa_3
+offset: 0.3201694158754762";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_54" [ label = "0.5254360679280374" ];
+"lambda_54" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_54" -> "bond
+offset: 0.08604400208965401";
+"lambda_54" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_54" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_54" -> "bond
+offset: 0.08604400208965401";
+"lambda_54" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_54" -> "atomKappa_1
+offset: 0.04258833147689067";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_55" [ label = "0.20413608200381717" ];
+"lambda_55" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_55" -> "bond
+offset: 0.08604400208965401";
+"lambda_55" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_55" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_55" -> "bond
+offset: 0.08604400208965401";
+"lambda_55" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_55" -> "atomKappa_1
+offset: 0.04258833147689067";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_56" [ label = "0.1270689543153587" ];
+"lambda_56" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_56" -> "bond
+offset: 0.08604400208965401";
+"lambda_56" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_56" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_56" -> "bond
+offset: 0.08604400208965401";
+"lambda_56" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_56" -> "atomKappa_1
+offset: 0.04258833147689067";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_57" [ label = "0.008755894352614035" ];
+"lambda_57" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_57" -> "bond
+offset: 0.08604400208965401";
+"lambda_57" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_57" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_57" -> "bond
+offset: 0.08604400208965401";
+"lambda_57" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_57" -> "atomKappa_1
+offset: 0.04258833147689067";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_58" [ label = "0.07164371239026401" ];
+"lambda_58" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_58" -> "bond
+offset: 0.08604400208965401";
+"lambda_58" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_58" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_58" -> "bond
+offset: 0.08604400208965401";
+"lambda_58" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_58" -> "atomKappa_1
+offset: 0.04258833147689067";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_59" [ label = "0.40469297526516357" ];
+"lambda_59" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_59" -> "bond
+offset: 0.08604400208965401";
+"lambda_59" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_59" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_59" -> "bond
+offset: 0.08604400208965401";
+"lambda_59" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_59" -> "atomKappa_1
+offset: 0.04258833147689067";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_60" [ label = "0.13293042357163642" ];
+"lambda_60" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_60" -> "bond
+offset: 0.08604400208965401";
+"lambda_60" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_60" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_60" -> "bond
+offset: 0.08604400208965401";
+"lambda_60" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_60" -> "atomKappa_1
+offset: 0.04258833147689067";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_61" [ label = "0.020348629785694072" ];
+"lambda_61" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_61" -> "bond
+offset: 0.08604400208965401";
+"lambda_61" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_61" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_61" -> "bond
+offset: 0.08604400208965401";
+"lambda_61" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_61" -> "atomKappa_1
+offset: 0.04258833147689067";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_62" [ label = "0.34463911757025123" ];
+"lambda_62" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_62" -> "bond
+offset: 0.08604400208965401";
+"lambda_62" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_62" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_62" -> "bond
+offset: 0.08604400208965401";
+"lambda_62" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_62" -> "atomKappa_1
+offset: 0.04258833147689067";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_63" [ label = "0.2040924169222169" ];
+"lambda_63" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_63" -> "bond
+offset: 0.08604400208965401";
+"lambda_63" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_63" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_63" -> "bond
+offset: 0.08604400208965401";
+"lambda_63" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_63" -> "atomKappa_2
+offset: 0.19496395014487078";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_64" [ label = "0.07104419872285916" ];
+"lambda_64" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_64" -> "bond
+offset: 0.08604400208965401";
+"lambda_64" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_64" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_64" -> "bond
+offset: 0.08604400208965401";
+"lambda_64" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_64" -> "atomKappa_2
+offset: 0.19496395014487078";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_65" [ label = "0.6501571278921858" ];
+"lambda_65" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_65" -> "bond
+offset: 0.08604400208965401";
+"lambda_65" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_65" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_65" -> "bond
+offset: 0.08604400208965401";
+"lambda_65" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_65" -> "atomKappa_2
+offset: 0.19496395014487078";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_66" [ label = "0.2606487293384596" ];
+"lambda_66" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_66" -> "bond
+offset: 0.08604400208965401";
+"lambda_66" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_66" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_66" -> "bond
+offset: 0.08604400208965401";
+"lambda_66" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_66" -> "atomKappa_2
+offset: 0.19496395014487078";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_67" [ label = "0.14905103498063532" ];
+"lambda_67" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_67" -> "bond
+offset: 0.08604400208965401";
+"lambda_67" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_67" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_67" -> "bond
+offset: 0.08604400208965401";
+"lambda_67" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_67" -> "atomKappa_2
+offset: 0.19496395014487078";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_68" [ label = "0.174997223373893" ];
+"lambda_68" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_68" -> "bond
+offset: 0.08604400208965401";
+"lambda_68" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_68" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_68" -> "bond
+offset: 0.08604400208965401";
+"lambda_68" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_68" -> "atomKappa_2
+offset: 0.19496395014487078";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_69" [ label = "0.3249668504987042" ];
+"lambda_69" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_69" -> "bond
+offset: 0.08604400208965401";
+"lambda_69" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_69" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_69" -> "bond
+offset: 0.08604400208965401";
+"lambda_69" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_69" -> "atomKappa_2
+offset: 0.19496395014487078";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_70" [ label = "0.2374968202731118" ];
+"lambda_70" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_70" -> "bond
+offset: 0.08604400208965401";
+"lambda_70" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_70" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_70" -> "bond
+offset: 0.08604400208965401";
+"lambda_70" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_70" -> "atomKappa_2
+offset: 0.19496395014487078";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_71" [ label = "0.10766798491022911" ];
+"lambda_71" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_71" -> "bond
+offset: 0.08604400208965401";
+"lambda_71" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_71" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_71" -> "bond
+offset: 0.08604400208965401";
+"lambda_71" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_71" -> "atomKappa_2
+offset: 0.19496395014487078";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_72" [ label = "0.3431985815256784" ];
+"lambda_72" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_72" -> "bond
+offset: 0.08604400208965401";
+"lambda_72" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_72" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_72" -> "bond
+offset: 0.08604400208965401";
+"lambda_72" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_72" -> "atomKappa_3
+offset: 0.3201694158754762";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_73" [ label = "0.19216172756720695" ];
+"lambda_73" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_73" -> "bond
+offset: 0.08604400208965401";
+"lambda_73" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_73" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_73" -> "bond
+offset: 0.08604400208965401";
+"lambda_73" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_73" -> "atomKappa_3
+offset: 0.3201694158754762";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_74" [ label = "0.2802464420127375" ];
+"lambda_74" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_74" -> "bond
+offset: 0.08604400208965401";
+"lambda_74" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_74" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_74" -> "bond
+offset: 0.08604400208965401";
+"lambda_74" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_74" -> "atomKappa_3
+offset: 0.3201694158754762";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_75" [ label = "0.12065874402716936" ];
+"lambda_75" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_75" -> "bond
+offset: 0.08604400208965401";
+"lambda_75" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_75" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_75" -> "bond
+offset: 0.08604400208965401";
+"lambda_75" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_75" -> "atomKappa_3
+offset: 0.3201694158754762";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_76" [ label = "0.20104843831416552" ];
+"lambda_76" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_76" -> "bond
+offset: 0.08604400208965401";
+"lambda_76" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_76" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_76" -> "bond
+offset: 0.08604400208965401";
+"lambda_76" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_76" -> "atomKappa_3
+offset: 0.3201694158754762";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_77" [ label = "0.22698677215420737" ];
+"lambda_77" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_77" -> "bond
+offset: 0.08604400208965401";
+"lambda_77" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_77" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_77" -> "bond
+offset: 0.08604400208965401";
+"lambda_77" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_77" -> "atomKappa_3
+offset: 0.3201694158754762";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_78" [ label = "0.03472152423856656" ];
+"lambda_78" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_78" -> "bond
+offset: 0.08604400208965401";
+"lambda_78" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_78" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_78" -> "bond
+offset: 0.08604400208965401";
+"lambda_78" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_78" -> "atomKappa_3
+offset: 0.3201694158754762";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_79" [ label = "0.07799071444547678" ];
+"lambda_79" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_79" -> "bond
+offset: 0.08604400208965401";
+"lambda_79" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_79" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_79" -> "bond
+offset: 0.08604400208965401";
+"lambda_79" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_79" -> "atomKappa_3
+offset: 0.3201694158754762";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_80" [ label = "0.42515462721368813" ];
+"lambda_80" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_80" -> "bond
+offset: 0.08604400208965401";
+"lambda_80" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_80" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_80" -> "bond
+offset: 0.08604400208965401";
+"lambda_80" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_80" -> "atomKappa_3
+offset: 0.3201694158754762";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_81" [ label = "0.0130373514973261" ];
+"lambda_81" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_81" -> "bond
+offset: 0.08604400208965401";
+"lambda_81" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_81" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_81" -> "bond
+offset: 0.08604400208965401";
+"lambda_81" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_81" -> "atomKappa_1
+offset: 0.04258833147689067";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_82" [ label = "0.026079673616152377" ];
+"lambda_82" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_82" -> "bond
+offset: 0.08604400208965401";
+"lambda_82" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_82" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_82" -> "bond
+offset: 0.08604400208965401";
+"lambda_82" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_82" -> "atomKappa_1
+offset: 0.04258833147689067";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_83" [ label = "0.03135631120536608" ];
+"lambda_83" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_83" -> "bond
+offset: 0.08604400208965401";
+"lambda_83" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_83" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_83" -> "bond
+offset: 0.08604400208965401";
+"lambda_83" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_83" -> "atomKappa_1
+offset: 0.04258833147689067";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_84" [ label = "0.18077872275703477" ];
+"lambda_84" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_84" -> "bond
+offset: 0.08604400208965401";
+"lambda_84" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_84" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_84" -> "bond
+offset: 0.08604400208965401";
+"lambda_84" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_84" -> "atomKappa_1
+offset: 0.04258833147689067";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_85" [ label = "0.1888029799128308" ];
+"lambda_85" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_85" -> "bond
+offset: 0.08604400208965401";
+"lambda_85" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_85" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_85" -> "bond
+offset: 0.08604400208965401";
+"lambda_85" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_85" -> "atomKappa_1
+offset: 0.04258833147689067";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_86" [ label = "0.12508716804186548" ];
+"lambda_86" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_86" -> "bond
+offset: 0.08604400208965401";
+"lambda_86" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_86" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_86" -> "bond
+offset: 0.08604400208965401";
+"lambda_86" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_86" -> "atomKappa_1
+offset: 0.04258833147689067";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_87" [ label = "1.0254942405863758" ];
+"lambda_87" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_87" -> "bond
+offset: 0.08604400208965401";
+"lambda_87" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_87" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_87" -> "bond
+offset: 0.08604400208965401";
+"lambda_87" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_87" -> "atomKappa_1
+offset: 0.04258833147689067";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_88" [ label = "0.6382724980099006" ];
+"lambda_88" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_88" -> "bond
+offset: 0.08604400208965401";
+"lambda_88" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_88" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_88" -> "bond
+offset: 0.08604400208965401";
+"lambda_88" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_88" -> "atomKappa_1
+offset: 0.04258833147689067";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_89" [ label = "0.04689743457342743" ];
+"lambda_89" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_89" -> "bond
+offset: 0.08604400208965401";
+"lambda_89" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_89" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_89" -> "bond
+offset: 0.08604400208965401";
+"lambda_89" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_89" -> "atomKappa_1
+offset: 0.04258833147689067";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_90" [ label = "0.25254097257375285" ];
+"lambda_90" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_90" -> "bond
+offset: 0.08604400208965401";
+"lambda_90" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_90" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_90" -> "bond
+offset: 0.08604400208965401";
+"lambda_90" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_90" -> "atomKappa_2
+offset: 0.19496395014487078";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_91" [ label = "0.0637449541577162" ];
+"lambda_91" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_91" -> "bond
+offset: 0.08604400208965401";
+"lambda_91" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_91" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_91" -> "bond
+offset: 0.08604400208965401";
+"lambda_91" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_91" -> "atomKappa_2
+offset: 0.19496395014487078";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_92" [ label = "0.16889121943314578" ];
+"lambda_92" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_92" -> "bond
+offset: 0.08604400208965401";
+"lambda_92" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_92" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_92" -> "bond
+offset: 0.08604400208965401";
+"lambda_92" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_92" -> "atomKappa_2
+offset: 0.19496395014487078";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_93" [ label = "0.23926897685467985" ];
+"lambda_93" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_93" -> "bond
+offset: 0.08604400208965401";
+"lambda_93" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_93" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_93" -> "bond
+offset: 0.08604400208965401";
+"lambda_93" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_93" -> "atomKappa_2
+offset: 0.19496395014487078";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_94" [ label = "0.27204507423738455" ];
+"lambda_94" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_94" -> "bond
+offset: 0.08604400208965401";
+"lambda_94" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_94" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_94" -> "bond
+offset: 0.08604400208965401";
+"lambda_94" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_94" -> "atomKappa_2
+offset: 0.19496395014487078";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_95" [ label = "0.39917735537659915" ];
+"lambda_95" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_95" -> "bond
+offset: 0.08604400208965401";
+"lambda_95" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_95" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_95" -> "bond
+offset: 0.08604400208965401";
+"lambda_95" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_95" -> "atomKappa_2
+offset: 0.19496395014487078";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_96" [ label = "0.3668029574059055" ];
+"lambda_96" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_96" -> "bond
+offset: 0.08604400208965401";
+"lambda_96" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_96" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_96" -> "bond
+offset: 0.08604400208965401";
+"lambda_96" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_96" -> "atomKappa_2
+offset: 0.19496395014487078";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_97" [ label = "0.2106761379918698" ];
+"lambda_97" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_97" -> "bond
+offset: 0.08604400208965401";
+"lambda_97" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_97" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_97" -> "bond
+offset: 0.08604400208965401";
+"lambda_97" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_97" -> "atomKappa_2
+offset: 0.19496395014487078";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_98" [ label = "0.034694705564234596" ];
+"lambda_98" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_98" -> "bond
+offset: 0.08604400208965401";
+"lambda_98" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_98" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_98" -> "bond
+offset: 0.08604400208965401";
+"lambda_98" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_98" -> "atomKappa_2
+offset: 0.19496395014487078";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_99" [ label = "0.03304106832887399" ];
+"lambda_99" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_99" -> "bond
+offset: 0.08604400208965401";
+"lambda_99" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_99" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_99" -> "bond
+offset: 0.08604400208965401";
+"lambda_99" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_99" -> "atomKappa_3
+offset: 0.3201694158754762";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_100" [ label = "0.2599114809003087" ];
+"lambda_100" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_100" -> "bond
+offset: 0.08604400208965401";
+"lambda_100" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_100" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_100" -> "bond
+offset: 0.08604400208965401";
+"lambda_100" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_100" -> "atomKappa_3
+offset: 0.3201694158754762";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_101" [ label = "0.09322026789098103" ];
+"lambda_101" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_101" -> "bond
+offset: 0.08604400208965401";
+"lambda_101" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_101" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_101" -> "bond
+offset: 0.08604400208965401";
+"lambda_101" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_101" -> "atomKappa_3
+offset: 0.3201694158754762";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_102" [ label = "0.13861408876455528" ];
+"lambda_102" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_102" -> "bond
+offset: 0.08604400208965401";
+"lambda_102" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_102" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_102" -> "bond
+offset: 0.08604400208965401";
+"lambda_102" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_102" -> "atomKappa_3
+offset: 0.3201694158754762";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_103" [ label = "0.17081399544216858" ];
+"lambda_103" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_103" -> "bond
+offset: 0.08604400208965401";
+"lambda_103" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_103" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_103" -> "bond
+offset: 0.08604400208965401";
+"lambda_103" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_103" -> "atomKappa_3
+offset: 0.3201694158754762";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_104" [ label = "0.030785204895053653" ];
+"lambda_104" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_104" -> "bond
+offset: 0.08604400208965401";
+"lambda_104" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_104" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_104" -> "bond
+offset: 0.08604400208965401";
+"lambda_104" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_104" -> "atomKappa_3
+offset: 0.3201694158754762";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_105" [ label = "0.0388097536256069" ];
+"lambda_105" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_105" -> "bond
+offset: 0.08604400208965401";
+"lambda_105" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_105" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_105" -> "bond
+offset: 0.08604400208965401";
+"lambda_105" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_105" -> "atomKappa_3
+offset: 0.3201694158754762";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_106" [ label = "0.5715643185486332" ];
+"lambda_106" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_106" -> "bond
+offset: 0.08604400208965401";
+"lambda_106" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_106" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_106" -> "bond
+offset: 0.08604400208965401";
+"lambda_106" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_106" -> "atomKappa_3
+offset: 0.3201694158754762";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_107" [ label = "0.2596905025232221" ];
+"lambda_107" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_107" -> "bond
+offset: 0.08604400208965401";
+"lambda_107" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_107" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_107" -> "bond
+offset: 0.08604400208965401";
+"lambda_107" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_107" -> "atomKappa_3
+offset: 0.3201694158754762";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_108" [ label = "0.034123667773050315" ];
+"lambda_108" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_108" -> "bond
+offset: 0.08604400208965401";
+"lambda_108" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_108" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_108" -> "bond
+offset: 0.08604400208965401";
+"lambda_108" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_108" -> "atomKappa_1
+offset: 0.04258833147689067";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_109" [ label = "0.1647651556390084" ];
+"lambda_109" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_109" -> "bond
+offset: 0.08604400208965401";
+"lambda_109" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_109" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_109" -> "bond
+offset: 0.08604400208965401";
+"lambda_109" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_109" -> "atomKappa_1
+offset: 0.04258833147689067";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_110" [ label = "0.05855527407032746" ];
+"lambda_110" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_110" -> "bond
+offset: 0.08604400208965401";
+"lambda_110" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_110" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_110" -> "bond
+offset: 0.08604400208965401";
+"lambda_110" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_110" -> "atomKappa_1
+offset: 0.04258833147689067";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_111" [ label = "0.025848548070753097" ];
+"lambda_111" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_111" -> "bond
+offset: 0.08604400208965401";
+"lambda_111" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_111" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_111" -> "bond
+offset: 0.08604400208965401";
+"lambda_111" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_111" -> "atomKappa_1
+offset: 0.04258833147689067";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_112" [ label = "0.2380531079734869" ];
+"lambda_112" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_112" -> "bond
+offset: 0.08604400208965401";
+"lambda_112" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_112" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_112" -> "bond
+offset: 0.08604400208965401";
+"lambda_112" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_112" -> "atomKappa_1
+offset: 0.04258833147689067";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_113" [ label = "0.003328570519292029" ];
+"lambda_113" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_113" -> "bond
+offset: 0.08604400208965401";
+"lambda_113" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_113" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_113" -> "bond
+offset: 0.08604400208965401";
+"lambda_113" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_113" -> "atomKappa_1
+offset: 0.04258833147689067";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_114" [ label = "0.03657430438164333" ];
+"lambda_114" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_114" -> "bond
+offset: 0.08604400208965401";
+"lambda_114" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_114" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_114" -> "bond
+offset: 0.08604400208965401";
+"lambda_114" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_114" -> "atomKappa_1
+offset: 0.04258833147689067";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_115" [ label = "0.05082817624325919" ];
+"lambda_115" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_115" -> "bond
+offset: 0.08604400208965401";
+"lambda_115" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_115" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_115" -> "bond
+offset: 0.08604400208965401";
+"lambda_115" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_115" -> "atomKappa_1
+offset: 0.04258833147689067";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_116" [ label = "0.19629057117950488" ];
+"lambda_116" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_116" -> "bond
+offset: 0.08604400208965401";
+"lambda_116" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_116" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_116" -> "bond
+offset: 0.08604400208965401";
+"lambda_116" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_116" -> "atomKappa_1
+offset: 0.04258833147689067";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_117" [ label = "0.35728284655295717" ];
+"lambda_117" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_117" -> "bond
+offset: 0.08604400208965401";
+"lambda_117" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_117" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_117" -> "bond
+offset: 0.08604400208965401";
+"lambda_117" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_117" -> "atomKappa_2
+offset: 0.19496395014487078";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_118" [ label = "0.25193758020879997" ];
+"lambda_118" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_118" -> "bond
+offset: 0.08604400208965401";
+"lambda_118" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_118" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_118" -> "bond
+offset: 0.08604400208965401";
+"lambda_118" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_118" -> "atomKappa_2
+offset: 0.19496395014487078";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_119" [ label = "0.26651194506548315" ];
+"lambda_119" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_119" -> "bond
+offset: 0.08604400208965401";
+"lambda_119" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_119" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_119" -> "bond
+offset: 0.08604400208965401";
+"lambda_119" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_119" -> "atomKappa_2
+offset: 0.19496395014487078";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_120" [ label = "1.2047639698055193" ];
+"lambda_120" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_120" -> "bond
+offset: 0.08604400208965401";
+"lambda_120" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_120" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_120" -> "bond
+offset: 0.08604400208965401";
+"lambda_120" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_120" -> "atomKappa_2
+offset: 0.19496395014487078";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_121" [ label = "0.25440071417686383" ];
+"lambda_121" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_121" -> "bond
+offset: 0.08604400208965401";
+"lambda_121" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_121" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_121" -> "bond
+offset: 0.08604400208965401";
+"lambda_121" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_121" -> "atomKappa_2
+offset: 0.19496395014487078";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_122" [ label = "0.27493713782269147" ];
+"lambda_122" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_122" -> "bond
+offset: 0.08604400208965401";
+"lambda_122" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_122" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_122" -> "bond
+offset: 0.08604400208965401";
+"lambda_122" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_122" -> "atomKappa_2
+offset: 0.19496395014487078";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_123" [ label = "0.4095122447140618" ];
+"lambda_123" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_123" -> "bond
+offset: 0.08604400208965401";
+"lambda_123" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_123" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_123" -> "bond
+offset: 0.08604400208965401";
+"lambda_123" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_123" -> "atomKappa_2
+offset: 0.19496395014487078";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_124" [ label = "0.04679850126417939" ];
+"lambda_124" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_124" -> "bond
+offset: 0.08604400208965401";
+"lambda_124" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_124" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_124" -> "bond
+offset: 0.08604400208965401";
+"lambda_124" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_124" -> "atomKappa_2
+offset: 0.19496395014487078";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_125" [ label = "0.0074286446628555325" ];
+"lambda_125" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_125" -> "bond
+offset: 0.08604400208965401";
+"lambda_125" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_125" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_125" -> "bond
+offset: 0.08604400208965401";
+"lambda_125" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_125" -> "atomKappa_2
+offset: 0.19496395014487078";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_126" [ label = "0.30155894975412956" ];
+"lambda_126" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_126" -> "bond
+offset: 0.08604400208965401";
+"lambda_126" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_126" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_126" -> "bond
+offset: 0.08604400208965401";
+"lambda_126" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_126" -> "atomKappa_3
+offset: 0.3201694158754762";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_127" [ label = "0.016058158444334225" ];
+"lambda_127" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_127" -> "bond
+offset: 0.08604400208965401";
+"lambda_127" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_127" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_127" -> "bond
+offset: 0.08604400208965401";
+"lambda_127" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_127" -> "atomKappa_3
+offset: 0.3201694158754762";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_128" [ label = "0.5836271721149195" ];
+"lambda_128" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_128" -> "bond
+offset: 0.08604400208965401";
+"lambda_128" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_128" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_128" -> "bond
+offset: 0.08604400208965401";
+"lambda_128" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_128" -> "atomKappa_3
+offset: 0.3201694158754762";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_129" [ label = "0.005500349567734375" ];
+"lambda_129" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_129" -> "bond
+offset: 0.08604400208965401";
+"lambda_129" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_129" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_129" -> "bond
+offset: 0.08604400208965401";
+"lambda_129" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_129" -> "atomKappa_3
+offset: 0.3201694158754762";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_130" [ label = "0.17410588253532921" ];
+"lambda_130" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_130" -> "bond
+offset: 0.08604400208965401";
+"lambda_130" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_130" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_130" -> "bond
+offset: 0.08604400208965401";
+"lambda_130" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_130" -> "atomKappa_3
+offset: 0.3201694158754762";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_131" [ label = "0.12912026744971605" ];
+"lambda_131" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_131" -> "bond
+offset: 0.08604400208965401";
+"lambda_131" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_131" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_131" -> "bond
+offset: 0.08604400208965401";
+"lambda_131" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_131" -> "atomKappa_3
+offset: 0.3201694158754762";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_132" [ label = "0.854136349553384" ];
+"lambda_132" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_132" -> "bond
+offset: 0.08604400208965401";
+"lambda_132" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_132" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_132" -> "bond
+offset: 0.08604400208965401";
+"lambda_132" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_132" -> "atomKappa_3
+offset: 0.3201694158754762";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_133" [ label = "0.3712544400317981" ];
+"lambda_133" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_133" -> "bond
+offset: 0.08604400208965401";
+"lambda_133" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_133" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_133" -> "bond
+offset: 0.08604400208965401";
+"lambda_133" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_133" -> "atomKappa_3
+offset: 0.3201694158754762";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_134" [ label = "0.0313098648537089" ];
+"lambda_134" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_134" -> "bond
+offset: 0.08604400208965401";
+"lambda_134" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_134" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_134" -> "bond
+offset: 0.08604400208965401";
+"lambda_134" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_134" -> "atomKappa_3
+offset: 0.3201694158754762";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_135" [ label = "0.2658800683172018" ];
+"lambda_135" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_135" -> "bond
+offset: 0.08604400208965401";
+"lambda_135" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_135" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_135" -> "bond
+offset: 0.08604400208965401";
+"lambda_135" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_135" -> "atomKappa_1
+offset: 0.04258833147689067";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_136" [ label = "0.29372537656310094" ];
+"lambda_136" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_136" -> "bond
+offset: 0.08604400208965401";
+"lambda_136" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_136" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_136" -> "bond
+offset: 0.08604400208965401";
+"lambda_136" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_136" -> "atomKappa_1
+offset: 0.04258833147689067";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_137" [ label = "0.37556653191176537" ];
+"lambda_137" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_137" -> "bond
+offset: 0.08604400208965401";
+"lambda_137" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_137" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_137" -> "bond
+offset: 0.08604400208965401";
+"lambda_137" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_137" -> "atomKappa_1
+offset: 0.04258833147689067";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_138" [ label = "0.040971399225417926" ];
+"lambda_138" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_138" -> "bond
+offset: 0.08604400208965401";
+"lambda_138" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_138" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_138" -> "bond
+offset: 0.08604400208965401";
+"lambda_138" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_138" -> "atomKappa_1
+offset: 0.04258833147689067";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_139" [ label = "0.22318925995571703" ];
+"lambda_139" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_139" -> "bond
+offset: 0.08604400208965401";
+"lambda_139" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_139" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_139" -> "bond
+offset: 0.08604400208965401";
+"lambda_139" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_139" -> "atomKappa_1
+offset: 0.04258833147689067";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_140" [ label = "0.12081715905065593" ];
+"lambda_140" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_140" -> "bond
+offset: 0.08604400208965401";
+"lambda_140" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_140" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_140" -> "bond
+offset: 0.08604400208965401";
+"lambda_140" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_140" -> "atomKappa_1
+offset: 0.04258833147689067";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_141" [ label = "0.12837298301058198" ];
+"lambda_141" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_141" -> "bond
+offset: 0.08604400208965401";
+"lambda_141" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_141" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_141" -> "bond
+offset: 0.08604400208965401";
+"lambda_141" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_141" -> "atomKappa_1
+offset: 0.04258833147689067";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_142" [ label = "0.11796112074854115" ];
+"lambda_142" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_142" -> "bond
+offset: 0.08604400208965401";
+"lambda_142" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_142" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_142" -> "bond
+offset: 0.08604400208965401";
+"lambda_142" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_142" -> "atomKappa_1
+offset: 0.04258833147689067";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_143" [ label = "0.19394713597857915" ];
+"lambda_143" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_143" -> "bond
+offset: 0.08604400208965401";
+"lambda_143" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_143" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_143" -> "bond
+offset: 0.08604400208965401";
+"lambda_143" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_143" -> "atomKappa_1
+offset: 0.04258833147689067";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_144" [ label = "0.37102105919729667" ];
+"lambda_144" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_144" -> "bond
+offset: 0.08604400208965401";
+"lambda_144" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_144" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_144" -> "bond
+offset: 0.08604400208965401";
+"lambda_144" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_144" -> "atomKappa_2
+offset: 0.19496395014487078";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_145" [ label = "0.2945084380022571" ];
+"lambda_145" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_145" -> "bond
+offset: 0.08604400208965401";
+"lambda_145" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_145" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_145" -> "bond
+offset: 0.08604400208965401";
+"lambda_145" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_145" -> "atomKappa_2
+offset: 0.19496395014487078";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_146" [ label = "0.18994311822086196" ];
+"lambda_146" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_146" -> "bond
+offset: 0.08604400208965401";
+"lambda_146" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_146" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_146" -> "bond
+offset: 0.08604400208965401";
+"lambda_146" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_146" -> "atomKappa_2
+offset: 0.19496395014487078";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_147" [ label = "0.01784001923743439" ];
+"lambda_147" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_147" -> "bond
+offset: 0.08604400208965401";
+"lambda_147" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_147" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_147" -> "bond
+offset: 0.08604400208965401";
+"lambda_147" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_147" -> "atomKappa_2
+offset: 0.19496395014487078";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_148" [ label = "0.11004217118333948" ];
+"lambda_148" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_148" -> "bond
+offset: 0.08604400208965401";
+"lambda_148" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_148" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_148" -> "bond
+offset: 0.08604400208965401";
+"lambda_148" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_148" -> "atomKappa_2
+offset: 0.19496395014487078";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_149" [ label = "0.026119033164663463" ];
+"lambda_149" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_149" -> "bond
+offset: 0.08604400208965401";
+"lambda_149" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_149" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_149" -> "bond
+offset: 0.08604400208965401";
+"lambda_149" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_149" -> "atomKappa_2
+offset: 0.19496395014487078";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_150" [ label = "0.08335309631471688" ];
+"lambda_150" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_150" -> "bond
+offset: 0.08604400208965401";
+"lambda_150" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_150" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_150" -> "bond
+offset: 0.08604400208965401";
+"lambda_150" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_150" -> "atomKappa_2
+offset: 0.19496395014487078";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_151" [ label = "0.13604601233252112" ];
+"lambda_151" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_151" -> "bond
+offset: 0.08604400208965401";
+"lambda_151" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_151" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_151" -> "bond
+offset: 0.08604400208965401";
+"lambda_151" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_151" -> "atomKappa_2
+offset: 0.19496395014487078";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_152" [ label = "0.16993823400283858" ];
+"lambda_152" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_152" -> "bond
+offset: 0.08604400208965401";
+"lambda_152" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_152" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_152" -> "bond
+offset: 0.08604400208965401";
+"lambda_152" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_152" -> "atomKappa_2
+offset: 0.19496395014487078";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_153" [ label = "0.0787954304965588" ];
+"lambda_153" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_153" -> "bond
+offset: 0.08604400208965401";
+"lambda_153" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_153" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_153" -> "bond
+offset: 0.08604400208965401";
+"lambda_153" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_153" -> "atomKappa_3
+offset: 0.3201694158754762";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_154" [ label = "0.7824308302822374" ];
+"lambda_154" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_154" -> "bond
+offset: 0.08604400208965401";
+"lambda_154" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_154" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_154" -> "bond
+offset: 0.08604400208965401";
+"lambda_154" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_154" -> "atomKappa_3
+offset: 0.3201694158754762";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_155" [ label = "0.3472759672150918" ];
+"lambda_155" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_155" -> "bond
+offset: 0.08604400208965401";
+"lambda_155" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_155" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_155" -> "bond
+offset: 0.08604400208965401";
+"lambda_155" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_155" -> "atomKappa_3
+offset: 0.3201694158754762";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_156" [ label = "0.05803859828807312" ];
+"lambda_156" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_156" -> "bond
+offset: 0.08604400208965401";
+"lambda_156" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_156" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_156" -> "bond
+offset: 0.08604400208965401";
+"lambda_156" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_156" -> "atomKappa_3
+offset: 0.3201694158754762";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_157" [ label = "0.014574191611275822" ];
+"lambda_157" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_157" -> "bond
+offset: 0.08604400208965401";
+"lambda_157" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_157" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_157" -> "bond
+offset: 0.08604400208965401";
+"lambda_157" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_157" -> "atomKappa_3
+offset: 0.3201694158754762";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_158" [ label = "0.18315038749433832" ];
+"lambda_158" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_158" -> "bond
+offset: 0.08604400208965401";
+"lambda_158" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_158" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_158" -> "bond
+offset: 0.08604400208965401";
+"lambda_158" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_158" -> "atomKappa_3
+offset: 0.3201694158754762";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_159" [ label = "0.19099233645917302" ];
+"lambda_159" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_159" -> "bond
+offset: 0.08604400208965401";
+"lambda_159" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_159" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_159" -> "bond
+offset: 0.08604400208965401";
+"lambda_159" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_159" -> "atomKappa_3
+offset: 0.3201694158754762";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_160" [ label = "0.5018093775066195" ];
+"lambda_160" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_160" -> "bond
+offset: 0.08604400208965401";
+"lambda_160" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_160" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_160" -> "bond
+offset: 0.08604400208965401";
+"lambda_160" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_160" -> "atomKappa_3
+offset: 0.3201694158754762";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_161" [ label = "0.39979167834163754" ];
+"lambda_161" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_161" -> "bond
+offset: 0.08604400208965401";
+"lambda_161" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_161" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_161" -> "bond
+offset: 0.08604400208965401";
+"lambda_161" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_161" -> "atomKappa_3
+offset: 0.3201694158754762";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_162" [ label = "0.1236983357157797" ];
+"lambda_162" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_162" -> "bond
+offset: 0.08604400208965401";
+"lambda_162" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_162" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_162" -> "bond
+offset: 0.08604400208965401";
+"lambda_162" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_162" -> "atomKappa_1
+offset: 0.04258833147689067";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_163" [ label = "0.013925139288337718" ];
+"lambda_163" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_163" -> "bond
+offset: 0.08604400208965401";
+"lambda_163" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_163" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_163" -> "bond
+offset: 0.08604400208965401";
+"lambda_163" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_163" -> "atomKappa_1
+offset: 0.04258833147689067";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_164" [ label = "0.7671246048996885" ];
+"lambda_164" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_164" -> "bond
+offset: 0.08604400208965401";
+"lambda_164" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_164" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_164" -> "bond
+offset: 0.08604400208965401";
+"lambda_164" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_164" -> "atomKappa_1
+offset: 0.04258833147689067";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_165" [ label = "0.21607708332842357" ];
+"lambda_165" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_165" -> "bond
+offset: 0.08604400208965401";
+"lambda_165" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_165" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_165" -> "bond
+offset: 0.08604400208965401";
+"lambda_165" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_165" -> "atomKappa_1
+offset: 0.04258833147689067";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_166" [ label = "0.10536860553669847" ];
+"lambda_166" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_166" -> "bond
+offset: 0.08604400208965401";
+"lambda_166" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_166" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_166" -> "bond
+offset: 0.08604400208965401";
+"lambda_166" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_166" -> "atomKappa_1
+offset: 0.04258833147689067";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_167" [ label = "0.19805764082046373" ];
+"lambda_167" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_167" -> "bond
+offset: 0.08604400208965401";
+"lambda_167" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_167" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_167" -> "bond
+offset: 0.08604400208965401";
+"lambda_167" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_167" -> "atomKappa_1
+offset: 0.04258833147689067";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_168" [ label = "0.6072128476296719" ];
+"lambda_168" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_168" -> "bond
+offset: 0.08604400208965401";
+"lambda_168" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_168" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_168" -> "bond
+offset: 0.08604400208965401";
+"lambda_168" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_168" -> "atomKappa_1
+offset: 0.04258833147689067";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_169" [ label = "0.050438771189663" ];
+"lambda_169" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_169" -> "bond
+offset: 0.08604400208965401";
+"lambda_169" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_169" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_169" -> "bond
+offset: 0.08604400208965401";
+"lambda_169" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_169" -> "atomKappa_1
+offset: 0.04258833147689067";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_170" [ label = "0.6654394169641691" ];
+"lambda_170" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_170" -> "bond
+offset: 0.08604400208965401";
+"lambda_170" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_170" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_170" -> "bond
+offset: 0.08604400208965401";
+"lambda_170" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_170" -> "atomKappa_1
+offset: 0.04258833147689067";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_171" [ label = "0.12634434851074872" ];
+"lambda_171" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_171" -> "bond
+offset: 0.08604400208965401";
+"lambda_171" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_171" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_171" -> "bond
+offset: 0.08604400208965401";
+"lambda_171" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_171" -> "atomKappa_2
+offset: 0.19496395014487078";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_172" [ label = "0.184503292488861" ];
+"lambda_172" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_172" -> "bond
+offset: 0.08604400208965401";
+"lambda_172" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_172" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_172" -> "bond
+offset: 0.08604400208965401";
+"lambda_172" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_172" -> "atomKappa_2
+offset: 0.19496395014487078";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_173" [ label = "0.078519475822862" ];
+"lambda_173" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_173" -> "bond
+offset: 0.08604400208965401";
+"lambda_173" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_173" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_173" -> "bond
+offset: 0.08604400208965401";
+"lambda_173" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_173" -> "atomKappa_2
+offset: 0.19496395014487078";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_174" [ label = "0.09576598107028822" ];
+"lambda_174" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_174" -> "bond
+offset: 0.08604400208965401";
+"lambda_174" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_174" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_174" -> "bond
+offset: 0.08604400208965401";
+"lambda_174" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_174" -> "atomKappa_2
+offset: 0.19496395014487078";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_175" [ label = "0.2749389533158908" ];
+"lambda_175" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_175" -> "bond
+offset: 0.08604400208965401";
+"lambda_175" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_175" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_175" -> "bond
+offset: 0.08604400208965401";
+"lambda_175" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_175" -> "atomKappa_2
+offset: 0.19496395014487078";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_176" [ label = "0.18089006782075145" ];
+"lambda_176" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_176" -> "bond
+offset: 0.08604400208965401";
+"lambda_176" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_176" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_176" -> "bond
+offset: 0.08604400208965401";
+"lambda_176" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_176" -> "atomKappa_2
+offset: 0.19496395014487078";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_177" [ label = "0.0010036727078066576" ];
+"lambda_177" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_177" -> "bond
+offset: 0.08604400208965401";
+"lambda_177" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_177" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_177" -> "bond
+offset: 0.08604400208965401";
+"lambda_177" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_177" -> "atomKappa_2
+offset: 0.19496395014487078";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_178" [ label = "0.23902355192641167" ];
+"lambda_178" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_178" -> "bond
+offset: 0.08604400208965401";
+"lambda_178" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_178" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_178" -> "bond
+offset: 0.08604400208965401";
+"lambda_178" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_178" -> "atomKappa_2
+offset: 0.19496395014487078";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_179" [ label = "0.3832238525490439" ];
+"lambda_179" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_179" -> "bond
+offset: 0.08604400208965401";
+"lambda_179" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_179" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_179" -> "bond
+offset: 0.08604400208965401";
+"lambda_179" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_179" -> "atomKappa_2
+offset: 0.19496395014487078";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_180" [ label = "0.16078267576860483" ];
+"lambda_180" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_180" -> "bond
+offset: 0.08604400208965401";
+"lambda_180" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_180" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_180" -> "bond
+offset: 0.08604400208965401";
+"lambda_180" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_180" -> "atomKappa_3
+offset: 0.3201694158754762";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_181" [ label = "0.10223873061354105" ];
+"lambda_181" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_181" -> "bond
+offset: 0.08604400208965401";
+"lambda_181" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_181" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_181" -> "bond
+offset: 0.08604400208965401";
+"lambda_181" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_181" -> "atomKappa_3
+offset: 0.3201694158754762";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_182" [ label = "0.4588384032962942" ];
+"lambda_182" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_182" -> "bond
+offset: 0.08604400208965401";
+"lambda_182" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_182" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_182" -> "bond
+offset: 0.08604400208965401";
+"lambda_182" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_182" -> "atomKappa_3
+offset: 0.3201694158754762";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_183" [ label = "0.02513496580856156" ];
+"lambda_183" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_183" -> "bond
+offset: 0.08604400208965401";
+"lambda_183" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_183" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_183" -> "bond
+offset: 0.08604400208965401";
+"lambda_183" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_183" -> "atomKappa_3
+offset: 0.3201694158754762";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_184" [ label = "0.13613284193416497" ];
+"lambda_184" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_184" -> "bond
+offset: 0.08604400208965401";
+"lambda_184" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_184" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_184" -> "bond
+offset: 0.08604400208965401";
+"lambda_184" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_184" -> "atomKappa_3
+offset: 0.3201694158754762";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_185" [ label = "0.1232851469034344" ];
+"lambda_185" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_185" -> "bond
+offset: 0.08604400208965401";
+"lambda_185" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_185" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_185" -> "bond
+offset: 0.08604400208965401";
+"lambda_185" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_185" -> "atomKappa_3
+offset: 0.3201694158754762";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_186" [ label = "0.06908641249378888" ];
+"lambda_186" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_186" -> "bond
+offset: 0.08604400208965401";
+"lambda_186" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_186" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_186" -> "bond
+offset: 0.08604400208965401";
+"lambda_186" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_186" -> "atomKappa_3
+offset: 0.3201694158754762";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_187" [ label = "0.10200774842852134" ];
+"lambda_187" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_187" -> "bond
+offset: 0.08604400208965401";
+"lambda_187" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_187" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_187" -> "bond
+offset: 0.08604400208965401";
+"lambda_187" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_187" -> "atomKappa_3
+offset: 0.3201694158754762";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_188" [ label = "0.012731554498174091" ];
+"lambda_188" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_188" -> "bond
+offset: 0.08604400208965401";
+"lambda_188" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_188" -> "atomKappa_1
+offset: 0.04258833147689067";
+"lambda_188" -> "bond
+offset: 0.08604400208965401";
+"lambda_188" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_188" -> "atomKappa_3
+offset: 0.3201694158754762";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_189" [ label = "0.1914412014825313" ];
+"lambda_189" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_189" -> "bond
+offset: 0.08604400208965401";
+"lambda_189" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_189" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_189" -> "bond
+offset: 0.08604400208965401";
+"lambda_189" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_189" -> "atomKappa_1
+offset: 0.04258833147689067";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_190" [ label = "0.5425832112495446" ];
+"lambda_190" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_190" -> "bond
+offset: 0.08604400208965401";
+"lambda_190" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_190" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_190" -> "bond
+offset: 0.08604400208965401";
+"lambda_190" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_190" -> "atomKappa_1
+offset: 0.04258833147689067";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_191" [ label = "0.33384073918541723" ];
+"lambda_191" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_191" -> "bond
+offset: 0.08604400208965401";
+"lambda_191" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_191" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_191" -> "bond
+offset: 0.08604400208965401";
+"lambda_191" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_191" -> "atomKappa_1
+offset: 0.04258833147689067";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_192" [ label = "0.1721426934082082" ];
+"lambda_192" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_192" -> "bond
+offset: 0.08604400208965401";
+"lambda_192" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_192" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_192" -> "bond
+offset: 0.08604400208965401";
+"lambda_192" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_192" -> "atomKappa_1
+offset: 0.04258833147689067";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_193" [ label = "0.08399267887870465" ];
+"lambda_193" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_193" -> "bond
+offset: 0.08604400208965401";
+"lambda_193" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_193" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_193" -> "bond
+offset: 0.08604400208965401";
+"lambda_193" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_193" -> "atomKappa_1
+offset: 0.04258833147689067";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_194" [ label = "0.06648322286235953" ];
+"lambda_194" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_194" -> "bond
+offset: 0.08604400208965401";
+"lambda_194" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_194" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_194" -> "bond
+offset: 0.08604400208965401";
+"lambda_194" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_194" -> "atomKappa_1
+offset: 0.04258833147689067";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_195" [ label = "0.011661586154682269" ];
+"lambda_195" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_195" -> "bond
+offset: 0.08604400208965401";
+"lambda_195" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_195" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_195" -> "bond
+offset: 0.08604400208965401";
+"lambda_195" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_195" -> "atomKappa_1
+offset: 0.04258833147689067";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_196" [ label = "0.010184384890814968" ];
+"lambda_196" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_196" -> "bond
+offset: 0.08604400208965401";
+"lambda_196" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_196" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_196" -> "bond
+offset: 0.08604400208965401";
+"lambda_196" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_196" -> "atomKappa_1
+offset: 0.04258833147689067";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_197" [ label = "0.09357920827547161" ];
+"lambda_197" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_197" -> "bond
+offset: 0.08604400208965401";
+"lambda_197" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_197" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_197" -> "bond
+offset: 0.08604400208965401";
+"lambda_197" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_197" -> "atomKappa_1
+offset: 0.04258833147689067";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_198" [ label = "0.06379419818703269" ];
+"lambda_198" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_198" -> "bond
+offset: 0.08604400208965401";
+"lambda_198" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_198" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_198" -> "bond
+offset: 0.08604400208965401";
+"lambda_198" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_198" -> "atomKappa_2
+offset: 0.19496395014487078";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_199" [ label = "0.6771176898816869" ];
+"lambda_199" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_199" -> "bond
+offset: 0.08604400208965401";
+"lambda_199" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_199" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_199" -> "bond
+offset: 0.08604400208965401";
+"lambda_199" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_199" -> "atomKappa_2
+offset: 0.19496395014487078";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_200" [ label = "0.3608173120839222" ];
+"lambda_200" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_200" -> "bond
+offset: 0.08604400208965401";
+"lambda_200" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_200" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_200" -> "bond
+offset: 0.08604400208965401";
+"lambda_200" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_200" -> "atomKappa_2
+offset: 0.19496395014487078";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_201" [ label = "0.4561042017986612" ];
+"lambda_201" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_201" -> "bond
+offset: 0.08604400208965401";
+"lambda_201" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_201" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_201" -> "bond
+offset: 0.08604400208965401";
+"lambda_201" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_201" -> "atomKappa_2
+offset: 0.19496395014487078";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_202" [ label = "0.01217634535002965" ];
+"lambda_202" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_202" -> "bond
+offset: 0.08604400208965401";
+"lambda_202" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_202" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_202" -> "bond
+offset: 0.08604400208965401";
+"lambda_202" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_202" -> "atomKappa_2
+offset: 0.19496395014487078";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_203" [ label = "0.055612223438890496" ];
+"lambda_203" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_203" -> "bond
+offset: 0.08604400208965401";
+"lambda_203" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_203" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_203" -> "bond
+offset: 0.08604400208965401";
+"lambda_203" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_203" -> "atomKappa_2
+offset: 0.19496395014487078";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_204" [ label = "0.3224330579736918" ];
+"lambda_204" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_204" -> "bond
+offset: 0.08604400208965401";
+"lambda_204" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_204" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_204" -> "bond
+offset: 0.08604400208965401";
+"lambda_204" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_204" -> "atomKappa_2
+offset: 0.19496395014487078";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_205" [ label = "0.008885208521284937" ];
+"lambda_205" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_205" -> "bond
+offset: 0.08604400208965401";
+"lambda_205" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_205" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_205" -> "bond
+offset: 0.08604400208965401";
+"lambda_205" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_205" -> "atomKappa_2
+offset: 0.19496395014487078";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_206" [ label = "0.613977429125729" ];
+"lambda_206" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_206" -> "bond
+offset: 0.08604400208965401";
+"lambda_206" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_206" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_206" -> "bond
+offset: 0.08604400208965401";
+"lambda_206" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_206" -> "atomKappa_2
+offset: 0.19496395014487078";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_207" [ label = "0.3013080599534277" ];
+"lambda_207" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_207" -> "bond
+offset: 0.08604400208965401";
+"lambda_207" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_207" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_207" -> "bond
+offset: 0.08604400208965401";
+"lambda_207" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_207" -> "atomKappa_3
+offset: 0.3201694158754762";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_208" [ label = "0.08950343126972449" ];
+"lambda_208" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_208" -> "bond
+offset: 0.08604400208965401";
+"lambda_208" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_208" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_208" -> "bond
+offset: 0.08604400208965401";
+"lambda_208" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_208" -> "atomKappa_3
+offset: 0.3201694158754762";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_209" [ label = "0.04778915366493308" ];
+"lambda_209" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_209" -> "bond
+offset: 0.08604400208965401";
+"lambda_209" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_209" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_209" -> "bond
+offset: 0.08604400208965401";
+"lambda_209" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_209" -> "atomKappa_3
+offset: 0.3201694158754762";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_210" [ label = "0.19760301652604362" ];
+"lambda_210" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_210" -> "bond
+offset: 0.08604400208965401";
+"lambda_210" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_210" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_210" -> "bond
+offset: 0.08604400208965401";
+"lambda_210" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_210" -> "atomKappa_3
+offset: 0.3201694158754762";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_211" [ label = "0.3665730667153593" ];
+"lambda_211" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_211" -> "bond
+offset: 0.08604400208965401";
+"lambda_211" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_211" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_211" -> "bond
+offset: 0.08604400208965401";
+"lambda_211" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_211" -> "atomKappa_3
+offset: 0.3201694158754762";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_212" [ label = "0.10475176257152086" ];
+"lambda_212" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_212" -> "bond
+offset: 0.08604400208965401";
+"lambda_212" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_212" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_212" -> "bond
+offset: 0.08604400208965401";
+"lambda_212" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_212" -> "atomKappa_3
+offset: 0.3201694158754762";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_213" [ label = "0.035688873058891346" ];
+"lambda_213" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_213" -> "bond
+offset: 0.08604400208965401";
+"lambda_213" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_213" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_213" -> "bond
+offset: 0.08604400208965401";
+"lambda_213" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_213" -> "atomKappa_3
+offset: 0.3201694158754762";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_214" [ label = "0.07784094480415149" ];
+"lambda_214" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_214" -> "bond
+offset: 0.08604400208965401";
+"lambda_214" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_214" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_214" -> "bond
+offset: 0.08604400208965401";
+"lambda_214" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_214" -> "atomKappa_3
+offset: 0.3201694158754762";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_215" [ label = "0.1771955279343107" ];
+"lambda_215" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_215" -> "bond
+offset: 0.08604400208965401";
+"lambda_215" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_215" -> "atomKappa_2
+offset: 0.19496395014487078";
+"lambda_215" -> "bond
+offset: 0.08604400208965401";
+"lambda_215" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_215" -> "atomKappa_3
+offset: 0.3201694158754762";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_216" [ label = "0.17671323941535988" ];
+"lambda_216" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_216" -> "bond
+offset: 0.08604400208965401";
+"lambda_216" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_216" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_216" -> "bond
+offset: 0.08604400208965401";
+"lambda_216" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_216" -> "atomKappa_1
+offset: 0.04258833147689067";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_217" [ label = "0.10748091100968793" ];
+"lambda_217" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_217" -> "bond
+offset: 0.08604400208965401";
+"lambda_217" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_217" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_217" -> "bond
+offset: 0.08604400208965401";
+"lambda_217" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_217" -> "atomKappa_1
+offset: 0.04258833147689067";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_218" [ label = "0.29125313456137647" ];
+"lambda_218" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_218" -> "bond
+offset: 0.08604400208965401";
+"lambda_218" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_218" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_218" -> "bond
+offset: 0.08604400208965401";
+"lambda_218" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_218" -> "atomKappa_1
+offset: 0.04258833147689067";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_219" [ label = "0.016122304874068405" ];
+"lambda_219" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_219" -> "bond
+offset: 0.08604400208965401";
+"lambda_219" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_219" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_219" -> "bond
+offset: 0.08604400208965401";
+"lambda_219" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_219" -> "atomKappa_1
+offset: 0.04258833147689067";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_220" [ label = "0.2378518288671021" ];
+"lambda_220" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_220" -> "bond
+offset: 0.08604400208965401";
+"lambda_220" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_220" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_220" -> "bond
+offset: 0.08604400208965401";
+"lambda_220" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_220" -> "atomKappa_1
+offset: 0.04258833147689067";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_221" [ label = "0.03628928592374692" ];
+"lambda_221" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_221" -> "bond
+offset: 0.08604400208965401";
+"lambda_221" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_221" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_221" -> "bond
+offset: 0.08604400208965401";
+"lambda_221" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_221" -> "atomKappa_1
+offset: 0.04258833147689067";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_222" [ label = "0.47238604646197224" ];
+"lambda_222" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_222" -> "bond
+offset: 0.08604400208965401";
+"lambda_222" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_222" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_222" -> "bond
+offset: 0.08604400208965401";
+"lambda_222" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_222" -> "atomKappa_1
+offset: 0.04258833147689067";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_223" [ label = "0.051213768555435024" ];
+"lambda_223" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_223" -> "bond
+offset: 0.08604400208965401";
+"lambda_223" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_223" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_223" -> "bond
+offset: 0.08604400208965401";
+"lambda_223" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_223" -> "atomKappa_1
+offset: 0.04258833147689067";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_224" [ label = "0.11800140009834514" ];
+"lambda_224" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_224" -> "bond
+offset: 0.08604400208965401";
+"lambda_224" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_224" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_224" -> "bond
+offset: 0.08604400208965401";
+"lambda_224" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_224" -> "atomKappa_1
+offset: 0.04258833147689067";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_225" [ label = "0.1253275681265631" ];
+"lambda_225" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_225" -> "bond
+offset: 0.08604400208965401";
+"lambda_225" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_225" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_225" -> "bond
+offset: 0.08604400208965401";
+"lambda_225" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_225" -> "atomKappa_2
+offset: 0.19496395014487078";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_226" [ label = "0.1017651101614927" ];
+"lambda_226" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_226" -> "bond
+offset: 0.08604400208965401";
+"lambda_226" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_226" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_226" -> "bond
+offset: 0.08604400208965401";
+"lambda_226" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_226" -> "atomKappa_2
+offset: 0.19496395014487078";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_227" [ label = "0.25890988435010875" ];
+"lambda_227" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_227" -> "bond
+offset: 0.08604400208965401";
+"lambda_227" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_227" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_227" -> "bond
+offset: 0.08604400208965401";
+"lambda_227" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_227" -> "atomKappa_2
+offset: 0.19496395014487078";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_228" [ label = "0.09839555364137809" ];
+"lambda_228" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_228" -> "bond
+offset: 0.08604400208965401";
+"lambda_228" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_228" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_228" -> "bond
+offset: 0.08604400208965401";
+"lambda_228" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_228" -> "atomKappa_2
+offset: 0.19496395014487078";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_229" [ label = "0.4714187649097461" ];
+"lambda_229" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_229" -> "bond
+offset: 0.08604400208965401";
+"lambda_229" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_229" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_229" -> "bond
+offset: 0.08604400208965401";
+"lambda_229" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_229" -> "atomKappa_2
+offset: 0.19496395014487078";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_230" [ label = "0.030597900221325247" ];
+"lambda_230" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_230" -> "bond
+offset: 0.08604400208965401";
+"lambda_230" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_230" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_230" -> "bond
+offset: 0.08604400208965401";
+"lambda_230" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_230" -> "atomKappa_2
+offset: 0.19496395014487078";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_231" [ label = "0.04003556266993513" ];
+"lambda_231" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_231" -> "bond
+offset: 0.08604400208965401";
+"lambda_231" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_231" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_231" -> "bond
+offset: 0.08604400208965401";
+"lambda_231" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_231" -> "atomKappa_2
+offset: 0.19496395014487078";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_232" [ label = "0.23826099671301648" ];
+"lambda_232" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_232" -> "bond
+offset: 0.08604400208965401";
+"lambda_232" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_232" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_232" -> "bond
+offset: 0.08604400208965401";
+"lambda_232" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_232" -> "atomKappa_2
+offset: 0.19496395014487078";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_233" [ label = "0.15845298065551816" ];
+"lambda_233" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_233" -> "bond
+offset: 0.08604400208965401";
+"lambda_233" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_233" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_233" -> "bond
+offset: 0.08604400208965401";
+"lambda_233" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_233" -> "atomKappa_2
+offset: 0.19496395014487078";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_234" [ label = "0.05873592438647535" ];
+"lambda_234" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_234" -> "bond
+offset: 0.08604400208965401";
+"lambda_234" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_234" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_234" -> "bond
+offset: 0.08604400208965401";
+"lambda_234" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_234" -> "atomKappa_3
+offset: 0.3201694158754762";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_235" [ label = "0.007916171415661921" ];
+"lambda_235" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_235" -> "bond
+offset: 0.08604400208965401";
+"lambda_235" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_235" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_235" -> "bond
+offset: 0.08604400208965401";
+"lambda_235" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_235" -> "atomKappa_3
+offset: 0.3201694158754762";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_236" [ label = "0.13891103087035006" ];
+"lambda_236" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_236" -> "bond
+offset: 0.08604400208965401";
+"lambda_236" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_236" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_236" -> "bond
+offset: 0.08604400208965401";
+"lambda_236" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_236" -> "atomKappa_3
+offset: 0.3201694158754762";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_237" [ label = "0.06209593722661566" ];
+"lambda_237" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_237" -> "bond
+offset: 0.08604400208965401";
+"lambda_237" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_237" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_237" -> "bond
+offset: 0.08604400208965401";
+"lambda_237" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_237" -> "atomKappa_3
+offset: 0.3201694158754762";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_238" [ label = "0.15898415412553746" ];
+"lambda_238" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_238" -> "bond
+offset: 0.08604400208965401";
+"lambda_238" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_238" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_238" -> "bond
+offset: 0.08604400208965401";
+"lambda_238" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_238" -> "atomKappa_3
+offset: 0.3201694158754762";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_239" [ label = "0.16718947216476998" ];
+"lambda_239" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_239" -> "bond
+offset: 0.08604400208965401";
+"lambda_239" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_239" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_239" -> "bond
+offset: 0.08604400208965401";
+"lambda_239" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_239" -> "atomKappa_3
+offset: 0.3201694158754762";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_240" [ label = "0.280484712986075" ];
+"lambda_240" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_240" -> "bond
+offset: 0.08604400208965401";
+"lambda_240" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_240" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_240" -> "bond
+offset: 0.08604400208965401";
+"lambda_240" -> "bondKappa_1
+offset: 0.09563271011442609";
+"lambda_240" -> "atomKappa_3
+offset: 0.3201694158754762";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_241" [ label = "0.05797892496616086" ];
+"lambda_241" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_241" -> "bond
+offset: 0.08604400208965401";
+"lambda_241" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_241" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_241" -> "bond
+offset: 0.08604400208965401";
+"lambda_241" -> "bondKappa_2
+offset: 0.06619413040225908";
+"lambda_241" -> "atomKappa_3
+offset: 0.3201694158754762";
+"finalKappa
+offset: 0.294480083596957" -> "lambda_242" [ label = "0.07283304575783589" ];
+"lambda_242" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_242" -> "bond
+offset: 0.08604400208965401";
+"lambda_242" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_242" -> "atomKappa_3
+offset: 0.3201694158754762";
+"lambda_242" -> "bond
+offset: 0.08604400208965401";
+"lambda_242" -> "bondKappa_3
+offset: 0.04709356031785461";
+"lambda_242" -> "atomKappa_3
+offset: 0.3201694158754762";
 }

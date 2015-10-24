@@ -60,11 +60,11 @@ public class Network implements Serializable {
      }
      });*/
 
-    LinkedHashSet<Rule> rules = new LinkedHashSet<>();   //=for network input/output file
-    HashSet<Kappa> kappas = new HashSet<>();
-    HashSet<Lambda> lambdas = new HashSet<>();
+    public LinkedHashSet<Rule> rules = new LinkedHashSet<>();   //=for network input/output file
+    private HashSet<Kappa> kappas = new HashSet<>();
+    private HashSet<Lambda> lambdas = new HashSet<>();
 
-    LinkedHashSet<Kappa> elements = new LinkedHashSet<>();
+    private LinkedHashSet<Kappa> elements = new LinkedHashSet<>();
     LinkedHashSet<Kappa> clusters = new LinkedHashSet<>();
     //for clustering
     LinkedHashMap<KappaRule, String> ruleToElement = new LinkedHashMap<>();  //atom/bond types
@@ -74,6 +74,57 @@ public class Network implements Serializable {
     KappaRule[][] weightMatrix;
 
     public static String weightFolder = "weights/";
+
+    public String toString() {
+        return "rules=" + rules.size() + ",kappas=" + getKappas().size() + ", lambdas=" + getLambdas().size() + ",elements=" + getElements().size() + ",clusters=" + clustersCount;
+    }
+
+    /**
+     * reinitialize all kappa offests and kapparule weights
+     */
+    public void invalidateWeights() {
+        for (Kappa k : getKappas()) {
+            k.initOffset();
+        }
+        for (Rule r : rules) {
+            if (r instanceof KappaRule) {
+                KappaRule kr = (KappaRule) r;
+                kr.setWeight(WeightInitializator.getWeight());
+            }
+        }
+    }
+
+    public Network mergeOnTop(Network net) {
+        if (net == null) {
+            return this;
+        }
+        Kappa l1 = null;
+        Kappa l2 = null;
+
+        if (net.last instanceof Lambda) {
+            if (last instanceof Lambda) {   //extract final kappas (hopefuly)
+                Lambda tmp = (Lambda) last;
+                l1 = tmp.getRule().getBody().get(0).getParent();
+                tmp = (Lambda) net.last;
+                l2 = tmp.getRule().getBody().get(0).getParent();
+            } else {
+                Glogger.err("not the same final structure");
+                return this;
+            }
+        } else { //kappa
+            if (last instanceof Kappa) {
+                l1 = (Kappa) last;
+                l2 = (Kappa) net.last;
+            } else {
+                Glogger.err("not the same final structure");
+                return this;
+            }
+        }
+        l1.getRules().addAll(l2.getRules());
+        Network network = new Network(last);    //pro jistotu
+
+        return network;
+    }
 
     /**
      * we assume the same number and name-convention of clusters!! the order may
@@ -105,7 +156,6 @@ public class Network implements Serializable {
             }
         }
         Glogger.process("...succesfully replaced " + mrgs + " cluster-rule weights from pretrained template!");
-
     }
 
     public Network(KL kl) {
@@ -129,9 +179,9 @@ public class Network implements Serializable {
     }
 
     private void getRules(Kappa k) {
-        kappas.add(k);
+        getKappas().add(k);
         if (k.isElement()) {
-            elements.add(k);
+            getElements().add(k);
             return;
         }
         for (KappaRule kr : k.getRules()) {
@@ -145,7 +195,7 @@ public class Network implements Serializable {
     }
 
     private void getRules(Lambda l) {
-        lambdas.add(l);
+        getLambdas().add(l);
         rules.add(l.getRule());
         for (SubK sk : l.getRule().getBody()) {
             queue.add(sk.getParent());
@@ -295,7 +345,7 @@ public class Network implements Serializable {
         LinkedList<String> kapString = new LinkedList<>();
         test = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(weightFolder + name + "-offsets.w"), "utf-8"));
 
-        for (Kappa kap : kappas) {
+        for (Kappa kap : getKappas()) {
             kapString.add(kap + " : " + kap.getOffset() + "\n");
         }
         Collections.sort(kapString);
@@ -373,5 +423,47 @@ public class Network implements Serializable {
             }
             i++;
         }
+    }
+
+    /**
+     * @return the kappas
+     */
+    public HashSet<Kappa> getKappas() {
+        return kappas;
+    }
+
+    /**
+     * @param kappas the kappas to set
+     */
+    public void setKappas(HashSet<Kappa> kappas) {
+        this.kappas = kappas;
+    }
+
+    /**
+     * @return the lambdas
+     */
+    public HashSet<Lambda> getLambdas() {
+        return lambdas;
+    }
+
+    /**
+     * @param lambdas the lambdas to set
+     */
+    public void setLambdas(HashSet<Lambda> lambdas) {
+        this.lambdas = lambdas;
+    }
+
+    /**
+     * @return the elements
+     */
+    public LinkedHashSet<Kappa> getElements() {
+        return elements;
+    }
+
+    /**
+     * @param elements the elements to set
+     */
+    public void setElements(LinkedHashSet<Kappa> elements) {
+        this.elements = elements;
     }
 }

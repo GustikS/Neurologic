@@ -1,0 +1,614 @@
+letterLambda_1(A) :- a(A).
+letterLambda_2(A) :- c(A).
+letterLambda_3(A) :- b(A).
+letterLambda_4(A) :- e(A).
+letterLambda_5(A) :- d(A).
+letterLambda_6(A) :- g(A).
+letterLambda_7(A) :- f(A).
+letterLambda_8(A) :- i(A).
+letterLambda_9(A) :- h(A).
+letterLambda_10(A) :- k(A).
+letterLambda_11(A) :- j(A).
+letterLambda_12(A) :- m(A).
+letterLambda_13(A) :- l(A).
+letterLambda_14(A) :- -(A).
+letterLambda_15(A) :- .(A).
+letterLambda_16(A) :- o(A).
+letterLambda_17(A) :- n(A).
+letterLambda_18(A) :- q(A).
+letterLambda_19(A) :- 0(A).
+letterLambda_20(A) :- p(A).
+letterLambda_21(A) :- 1(A).
+letterLambda_22(A) :- s(A).
+letterLambda_23(A) :- 2(A).
+letterLambda_24(A) :- r(A).
+letterLambda_25(A) :- 3(A).
+letterLambda_26(A) :- u(A).
+letterLambda_27(A) :- 4(A).
+letterLambda_28(A) :- t(A).
+letterLambda_29(A) :- 5(A).
+letterLambda_30(A) :- w(A).
+letterLambda_31(A) :- 6(A).
+letterLambda_32(A) :- v(A).
+letterLambda_33(A) :- 7(A).
+letterLambda_34(A) :- y(A).
+letterLambda_35(A) :- 8(A).
+letterLambda_36(A) :- x(A).
+letterLambda_37(A) :- 9(A).
+letterLambda_38(A) :- z(A).
+0.0 letterKappa_A1(A) :- letterLambda_1(A).
+0.0 letterKappa_A1(A) :- letterLambda_2(A).
+0.0 letterKappa_A1(A) :- letterLambda_3(A).
+0.0 letterKappa_A1(A) :- letterLambda_4(A).
+0.0 letterKappa_A1(A) :- letterLambda_5(A).
+0.0 letterKappa_A1(A) :- letterLambda_6(A).
+0.0 letterKappa_A1(A) :- letterLambda_7(A).
+0.0 letterKappa_A1(A) :- letterLambda_8(A).
+0.0 letterKappa_A1(A) :- letterLambda_9(A).
+0.0 letterKappa_A1(A) :- letterLambda_10(A).
+0.0 letterKappa_A1(A) :- letterLambda_11(A).
+0.0 letterKappa_A1(A) :- letterLambda_12(A).
+0.0 letterKappa_A1(A) :- letterLambda_13(A).
+0.0 letterKappa_A1(A) :- letterLambda_14(A).
+0.0 letterKappa_A1(A) :- letterLambda_15(A).
+0.0 letterKappa_A1(A) :- letterLambda_16(A).
+0.0 letterKappa_A1(A) :- letterLambda_17(A).
+0.0 letterKappa_A1(A) :- letterLambda_18(A).
+0.0 letterKappa_A1(A) :- letterLambda_19(A).
+0.0 letterKappa_A1(A) :- letterLambda_20(A).
+0.0 letterKappa_A1(A) :- letterLambda_21(A).
+0.0 letterKappa_A1(A) :- letterLambda_22(A).
+0.0 letterKappa_A1(A) :- letterLambda_23(A).
+0.0 letterKappa_A1(A) :- letterLambda_24(A).
+0.0 letterKappa_A1(A) :- letterLambda_25(A).
+0.0 letterKappa_A1(A) :- letterLambda_26(A).
+0.0 letterKappa_A1(A) :- letterLambda_27(A).
+0.0 letterKappa_A1(A) :- letterLambda_28(A).
+0.0 letterKappa_A1(A) :- letterLambda_29(A).
+0.0 letterKappa_A1(A) :- letterLambda_30(A).
+0.0 letterKappa_A1(A) :- letterLambda_31(A).
+0.0 letterKappa_A1(A) :- letterLambda_32(A).
+0.0 letterKappa_A1(A) :- letterLambda_33(A).
+0.0 letterKappa_A1(A) :- letterLambda_34(A).
+0.0 letterKappa_A1(A) :- letterLambda_35(A).
+0.0 letterKappa_A1(A) :- letterLambda_36(A).
+0.0 letterKappa_A1(A) :- letterLambda_37(A).
+0.0 letterKappa_A1(A) :- letterLambda_38(A).
+0.0 letterKappa_A2(A) :- letterLambda_1(A).
+0.0 letterKappa_A2(A) :- letterLambda_2(A).
+0.0 letterKappa_A2(A) :- letterLambda_3(A).
+0.0 letterKappa_A2(A) :- letterLambda_4(A).
+0.0 letterKappa_A2(A) :- letterLambda_5(A).
+0.0 letterKappa_A2(A) :- letterLambda_6(A).
+0.0 letterKappa_A2(A) :- letterLambda_7(A).
+0.0 letterKappa_A2(A) :- letterLambda_8(A).
+0.0 letterKappa_A2(A) :- letterLambda_9(A).
+0.0 letterKappa_A2(A) :- letterLambda_10(A).
+0.0 letterKappa_A2(A) :- letterLambda_11(A).
+0.0 letterKappa_A2(A) :- letterLambda_12(A).
+0.0 letterKappa_A2(A) :- letterLambda_13(A).
+0.0 letterKappa_A2(A) :- letterLambda_14(A).
+0.0 letterKappa_A2(A) :- letterLambda_15(A).
+0.0 letterKappa_A2(A) :- letterLambda_16(A).
+0.0 letterKappa_A2(A) :- letterLambda_17(A).
+0.0 letterKappa_A2(A) :- letterLambda_18(A).
+0.0 letterKappa_A2(A) :- letterLambda_19(A).
+0.0 letterKappa_A2(A) :- letterLambda_20(A).
+0.0 letterKappa_A2(A) :- letterLambda_21(A).
+0.0 letterKappa_A2(A) :- letterLambda_22(A).
+0.0 letterKappa_A2(A) :- letterLambda_23(A).
+0.0 letterKappa_A2(A) :- letterLambda_24(A).
+0.0 letterKappa_A2(A) :- letterLambda_25(A).
+0.0 letterKappa_A2(A) :- letterLambda_26(A).
+0.0 letterKappa_A2(A) :- letterLambda_27(A).
+0.0 letterKappa_A2(A) :- letterLambda_28(A).
+0.0 letterKappa_A2(A) :- letterLambda_29(A).
+0.0 letterKappa_A2(A) :- letterLambda_30(A).
+0.0 letterKappa_A2(A) :- letterLambda_31(A).
+0.0 letterKappa_A2(A) :- letterLambda_32(A).
+0.0 letterKappa_A2(A) :- letterLambda_33(A).
+0.0 letterKappa_A2(A) :- letterLambda_34(A).
+0.0 letterKappa_A2(A) :- letterLambda_35(A).
+0.0 letterKappa_A2(A) :- letterLambda_36(A).
+0.0 letterKappa_A2(A) :- letterLambda_37(A).
+0.0 letterKappa_A2(A) :- letterLambda_38(A).
+0.0 letterKappa_A3(A) :- letterLambda_1(A).
+0.0 letterKappa_A3(A) :- letterLambda_2(A).
+0.0 letterKappa_A3(A) :- letterLambda_3(A).
+0.0 letterKappa_A3(A) :- letterLambda_4(A).
+0.0 letterKappa_A3(A) :- letterLambda_5(A).
+0.0 letterKappa_A3(A) :- letterLambda_6(A).
+0.0 letterKappa_A3(A) :- letterLambda_7(A).
+0.0 letterKappa_A3(A) :- letterLambda_8(A).
+0.0 letterKappa_A3(A) :- letterLambda_9(A).
+0.0 letterKappa_A3(A) :- letterLambda_10(A).
+0.0 letterKappa_A3(A) :- letterLambda_11(A).
+0.0 letterKappa_A3(A) :- letterLambda_12(A).
+0.0 letterKappa_A3(A) :- letterLambda_13(A).
+0.0 letterKappa_A3(A) :- letterLambda_14(A).
+0.0 letterKappa_A3(A) :- letterLambda_15(A).
+0.0 letterKappa_A3(A) :- letterLambda_16(A).
+0.0 letterKappa_A3(A) :- letterLambda_17(A).
+0.0 letterKappa_A3(A) :- letterLambda_18(A).
+0.0 letterKappa_A3(A) :- letterLambda_19(A).
+0.0 letterKappa_A3(A) :- letterLambda_20(A).
+0.0 letterKappa_A3(A) :- letterLambda_21(A).
+0.0 letterKappa_A3(A) :- letterLambda_22(A).
+0.0 letterKappa_A3(A) :- letterLambda_23(A).
+0.0 letterKappa_A3(A) :- letterLambda_24(A).
+0.0 letterKappa_A3(A) :- letterLambda_25(A).
+0.0 letterKappa_A3(A) :- letterLambda_26(A).
+0.0 letterKappa_A3(A) :- letterLambda_27(A).
+0.0 letterKappa_A3(A) :- letterLambda_28(A).
+0.0 letterKappa_A3(A) :- letterLambda_29(A).
+0.0 letterKappa_A3(A) :- letterLambda_30(A).
+0.0 letterKappa_A3(A) :- letterLambda_31(A).
+0.0 letterKappa_A3(A) :- letterLambda_32(A).
+0.0 letterKappa_A3(A) :- letterLambda_33(A).
+0.0 letterKappa_A3(A) :- letterLambda_34(A).
+0.0 letterKappa_A3(A) :- letterLambda_35(A).
+0.0 letterKappa_A3(A) :- letterLambda_36(A).
+0.0 letterKappa_A3(A) :- letterLambda_37(A).
+0.0 letterKappa_A3(A) :- letterLambda_38(A).
+lambda_A0(DMY) :- letterKappa_A1(A), next(A,B), letterKappa_A1(B). 
+lambda_A1(DMY) :- letterKappa_A1(A), next(A,B), letterKappa_A2(B). 
+lambda_A2(DMY) :- letterKappa_A1(A), next(A,B), letterKappa_A3(B). 
+lambda_A3(DMY) :- letterKappa_A2(A), next(A,B), letterKappa_A1(B). 
+lambda_A4(DMY) :- letterKappa_A2(A), next(A,B), letterKappa_A2(B). 
+lambda_A5(DMY) :- letterKappa_A2(A), next(A,B), letterKappa_A3(B). 
+lambda_A6(DMY) :- letterKappa_A3(A), next(A,B), letterKappa_A1(B). 
+lambda_A7(DMY) :- letterKappa_A3(A), next(A,B), letterKappa_A2(B). 
+lambda_A8(DMY) :- letterKappa_A3(A), next(A,B), letterKappa_A3(B). 
+0.0 finalKappa(DMY) :- lambda_A0(DMY2).
+0.0 finalKappa(DMY) :- lambda_A1(DMY2).
+0.0 finalKappa(DMY) :- lambda_A2(DMY2).
+0.0 finalKappa(DMY) :- lambda_A3(DMY2).
+0.0 finalKappa(DMY) :- lambda_A4(DMY2).
+0.0 finalKappa(DMY) :- lambda_A5(DMY2).
+0.0 finalKappa(DMY) :- lambda_A6(DMY2).
+0.0 finalKappa(DMY) :- lambda_A7(DMY2).
+0.0 finalKappa(DMY) :- lambda_A8(DMY2).
+0.0 letterKappa_B1(A) :- letterLambda_1(A).
+0.0 letterKappa_B1(A) :- letterLambda_2(A).
+0.0 letterKappa_B1(A) :- letterLambda_3(A).
+0.0 letterKappa_B1(A) :- letterLambda_4(A).
+0.0 letterKappa_B1(A) :- letterLambda_5(A).
+0.0 letterKappa_B1(A) :- letterLambda_6(A).
+0.0 letterKappa_B1(A) :- letterLambda_7(A).
+0.0 letterKappa_B1(A) :- letterLambda_8(A).
+0.0 letterKappa_B1(A) :- letterLambda_9(A).
+0.0 letterKappa_B1(A) :- letterLambda_10(A).
+0.0 letterKappa_B1(A) :- letterLambda_11(A).
+0.0 letterKappa_B1(A) :- letterLambda_12(A).
+0.0 letterKappa_B1(A) :- letterLambda_13(A).
+0.0 letterKappa_B1(A) :- letterLambda_14(A).
+0.0 letterKappa_B1(A) :- letterLambda_15(A).
+0.0 letterKappa_B1(A) :- letterLambda_16(A).
+0.0 letterKappa_B1(A) :- letterLambda_17(A).
+0.0 letterKappa_B1(A) :- letterLambda_18(A).
+0.0 letterKappa_B1(A) :- letterLambda_19(A).
+0.0 letterKappa_B1(A) :- letterLambda_20(A).
+0.0 letterKappa_B1(A) :- letterLambda_21(A).
+0.0 letterKappa_B1(A) :- letterLambda_22(A).
+0.0 letterKappa_B1(A) :- letterLambda_23(A).
+0.0 letterKappa_B1(A) :- letterLambda_24(A).
+0.0 letterKappa_B1(A) :- letterLambda_25(A).
+0.0 letterKappa_B1(A) :- letterLambda_26(A).
+0.0 letterKappa_B1(A) :- letterLambda_27(A).
+0.0 letterKappa_B1(A) :- letterLambda_28(A).
+0.0 letterKappa_B1(A) :- letterLambda_29(A).
+0.0 letterKappa_B1(A) :- letterLambda_30(A).
+0.0 letterKappa_B1(A) :- letterLambda_31(A).
+0.0 letterKappa_B1(A) :- letterLambda_32(A).
+0.0 letterKappa_B1(A) :- letterLambda_33(A).
+0.0 letterKappa_B1(A) :- letterLambda_34(A).
+0.0 letterKappa_B1(A) :- letterLambda_35(A).
+0.0 letterKappa_B1(A) :- letterLambda_36(A).
+0.0 letterKappa_B1(A) :- letterLambda_37(A).
+0.0 letterKappa_B1(A) :- letterLambda_38(A).
+0.0 letterKappa_B2(A) :- letterLambda_1(A).
+0.0 letterKappa_B2(A) :- letterLambda_2(A).
+0.0 letterKappa_B2(A) :- letterLambda_3(A).
+0.0 letterKappa_B2(A) :- letterLambda_4(A).
+0.0 letterKappa_B2(A) :- letterLambda_5(A).
+0.0 letterKappa_B2(A) :- letterLambda_6(A).
+0.0 letterKappa_B2(A) :- letterLambda_7(A).
+0.0 letterKappa_B2(A) :- letterLambda_8(A).
+0.0 letterKappa_B2(A) :- letterLambda_9(A).
+0.0 letterKappa_B2(A) :- letterLambda_10(A).
+0.0 letterKappa_B2(A) :- letterLambda_11(A).
+0.0 letterKappa_B2(A) :- letterLambda_12(A).
+0.0 letterKappa_B2(A) :- letterLambda_13(A).
+0.0 letterKappa_B2(A) :- letterLambda_14(A).
+0.0 letterKappa_B2(A) :- letterLambda_15(A).
+0.0 letterKappa_B2(A) :- letterLambda_16(A).
+0.0 letterKappa_B2(A) :- letterLambda_17(A).
+0.0 letterKappa_B2(A) :- letterLambda_18(A).
+0.0 letterKappa_B2(A) :- letterLambda_19(A).
+0.0 letterKappa_B2(A) :- letterLambda_20(A).
+0.0 letterKappa_B2(A) :- letterLambda_21(A).
+0.0 letterKappa_B2(A) :- letterLambda_22(A).
+0.0 letterKappa_B2(A) :- letterLambda_23(A).
+0.0 letterKappa_B2(A) :- letterLambda_24(A).
+0.0 letterKappa_B2(A) :- letterLambda_25(A).
+0.0 letterKappa_B2(A) :- letterLambda_26(A).
+0.0 letterKappa_B2(A) :- letterLambda_27(A).
+0.0 letterKappa_B2(A) :- letterLambda_28(A).
+0.0 letterKappa_B2(A) :- letterLambda_29(A).
+0.0 letterKappa_B2(A) :- letterLambda_30(A).
+0.0 letterKappa_B2(A) :- letterLambda_31(A).
+0.0 letterKappa_B2(A) :- letterLambda_32(A).
+0.0 letterKappa_B2(A) :- letterLambda_33(A).
+0.0 letterKappa_B2(A) :- letterLambda_34(A).
+0.0 letterKappa_B2(A) :- letterLambda_35(A).
+0.0 letterKappa_B2(A) :- letterLambda_36(A).
+0.0 letterKappa_B2(A) :- letterLambda_37(A).
+0.0 letterKappa_B2(A) :- letterLambda_38(A).
+0.0 letterKappa_B3(A) :- letterLambda_1(A).
+0.0 letterKappa_B3(A) :- letterLambda_2(A).
+0.0 letterKappa_B3(A) :- letterLambda_3(A).
+0.0 letterKappa_B3(A) :- letterLambda_4(A).
+0.0 letterKappa_B3(A) :- letterLambda_5(A).
+0.0 letterKappa_B3(A) :- letterLambda_6(A).
+0.0 letterKappa_B3(A) :- letterLambda_7(A).
+0.0 letterKappa_B3(A) :- letterLambda_8(A).
+0.0 letterKappa_B3(A) :- letterLambda_9(A).
+0.0 letterKappa_B3(A) :- letterLambda_10(A).
+0.0 letterKappa_B3(A) :- letterLambda_11(A).
+0.0 letterKappa_B3(A) :- letterLambda_12(A).
+0.0 letterKappa_B3(A) :- letterLambda_13(A).
+0.0 letterKappa_B3(A) :- letterLambda_14(A).
+0.0 letterKappa_B3(A) :- letterLambda_15(A).
+0.0 letterKappa_B3(A) :- letterLambda_16(A).
+0.0 letterKappa_B3(A) :- letterLambda_17(A).
+0.0 letterKappa_B3(A) :- letterLambda_18(A).
+0.0 letterKappa_B3(A) :- letterLambda_19(A).
+0.0 letterKappa_B3(A) :- letterLambda_20(A).
+0.0 letterKappa_B3(A) :- letterLambda_21(A).
+0.0 letterKappa_B3(A) :- letterLambda_22(A).
+0.0 letterKappa_B3(A) :- letterLambda_23(A).
+0.0 letterKappa_B3(A) :- letterLambda_24(A).
+0.0 letterKappa_B3(A) :- letterLambda_25(A).
+0.0 letterKappa_B3(A) :- letterLambda_26(A).
+0.0 letterKappa_B3(A) :- letterLambda_27(A).
+0.0 letterKappa_B3(A) :- letterLambda_28(A).
+0.0 letterKappa_B3(A) :- letterLambda_29(A).
+0.0 letterKappa_B3(A) :- letterLambda_30(A).
+0.0 letterKappa_B3(A) :- letterLambda_31(A).
+0.0 letterKappa_B3(A) :- letterLambda_32(A).
+0.0 letterKappa_B3(A) :- letterLambda_33(A).
+0.0 letterKappa_B3(A) :- letterLambda_34(A).
+0.0 letterKappa_B3(A) :- letterLambda_35(A).
+0.0 letterKappa_B3(A) :- letterLambda_36(A).
+0.0 letterKappa_B3(A) :- letterLambda_37(A).
+0.0 letterKappa_B3(A) :- letterLambda_38(A).
+lambda_B0(DMY) :- letterKappa_B1(A), next(A,B), letterKappa_B1(B), next(B,C), letterKappa_B1(C). 
+lambda_B1(DMY) :- letterKappa_B1(A), next(A,B), letterKappa_B1(B), next(B,C), letterKappa_B2(C). 
+lambda_B2(DMY) :- letterKappa_B1(A), next(A,B), letterKappa_B1(B), next(B,C), letterKappa_B3(C). 
+lambda_B3(DMY) :- letterKappa_B1(A), next(A,B), letterKappa_B2(B), next(B,C), letterKappa_B1(C). 
+lambda_B4(DMY) :- letterKappa_B1(A), next(A,B), letterKappa_B2(B), next(B,C), letterKappa_B2(C). 
+lambda_B5(DMY) :- letterKappa_B1(A), next(A,B), letterKappa_B2(B), next(B,C), letterKappa_B3(C). 
+lambda_B6(DMY) :- letterKappa_B1(A), next(A,B), letterKappa_B3(B), next(B,C), letterKappa_B1(C). 
+lambda_B7(DMY) :- letterKappa_B1(A), next(A,B), letterKappa_B3(B), next(B,C), letterKappa_B2(C). 
+lambda_B8(DMY) :- letterKappa_B1(A), next(A,B), letterKappa_B3(B), next(B,C), letterKappa_B3(C). 
+lambda_B9(DMY) :- letterKappa_B2(A), next(A,B), letterKappa_B1(B), next(B,C), letterKappa_B1(C). 
+lambda_B10(DMY) :- letterKappa_B2(A), next(A,B), letterKappa_B1(B), next(B,C), letterKappa_B2(C). 
+lambda_B11(DMY) :- letterKappa_B2(A), next(A,B), letterKappa_B1(B), next(B,C), letterKappa_B3(C). 
+lambda_B12(DMY) :- letterKappa_B2(A), next(A,B), letterKappa_B2(B), next(B,C), letterKappa_B1(C). 
+lambda_B13(DMY) :- letterKappa_B2(A), next(A,B), letterKappa_B2(B), next(B,C), letterKappa_B2(C). 
+lambda_B14(DMY) :- letterKappa_B2(A), next(A,B), letterKappa_B2(B), next(B,C), letterKappa_B3(C). 
+lambda_B15(DMY) :- letterKappa_B2(A), next(A,B), letterKappa_B3(B), next(B,C), letterKappa_B1(C). 
+lambda_B16(DMY) :- letterKappa_B2(A), next(A,B), letterKappa_B3(B), next(B,C), letterKappa_B2(C). 
+lambda_B17(DMY) :- letterKappa_B2(A), next(A,B), letterKappa_B3(B), next(B,C), letterKappa_B3(C). 
+lambda_B18(DMY) :- letterKappa_B3(A), next(A,B), letterKappa_B1(B), next(B,C), letterKappa_B1(C). 
+lambda_B19(DMY) :- letterKappa_B3(A), next(A,B), letterKappa_B1(B), next(B,C), letterKappa_B2(C). 
+lambda_B20(DMY) :- letterKappa_B3(A), next(A,B), letterKappa_B1(B), next(B,C), letterKappa_B3(C). 
+lambda_B21(DMY) :- letterKappa_B3(A), next(A,B), letterKappa_B2(B), next(B,C), letterKappa_B1(C). 
+lambda_B22(DMY) :- letterKappa_B3(A), next(A,B), letterKappa_B2(B), next(B,C), letterKappa_B2(C). 
+lambda_B23(DMY) :- letterKappa_B3(A), next(A,B), letterKappa_B2(B), next(B,C), letterKappa_B3(C). 
+lambda_B24(DMY) :- letterKappa_B3(A), next(A,B), letterKappa_B3(B), next(B,C), letterKappa_B1(C). 
+lambda_B25(DMY) :- letterKappa_B3(A), next(A,B), letterKappa_B3(B), next(B,C), letterKappa_B2(C). 
+lambda_B26(DMY) :- letterKappa_B3(A), next(A,B), letterKappa_B3(B), next(B,C), letterKappa_B3(C). 
+0.0 finalKappa(DMY) :- lambda_B0(DMY2).
+0.0 finalKappa(DMY) :- lambda_B1(DMY2).
+0.0 finalKappa(DMY) :- lambda_B2(DMY2).
+0.0 finalKappa(DMY) :- lambda_B3(DMY2).
+0.0 finalKappa(DMY) :- lambda_B4(DMY2).
+0.0 finalKappa(DMY) :- lambda_B5(DMY2).
+0.0 finalKappa(DMY) :- lambda_B6(DMY2).
+0.0 finalKappa(DMY) :- lambda_B7(DMY2).
+0.0 finalKappa(DMY) :- lambda_B8(DMY2).
+0.0 finalKappa(DMY) :- lambda_B9(DMY2).
+0.0 finalKappa(DMY) :- lambda_B10(DMY2).
+0.0 finalKappa(DMY) :- lambda_B11(DMY2).
+0.0 finalKappa(DMY) :- lambda_B12(DMY2).
+0.0 finalKappa(DMY) :- lambda_B13(DMY2).
+0.0 finalKappa(DMY) :- lambda_B14(DMY2).
+0.0 finalKappa(DMY) :- lambda_B15(DMY2).
+0.0 finalKappa(DMY) :- lambda_B16(DMY2).
+0.0 finalKappa(DMY) :- lambda_B17(DMY2).
+0.0 finalKappa(DMY) :- lambda_B18(DMY2).
+0.0 finalKappa(DMY) :- lambda_B19(DMY2).
+0.0 finalKappa(DMY) :- lambda_B20(DMY2).
+0.0 finalKappa(DMY) :- lambda_B21(DMY2).
+0.0 finalKappa(DMY) :- lambda_B22(DMY2).
+0.0 finalKappa(DMY) :- lambda_B23(DMY2).
+0.0 finalKappa(DMY) :- lambda_B24(DMY2).
+0.0 finalKappa(DMY) :- lambda_B25(DMY2).
+0.0 finalKappa(DMY) :- lambda_B26(DMY2).
+0.0 letterKappa_C1(A) :- letterLambda_1(A).
+0.0 letterKappa_C1(A) :- letterLambda_2(A).
+0.0 letterKappa_C1(A) :- letterLambda_3(A).
+0.0 letterKappa_C1(A) :- letterLambda_4(A).
+0.0 letterKappa_C1(A) :- letterLambda_5(A).
+0.0 letterKappa_C1(A) :- letterLambda_6(A).
+0.0 letterKappa_C1(A) :- letterLambda_7(A).
+0.0 letterKappa_C1(A) :- letterLambda_8(A).
+0.0 letterKappa_C1(A) :- letterLambda_9(A).
+0.0 letterKappa_C1(A) :- letterLambda_10(A).
+0.0 letterKappa_C1(A) :- letterLambda_11(A).
+0.0 letterKappa_C1(A) :- letterLambda_12(A).
+0.0 letterKappa_C1(A) :- letterLambda_13(A).
+0.0 letterKappa_C1(A) :- letterLambda_14(A).
+0.0 letterKappa_C1(A) :- letterLambda_15(A).
+0.0 letterKappa_C1(A) :- letterLambda_16(A).
+0.0 letterKappa_C1(A) :- letterLambda_17(A).
+0.0 letterKappa_C1(A) :- letterLambda_18(A).
+0.0 letterKappa_C1(A) :- letterLambda_19(A).
+0.0 letterKappa_C1(A) :- letterLambda_20(A).
+0.0 letterKappa_C1(A) :- letterLambda_21(A).
+0.0 letterKappa_C1(A) :- letterLambda_22(A).
+0.0 letterKappa_C1(A) :- letterLambda_23(A).
+0.0 letterKappa_C1(A) :- letterLambda_24(A).
+0.0 letterKappa_C1(A) :- letterLambda_25(A).
+0.0 letterKappa_C1(A) :- letterLambda_26(A).
+0.0 letterKappa_C1(A) :- letterLambda_27(A).
+0.0 letterKappa_C1(A) :- letterLambda_28(A).
+0.0 letterKappa_C1(A) :- letterLambda_29(A).
+0.0 letterKappa_C1(A) :- letterLambda_30(A).
+0.0 letterKappa_C1(A) :- letterLambda_31(A).
+0.0 letterKappa_C1(A) :- letterLambda_32(A).
+0.0 letterKappa_C1(A) :- letterLambda_33(A).
+0.0 letterKappa_C1(A) :- letterLambda_34(A).
+0.0 letterKappa_C1(A) :- letterLambda_35(A).
+0.0 letterKappa_C1(A) :- letterLambda_36(A).
+0.0 letterKappa_C1(A) :- letterLambda_37(A).
+0.0 letterKappa_C1(A) :- letterLambda_38(A).
+0.0 letterKappa_C2(A) :- letterLambda_1(A).
+0.0 letterKappa_C2(A) :- letterLambda_2(A).
+0.0 letterKappa_C2(A) :- letterLambda_3(A).
+0.0 letterKappa_C2(A) :- letterLambda_4(A).
+0.0 letterKappa_C2(A) :- letterLambda_5(A).
+0.0 letterKappa_C2(A) :- letterLambda_6(A).
+0.0 letterKappa_C2(A) :- letterLambda_7(A).
+0.0 letterKappa_C2(A) :- letterLambda_8(A).
+0.0 letterKappa_C2(A) :- letterLambda_9(A).
+0.0 letterKappa_C2(A) :- letterLambda_10(A).
+0.0 letterKappa_C2(A) :- letterLambda_11(A).
+0.0 letterKappa_C2(A) :- letterLambda_12(A).
+0.0 letterKappa_C2(A) :- letterLambda_13(A).
+0.0 letterKappa_C2(A) :- letterLambda_14(A).
+0.0 letterKappa_C2(A) :- letterLambda_15(A).
+0.0 letterKappa_C2(A) :- letterLambda_16(A).
+0.0 letterKappa_C2(A) :- letterLambda_17(A).
+0.0 letterKappa_C2(A) :- letterLambda_18(A).
+0.0 letterKappa_C2(A) :- letterLambda_19(A).
+0.0 letterKappa_C2(A) :- letterLambda_20(A).
+0.0 letterKappa_C2(A) :- letterLambda_21(A).
+0.0 letterKappa_C2(A) :- letterLambda_22(A).
+0.0 letterKappa_C2(A) :- letterLambda_23(A).
+0.0 letterKappa_C2(A) :- letterLambda_24(A).
+0.0 letterKappa_C2(A) :- letterLambda_25(A).
+0.0 letterKappa_C2(A) :- letterLambda_26(A).
+0.0 letterKappa_C2(A) :- letterLambda_27(A).
+0.0 letterKappa_C2(A) :- letterLambda_28(A).
+0.0 letterKappa_C2(A) :- letterLambda_29(A).
+0.0 letterKappa_C2(A) :- letterLambda_30(A).
+0.0 letterKappa_C2(A) :- letterLambda_31(A).
+0.0 letterKappa_C2(A) :- letterLambda_32(A).
+0.0 letterKappa_C2(A) :- letterLambda_33(A).
+0.0 letterKappa_C2(A) :- letterLambda_34(A).
+0.0 letterKappa_C2(A) :- letterLambda_35(A).
+0.0 letterKappa_C2(A) :- letterLambda_36(A).
+0.0 letterKappa_C2(A) :- letterLambda_37(A).
+0.0 letterKappa_C2(A) :- letterLambda_38(A).
+0.0 letterKappa_C3(A) :- letterLambda_1(A).
+0.0 letterKappa_C3(A) :- letterLambda_2(A).
+0.0 letterKappa_C3(A) :- letterLambda_3(A).
+0.0 letterKappa_C3(A) :- letterLambda_4(A).
+0.0 letterKappa_C3(A) :- letterLambda_5(A).
+0.0 letterKappa_C3(A) :- letterLambda_6(A).
+0.0 letterKappa_C3(A) :- letterLambda_7(A).
+0.0 letterKappa_C3(A) :- letterLambda_8(A).
+0.0 letterKappa_C3(A) :- letterLambda_9(A).
+0.0 letterKappa_C3(A) :- letterLambda_10(A).
+0.0 letterKappa_C3(A) :- letterLambda_11(A).
+0.0 letterKappa_C3(A) :- letterLambda_12(A).
+0.0 letterKappa_C3(A) :- letterLambda_13(A).
+0.0 letterKappa_C3(A) :- letterLambda_14(A).
+0.0 letterKappa_C3(A) :- letterLambda_15(A).
+0.0 letterKappa_C3(A) :- letterLambda_16(A).
+0.0 letterKappa_C3(A) :- letterLambda_17(A).
+0.0 letterKappa_C3(A) :- letterLambda_18(A).
+0.0 letterKappa_C3(A) :- letterLambda_19(A).
+0.0 letterKappa_C3(A) :- letterLambda_20(A).
+0.0 letterKappa_C3(A) :- letterLambda_21(A).
+0.0 letterKappa_C3(A) :- letterLambda_22(A).
+0.0 letterKappa_C3(A) :- letterLambda_23(A).
+0.0 letterKappa_C3(A) :- letterLambda_24(A).
+0.0 letterKappa_C3(A) :- letterLambda_25(A).
+0.0 letterKappa_C3(A) :- letterLambda_26(A).
+0.0 letterKappa_C3(A) :- letterLambda_27(A).
+0.0 letterKappa_C3(A) :- letterLambda_28(A).
+0.0 letterKappa_C3(A) :- letterLambda_29(A).
+0.0 letterKappa_C3(A) :- letterLambda_30(A).
+0.0 letterKappa_C3(A) :- letterLambda_31(A).
+0.0 letterKappa_C3(A) :- letterLambda_32(A).
+0.0 letterKappa_C3(A) :- letterLambda_33(A).
+0.0 letterKappa_C3(A) :- letterLambda_34(A).
+0.0 letterKappa_C3(A) :- letterLambda_35(A).
+0.0 letterKappa_C3(A) :- letterLambda_36(A).
+0.0 letterKappa_C3(A) :- letterLambda_37(A).
+0.0 letterKappa_C3(A) :- letterLambda_38(A).
+lambda_C0(DMY) :- letterKappa_C1(A), next(A,B), letterKappa_C1(B), next(B,C), letterKappa_C1(C), next(C,D), letterKappa_C1(D). 
+lambda_C1(DMY) :- letterKappa_C1(A), next(A,B), letterKappa_C1(B), next(B,C), letterKappa_C1(C), next(C,D), letterKappa_C2(D). 
+lambda_C2(DMY) :- letterKappa_C1(A), next(A,B), letterKappa_C1(B), next(B,C), letterKappa_C1(C), next(C,D), letterKappa_C3(D). 
+lambda_C3(DMY) :- letterKappa_C1(A), next(A,B), letterKappa_C1(B), next(B,C), letterKappa_C2(C), next(C,D), letterKappa_C1(D). 
+lambda_C4(DMY) :- letterKappa_C1(A), next(A,B), letterKappa_C1(B), next(B,C), letterKappa_C2(C), next(C,D), letterKappa_C2(D). 
+lambda_C5(DMY) :- letterKappa_C1(A), next(A,B), letterKappa_C1(B), next(B,C), letterKappa_C2(C), next(C,D), letterKappa_C3(D). 
+lambda_C6(DMY) :- letterKappa_C1(A), next(A,B), letterKappa_C1(B), next(B,C), letterKappa_C3(C), next(C,D), letterKappa_C1(D). 
+lambda_C7(DMY) :- letterKappa_C1(A), next(A,B), letterKappa_C1(B), next(B,C), letterKappa_C3(C), next(C,D), letterKappa_C2(D). 
+lambda_C8(DMY) :- letterKappa_C1(A), next(A,B), letterKappa_C1(B), next(B,C), letterKappa_C3(C), next(C,D), letterKappa_C3(D). 
+lambda_C9(DMY) :- letterKappa_C1(A), next(A,B), letterKappa_C2(B), next(B,C), letterKappa_C1(C), next(C,D), letterKappa_C1(D). 
+lambda_C10(DMY) :- letterKappa_C1(A), next(A,B), letterKappa_C2(B), next(B,C), letterKappa_C1(C), next(C,D), letterKappa_C2(D). 
+lambda_C11(DMY) :- letterKappa_C1(A), next(A,B), letterKappa_C2(B), next(B,C), letterKappa_C1(C), next(C,D), letterKappa_C3(D). 
+lambda_C12(DMY) :- letterKappa_C1(A), next(A,B), letterKappa_C2(B), next(B,C), letterKappa_C2(C), next(C,D), letterKappa_C1(D). 
+lambda_C13(DMY) :- letterKappa_C1(A), next(A,B), letterKappa_C2(B), next(B,C), letterKappa_C2(C), next(C,D), letterKappa_C2(D). 
+lambda_C14(DMY) :- letterKappa_C1(A), next(A,B), letterKappa_C2(B), next(B,C), letterKappa_C2(C), next(C,D), letterKappa_C3(D). 
+lambda_C15(DMY) :- letterKappa_C1(A), next(A,B), letterKappa_C2(B), next(B,C), letterKappa_C3(C), next(C,D), letterKappa_C1(D). 
+lambda_C16(DMY) :- letterKappa_C1(A), next(A,B), letterKappa_C2(B), next(B,C), letterKappa_C3(C), next(C,D), letterKappa_C2(D). 
+lambda_C17(DMY) :- letterKappa_C1(A), next(A,B), letterKappa_C2(B), next(B,C), letterKappa_C3(C), next(C,D), letterKappa_C3(D). 
+lambda_C18(DMY) :- letterKappa_C1(A), next(A,B), letterKappa_C3(B), next(B,C), letterKappa_C1(C), next(C,D), letterKappa_C1(D). 
+lambda_C19(DMY) :- letterKappa_C1(A), next(A,B), letterKappa_C3(B), next(B,C), letterKappa_C1(C), next(C,D), letterKappa_C2(D). 
+lambda_C20(DMY) :- letterKappa_C1(A), next(A,B), letterKappa_C3(B), next(B,C), letterKappa_C1(C), next(C,D), letterKappa_C3(D). 
+lambda_C21(DMY) :- letterKappa_C1(A), next(A,B), letterKappa_C3(B), next(B,C), letterKappa_C2(C), next(C,D), letterKappa_C1(D). 
+lambda_C22(DMY) :- letterKappa_C1(A), next(A,B), letterKappa_C3(B), next(B,C), letterKappa_C2(C), next(C,D), letterKappa_C2(D). 
+lambda_C23(DMY) :- letterKappa_C1(A), next(A,B), letterKappa_C3(B), next(B,C), letterKappa_C2(C), next(C,D), letterKappa_C3(D). 
+lambda_C24(DMY) :- letterKappa_C1(A), next(A,B), letterKappa_C3(B), next(B,C), letterKappa_C3(C), next(C,D), letterKappa_C1(D). 
+lambda_C25(DMY) :- letterKappa_C1(A), next(A,B), letterKappa_C3(B), next(B,C), letterKappa_C3(C), next(C,D), letterKappa_C2(D). 
+lambda_C26(DMY) :- letterKappa_C1(A), next(A,B), letterKappa_C3(B), next(B,C), letterKappa_C3(C), next(C,D), letterKappa_C3(D). 
+lambda_C27(DMY) :- letterKappa_C2(A), next(A,B), letterKappa_C1(B), next(B,C), letterKappa_C1(C), next(C,D), letterKappa_C1(D). 
+lambda_C28(DMY) :- letterKappa_C2(A), next(A,B), letterKappa_C1(B), next(B,C), letterKappa_C1(C), next(C,D), letterKappa_C2(D). 
+lambda_C29(DMY) :- letterKappa_C2(A), next(A,B), letterKappa_C1(B), next(B,C), letterKappa_C1(C), next(C,D), letterKappa_C3(D). 
+lambda_C30(DMY) :- letterKappa_C2(A), next(A,B), letterKappa_C1(B), next(B,C), letterKappa_C2(C), next(C,D), letterKappa_C1(D). 
+lambda_C31(DMY) :- letterKappa_C2(A), next(A,B), letterKappa_C1(B), next(B,C), letterKappa_C2(C), next(C,D), letterKappa_C2(D). 
+lambda_C32(DMY) :- letterKappa_C2(A), next(A,B), letterKappa_C1(B), next(B,C), letterKappa_C2(C), next(C,D), letterKappa_C3(D). 
+lambda_C33(DMY) :- letterKappa_C2(A), next(A,B), letterKappa_C1(B), next(B,C), letterKappa_C3(C), next(C,D), letterKappa_C1(D). 
+lambda_C34(DMY) :- letterKappa_C2(A), next(A,B), letterKappa_C1(B), next(B,C), letterKappa_C3(C), next(C,D), letterKappa_C2(D). 
+lambda_C35(DMY) :- letterKappa_C2(A), next(A,B), letterKappa_C1(B), next(B,C), letterKappa_C3(C), next(C,D), letterKappa_C3(D). 
+lambda_C36(DMY) :- letterKappa_C2(A), next(A,B), letterKappa_C2(B), next(B,C), letterKappa_C1(C), next(C,D), letterKappa_C1(D). 
+lambda_C37(DMY) :- letterKappa_C2(A), next(A,B), letterKappa_C2(B), next(B,C), letterKappa_C1(C), next(C,D), letterKappa_C2(D). 
+lambda_C38(DMY) :- letterKappa_C2(A), next(A,B), letterKappa_C2(B), next(B,C), letterKappa_C1(C), next(C,D), letterKappa_C3(D). 
+lambda_C39(DMY) :- letterKappa_C2(A), next(A,B), letterKappa_C2(B), next(B,C), letterKappa_C2(C), next(C,D), letterKappa_C1(D). 
+lambda_C40(DMY) :- letterKappa_C2(A), next(A,B), letterKappa_C2(B), next(B,C), letterKappa_C2(C), next(C,D), letterKappa_C2(D). 
+lambda_C41(DMY) :- letterKappa_C2(A), next(A,B), letterKappa_C2(B), next(B,C), letterKappa_C2(C), next(C,D), letterKappa_C3(D). 
+lambda_C42(DMY) :- letterKappa_C2(A), next(A,B), letterKappa_C2(B), next(B,C), letterKappa_C3(C), next(C,D), letterKappa_C1(D). 
+lambda_C43(DMY) :- letterKappa_C2(A), next(A,B), letterKappa_C2(B), next(B,C), letterKappa_C3(C), next(C,D), letterKappa_C2(D). 
+lambda_C44(DMY) :- letterKappa_C2(A), next(A,B), letterKappa_C2(B), next(B,C), letterKappa_C3(C), next(C,D), letterKappa_C3(D). 
+lambda_C45(DMY) :- letterKappa_C2(A), next(A,B), letterKappa_C3(B), next(B,C), letterKappa_C1(C), next(C,D), letterKappa_C1(D). 
+lambda_C46(DMY) :- letterKappa_C2(A), next(A,B), letterKappa_C3(B), next(B,C), letterKappa_C1(C), next(C,D), letterKappa_C2(D). 
+lambda_C47(DMY) :- letterKappa_C2(A), next(A,B), letterKappa_C3(B), next(B,C), letterKappa_C1(C), next(C,D), letterKappa_C3(D). 
+lambda_C48(DMY) :- letterKappa_C2(A), next(A,B), letterKappa_C3(B), next(B,C), letterKappa_C2(C), next(C,D), letterKappa_C1(D). 
+lambda_C49(DMY) :- letterKappa_C2(A), next(A,B), letterKappa_C3(B), next(B,C), letterKappa_C2(C), next(C,D), letterKappa_C2(D). 
+lambda_C50(DMY) :- letterKappa_C2(A), next(A,B), letterKappa_C3(B), next(B,C), letterKappa_C2(C), next(C,D), letterKappa_C3(D). 
+lambda_C51(DMY) :- letterKappa_C2(A), next(A,B), letterKappa_C3(B), next(B,C), letterKappa_C3(C), next(C,D), letterKappa_C1(D). 
+lambda_C52(DMY) :- letterKappa_C2(A), next(A,B), letterKappa_C3(B), next(B,C), letterKappa_C3(C), next(C,D), letterKappa_C2(D). 
+lambda_C53(DMY) :- letterKappa_C2(A), next(A,B), letterKappa_C3(B), next(B,C), letterKappa_C3(C), next(C,D), letterKappa_C3(D). 
+lambda_C54(DMY) :- letterKappa_C3(A), next(A,B), letterKappa_C1(B), next(B,C), letterKappa_C1(C), next(C,D), letterKappa_C1(D). 
+lambda_C55(DMY) :- letterKappa_C3(A), next(A,B), letterKappa_C1(B), next(B,C), letterKappa_C1(C), next(C,D), letterKappa_C2(D). 
+lambda_C56(DMY) :- letterKappa_C3(A), next(A,B), letterKappa_C1(B), next(B,C), letterKappa_C1(C), next(C,D), letterKappa_C3(D). 
+lambda_C57(DMY) :- letterKappa_C3(A), next(A,B), letterKappa_C1(B), next(B,C), letterKappa_C2(C), next(C,D), letterKappa_C1(D). 
+lambda_C58(DMY) :- letterKappa_C3(A), next(A,B), letterKappa_C1(B), next(B,C), letterKappa_C2(C), next(C,D), letterKappa_C2(D). 
+lambda_C59(DMY) :- letterKappa_C3(A), next(A,B), letterKappa_C1(B), next(B,C), letterKappa_C2(C), next(C,D), letterKappa_C3(D). 
+lambda_C60(DMY) :- letterKappa_C3(A), next(A,B), letterKappa_C1(B), next(B,C), letterKappa_C3(C), next(C,D), letterKappa_C1(D). 
+lambda_C61(DMY) :- letterKappa_C3(A), next(A,B), letterKappa_C1(B), next(B,C), letterKappa_C3(C), next(C,D), letterKappa_C2(D). 
+lambda_C62(DMY) :- letterKappa_C3(A), next(A,B), letterKappa_C1(B), next(B,C), letterKappa_C3(C), next(C,D), letterKappa_C3(D). 
+lambda_C63(DMY) :- letterKappa_C3(A), next(A,B), letterKappa_C2(B), next(B,C), letterKappa_C1(C), next(C,D), letterKappa_C1(D). 
+lambda_C64(DMY) :- letterKappa_C3(A), next(A,B), letterKappa_C2(B), next(B,C), letterKappa_C1(C), next(C,D), letterKappa_C2(D). 
+lambda_C65(DMY) :- letterKappa_C3(A), next(A,B), letterKappa_C2(B), next(B,C), letterKappa_C1(C), next(C,D), letterKappa_C3(D). 
+lambda_C66(DMY) :- letterKappa_C3(A), next(A,B), letterKappa_C2(B), next(B,C), letterKappa_C2(C), next(C,D), letterKappa_C1(D). 
+lambda_C67(DMY) :- letterKappa_C3(A), next(A,B), letterKappa_C2(B), next(B,C), letterKappa_C2(C), next(C,D), letterKappa_C2(D). 
+lambda_C68(DMY) :- letterKappa_C3(A), next(A,B), letterKappa_C2(B), next(B,C), letterKappa_C2(C), next(C,D), letterKappa_C3(D). 
+lambda_C69(DMY) :- letterKappa_C3(A), next(A,B), letterKappa_C2(B), next(B,C), letterKappa_C3(C), next(C,D), letterKappa_C1(D). 
+lambda_C70(DMY) :- letterKappa_C3(A), next(A,B), letterKappa_C2(B), next(B,C), letterKappa_C3(C), next(C,D), letterKappa_C2(D). 
+lambda_C71(DMY) :- letterKappa_C3(A), next(A,B), letterKappa_C2(B), next(B,C), letterKappa_C3(C), next(C,D), letterKappa_C3(D). 
+lambda_C72(DMY) :- letterKappa_C3(A), next(A,B), letterKappa_C3(B), next(B,C), letterKappa_C1(C), next(C,D), letterKappa_C1(D). 
+lambda_C73(DMY) :- letterKappa_C3(A), next(A,B), letterKappa_C3(B), next(B,C), letterKappa_C1(C), next(C,D), letterKappa_C2(D). 
+lambda_C74(DMY) :- letterKappa_C3(A), next(A,B), letterKappa_C3(B), next(B,C), letterKappa_C1(C), next(C,D), letterKappa_C3(D). 
+lambda_C75(DMY) :- letterKappa_C3(A), next(A,B), letterKappa_C3(B), next(B,C), letterKappa_C2(C), next(C,D), letterKappa_C1(D). 
+lambda_C76(DMY) :- letterKappa_C3(A), next(A,B), letterKappa_C3(B), next(B,C), letterKappa_C2(C), next(C,D), letterKappa_C2(D). 
+lambda_C77(DMY) :- letterKappa_C3(A), next(A,B), letterKappa_C3(B), next(B,C), letterKappa_C2(C), next(C,D), letterKappa_C3(D). 
+lambda_C78(DMY) :- letterKappa_C3(A), next(A,B), letterKappa_C3(B), next(B,C), letterKappa_C3(C), next(C,D), letterKappa_C1(D). 
+lambda_C79(DMY) :- letterKappa_C3(A), next(A,B), letterKappa_C3(B), next(B,C), letterKappa_C3(C), next(C,D), letterKappa_C2(D). 
+lambda_C80(DMY) :- letterKappa_C3(A), next(A,B), letterKappa_C3(B), next(B,C), letterKappa_C3(C), next(C,D), letterKappa_C3(D). 
+0.0 finalKappa(DMY) :- lambda_C0(DMY2).
+0.0 finalKappa(DMY) :- lambda_C1(DMY2).
+0.0 finalKappa(DMY) :- lambda_C2(DMY2).
+0.0 finalKappa(DMY) :- lambda_C3(DMY2).
+0.0 finalKappa(DMY) :- lambda_C4(DMY2).
+0.0 finalKappa(DMY) :- lambda_C5(DMY2).
+0.0 finalKappa(DMY) :- lambda_C6(DMY2).
+0.0 finalKappa(DMY) :- lambda_C7(DMY2).
+0.0 finalKappa(DMY) :- lambda_C8(DMY2).
+0.0 finalKappa(DMY) :- lambda_C9(DMY2).
+0.0 finalKappa(DMY) :- lambda_C10(DMY2).
+0.0 finalKappa(DMY) :- lambda_C11(DMY2).
+0.0 finalKappa(DMY) :- lambda_C12(DMY2).
+0.0 finalKappa(DMY) :- lambda_C13(DMY2).
+0.0 finalKappa(DMY) :- lambda_C14(DMY2).
+0.0 finalKappa(DMY) :- lambda_C15(DMY2).
+0.0 finalKappa(DMY) :- lambda_C16(DMY2).
+0.0 finalKappa(DMY) :- lambda_C17(DMY2).
+0.0 finalKappa(DMY) :- lambda_C18(DMY2).
+0.0 finalKappa(DMY) :- lambda_C19(DMY2).
+0.0 finalKappa(DMY) :- lambda_C20(DMY2).
+0.0 finalKappa(DMY) :- lambda_C21(DMY2).
+0.0 finalKappa(DMY) :- lambda_C22(DMY2).
+0.0 finalKappa(DMY) :- lambda_C23(DMY2).
+0.0 finalKappa(DMY) :- lambda_C24(DMY2).
+0.0 finalKappa(DMY) :- lambda_C25(DMY2).
+0.0 finalKappa(DMY) :- lambda_C26(DMY2).
+0.0 finalKappa(DMY) :- lambda_C27(DMY2).
+0.0 finalKappa(DMY) :- lambda_C28(DMY2).
+0.0 finalKappa(DMY) :- lambda_C29(DMY2).
+0.0 finalKappa(DMY) :- lambda_C30(DMY2).
+0.0 finalKappa(DMY) :- lambda_C31(DMY2).
+0.0 finalKappa(DMY) :- lambda_C32(DMY2).
+0.0 finalKappa(DMY) :- lambda_C33(DMY2).
+0.0 finalKappa(DMY) :- lambda_C34(DMY2).
+0.0 finalKappa(DMY) :- lambda_C35(DMY2).
+0.0 finalKappa(DMY) :- lambda_C36(DMY2).
+0.0 finalKappa(DMY) :- lambda_C37(DMY2).
+0.0 finalKappa(DMY) :- lambda_C38(DMY2).
+0.0 finalKappa(DMY) :- lambda_C39(DMY2).
+0.0 finalKappa(DMY) :- lambda_C40(DMY2).
+0.0 finalKappa(DMY) :- lambda_C41(DMY2).
+0.0 finalKappa(DMY) :- lambda_C42(DMY2).
+0.0 finalKappa(DMY) :- lambda_C43(DMY2).
+0.0 finalKappa(DMY) :- lambda_C44(DMY2).
+0.0 finalKappa(DMY) :- lambda_C45(DMY2).
+0.0 finalKappa(DMY) :- lambda_C46(DMY2).
+0.0 finalKappa(DMY) :- lambda_C47(DMY2).
+0.0 finalKappa(DMY) :- lambda_C48(DMY2).
+0.0 finalKappa(DMY) :- lambda_C49(DMY2).
+0.0 finalKappa(DMY) :- lambda_C50(DMY2).
+0.0 finalKappa(DMY) :- lambda_C51(DMY2).
+0.0 finalKappa(DMY) :- lambda_C52(DMY2).
+0.0 finalKappa(DMY) :- lambda_C53(DMY2).
+0.0 finalKappa(DMY) :- lambda_C54(DMY2).
+0.0 finalKappa(DMY) :- lambda_C55(DMY2).
+0.0 finalKappa(DMY) :- lambda_C56(DMY2).
+0.0 finalKappa(DMY) :- lambda_C57(DMY2).
+0.0 finalKappa(DMY) :- lambda_C58(DMY2).
+0.0 finalKappa(DMY) :- lambda_C59(DMY2).
+0.0 finalKappa(DMY) :- lambda_C60(DMY2).
+0.0 finalKappa(DMY) :- lambda_C61(DMY2).
+0.0 finalKappa(DMY) :- lambda_C62(DMY2).
+0.0 finalKappa(DMY) :- lambda_C63(DMY2).
+0.0 finalKappa(DMY) :- lambda_C64(DMY2).
+0.0 finalKappa(DMY) :- lambda_C65(DMY2).
+0.0 finalKappa(DMY) :- lambda_C66(DMY2).
+0.0 finalKappa(DMY) :- lambda_C67(DMY2).
+0.0 finalKappa(DMY) :- lambda_C68(DMY2).
+0.0 finalKappa(DMY) :- lambda_C69(DMY2).
+0.0 finalKappa(DMY) :- lambda_C70(DMY2).
+0.0 finalKappa(DMY) :- lambda_C71(DMY2).
+0.0 finalKappa(DMY) :- lambda_C72(DMY2).
+0.0 finalKappa(DMY) :- lambda_C73(DMY2).
+0.0 finalKappa(DMY) :- lambda_C74(DMY2).
+0.0 finalKappa(DMY) :- lambda_C75(DMY2).
+0.0 finalKappa(DMY) :- lambda_C76(DMY2).
+0.0 finalKappa(DMY) :- lambda_C77(DMY2).
+0.0 finalKappa(DMY) :- lambda_C78(DMY2).
+0.0 finalKappa(DMY) :- lambda_C79(DMY2).
+0.0 finalKappa(DMY) :- lambda_C80(DMY2).

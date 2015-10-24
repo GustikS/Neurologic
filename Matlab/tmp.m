@@ -1,0 +1,13 @@
+XTickLabel = get(gca,'XTickLabel');
+set(gca,'XTickLabel',' ');
+hxLabel = get(gca,'XLabel');
+set(hxLabel,'Units','data');
+xLabelPosition = get(hxLabel,'Position');
+y = xLabelPosition(2);
+XTick = get(gca,'XTick');
+y=repmat(y,length(XTick),1);
+% fs = get(gca,'fontsize');
+fs = 16;
+hText = text(XTick, y, XTickLabel,'fontsize',fs);
+set(hText,'HorizontalAlignment','center','interpreter','none');
+set(gca,'fontsize',fs);

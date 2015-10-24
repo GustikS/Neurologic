@@ -1,18 +1,21 @@
 package discoverer.global;
 
 import discoverer.Main;
+import discoverer.grounding.network.groundNetwork.GroundedDataset;
 import discoverer.learning.backprop.functions.Activations;
 import java.util.*;
 //settings
 
-public class Global {
+public final class Global {
+    
+    public static GroundedDataset groundDataset;
 
     private static int seed;
     /**
      * generating random weights and offsets
      */
     private static Random rg;
-    
+
     private static boolean cacheEnabled = true;
     private static boolean forwardCheckEnabled = true;
     private static boolean debugEnabled = false;
@@ -38,7 +41,7 @@ public class Global {
     private static boolean learnDecay;    //learn rate decay yes or no  
     //---
     private static boolean checkback = false;    //compatibility test with Vojta's version (keep false unless testing)
-    private static boolean outputFolds = true;
+    private static boolean outputFolds = false;
     //convergence criteria for AVG (max is within function bellow)
     private static double convergenceLimit = 0.01;
     private static int history = 200;
@@ -46,6 +49,34 @@ public class Global {
     private static boolean initWithAVG = false;
     private static boolean manualLoadNetwork = false;
     private static boolean GUI = false;
+    private static mergingOptions merging = mergingOptions.weights;
+
+    public static boolean exporting = true;
+    public static boolean drawing = true;
+    public static boolean longName = false;
+    public static boolean saveGroundings = true;
+    public static boolean loadGroundings = true;
+    public static boolean uncompressedLambda = false;
+
+    /**
+     * @return the merging
+     */
+    public static mergingOptions getMerging() {
+        return merging;
+    }
+
+    /**
+     * @param aMerging the merging to set
+     */
+    public static void setMerging(mergingOptions aMerging) {
+        merging = aMerging;
+    }
+
+    //----taken as parameters from Main
+    public static enum mergingOptions {
+
+        weights, onTop
+    };
 
     /**
      * @return the batch

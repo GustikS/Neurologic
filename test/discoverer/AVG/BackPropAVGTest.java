@@ -16,7 +16,7 @@ import discoverer.construction.network.KL;
 import discoverer.construction.network.Kappa;
 import discoverer.construction.network.rules.KappaRule;
 import discoverer.construction.NetworkFactory;
-import discoverer.grounding.evaluation.struct.ParentCounter;
+import discoverer.grounding.evaluation.struct.GroundNetworkParser;
 import discoverer.learning.Weights;
 import java.util.*;
 import org.junit.*;
@@ -126,7 +126,7 @@ public class BackPropAVGTest {
             GroundDotter.draw(b, "backprgroundVojta");
         } else {
             //--
-            ParentCounter.countParents(b);
+            GroundNetworkParser.parseMAX(b);
             w = BackpropDown.getNewWeights(b, e, Batch.NO, learnRate);
             printUpdate(w);
             System.out.println("downval: " + Evaluator.evaluateMax(b));
@@ -240,7 +240,7 @@ public class BackPropAVGTest {
         //GroundDotter.drawAVG(b, "backprGroundAvg0");
         Weights w;
         //--
-        ParentCounter.countParentsAVG(b);
+        GroundNetworkParser.parseAVG(b);
         w = BackpropDownAvg.getNewWeights(b, e, Batch.NO, learnRate);
         printUpdate(w);
         //---

@@ -4,16 +4,43 @@ import discoverer.construction.NetworkFactory;
 import discoverer.construction.network.KL;
 import discoverer.construction.ExampleFactory;
 import discoverer.construction.example.Example;
+import discoverer.construction.network.Network;
 import discoverer.drawing.Dotter;
 import discoverer.drawing.GroundDotter;
+import discoverer.global.FileToStringListJava6;
+import discoverer.global.Global;
 import discoverer.grounding.evaluation.Ball;
 import discoverer.grounding.Grounder;
+import java.util.Random;
 import static org.junit.Assert.*;
 
 import org.junit.Ignore;
 import org.junit.Test;
 
 public class GroundDrawTest {
+    
+    @Test
+    public void stringTest() {
+        Global.setLambdaActivation(Global.activationSet.id);
+        Global.setKappaActivation(Global.activationSet.id);
+        Global.setWeightInit(Global.weightInitSet.handmade);
+        Global.setRg(new Random(1));
+        String[] rules = FileToStringListJava6.convert("in/strings/easy-rules.txt", Integer.MAX_VALUE);
+        
+        NetworkFactory nf = new NetworkFactory();
+        Network net = nf.construct(rules);
+
+        Dotter.draw(net.last, "strings");
+        
+        ExampleFactory eFactory = new ExampleFactory();
+        String[] examples = FileToStringListJava6.convert("in/strings/easy-examples.txt", Integer.MAX_VALUE);
+        Example e = eFactory.construct(examples[0]);
+
+        Ball b = Grounder.solve(net.last, e);
+
+        GroundDotter.draw(b, "string_ground");
+    }
+    
     @Ignore
     public void test1() {
         //String[] rules = FileToStringListJava6.convert("../data/rules_3_3.txt", Integer.MAX_VALUE);
@@ -52,17 +79,18 @@ public class GroundDrawTest {
 
         String[] ex = { "1.0 b(b,b), b(a,b), b(b,c), b(c,a), b(c,d), b(c,e), atom(a,c), atom(b,c), atom(c,c), atom(d,cl), atom(d,br).", };
         NetworkFactory nf = new NetworkFactory();
-        KL last = nf.construct(rules);
+        Network last = nf.construct(rules);
 
         ExampleFactory eFactory = new ExampleFactory();
         Example e = eFactory.construct(ex[0]);
 
-        Ball b = Grounder.solve(last, e);
+        Ball b = Grounder.solve(last.last, e);
 
-        Dotter.draw(last, b.getActiveRules());
+        Dotter.draw(last.last, b.getActiveRules());
         GroundDotter.draw(b);
     }
-    @Test
+    
+    @Ignore
     public void test111() {
         //String[] rules = FileToStringListJava6.convert("../data/rules_3_3.txt", Integer.MAX_VALUE);
         //String[] ex = { "1.0 bond(tr000_4, tr000_2, 0), cl(tr000_4), c(tr000_2), 1(0), bond(tr000_2, tr000_4, 0), bond(tr000_5, tr000_2, 1), h(tr000_5), 1(1), bond(tr000_2, tr000_5, 1), bond(tr000_3, tr000_2, 2), cl(tr000_3), 1(2), bond(tr000_2, tr000_3, 2), bond(tr000_2, tr000_1, 3), cl(tr000_1), 1(3), bond(tr000_1, tr000_2, 3).", };
@@ -93,14 +121,14 @@ public class GroundDrawTest {
 
         String[] ex = { "1.0 b(b,b), b(a,b), b(b,c), b(c,a), b(c,d), b(c,e), b(d,e), atom(a,c), atom(b,c), atom(c,c), atom(d,cl), atom(d,br).", };
         NetworkFactory nf = new NetworkFactory();
-        KL last = nf.construct(rules);
+        Network last = nf.construct(rules);
 
         ExampleFactory eFactory = new ExampleFactory();
         Example e = eFactory.construct(ex[0]);
 
-        Ball b = Grounder.solve(last, e);
+        Ball b = Grounder.solve(last.last, e);
 
-        Dotter.draw(last, b.getActiveRules());
+        Dotter.draw(last.last, b.getActiveRules());
         GroundDotter.draw(b);
     }
 }

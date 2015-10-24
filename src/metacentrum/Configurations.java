@@ -5,6 +5,7 @@
  */
 package metacentrum;
 
+import java.io.File;
 import java.util.LinkedList;
 
 /**
@@ -15,8 +16,9 @@ public class Configurations {
 
     public static String dataPath = "../in/";
 
-    private static final String[] data = new String[]{"ncigi"};
-
+    //private static final String[] data = new String[]{"ptc/mm", "ptc/mr", "ptc/fm", "ptc/fr"};
+    private static final String[] data = getAllDatasetsFrom("C:\\Users\\IBM_ADMIN\\Google Drive\\Neuralogic\\sourcecodes\\gusta\\Neurologic\\in\\nci\\");
+            
     //some prepared parameter-value configurations to choose from if one wants to try out a parameter
     public static String[] folds = new String[]{"-f", "1", "5", "10"};
     public static String[] groundings = new String[]{"-gr", "max", "avg"};
@@ -39,9 +41,18 @@ public class Configurations {
 
     //datasets
     public static String[] datasets = setUpDatasets();
-    public static String[] templates = new String[]{"-t", "none", "weights/rules.w"};    //none serves as dummy
-    
+    public static String[] templates = new String[]{"-t", "none", "../weights/rules.w"};    //none serves as dummy
+
     public static LinkedList<String> configurations;
+
+    public static final String[] getAllDatasetsFrom(String path) {
+        File[] files = new File(path).listFiles();
+        String[] names = new String[files.length];
+        for (int i = 0; i < names.length; i++) {
+            names[i] = files[i].getName();
+        }
+        return names;
+    }
 
     public static final String[] setUpDatasets() {
         String[] exs = new String[data.length + 1];

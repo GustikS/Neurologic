@@ -1,0 +1,96 @@
+atomLambda_1(X) :- pb(X).
+atomLambda_2(X) :- c(X).
+atomLambda_3(X) :- cl(X).
+atomLambda_4(X) :- te(X).
+atomLambda_5(X) :- na(X).
+atomLambda_6(X) :- sn(X).
+atomLambda_7(X) :- f(X).
+atomLambda_8(X) :- i(X).
+atomLambda_9(X) :- h(X).
+atomLambda_10(X) :- k(X).
+atomLambda_11(X) :- ca(X).
+atomLambda_12(X) :- zn(X).
+atomLambda_13(X) :- o(X).
+atomLambda_14(X) :- n(X).
+atomLambda_15(X) :- p(X).
+atomLambda_16(X) :- s(X).
+atomLambda_17(X) :- in(X).
+atomLambda_18(X) :- as(X).
+atomLambda_19(X) :- cu(X).
+atomLambda_20(X) :- br(X).
+bondLambda_1(X) :- doublebond(X).
+bondLambda_2(X) :- triplebond(X).
+bondLambda_3(X) :- resonantbond(X).
+bondLambda_4(X) :- singlebond(X).
+0.0 atomKappa_1(X) :- atomLambda_1(X).
+0.0 atomKappa_1(X) :- atomLambda_2(X).
+0.0 atomKappa_1(X) :- atomLambda_3(X).
+0.0 atomKappa_1(X) :- atomLambda_4(X).
+0.0 atomKappa_1(X) :- atomLambda_5(X).
+0.0 atomKappa_1(X) :- atomLambda_6(X).
+0.0 atomKappa_1(X) :- atomLambda_7(X).
+0.0 atomKappa_1(X) :- atomLambda_8(X).
+0.0 atomKappa_1(X) :- atomLambda_9(X).
+0.0 atomKappa_1(X) :- atomLambda_10(X).
+0.0 atomKappa_1(X) :- atomLambda_11(X).
+0.0 atomKappa_1(X) :- atomLambda_12(X).
+0.0 atomKappa_1(X) :- atomLambda_13(X).
+0.0 atomKappa_1(X) :- atomLambda_14(X).
+0.0 atomKappa_1(X) :- atomLambda_15(X).
+0.0 atomKappa_1(X) :- atomLambda_16(X).
+0.0 atomKappa_1(X) :- atomLambda_17(X).
+0.0 atomKappa_1(X) :- atomLambda_18(X).
+0.0 atomKappa_1(X) :- atomLambda_19(X).
+0.0 atomKappa_1(X) :- atomLambda_20(X).
+0.0 atomKappa_2(X) :- atomLambda_1(X).
+0.0 atomKappa_2(X) :- atomLambda_2(X).
+0.0 atomKappa_2(X) :- atomLambda_3(X).
+0.0 atomKappa_2(X) :- atomLambda_4(X).
+0.0 atomKappa_2(X) :- atomLambda_5(X).
+0.0 atomKappa_2(X) :- atomLambda_6(X).
+0.0 atomKappa_2(X) :- atomLambda_7(X).
+0.0 atomKappa_2(X) :- atomLambda_8(X).
+0.0 atomKappa_2(X) :- atomLambda_9(X).
+0.0 atomKappa_2(X) :- atomLambda_10(X).
+0.0 atomKappa_2(X) :- atomLambda_11(X).
+0.0 atomKappa_2(X) :- atomLambda_12(X).
+0.0 atomKappa_2(X) :- atomLambda_13(X).
+0.0 atomKappa_2(X) :- atomLambda_14(X).
+0.0 atomKappa_2(X) :- atomLambda_15(X).
+0.0 atomKappa_2(X) :- atomLambda_16(X).
+0.0 atomKappa_2(X) :- atomLambda_17(X).
+0.0 atomKappa_2(X) :- atomLambda_18(X).
+0.0 atomKappa_2(X) :- atomLambda_19(X).
+0.0 atomKappa_2(X) :- atomLambda_20(X).
+0.0 atomKappa_3(X) :- atomLambda_1(X).
+0.0 atomKappa_3(X) :- atomLambda_2(X).
+0.0 atomKappa_3(X) :- atomLambda_3(X).
+0.0 atomKappa_3(X) :- atomLambda_4(X).
+0.0 atomKappa_3(X) :- atomLambda_5(X).
+0.0 atomKappa_3(X) :- atomLambda_6(X).
+0.0 atomKappa_3(X) :- atomLambda_7(X).
+0.0 atomKappa_3(X) :- atomLambda_8(X).
+0.0 atomKappa_3(X) :- atomLambda_9(X).
+0.0 atomKappa_3(X) :- atomLambda_10(X).
+0.0 atomKappa_3(X) :- atomLambda_11(X).
+0.0 atomKappa_3(X) :- atomLambda_12(X).
+0.0 atomKappa_3(X) :- atomLambda_13(X).
+0.0 atomKappa_3(X) :- atomLambda_14(X).
+0.0 atomKappa_3(X) :- atomLambda_15(X).
+0.0 atomKappa_3(X) :- atomLambda_16(X).
+0.0 atomKappa_3(X) :- atomLambda_17(X).
+0.0 atomKappa_3(X) :- atomLambda_18(X).
+0.0 atomKappa_3(X) :- atomLambda_19(X).
+0.0 atomKappa_3(X) :- atomLambda_20(X).
+0.0 bondKappa_1(X) :- bondLambda_1(X).
+0.0 bondKappa_1(X) :- bondLambda_2(X).
+0.0 bondKappa_1(X) :- bondLambda_3(X).
+0.0 bondKappa_1(X) :- bondLambda_4(X).
+0.0 bondKappa_2(X) :- bondLambda_1(X).
+0.0 bondKappa_2(X) :- bondLambda_2(X).
+0.0 bondKappa_2(X) :- bondLambda_3(X).
+0.0 bondKappa_2(X) :- bondLambda_4(X).
+0.0 bondKappa_3(X) :- bondLambda_1(X).
+0.0 bondKappa_3(X) :- bondLambda_2(X).
+0.0 bondKappa_3(X) :- bondLambda_3(X).
+0.0 bondKappa_3(X) :- bondLambda_4(X).

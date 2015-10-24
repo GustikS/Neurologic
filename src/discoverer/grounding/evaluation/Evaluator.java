@@ -38,19 +38,21 @@ public class Evaluator {
         if (b == null) {
             return Global.getFalseAtomValue();
         }
-        GroundInvalidator.invalidate(b);    //this means to delete all values of all ground literals
+        //GroundInvalidator.invalidate(b);    //this means to delete all values of all ground literals
+        b.invalidateNeurons();
+        
         Object top = b.getLast();
         if (top == null) {
             return b.valMax;
         }
         if (top instanceof GroundKappa) {
-            return evaluate((GroundKappa) top);
+            return evaluateMax((GroundKappa) top);
         } else {
-            return evaluate((GroundLambda) top);
+            return evaluateMax((GroundLambda) top);
         }
     }
 
-    private static double evaluate(GroundKappa gk) {
+    private static double evaluateMax(GroundKappa gk) {
         if (!ignoreDropout && gk.dropMe) {
             gk.setValue(0.0);
             return 0;
@@ -66,10 +68,10 @@ public class Evaluator {
         }
 
         //out = gk.getGeneral().getOffset();
-        List<Double> inputs = new ArrayList<>();
+        ArrayList<Double> inputs = new ArrayList<>(gk.getDisjuncts().size());
         for (Tuple<GroundLambda, KappaRule> t : gk.getDisjuncts()) {
             //out += evaluate(t.x) * t.y.getWeight();
-            inputs.add(evaluate(t.x) * t.y.getWeight());
+            inputs.add(evaluateMax(t.x) * t.y.getWeight());
         }
 
         out = Activations.kappaActivation(inputs, gk.getGeneral().getOffset());
@@ -77,7 +79,7 @@ public class Evaluator {
         return out;
     }
 
-    private static double evaluate(GroundLambda gl) {
+    private static double evaluateMax(GroundLambda gl) {
         if (!ignoreDropout && gl.dropMe) {
             gl.setValue(0.0);
             return 0;
@@ -89,10 +91,10 @@ public class Evaluator {
         }
 
         //out = gl.getGeneral().getOffset();
-        List<Double> inputs = new ArrayList<>();
+        ArrayList<Double> inputs = new ArrayList<>(gl.getConjuncts().size());
         for (GroundKappa gk : gl.getConjuncts()) {
             //out += evaluate(gk);
-            inputs.add(evaluate(gk));
+            inputs.add(evaluateMax(gk));
         }
 
         out = Activations.lambdaActivation(inputs, gl.getGeneral().getOffset());
@@ -101,7 +103,12 @@ public class Evaluator {
     }
 
     public static double evaluateAvg(Ball b) {
-        GroundInvalidator.invalidateAVG(b);    //this means to delete all values of all ground literals (will work as caching)
+        if (b == null) {
+            return Global.getFalseAtomValue();
+        }
+        //GroundInvalidator.invalidateAVG(b);    //this means to delete all values of all ground literals (will work as caching)
+        b.invalidateNeurons();
+        
         GroundKL top = b.getLast();
         if (top == null) {
             return b.valAvg;
@@ -130,9 +137,12 @@ public class Evaluator {
         }
 
         //out = gk.getGeneral().getOffset();
-        List<Double> inputs = new ArrayList<>();
+        ArrayList<Double> inputs = new ArrayList<>(gk.getDisjunctsAvg().size());        
         for (Tuple<HashSet<GroundLambda>, KappaRule> t : gk.getDisjunctsAvg()) {
             double avg = 0;
+            if (t.x.size() > 1){
+                System.out.println("stop");
+            }
             for (GroundLambda gl : t.x) {
                 avg += evaluateAvg(gl);
             }
@@ -160,7 +170,7 @@ public class Evaluator {
         }
 
         //out = gl.getGeneral().getOffset();
-        List<Double> inputs = new ArrayList<>();
+        ArrayList<Double> inputs = new ArrayList<>(gl.getConjunctsAvg().size());
         //double avg = 0;
         for (Map.Entry<GroundKappa, Integer> gk : gl.getConjunctsAvg().entrySet()) {
             //avg += evaluateAvg(gk.getKey()) * gk.getValue();

@@ -1,0 +1,390 @@
+edge0(X,Y) :- o(X),o(Y),bond(X,Y,B1).
+edge1(X,Y) :- o(X),n(Y),bond(X,Y,B1).
+edge2(X,Y) :- o(X),c(Y),bond(X,Y,B1).
+edge3(X,Y) :- o(X),cl(Y),bond(X,Y,B1).
+edge4(X,Y) :- o(X),f(Y),bond(X,Y,B1).
+edge5(X,Y) :- o(X),i(Y),bond(X,Y,B1).
+edge6(X,Y) :- o(X),h(Y),bond(X,Y,B1).
+edge7(X,Y) :- o(X),br(Y),bond(X,Y,B1).
+edge8(X,Y) :- n(X),o(Y),bond(X,Y,B1).
+edge9(X,Y) :- n(X),n(Y),bond(X,Y,B1).
+edge10(X,Y) :- n(X),c(Y),bond(X,Y,B1).
+edge11(X,Y) :- n(X),cl(Y),bond(X,Y,B1).
+edge12(X,Y) :- n(X),f(Y),bond(X,Y,B1).
+edge13(X,Y) :- n(X),i(Y),bond(X,Y,B1).
+edge14(X,Y) :- n(X),h(Y),bond(X,Y,B1).
+edge15(X,Y) :- n(X),br(Y),bond(X,Y,B1).
+edge16(X,Y) :- c(X),o(Y),bond(X,Y,B1).
+edge17(X,Y) :- c(X),n(Y),bond(X,Y,B1).
+edge18(X,Y) :- c(X),c(Y),bond(X,Y,B1).
+edge19(X,Y) :- c(X),cl(Y),bond(X,Y,B1).
+edge20(X,Y) :- c(X),f(Y),bond(X,Y,B1).
+edge21(X,Y) :- c(X),i(Y),bond(X,Y,B1).
+edge22(X,Y) :- c(X),h(Y),bond(X,Y,B1).
+edge23(X,Y) :- c(X),br(Y),bond(X,Y,B1).
+edge24(X,Y) :- cl(X),o(Y),bond(X,Y,B1).
+edge25(X,Y) :- cl(X),n(Y),bond(X,Y,B1).
+edge26(X,Y) :- cl(X),c(Y),bond(X,Y,B1).
+edge27(X,Y) :- cl(X),cl(Y),bond(X,Y,B1).
+edge28(X,Y) :- cl(X),f(Y),bond(X,Y,B1).
+edge29(X,Y) :- cl(X),i(Y),bond(X,Y,B1).
+edge30(X,Y) :- cl(X),h(Y),bond(X,Y,B1).
+edge31(X,Y) :- cl(X),br(Y),bond(X,Y,B1).
+edge32(X,Y) :- f(X),o(Y),bond(X,Y,B1).
+edge33(X,Y) :- f(X),n(Y),bond(X,Y,B1).
+edge34(X,Y) :- f(X),c(Y),bond(X,Y,B1).
+edge35(X,Y) :- f(X),cl(Y),bond(X,Y,B1).
+edge36(X,Y) :- f(X),f(Y),bond(X,Y,B1).
+edge37(X,Y) :- f(X),i(Y),bond(X,Y,B1).
+edge38(X,Y) :- f(X),h(Y),bond(X,Y,B1).
+edge39(X,Y) :- f(X),br(Y),bond(X,Y,B1).
+edge40(X,Y) :- i(X),o(Y),bond(X,Y,B1).
+edge41(X,Y) :- i(X),n(Y),bond(X,Y,B1).
+edge42(X,Y) :- i(X),c(Y),bond(X,Y,B1).
+edge43(X,Y) :- i(X),cl(Y),bond(X,Y,B1).
+edge44(X,Y) :- i(X),f(Y),bond(X,Y,B1).
+edge45(X,Y) :- i(X),i(Y),bond(X,Y,B1).
+edge46(X,Y) :- i(X),h(Y),bond(X,Y,B1).
+edge47(X,Y) :- i(X),br(Y),bond(X,Y,B1).
+edge48(X,Y) :- h(X),o(Y),bond(X,Y,B1).
+edge49(X,Y) :- h(X),n(Y),bond(X,Y,B1).
+edge50(X,Y) :- h(X),c(Y),bond(X,Y,B1).
+edge51(X,Y) :- h(X),cl(Y),bond(X,Y,B1).
+edge52(X,Y) :- h(X),f(Y),bond(X,Y,B1).
+edge53(X,Y) :- h(X),i(Y),bond(X,Y,B1).
+edge54(X,Y) :- h(X),h(Y),bond(X,Y,B1).
+edge55(X,Y) :- h(X),br(Y),bond(X,Y,B1).
+edge56(X,Y) :- br(X),o(Y),bond(X,Y,B1).
+edge57(X,Y) :- br(X),n(Y),bond(X,Y,B1).
+edge58(X,Y) :- br(X),c(Y),bond(X,Y,B1).
+edge59(X,Y) :- br(X),cl(Y),bond(X,Y,B1).
+edge60(X,Y) :- br(X),f(Y),bond(X,Y,B1).
+edge61(X,Y) :- br(X),i(Y),bond(X,Y,B1).
+edge62(X,Y) :- br(X),h(Y),bond(X,Y,B1).
+edge63(X,Y) :- br(X),br(Y),bond(X,Y,B1).
+0.0 e1(X,Y) :- edge0(X,Y).
+0.0 e1(X,Y) :- edge1(X,Y).
+0.0 e1(X,Y) :- edge2(X,Y).
+0.0 e1(X,Y) :- edge3(X,Y).
+0.0 e1(X,Y) :- edge4(X,Y).
+0.0 e1(X,Y) :- edge5(X,Y).
+0.0 e1(X,Y) :- edge6(X,Y).
+0.0 e1(X,Y) :- edge7(X,Y).
+0.0 e1(X,Y) :- edge8(X,Y).
+0.0 e1(X,Y) :- edge9(X,Y).
+0.0 e1(X,Y) :- edge10(X,Y).
+0.0 e1(X,Y) :- edge11(X,Y).
+0.0 e1(X,Y) :- edge12(X,Y).
+0.0 e1(X,Y) :- edge13(X,Y).
+0.0 e1(X,Y) :- edge14(X,Y).
+0.0 e1(X,Y) :- edge15(X,Y).
+0.0 e1(X,Y) :- edge16(X,Y).
+0.0 e1(X,Y) :- edge17(X,Y).
+0.0 e1(X,Y) :- edge18(X,Y).
+0.0 e1(X,Y) :- edge19(X,Y).
+0.0 e1(X,Y) :- edge20(X,Y).
+0.0 e1(X,Y) :- edge21(X,Y).
+0.0 e1(X,Y) :- edge22(X,Y).
+0.0 e1(X,Y) :- edge23(X,Y).
+0.0 e1(X,Y) :- edge24(X,Y).
+0.0 e1(X,Y) :- edge25(X,Y).
+0.0 e1(X,Y) :- edge26(X,Y).
+0.0 e1(X,Y) :- edge27(X,Y).
+0.0 e1(X,Y) :- edge28(X,Y).
+0.0 e1(X,Y) :- edge29(X,Y).
+0.0 e1(X,Y) :- edge30(X,Y).
+0.0 e1(X,Y) :- edge31(X,Y).
+0.0 e1(X,Y) :- edge32(X,Y).
+0.0 e1(X,Y) :- edge33(X,Y).
+0.0 e1(X,Y) :- edge34(X,Y).
+0.0 e1(X,Y) :- edge35(X,Y).
+0.0 e1(X,Y) :- edge36(X,Y).
+0.0 e1(X,Y) :- edge37(X,Y).
+0.0 e1(X,Y) :- edge38(X,Y).
+0.0 e1(X,Y) :- edge39(X,Y).
+0.0 e1(X,Y) :- edge40(X,Y).
+0.0 e1(X,Y) :- edge41(X,Y).
+0.0 e1(X,Y) :- edge42(X,Y).
+0.0 e1(X,Y) :- edge43(X,Y).
+0.0 e1(X,Y) :- edge44(X,Y).
+0.0 e1(X,Y) :- edge45(X,Y).
+0.0 e1(X,Y) :- edge46(X,Y).
+0.0 e1(X,Y) :- edge47(X,Y).
+0.0 e1(X,Y) :- edge48(X,Y).
+0.0 e1(X,Y) :- edge49(X,Y).
+0.0 e1(X,Y) :- edge50(X,Y).
+0.0 e1(X,Y) :- edge51(X,Y).
+0.0 e1(X,Y) :- edge52(X,Y).
+0.0 e1(X,Y) :- edge53(X,Y).
+0.0 e1(X,Y) :- edge54(X,Y).
+0.0 e1(X,Y) :- edge55(X,Y).
+0.0 e1(X,Y) :- edge56(X,Y).
+0.0 e1(X,Y) :- edge57(X,Y).
+0.0 e1(X,Y) :- edge58(X,Y).
+0.0 e1(X,Y) :- edge59(X,Y).
+0.0 e1(X,Y) :- edge60(X,Y).
+0.0 e1(X,Y) :- edge61(X,Y).
+0.0 e1(X,Y) :- edge62(X,Y).
+0.0 e1(X,Y) :- edge63(X,Y).
+0.0 e2(X,Y) :- edge0(X,Y).
+0.0 e2(X,Y) :- edge1(X,Y).
+0.0 e2(X,Y) :- edge2(X,Y).
+0.0 e2(X,Y) :- edge3(X,Y).
+0.0 e2(X,Y) :- edge4(X,Y).
+0.0 e2(X,Y) :- edge5(X,Y).
+0.0 e2(X,Y) :- edge6(X,Y).
+0.0 e2(X,Y) :- edge7(X,Y).
+0.0 e2(X,Y) :- edge8(X,Y).
+0.0 e2(X,Y) :- edge9(X,Y).
+0.0 e2(X,Y) :- edge10(X,Y).
+0.0 e2(X,Y) :- edge11(X,Y).
+0.0 e2(X,Y) :- edge12(X,Y).
+0.0 e2(X,Y) :- edge13(X,Y).
+0.0 e2(X,Y) :- edge14(X,Y).
+0.0 e2(X,Y) :- edge15(X,Y).
+0.0 e2(X,Y) :- edge16(X,Y).
+0.0 e2(X,Y) :- edge17(X,Y).
+0.0 e2(X,Y) :- edge18(X,Y).
+0.0 e2(X,Y) :- edge19(X,Y).
+0.0 e2(X,Y) :- edge20(X,Y).
+0.0 e2(X,Y) :- edge21(X,Y).
+0.0 e2(X,Y) :- edge22(X,Y).
+0.0 e2(X,Y) :- edge23(X,Y).
+0.0 e2(X,Y) :- edge24(X,Y).
+0.0 e2(X,Y) :- edge25(X,Y).
+0.0 e2(X,Y) :- edge26(X,Y).
+0.0 e2(X,Y) :- edge27(X,Y).
+0.0 e2(X,Y) :- edge28(X,Y).
+0.0 e2(X,Y) :- edge29(X,Y).
+0.0 e2(X,Y) :- edge30(X,Y).
+0.0 e2(X,Y) :- edge31(X,Y).
+0.0 e2(X,Y) :- edge32(X,Y).
+0.0 e2(X,Y) :- edge33(X,Y).
+0.0 e2(X,Y) :- edge34(X,Y).
+0.0 e2(X,Y) :- edge35(X,Y).
+0.0 e2(X,Y) :- edge36(X,Y).
+0.0 e2(X,Y) :- edge37(X,Y).
+0.0 e2(X,Y) :- edge38(X,Y).
+0.0 e2(X,Y) :- edge39(X,Y).
+0.0 e2(X,Y) :- edge40(X,Y).
+0.0 e2(X,Y) :- edge41(X,Y).
+0.0 e2(X,Y) :- edge42(X,Y).
+0.0 e2(X,Y) :- edge43(X,Y).
+0.0 e2(X,Y) :- edge44(X,Y).
+0.0 e2(X,Y) :- edge45(X,Y).
+0.0 e2(X,Y) :- edge46(X,Y).
+0.0 e2(X,Y) :- edge47(X,Y).
+0.0 e2(X,Y) :- edge48(X,Y).
+0.0 e2(X,Y) :- edge49(X,Y).
+0.0 e2(X,Y) :- edge50(X,Y).
+0.0 e2(X,Y) :- edge51(X,Y).
+0.0 e2(X,Y) :- edge52(X,Y).
+0.0 e2(X,Y) :- edge53(X,Y).
+0.0 e2(X,Y) :- edge54(X,Y).
+0.0 e2(X,Y) :- edge55(X,Y).
+0.0 e2(X,Y) :- edge56(X,Y).
+0.0 e2(X,Y) :- edge57(X,Y).
+0.0 e2(X,Y) :- edge58(X,Y).
+0.0 e2(X,Y) :- edge59(X,Y).
+0.0 e2(X,Y) :- edge60(X,Y).
+0.0 e2(X,Y) :- edge61(X,Y).
+0.0 e2(X,Y) :- edge62(X,Y).
+0.0 e2(X,Y) :- edge63(X,Y).
+0.0 e3(X,Y) :- edge0(X,Y).
+0.0 e3(X,Y) :- edge1(X,Y).
+0.0 e3(X,Y) :- edge2(X,Y).
+0.0 e3(X,Y) :- edge3(X,Y).
+0.0 e3(X,Y) :- edge4(X,Y).
+0.0 e3(X,Y) :- edge5(X,Y).
+0.0 e3(X,Y) :- edge6(X,Y).
+0.0 e3(X,Y) :- edge7(X,Y).
+0.0 e3(X,Y) :- edge8(X,Y).
+0.0 e3(X,Y) :- edge9(X,Y).
+0.0 e3(X,Y) :- edge10(X,Y).
+0.0 e3(X,Y) :- edge11(X,Y).
+0.0 e3(X,Y) :- edge12(X,Y).
+0.0 e3(X,Y) :- edge13(X,Y).
+0.0 e3(X,Y) :- edge14(X,Y).
+0.0 e3(X,Y) :- edge15(X,Y).
+0.0 e3(X,Y) :- edge16(X,Y).
+0.0 e3(X,Y) :- edge17(X,Y).
+0.0 e3(X,Y) :- edge18(X,Y).
+0.0 e3(X,Y) :- edge19(X,Y).
+0.0 e3(X,Y) :- edge20(X,Y).
+0.0 e3(X,Y) :- edge21(X,Y).
+0.0 e3(X,Y) :- edge22(X,Y).
+0.0 e3(X,Y) :- edge23(X,Y).
+0.0 e3(X,Y) :- edge24(X,Y).
+0.0 e3(X,Y) :- edge25(X,Y).
+0.0 e3(X,Y) :- edge26(X,Y).
+0.0 e3(X,Y) :- edge27(X,Y).
+0.0 e3(X,Y) :- edge28(X,Y).
+0.0 e3(X,Y) :- edge29(X,Y).
+0.0 e3(X,Y) :- edge30(X,Y).
+0.0 e3(X,Y) :- edge31(X,Y).
+0.0 e3(X,Y) :- edge32(X,Y).
+0.0 e3(X,Y) :- edge33(X,Y).
+0.0 e3(X,Y) :- edge34(X,Y).
+0.0 e3(X,Y) :- edge35(X,Y).
+0.0 e3(X,Y) :- edge36(X,Y).
+0.0 e3(X,Y) :- edge37(X,Y).
+0.0 e3(X,Y) :- edge38(X,Y).
+0.0 e3(X,Y) :- edge39(X,Y).
+0.0 e3(X,Y) :- edge40(X,Y).
+0.0 e3(X,Y) :- edge41(X,Y).
+0.0 e3(X,Y) :- edge42(X,Y).
+0.0 e3(X,Y) :- edge43(X,Y).
+0.0 e3(X,Y) :- edge44(X,Y).
+0.0 e3(X,Y) :- edge45(X,Y).
+0.0 e3(X,Y) :- edge46(X,Y).
+0.0 e3(X,Y) :- edge47(X,Y).
+0.0 e3(X,Y) :- edge48(X,Y).
+0.0 e3(X,Y) :- edge49(X,Y).
+0.0 e3(X,Y) :- edge50(X,Y).
+0.0 e3(X,Y) :- edge51(X,Y).
+0.0 e3(X,Y) :- edge52(X,Y).
+0.0 e3(X,Y) :- edge53(X,Y).
+0.0 e3(X,Y) :- edge54(X,Y).
+0.0 e3(X,Y) :- edge55(X,Y).
+0.0 e3(X,Y) :- edge56(X,Y).
+0.0 e3(X,Y) :- edge57(X,Y).
+0.0 e3(X,Y) :- edge58(X,Y).
+0.0 e3(X,Y) :- edge59(X,Y).
+0.0 e3(X,Y) :- edge60(X,Y).
+0.0 e3(X,Y) :- edge61(X,Y).
+0.0 e3(X,Y) :- edge62(X,Y).
+0.0 e3(X,Y) :- edge63(X,Y).
+0.0 e4(X,Y) :- edge0(X,Y).
+0.0 e4(X,Y) :- edge1(X,Y).
+0.0 e4(X,Y) :- edge2(X,Y).
+0.0 e4(X,Y) :- edge3(X,Y).
+0.0 e4(X,Y) :- edge4(X,Y).
+0.0 e4(X,Y) :- edge5(X,Y).
+0.0 e4(X,Y) :- edge6(X,Y).
+0.0 e4(X,Y) :- edge7(X,Y).
+0.0 e4(X,Y) :- edge8(X,Y).
+0.0 e4(X,Y) :- edge9(X,Y).
+0.0 e4(X,Y) :- edge10(X,Y).
+0.0 e4(X,Y) :- edge11(X,Y).
+0.0 e4(X,Y) :- edge12(X,Y).
+0.0 e4(X,Y) :- edge13(X,Y).
+0.0 e4(X,Y) :- edge14(X,Y).
+0.0 e4(X,Y) :- edge15(X,Y).
+0.0 e4(X,Y) :- edge16(X,Y).
+0.0 e4(X,Y) :- edge17(X,Y).
+0.0 e4(X,Y) :- edge18(X,Y).
+0.0 e4(X,Y) :- edge19(X,Y).
+0.0 e4(X,Y) :- edge20(X,Y).
+0.0 e4(X,Y) :- edge21(X,Y).
+0.0 e4(X,Y) :- edge22(X,Y).
+0.0 e4(X,Y) :- edge23(X,Y).
+0.0 e4(X,Y) :- edge24(X,Y).
+0.0 e4(X,Y) :- edge25(X,Y).
+0.0 e4(X,Y) :- edge26(X,Y).
+0.0 e4(X,Y) :- edge27(X,Y).
+0.0 e4(X,Y) :- edge28(X,Y).
+0.0 e4(X,Y) :- edge29(X,Y).
+0.0 e4(X,Y) :- edge30(X,Y).
+0.0 e4(X,Y) :- edge31(X,Y).
+0.0 e4(X,Y) :- edge32(X,Y).
+0.0 e4(X,Y) :- edge33(X,Y).
+0.0 e4(X,Y) :- edge34(X,Y).
+0.0 e4(X,Y) :- edge35(X,Y).
+0.0 e4(X,Y) :- edge36(X,Y).
+0.0 e4(X,Y) :- edge37(X,Y).
+0.0 e4(X,Y) :- edge38(X,Y).
+0.0 e4(X,Y) :- edge39(X,Y).
+0.0 e4(X,Y) :- edge40(X,Y).
+0.0 e4(X,Y) :- edge41(X,Y).
+0.0 e4(X,Y) :- edge42(X,Y).
+0.0 e4(X,Y) :- edge43(X,Y).
+0.0 e4(X,Y) :- edge44(X,Y).
+0.0 e4(X,Y) :- edge45(X,Y).
+0.0 e4(X,Y) :- edge46(X,Y).
+0.0 e4(X,Y) :- edge47(X,Y).
+0.0 e4(X,Y) :- edge48(X,Y).
+0.0 e4(X,Y) :- edge49(X,Y).
+0.0 e4(X,Y) :- edge50(X,Y).
+0.0 e4(X,Y) :- edge51(X,Y).
+0.0 e4(X,Y) :- edge52(X,Y).
+0.0 e4(X,Y) :- edge53(X,Y).
+0.0 e4(X,Y) :- edge54(X,Y).
+0.0 e4(X,Y) :- edge55(X,Y).
+0.0 e4(X,Y) :- edge56(X,Y).
+0.0 e4(X,Y) :- edge57(X,Y).
+0.0 e4(X,Y) :- edge58(X,Y).
+0.0 e4(X,Y) :- edge59(X,Y).
+0.0 e4(X,Y) :- edge60(X,Y).
+0.0 e4(X,Y) :- edge61(X,Y).
+0.0 e4(X,Y) :- edge62(X,Y).
+0.0 e4(X,Y) :- edge63(X,Y).
+0.0 e5(X,Y) :- edge0(X,Y).
+0.0 e5(X,Y) :- edge1(X,Y).
+0.0 e5(X,Y) :- edge2(X,Y).
+0.0 e5(X,Y) :- edge3(X,Y).
+0.0 e5(X,Y) :- edge4(X,Y).
+0.0 e5(X,Y) :- edge5(X,Y).
+0.0 e5(X,Y) :- edge6(X,Y).
+0.0 e5(X,Y) :- edge7(X,Y).
+0.0 e5(X,Y) :- edge8(X,Y).
+0.0 e5(X,Y) :- edge9(X,Y).
+0.0 e5(X,Y) :- edge10(X,Y).
+0.0 e5(X,Y) :- edge11(X,Y).
+0.0 e5(X,Y) :- edge12(X,Y).
+0.0 e5(X,Y) :- edge13(X,Y).
+0.0 e5(X,Y) :- edge14(X,Y).
+0.0 e5(X,Y) :- edge15(X,Y).
+0.0 e5(X,Y) :- edge16(X,Y).
+0.0 e5(X,Y) :- edge17(X,Y).
+0.0 e5(X,Y) :- edge18(X,Y).
+0.0 e5(X,Y) :- edge19(X,Y).
+0.0 e5(X,Y) :- edge20(X,Y).
+0.0 e5(X,Y) :- edge21(X,Y).
+0.0 e5(X,Y) :- edge22(X,Y).
+0.0 e5(X,Y) :- edge23(X,Y).
+0.0 e5(X,Y) :- edge24(X,Y).
+0.0 e5(X,Y) :- edge25(X,Y).
+0.0 e5(X,Y) :- edge26(X,Y).
+0.0 e5(X,Y) :- edge27(X,Y).
+0.0 e5(X,Y) :- edge28(X,Y).
+0.0 e5(X,Y) :- edge29(X,Y).
+0.0 e5(X,Y) :- edge30(X,Y).
+0.0 e5(X,Y) :- edge31(X,Y).
+0.0 e5(X,Y) :- edge32(X,Y).
+0.0 e5(X,Y) :- edge33(X,Y).
+0.0 e5(X,Y) :- edge34(X,Y).
+0.0 e5(X,Y) :- edge35(X,Y).
+0.0 e5(X,Y) :- edge36(X,Y).
+0.0 e5(X,Y) :- edge37(X,Y).
+0.0 e5(X,Y) :- edge38(X,Y).
+0.0 e5(X,Y) :- edge39(X,Y).
+0.0 e5(X,Y) :- edge40(X,Y).
+0.0 e5(X,Y) :- edge41(X,Y).
+0.0 e5(X,Y) :- edge42(X,Y).
+0.0 e5(X,Y) :- edge43(X,Y).
+0.0 e5(X,Y) :- edge44(X,Y).
+0.0 e5(X,Y) :- edge45(X,Y).
+0.0 e5(X,Y) :- edge46(X,Y).
+0.0 e5(X,Y) :- edge47(X,Y).
+0.0 e5(X,Y) :- edge48(X,Y).
+0.0 e5(X,Y) :- edge49(X,Y).
+0.0 e5(X,Y) :- edge50(X,Y).
+0.0 e5(X,Y) :- edge51(X,Y).
+0.0 e5(X,Y) :- edge52(X,Y).
+0.0 e5(X,Y) :- edge53(X,Y).
+0.0 e5(X,Y) :- edge54(X,Y).
+0.0 e5(X,Y) :- edge55(X,Y).
+0.0 e5(X,Y) :- edge56(X,Y).
+0.0 e5(X,Y) :- edge57(X,Y).
+0.0 e5(X,Y) :- edge58(X,Y).
+0.0 e5(X,Y) :- edge59(X,Y).
+0.0 e5(X,Y) :- edge60(X,Y).
+0.0 e5(X,Y) :- edge61(X,Y).
+0.0 e5(X,Y) :- edge62(X,Y).
+0.0 e5(X,Y) :- edge63(X,Y).
+ring3(A,B,C) :- e1(A,B),e2(B,C).
+ring4(A,B,C,D) :- e1(A,B),e2(B,C),e3(C,D).
+ring5(A,B,C,D,E) :- e1(A,B),e2(B,C),e3(C,D),e4(D,E).
+0.0 toxic(DMY) :- ring3(A,B,C).
+0.0 toxic(DMY) :- ring4(A,B,C,D).
+0.0 toxic(DMY) :- ring5(A,B,C,D,E).

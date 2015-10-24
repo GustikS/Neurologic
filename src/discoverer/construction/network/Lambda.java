@@ -4,7 +4,7 @@ import discoverer.construction.network.rules.LambdaRule;
 import discoverer.global.Global;
 
 /**
- * Lambda node
+ * Lambda node = rule neuron
  */
 public class Lambda extends KL {
 

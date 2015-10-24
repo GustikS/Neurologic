@@ -4,6 +4,7 @@ import discoverer.construction.Terminal;
 import discoverer.construction.network.rules.LambdaRule;
 import discoverer.construction.NetworkFactory;
 import discoverer.construction.network.Lambda;
+import discoverer.construction.network.Network;
 import discoverer.global.Global;
 import java.util.*;
 import static org.junit.Assert.*;
@@ -22,7 +23,8 @@ public class VariableOrderingTest {
         };
 
         NetworkFactory nf = new NetworkFactory();
-        Lambda l = (Lambda) nf.construct(rules);
+        Network net = nf.construct(rules);
+        Lambda l = (Lambda) net.last;
         LambdaRule lr = l.getRule();
 
         Terminal t1 = lr.getNextUnbound(); lr.unbound.remove(t1);

@@ -36,6 +36,7 @@ public class Settings {
     private static String dataset;
     private static String rules;
     private static String pretrained;
+    private static String testSet;
 
     /**
      * outdated...new way of creating Settings is directly! to synchronize with
@@ -82,6 +83,7 @@ public class Settings {
         StringBuilder sb = new StringBuilder();
         //datapart
         sb.append("dat-").append(dataset).append("_");
+        sb.append("test-").append(getTestSet()).append("_");
         sb.append("rul-").append(rules).append("_");
         sb.append("tem-").append(pretrained).append("_");
         sb.append("count-").append(maxExamples).append("_");
@@ -366,7 +368,7 @@ public class Settings {
      * @param aDataset the dataset to set
      */
     public static void setDataset(String aDataset) {
-        dataset = aDataset.replace("/", "-");
+        dataset = aDataset.replace("/", "-").replaceAll("\\.", "");
     }
 
     /**
@@ -383,7 +385,7 @@ public class Settings {
         if (aPretrained == null) {
             aPretrained = "none";
         }
-        pretrained = aPretrained.replace("/", "-");
+        pretrained = aPretrained.replace("/", "-").replaceAll("\\.", "");
     }
 
     /**
@@ -397,7 +399,21 @@ public class Settings {
      * @param aRules the rules to set
      */
     public static void setRules(String aRules) {
-        rules = aRules.replace("/", "-");
+        rules = aRules.replace("/", "-").replaceAll("\\.", "");
+    }
+
+    /**
+     * @return the testSet
+     */
+    public static String getTestSet() {
+        return testSet;
+    }
+
+    /**
+     * @param aTestSet the testSet to set
+     */
+    public static void setTestSet(String aTestSet) {
+        testSet = aTestSet.replace("/", "-").replaceAll("\\.", "");
     }
 
 }

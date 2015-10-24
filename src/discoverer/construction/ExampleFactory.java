@@ -63,6 +63,9 @@ public class ExampleFactory {
         }
 
         e.setConstCount(constId);
+        for (Map.Entry<String,Integer> ent : constMap.entrySet()) {
+            e.constantNames.put(ent.getValue(), ent.getKey());
+        }
         //resets all example-related hashmaps for IDs
         clear();
         return e;

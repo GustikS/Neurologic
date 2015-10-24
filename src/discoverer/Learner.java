@@ -1,22 +1,21 @@
 package discoverer;
 
-import discoverer.grounding.evaluation.struct.ParentCounter;
+import discoverer.grounding.evaluation.struct.GroundNetworkParser;
 import discoverer.construction.example.Example;
-import discoverer.construction.network.KL;
 import discoverer.construction.network.Kappa;
 import discoverer.construction.network.Network;
 import discoverer.construction.network.rules.KappaRule;
-import discoverer.drawing.GroundDotter;
 import discoverer.global.Global;
 import discoverer.global.Glogger;
 import discoverer.global.Settings;
 import discoverer.grounding.ForwardChecker;
+import discoverer.grounding.network.groundNetwork.GroundedDataset;
 import discoverer.grounding.evaluation.Ball;
 import discoverer.grounding.Grounder;
-import extras.BackpropGroundKappa;
 import discoverer.learning.backprop.BackpropDownAvg;
 import discoverer.grounding.evaluation.Evaluator;
 import discoverer.grounding.evaluation.struct.Dropout;
+import discoverer.grounding.network.GroundKL;
 import discoverer.learning.Invalidator;
 import discoverer.learning.Result;
 import discoverer.learning.Results;
@@ -24,6 +23,10 @@ import discoverer.learning.Sample;
 import discoverer.learning.Saver;
 import discoverer.learning.Weights;
 import discoverer.learning.backprop.BackpropDown;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.*;
 
 /**
@@ -112,8 +115,21 @@ public class Learner {
     public List<Sample> prepareGroundings(List<Example> examples, Network net) {
         //find max. and average substitution for all examples
         ForwardChecker.exnum = 0;
-        Glogger.process("searching for initial substition trees for each example...");
         List<Sample> roundStore = new ArrayList<Sample>();
+
+        if (Global.loadGroundings) {
+            try {
+                Glogger.process("loading ground network examples from a file: " + Settings.getDataset().replaceAll("-", "/") + ".ser");
+                FileInputStream in = new FileInputStream(Settings.getDataset().replaceAll("-", "/") + ".ser");
+                ObjectInputStream ois = new ObjectInputStream(in);
+                roundStore = (List<Sample>) (ois.readObject());
+                return roundStore;
+            } catch (Exception e) {
+                Glogger.err("Problem serializing: " + e);
+            }
+        }
+
+        Glogger.process("searching for initial substition trees for each example...");
         ForwardChecker.exnum = 0;
         int i = 0;
         for (Example e : examples) {
@@ -126,12 +142,28 @@ public class Learner {
         Glogger.process("...done with intial grounding");
 
         //here calculate for each proof-tree(=Ball b) numbers of parents for each GroundKappa/Lambda
+        Set<GroundKL> neurons = null;
         for (Sample result : roundStore) {
             Ball b = result.getBall();
             if (Global.getGrounding() == Global.groundingSet.avg) {
-                ParentCounter.countParentsAVG(b);
+                neurons = GroundNetworkParser.parseAVG(b);
             } else if (Global.getGrounding() == Global.groundingSet.max) {
-                ParentCounter.countParents(b);
+                neurons = GroundNetworkParser.parseMAX(b);
+            }
+            b.loadGroundNeurons(neurons);
+        }
+        
+        GroundedDataset gdata = new GroundedDataset(net, roundStore);
+
+        if (Global.saveGroundings) {
+            try {
+                FileOutputStream out = new FileOutputStream(Settings.getDataset().replaceAll("-", "/") + ".ser");
+                ObjectOutputStream oos = new ObjectOutputStream(out);
+                oos.writeObject(roundStore);
+                oos.flush();
+                Glogger.process("Saved example ground network into: " + Settings.getDataset().replaceAll("-", "/") + ".ser");
+            } catch (Exception e) {
+                Glogger.err("Problem serializing: " + e);
             }
         }
 
@@ -277,6 +309,7 @@ public class Learner {
 
         List<Sample> roundStore = prepareGroundings(examples, last);   //this stays as with no pruning both avg and max are found
 
+        long time1 = System.currentTimeMillis();
         for (int a = 0; a < Settings.restartCount; a++) {    //restarting the whole procedure
             results.past.clear();
             Glogger.process("--------SolveAVG-----------------------------------------------------------------------------------------------------------------------");
@@ -289,10 +322,11 @@ public class Learner {
                 if (Global.isSGD()) {
                     Collections.shuffle(roundStore, Global.getRg());    //stochastic gradient descend!
                 }
-                for (Sample result : roundStore) {     //for each example(result)
-                    Example e = result.getExample();
-                    Ball b = result.getBall();
-                    double old = b.valAvg;
+                double old;
+                for (Sample sample : roundStore) {     //for each example(result)
+                    Example e = sample.getExample();
+                    Ball b = sample.getBall();
+                    old = b.valAvg;
                     if (Global.getDropout() > 0) {
                         Dropout.dropoutAvg(b);
                         Evaluator.ignoreDropout = false;
@@ -311,9 +345,10 @@ public class Learner {
             }
             saveTemplate(roundStore, last);
             Glogger.LogTrain("...restart " + a);
-            Invalidator.invalidate(last);       //reset all weights before restart
+            last.invalidateWeights();
+            //Invalidator.invalidate(last);       //reset all weights before restart
         }
-
+        Glogger.info("----------!!!!!!!!!-------!!!!! time in training: " + (System.currentTimeMillis() - time1));
         endTraining(roundStore, last);
 
         return results;
@@ -474,7 +509,9 @@ public class Learner {
 
         if (Saver.isBetterThenBest(le, th, disp)) {
             Saver.save(net, le, th, disp);     //save the best network (last = output node)
-            net.exportWeightMatrix("progress" + progress++);
+            if (Global.exporting) {
+                net.exportWeightMatrix("progress" + progress++);
+            }
         }
         //Kappa llast = (Kappa) last;
         //Dotter.draw(last, new HashSet(llast.getRules()));
@@ -512,7 +549,7 @@ public class Learner {
         for (Sample roundElement : roundStore) {
             Example e = roundElement.getExample();
             Ball b = Grounder.solve(net.last, e);    // resubstitution for every example
-            ParentCounter.countParents(b);
+            GroundNetworkParser.parseMAX(b);
             roundElement.setBall(b);
             results.add(new Result(b.valMax, e.getExpectedValue()));
             Glogger.info("example: " + e + " , bval: " + b.valMax + ", avg: " + b.valAvg);

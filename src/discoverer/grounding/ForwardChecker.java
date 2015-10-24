@@ -9,6 +9,7 @@ import discoverer.construction.network.rules.SubK;
 import discoverer.construction.network.rules.SubL;
 import discoverer.construction.Terminal;
 import discoverer.construction.example.Example;
+import discoverer.construction.network.rules.SubKL;
 import discoverer.global.Global;
 import discoverer.global.Glogger;
 import java.util.*;
@@ -19,14 +20,14 @@ import java.util.*;
 public class ForwardChecker {
 
     private static Example example;
-    private static HashMap<Object, Boolean> cache;
+    private static HashMap<SubKL, Boolean> cache;
 
     private static final boolean cacheEnabled = Global.isCacheEnabled();
     private static final boolean debugEnabled = Global.isDebugEnabled();
     private static int runs = 0;
 
     public static int exnum = 0;
-    
+
     public static void printRuns() {
         Glogger.info(exnum++ + " example -> #forward checker runs:(" + runs + ")");
         runs = 0;
@@ -43,7 +44,7 @@ public class ForwardChecker {
 
             if (cacheEnabled) {
                 if (cache == null) {
-                    cache = new HashMap<Object, Boolean>();
+                    cache = new HashMap<>();
                 } else {
                     cache.clear();
                 }
@@ -63,32 +64,40 @@ public class ForwardChecker {
         return ret;
     }
 
-    public static boolean check(Object o) {
+    /**
+     * this is too time-consuming, probably the type-checking!
+     *
+     * @param o
+     * @return
+     */
+    public static boolean check(SubK o) {
         if (!cacheEnabled) {
-            if (o instanceof SubK) {
-                return checkCompute((SubK) o);
-            } else {
-                return checkCompute((SubL) o);
-            }
+            return checkCompute(o);
         }
 
         Boolean b;
-        if (o instanceof SubK) {
-            b = cache.get((SubK) o);
-            if (b == null) {
-                b = checkCompute((SubK) o);
-                SubK sk = (SubK) o;
-                cache.put(sk.clone(), b);
-            }
-        } else {
-            b = cache.get((SubL) o);
-            if (b == null) {
-                b = checkCompute((SubL) o);
-                SubL sl = (SubL) o;
-                cache.put(sl.clone(), b);
-            }
+        b = cache.get(o);
+        if (b == null) {
+            b = checkCompute(o);
+            SubK sk = o;
+            cache.put(sk.clone(), b);
         }
 
+        return b;
+    }
+
+    public static boolean check(SubL o) {
+        if (!cacheEnabled) {
+            return checkCompute(o);
+        }
+
+        Boolean b;
+        b = cache.get(o);
+        if (b == null) {
+            b = checkCompute(o);
+            SubL sl = o;
+            cache.put(sl.clone(), b);
+        }
         return b;
     }
 

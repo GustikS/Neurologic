@@ -1,0 +1,22 @@
+letterLambda_1(A) :- a(A).
+letterLambda_2(A) :- b(A).
+0.0 letterKappa_A1(A) :- letterLambda_1(A).
+0.0 letterKappa_A1(A) :- letterLambda_2(A).
+0.0 letterKappa_A2(A) :- letterLambda_1(A).
+0.0 letterKappa_A2(A) :- letterLambda_2(A).
+lambda_A0(DMY) :- letterKappa_A1(A), next(A,B), letterKappa_A1(B), next(B,C), letterKappa_A1(C). 
+lambda_A1(DMY) :- letterKappa_A1(A), next(A,B), letterKappa_A1(B), next(B,C), letterKappa_A2(C). 
+lambda_A2(DMY) :- letterKappa_A1(A), next(A,B), letterKappa_A2(B), next(B,C), letterKappa_A1(C). 
+lambda_A3(DMY) :- letterKappa_A1(A), next(A,B), letterKappa_A2(B), next(B,C), letterKappa_A2(C). 
+lambda_A4(DMY) :- letterKappa_A2(A), next(A,B), letterKappa_A1(B), next(B,C), letterKappa_A1(C). 
+lambda_A5(DMY) :- letterKappa_A2(A), next(A,B), letterKappa_A1(B), next(B,C), letterKappa_A2(C). 
+lambda_A6(DMY) :- letterKappa_A2(A), next(A,B), letterKappa_A2(B), next(B,C), letterKappa_A1(C). 
+lambda_A7(DMY) :- letterKappa_A2(A), next(A,B), letterKappa_A2(B), next(B,C), letterKappa_A2(C). 
+0.0 finalKappa(DMY) :- lambda_A0(DMY2).
+0.0 finalKappa(DMY) :- lambda_A1(DMY2).
+0.0 finalKappa(DMY) :- lambda_A2(DMY2).
+0.0 finalKappa(DMY) :- lambda_A3(DMY2).
+0.0 finalKappa(DMY) :- lambda_A4(DMY2).
+0.0 finalKappa(DMY) :- lambda_A5(DMY2).
+0.0 finalKappa(DMY) :- lambda_A6(DMY2).
+0.0 finalKappa(DMY) :- lambda_A7(DMY2).

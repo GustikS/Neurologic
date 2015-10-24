@@ -6,6 +6,7 @@
 package discoverer.grounding.network;
 
 import discoverer.construction.Terminal;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -14,7 +15,7 @@ import java.util.Set;
  *
  * @author Gusta
  */
-public abstract class GroundKL {
+public abstract class GroundKL implements Serializable{
 
     private static int counter = 0;
 
@@ -29,6 +30,7 @@ public abstract class GroundKL {
 
     private int id;
     private List<Integer> termList;
+    private List<String> termNames;
 
     /**
      * this is a truly ground K/L
@@ -42,10 +44,12 @@ public abstract class GroundKL {
 
         id = counter++;
         termList = new ArrayList<Integer>();
+        termNames = new ArrayList<>();
 
         if (terms != null) {
             for (Terminal t : terms) {
                 termList.add(t.getBind());
+                termNames.add(t.getName());
             }
         }
     }
@@ -59,7 +63,12 @@ public abstract class GroundKL {
     }
 
     public abstract GroundKL cloneMe();
+    
+    public abstract void transform2Arrays();
 
+    /**
+     * delete values and parent counters for backpropagation calculation
+     */
     public void invalidate() {
         groundParentsChecked = 0;
         groundParentDerivative = 0;
@@ -175,5 +184,19 @@ public abstract class GroundKL {
 
     public void addGroundParentDerivative(double gParentDerivative) {
         this.groundParentDerivative += gParentDerivative;
+    }
+
+    /**
+     * @return the termNames
+     */
+    public List<String> getTermNames() {
+        return termNames;
+    }
+
+    /**
+     * @param termNames the termNames to set
+     */
+    public void setTermNames(List<String> termNames) {
+        this.termNames = termNames;
     }
 }

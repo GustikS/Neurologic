@@ -1,0 +1,855 @@
+atomLambda_1(A) :- se(A).
+atomLambda_2(A) :- s_o(A).
+atomLambda_3(A) :- sb(A).
+atomLambda_4(A) :- bi(A).
+atomLambda_5(A) :- s_2(A).
+atomLambda_6(A) :- sn(A).
+atomLambda_7(A) :- s_3(A).
+atomLambda_8(A) :- f(A).
+atomLambda_9(A) :- i(A).
+atomLambda_10(A) :- o_2(A).
+atomLambda_11(A) :- o_3(A).
+atomLambda_12(A) :- si(A).
+atomLambda_13(A) :- o_co2(A).
+atomLambda_14(A) :- fe(A).
+atomLambda_15(A) :- p_3(A).
+atomLambda_16(A) :- hg(A).
+atomLambda_17(A) :- pt(A).
+atomLambda_18(A) :- n_ar(A).
+atomLambda_19(A) :- v(A).
+atomLambda_20(A) :- br(A).
+atomLambda_21(A) :- co(A).
+atomLambda_22(A) :- pb(A).
+atomLambda_23(A) :- er(A).
+atomLambda_24(A) :- n_am(A).
+atomLambda_25(A) :- pd(A).
+atomLambda_26(A) :- cl(A).
+atomLambda_27(A) :- ag(A).
+atomLambda_28(A) :- c_3(A).
+atomLambda_29(A) :- na(A).
+atomLambda_30(A) :- c_2(A).
+atomLambda_31(A) :- c_1(A).
+atomLambda_32(A) :- n_pl3(A).
+atomLambda_33(A) :- cd(A).
+atomLambda_34(A) :- rh(A).
+atomLambda_35(A) :- zn(A).
+atomLambda_36(A) :- ge(A).
+atomLambda_37(A) :- mn(A).
+atomLambda_38(A) :- c_ar(A).
+atomLambda_39(A) :- n_1(A).
+atomLambda_40(A) :- n_2(A).
+atomLambda_41(A) :- as(A).
+atomLambda_42(A) :- s_o2(A).
+atomLambda_43(A) :- cu(A).
+atomLambda_44(A) :- au(A).
+atomLambda_45(A) :- eu(A).
+atomLambda_46(A) :- n_3(A).
+atomLambda_47(A) :- n_4(A).
+atomLambda_48(A) :- cr(A).
+bondLambda_1(A) :- 1(A).
+bondLambda_2(A) :- am(A).
+bondLambda_3(A) :- 2(A).
+bondLambda_4(A) :- 3(A).
+bondLambda_5(A) :- ar(A).
+0.0 atomKappa_1(A) :- atomLambda_1(A).
+0.0 atomKappa_1(A) :- atomLambda_2(A).
+0.0 atomKappa_1(A) :- atomLambda_3(A).
+0.0 atomKappa_1(A) :- atomLambda_4(A).
+0.0 atomKappa_1(A) :- atomLambda_5(A).
+0.0 atomKappa_1(A) :- atomLambda_6(A).
+0.0 atomKappa_1(A) :- atomLambda_7(A).
+0.0 atomKappa_1(A) :- atomLambda_8(A).
+0.0 atomKappa_1(A) :- atomLambda_9(A).
+0.0 atomKappa_1(A) :- atomLambda_10(A).
+0.0 atomKappa_1(A) :- atomLambda_11(A).
+0.0 atomKappa_1(A) :- atomLambda_12(A).
+0.0 atomKappa_1(A) :- atomLambda_13(A).
+0.0 atomKappa_1(A) :- atomLambda_14(A).
+0.0 atomKappa_1(A) :- atomLambda_15(A).
+0.0 atomKappa_1(A) :- atomLambda_16(A).
+0.0 atomKappa_1(A) :- atomLambda_17(A).
+0.0 atomKappa_1(A) :- atomLambda_18(A).
+0.0 atomKappa_1(A) :- atomLambda_19(A).
+0.0 atomKappa_1(A) :- atomLambda_20(A).
+0.0 atomKappa_1(A) :- atomLambda_21(A).
+0.0 atomKappa_1(A) :- atomLambda_22(A).
+0.0 atomKappa_1(A) :- atomLambda_23(A).
+0.0 atomKappa_1(A) :- atomLambda_24(A).
+0.0 atomKappa_1(A) :- atomLambda_25(A).
+0.0 atomKappa_1(A) :- atomLambda_26(A).
+0.0 atomKappa_1(A) :- atomLambda_27(A).
+0.0 atomKappa_1(A) :- atomLambda_28(A).
+0.0 atomKappa_1(A) :- atomLambda_29(A).
+0.0 atomKappa_1(A) :- atomLambda_30(A).
+0.0 atomKappa_1(A) :- atomLambda_31(A).
+0.0 atomKappa_1(A) :- atomLambda_32(A).
+0.0 atomKappa_1(A) :- atomLambda_33(A).
+0.0 atomKappa_1(A) :- atomLambda_34(A).
+0.0 atomKappa_1(A) :- atomLambda_35(A).
+0.0 atomKappa_1(A) :- atomLambda_36(A).
+0.0 atomKappa_1(A) :- atomLambda_37(A).
+0.0 atomKappa_1(A) :- atomLambda_38(A).
+0.0 atomKappa_1(A) :- atomLambda_39(A).
+0.0 atomKappa_1(A) :- atomLambda_40(A).
+0.0 atomKappa_1(A) :- atomLambda_41(A).
+0.0 atomKappa_1(A) :- atomLambda_42(A).
+0.0 atomKappa_1(A) :- atomLambda_43(A).
+0.0 atomKappa_1(A) :- atomLambda_44(A).
+0.0 atomKappa_1(A) :- atomLambda_45(A).
+0.0 atomKappa_1(A) :- atomLambda_46(A).
+0.0 atomKappa_1(A) :- atomLambda_47(A).
+0.0 atomKappa_1(A) :- atomLambda_48(A).
+0.0 atomKappa_2(A) :- atomLambda_1(A).
+0.0 atomKappa_2(A) :- atomLambda_2(A).
+0.0 atomKappa_2(A) :- atomLambda_3(A).
+0.0 atomKappa_2(A) :- atomLambda_4(A).
+0.0 atomKappa_2(A) :- atomLambda_5(A).
+0.0 atomKappa_2(A) :- atomLambda_6(A).
+0.0 atomKappa_2(A) :- atomLambda_7(A).
+0.0 atomKappa_2(A) :- atomLambda_8(A).
+0.0 atomKappa_2(A) :- atomLambda_9(A).
+0.0 atomKappa_2(A) :- atomLambda_10(A).
+0.0 atomKappa_2(A) :- atomLambda_11(A).
+0.0 atomKappa_2(A) :- atomLambda_12(A).
+0.0 atomKappa_2(A) :- atomLambda_13(A).
+0.0 atomKappa_2(A) :- atomLambda_14(A).
+0.0 atomKappa_2(A) :- atomLambda_15(A).
+0.0 atomKappa_2(A) :- atomLambda_16(A).
+0.0 atomKappa_2(A) :- atomLambda_17(A).
+0.0 atomKappa_2(A) :- atomLambda_18(A).
+0.0 atomKappa_2(A) :- atomLambda_19(A).
+0.0 atomKappa_2(A) :- atomLambda_20(A).
+0.0 atomKappa_2(A) :- atomLambda_21(A).
+0.0 atomKappa_2(A) :- atomLambda_22(A).
+0.0 atomKappa_2(A) :- atomLambda_23(A).
+0.0 atomKappa_2(A) :- atomLambda_24(A).
+0.0 atomKappa_2(A) :- atomLambda_25(A).
+0.0 atomKappa_2(A) :- atomLambda_26(A).
+0.0 atomKappa_2(A) :- atomLambda_27(A).
+0.0 atomKappa_2(A) :- atomLambda_28(A).
+0.0 atomKappa_2(A) :- atomLambda_29(A).
+0.0 atomKappa_2(A) :- atomLambda_30(A).
+0.0 atomKappa_2(A) :- atomLambda_31(A).
+0.0 atomKappa_2(A) :- atomLambda_32(A).
+0.0 atomKappa_2(A) :- atomLambda_33(A).
+0.0 atomKappa_2(A) :- atomLambda_34(A).
+0.0 atomKappa_2(A) :- atomLambda_35(A).
+0.0 atomKappa_2(A) :- atomLambda_36(A).
+0.0 atomKappa_2(A) :- atomLambda_37(A).
+0.0 atomKappa_2(A) :- atomLambda_38(A).
+0.0 atomKappa_2(A) :- atomLambda_39(A).
+0.0 atomKappa_2(A) :- atomLambda_40(A).
+0.0 atomKappa_2(A) :- atomLambda_41(A).
+0.0 atomKappa_2(A) :- atomLambda_42(A).
+0.0 atomKappa_2(A) :- atomLambda_43(A).
+0.0 atomKappa_2(A) :- atomLambda_44(A).
+0.0 atomKappa_2(A) :- atomLambda_45(A).
+0.0 atomKappa_2(A) :- atomLambda_46(A).
+0.0 atomKappa_2(A) :- atomLambda_47(A).
+0.0 atomKappa_2(A) :- atomLambda_48(A).
+0.0 atomKappa_3(A) :- atomLambda_1(A).
+0.0 atomKappa_3(A) :- atomLambda_2(A).
+0.0 atomKappa_3(A) :- atomLambda_3(A).
+0.0 atomKappa_3(A) :- atomLambda_4(A).
+0.0 atomKappa_3(A) :- atomLambda_5(A).
+0.0 atomKappa_3(A) :- atomLambda_6(A).
+0.0 atomKappa_3(A) :- atomLambda_7(A).
+0.0 atomKappa_3(A) :- atomLambda_8(A).
+0.0 atomKappa_3(A) :- atomLambda_9(A).
+0.0 atomKappa_3(A) :- atomLambda_10(A).
+0.0 atomKappa_3(A) :- atomLambda_11(A).
+0.0 atomKappa_3(A) :- atomLambda_12(A).
+0.0 atomKappa_3(A) :- atomLambda_13(A).
+0.0 atomKappa_3(A) :- atomLambda_14(A).
+0.0 atomKappa_3(A) :- atomLambda_15(A).
+0.0 atomKappa_3(A) :- atomLambda_16(A).
+0.0 atomKappa_3(A) :- atomLambda_17(A).
+0.0 atomKappa_3(A) :- atomLambda_18(A).
+0.0 atomKappa_3(A) :- atomLambda_19(A).
+0.0 atomKappa_3(A) :- atomLambda_20(A).
+0.0 atomKappa_3(A) :- atomLambda_21(A).
+0.0 atomKappa_3(A) :- atomLambda_22(A).
+0.0 atomKappa_3(A) :- atomLambda_23(A).
+0.0 atomKappa_3(A) :- atomLambda_24(A).
+0.0 atomKappa_3(A) :- atomLambda_25(A).
+0.0 atomKappa_3(A) :- atomLambda_26(A).
+0.0 atomKappa_3(A) :- atomLambda_27(A).
+0.0 atomKappa_3(A) :- atomLambda_28(A).
+0.0 atomKappa_3(A) :- atomLambda_29(A).
+0.0 atomKappa_3(A) :- atomLambda_30(A).
+0.0 atomKappa_3(A) :- atomLambda_31(A).
+0.0 atomKappa_3(A) :- atomLambda_32(A).
+0.0 atomKappa_3(A) :- atomLambda_33(A).
+0.0 atomKappa_3(A) :- atomLambda_34(A).
+0.0 atomKappa_3(A) :- atomLambda_35(A).
+0.0 atomKappa_3(A) :- atomLambda_36(A).
+0.0 atomKappa_3(A) :- atomLambda_37(A).
+0.0 atomKappa_3(A) :- atomLambda_38(A).
+0.0 atomKappa_3(A) :- atomLambda_39(A).
+0.0 atomKappa_3(A) :- atomLambda_40(A).
+0.0 atomKappa_3(A) :- atomLambda_41(A).
+0.0 atomKappa_3(A) :- atomLambda_42(A).
+0.0 atomKappa_3(A) :- atomLambda_43(A).
+0.0 atomKappa_3(A) :- atomLambda_44(A).
+0.0 atomKappa_3(A) :- atomLambda_45(A).
+0.0 atomKappa_3(A) :- atomLambda_46(A).
+0.0 atomKappa_3(A) :- atomLambda_47(A).
+0.0 atomKappa_3(A) :- atomLambda_48(A).
+0.0 atomKappa_4(A) :- atomLambda_1(A).
+0.0 atomKappa_4(A) :- atomLambda_2(A).
+0.0 atomKappa_4(A) :- atomLambda_3(A).
+0.0 atomKappa_4(A) :- atomLambda_4(A).
+0.0 atomKappa_4(A) :- atomLambda_5(A).
+0.0 atomKappa_4(A) :- atomLambda_6(A).
+0.0 atomKappa_4(A) :- atomLambda_7(A).
+0.0 atomKappa_4(A) :- atomLambda_8(A).
+0.0 atomKappa_4(A) :- atomLambda_9(A).
+0.0 atomKappa_4(A) :- atomLambda_10(A).
+0.0 atomKappa_4(A) :- atomLambda_11(A).
+0.0 atomKappa_4(A) :- atomLambda_12(A).
+0.0 atomKappa_4(A) :- atomLambda_13(A).
+0.0 atomKappa_4(A) :- atomLambda_14(A).
+0.0 atomKappa_4(A) :- atomLambda_15(A).
+0.0 atomKappa_4(A) :- atomLambda_16(A).
+0.0 atomKappa_4(A) :- atomLambda_17(A).
+0.0 atomKappa_4(A) :- atomLambda_18(A).
+0.0 atomKappa_4(A) :- atomLambda_19(A).
+0.0 atomKappa_4(A) :- atomLambda_20(A).
+0.0 atomKappa_4(A) :- atomLambda_21(A).
+0.0 atomKappa_4(A) :- atomLambda_22(A).
+0.0 atomKappa_4(A) :- atomLambda_23(A).
+0.0 atomKappa_4(A) :- atomLambda_24(A).
+0.0 atomKappa_4(A) :- atomLambda_25(A).
+0.0 atomKappa_4(A) :- atomLambda_26(A).
+0.0 atomKappa_4(A) :- atomLambda_27(A).
+0.0 atomKappa_4(A) :- atomLambda_28(A).
+0.0 atomKappa_4(A) :- atomLambda_29(A).
+0.0 atomKappa_4(A) :- atomLambda_30(A).
+0.0 atomKappa_4(A) :- atomLambda_31(A).
+0.0 atomKappa_4(A) :- atomLambda_32(A).
+0.0 atomKappa_4(A) :- atomLambda_33(A).
+0.0 atomKappa_4(A) :- atomLambda_34(A).
+0.0 atomKappa_4(A) :- atomLambda_35(A).
+0.0 atomKappa_4(A) :- atomLambda_36(A).
+0.0 atomKappa_4(A) :- atomLambda_37(A).
+0.0 atomKappa_4(A) :- atomLambda_38(A).
+0.0 atomKappa_4(A) :- atomLambda_39(A).
+0.0 atomKappa_4(A) :- atomLambda_40(A).
+0.0 atomKappa_4(A) :- atomLambda_41(A).
+0.0 atomKappa_4(A) :- atomLambda_42(A).
+0.0 atomKappa_4(A) :- atomLambda_43(A).
+0.0 atomKappa_4(A) :- atomLambda_44(A).
+0.0 atomKappa_4(A) :- atomLambda_45(A).
+0.0 atomKappa_4(A) :- atomLambda_46(A).
+0.0 atomKappa_4(A) :- atomLambda_47(A).
+0.0 atomKappa_4(A) :- atomLambda_48(A).
+0.0 bondKappa_1(A) :- bondLambda_1(A).
+0.0 bondKappa_1(A) :- bondLambda_2(A).
+0.0 bondKappa_1(A) :- bondLambda_3(A).
+0.0 bondKappa_1(A) :- bondLambda_4(A).
+0.0 bondKappa_1(A) :- bondLambda_5(A).
+0.0 bondKappa_2(A) :- bondLambda_1(A).
+0.0 bondKappa_2(A) :- bondLambda_2(A).
+0.0 bondKappa_2(A) :- bondLambda_3(A).
+0.0 bondKappa_2(A) :- bondLambda_4(A).
+0.0 bondKappa_2(A) :- bondLambda_5(A).
+lambda_A0(DMY) :- atomKappa_4(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_1(B). 
+lambda_A1(DMY) :- atomKappa_3(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_1(B). 
+lambda_A2(DMY) :- atomKappa_2(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_2(B). 
+lambda_A3(DMY) :- atomKappa_2(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_4(B). 
+lambda_A4(DMY) :- atomKappa_2(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_2(B). 
+lambda_A5(DMY) :- atomKappa_1(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_2(B). 
+lambda_A6(DMY) :- atomKappa_4(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_3(B). 
+lambda_A7(DMY) :- atomKappa_3(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_4(B). 
+lambda_A8(DMY) :- atomKappa_2(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_2(B). 
+lambda_A9(DMY) :- atomKappa_1(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_2(B). 
+lambda_A10(DMY) :- atomKappa_4(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_3(B). 
+lambda_A11(DMY) :- atomKappa_1(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_3(B). 
+lambda_A12(DMY) :- atomKappa_1(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_2(B). 
+lambda_A13(DMY) :- atomKappa_4(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_1(B). 
+lambda_A14(DMY) :- atomKappa_3(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_2(B). 
+lambda_A15(DMY) :- atomKappa_1(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_2(B). 
+0.0 finalKappa(DMY) :- lambda_A0(DMY2).
+0.0 finalKappa(DMY) :- lambda_A1(DMY2).
+0.0 finalKappa(DMY) :- lambda_A2(DMY2).
+0.0 finalKappa(DMY) :- lambda_A3(DMY2).
+0.0 finalKappa(DMY) :- lambda_A4(DMY2).
+0.0 finalKappa(DMY) :- lambda_A5(DMY2).
+0.0 finalKappa(DMY) :- lambda_A6(DMY2).
+0.0 finalKappa(DMY) :- lambda_A7(DMY2).
+0.0 finalKappa(DMY) :- lambda_A8(DMY2).
+0.0 finalKappa(DMY) :- lambda_A9(DMY2).
+0.0 finalKappa(DMY) :- lambda_A10(DMY2).
+0.0 finalKappa(DMY) :- lambda_A11(DMY2).
+0.0 finalKappa(DMY) :- lambda_A12(DMY2).
+0.0 finalKappa(DMY) :- lambda_A13(DMY2).
+0.0 finalKappa(DMY) :- lambda_A14(DMY2).
+0.0 finalKappa(DMY) :- lambda_A15(DMY2).
+lambda_B0(DMY) :- atomKappa_1(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_2(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_1(C). 
+lambda_B1(DMY) :- atomKappa_2(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_3(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_3(C). 
+lambda_B2(DMY) :- atomKappa_2(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_1(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_3(C). 
+lambda_B3(DMY) :- atomKappa_1(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_2(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_2(C). 
+lambda_B4(DMY) :- atomKappa_2(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_4(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_3(C). 
+lambda_B5(DMY) :- atomKappa_2(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_2(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_2(C). 
+lambda_B6(DMY) :- atomKappa_4(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_1(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_4(C). 
+lambda_B7(DMY) :- atomKappa_2(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_4(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_4(C). 
+lambda_B8(DMY) :- atomKappa_4(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_2(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_4(C). 
+lambda_B9(DMY) :- atomKappa_3(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_1(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_2(C). 
+lambda_B10(DMY) :- atomKappa_2(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_2(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_1(C). 
+lambda_B11(DMY) :- atomKappa_3(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_3(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_4(C). 
+lambda_B12(DMY) :- atomKappa_3(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_3(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_2(C). 
+lambda_B13(DMY) :- atomKappa_4(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_4(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_4(C). 
+lambda_B14(DMY) :- atomKappa_1(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_1(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_4(C). 
+lambda_B15(DMY) :- atomKappa_1(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_1(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_3(C). 
+lambda_B16(DMY) :- atomKappa_3(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_3(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_3(C). 
+lambda_B17(DMY) :- atomKappa_3(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_4(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_4(C). 
+lambda_B18(DMY) :- atomKappa_2(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_3(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_1(C). 
+lambda_B19(DMY) :- atomKappa_4(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_3(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_2(C). 
+lambda_B20(DMY) :- atomKappa_4(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_2(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_4(C). 
+lambda_B21(DMY) :- atomKappa_2(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_2(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_3(C). 
+lambda_B22(DMY) :- atomKappa_4(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_4(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_3(C). 
+lambda_B23(DMY) :- atomKappa_4(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_2(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_2(C). 
+lambda_B24(DMY) :- atomKappa_2(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_4(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_4(C). 
+lambda_B25(DMY) :- atomKappa_1(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_2(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_3(C). 
+lambda_B26(DMY) :- atomKappa_4(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_1(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_4(C). 
+lambda_B27(DMY) :- atomKappa_3(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_1(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_1(C). 
+lambda_B28(DMY) :- atomKappa_2(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_2(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_2(C). 
+lambda_B29(DMY) :- atomKappa_4(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_3(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_1(C). 
+lambda_B30(DMY) :- atomKappa_3(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_1(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_3(C). 
+lambda_B31(DMY) :- atomKappa_1(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_3(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_2(C). 
+lambda_B32(DMY) :- atomKappa_2(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_4(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_1(C). 
+lambda_B33(DMY) :- atomKappa_2(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_3(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_1(C). 
+lambda_B34(DMY) :- atomKappa_3(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_3(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_1(C). 
+lambda_B35(DMY) :- atomKappa_4(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_2(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_1(C). 
+lambda_B36(DMY) :- atomKappa_3(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_2(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_3(C). 
+lambda_B37(DMY) :- atomKappa_4(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_2(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_4(C). 
+lambda_B38(DMY) :- atomKappa_1(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_4(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_4(C). 
+lambda_B39(DMY) :- atomKappa_1(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_4(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_2(C). 
+lambda_B40(DMY) :- atomKappa_1(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_4(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_4(C). 
+lambda_B41(DMY) :- atomKappa_2(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_4(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_2(C). 
+lambda_B42(DMY) :- atomKappa_1(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_2(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_4(C). 
+lambda_B43(DMY) :- atomKappa_1(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_1(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_1(C). 
+lambda_B44(DMY) :- atomKappa_1(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_1(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_2(C). 
+lambda_B45(DMY) :- atomKappa_4(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_3(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_1(C). 
+lambda_B46(DMY) :- atomKappa_3(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_3(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_2(C). 
+lambda_B47(DMY) :- atomKappa_1(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_3(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_4(C). 
+lambda_B48(DMY) :- atomKappa_4(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_2(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_1(C). 
+lambda_B49(DMY) :- atomKappa_4(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_4(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_2(C). 
+lambda_B50(DMY) :- atomKappa_2(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_4(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_1(C). 
+lambda_B51(DMY) :- atomKappa_3(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_1(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_3(C). 
+lambda_B52(DMY) :- atomKappa_3(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_1(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_3(C). 
+lambda_B53(DMY) :- atomKappa_1(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_3(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_4(C). 
+lambda_B54(DMY) :- atomKappa_4(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_4(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_1(C). 
+lambda_B55(DMY) :- atomKappa_3(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_3(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_1(C). 
+lambda_B56(DMY) :- atomKappa_3(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_3(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_3(C). 
+lambda_B57(DMY) :- atomKappa_2(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_3(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_2(C). 
+lambda_B58(DMY) :- atomKappa_1(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_1(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_2(C). 
+lambda_B59(DMY) :- atomKappa_2(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_3(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_2(C). 
+lambda_B60(DMY) :- atomKappa_1(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_4(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_4(C). 
+lambda_B61(DMY) :- atomKappa_1(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_4(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_4(C). 
+lambda_B62(DMY) :- atomKappa_3(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_1(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_4(C). 
+lambda_B63(DMY) :- atomKappa_1(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_2(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_2(C). 
+lambda_B64(DMY) :- atomKappa_1(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_2(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_3(C). 
+lambda_B65(DMY) :- atomKappa_3(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_2(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_2(C). 
+lambda_B66(DMY) :- atomKappa_1(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_4(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_3(C). 
+lambda_B67(DMY) :- atomKappa_2(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_2(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_2(C). 
+lambda_B68(DMY) :- atomKappa_3(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_2(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_3(C). 
+lambda_B69(DMY) :- atomKappa_1(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_4(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_1(C). 
+lambda_B70(DMY) :- atomKappa_3(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_1(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_1(C). 
+lambda_B71(DMY) :- atomKappa_4(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_3(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_2(C). 
+lambda_B72(DMY) :- atomKappa_4(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_2(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_4(C). 
+lambda_B73(DMY) :- atomKappa_1(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_4(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_1(C). 
+lambda_B74(DMY) :- atomKappa_1(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_2(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_1(C). 
+lambda_B75(DMY) :- atomKappa_4(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_1(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_4(C). 
+lambda_B76(DMY) :- atomKappa_1(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_4(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_2(C). 
+lambda_B77(DMY) :- atomKappa_4(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_1(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_3(C). 
+lambda_B78(DMY) :- atomKappa_1(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_2(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_4(C). 
+lambda_B79(DMY) :- atomKappa_4(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_4(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_3(C). 
+lambda_B80(DMY) :- atomKappa_4(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_3(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_1(C). 
+lambda_B81(DMY) :- atomKappa_3(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_4(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_3(C). 
+lambda_B82(DMY) :- atomKappa_1(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_2(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_3(C). 
+lambda_B83(DMY) :- atomKappa_4(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_1(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_3(C). 
+lambda_B84(DMY) :- atomKappa_4(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_1(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_2(C). 
+lambda_B85(DMY) :- atomKappa_4(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_3(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_1(C). 
+lambda_B86(DMY) :- atomKappa_3(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_2(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_2(C). 
+lambda_B87(DMY) :- atomKappa_2(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_2(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_1(C). 
+lambda_B88(DMY) :- atomKappa_4(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_2(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_2(C). 
+lambda_B89(DMY) :- atomKappa_4(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_3(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_1(C). 
+lambda_B90(DMY) :- atomKappa_3(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_2(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_3(C). 
+lambda_B91(DMY) :- atomKappa_1(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_1(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_3(C). 
+lambda_B92(DMY) :- atomKappa_2(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_2(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_4(C). 
+lambda_B93(DMY) :- atomKappa_2(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_1(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_1(C). 
+lambda_B94(DMY) :- atomKappa_4(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_2(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_3(C). 
+lambda_B95(DMY) :- atomKappa_3(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_4(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_1(C). 
+lambda_B96(DMY) :- atomKappa_3(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_1(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_2(C). 
+lambda_B97(DMY) :- atomKappa_2(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_2(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_3(C). 
+lambda_B98(DMY) :- atomKappa_1(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_1(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_3(C). 
+lambda_B99(DMY) :- atomKappa_2(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_3(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_3(C). 
+lambda_B100(DMY) :- atomKappa_2(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_3(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_4(C). 
+lambda_B101(DMY) :- atomKappa_1(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_2(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_1(C). 
+lambda_B102(DMY) :- atomKappa_4(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_1(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_2(C). 
+lambda_B103(DMY) :- atomKappa_2(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_1(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_4(C). 
+lambda_B104(DMY) :- atomKappa_1(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_2(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_1(C). 
+lambda_B105(DMY) :- atomKappa_1(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_2(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_4(C). 
+lambda_B106(DMY) :- atomKappa_3(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_3(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_4(C). 
+lambda_B107(DMY) :- atomKappa_4(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_4(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_1(C). 
+lambda_B108(DMY) :- atomKappa_1(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_3(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_1(C). 
+lambda_B109(DMY) :- atomKappa_3(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_3(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_2(C). 
+lambda_B110(DMY) :- atomKappa_4(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_2(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_2(C). 
+lambda_B111(DMY) :- atomKappa_3(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_1(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_2(C). 
+lambda_B112(DMY) :- atomKappa_4(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_1(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_2(C). 
+lambda_B113(DMY) :- atomKappa_2(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_3(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_4(C). 
+lambda_B114(DMY) :- atomKappa_1(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_3(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_4(C). 
+lambda_B115(DMY) :- atomKappa_3(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_4(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_2(C). 
+lambda_B116(DMY) :- atomKappa_2(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_3(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_2(C). 
+lambda_B117(DMY) :- atomKappa_3(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_2(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_3(C). 
+lambda_B118(DMY) :- atomKappa_3(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_2(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_1(C). 
+lambda_B119(DMY) :- atomKappa_4(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_2(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_4(C). 
+lambda_B120(DMY) :- atomKappa_4(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_3(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_3(C). 
+lambda_B121(DMY) :- atomKappa_2(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_1(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_1(C). 
+lambda_B122(DMY) :- atomKappa_1(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_2(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_1(C). 
+lambda_B123(DMY) :- atomKappa_1(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_2(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_2(C). 
+lambda_B124(DMY) :- atomKappa_2(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_1(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_2(C). 
+lambda_B125(DMY) :- atomKappa_3(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_3(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_3(C). 
+lambda_B126(DMY) :- atomKappa_3(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_1(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_3(C). 
+lambda_B127(DMY) :- atomKappa_4(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_2(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_2(C). 
+0.0 finalKappa(DMY) :- lambda_B0(DMY2).
+0.0 finalKappa(DMY) :- lambda_B1(DMY2).
+0.0 finalKappa(DMY) :- lambda_B2(DMY2).
+0.0 finalKappa(DMY) :- lambda_B3(DMY2).
+0.0 finalKappa(DMY) :- lambda_B4(DMY2).
+0.0 finalKappa(DMY) :- lambda_B5(DMY2).
+0.0 finalKappa(DMY) :- lambda_B6(DMY2).
+0.0 finalKappa(DMY) :- lambda_B7(DMY2).
+0.0 finalKappa(DMY) :- lambda_B8(DMY2).
+0.0 finalKappa(DMY) :- lambda_B9(DMY2).
+0.0 finalKappa(DMY) :- lambda_B10(DMY2).
+0.0 finalKappa(DMY) :- lambda_B11(DMY2).
+0.0 finalKappa(DMY) :- lambda_B12(DMY2).
+0.0 finalKappa(DMY) :- lambda_B13(DMY2).
+0.0 finalKappa(DMY) :- lambda_B14(DMY2).
+0.0 finalKappa(DMY) :- lambda_B15(DMY2).
+0.0 finalKappa(DMY) :- lambda_B16(DMY2).
+0.0 finalKappa(DMY) :- lambda_B17(DMY2).
+0.0 finalKappa(DMY) :- lambda_B18(DMY2).
+0.0 finalKappa(DMY) :- lambda_B19(DMY2).
+0.0 finalKappa(DMY) :- lambda_B20(DMY2).
+0.0 finalKappa(DMY) :- lambda_B21(DMY2).
+0.0 finalKappa(DMY) :- lambda_B22(DMY2).
+0.0 finalKappa(DMY) :- lambda_B23(DMY2).
+0.0 finalKappa(DMY) :- lambda_B24(DMY2).
+0.0 finalKappa(DMY) :- lambda_B25(DMY2).
+0.0 finalKappa(DMY) :- lambda_B26(DMY2).
+0.0 finalKappa(DMY) :- lambda_B27(DMY2).
+0.0 finalKappa(DMY) :- lambda_B28(DMY2).
+0.0 finalKappa(DMY) :- lambda_B29(DMY2).
+0.0 finalKappa(DMY) :- lambda_B30(DMY2).
+0.0 finalKappa(DMY) :- lambda_B31(DMY2).
+0.0 finalKappa(DMY) :- lambda_B32(DMY2).
+0.0 finalKappa(DMY) :- lambda_B33(DMY2).
+0.0 finalKappa(DMY) :- lambda_B34(DMY2).
+0.0 finalKappa(DMY) :- lambda_B35(DMY2).
+0.0 finalKappa(DMY) :- lambda_B36(DMY2).
+0.0 finalKappa(DMY) :- lambda_B37(DMY2).
+0.0 finalKappa(DMY) :- lambda_B38(DMY2).
+0.0 finalKappa(DMY) :- lambda_B39(DMY2).
+0.0 finalKappa(DMY) :- lambda_B40(DMY2).
+0.0 finalKappa(DMY) :- lambda_B41(DMY2).
+0.0 finalKappa(DMY) :- lambda_B42(DMY2).
+0.0 finalKappa(DMY) :- lambda_B43(DMY2).
+0.0 finalKappa(DMY) :- lambda_B44(DMY2).
+0.0 finalKappa(DMY) :- lambda_B45(DMY2).
+0.0 finalKappa(DMY) :- lambda_B46(DMY2).
+0.0 finalKappa(DMY) :- lambda_B47(DMY2).
+0.0 finalKappa(DMY) :- lambda_B48(DMY2).
+0.0 finalKappa(DMY) :- lambda_B49(DMY2).
+0.0 finalKappa(DMY) :- lambda_B50(DMY2).
+0.0 finalKappa(DMY) :- lambda_B51(DMY2).
+0.0 finalKappa(DMY) :- lambda_B52(DMY2).
+0.0 finalKappa(DMY) :- lambda_B53(DMY2).
+0.0 finalKappa(DMY) :- lambda_B54(DMY2).
+0.0 finalKappa(DMY) :- lambda_B55(DMY2).
+0.0 finalKappa(DMY) :- lambda_B56(DMY2).
+0.0 finalKappa(DMY) :- lambda_B57(DMY2).
+0.0 finalKappa(DMY) :- lambda_B58(DMY2).
+0.0 finalKappa(DMY) :- lambda_B59(DMY2).
+0.0 finalKappa(DMY) :- lambda_B60(DMY2).
+0.0 finalKappa(DMY) :- lambda_B61(DMY2).
+0.0 finalKappa(DMY) :- lambda_B62(DMY2).
+0.0 finalKappa(DMY) :- lambda_B63(DMY2).
+0.0 finalKappa(DMY) :- lambda_B64(DMY2).
+0.0 finalKappa(DMY) :- lambda_B65(DMY2).
+0.0 finalKappa(DMY) :- lambda_B66(DMY2).
+0.0 finalKappa(DMY) :- lambda_B67(DMY2).
+0.0 finalKappa(DMY) :- lambda_B68(DMY2).
+0.0 finalKappa(DMY) :- lambda_B69(DMY2).
+0.0 finalKappa(DMY) :- lambda_B70(DMY2).
+0.0 finalKappa(DMY) :- lambda_B71(DMY2).
+0.0 finalKappa(DMY) :- lambda_B72(DMY2).
+0.0 finalKappa(DMY) :- lambda_B73(DMY2).
+0.0 finalKappa(DMY) :- lambda_B74(DMY2).
+0.0 finalKappa(DMY) :- lambda_B75(DMY2).
+0.0 finalKappa(DMY) :- lambda_B76(DMY2).
+0.0 finalKappa(DMY) :- lambda_B77(DMY2).
+0.0 finalKappa(DMY) :- lambda_B78(DMY2).
+0.0 finalKappa(DMY) :- lambda_B79(DMY2).
+0.0 finalKappa(DMY) :- lambda_B80(DMY2).
+0.0 finalKappa(DMY) :- lambda_B81(DMY2).
+0.0 finalKappa(DMY) :- lambda_B82(DMY2).
+0.0 finalKappa(DMY) :- lambda_B83(DMY2).
+0.0 finalKappa(DMY) :- lambda_B84(DMY2).
+0.0 finalKappa(DMY) :- lambda_B85(DMY2).
+0.0 finalKappa(DMY) :- lambda_B86(DMY2).
+0.0 finalKappa(DMY) :- lambda_B87(DMY2).
+0.0 finalKappa(DMY) :- lambda_B88(DMY2).
+0.0 finalKappa(DMY) :- lambda_B89(DMY2).
+0.0 finalKappa(DMY) :- lambda_B90(DMY2).
+0.0 finalKappa(DMY) :- lambda_B91(DMY2).
+0.0 finalKappa(DMY) :- lambda_B92(DMY2).
+0.0 finalKappa(DMY) :- lambda_B93(DMY2).
+0.0 finalKappa(DMY) :- lambda_B94(DMY2).
+0.0 finalKappa(DMY) :- lambda_B95(DMY2).
+0.0 finalKappa(DMY) :- lambda_B96(DMY2).
+0.0 finalKappa(DMY) :- lambda_B97(DMY2).
+0.0 finalKappa(DMY) :- lambda_B98(DMY2).
+0.0 finalKappa(DMY) :- lambda_B99(DMY2).
+0.0 finalKappa(DMY) :- lambda_B100(DMY2).
+0.0 finalKappa(DMY) :- lambda_B101(DMY2).
+0.0 finalKappa(DMY) :- lambda_B102(DMY2).
+0.0 finalKappa(DMY) :- lambda_B103(DMY2).
+0.0 finalKappa(DMY) :- lambda_B104(DMY2).
+0.0 finalKappa(DMY) :- lambda_B105(DMY2).
+0.0 finalKappa(DMY) :- lambda_B106(DMY2).
+0.0 finalKappa(DMY) :- lambda_B107(DMY2).
+0.0 finalKappa(DMY) :- lambda_B108(DMY2).
+0.0 finalKappa(DMY) :- lambda_B109(DMY2).
+0.0 finalKappa(DMY) :- lambda_B110(DMY2).
+0.0 finalKappa(DMY) :- lambda_B111(DMY2).
+0.0 finalKappa(DMY) :- lambda_B112(DMY2).
+0.0 finalKappa(DMY) :- lambda_B113(DMY2).
+0.0 finalKappa(DMY) :- lambda_B114(DMY2).
+0.0 finalKappa(DMY) :- lambda_B115(DMY2).
+0.0 finalKappa(DMY) :- lambda_B116(DMY2).
+0.0 finalKappa(DMY) :- lambda_B117(DMY2).
+0.0 finalKappa(DMY) :- lambda_B118(DMY2).
+0.0 finalKappa(DMY) :- lambda_B119(DMY2).
+0.0 finalKappa(DMY) :- lambda_B120(DMY2).
+0.0 finalKappa(DMY) :- lambda_B121(DMY2).
+0.0 finalKappa(DMY) :- lambda_B122(DMY2).
+0.0 finalKappa(DMY) :- lambda_B123(DMY2).
+0.0 finalKappa(DMY) :- lambda_B124(DMY2).
+0.0 finalKappa(DMY) :- lambda_B125(DMY2).
+0.0 finalKappa(DMY) :- lambda_B126(DMY2).
+0.0 finalKappa(DMY) :- lambda_B127(DMY2).
+lambda_C0(DMY) :- atomKappa_1(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_1(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_4(C), bond(C,D,B2), bondKappa_1(B2), atomKappa_2(D). 
+lambda_C1(DMY) :- atomKappa_3(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_2(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_4(C), bond(C,D,B2), bondKappa_2(B2), atomKappa_1(D). 
+lambda_C2(DMY) :- atomKappa_2(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_3(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_3(C), bond(C,D,B2), bondKappa_2(B2), atomKappa_3(D). 
+lambda_C3(DMY) :- atomKappa_1(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_1(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_4(C), bond(C,D,B2), bondKappa_1(B2), atomKappa_3(D). 
+lambda_C4(DMY) :- atomKappa_2(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_1(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_3(C), bond(C,D,B2), bondKappa_2(B2), atomKappa_2(D). 
+lambda_C5(DMY) :- atomKappa_4(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_4(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_2(C), bond(C,D,B2), bondKappa_1(B2), atomKappa_1(D). 
+lambda_C6(DMY) :- atomKappa_3(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_2(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_3(C), bond(C,D,B2), bondKappa_1(B2), atomKappa_1(D). 
+lambda_C7(DMY) :- atomKappa_4(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_1(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_1(C), bond(C,D,B2), bondKappa_1(B2), atomKappa_1(D). 
+lambda_C8(DMY) :- atomKappa_4(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_3(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_3(C), bond(C,D,B2), bondKappa_1(B2), atomKappa_3(D). 
+lambda_C9(DMY) :- atomKappa_4(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_3(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_2(C), bond(C,D,B2), bondKappa_1(B2), atomKappa_4(D). 
+lambda_C10(DMY) :- atomKappa_4(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_4(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_3(C), bond(C,D,B2), bondKappa_1(B2), atomKappa_4(D). 
+lambda_C11(DMY) :- atomKappa_2(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_1(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_1(C), bond(C,D,B2), bondKappa_1(B2), atomKappa_4(D). 
+lambda_C12(DMY) :- atomKappa_3(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_3(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_1(C), bond(C,D,B2), bondKappa_1(B2), atomKappa_4(D). 
+lambda_C13(DMY) :- atomKappa_1(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_1(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_1(C), bond(C,D,B2), bondKappa_2(B2), atomKappa_2(D). 
+lambda_C14(DMY) :- atomKappa_2(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_1(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_1(C), bond(C,D,B2), bondKappa_2(B2), atomKappa_4(D). 
+lambda_C15(DMY) :- atomKappa_1(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_1(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_2(C), bond(C,D,B2), bondKappa_2(B2), atomKappa_2(D). 
+lambda_C16(DMY) :- atomKappa_2(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_4(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_2(C), bond(C,D,B2), bondKappa_1(B2), atomKappa_2(D). 
+lambda_C17(DMY) :- atomKappa_2(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_3(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_2(C), bond(C,D,B2), bondKappa_1(B2), atomKappa_3(D). 
+lambda_C18(DMY) :- atomKappa_3(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_4(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_2(C), bond(C,D,B2), bondKappa_2(B2), atomKappa_3(D). 
+lambda_C19(DMY) :- atomKappa_2(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_2(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_3(C), bond(C,D,B2), bondKappa_1(B2), atomKappa_1(D). 
+lambda_C20(DMY) :- atomKappa_2(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_4(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_3(C), bond(C,D,B2), bondKappa_2(B2), atomKappa_2(D). 
+lambda_C21(DMY) :- atomKappa_1(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_1(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_2(C), bond(C,D,B2), bondKappa_1(B2), atomKappa_2(D). 
+lambda_C22(DMY) :- atomKappa_1(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_3(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_4(C), bond(C,D,B2), bondKappa_1(B2), atomKappa_4(D). 
+lambda_C23(DMY) :- atomKappa_4(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_1(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_4(C), bond(C,D,B2), bondKappa_2(B2), atomKappa_4(D). 
+lambda_C24(DMY) :- atomKappa_4(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_2(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_2(C), bond(C,D,B2), bondKappa_1(B2), atomKappa_2(D). 
+lambda_C25(DMY) :- atomKappa_2(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_1(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_3(C), bond(C,D,B2), bondKappa_1(B2), atomKappa_3(D). 
+lambda_C26(DMY) :- atomKappa_4(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_3(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_3(C), bond(C,D,B2), bondKappa_1(B2), atomKappa_1(D). 
+lambda_C27(DMY) :- atomKappa_3(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_1(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_2(C), bond(C,D,B2), bondKappa_1(B2), atomKappa_1(D). 
+lambda_C28(DMY) :- atomKappa_1(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_2(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_3(C), bond(C,D,B2), bondKappa_1(B2), atomKappa_4(D). 
+lambda_C29(DMY) :- atomKappa_4(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_4(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_2(C), bond(C,D,B2), bondKappa_1(B2), atomKappa_3(D). 
+lambda_C30(DMY) :- atomKappa_2(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_4(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_3(C), bond(C,D,B2), bondKappa_1(B2), atomKappa_1(D). 
+lambda_C31(DMY) :- atomKappa_1(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_4(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_1(C), bond(C,D,B2), bondKappa_2(B2), atomKappa_4(D). 
+lambda_C32(DMY) :- atomKappa_2(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_2(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_4(C), bond(C,D,B2), bondKappa_1(B2), atomKappa_2(D). 
+lambda_C33(DMY) :- atomKappa_1(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_3(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_4(C), bond(C,D,B2), bondKappa_2(B2), atomKappa_1(D). 
+lambda_C34(DMY) :- atomKappa_2(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_1(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_2(C), bond(C,D,B2), bondKappa_2(B2), atomKappa_2(D). 
+lambda_C35(DMY) :- atomKappa_4(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_2(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_4(C), bond(C,D,B2), bondKappa_2(B2), atomKappa_1(D). 
+lambda_C36(DMY) :- atomKappa_4(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_1(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_3(C), bond(C,D,B2), bondKappa_2(B2), atomKappa_3(D). 
+lambda_C37(DMY) :- atomKappa_2(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_1(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_3(C), bond(C,D,B2), bondKappa_1(B2), atomKappa_4(D). 
+lambda_C38(DMY) :- atomKappa_2(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_1(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_1(C), bond(C,D,B2), bondKappa_1(B2), atomKappa_3(D). 
+lambda_C39(DMY) :- atomKappa_2(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_2(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_4(C), bond(C,D,B2), bondKappa_1(B2), atomKappa_3(D). 
+lambda_C40(DMY) :- atomKappa_2(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_4(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_2(C), bond(C,D,B2), bondKappa_1(B2), atomKappa_4(D). 
+lambda_C41(DMY) :- atomKappa_2(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_2(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_4(C), bond(C,D,B2), bondKappa_1(B2), atomKappa_4(D). 
+lambda_C42(DMY) :- atomKappa_3(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_1(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_1(C), bond(C,D,B2), bondKappa_2(B2), atomKappa_2(D). 
+lambda_C43(DMY) :- atomKappa_3(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_2(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_1(C), bond(C,D,B2), bondKappa_2(B2), atomKappa_4(D). 
+lambda_C44(DMY) :- atomKappa_2(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_1(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_2(C), bond(C,D,B2), bondKappa_2(B2), atomKappa_1(D). 
+lambda_C45(DMY) :- atomKappa_4(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_3(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_1(C), bond(C,D,B2), bondKappa_1(B2), atomKappa_1(D). 
+lambda_C46(DMY) :- atomKappa_3(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_1(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_2(C), bond(C,D,B2), bondKappa_1(B2), atomKappa_3(D). 
+lambda_C47(DMY) :- atomKappa_3(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_1(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_2(C), bond(C,D,B2), bondKappa_1(B2), atomKappa_4(D). 
+lambda_C48(DMY) :- atomKappa_3(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_4(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_1(C), bond(C,D,B2), bondKappa_1(B2), atomKappa_3(D). 
+lambda_C49(DMY) :- atomKappa_3(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_2(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_2(C), bond(C,D,B2), bondKappa_1(B2), atomKappa_3(D). 
+lambda_C50(DMY) :- atomKappa_4(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_4(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_4(C), bond(C,D,B2), bondKappa_1(B2), atomKappa_4(D). 
+lambda_C51(DMY) :- atomKappa_1(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_4(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_3(C), bond(C,D,B2), bondKappa_2(B2), atomKappa_1(D). 
+lambda_C52(DMY) :- atomKappa_1(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_4(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_1(C), bond(C,D,B2), bondKappa_2(B2), atomKappa_4(D). 
+lambda_C53(DMY) :- atomKappa_1(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_4(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_2(C), bond(C,D,B2), bondKappa_1(B2), atomKappa_1(D). 
+lambda_C54(DMY) :- atomKappa_3(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_2(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_4(C), bond(C,D,B2), bondKappa_1(B2), atomKappa_2(D). 
+lambda_C55(DMY) :- atomKappa_1(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_1(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_3(C), bond(C,D,B2), bondKappa_1(B2), atomKappa_1(D). 
+lambda_C56(DMY) :- atomKappa_2(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_2(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_4(C), bond(C,D,B2), bondKappa_2(B2), atomKappa_2(D). 
+lambda_C57(DMY) :- atomKappa_4(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_1(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_4(C), bond(C,D,B2), bondKappa_1(B2), atomKappa_4(D). 
+lambda_C58(DMY) :- atomKappa_1(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_1(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_2(C), bond(C,D,B2), bondKappa_1(B2), atomKappa_2(D). 
+lambda_C59(DMY) :- atomKappa_2(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_1(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_1(C), bond(C,D,B2), bondKappa_2(B2), atomKappa_1(D). 
+lambda_C60(DMY) :- atomKappa_2(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_2(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_2(C), bond(C,D,B2), bondKappa_1(B2), atomKappa_2(D). 
+lambda_C61(DMY) :- atomKappa_3(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_4(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_1(C), bond(C,D,B2), bondKappa_1(B2), atomKappa_3(D). 
+lambda_C62(DMY) :- atomKappa_2(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_3(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_2(C), bond(C,D,B2), bondKappa_2(B2), atomKappa_1(D). 
+lambda_C63(DMY) :- atomKappa_1(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_3(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_2(C), bond(C,D,B2), bondKappa_2(B2), atomKappa_1(D). 
+lambda_C64(DMY) :- atomKappa_1(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_4(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_4(C), bond(C,D,B2), bondKappa_1(B2), atomKappa_2(D). 
+lambda_C65(DMY) :- atomKappa_2(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_2(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_1(C), bond(C,D,B2), bondKappa_2(B2), atomKappa_1(D). 
+lambda_C66(DMY) :- atomKappa_1(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_3(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_1(C), bond(C,D,B2), bondKappa_2(B2), atomKappa_4(D). 
+lambda_C67(DMY) :- atomKappa_3(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_3(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_1(C), bond(C,D,B2), bondKappa_1(B2), atomKappa_4(D). 
+lambda_C68(DMY) :- atomKappa_3(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_3(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_2(C), bond(C,D,B2), bondKappa_1(B2), atomKappa_4(D). 
+lambda_C69(DMY) :- atomKappa_4(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_3(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_4(C), bond(C,D,B2), bondKappa_1(B2), atomKappa_2(D). 
+lambda_C70(DMY) :- atomKappa_3(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_1(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_1(C), bond(C,D,B2), bondKappa_2(B2), atomKappa_2(D). 
+lambda_C71(DMY) :- atomKappa_1(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_2(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_4(C), bond(C,D,B2), bondKappa_1(B2), atomKappa_4(D). 
+lambda_C72(DMY) :- atomKappa_2(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_2(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_2(C), bond(C,D,B2), bondKappa_2(B2), atomKappa_4(D). 
+lambda_C73(DMY) :- atomKappa_2(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_3(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_3(C), bond(C,D,B2), bondKappa_2(B2), atomKappa_3(D). 
+lambda_C74(DMY) :- atomKappa_1(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_2(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_4(C), bond(C,D,B2), bondKappa_1(B2), atomKappa_2(D). 
+lambda_C75(DMY) :- atomKappa_1(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_2(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_4(C), bond(C,D,B2), bondKappa_2(B2), atomKappa_2(D). 
+lambda_C76(DMY) :- atomKappa_2(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_1(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_3(C), bond(C,D,B2), bondKappa_2(B2), atomKappa_4(D). 
+lambda_C77(DMY) :- atomKappa_2(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_1(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_3(C), bond(C,D,B2), bondKappa_1(B2), atomKappa_1(D). 
+lambda_C78(DMY) :- atomKappa_1(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_1(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_2(C), bond(C,D,B2), bondKappa_1(B2), atomKappa_1(D). 
+lambda_C79(DMY) :- atomKappa_1(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_1(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_3(C), bond(C,D,B2), bondKappa_1(B2), atomKappa_2(D). 
+lambda_C80(DMY) :- atomKappa_3(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_4(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_3(C), bond(C,D,B2), bondKappa_1(B2), atomKappa_4(D). 
+lambda_C81(DMY) :- atomKappa_2(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_3(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_2(C), bond(C,D,B2), bondKappa_1(B2), atomKappa_3(D). 
+lambda_C82(DMY) :- atomKappa_2(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_1(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_4(C), bond(C,D,B2), bondKappa_2(B2), atomKappa_2(D). 
+lambda_C83(DMY) :- atomKappa_4(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_2(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_3(C), bond(C,D,B2), bondKappa_1(B2), atomKappa_3(D). 
+lambda_C84(DMY) :- atomKappa_3(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_4(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_3(C), bond(C,D,B2), bondKappa_1(B2), atomKappa_3(D). 
+lambda_C85(DMY) :- atomKappa_2(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_1(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_2(C), bond(C,D,B2), bondKappa_1(B2), atomKappa_4(D). 
+lambda_C86(DMY) :- atomKappa_2(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_3(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_4(C), bond(C,D,B2), bondKappa_1(B2), atomKappa_3(D). 
+lambda_C87(DMY) :- atomKappa_4(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_2(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_4(C), bond(C,D,B2), bondKappa_1(B2), atomKappa_4(D). 
+lambda_C88(DMY) :- atomKappa_3(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_3(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_2(C), bond(C,D,B2), bondKappa_1(B2), atomKappa_2(D). 
+lambda_C89(DMY) :- atomKappa_4(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_3(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_3(C), bond(C,D,B2), bondKappa_1(B2), atomKappa_3(D). 
+lambda_C90(DMY) :- atomKappa_4(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_4(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_2(C), bond(C,D,B2), bondKappa_2(B2), atomKappa_3(D). 
+lambda_C91(DMY) :- atomKappa_3(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_1(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_4(C), bond(C,D,B2), bondKappa_2(B2), atomKappa_4(D). 
+lambda_C92(DMY) :- atomKappa_4(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_3(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_2(C), bond(C,D,B2), bondKappa_1(B2), atomKappa_1(D). 
+lambda_C93(DMY) :- atomKappa_1(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_2(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_1(C), bond(C,D,B2), bondKappa_1(B2), atomKappa_3(D). 
+lambda_C94(DMY) :- atomKappa_4(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_1(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_3(C), bond(C,D,B2), bondKappa_2(B2), atomKappa_3(D). 
+lambda_C95(DMY) :- atomKappa_4(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_3(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_1(C), bond(C,D,B2), bondKappa_2(B2), atomKappa_4(D). 
+lambda_C96(DMY) :- atomKappa_2(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_3(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_4(C), bond(C,D,B2), bondKappa_1(B2), atomKappa_3(D). 
+lambda_C97(DMY) :- atomKappa_3(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_1(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_1(C), bond(C,D,B2), bondKappa_2(B2), atomKappa_4(D). 
+lambda_C98(DMY) :- atomKappa_3(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_4(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_3(C), bond(C,D,B2), bondKappa_1(B2), atomKappa_3(D). 
+lambda_C99(DMY) :- atomKappa_3(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_1(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_3(C), bond(C,D,B2), bondKappa_1(B2), atomKappa_4(D). 
+lambda_C100(DMY) :- atomKappa_2(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_3(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_3(C), bond(C,D,B2), bondKappa_1(B2), atomKappa_4(D). 
+lambda_C101(DMY) :- atomKappa_2(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_2(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_3(C), bond(C,D,B2), bondKappa_1(B2), atomKappa_1(D). 
+lambda_C102(DMY) :- atomKappa_3(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_3(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_1(C), bond(C,D,B2), bondKappa_2(B2), atomKappa_4(D). 
+lambda_C103(DMY) :- atomKappa_4(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_4(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_4(C), bond(C,D,B2), bondKappa_1(B2), atomKappa_4(D). 
+lambda_C104(DMY) :- atomKappa_2(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_4(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_1(C), bond(C,D,B2), bondKappa_1(B2), atomKappa_1(D). 
+lambda_C105(DMY) :- atomKappa_4(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_2(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_1(C), bond(C,D,B2), bondKappa_2(B2), atomKappa_4(D). 
+lambda_C106(DMY) :- atomKappa_4(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_1(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_3(C), bond(C,D,B2), bondKappa_2(B2), atomKappa_4(D). 
+lambda_C107(DMY) :- atomKappa_1(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_4(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_1(C), bond(C,D,B2), bondKappa_1(B2), atomKappa_4(D). 
+lambda_C108(DMY) :- atomKappa_3(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_4(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_4(C), bond(C,D,B2), bondKappa_1(B2), atomKappa_3(D). 
+lambda_C109(DMY) :- atomKappa_1(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_2(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_4(C), bond(C,D,B2), bondKappa_2(B2), atomKappa_1(D). 
+lambda_C110(DMY) :- atomKappa_1(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_2(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_4(C), bond(C,D,B2), bondKappa_2(B2), atomKappa_1(D). 
+lambda_C111(DMY) :- atomKappa_2(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_4(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_3(C), bond(C,D,B2), bondKappa_1(B2), atomKappa_3(D). 
+lambda_C112(DMY) :- atomKappa_2(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_3(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_2(C), bond(C,D,B2), bondKappa_1(B2), atomKappa_2(D). 
+lambda_C113(DMY) :- atomKappa_2(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_4(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_3(C), bond(C,D,B2), bondKappa_1(B2), atomKappa_3(D). 
+lambda_C114(DMY) :- atomKappa_4(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_2(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_1(C), bond(C,D,B2), bondKappa_2(B2), atomKappa_4(D). 
+lambda_C115(DMY) :- atomKappa_2(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_2(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_1(C), bond(C,D,B2), bondKappa_2(B2), atomKappa_1(D). 
+lambda_C116(DMY) :- atomKappa_4(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_4(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_2(C), bond(C,D,B2), bondKappa_2(B2), atomKappa_4(D). 
+lambda_C117(DMY) :- atomKappa_4(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_1(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_2(C), bond(C,D,B2), bondKappa_1(B2), atomKappa_2(D). 
+lambda_C118(DMY) :- atomKappa_2(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_2(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_2(C), bond(C,D,B2), bondKappa_1(B2), atomKappa_1(D). 
+lambda_C119(DMY) :- atomKappa_1(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_2(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_1(C), bond(C,D,B2), bondKappa_1(B2), atomKappa_1(D). 
+lambda_C120(DMY) :- atomKappa_1(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_2(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_2(C), bond(C,D,B2), bondKappa_2(B2), atomKappa_3(D). 
+lambda_C121(DMY) :- atomKappa_1(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_2(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_3(C), bond(C,D,B2), bondKappa_1(B2), atomKappa_1(D). 
+lambda_C122(DMY) :- atomKappa_2(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_4(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_2(C), bond(C,D,B2), bondKappa_1(B2), atomKappa_3(D). 
+lambda_C123(DMY) :- atomKappa_2(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_4(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_1(C), bond(C,D,B2), bondKappa_2(B2), atomKappa_4(D). 
+lambda_C124(DMY) :- atomKappa_2(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_4(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_2(C), bond(C,D,B2), bondKappa_1(B2), atomKappa_2(D). 
+lambda_C125(DMY) :- atomKappa_3(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_1(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_3(C), bond(C,D,B2), bondKappa_1(B2), atomKappa_3(D). 
+lambda_C126(DMY) :- atomKappa_2(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_2(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_2(C), bond(C,D,B2), bondKappa_2(B2), atomKappa_4(D). 
+lambda_C127(DMY) :- atomKappa_1(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_2(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_3(C), bond(C,D,B2), bondKappa_2(B2), atomKappa_2(D). 
+lambda_C128(DMY) :- atomKappa_1(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_3(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_1(C), bond(C,D,B2), bondKappa_2(B2), atomKappa_1(D). 
+lambda_C129(DMY) :- atomKappa_3(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_2(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_2(C), bond(C,D,B2), bondKappa_2(B2), atomKappa_4(D). 
+lambda_C130(DMY) :- atomKappa_3(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_3(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_3(C), bond(C,D,B2), bondKappa_1(B2), atomKappa_2(D). 
+lambda_C131(DMY) :- atomKappa_2(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_2(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_3(C), bond(C,D,B2), bondKappa_2(B2), atomKappa_3(D). 
+lambda_C132(DMY) :- atomKappa_4(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_1(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_2(C), bond(C,D,B2), bondKappa_1(B2), atomKappa_2(D). 
+lambda_C133(DMY) :- atomKappa_3(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_3(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_2(C), bond(C,D,B2), bondKappa_1(B2), atomKappa_1(D). 
+lambda_C134(DMY) :- atomKappa_2(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_2(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_4(C), bond(C,D,B2), bondKappa_1(B2), atomKappa_4(D). 
+lambda_C135(DMY) :- atomKappa_4(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_3(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_3(C), bond(C,D,B2), bondKappa_1(B2), atomKappa_3(D). 
+lambda_C136(DMY) :- atomKappa_3(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_4(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_1(C), bond(C,D,B2), bondKappa_2(B2), atomKappa_2(D). 
+lambda_C137(DMY) :- atomKappa_3(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_3(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_1(C), bond(C,D,B2), bondKappa_2(B2), atomKappa_1(D). 
+lambda_C138(DMY) :- atomKappa_1(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_2(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_4(C), bond(C,D,B2), bondKappa_2(B2), atomKappa_4(D). 
+lambda_C139(DMY) :- atomKappa_2(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_2(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_1(C), bond(C,D,B2), bondKappa_1(B2), atomKappa_2(D). 
+lambda_C140(DMY) :- atomKappa_2(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_3(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_3(C), bond(C,D,B2), bondKappa_2(B2), atomKappa_1(D). 
+lambda_C141(DMY) :- atomKappa_2(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_1(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_2(C), bond(C,D,B2), bondKappa_1(B2), atomKappa_1(D). 
+lambda_C142(DMY) :- atomKappa_4(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_4(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_1(C), bond(C,D,B2), bondKappa_1(B2), atomKappa_2(D). 
+lambda_C143(DMY) :- atomKappa_1(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_4(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_1(C), bond(C,D,B2), bondKappa_1(B2), atomKappa_1(D). 
+lambda_C144(DMY) :- atomKappa_4(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_3(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_2(C), bond(C,D,B2), bondKappa_1(B2), atomKappa_3(D). 
+lambda_C145(DMY) :- atomKappa_4(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_4(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_3(C), bond(C,D,B2), bondKappa_1(B2), atomKappa_2(D). 
+lambda_C146(DMY) :- atomKappa_3(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_1(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_1(C), bond(C,D,B2), bondKappa_2(B2), atomKappa_3(D). 
+lambda_C147(DMY) :- atomKappa_3(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_3(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_1(C), bond(C,D,B2), bondKappa_2(B2), atomKappa_3(D). 
+lambda_C148(DMY) :- atomKappa_1(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_3(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_3(C), bond(C,D,B2), bondKappa_1(B2), atomKappa_2(D). 
+lambda_C149(DMY) :- atomKappa_1(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_4(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_2(C), bond(C,D,B2), bondKappa_1(B2), atomKappa_3(D). 
+lambda_C150(DMY) :- atomKappa_4(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_2(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_3(C), bond(C,D,B2), bondKappa_1(B2), atomKappa_1(D). 
+lambda_C151(DMY) :- atomKappa_1(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_1(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_1(C), bond(C,D,B2), bondKappa_1(B2), atomKappa_4(D). 
+lambda_C152(DMY) :- atomKappa_3(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_4(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_2(C), bond(C,D,B2), bondKappa_2(B2), atomKappa_4(D). 
+lambda_C153(DMY) :- atomKappa_2(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_4(B), bond(B,C,B1), bondKappa_1(B1), atomKappa_2(C), bond(C,D,B2), bondKappa_2(B2), atomKappa_3(D). 
+lambda_C154(DMY) :- atomKappa_1(A), bond(A,B,B0), bondKappa_1(B0), atomKappa_2(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_1(C), bond(C,D,B2), bondKappa_1(B2), atomKappa_2(D). 
+lambda_C155(DMY) :- atomKappa_3(A), bond(A,B,B0), bondKappa_2(B0), atomKappa_4(B), bond(B,C,B1), bondKappa_2(B1), atomKappa_3(C), bond(C,D,B2), bondKappa_1(B2), atomKappa_2(D). 
+0.0 finalKappa(DMY) :- lambda_C0(DMY2).
+0.0 finalKappa(DMY) :- lambda_C1(DMY2).
+0.0 finalKappa(DMY) :- lambda_C2(DMY2).
+0.0 finalKappa(DMY) :- lambda_C3(DMY2).
+0.0 finalKappa(DMY) :- lambda_C4(DMY2).
+0.0 finalKappa(DMY) :- lambda_C5(DMY2).
+0.0 finalKappa(DMY) :- lambda_C6(DMY2).
+0.0 finalKappa(DMY) :- lambda_C7(DMY2).
+0.0 finalKappa(DMY) :- lambda_C8(DMY2).
+0.0 finalKappa(DMY) :- lambda_C9(DMY2).
+0.0 finalKappa(DMY) :- lambda_C10(DMY2).
+0.0 finalKappa(DMY) :- lambda_C11(DMY2).
+0.0 finalKappa(DMY) :- lambda_C12(DMY2).
+0.0 finalKappa(DMY) :- lambda_C13(DMY2).
+0.0 finalKappa(DMY) :- lambda_C14(DMY2).
+0.0 finalKappa(DMY) :- lambda_C15(DMY2).
+0.0 finalKappa(DMY) :- lambda_C16(DMY2).
+0.0 finalKappa(DMY) :- lambda_C17(DMY2).
+0.0 finalKappa(DMY) :- lambda_C18(DMY2).
+0.0 finalKappa(DMY) :- lambda_C19(DMY2).
+0.0 finalKappa(DMY) :- lambda_C20(DMY2).
+0.0 finalKappa(DMY) :- lambda_C21(DMY2).
+0.0 finalKappa(DMY) :- lambda_C22(DMY2).
+0.0 finalKappa(DMY) :- lambda_C23(DMY2).
+0.0 finalKappa(DMY) :- lambda_C24(DMY2).
+0.0 finalKappa(DMY) :- lambda_C25(DMY2).
+0.0 finalKappa(DMY) :- lambda_C26(DMY2).
+0.0 finalKappa(DMY) :- lambda_C27(DMY2).
+0.0 finalKappa(DMY) :- lambda_C28(DMY2).
+0.0 finalKappa(DMY) :- lambda_C29(DMY2).
+0.0 finalKappa(DMY) :- lambda_C30(DMY2).
+0.0 finalKappa(DMY) :- lambda_C31(DMY2).
+0.0 finalKappa(DMY) :- lambda_C32(DMY2).
+0.0 finalKappa(DMY) :- lambda_C33(DMY2).
+0.0 finalKappa(DMY) :- lambda_C34(DMY2).
+0.0 finalKappa(DMY) :- lambda_C35(DMY2).
+0.0 finalKappa(DMY) :- lambda_C36(DMY2).
+0.0 finalKappa(DMY) :- lambda_C37(DMY2).
+0.0 finalKappa(DMY) :- lambda_C38(DMY2).
+0.0 finalKappa(DMY) :- lambda_C39(DMY2).
+0.0 finalKappa(DMY) :- lambda_C40(DMY2).
+0.0 finalKappa(DMY) :- lambda_C41(DMY2).
+0.0 finalKappa(DMY) :- lambda_C42(DMY2).
+0.0 finalKappa(DMY) :- lambda_C43(DMY2).
+0.0 finalKappa(DMY) :- lambda_C44(DMY2).
+0.0 finalKappa(DMY) :- lambda_C45(DMY2).
+0.0 finalKappa(DMY) :- lambda_C46(DMY2).
+0.0 finalKappa(DMY) :- lambda_C47(DMY2).
+0.0 finalKappa(DMY) :- lambda_C48(DMY2).
+0.0 finalKappa(DMY) :- lambda_C49(DMY2).
+0.0 finalKappa(DMY) :- lambda_C50(DMY2).
+0.0 finalKappa(DMY) :- lambda_C51(DMY2).
+0.0 finalKappa(DMY) :- lambda_C52(DMY2).
+0.0 finalKappa(DMY) :- lambda_C53(DMY2).
+0.0 finalKappa(DMY) :- lambda_C54(DMY2).
+0.0 finalKappa(DMY) :- lambda_C55(DMY2).
+0.0 finalKappa(DMY) :- lambda_C56(DMY2).
+0.0 finalKappa(DMY) :- lambda_C57(DMY2).
+0.0 finalKappa(DMY) :- lambda_C58(DMY2).
+0.0 finalKappa(DMY) :- lambda_C59(DMY2).
+0.0 finalKappa(DMY) :- lambda_C60(DMY2).
+0.0 finalKappa(DMY) :- lambda_C61(DMY2).
+0.0 finalKappa(DMY) :- lambda_C62(DMY2).
+0.0 finalKappa(DMY) :- lambda_C63(DMY2).
+0.0 finalKappa(DMY) :- lambda_C64(DMY2).
+0.0 finalKappa(DMY) :- lambda_C65(DMY2).
+0.0 finalKappa(DMY) :- lambda_C66(DMY2).
+0.0 finalKappa(DMY) :- lambda_C67(DMY2).
+0.0 finalKappa(DMY) :- lambda_C68(DMY2).
+0.0 finalKappa(DMY) :- lambda_C69(DMY2).
+0.0 finalKappa(DMY) :- lambda_C70(DMY2).
+0.0 finalKappa(DMY) :- lambda_C71(DMY2).
+0.0 finalKappa(DMY) :- lambda_C72(DMY2).
+0.0 finalKappa(DMY) :- lambda_C73(DMY2).
+0.0 finalKappa(DMY) :- lambda_C74(DMY2).
+0.0 finalKappa(DMY) :- lambda_C75(DMY2).
+0.0 finalKappa(DMY) :- lambda_C76(DMY2).
+0.0 finalKappa(DMY) :- lambda_C77(DMY2).
+0.0 finalKappa(DMY) :- lambda_C78(DMY2).
+0.0 finalKappa(DMY) :- lambda_C79(DMY2).
+0.0 finalKappa(DMY) :- lambda_C80(DMY2).
+0.0 finalKappa(DMY) :- lambda_C81(DMY2).
+0.0 finalKappa(DMY) :- lambda_C82(DMY2).
+0.0 finalKappa(DMY) :- lambda_C83(DMY2).
+0.0 finalKappa(DMY) :- lambda_C84(DMY2).
+0.0 finalKappa(DMY) :- lambda_C85(DMY2).
+0.0 finalKappa(DMY) :- lambda_C86(DMY2).
+0.0 finalKappa(DMY) :- lambda_C87(DMY2).
+0.0 finalKappa(DMY) :- lambda_C88(DMY2).
+0.0 finalKappa(DMY) :- lambda_C89(DMY2).
+0.0 finalKappa(DMY) :- lambda_C90(DMY2).
+0.0 finalKappa(DMY) :- lambda_C91(DMY2).
+0.0 finalKappa(DMY) :- lambda_C92(DMY2).
+0.0 finalKappa(DMY) :- lambda_C93(DMY2).
+0.0 finalKappa(DMY) :- lambda_C94(DMY2).
+0.0 finalKappa(DMY) :- lambda_C95(DMY2).
+0.0 finalKappa(DMY) :- lambda_C96(DMY2).
+0.0 finalKappa(DMY) :- lambda_C97(DMY2).
+0.0 finalKappa(DMY) :- lambda_C98(DMY2).
+0.0 finalKappa(DMY) :- lambda_C99(DMY2).
+0.0 finalKappa(DMY) :- lambda_C100(DMY2).
+0.0 finalKappa(DMY) :- lambda_C101(DMY2).
+0.0 finalKappa(DMY) :- lambda_C102(DMY2).
+0.0 finalKappa(DMY) :- lambda_C103(DMY2).
+0.0 finalKappa(DMY) :- lambda_C104(DMY2).
+0.0 finalKappa(DMY) :- lambda_C105(DMY2).
+0.0 finalKappa(DMY) :- lambda_C106(DMY2).
+0.0 finalKappa(DMY) :- lambda_C107(DMY2).
+0.0 finalKappa(DMY) :- lambda_C108(DMY2).
+0.0 finalKappa(DMY) :- lambda_C109(DMY2).
+0.0 finalKappa(DMY) :- lambda_C110(DMY2).
+0.0 finalKappa(DMY) :- lambda_C111(DMY2).
+0.0 finalKappa(DMY) :- lambda_C112(DMY2).
+0.0 finalKappa(DMY) :- lambda_C113(DMY2).
+0.0 finalKappa(DMY) :- lambda_C114(DMY2).
+0.0 finalKappa(DMY) :- lambda_C115(DMY2).
+0.0 finalKappa(DMY) :- lambda_C116(DMY2).
+0.0 finalKappa(DMY) :- lambda_C117(DMY2).
+0.0 finalKappa(DMY) :- lambda_C118(DMY2).
+0.0 finalKappa(DMY) :- lambda_C119(DMY2).
+0.0 finalKappa(DMY) :- lambda_C120(DMY2).
+0.0 finalKappa(DMY) :- lambda_C121(DMY2).
+0.0 finalKappa(DMY) :- lambda_C122(DMY2).
+0.0 finalKappa(DMY) :- lambda_C123(DMY2).
+0.0 finalKappa(DMY) :- lambda_C124(DMY2).
+0.0 finalKappa(DMY) :- lambda_C125(DMY2).
+0.0 finalKappa(DMY) :- lambda_C126(DMY2).
+0.0 finalKappa(DMY) :- lambda_C127(DMY2).
+0.0 finalKappa(DMY) :- lambda_C128(DMY2).
+0.0 finalKappa(DMY) :- lambda_C129(DMY2).
+0.0 finalKappa(DMY) :- lambda_C130(DMY2).
+0.0 finalKappa(DMY) :- lambda_C131(DMY2).
+0.0 finalKappa(DMY) :- lambda_C132(DMY2).
+0.0 finalKappa(DMY) :- lambda_C133(DMY2).
+0.0 finalKappa(DMY) :- lambda_C134(DMY2).
+0.0 finalKappa(DMY) :- lambda_C135(DMY2).
+0.0 finalKappa(DMY) :- lambda_C136(DMY2).
+0.0 finalKappa(DMY) :- lambda_C137(DMY2).
+0.0 finalKappa(DMY) :- lambda_C138(DMY2).
+0.0 finalKappa(DMY) :- lambda_C139(DMY2).
+0.0 finalKappa(DMY) :- lambda_C140(DMY2).
+0.0 finalKappa(DMY) :- lambda_C141(DMY2).
+0.0 finalKappa(DMY) :- lambda_C142(DMY2).
+0.0 finalKappa(DMY) :- lambda_C143(DMY2).
+0.0 finalKappa(DMY) :- lambda_C144(DMY2).
+0.0 finalKappa(DMY) :- lambda_C145(DMY2).
+0.0 finalKappa(DMY) :- lambda_C146(DMY2).
+0.0 finalKappa(DMY) :- lambda_C147(DMY2).
+0.0 finalKappa(DMY) :- lambda_C148(DMY2).
+0.0 finalKappa(DMY) :- lambda_C149(DMY2).
+0.0 finalKappa(DMY) :- lambda_C150(DMY2).
+0.0 finalKappa(DMY) :- lambda_C151(DMY2).
+0.0 finalKappa(DMY) :- lambda_C152(DMY2).
+0.0 finalKappa(DMY) :- lambda_C153(DMY2).
+0.0 finalKappa(DMY) :- lambda_C154(DMY2).
+0.0 finalKappa(DMY) :- lambda_C155(DMY2).

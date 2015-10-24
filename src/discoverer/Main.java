@@ -20,17 +20,17 @@ public class Main {
     //cutoff on example number
     private static final String defaultMaxExamples = "100000";  //we can decrease the overall number of examples (stratified) for speedup
     //
-    public static String defaultLearningSteps = "200";  //learnSteps per epocha
-    public static String defaultLearningEpochs = "20";  //learn epochae = grounding cycles
+    public static String defaultLearningSteps = "50";  //learnSteps per epocha
+    public static String defaultLearningEpochs = "1";  //learn epochae = grounding cycles
     //  learnEpochae * LearningSteps = learning steps for AVG variant
     private static final String defaultFolds = "1"; // 1 = training only
-    private static final String defaultLearningRate = "0.4"; //0.05 default from Vojta, it's good to increase, reasonable <0.1 , 1>
+    private static final String defaultLearningRate = "0.3"; //0.05 default from Vojta, it's good to increase, reasonable <0.1 , 1>
     //learnRate = 5 -> gets stuck very soon (<=10 steps) around 23% acc (+ jumping), unable to learn
     //learnRate = 1 -> plato around 600 steps with 10% acc (+ BIG jumping +-3%, but also +10%)
     //learnRate = 0.5 -> plato around 1000 steps with 8% acc (+ jumping +-3%) -> can break into some best results (0.3%) with saving
     //learnRate = 0.3 -> plato around 1000 steps with 8% acc, just a very mild jumping, very good apparent behavior
     //learnRate = 0.1 -> stable plato around 600 steps with 11% (no jumping, very stable, stuck)
-    public static final String defaultRestartCount = "2";  //#restarts per fold
+    public static final String defaultRestartCount = "1";  //#restarts per fold
     //max-avg
     public static final String defaultGrounding = "avg";    //avg or max
     public static String defaultActivations = "sig_id";    //lambda_kappa activation functions
@@ -71,6 +71,12 @@ public class Main {
         OptionBuilder.withArgName("EXAMPLE-FILE");
         OptionBuilder.withDescription("File with examples");
         options.addOption(OptionBuilder.create("e"));
+
+        OptionBuilder.withLongOpt("testSet");
+        OptionBuilder.hasArg();
+        OptionBuilder.withArgName("TEST-FILE");
+        OptionBuilder.withDescription("File with test examples");
+        options.addOption(OptionBuilder.create("test"));
 
         OptionBuilder.withLongOpt("example-count");
         OptionBuilder.withDescription("Maximal count of examples (default: " + defaultMaxExamples + ")");
@@ -263,11 +269,25 @@ public class Main {
         String dataset = cmd.getOptionValue("e");
         Settings.setDataset(dataset);
         String[] exs = FileToStringListJava6.convert(dataset, maxReadline);
+        if (exs.length == 0) {
+            Glogger.err("no examples");
+            return;
+        }
+
+        String[] test=null;
+        String tt = cmd.getOptionValue("test");
+        if (tt != null) {
+            Settings.setTestSet(tt);
+            test = FileToStringListJava6.convert(tt, maxReadline);
+        }
 
         //get rules one by one from file
         String rls = cmd.getOptionValue("r");
         Settings.setRules(rls);
         String[] rules = FileToStringListJava6.convert(rls, maxReadline);
+        if (rules.length ==0){
+            Glogger.err("no rules");
+        }
 
         if (Global.getKappaActivation() == Global.activationSet.id) {
             rules = addFinalLambda(rules);  //a hack to end with lambda
@@ -276,6 +296,7 @@ public class Main {
         String pretrained = cmd.getOptionValue("t");
         Settings.setPretrained(pretrained);
         String[] pretrainedRules = FileToStringListJava6.convert(pretrained, maxReadline);
+        Glogger.out("pretrained= " + pretrained + " of length: " + pretrainedRules.length);
 
         Glogger.init();
 
@@ -284,11 +305,17 @@ public class Main {
         Crossvalidation solver = new Crossvalidation();
 
         //main solver method
-        solver.crossValidate(exs, rules, pretrainedRules);
+        if (test == null) {
+            Glogger.info("no test set, will do crossvalidation");
+            solver.crossValidate(exs, rules, pretrainedRules);
+        } else {
+            Glogger.info("test set provided, will do simple evaluation");
+            solver.trainTest(exs, test, rules);
+        }
     }
 
     /**
-     * hack to end sith lambda if there is no sigmoid on finalKappa, so that we
+     * hack to end with lambda if there is no sigmoid on finalKappa, so that we
      * end with a sigmoid's output
      *
      * @param rules
@@ -300,7 +327,8 @@ public class Main {
         for (int i = 0; i < rules.length; i++) {
             rls[i] = rules[i];
         }
-        rls[rls.length - 1] = "finalLambda :- finalKappa(DMY).";
+        String fin = rls[rls.length - 2].substring(rls[rls.length - 2].indexOf(" "), rls[rls.length - 2].indexOf(")") + 1);
+        rls[rls.length - 1] = "finalLambda :- " + fin + ".";
 
         return rls;
     }

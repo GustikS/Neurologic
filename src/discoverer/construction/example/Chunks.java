@@ -1,9 +1,10 @@
 package discoverer.construction.example;
 
 import discoverer.global.Global;
+import java.io.Serializable;
 import java.util.*;
 
-public class Chunks {
+public class Chunks implements Serializable{
 
     private Set<Object> chunkStore;
     private static int headerSize = 2;

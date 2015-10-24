@@ -1,8 +1,5 @@
-/build/
-/dist/
-/images/
-/in/
-/lib/
-/results/
-/metacentrum/
-/folds/
+*
+!/src/
+!/in/
+!/Matlab/
+!/test/
