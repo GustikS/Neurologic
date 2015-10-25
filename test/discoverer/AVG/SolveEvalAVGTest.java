@@ -1,6 +1,6 @@
 package discoverer.AVG;
 
-import discoverer.grounding.evaluation.Ball;
+import discoverer.grounding.evaluation.GroundedTemplate;
 import discoverer.grounding.evaluation.Evaluator;
 import discoverer.construction.example.Example;
 import discoverer.construction.ExampleFactory;
@@ -55,7 +55,7 @@ public class SolveEvalAVGTest {
             ExampleFactory eFactory = new ExampleFactory();
             Example e = eFactory.construct(ex[i]);
 
-            Ball bb = null;
+            GroundedTemplate bb = null;
             Double dd = null;
 
             bb = Grounder.solve(last, e);
@@ -91,7 +91,7 @@ public class SolveEvalAVGTest {
         ExampleFactory eFactory = new ExampleFactory();
         Example e = eFactory.construct(ex[0]);
 
-        Ball bb = Grounder.solve(last, e);
+        GroundedTemplate bb = Grounder.solve(last, e);
         //assertEquals("Output", 0.6428072668247082, bb.val, 0);
         System.out.println(bb.valMax);
         //System.out.println(bb.getLast());
@@ -145,7 +145,7 @@ public class SolveEvalAVGTest {
             ExampleFactory eFactory = new ExampleFactory();
             Example e = eFactory.construct(ex[i]);
 
-            Ball bb = Grounder.solve(last, e);
+            GroundedTemplate bb = Grounder.solve(last, e);
             //assertEquals("Output", 0.6428072668247082, bb.val, 0);
             System.out.println("val:" + bb.valMax);
             //System.out.println(bb.getLast());
@@ -187,7 +187,7 @@ public class SolveEvalAVGTest {
         ExampleFactory eFactory = new ExampleFactory();
         Example e = eFactory.construct(ex[0]);
 
-        Ball bb = Grounder.solve(last, e);
+        GroundedTemplate bb = Grounder.solve(last, e);
         System.out.println(bb.valMax);
         //assertEquals("Output", 0.6428072668247082, bb.val, 0);
 
@@ -241,7 +241,7 @@ public class SolveEvalAVGTest {
         ExampleFactory eFactory = new ExampleFactory();
         Example e = eFactory.construct(ex[0]);
 
-        Ball bb = Grounder.solve(last, e);
+        GroundedTemplate bb = Grounder.solve(last, e);
         System.out.println(bb.valMax);
         System.out.println(Evaluator.evaluateMax(bb));
 
@@ -303,7 +303,7 @@ public class SolveEvalAVGTest {
         ExampleFactory eFactory = new ExampleFactory();
         Example e = eFactory.construct(ex[0]);
 
-        Ball bb = Grounder.solve(last, e);
+        GroundedTemplate bb = Grounder.solve(last, e);
         //assertEquals("Output", 0.7310585786300049, bb.val, 0);
         System.out.println(bb.valMax);
 
@@ -324,7 +324,7 @@ public class SolveEvalAVGTest {
         ExampleFactory eFactory = new ExampleFactory();
         Example e = eFactory.construct(ex[0]);
 
-        Ball bb = Grounder.solve(last, e);
+        GroundedTemplate bb = Grounder.solve(last, e);
         assertEquals("Output", 0.0, bb.valMax, 0);
         System.out.println(bb.valMax);
 
@@ -358,7 +358,7 @@ public class SolveEvalAVGTest {
         ExampleFactory eFactory = new ExampleFactory();
         Example e = eFactory.construct(ex[0]);
 
-        Ball bb = Grounder.solve(last, e);
+        GroundedTemplate bb = Grounder.solve(last, e);
         //assertEquals("Output", 0.6792981617480565, bb.val, 0);
 //
 //        for (Map.Entry<KL, Double> ee : bb.getActiveRules().entrySet()) {

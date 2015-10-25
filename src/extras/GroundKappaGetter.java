@@ -5,7 +5,7 @@ import discoverer.grounding.network.GroundKappa;
 import discoverer.grounding.network.GroundLambda;
 import discoverer.construction.network.rules.KappaRule;
 import discoverer.global.Tuple;
-import discoverer.grounding.evaluation.Ball;
+import discoverer.grounding.evaluation.GroundedTemplate;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -18,12 +18,12 @@ public class GroundKappaGetter {
     private static Set<GroundKappa> groundKappas  = new LinkedHashSet<GroundKappa>();
 
     /**
-     * for a given Ball(=result of maximal substitution) retrieves all grounded Kappa(only) nodes recursively<p>
+     * for a given GroundedTemplate(=result of maximal substitution) retrieves all grounded Kappa(only) nodes recursively<p>
      * be aware - GroundKappas are unique objects, even if they share the same values, so the Set will still contain copies
      * @param b
      * @return 
      */
-    public static Set<GroundKappa> getAllGroundKappas(Ball b) {
+    public static Set<GroundKappa> getAllGroundKappas(GroundedTemplate b) {
         groundKappas.clear();
         GroundKL o = b.getLast();
         o.setGroundParents(1);  //there is only one output for the output(Kappa) node

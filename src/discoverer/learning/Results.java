@@ -7,13 +7,13 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * Collection of results
+ * class for collection of results, providing accuracies, statistics etc.
  */
 public class Results {
 
-    private List<Result> results;
-    private LearnStep actual;
-    public ArrayList<LearnStep> past;
+    private final List<Result> results;
+    public LearningStep actual;
+    public ArrayList<LearningStep> past;
     int history = Global.getHistory();
 
     public boolean convergence() {
@@ -32,13 +32,13 @@ public class Results {
     }
 
     public Results() {
-        actual = new LearnStep();
+        actual = new LearningStep();
         results = new ArrayList<Result>();
         past = new ArrayList<>(Global.getCumMaxSteps());
     }
 
     public void clear() {
-        actual = new LearnStep();
+        actual = new LearningStep();
         results.clear();
     }
 
@@ -163,5 +163,15 @@ public class Results {
         }
         double err = error / results.size();
         Glogger.info("Fold Train error calculated : " + err);
+    }
+
+    public boolean isBetterThen(Results res2) {
+        if (actual == null) {
+            return true;
+        }
+        if (actual.getError() > res2.actual.getError()) {
+            return true;
+        }
+        return false;
     }
 }

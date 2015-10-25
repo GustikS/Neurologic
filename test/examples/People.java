@@ -5,11 +5,11 @@ import discoverer.construction.NetworkFactory;
 import discoverer.construction.network.KL;
 import discoverer.construction.ExampleFactory;
 import discoverer.construction.example.Example;
-import discoverer.construction.network.Network;
+import discoverer.construction.network.LiftedNetwork;
 import discoverer.drawing.Dotter;
 import discoverer.drawing.GroundDotter;
 import discoverer.global.Global;
-import discoverer.grounding.evaluation.Ball;
+import discoverer.grounding.evaluation.GroundedTemplate;
 import discoverer.grounding.Grounder;
 import java.util.*;
 import static org.junit.Assert.*;
@@ -32,12 +32,12 @@ public class People {
         String example = "1.0 male(bob),female(alice),parent(bob,alice),parent(eve,alice).";
         
         NetworkFactory nf = new NetworkFactory();
-        Network last = nf.construct(rules);
+        LiftedNetwork last = nf.construct(rules);
 
         ExampleFactory ef = new ExampleFactory();
         Example e = ef.construct(example);
 
-        Ball b = Grounder.solve(last.last, e);
+        GroundedTemplate b = Grounder.solve(last.last, e);
 
         Dotter.draw(last.last, "people");
         GroundDotter.draw(b, "peopleGround");

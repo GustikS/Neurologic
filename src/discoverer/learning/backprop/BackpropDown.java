@@ -5,7 +5,7 @@
  */
 package discoverer.learning.backprop;
 
-import discoverer.grounding.evaluation.Ball;
+import discoverer.grounding.evaluation.GroundedTemplate;
 import discoverer.construction.example.Example;
 import discoverer.global.Global;
 import discoverer.grounding.network.GroundKL;
@@ -14,7 +14,7 @@ import discoverer.grounding.network.GroundLambda;
 import discoverer.construction.network.rules.KappaRule;
 import discoverer.global.Glogger;
 import discoverer.global.Settings;
-import discoverer.learning.backprop.functions.Activations;
+import discoverer.learning.functions.Activations;
 import discoverer.global.Tuple;
 import discoverer.learning.Weights;
 import java.util.ArrayList;
@@ -31,7 +31,7 @@ public class BackpropDown {
     private static Weights weights = new Weights(); //storing intermediate weight updates(Kappa + Double tuple updates)
     static double learnRate;
 
-    public static Weights getNewWeights(Ball b, Example e) {
+    public static Weights getNewWeights(GroundedTemplate b, Example e) {
         learnRate = Settings.learnRate;
         weights.clear();
         GroundKL o = b.getLast(); //final Kappa node(assuming Kappa output only anyway)

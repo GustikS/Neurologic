@@ -5,7 +5,7 @@
  */
 package extra;
 
-import discoverer.Learner;
+import discoverer.learning.learners.Learning;
 import discoverer.construction.network.WeightInitializator;
 import org.junit.Test;
 
@@ -18,7 +18,7 @@ public class LearnDecay {
     @Test
     public void longTail() {
         for (int i = 0; i < 10000; i++) {
-            Learner learn = new Learner();
+            Learning learn = new Learning();
             double t = learn.learnDecay(i, 0);
             System.out.println(t);
         }

@@ -10,7 +10,7 @@ import discoverer.construction.example.Example;
 import discoverer.global.Batch;
 import discoverer.global.Global;
 import discoverer.grounding.evaluation.Evaluator;
-import discoverer.grounding.evaluation.Ball;
+import discoverer.grounding.evaluation.GroundedTemplate;
 import discoverer.grounding.Grounder;
 import extras.BackpropGroundKappa;
 import java.util.*;
@@ -71,7 +71,7 @@ public class BackpropTest {
         ExampleFactory eFactory = new ExampleFactory();
         Example e = eFactory.construct(ex[0]);
 
-        Ball b = Grounder.solve(last, e);
+        GroundedTemplate b = Grounder.solve(last, e);
         System.out.println(b.valMax);
         double learnRate = 0.15;
         Weights w = BackpropGroundKappa.getNewWeights(b, e, Batch.NO, learnRate);

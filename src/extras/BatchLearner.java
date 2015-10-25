@@ -3,11 +3,11 @@ package extras;
 import discoverer.construction.example.Example;
 import discoverer.construction.network.KL;
 import discoverer.construction.network.Kappa;
-import discoverer.construction.network.Network;
+import discoverer.construction.network.LiftedNetwork;
 import discoverer.construction.network.rules.KappaRule;
 import discoverer.global.Global;
 import discoverer.global.Settings;
-import discoverer.grounding.evaluation.Ball;
+import discoverer.grounding.evaluation.GroundedTemplate;
 import discoverer.grounding.Grounder;
 import discoverer.grounding.evaluation.Evaluator;
 import discoverer.learning.Invalidator;
@@ -37,7 +37,7 @@ public class BatchLearner {
     public List<Sample> firstRun(List<Example> examples, KL last) {
         List<Sample> roundStore = new ArrayList<Sample>();
         for (Example e: examples) {
-            Ball b = Grounder.solve(last,e);
+            GroundedTemplate b = Grounder.solve(last,e);
             roundStore.add(new Sample(e,b));
         }
 
@@ -73,15 +73,15 @@ public class BatchLearner {
     /** Method for running a computation
      *
      * @param last output node
+     * @param roundStore
      * @param exmaples examples
      * @param learningSteps how many backprops
      * @param learningEpochs how many resubstitutions
      * @param learnRate lrate
      * @param restartCount experimental restarted strategy
      */
-    public Results solve(Network last, List<Example> examples) {
-        List<Sample> roundStore = firstRun(examples, last.last);
-
+    public Results solve(LiftedNetwork last, List<Sample> roundStore) {
+        
         Results results = null;
         for (int a = 0; a < Settings.restartCount; a++) {
             System.out.println("Restart: " + a);
@@ -92,7 +92,7 @@ public class BatchLearner {
                     System.out.println("\t\t:::::::::::::: New Round :::::::::::::");
                     for (Sample result: roundStore) {
                         Example e = result.getExample();
-                        Ball b = result.getBall();
+                        GroundedTemplate b = result.getBall();
                         Weights w = BackpropGroundKappa.getNewWeights(b, e, Global.batch.YES, Settings.learnRate);
                         refreshWeights(w);
                         //GroundInvalidator.invalidate(b);
@@ -119,7 +119,7 @@ public class BatchLearner {
                 results = new Results();
                 for (Sample roundElement: roundStore) {
                     Example e = roundElement.getExample();
-                    Ball b = Grounder.solve(last.last,e);
+                    GroundedTemplate b = Grounder.solve(last.last,e);
                     roundElement.setBall(b);
                     results.add(new Result(b.valMax, e.getExpectedValue()));
                     System.out.println("Chance to resubstitute, output for\t" + e + "\t->\t" + b.valMax);
@@ -157,7 +157,7 @@ public class BatchLearner {
         results = new Results();
         for (Sample roundElement: roundStore) {
             Example e = roundElement.getExample();
-            Ball b = Grounder.solve(last.last,e);
+            GroundedTemplate b = Grounder.solve(last.last,e);
             roundElement.setBall(b);
             results.add(new Result(b.valMax, e.getExpectedValue()));
             System.out.println("Substitution:\t" + e + "->\t" + b.valMax);

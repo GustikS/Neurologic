@@ -64,7 +64,7 @@ public abstract class GroundKL implements Serializable{
 
     public abstract GroundKL cloneMe();
     
-    public abstract void transform2Arrays();
+    //public abstract void transform2Arrays();
 
     /**
      * delete values and parent counters for backpropagation calculation

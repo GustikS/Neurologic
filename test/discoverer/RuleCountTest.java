@@ -6,9 +6,9 @@ import discoverer.grounding.network.GroundKappa;
 import discoverer.grounding.network.GroundLambda;
 import discoverer.construction.ExampleFactory;
 import discoverer.construction.example.Example;
-import discoverer.construction.network.Network;
+import discoverer.construction.network.LiftedNetwork;
 import discoverer.global.Tuple;
-import discoverer.grounding.evaluation.Ball;
+import discoverer.grounding.evaluation.GroundedTemplate;
 import discoverer.grounding.Grounder;
 import java.util.ArrayList;
 import java.util.List;
@@ -55,18 +55,18 @@ public class RuleCountTest {
 
         String[] ex = { "1.0 b(a,b), b(b,c), b(c,a), b(c,d), b(c,e), atom(a,c), atom(b,c), atom(c,c), atom(d,cl), atom(d,br).", };
         NetworkFactory nf = new NetworkFactory();
-        Network last = nf.construct(rules);
+        LiftedNetwork last = nf.construct(rules);
 
         ExampleFactory eFactory = new ExampleFactory();
         Example e = eFactory.construct(ex[0]);
-        Ball b = Grounder.solve(last.last, e);
+        GroundedTemplate b = Grounder.solve(last.last, e);
 
         getAllKappaRules(b);
 
         System.out.println(store.size());
     }
 
-    private void getAllKappaRules(Ball b) {
+    private void getAllKappaRules(GroundedTemplate b) {
         Object o = b.getLast();
         if (o instanceof GroundKappa)
             k((GroundKappa) o);

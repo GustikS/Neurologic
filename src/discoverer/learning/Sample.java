@@ -1,7 +1,7 @@
 package discoverer.learning;
 
 import discoverer.construction.example.Example;
-import discoverer.grounding.evaluation.Ball;
+import discoverer.grounding.evaluation.GroundedTemplate;
 import java.io.Serializable;
 
 /**
@@ -9,9 +9,9 @@ import java.io.Serializable;
  */
 public class Sample implements Serializable{
     private Example example;
-    private Ball ball;
+    private GroundedTemplate ball;
 
-    public Sample(Example e, Ball b) {
+    public Sample(Example e, GroundedTemplate b) {
         example = e;
         ball = b;
     }
@@ -20,11 +20,11 @@ public class Sample implements Serializable{
         return example;
     }
 
-    public Ball getBall() {
+    public GroundedTemplate getBall() {
         return ball;
     }
 
-    public void setBall(Ball b) {
+    public void setBall(GroundedTemplate b) {
         ball = b;
     }
 }

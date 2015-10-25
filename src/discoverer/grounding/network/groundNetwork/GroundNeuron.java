@@ -15,5 +15,16 @@ import discoverer.global.Global;
 public class GroundNeuron {
 
     public boolean dropMe = false;
+    public double outputValue;
+    public double sumedInputs;
 
+    public int groundParentsCount;
+    public int groundParentsChecked;
+    public double groundParentDerivativeAccumulated;
+
+    void invalidateValue() {
+        outputValue = 0.00000000;
+        groundParentsChecked = 0;
+        groundParentDerivativeAccumulated = 0;
+    }
 }

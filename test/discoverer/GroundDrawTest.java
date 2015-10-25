@@ -4,12 +4,12 @@ import discoverer.construction.NetworkFactory;
 import discoverer.construction.network.KL;
 import discoverer.construction.ExampleFactory;
 import discoverer.construction.example.Example;
-import discoverer.construction.network.Network;
+import discoverer.construction.network.LiftedNetwork;
 import discoverer.drawing.Dotter;
 import discoverer.drawing.GroundDotter;
 import discoverer.global.FileToStringListJava6;
 import discoverer.global.Global;
-import discoverer.grounding.evaluation.Ball;
+import discoverer.grounding.evaluation.GroundedTemplate;
 import discoverer.grounding.Grounder;
 import java.util.Random;
 import static org.junit.Assert.*;
@@ -28,7 +28,7 @@ public class GroundDrawTest {
         String[] rules = FileToStringListJava6.convert("in/strings/easy-rules.txt", Integer.MAX_VALUE);
         
         NetworkFactory nf = new NetworkFactory();
-        Network net = nf.construct(rules);
+        LiftedNetwork net = nf.construct(rules);
 
         Dotter.draw(net.last, "strings");
         
@@ -36,7 +36,7 @@ public class GroundDrawTest {
         String[] examples = FileToStringListJava6.convert("in/strings/easy-examples.txt", Integer.MAX_VALUE);
         Example e = eFactory.construct(examples[0]);
 
-        Ball b = Grounder.solve(net.last, e);
+        GroundedTemplate b = Grounder.solve(net.last, e);
 
         GroundDotter.draw(b, "string_ground");
     }
@@ -79,12 +79,12 @@ public class GroundDrawTest {
 
         String[] ex = { "1.0 b(b,b), b(a,b), b(b,c), b(c,a), b(c,d), b(c,e), atom(a,c), atom(b,c), atom(c,c), atom(d,cl), atom(d,br).", };
         NetworkFactory nf = new NetworkFactory();
-        Network last = nf.construct(rules);
+        LiftedNetwork last = nf.construct(rules);
 
         ExampleFactory eFactory = new ExampleFactory();
         Example e = eFactory.construct(ex[0]);
 
-        Ball b = Grounder.solve(last.last, e);
+        GroundedTemplate b = Grounder.solve(last.last, e);
 
         Dotter.draw(last.last, b.getActiveRules());
         GroundDotter.draw(b);
@@ -121,12 +121,12 @@ public class GroundDrawTest {
 
         String[] ex = { "1.0 b(b,b), b(a,b), b(b,c), b(c,a), b(c,d), b(c,e), b(d,e), atom(a,c), atom(b,c), atom(c,c), atom(d,cl), atom(d,br).", };
         NetworkFactory nf = new NetworkFactory();
-        Network last = nf.construct(rules);
+        LiftedNetwork last = nf.construct(rules);
 
         ExampleFactory eFactory = new ExampleFactory();
         Example e = eFactory.construct(ex[0]);
 
-        Ball b = Grounder.solve(last.last, e);
+        GroundedTemplate b = Grounder.solve(last.last, e);
 
         Dotter.draw(last.last, b.getActiveRules());
         GroundDotter.draw(b);

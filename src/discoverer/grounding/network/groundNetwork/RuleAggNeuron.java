@@ -16,16 +16,24 @@ import java.util.Map;
  */
 public class RuleAggNeuron extends GroundNeuron {
 
-    AtomNeuron[] inputNeuronsCompressed;    // first counted sum of all grounded body literals, tehn avg, then sigmoid
-    int[] inputNeuronCompressedCounts;
+    public AtomNeuron[] inputNeuronsCompressed;    // first counted sum of all grounded body literals, tehn avg, then sigmoid
+    public int[] inputNeuronCompressedCounts;
 
-    AtomNeuron[][] ruleBodyGroundings = null; //uncompressed representation with proper rule neurons each with sigmoid, then avg
+    public int ruleBodyGroundingsCount;
+    public AtomNeuron[][] ruleBodyGroundings = null; //uncompressed representation with proper rule neurons each with sigmoid, then avg
+    public double[] sumedInputsOfEachBodyGrounding = null;
+    public int maxBodyGroundingIndex;
+    
+    public double lambdaOffset;
+
 
     RuleAggNeuron(GroundLambda gl) {
         if (gl.getConjunctsAvg().isEmpty()) {
             return;
         }
         int i = 0;
+        lambdaOffset = gl.getGeneral().getOffset();
+        ruleBodyGroundingsCount = gl.getConjunctsCountForAvg();
         if (Global.uncompressedLambda) {
             ruleBodyGroundings = new AtomNeuron[gl.getConjunctsCountForAvg()][gl.getConjuncts().size()];
             //TODO HERE
@@ -35,6 +43,6 @@ public class RuleAggNeuron extends GroundNeuron {
                 inputNeuronCompressedCounts[i] = gki.getValue();
             }
         }
-        Global.groundDataset.tmpActiveNet.addNeuron(this); //rather put these "this" on the end of contructor
+        Global.neuralDataset.tmpActiveNet.addNeuron(this); //rather put these "this" on the end of contructor
     }
 }

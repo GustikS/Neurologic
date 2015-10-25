@@ -5,7 +5,7 @@ import discoverer.grounding.network.GroundLambda;
 import discoverer.construction.network.rules.KappaRule;
 import discoverer.global.Glogger;
 import discoverer.global.Tuple;
-import discoverer.grounding.evaluation.Ball;
+import discoverer.grounding.evaluation.GroundedTemplate;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 
@@ -49,7 +49,7 @@ public class GroundDotter extends Dotter {
         }
     }
 
-    public static void draw(Ball b) {
+    public static void draw(GroundedTemplate b) {
         if (b == null) {
             return;
         }
@@ -69,7 +69,7 @@ public class GroundDotter extends Dotter {
         dot.clear();
     }
 
-    public static void draw(Ball b, String nam) {
+    public static void draw(GroundedTemplate b, String nam) {
         if (b == null) {
             return;
         }
@@ -91,7 +91,7 @@ public class GroundDotter extends Dotter {
         dot.clear();
     }
 
-    public static void drawAVG(Ball b, String nam) {
+    public static void drawAVG(GroundedTemplate b, String nam) {
         if (b == null) {
             return;
         }

@@ -1,13 +1,13 @@
 package extras;
 
-import discoverer.grounding.evaluation.Ball;
+import discoverer.grounding.evaluation.GroundedTemplate;
 import discoverer.construction.example.Example;
 import discoverer.grounding.network.GroundKappa;
 import discoverer.grounding.network.GroundLambda;
 import discoverer.construction.network.Kappa;
 import discoverer.construction.network.rules.KappaRule;
 import discoverer.global.Global;
-import discoverer.learning.backprop.functions.Activations;
+import discoverer.learning.functions.Activations;
 import discoverer.global.Tuple;
 import discoverer.learning.Weights;
 import java.util.HashSet;
@@ -25,7 +25,7 @@ public class BackpropKappa {
      * @param learnRate learn rate
      * @return modified weights
      */
-    public static Weights getNewWeights(Ball b, Example e, Global.batch batch, double learnRate) {
+    public static Weights getNewWeights(GroundedTemplate b, Example e, Global.batch batch, double learnRate) {
         Object o = b.getLast();
         activeKappas.clear();
         weights.clear();

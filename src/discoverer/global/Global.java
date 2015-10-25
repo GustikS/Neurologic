@@ -1,14 +1,15 @@
 package discoverer.global;
 
 import discoverer.Main;
-import discoverer.grounding.network.groundNetwork.GroundedDataset;
-import discoverer.learning.backprop.functions.Activations;
+import discoverer.GroundedDataset;
+import discoverer.NeuralDataset;
+import discoverer.learning.functions.Activations;
 import java.util.*;
 //settings
 
 public final class Global {
     
-    public static GroundedDataset groundDataset;
+    public static NeuralDataset neuralDataset;
 
     private static int seed;
     /**
@@ -54,9 +55,10 @@ public final class Global {
     public static boolean exporting = true;
     public static boolean drawing = true;
     public static boolean longName = false;
-    public static boolean saveGroundings = true;
-    public static boolean loadGroundings = true;
+    public static boolean saveGroundings = false;
+    public static boolean loadGroundings = false;
     public static boolean uncompressedLambda = false;
+    public static boolean fastVersion = false;
 
     /**
      * @return the merging

@@ -3,7 +3,7 @@ package discoverer.AVG;
 import discoverer.learning.backprop.BackpropDown;
 import discoverer.learning.backprop.BackpropDownAvg;
 import extras.BackpropGroundKappa;
-import discoverer.grounding.evaluation.Ball;
+import discoverer.grounding.evaluation.GroundedTemplate;
 import discoverer.global.Batch;
 import discoverer.drawing.Dotter;
 import discoverer.grounding.evaluation.Evaluator;
@@ -104,7 +104,7 @@ public class BackPropAVGTest {
 
         //Dotter.draw(last);
         //-----------solving
-        Ball b = Grounder.solve(last, e);
+        GroundedTemplate b = Grounder.solve(last, e);
         //GroundDotter.draw(b);
         //GroundDotter.drawAVG(b, "tavg");
         //------
@@ -217,7 +217,7 @@ public class BackPropAVGTest {
 
         Dotter.draw(last, "state0");
         //-----------solving
-        Ball b = Grounder.solve(last, e);
+        GroundedTemplate b = Grounder.solve(last, e);
         //GroundDotter.draw(b);
         GroundDotter.drawAVG(b, "stateground0");
         //------

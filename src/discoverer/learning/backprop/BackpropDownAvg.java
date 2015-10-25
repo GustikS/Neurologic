@@ -5,7 +5,7 @@
  */
 package discoverer.learning.backprop;
 
-import discoverer.grounding.evaluation.Ball;
+import discoverer.grounding.evaluation.GroundedTemplate;
 import discoverer.construction.example.Example;
 import discoverer.grounding.network.GroundKL;
 import discoverer.grounding.network.GroundKappa;
@@ -13,7 +13,7 @@ import discoverer.grounding.network.GroundLambda;
 import discoverer.construction.network.rules.KappaRule;
 import discoverer.global.Glogger;
 import discoverer.global.Settings;
-import discoverer.learning.backprop.functions.Activations;
+import discoverer.learning.functions.Activations;
 import discoverer.global.Tuple;
 import discoverer.grounding.evaluation.Evaluator;
 import discoverer.learning.Weights;
@@ -31,7 +31,7 @@ public class BackpropDownAvg {
 
     private static Weights weights = new Weights(); //storing intermediate weight updates(Kappa + Double tuple updates)
 
-    public static Weights getNewWeights(Ball b, Example e) {
+    public static Weights getNewWeights(GroundedTemplate b, Example e) {
         weights.clear();
         GroundKL o = b.getLast(); //final Kappa node(assuming Kappa output only anyway)
         if (o == null) {
@@ -68,6 +68,9 @@ public class BackpropDownAvg {
             weights.addW(gk.getGeneral(), myDerivative);   //updating offset weight (it's inner derivative is just 1, so no more computations needed)
 
             for (Tuple<HashSet<GroundLambda>, KappaRule> tup : gk.getDisjunctsAvg()) {
+                if (tup.x.size()>1){
+                    Glogger.process("stop");
+                }
                 weights.addW(tup.y, myDerivative * Evaluator.getAvgValFrom(tup.x));    //updating Kappa-rule's weight (it's inner derivative is just the value of corresponding GroundLambda)
                 for (GroundLambda gl : tup.x) {
                     derive(gl, myDerivative * tup.y.getWeight() * (1.0 / tup.x.size()));    //dive into solving the corresponding GroundLambda (they are averaged so each gl provides 1/n value only)

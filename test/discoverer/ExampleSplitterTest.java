@@ -1,5 +1,6 @@
 package discoverer;
 
+import discoverer.crossvalidation.SampleSplitter;
 import discoverer.construction.ExampleFactory;
 import discoverer.construction.example.Example;
 import discoverer.global.FileToStringListJava6;
@@ -22,7 +23,7 @@ public class ExampleSplitterTest {
             examples.add(e);
         }
 
-        ExampleSplitter es = new ExampleSplitter(10, examples);
+        SampleSplitter es = new SampleSplitter(10, examples);
         List<Example> a = es.getTest();
         List<Example> b = es.getTrain();
         System.out.println(examples.size());

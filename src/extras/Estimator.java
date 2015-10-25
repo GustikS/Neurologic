@@ -5,7 +5,7 @@ import discoverer.construction.network.rules.KappaRule;
 import discoverer.construction.network.Lambda;
 import discoverer.construction.network.rules.SubK;
 import discoverer.construction.example.Example;
-import discoverer.learning.backprop.functions.Activations;
+import discoverer.learning.functions.Activations;
 import java.util.WeakHashMap;
 
 /**

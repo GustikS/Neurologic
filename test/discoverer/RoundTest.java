@@ -6,10 +6,10 @@ import discoverer.construction.network.Kappa;
 import discoverer.construction.NetworkFactory;
 import discoverer.construction.ExampleFactory;
 import discoverer.construction.example.Example;
-import discoverer.construction.network.Network;
+import discoverer.construction.network.LiftedNetwork;
 import discoverer.global.Global;
 import discoverer.grounding.evaluation.Evaluator;
-import discoverer.grounding.evaluation.Ball;
+import discoverer.grounding.evaluation.GroundedTemplate;
 import discoverer.grounding.Grounder;
 import extras.BackpropGroundKappa;
 import java.util.*;
@@ -17,7 +17,7 @@ import org.junit.*;
 
 public class RoundTest {
 
-    private Map<Example, Ball> roundStore = new HashMap<Example, Ball>();
+    private Map<Example, GroundedTemplate> roundStore = new HashMap<Example, GroundedTemplate>();
     private static final boolean debugEnabled = true;
 
     @Before
@@ -57,34 +57,34 @@ public class RoundTest {
             "1.0 b(a,b), b(b,c), b(c,a), b(c,d), b(c,e), atom(a,c), atom(b,c), atom(c,c), atom(d,cl), atom(d,br).",};
 
         NetworkFactory nf = new NetworkFactory();
-        Network last = nf.construct(rules);
+        LiftedNetwork last = nf.construct(rules);
 
         ExampleFactory eFactory = new ExampleFactory();
         for (int i = 0; i < ex.length; i++) {
             Example e = eFactory.construct(ex[i]);
-            Ball b = Grounder.solve(last.last, e);
+            GroundedTemplate b = Grounder.solve(last.last, e);
             if (b == null) {
-                b = new Ball(-1);
+                b = new GroundedTemplate(-1);
             }
             roundStore.put(e, b);
             System.out.println("Original output #" + i + "\t" + b.valMax);
         }
 
         while (true) {
-            for (Map.Entry<Example, Ball> entry : roundStore.entrySet()) {
+            for (Map.Entry<Example, GroundedTemplate> entry : roundStore.entrySet()) {
                 Example e = entry.getKey();
-                Ball b = Grounder.solve(last.last, e);
+                GroundedTemplate b = Grounder.solve(last.last, e);
                 if (b == null) {
-                    b = new Ball(-1);
+                    b = new GroundedTemplate(-1);
                 }
                 roundStore.put(e, b);
                 System.out.println("New subs #" + "\t" + b.valMax);
             }
 
             for (int i = 0; i < 5; i++) {
-                for (Map.Entry<Example, Ball> entry : roundStore.entrySet()) {
+                for (Map.Entry<Example, GroundedTemplate> entry : roundStore.entrySet()) {
                     Example e = entry.getKey();
-                    Ball b = entry.getValue();
+                    GroundedTemplate b = entry.getValue();
                     if (b == null) {
                         continue;
                     }

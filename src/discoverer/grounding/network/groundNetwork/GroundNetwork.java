@@ -6,6 +6,7 @@
 package discoverer.grounding.network.groundNetwork;
 
 import discoverer.construction.network.KL;
+import discoverer.global.Global;
 import discoverer.grounding.network.GroundKL;
 import discoverer.grounding.network.GroundKappa;
 import discoverer.grounding.network.GroundLambda;
@@ -19,13 +20,13 @@ import java.util.HashMap;
  */
 public class GroundNetwork {
 
-    GroundNeuron[] allNeurons;
+    public GroundNeuron[] allNeurons;
     private int neuronCounter = 0;
 
-    GroundNeuron outputNeuron;
+    public GroundNeuron outputNeuron;
     double targetValue;
 
-    GroundNetwork createNetwork(Sample sample) {
+    public GroundNetwork createNetwork(Sample sample) {
         targetValue = sample.getExample().getExpectedValue();
         if (sample.getBall().getLast() instanceof GroundKappa) {
             GroundKappa gk = (GroundKappa) sample.getBall().getLast();  //runs the recursion down
@@ -39,5 +40,17 @@ public class GroundNetwork {
 
     void addNeuron(GroundNeuron gn) {
         allNeurons[neuronCounter++] = gn;
+    }
+    
+    public void invalidateNeuronValues(){
+        for (int i = allNeurons.length-1; i >= 0; i--) {
+            allNeurons[i].invalidateValue();
+        }
+    }
+
+    public void dropOut(double dropout) {
+        for (int i = 0; i < allNeurons.length; i++) {
+            allNeurons[i].dropMe = Global.getRg().nextDouble() < dropout;
+        }
     }
 }

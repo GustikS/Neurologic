@@ -8,7 +8,7 @@ package discoverer.grounding.evaluation.struct;
 import discoverer.construction.network.rules.KappaRule;
 import discoverer.global.Global;
 import discoverer.global.Tuple;
-import discoverer.grounding.evaluation.Ball;
+import discoverer.grounding.evaluation.GroundedTemplate;
 import discoverer.grounding.evaluation.Evaluator;
 import discoverer.grounding.network.GroundKL;
 import discoverer.grounding.network.GroundKappa;
@@ -22,7 +22,7 @@ import java.util.Map;
  */
 public class Dropout {
 
-    public static void dropoutMax(Ball b) {
+    public static void dropoutMax(GroundedTemplate b) {
         GroundKL kl = b.getLast();
         if (kl instanceof GroundKappa) {
             drop((GroundKappa) kl);
@@ -45,7 +45,7 @@ public class Dropout {
         }
     }
 
-    public static void dropoutAvg(Ball b) {
+    public static void dropoutAvg(GroundedTemplate b) {
         GroundKL kl = b.getLast();
         if (kl instanceof GroundKappa) {
             dropAvg((GroundKappa) kl);

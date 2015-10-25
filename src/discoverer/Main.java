@@ -1,5 +1,6 @@
 package discoverer;
 
+import discoverer.crossvalidation.Crossvalidation;
 import discoverer.global.Global;
 import discoverer.global.FileToStringListJava6;
 import discoverer.global.Glogger;
@@ -274,7 +275,7 @@ public class Main {
             return;
         }
 
-        String[] test=null;
+        String[] test = null;
         String tt = cmd.getOptionValue("test");
         if (tt != null) {
             Settings.setTestSet(tt);
@@ -285,7 +286,7 @@ public class Main {
         String rls = cmd.getOptionValue("r");
         Settings.setRules(rls);
         String[] rules = FileToStringListJava6.convert(rls, maxReadline);
-        if (rules.length ==0){
+        if (rules.length == 0) {
             Glogger.err("no rules");
         }
 
@@ -296,22 +297,22 @@ public class Main {
         String pretrained = cmd.getOptionValue("t");
         Settings.setPretrained(pretrained);
         String[] pretrainedRules = FileToStringListJava6.convert(pretrained, maxReadline);
-        Glogger.out("pretrained= " + pretrained + " of length: " + pretrainedRules.length);
+        //Glogger.out("pretrained= " + pretrained + " of length: " + pretrainedRules.length);
 
         Glogger.init();
 
         Glogger.process(Settings.getString());
 
-        Crossvalidation solver = new Crossvalidation();
-
-        //main solver method
+        LiftedDataset sampleSet;
         if (test == null) {
             Glogger.info("no test set, will do crossvalidation");
-            solver.crossValidate(exs, rules, pretrainedRules);
+            sampleSet = new GroundedDataset(exs, rules, pretrainedRules);
         } else {
-            Glogger.info("test set provided, will do simple evaluation");
-            solver.trainTest(exs, test, rules);
+            Glogger.info("test set provided, will do simple train-test evaluation as (1-fold) crossvalidation");
+            sampleSet = new GroundedDataset(exs, test, rules, pretrainedRules);
         }
+        //main solving
+        Crossvalidation cross = new Crossvalidation(sampleSet);
     }
 
     /**

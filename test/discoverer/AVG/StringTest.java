@@ -9,14 +9,14 @@ import discoverer.construction.ExampleFactory;
 import discoverer.construction.NetworkFactory;
 import discoverer.construction.example.Example;
 import discoverer.construction.network.Kappa;
-import discoverer.construction.network.Network;
+import discoverer.construction.network.LiftedNetwork;
 import discoverer.construction.network.rules.KappaRule;
 import discoverer.drawing.Dotter;
 import discoverer.drawing.GroundDotter;
 import discoverer.global.FileToStringListJava6;
 import discoverer.global.Global;
 import discoverer.grounding.Grounder;
-import discoverer.grounding.evaluation.Ball;
+import discoverer.grounding.evaluation.GroundedTemplate;
 import discoverer.grounding.evaluation.Evaluator;
 import discoverer.grounding.evaluation.struct.GroundNetworkParser;
 import discoverer.learning.Weights;
@@ -33,7 +33,7 @@ import org.junit.Test;
  */
 public class StringTest {
 
-    private Map<Example, Ball> roundStore = new HashMap<Example, Ball>();
+    private Map<Example, GroundedTemplate> roundStore = new HashMap<Example, GroundedTemplate>();
     private static final boolean debugEnabled = true;
 
     @Test
@@ -45,7 +45,7 @@ public class StringTest {
         String[] rules = FileToStringListJava6.convert("in/strings/easy-rules.txt", Integer.MAX_VALUE);
 
         NetworkFactory nf = new NetworkFactory();
-        Network net = nf.construct(rules);
+        LiftedNetwork net = nf.construct(rules);
 
         Dotter.draw(net.last, "strings");
 
@@ -53,7 +53,7 @@ public class StringTest {
         String[] examples = FileToStringListJava6.convert("in/strings/easy-examples.txt", Integer.MAX_VALUE);
         Example e = eFactory.construct(examples[0]);
 
-        Ball b = Grounder.solve(net.last, e);
+        GroundedTemplate b = Grounder.solve(net.last, e);
 
         GroundDotter.draw(b, "string_ground");
     }
@@ -67,7 +67,7 @@ public class StringTest {
         String[] rules = FileToStringListJava6.convert("in/strings/easy-rules.txt", Integer.MAX_VALUE);
 
         NetworkFactory nf = new NetworkFactory();
-        Network net = nf.construct(rules);
+        LiftedNetwork net = nf.construct(rules);
 
         Dotter.draw(net.last, "strings");
 
@@ -76,9 +76,9 @@ public class StringTest {
         
         for (int i = 0; i < ex.length; i++) {
             Example e = eFactory.construct(ex[i]);
-            Ball b = Grounder.solve(net.last, e);
+            GroundedTemplate b = Grounder.solve(net.last, e);
             if (b == null) {
-                b = new Ball(-1);
+                b = new GroundedTemplate(-1);
             }
             GroundNetworkParser.parseMAX(b);
             roundStore.put(e, b);
@@ -86,20 +86,20 @@ public class StringTest {
         }
 
         while (true) {
-            for (Map.Entry<Example, Ball> entry : roundStore.entrySet()) {
+            for (Map.Entry<Example, GroundedTemplate> entry : roundStore.entrySet()) {
                 Example e = entry.getKey();
-                Ball b = Grounder.solve(net.last, e);
+                GroundedTemplate b = Grounder.solve(net.last, e);
                 if (b == null) {
-                    b = new Ball(-1);
+                    b = new GroundedTemplate(-1);
                 }
                 roundStore.put(e, b);
                 System.out.println("New subs #" + "\t" + b.valMax);
             }
             
             for (int i = 0; i < 5; i++) {
-                for (Map.Entry<Example, Ball> entry : roundStore.entrySet()) {
+                for (Map.Entry<Example, GroundedTemplate> entry : roundStore.entrySet()) {
                     Example e = entry.getKey();
-                    Ball b = entry.getValue();
+                    GroundedTemplate b = entry.getValue();
                     if (b == null) {
                         continue;
                     }

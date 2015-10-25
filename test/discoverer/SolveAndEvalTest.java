@@ -4,10 +4,10 @@ import discoverer.construction.NetworkFactory;
 import discoverer.construction.network.KL;
 import discoverer.construction.ExampleFactory;
 import discoverer.construction.example.Example;
-import discoverer.construction.network.Network;
+import discoverer.construction.network.LiftedNetwork;
 import discoverer.global.Global;
 import discoverer.grounding.evaluation.Evaluator;
-import discoverer.grounding.evaluation.Ball;
+import discoverer.grounding.evaluation.GroundedTemplate;
 import discoverer.grounding.Grounder;
 import java.util.*;
 import static org.junit.Assert.*;
@@ -718,12 +718,12 @@ public class SolveAndEvalTest {
         //OUT  =  .7246309752556929
 
         NetworkFactory nf = new NetworkFactory();
-        Network last = nf.construct(rules);
+        LiftedNetwork last = nf.construct(rules);
 
         ExampleFactory eFactory = new ExampleFactory();
         Example e = eFactory.construct(ex[0]);
 
-        Ball bb = null;
+        GroundedTemplate bb = null;
         Double dd = null;
         //while (true) {
         bb = Grounder.solve(last.last, e);
@@ -1067,12 +1067,12 @@ public class SolveAndEvalTest {
             "1.0 bond(tr000_4, tr000_2, 0), cl(tr000_4), c(tr000_2), 1(0), bond(tr000_2, tr000_4, 0), bond(tr000_5, tr000_2, 1), h(tr000_5), 1(1), bond(tr000_2, tr000_5, 1), bond(tr000_3, tr000_2, 2), cl(tr000_3), 1(2), bond(tr000_2, tr000_3, 2), bond(tr000_2, tr000_1, 3), cl(tr000_1), 1(3), bond(tr000_1, tr000_2, 3).",};
 
         NetworkFactory nf = new NetworkFactory();
-        Network last = nf.construct(rules);
+        LiftedNetwork last = nf.construct(rules);
 
         ExampleFactory eFactory = new ExampleFactory();
         Example e = eFactory.construct(ex[0]);
 
-        Ball bb = Grounder.solve(last.last, e);
+        GroundedTemplate bb = Grounder.solve(last.last, e);
         //assertEquals("Output", 0.6428072668247082, bb.val, 0);
         System.out.println(bb.valMax);
         //System.out.println(bb.getLast());
@@ -1116,12 +1116,12 @@ public class SolveAndEvalTest {
         String[] ex = {"1.0 atom(z,c), atom(d,cl), atom(d,br).",};
 
         NetworkFactory nf = new NetworkFactory();
-        Network last = nf.construct(rules);
+        LiftedNetwork last = nf.construct(rules);
 
         ExampleFactory eFactory = new ExampleFactory();
         Example e = eFactory.construct(ex[0]);
 
-        Ball bb = Grounder.solve(last.last, e);
+        GroundedTemplate bb = Grounder.solve(last.last, e);
         //assertEquals("Output", 0.6428072668247082, bb.val, 0);
         System.out.println(bb.valMax);
         //System.out.println(bb.getLast());
@@ -1175,12 +1175,12 @@ public class SolveAndEvalTest {
         String[] ex = {"1.0 b(a,b), b(b,c), b(c,a), b(c,d), b(c,e), atom(a,c), atom(b,c), atom(c,c), atom(d,cl), atom(d,br).",};
 
         NetworkFactory nf = new NetworkFactory();
-        Network last = nf.construct(rules);
+        LiftedNetwork last = nf.construct(rules);
 
         ExampleFactory eFactory = new ExampleFactory();
         Example e = eFactory.construct(ex[0]);
 
-        Ball bb = Grounder.solve(last.last, e);
+        GroundedTemplate bb = Grounder.solve(last.last, e);
         System.out.println(bb.valMax);
         //assertEquals("Output", 0.6428072668247082, bb.val, 0);
 
@@ -1229,12 +1229,12 @@ public class SolveAndEvalTest {
         //String[] ex = { "1.0 atom(d,cl), atom(d,br).", };
 
         NetworkFactory nf = new NetworkFactory();
-        Network last = nf.construct(rules);
+        LiftedNetwork last = nf.construct(rules);
 
         ExampleFactory eFactory = new ExampleFactory();
         Example e = eFactory.construct(ex[0]);
 
-        Ball bb = Grounder.solve(last.last, e);
+        GroundedTemplate bb = Grounder.solve(last.last, e);
         System.out.println(bb.valMax);
         System.out.println(Evaluator.evaluateMax(bb));
 
@@ -1291,12 +1291,12 @@ public class SolveAndEvalTest {
         String[] ex = {"1.0 b(a,b), b(b,c), b(c,a), b(c,d), b(c,e), atom(a,c), atom(b,c), atom(c,c), atom(d,cl), atom(d,br).",};
 
         NetworkFactory nf = new NetworkFactory();
-        Network last = nf.construct(rules);
+        LiftedNetwork last = nf.construct(rules);
 
         ExampleFactory eFactory = new ExampleFactory();
         Example e = eFactory.construct(ex[0]);
 
-        Ball bb = Grounder.solve(last.last, e);
+        GroundedTemplate bb = Grounder.solve(last.last, e);
         //assertEquals("Output", 0.7310585786300049, bb.val, 0);
         System.out.println(bb.valMax);
 
@@ -1312,12 +1312,12 @@ public class SolveAndEvalTest {
         String[] ex = {"1.0 b(a,b), b(b,c), b(c,a), b(c,d), b(c,e), atom(a,c), atom(b,c), atom(c,c), atom(d,cl), atom(d,br).",};
 
         NetworkFactory nf = new NetworkFactory();
-        Network last = nf.construct(rules);
+        LiftedNetwork last = nf.construct(rules);
 
         ExampleFactory eFactory = new ExampleFactory();
         Example e = eFactory.construct(ex[0]);
 
-        Ball bb = Grounder.solve(last.last, e);
+        GroundedTemplate bb = Grounder.solve(last.last, e);
         assertEquals("Output", 0.0, bb.valMax, 0);
         System.out.println(bb.valMax);
 
@@ -1346,12 +1346,12 @@ public class SolveAndEvalTest {
 
         String[] ex = {"1.0 b(a,b), b(b,c), b(c,a), b(c,d), b(c,e), atom(a,c), atom(b,c), atom(c,c), atom(d,cl), atom(d,br).",};
         NetworkFactory nf = new NetworkFactory();
-        Network last = nf.construct(rules);
+        LiftedNetwork last = nf.construct(rules);
 
         ExampleFactory eFactory = new ExampleFactory();
         Example e = eFactory.construct(ex[0]);
 
-        Ball bb = Grounder.solve(last.last, e);
+        GroundedTemplate bb = Grounder.solve(last.last, e);
         //assertEquals("Output", 0.6792981617480565, bb.val, 0);
 //
 //        for (Map.Entry<KL, Double> ee : bb.getActiveRules().entrySet()) {

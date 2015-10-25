@@ -12,7 +12,7 @@ import discoverer.construction.network.Kappa;
 import discoverer.construction.network.KappaFactory;
 import discoverer.construction.network.Lambda;
 import discoverer.construction.network.LambdaFactory;
-import discoverer.construction.network.Network;
+import discoverer.construction.network.LiftedNetwork;
 import discoverer.global.Global;
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +43,7 @@ public class NetworkFactory {
      * @param rules
      * @return
      */
-    public Network construct(String[] rules) {
+    public LiftedNetwork construct(String[] rules) {
         KL kl = null;
         for (int x = 0; x < rules.length; x++) {
             String[][] tokens = Parser.parseRule(rules[x]);
@@ -64,7 +64,7 @@ public class NetworkFactory {
             }
         }
         //setup network
-        Network network = new Network(kl);  //a wrapper for the last KL
+        LiftedNetwork network = new LiftedNetwork(kl);  //a wrapper for the last KL
         //---
         return network;
     }

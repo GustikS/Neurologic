@@ -22,8 +22,8 @@ public class GroundKappa extends GroundKL {
     private List<Tuple<HashSet<GroundLambda>, KappaRule>> disjunctsAvg;
     //the hashset average value could be pre-calculated for speedup
     
-    public GroundLambda[] atoms;
-    public KappaRule[] rules;
+    //public GroundLambda[] atoms;
+    //public KappaRule[] rules;
 
     @Override
     public GroundKappa cloneMe() {
@@ -109,6 +109,7 @@ public class GroundKappa extends GroundKL {
         this.disjunctsAvg = disjunctsAvg;
     }
 
+    /*
     @Override
     public void transform2Arrays() {
         atoms = new GroundLambda[disjunctsAvg.size()];
@@ -119,4 +120,5 @@ public class GroundKappa extends GroundKL {
             rules[i++] = disjunct.y;
         }
     }
+    */
 }

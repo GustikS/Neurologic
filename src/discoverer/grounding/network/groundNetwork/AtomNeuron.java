@@ -18,22 +18,22 @@ import java.util.HashSet;
  */
 public class AtomNeuron extends GroundNeuron {
 
-    int[] inputWeights; //array of indicies into Dataset.weights
-    int offsetWeight;
-    RuleAggNeuron[] inputNeurons;
+    public int[] inputWeightIndices; //array of indicies into Dataset.sharedWeights
+    public RuleAggNeuron[] inputNeurons;
+    public int offsetWeightIndex;
 
     public AtomNeuron(GroundKappa grk) {
-        offsetWeight = Global.groundDataset.weightMapping.get(grk.getGeneral());
-        if (grk.getDisjunctsAvg().isEmpty()){
+        offsetWeightIndex = Global.neuralDataset.weightMapping.get(grk.getGeneral());
+        if (grk.getDisjunctsAvg().isEmpty()) {
             return;
         }
         inputNeurons = new RuleAggNeuron[grk.getDisjunctsAvg().size()];
-        inputWeights = new int[grk.getDisjunctsAvg().size()];
+        inputWeightIndices = new int[grk.getDisjunctsAvg().size()];
         int i = 0;
         for (Tuple<HashSet<GroundLambda>, KappaRule> grl : grk.getDisjunctsAvg()) {
             inputNeurons[i] = new RuleAggNeuron(grl.x.iterator().next());   //there shouldn't be more then 1 literal in KappaRule (it's not real rule)
-            inputWeights[i++] = Global.groundDataset.weightMapping.get(grl.y);
+            inputWeightIndices[i++] = Global.neuralDataset.weightMapping.get(grl.y);
         }
-        Global.groundDataset.tmpActiveNet.addNeuron(this); //rather put these leaking "this" on the end of contructor
+        Global.neuralDataset.tmpActiveNet.addNeuron(this); //rather put these leaking "this" on the end of contructor
     }
 }

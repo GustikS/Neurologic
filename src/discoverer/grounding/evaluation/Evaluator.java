@@ -4,12 +4,15 @@ import discoverer.global.Global;
 import discoverer.grounding.network.GroundKappa;
 import discoverer.grounding.network.GroundLambda;
 import discoverer.construction.network.rules.KappaRule;
-import discoverer.learning.backprop.functions.Activations;
+import discoverer.learning.functions.Activations;
 import discoverer.global.Tuple;
 import discoverer.grounding.network.GroundKL;
+import discoverer.grounding.network.groundNetwork.AtomNeuron;
+import discoverer.grounding.network.groundNetwork.ActivationsFast;
+import discoverer.grounding.network.groundNetwork.GroundNetwork;
+import discoverer.grounding.network.groundNetwork.RuleAggNeuron;
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -34,13 +37,14 @@ public class Evaluator {
         return avg;
     }
 
-    public static double evaluateMax(Ball b) {
+
+    public static double evaluateMax(GroundedTemplate b) {
         if (b == null) {
             return Global.getFalseAtomValue();
         }
         //GroundInvalidator.invalidate(b);    //this means to delete all values of all ground literals
         b.invalidateNeurons();
-        
+
         Object top = b.getLast();
         if (top == null) {
             return b.valMax;
@@ -102,13 +106,13 @@ public class Evaluator {
         return out;
     }
 
-    public static double evaluateAvg(Ball b) {
+    public static double evaluateAvg(GroundedTemplate b) {
         if (b == null) {
             return Global.getFalseAtomValue();
         }
         //GroundInvalidator.invalidateAVG(b);    //this means to delete all values of all ground literals (will work as caching)
         b.invalidateNeurons();
-        
+
         GroundKL top = b.getLast();
         if (top == null) {
             return b.valAvg;
@@ -137,10 +141,10 @@ public class Evaluator {
         }
 
         //out = gk.getGeneral().getOffset();
-        ArrayList<Double> inputs = new ArrayList<>(gk.getDisjunctsAvg().size());        
+        ArrayList<Double> inputs = new ArrayList<>(gk.getDisjunctsAvg().size());
         for (Tuple<HashSet<GroundLambda>, KappaRule> t : gk.getDisjunctsAvg()) {
             double avg = 0;
-            if (t.x.size() > 1){
+            if (t.x.size() > 1) {
                 System.out.println("stop");
             }
             for (GroundLambda gl : t.x) {

@@ -6,7 +6,7 @@ import discoverer.grounding.network.GroundKappa;
 import discoverer.grounding.network.GroundLambda;
 import discoverer.construction.network.rules.KappaRule;
 import discoverer.global.Tuple;
-import discoverer.grounding.evaluation.Ball;
+import discoverer.grounding.evaluation.GroundedTemplate;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -35,7 +35,7 @@ public class GroundNetworkParser {
      * @param b
      * @return
      */
-    public static Set<GroundKL> parseAVG(Ball b) {
+    public static Set<GroundKL> parseAVG(GroundedTemplate b) {
         clear();
         GroundKL o = b.getLast();
         if (o == null) {
@@ -68,7 +68,7 @@ public class GroundNetworkParser {
      * @param b
      * @return 
      */
-    public static Set<GroundKL> parseMAX(Ball b) {
+    public static Set<GroundKL> parseMAX(GroundedTemplate b) {
         clear();
         GroundKL o = b.getLast();
         if (o == null) {
