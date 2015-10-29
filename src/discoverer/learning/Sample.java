@@ -8,6 +8,7 @@ import java.io.Serializable;
  * one grounded network for example
  */
 public class Sample implements Serializable{
+    public int position;
     private Example example;
     private GroundedTemplate ball;
 

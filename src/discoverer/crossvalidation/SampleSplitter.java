@@ -44,6 +44,7 @@ public class SampleSplitter {
      * @param ex
      */
     public SampleSplitter(int k, List<Sample> ex) {
+        numberSamples(ex);
         folds = new ArrayList<>();
 
         List<Sample> positives = getPositives(ex);
@@ -92,10 +93,9 @@ public class SampleSplitter {
         int i = 1;
         for (List<Sample> fold : folds) {
             try {
-                int a = 0;
                 BufferedWriter pw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("folds/fold" + i++), "utf-8"));
                 for (Sample exa : fold) {
-                    pw.write(a++ + " : " + exa.getExample().hash + "\n");
+                    pw.write(exa.position + " : " + exa.getExample().hash + "\n");
                     pw.flush();
                 }
             } catch (FileNotFoundException ex1) {
@@ -152,5 +152,11 @@ public class SampleSplitter {
 
     public List<Sample> getTest() {
         return folds.get(testFold);
+    }
+
+    private void numberSamples(List<Sample> ex) {
+        for (int i = 0; i < ex.size(); i++) {
+            ex.get(i).position=i;
+        }
     }
 }

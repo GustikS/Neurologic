@@ -21,6 +21,8 @@ public class GroundLambda extends GroundKL implements Serializable{
     private List<GroundKappa> conjuncts;
     private HashMap<GroundKappa, Integer> conjunctsAvg;
     
+    public List<List<GroundKappa>> fullBodyGroundings;
+    
     //public GroundKappa[] bodyLiterals;
     //public int[] bodyLiteralCounts;
     
@@ -31,6 +33,7 @@ public class GroundLambda extends GroundKL implements Serializable{
         general = l;
         conjuncts = new ArrayList<GroundKappa>();
         conjunctsAvg = new HashMap<>();
+        fullBodyGroundings = new ArrayList<>();
     }
     
     @Override
@@ -53,12 +56,14 @@ public class GroundLambda extends GroundKL implements Serializable{
         conjuncts.add(gk);
     }
     
+    /*
     private void addConjunctAvg(GroundKappa gk) {
         if (!conjunctsAvg.containsKey(gk)) {
             getConjunctsAvg().put(gk, 0);
         }
         getConjunctsAvg().put(gk, getConjunctsAvg().get(gk) + 1);
     }
+    */
     
     public List<GroundKappa> getConjuncts() {
         return conjuncts;
@@ -87,6 +92,7 @@ public class GroundLambda extends GroundKL implements Serializable{
         conjunctsCountForAvg += gls.size();  //the number of body groundings
 
         for (GroundLambda gl : gls) {   //all GroundLambdas are the same here
+            fullBodyGroundings.add(gl.conjuncts);   //also store the uncompressed representation here
             for (GroundKappa gk : gl.conjuncts) {
                 if (!conjunctsAvg.containsKey(gk)) {
                     getConjunctsAvg().put(gk, 0);

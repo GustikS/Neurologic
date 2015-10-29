@@ -92,6 +92,32 @@ public final class ActivationsFast {
         }
     }
 
+    private static final double switchMe(Global.activationSet literal, double input) throws AssertionError {
+        switch (literal) {
+            case sig:
+                return sigmoid(input);
+            case id:
+                return identity(input);
+            case relu:
+                return relu(input);
+            default:
+                throw new AssertionError();
+        }
+    }
+
+    private static final double switchMeDerived(Global.activationSet literal, double input) throws AssertionError {
+        switch (literal) {
+            case sig:
+                return sigmoidDerived(input);
+            case id:
+                return identityDerived(input);
+            case relu:
+                return reluDerived(input);
+            default:
+                throw new AssertionError();
+        }
+    }
+
     public static final double kappaActivation(double[] inputs, double offset) {
         return switchMe(kappa, inputs, offset);
     }
@@ -122,6 +148,22 @@ public final class ActivationsFast {
 
     public static final double lambdaActivationDerived(double input, double offset) {
         return switchMeDerived(lambda, input, offset);
+    }
+
+    public static final double kappaActivation(double input) {
+        return switchMe(kappa, input);
+    }
+
+    public static final double kappaActivationDerived(double input) {
+        return switchMeDerived(kappa, input);
+    }
+
+    public static final double lambdaActivation(double input) {
+        return switchMe(lambda, input);
+    }
+
+    public static final double lambdaActivationDerived(double input) {
+        return switchMeDerived(lambda, input);
     }
 
     public static final double identity(double x) {
@@ -165,18 +207,6 @@ public final class ActivationsFast {
         return 0;
     }
 
-    public static final int getMaximumIndex(double[] inputs) {
-        double max = Double.MIN_VALUE;
-        int index = 0;
-        for (int i = 0; i < inputs.length; i++) {
-            if (inputs[i] > max) {
-                max = inputs[i];
-                index = i;
-            }
-        }
-        return index;
-    }
-
     public static final double aggregation(double[] inputs) {
         switch (aggregation) {
             case avg:
@@ -209,7 +239,7 @@ public final class ActivationsFast {
         }
     }
 
-    public static final double aggregationDerived(double input) {
+    public static final double aggregationDerived(int input) {
         switch (aggregation) {
             case avg:
                 return (1.0 / input);
@@ -218,5 +248,17 @@ public final class ActivationsFast {
             default:
                 throw new AssertionError();
         }
+    }
+
+    public static final int getMaximumIndex(double[] inputs) {
+        double max = Double.MIN_VALUE;
+        int index = 0;
+        for (int i = 0; i < inputs.length; i++) {
+            if (inputs[i] > max) {
+                max = inputs[i];
+                index = i;
+            }
+        }
+        return index;
     }
 }

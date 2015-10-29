@@ -45,6 +45,8 @@ public class BackpropDownAvg {
         } else {
             derive((GroundLambda) o, Settings.learnRate * baseDerivative);
         }
+        
+        Glogger.debug(weights.toString());
 
         return weights;
     }

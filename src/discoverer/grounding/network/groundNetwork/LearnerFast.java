@@ -48,6 +48,8 @@ public class LearnerFast extends Learning {
 
         Glogger.clock("starting to solveFast");
         NeuralDataset gdata = new NeuralDataset(roundStore, net);
+        gdata.makeNeuralNetworks(roundStore);
+        evaluateNetworks(gdata);
         Glogger.clock("created neural networks dataset for this fold");
         roundStore = null; //releasing memory?
         Glogger.clock("groundings, groundKL and all substitution discarded from memory");
@@ -63,7 +65,7 @@ public class LearnerFast extends Learning {
                 if (isSGD) {
                     Collections.shuffle(Arrays.asList(gdata.groundNetworks), Global.getRg());    //stochastic gradient descend
                 }
-                for (int j = 0; i < gdata.groundNetworks.length; j++) {     //for each example network
+                for (int j = 0; j < gdata.groundNetworks.length; j++) {     //for each example network
                     GroundNetwork gnet = gdata.groundNetworks[j];
                     if (dropout > 0) {
                         gnet.dropOut(dropout);
@@ -113,10 +115,20 @@ public class LearnerFast extends Learning {
         Results res = new Results();
         for (GroundNetwork gnet : gdata.groundNetworks) {
             gnet.outputNeuron.outputValue = EvaluatorFast.evaluateFast(gnet, gdata.sharedWeights);
+            
+            //System.out.println(gnet.name + "\n" + gnet.outputNeuron.outputValue);
+            //writeOutNeurons(gnet.allNeurons);
+            
             res.add(new Result(gnet.outputNeuron.outputValue, gnet.targetValue));
         }
         Glogger.LogTrain("backprop step : ", new Double[]{res.getLearningError(), res.getDispersion(), res.getMajorityClass(), res.getThreshold()});
-        Glogger.process("All Ground Networks Evaluation : " + res.getLearningError() + " (maj: " + res.getMajorityClass() + ")" + " (disp: " + res.getDispersion() + ")");
+        Glogger.process("All Ground Networks Evaluation : train error " + res.getLearningError() + " (maj: " + res.getMajorityClass() + ")" + " (disp: " + res.getDispersion() + ")");
         return res;
+    }
+
+    private void writeOutNeurons(GroundNeuron[] allNeurons) {
+        for (GroundNeuron neuron : allNeurons) {
+            System.out.println(neuron.name + " , " + neuron.outputValue);
+        }
     }
 }

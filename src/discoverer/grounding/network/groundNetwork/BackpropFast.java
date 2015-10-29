@@ -6,6 +6,7 @@
 package discoverer.grounding.network.groundNetwork;
 
 import discoverer.construction.example.Example;
+import discoverer.construction.network.Kappa;
 import discoverer.global.Global;
 import discoverer.global.Glogger;
 import discoverer.global.Settings;
@@ -13,6 +14,7 @@ import discoverer.grounding.evaluation.GroundedTemplate;
 import discoverer.grounding.network.GroundKappa;
 import discoverer.grounding.network.GroundLambda;
 import discoverer.learning.Weights;
+import java.util.Map;
 
 /**
  *
@@ -43,6 +45,8 @@ public final class BackpropFast {
             Global.neuralDataset.sharedWeights[i] += weightUpdates[i];
         }
 
+        //writeoutUpdates(weightUpdates);
+
         return true;
     }
 
@@ -51,11 +55,15 @@ public final class BackpropFast {
             return;
         }
 
+        if (atomNeuron.inputNeurons.length == 0) {
+            return;
+        }
+
         atomNeuron.groundParentsChecked++;
         atomNeuron.groundParentDerivativeAccumulated += derivative;
 
         if (atomNeuron.groundParentsChecked == atomNeuron.groundParentsCount) { //all parents have sent their message from the top
-            double currentLevelDerivate = atomNeuron.groundParentDerivativeAccumulated * ActivationsFast.kappaActivationDerived(atomNeuron.sumedInputs, sharedWeights[atomNeuron.offsetWeightIndex]);
+            double currentLevelDerivate = atomNeuron.groundParentDerivativeAccumulated * ActivationsFast.kappaActivationDerived(atomNeuron.sumedInputs);
             weightUpdates[atomNeuron.offsetWeightIndex] += currentLevelDerivate * 1; //offset weight update with current level (derived function on input value)
 
             for (int i = 0; i < atomNeuron.inputNeurons.length; i++) {
@@ -78,7 +86,7 @@ public final class BackpropFast {
                 currentLevelDerivative = ruleAggNeuron.groundParentDerivativeAccumulated;
                 deriveBodyGroundings(ruleAggNeuron, currentLevelDerivative);
             } else {
-                currentLevelDerivative = ruleAggNeuron.groundParentDerivativeAccumulated * ActivationsFast.lambdaActivationDerived(ruleAggNeuron.sumedInputs, ruleAggNeuron.lambdaOffset);
+                currentLevelDerivative = ruleAggNeuron.groundParentDerivativeAccumulated * ActivationsFast.lambdaActivationDerived(ruleAggNeuron.sumedInputs);
                 for (int i = 0; i < ruleAggNeuron.inputNeuronsCompressed.length; i++) {
                     derive(ruleAggNeuron.inputNeuronsCompressed[i], currentLevelDerivative * ruleAggNeuron.inputNeuronCompressedCounts[i] * ActivationsFast.aggregationDerived(ruleAggNeuron.ruleBodyGroundingsCount));
                 }
@@ -90,9 +98,9 @@ public final class BackpropFast {
         if (grounding == Global.groundingSet.max) {
             int i = ruleAggNeuron.maxBodyGroundingIndex;
             double oneGroundRuleDerivative = ActivationsFast.aggregationDerived(ruleAggNeuron.ruleBodyGroundings.length) * ActivationsFast.lambdaActivationDerived(ruleAggNeuron.sumedInputsOfEachBodyGrounding[i], ruleAggNeuron.lambdaOffset);
-                for (int j = 0; j < ruleAggNeuron.ruleBodyGroundings[i].length; j++) {
-                    derive(ruleAggNeuron.ruleBodyGroundings[i][j], currentLevelDerivative * oneGroundRuleDerivative);
-                }
+            for (int j = 0; j < ruleAggNeuron.ruleBodyGroundings[i].length; j++) {
+                derive(ruleAggNeuron.ruleBodyGroundings[i][j], currentLevelDerivative * oneGroundRuleDerivative);
+            }
         } else {
             for (int i = 0; i < ruleAggNeuron.ruleBodyGroundings.length; i++) {
                 double oneGroundRuleDerivative = ActivationsFast.aggregationDerived(ruleAggNeuron.ruleBodyGroundings.length) * ActivationsFast.lambdaActivationDerived(ruleAggNeuron.sumedInputsOfEachBodyGrounding[i], ruleAggNeuron.lambdaOffset);
@@ -101,5 +109,14 @@ public final class BackpropFast {
                 }
             }
         }
+    }
+
+    private static void writeoutUpdates(double[] weightUpdates) {
+        for (Map.Entry<Object, Integer> w : Global.neuralDataset.weightMapping.entrySet()) {
+            if (weightUpdates[Global.neuralDataset.weightMapping.get(w.getKey())] > 0) {
+                System.out.println(w.getKey() + " += " + weightUpdates[Global.neuralDataset.weightMapping.get(w.getKey())]);
+            }
+        }
+
     }
 }

@@ -26,8 +26,8 @@ import java.util.List;
  *
  * @author Gusta
  */
-public class LearnerStandard extends Learning{
-    
+public class LearnerStandard extends Learning {
+
     /**
      * main iterative learning procedure:
      * <p>
@@ -115,7 +115,8 @@ public class LearnerStandard extends Learning{
      */
     public Results solveAvg(LiftedNetwork last, List<Sample> roundStore) {
 
-        long time1 = System.currentTimeMillis();
+        evaluate(roundStore);
+        
         for (int a = 0; a < Settings.restartCount; a++) {    //restarting the whole procedure
             results.past.clear();
             Glogger.process("--------SolveAVG-----------------------------------------------------------------------------------------------------------------------");
@@ -140,6 +141,7 @@ public class LearnerStandard extends Learning{
                         Evaluator.ignoreDropout = true;
                     } else {
                         b.valAvg = Evaluator.evaluateAvg(b);  //forward propagation
+                        //System.out.println(b.valAvg);
                     }
                     Glogger.debug("Example: " + e + "Weight change from last minibatch (after 1-bp over all other examples) " + old + " -> " + b.valAvg);
                     Weights w = BackpropDownAvg.getNewWeights(b, e);  //backpropagation
@@ -154,7 +156,7 @@ public class LearnerStandard extends Learning{
             last.invalidateWeights();
             //Invalidator.invalidate(last);       //reset all sharedWeights before restart
         }
-        Glogger.info("----------!!!!!!!!!-------!!!!! time in training: " + (System.currentTimeMillis() - time1));
+        Glogger.info("finished training");
         endTraining(roundStore, last);
 
         return results;

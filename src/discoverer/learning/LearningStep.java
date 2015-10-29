@@ -88,10 +88,10 @@ public class LearningStep {
     }
 
     public boolean isBetterThen(LearningStep bestResult) {
-        if (error == null) {
+        if (bestResult == null) {
             return true;
         }
-        if (error > bestResult.error) {
+        if (error < bestResult.error) {
             return true;
         }
         return false;

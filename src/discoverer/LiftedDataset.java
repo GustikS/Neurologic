@@ -54,7 +54,7 @@ public class LiftedDataset {
     }
 
     private LiftedNetwork createNetworkMerge(String[] rules) {
-        if (pretrained != null) {
+        if (pretrained != null && pretrained.length > 0) {
             pretrainedNetwork = createNetwork(pretrained, "pretrained"); // 1st
         }
 

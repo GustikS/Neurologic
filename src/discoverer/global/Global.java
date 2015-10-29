@@ -42,7 +42,7 @@ public final class Global {
     private static boolean learnDecay;    //learn rate decay yes or no  
     //---
     private static boolean checkback = false;    //compatibility test with Vojta's version (keep false unless testing)
-    private static boolean outputFolds = false;
+    private static boolean outputFolds = true;
     //convergence criteria for AVG (max is within function bellow)
     private static double convergenceLimit = 0.01;
     private static int history = 200;
@@ -53,12 +53,12 @@ public final class Global {
     private static mergingOptions merging = mergingOptions.weights;
 
     public static boolean exporting = true;
-    public static boolean drawing = true;
+    public static boolean drawing = false;
     public static boolean longName = false;
     public static boolean saveGroundings = false;
     public static boolean loadGroundings = false;
     public static boolean uncompressedLambda = false;
-    public static boolean fastVersion = false;
+    public static boolean fastVersion = true;
 
     /**
      * @return the merging

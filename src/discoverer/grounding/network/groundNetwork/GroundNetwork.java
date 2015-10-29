@@ -19,6 +19,7 @@ import java.util.HashMap;
  * @author Gusta
  */
 public class GroundNetwork {
+    String name;
 
     public GroundNeuron[] allNeurons;
     private int neuronCounter = 0;
@@ -27,13 +28,16 @@ public class GroundNetwork {
     double targetValue;
 
     public GroundNetwork createNetwork(Sample sample) {
+        name = sample.position + " : " + sample.getExample().hash;
         targetValue = sample.getExample().getExpectedValue();
         if (sample.getBall().getLast() instanceof GroundKappa) {
             GroundKappa gk = (GroundKappa) sample.getBall().getLast();  //runs the recursion down
             outputNeuron = new AtomNeuron(gk);
+            Global.neuralDataset.neuronMapping.put(gk, outputNeuron);
         } else {
             GroundLambda gl = (GroundLambda) sample.getBall().getLast();  //runs the recursion down
             outputNeuron = new RuleAggNeuron(gl);
+            Global.neuralDataset.neuronMapping.put(gl, outputNeuron);
         }
         return this;
     }

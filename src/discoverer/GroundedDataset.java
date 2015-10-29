@@ -48,12 +48,12 @@ public class GroundedDataset extends LiftedDataset {
     public List<Sample> samples;    //samples contain groundedTemplates (=Balls), they are too memory expensive
 
     //public NeuralDataset neuralNetworks;
-
     public GroundedDataset(String[] ex, String[] rules, String[] PretrainedRules) {
         super(ex, rules, PretrainedRules);
-
+        Glogger.process("created lifted network structure");
         //creates examples with corresponding ID mapping and chunk representations
         examples = createExamples(ex, Settings.maxExamples);
+        Glogger.process("created example structures");
 
         samples = prepareGroundings(examples, network);
         //k-fold stratified example(same #positives in folds) splitting structure - treated as 1fold CV here
@@ -109,7 +109,7 @@ public class GroundedDataset extends LiftedDataset {
         ForwardChecker.exnum = 0;
         for (Example e : examples) {
             GroundedTemplate b = Grounder.solve(net.last, e);
-            Glogger.info("example: " + e + " , maxVal: " + b.valMax + ", avgVal: " + b.valAvg);
+            Glogger.info("example: " + e + " , maxVal: " + b.valMax + ", avgVal: " + b.valAvg.doubleValue());
             sampleStore.add(new Sample(e, b));
         }
 

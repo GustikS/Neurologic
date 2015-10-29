@@ -7,10 +7,16 @@ package discoverer.grounding.evaluation;
 
 import discoverer.global.Global;
 import static discoverer.grounding.evaluation.Evaluator.ignoreDropout;
+import discoverer.grounding.network.GroundKappa;
 import discoverer.grounding.network.groundNetwork.ActivationsFast;
 import discoverer.grounding.network.groundNetwork.AtomNeuron;
 import discoverer.grounding.network.groundNetwork.GroundNetwork;
 import discoverer.grounding.network.groundNetwork.RuleAggNeuron;
+import discoverer.learning.functions.Activations;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.util.ArrayList;
+import java.util.Map;
 
 /**
  *
@@ -32,7 +38,6 @@ public class EvaluatorFast extends Evaluator {
         }
 
         gnet.invalidateNeuronValues();
-
         if (gnet.outputNeuron instanceof AtomNeuron) {
             return evaluateFast((AtomNeuron) gnet.outputNeuron);
         } else {
@@ -47,19 +52,29 @@ public class EvaluatorFast extends Evaluator {
             return 0;
         }
 
+        if (an.inputNeurons.length == 0) {
+            an.outputValue = 1;
+            return 1;
+        }
+
         if (an.outputValue != 0.0000000) {
             return an.outputValue;  //it doesnt make sense for fact neuron (isElement) to have zero value
         }
 
         //double[] inputs = new double[an.inputWeightIndices.length];
-        an.sumedInputs = 0;
-        for (int i = an.inputNeurons.length - 1; i >= 0; i--) {
+        an.sumedInputs = sharedWeights[an.offsetWeightIndex];
+        for (int i = 0; i < an.inputNeurons.length; i++) {
             //inputs[i] = evaluateFast(an.inputNeurons[i]) * sharedWeights[an.inputWeightIndices[i]];
             //an.sumedInputs += inputs[i];
             an.sumedInputs += evaluateFast(an.inputNeurons[i]) * sharedWeights[an.inputWeightIndices[i]];
         }
         //an.outputValue = ActivationsFast.kappaActivation(inputs, sharedWeights[an.offsetWeightIndex]);
-        an.outputValue = ActivationsFast.kappaActivation(an.sumedInputs, sharedWeights[an.offsetWeightIndex]);
+        /*
+         if (an.outputValue != ActivationsFast.kappaActivation(an.sumedInputs)) {
+         System.out.println("stop");
+         }
+         */
+        an.outputValue = ActivationsFast.kappaActivation(an.sumedInputs);
         return an.outputValue;
     }
 
@@ -67,6 +82,11 @@ public class EvaluatorFast extends Evaluator {
         if (!ignoreDropout && rn.dropMe) {
             rn.outputValue = 0;
             return 0;
+        }
+
+        if (rn.inputNeuronsCompressed.length == 0) {
+            rn.outputValue = 1;
+            return 1;
         }
 
         if (rn.outputValue != 0.0000000) {
@@ -94,14 +114,60 @@ public class EvaluatorFast extends Evaluator {
             }
         } else {    //compressed grounding representation is summed up and divided -> avg and then sigmoid
             //double[] inputs = new double[rn.inputNeuronsCompressed.length];  //inside one body-grounding
-            rn.sumedInputs = 0;
-            for (int i = rn.inputNeuronsCompressed.length - 1; i >= 0; i--) {
+            rn.sumedInputs = rn.lambdaOffset;
+            for (int i = 0; i < rn.inputNeuronsCompressed.length; i++) {
                 //inputs[i] = evaluateFast(rn.inputNeuronsCompressed[i]) * rn.inputNeuronCompressedCounts[i] / rn.ruleBodyGroundingsCount;  //AVG trick!
                 //rn.sumedInputs += inputs[i];
                 rn.sumedInputs += evaluateFast(rn.inputNeuronsCompressed[i]) * rn.inputNeuronCompressedCounts[i] / rn.ruleBodyGroundingsCount;  //AVG trick!
             }
-            rn.outputValue = ActivationsFast.lambdaActivation(rn.sumedInputs, rn.lambdaOffset);
+            /*
+             if ((rn.outputValue != ActivationsFast.lambdaActivation(rn.sumedInputs))) {
+             writeOutError(rn);
+             }
+             */
+            rn.outputValue = ActivationsFast.lambdaActivation(rn.sumedInputs);
         }
         return rn.outputValue;
+    }
+
+    private static final void writeOutError(RuleAggNeuron rn) {
+        int i = 0;
+
+        double neuron = 0;
+        Double lambda = 0.0;
+
+        ArrayList<Double> inputs = new ArrayList<>(rn.grl.getConjunctsAvg().size());
+
+        for (Map.Entry<GroundKappa, Integer> grki : rn.grl.getConjunctsAvg().entrySet()) {
+            neuron += rn.inputNeuronsCompressed[i].outputValue * rn.inputNeuronCompressedCounts[i] / rn.ruleBodyGroundingsCount;
+            lambda += grki.getKey().getValueAvg() * grki.getValue() / rn.grl.getConjunctsCountForAvg();
+            inputs.add(grki.getKey().getValueAvg() * grki.getValue() / rn.grl.getConjunctsCountForAvg());
+
+            NumberFormat formatter = new DecimalFormat("#0.00000000000000000000000000000000000000000000");
+            System.out.println(formatter.format(grki.getKey().getValueAvg()) + " -> " + grki.getValue());
+            System.out.println(formatter.format(rn.inputNeuronsCompressed[i].outputValue) + " -> " + rn.inputNeuronCompressedCounts[i]);
+            if (grki.getKey().getValueAvg() != rn.inputNeuronsCompressed[i].outputValue || grki.getValue() != rn.inputNeuronCompressedCounts[i]) {
+                System.out.println("one input");
+            }
+            i++;
+        }
+        if (neuron != lambda) {
+            System.out.println("summation");
+        }
+        if (rn.lambdaOffset != rn.grl.getGeneral().getOffset()) {
+            System.out.println("offset");
+        }
+        if (neuron != rn.sumedInputs) {
+            System.out.println("suma");
+        }
+
+        double before = rn.outputValue;
+
+        double neuralOut = ActivationsFast.lambdaActivation(rn.sumedInputs, rn.lambdaOffset);
+        double lambdaOut1 = ActivationsFast.lambdaActivation(lambda, rn.grl.getGeneral().getOffset());
+
+        double lambdaOut2 = Activations.lambdaActivation(inputs, rn.grl.getGeneral().getOffset());
+
+        System.out.println("before " + before + ", neuralOut " + neuralOut + ", " + "lambda1 " + lambdaOut1 + ", lambda2 " + lambdaOut2);
     }
 }

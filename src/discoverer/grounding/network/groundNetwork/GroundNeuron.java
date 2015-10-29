@@ -13,11 +13,12 @@ import discoverer.global.Global;
  * @author Gusta
  */
 public class GroundNeuron {
+    String name;
 
     public boolean dropMe = false;
     public double outputValue;
     public double sumedInputs;
-
+    //
     public int groundParentsCount;
     public int groundParentsChecked;
     public double groundParentDerivativeAccumulated;

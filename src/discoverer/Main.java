@@ -19,7 +19,7 @@ import org.apache.commons.cli.PosixParser;
 public class Main {
 
     //cutoff on example number
-    private static final String defaultMaxExamples = "100000";  //we can decrease the overall number of examples (stratified) for speedup
+    private static final String defaultMaxExamples = "10";  //we can decrease the overall number of examples (stratified) for speedup
     //
     public static String defaultLearningSteps = "50";  //learnSteps per epocha
     public static String defaultLearningEpochs = "1";  //learn epochae = grounding cycles
@@ -301,7 +301,7 @@ public class Main {
 
         Glogger.init();
 
-        Glogger.process(Settings.getString());
+        //Glogger.process(Settings.getString());
 
         LiftedDataset sampleSet;
         if (test == null) {

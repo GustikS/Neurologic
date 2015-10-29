@@ -154,7 +154,6 @@ public class Learning {
         }
     }
 
-
     protected Results saveTemplate(List<Sample> roundStore, LiftedNetwork net) {
         //need to evaluate results for the whole batch separatelly (after all example evaluations)
         evaluate(roundStore);
@@ -182,6 +181,10 @@ public class Learning {
             if (Global.getGrounding() == Global.groundingSet.avg) {
                 double old = b.valAvg;
                 b.valAvg = Evaluator.evaluateAvg(b);  //forward propagation
+
+                //System.out.println(result.position + " : " + b.valAvg.toString());
+                //writeOutNeurons(result);
+
                 results.add(new Result(b.valAvg, e.getExpectedValue()));    //store the average value output in the result
                 Glogger.debug("Example: " + e + "Weight learned at the end of a minibatch: " + old + " -> " + b.valAvg);
             } else if (Global.getGrounding() == Global.groundingSet.max) {
@@ -223,6 +226,13 @@ public class Learning {
         }
         //KL llast =  last;
         //Dotter.draw(last, new HashSet(llast.getRules()));
+    }
+
+    private void writeOutNeurons(Sample result) {
+        for (GroundKL gkl : result.getBall().groundNeurons) {
+            System.out.println(gkl.toString() + " , " + gkl.getValueAvg());
+        }
+
     }
 
 }

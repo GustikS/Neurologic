@@ -16,6 +16,9 @@ public class FileToStringListJava6 {
      * @return
      */
     public static String[] convert(String p, int maxline) {
+        if (p == null){
+            return null;
+        }
         List<String> lines = new ArrayList<String>();
         BufferedReader buffReader = null;
         try {
