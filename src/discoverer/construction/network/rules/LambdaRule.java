@@ -107,7 +107,7 @@ public class LambdaRule extends Rule implements Serializable {
             }
         }
 
-        int randomIndex = Global.getRg().nextInt(winners.size());
+        int randomIndex = Global.getRandomInt(winners.size());
         return winners.get(randomIndex);
     }
 

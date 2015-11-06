@@ -54,7 +54,7 @@ public final class Global {
     public static boolean exporting = true;
     public static boolean drawing = false;
     public static boolean longName = false;
-    public static boolean saveGroundedDataset = true;
+    public static boolean saveGroundedDataset = false;
     public static boolean loadGroundedDataset = false;
     public static boolean uncompressedLambda = false;
     public static boolean fastVersion = true;
@@ -259,6 +259,15 @@ public final class Global {
      */
     public static Random getRg() {
         return rg;
+    }
+
+    public static double getRandomDouble() {
+        return rg.nextDouble();
+        //return 0.5;
+    }
+
+    public static int getRandomInt(int i) {
+        return rg.nextInt(i);
     }
 
     /**

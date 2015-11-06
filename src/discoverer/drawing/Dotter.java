@@ -99,9 +99,26 @@ public class Dotter {
         dot.clear();
     }
 
+    public static void draw(KL kl, String nam) {
+        dot.add(intro);
+        name = nam;
+
+        if (kl instanceof Kappa) {
+            draw((Kappa) kl);
+        } else {
+            draw((Lambda) kl);
+        }
+
+        dot.add(outro);
+        writeToFile();
+        convertToImage();
+        visited.clear();
+        dot.clear();
+    }
+
     public static void draw(LightTemplate net, String nam) {
         KL kl = null;
-        if (net instanceof MolecularTemplate){
+        if (net instanceof MolecularTemplate) {
             kl = ((MolecularTemplate) net).last;
         } else {
             Glogger.err("Drawing of the lightweight LiftedNetwork not supported yet");

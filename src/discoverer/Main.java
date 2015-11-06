@@ -22,12 +22,12 @@ import org.apache.commons.cli.PosixParser;
 public class Main {
 
     //cutoff on example number
-    private static final String defaultMaxExamples = "10";  //we can decrease the overall number of examples (stratified) for speedup
+    private static final String defaultMaxExamples = "3000";  //we can decrease the overall number of examples (stratified) for speedup
     //
-    public static String defaultLearningSteps = "4000";  //learnSteps per epocha
+    public static String defaultLearningSteps = "400";  //learnSteps per epocha
     public static String defaultLearningEpochs = "1";  //learn epochae = grounding cycles
     //  learnEpochae * LearningSteps = learning steps for AVG variant
-    private static final String defaultFolds = "1"; // 1 = training only
+    private static final String defaultFolds = "2"; // 1 = training only
     private static final String defaultLearningRate = "0.3"; //0.05 default from Vojta, it's good to increase, reasonable <0.1 , 1>
     //learnRate = 5 -> gets stuck very soon (<=10 steps) around 23% acc (+ jumping), unable to learnOn
     //learnRate = 1 -> plato around 600 steps with 10% acc (+ BIG jumping +-3%, but also +10%)

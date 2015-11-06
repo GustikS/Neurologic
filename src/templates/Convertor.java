@@ -13,6 +13,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
@@ -43,7 +44,7 @@ public class Convertor {
     //static String out = "in\\ncigi\\examples";
     private static boolean cutTogeneral = false;
     //static String path = "C:\\Users\\IBM_ADMIN\\Google Drive\\Neuralogic\\sourcecodes\\gusta\\extra-data\\NCIGI\\DATA\\out\\";
-    static String path = "C:/ncigi/";
+    static String path = "C:/ncigi";
 
     public static void main2(String[] args) {
         File[] files = new File(path).listFiles();
@@ -56,7 +57,7 @@ public class Convertor {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main3(String[] args) {
         File[] files = new File(path).listFiles();
 
         for (File file : files) {
@@ -69,12 +70,16 @@ public class Convertor {
         }
     }
 
+    public static void main(String[] args) {
+        String[] ex = FileToStringListJava6.convert("C:\\Users\\IBM_ADMIN\\Google Drive\\Neuralogic\\sourcecodes\\gusta\\Neurologic\\in\\muta\\cilp\\examples", 10000);
+        createCILP(ex, "C:\\Users\\IBM_ADMIN\\Google Drive\\Neuralogic\\sourcecodes\\gusta\\Neurologic\\in\\muta\\cilp\\out");
+    }
+
     public static void convert(String in, String out) {
 
         String[] ex = FileToStringListJava6.convert(in, 10000);
 
         //createCILP(ex, out);
-
         ArrayList<LinkedHashSet<String>> examples = transformExamples(ex);
 
         writeOut(examples, out);
@@ -85,6 +90,7 @@ public class Convertor {
         HashSet<String> newExs = new LinkedHashSet<>();
         for (int i = 0; i < ex.length; i++) {
             String example = ex[i];
+            example = transform2CILP(example);
             example = example.replace("0.0", "~class:-");
             example = example.replace("1.0", "class:-");
             example = example.replaceAll("([^)]),", "$1;");
@@ -306,5 +312,31 @@ public class Convertor {
             out.add(fin);
         }
         return out;
+    }
+
+    private static String transform2CILP(String example) {
+        StringBuilder newone = new StringBuilder();
+        int cl = example.indexOf(" ");
+        newone.append(example.subSequence(0, cl+1));
+        String[] split = example.substring(cl).split("\\),");
+
+        for (String s : split) {
+            if (s.contains("bond")) {
+                int i = s.indexOf("(");
+                int b = s.indexOf(",", i);
+                String first = s.substring(i + 1, b);
+                String second = s.substring(b + 2, s.indexOf(",", b + 1));
+
+                int indF = example.lastIndexOf("(" + first + ")");
+                String ff = example.substring(indF - 10, indF + 1);
+                ff = ff.substring(ff.indexOf("), ") + 3, ff.indexOf("("));
+                int indS = example.lastIndexOf("(" + second + ")");
+                String ss = example.substring(indS - 10, indS + 1);
+                ss = ss.substring(ss.indexOf("), ") + 3, ss.indexOf("("));
+                newone.append("bond(" + ff + "," + ss + "), ");
+            }
+        }
+        
+        return newone.toString().substring(0,newone.length()-2);
     }
 }

@@ -5,6 +5,7 @@ import discoverer.construction.network.rules.KappaRule;
 import discoverer.construction.Terminal;
 import discoverer.global.Tuple;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -89,6 +90,15 @@ public class GroundKappa extends GroundKL {
         String s = general.getName() + "(";
         for (Integer i : getTermList()) {
             s += i + ",";
+        }
+        s = s.substring(0, s.length() - 1);
+        s += ")#" + getId();
+        return s;
+    }
+    public String toString(HashMap<Integer,String> constNames) {
+        String s = general.getName() + "(";
+        for (Integer i : getTermList()) {
+            s += constNames.get(i) + ",";
         }
         s = s.substring(0, s.length() - 1);
         s += ")#" + getId();

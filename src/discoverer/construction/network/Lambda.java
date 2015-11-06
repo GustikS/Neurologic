@@ -10,6 +10,7 @@ public class Lambda extends KL {
 
     private LambdaRule rule;
     private double offset;
+    private Integer id;
 
     public Lambda(String name) {
         super(name);
@@ -43,5 +44,17 @@ public class Lambda extends KL {
 
     public boolean isElement() {
         return rule == null;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer i) {
+        id = i;
+    }
+
+    public boolean hasId() {
+        return id != null;
     }
 }

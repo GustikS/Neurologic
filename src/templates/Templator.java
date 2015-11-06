@@ -20,9 +20,12 @@ import static templates.Convertor.writeOut;
 public class Templator extends Convertor {
 
     public static boolean randomFeatures = false; //randomness in asigning underlying atom and bond clusters
-    public static int atomClusters = 4;    //the width of a template (each cluster multiplies the underneath layer)
-    public static int bondClusters = 2;
     public static boolean bondTypes = true;
+    public static boolean noLambdaBindings = true;
+
+    public static int atomClusters = 3;    //the width of a template (each cluster multiplies the underneath layer)
+    public static int bondClusters = 3;
+
     public static int graphletsCount = 300;
     //static int maxGraphletSize = 3; // (min is 2)
     public static String kappaPrefix = "atom";
@@ -49,13 +52,13 @@ public class Templator extends Convertor {
     public static void main(String[] args) {
         //template = FileToStringListJava6.convert("C:\\Users\\IBM_ADMIN\\Google Drive\\Neuralogic\\sourcecodes\\gusta\\Neurologic\\in\\genericTemplate.txt", 10000);
 
-        String in = "in\\mutaGeneral\\examples";
-        String out = "in\\mutaGeneral\\testR";
+        String in = "in\\muta\\examples";
+        String out = "in\\muta\\test";
 
         String[] ex = FileToStringListJava6.convert(in, 10000);
 
         //createRings(ex, out);
-        createTemplate(ex, out, 2, 3);
+        createTemplate(ex, out, 3, 3);
     }
 
     static ArrayList<String> atomComb = new ArrayList<>();
@@ -267,21 +270,30 @@ public class Templator extends Convertor {
 
         LinkedHashSet<String> rows = new LinkedHashSet<>();
 
-        ArrayList<String> atomrules = createLambdaBindings(atomSignatures, "atom");
-        rows.addAll(atomrules);
+        ArrayList<String> atomrules = null;
         ArrayList<String> bondrules = null;
-        if (bondTypes) {
-            bondrules = createLambdaBindings(bondSignatures, "bond");
-
-        }
-        rows.addAll(bondrules);
-        //ArrayList<String> otherrules = createLambdaBindings(otherSignatures, "other");
-        if (randomFeatures) {
-            makeRandomFeatures(from, to, atomrules, bondrules);
+        if (!noLambdaBindings) {
+            atomrules = createLambdaBindings(atomSignatures, "atom");
+            rows.addAll(atomrules);
+            if (bondTypes) {
+                bondrules = createLambdaBindings(bondSignatures, "bond");
+                rows.addAll(bondrules);
+            }
         } else {
-            makeFullFeatures(from, to, atomrules, bondrules, atomClusters, bondClusters);
+            atomrules = new ArrayList<>(atomSignatures);
+            if (bondTypes) {
+                bondrules = new ArrayList<>(bondSignatures);
+            }
         }
 
+        //ArrayList<String> otherrules = createLambdaBindings(otherSignatures, "other");
+        ArrayList<String> rows2;
+        if (randomFeatures) {
+            rows2 = makeRandomFeatures(from, to, atomrules, bondrules);
+        } else {
+            rows2 = makeFullFeatures(from, to, atomrules, bondrules, atomClusters, bondClusters);
+        }
+        rows.addAll(rows2);
         writeOut(rows, out + "rules");
     }
 
@@ -298,11 +310,11 @@ public class Templator extends Convertor {
             }
             atomClusters = atomC;
 
-            ArrayList<String> atomClusters = createKappaClusters(atomrules, atomC);
-            rows.addAll(atomClusters);
+            ArrayList<String> atomCl = createKappaClusters(atomrules, atomC, "atom");
+            rows.addAll(atomCl);
             if (bondTypes) {
-                ArrayList<String> bondClusters = createKappaClusters(bondrules, bondC);
-                rows.addAll(bondClusters);
+                ArrayList<String> bondCl = createKappaClusters(bondrules, bondC, "bond");
+                rows.addAll(bondCl);
             }
             //ArrayList<String> otherClusters = createKappaClusters(otherrules, clusterCount);
 
@@ -320,8 +332,8 @@ public class Templator extends Convertor {
     }
 
     public static ArrayList<String> makeRandomFeatures(int from, int to, ArrayList<String> atomrules, ArrayList<String> bondrules) {
-        ArrayList<String> atomClusters = createKappaClusters(atomrules, Templator.atomClusters);
-        ArrayList<String> bondClusters = createKappaClusters(bondrules, Templator.bondClusters);
+        ArrayList<String> atomClusters = createKappaClusters(atomrules, Templator.atomClusters, "atom");
+        ArrayList<String> bondClusters = createKappaClusters(bondrules, Templator.bondClusters, "bond");
         ArrayList<String> rows = new ArrayList<>();
         rows.addAll(atomClusters);
         rows.addAll(bondClusters);
@@ -370,24 +382,34 @@ public class Templator extends Convertor {
         }
     }
 
-    public static ArrayList<String> createKappaClusters(ArrayList<String> lambdarules, int multiple) {
+    public static ArrayList<String> createKappaClusters(ArrayList<String> lambdarules, int multiple, String atombondPref) {
         ArrayList<String> rules = new ArrayList<>();
         if (lambdarules == null) {
             return rules;
         }
-        String atomBond = "";
-        String rule;
+        String atomBond = atombondPref;
+        String atom;
         String args;
+        String rule;
         for (int i = 1; i <= multiple; i++) {
             for (String lambdarule : lambdarules) {
-                String[] split = lambdarule.split(":-");
-                atomBond = split[0].substring(0, split[0].indexOf("Lambda"));
-                args = split[0].substring(split[0].indexOf("(") + 1, split[0].indexOf(")"));
-                rule = defWeight + " " + atomBond + "Kappa_" + prefix + i + "(" + args + ") :- " + split[0].substring(0, split[0].length() - 1) + ".";
+
+                if (noLambdaBindings) {
+                    String[] split = lambdarule.split("/");
+                    atom = split[0];
+                    int count = Integer.parseInt(split[1]);
+                    args = arguments(count);
+                } else {
+                    String[] split = lambdarule.split(":-");
+                    atom = split[0];
+                    args = atom.substring(atom.indexOf("(") + 1, atom.indexOf(")"));
+                }
+
+                rule = defWeight + " " + atomBond + "Kappa_" + prefix + i + "(" + args + ") :- " + atom + "(" + args + ")" + ".";
                 rules.add(rule);
             }
         }
-        kappaPrefix = atomBond;
+        //kappaPrefix = atomBond;
         return rules;
     }
 

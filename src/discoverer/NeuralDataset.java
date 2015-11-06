@@ -6,6 +6,7 @@
 package discoverer;
 
 import discoverer.construction.network.Kappa;
+import discoverer.construction.network.LiftedTemplate;
 import discoverer.construction.network.LightTemplate;
 import discoverer.construction.network.MolecularTemplate;
 import discoverer.construction.network.WeightInitializator;
@@ -43,7 +44,7 @@ public class NeuralDataset extends LiftedDataset implements Serializable {
         pretrained = ld.pretrained;
         sampleSplitter = ld.sampleSplitter;
 
-        MolecularTemplate net = (MolecularTemplate) ld.network;
+        LiftedTemplate net = (LiftedTemplate) ld.network;
 
         net.weightMapping = new HashMap<>(net.rules.size());
         net.neuronMapping = new HashMap<>(net.rules.size());
@@ -60,7 +61,7 @@ public class NeuralDataset extends LiftedDataset implements Serializable {
      *
      * @param net
      */
-    final void makeTemplate(MolecularTemplate net) {
+    final void makeTemplate(LiftedTemplate net) {
         //makeMeSmall(network);
         net.name2weight = new HashMap<>(net.rules.size());
         for (Map.Entry<Object, Integer> woi : net.weightMapping.entrySet()) {
@@ -78,7 +79,7 @@ public class NeuralDataset extends LiftedDataset implements Serializable {
      *
      * @param network
      */
-    final void createSharedWeights(MolecularTemplate network) {
+    final void createSharedWeights(LiftedTemplate network) {
         int weightCounter = 0;
         for (Rule rule : network.rules) {
             if (rule instanceof KappaRule) {
@@ -99,14 +100,15 @@ public class NeuralDataset extends LiftedDataset implements Serializable {
      * @param net
      * @param samples
      */
-    public final void makeNeuralNetworks(MolecularTemplate net, List<Sample> samples) {
+    public final void makeNeuralNetworks(LiftedTemplate net, List<Sample> samples) {
         //Global.neuralDataset = this; //important here - not anymore
         //groundNetworks = new GroundNetwork[samples.size()];
         for (int i = 0; i < samples.size(); i++) {
             Sample sample = samples.get(i);
             sample.neuralNetwork = new GroundNetwork();
-            sample.neuralNetwork.allNeurons = new GroundNeuron[sample.getBall().groundNeurons.size()];
+            sample.neuralNetwork.allNeurons = new GroundNeuron[sample.getBall().groundNeurons.size()];  //only higher layer (no-fact) neurons!
             net.tmpActiveNet = sample.neuralNetwork;
+            net.tmpConstantNames = sample.getExample().constantNames;
             sample.neuralNetwork.createNetwork(sample, net);
             sample.targetValue = sample.getExample().getExpectedValue();
 

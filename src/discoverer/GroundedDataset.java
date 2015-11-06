@@ -62,7 +62,6 @@ public class GroundedDataset extends LiftedDataset {
 
         //k-fold stratified example(same #positives in folds) splitting structure - treated as 1fold CV here
         sampleSplitter = new SampleSplitter(Settings.folds, samples);
-
     }
 
     public GroundedDataset(String[] train, String[] test, String[] rules, String[] Pretrainedrules) {

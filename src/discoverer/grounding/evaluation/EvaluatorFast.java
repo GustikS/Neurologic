@@ -59,6 +59,7 @@ public class EvaluatorFast extends Evaluator {
         if (an.outputValue != 0.0000000) {
             return an.outputValue;  //it doesnt make sense for fact neuron (isElement) to have zero value
         }
+        
 
         //double[] inputs = new double[an.inputWeightIndices.length];
         an.sumedInputs = sharedWeights[an.offsetWeightIndex];
@@ -83,13 +84,13 @@ public class EvaluatorFast extends Evaluator {
             return 0;
         }
 
-        if (rn.inputNeuronsCompressed.length == 0) {
-            rn.outputValue = 1;
-            return 1;
-        }
-
         if (rn.outputValue != 0.0000000) {
             return rn.outputValue;
+        }
+        
+        if (rn.inputNeuronsCompressed.length == 0) {
+            rn.outputValue = 0.5;
+            return 0.5;
         }
 
         if (fullLambda) {   //all body grounding calculated separately

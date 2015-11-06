@@ -6,6 +6,7 @@
 package discoverer.grounding.network.groundNetwork;
 
 import discoverer.construction.network.KL;
+import discoverer.construction.network.LiftedTemplate;
 import discoverer.construction.network.MolecularTemplate;
 import discoverer.global.Global;
 import discoverer.grounding.network.GroundKL;
@@ -29,7 +30,7 @@ public class GroundNetwork implements Serializable {
 
     public GroundNeuron outputNeuron;
 
-    public GroundNetwork createNetwork(Sample sample, MolecularTemplate net) {
+    public GroundNetwork createNetwork(Sample sample, LiftedTemplate net) {
         name = sample.position + " : " + sample.getExample().hash;
         if (sample.getBall().getLast() instanceof GroundKappa) {
             GroundKappa gk = (GroundKappa) sample.getBall().getLast();  //runs the recursion down
@@ -55,7 +56,7 @@ public class GroundNetwork implements Serializable {
 
     public void dropOut(double dropout) {
         for (int i = 0; i < allNeurons.length; i++) {
-            allNeurons[i].dropMe = Global.getRg().nextDouble() < dropout;
+            allNeurons[i].dropMe = Global.getRandomDouble() < dropout;
         }
     }
 }

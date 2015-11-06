@@ -4,6 +4,7 @@ import discoverer.construction.NetworkFactory;
 import discoverer.construction.network.KL;
 import discoverer.construction.ExampleFactory;
 import discoverer.construction.example.Example;
+import discoverer.construction.network.LiftedTemplate;
 import discoverer.construction.network.MolecularTemplate;
 import discoverer.drawing.Dotter;
 import discoverer.drawing.GroundDotter;
@@ -25,12 +26,12 @@ public class GroundDrawTest {
         Global.setKappaActivation(Global.activationSet.id);
         Global.setWeightInit(Global.weightInitSet.handmade);
         Global.setRg(new Random(1));
-        String[] rules = FileToStringListJava6.convert("in/strings/easy-rules.txt", Integer.MAX_VALUE);
+        String[] rules = FileToStringListJava6.convert("in/strings/easy-rules2.txt", Integer.MAX_VALUE);
         
         NetworkFactory nf = new NetworkFactory();
-        MolecularTemplate net = nf.construct(rules);
+        LiftedTemplate net = nf.construct(rules);
 
-        Dotter.draw(net.last, "strings");
+        //Dotter.draw(net.last, "strings");
         
         ExampleFactory eFactory = new ExampleFactory();
         String[] examples = FileToStringListJava6.convert("in/strings/easy-examples.txt", Integer.MAX_VALUE);

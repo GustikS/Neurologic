@@ -45,7 +45,7 @@ public class StringParser {
             examples.add(string2Structure(split, line));
         }
         writeSimple(examples, "in/strings/" + filename + "-examples.txt");
-        
+
         return split;
     }
 
@@ -75,6 +75,21 @@ public class StringParser {
             alphabet.add(str.charAt(str.length() - 1) + "/1");
         }
         sb.replace(sb.lastIndexOf(","), sb.lastIndexOf(",") + 1, ".");
+        return sb.toString();
+    }
+
+    public String string2Structure(String bond, String str, String id) {
+        StringBuilder sb = new StringBuilder();
+
+        System.out.println(str);
+        for (int i = 0; i < str.length() - 1; i++) {
+            alphabet.add(str.charAt(i) + "/1");
+            sb.append(bond).append("(").append(id).append(",").append(str.charAt(i)).append("_").append(i).append(",").append(str.charAt(i + 1)).append("_").append(i + 1).append("), ");
+            sb.append(str.charAt(i)).append("(").append(str.charAt(i)).append("_").append(i).append("), ");
+        }
+        sb.append(str.charAt(str.length() - 1)).append("(").append(str.charAt(str.length() - 1)).append("_").append(str.length() - 1).append("), ");
+        alphabet.add(str.charAt(str.length() - 1) + "/1");
+
         return sb.toString();
     }
 

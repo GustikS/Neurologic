@@ -5,6 +5,7 @@
  */
 package discoverer.grounding.network.groundNetwork;
 
+import discoverer.construction.network.LiftedTemplate;
 import discoverer.construction.network.MolecularTemplate;
 import discoverer.construction.network.rules.KappaRule;
 import discoverer.global.Global;
@@ -24,8 +25,8 @@ public class AtomNeuron extends GroundNeuron {
     public RuleAggNeuron[] inputNeurons;
     public int offsetWeightIndex;
 
-    public AtomNeuron(GroundKappa grk, MolecularTemplate net) {
-        name = grk.toString();
+    public AtomNeuron(GroundKappa grk, LiftedTemplate net) {
+        name = grk.toString(net.tmpConstantNames);
         outputValue = grk.getValueAvg();
 
         groundParentsCount = grk.getGroundParents();

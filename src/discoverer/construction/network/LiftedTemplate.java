@@ -47,7 +47,8 @@ public class LiftedTemplate extends LightTemplate {
     public HashMap<GroundKL, GroundNeuron> neuronMapping; //for checking if we have already visited this groundKL?
 
     public GroundNetwork tmpActiveNet; //auxiliary to get reference from neurons to their mother network (without storing pointer in them cause of serialization)
-
+    public HashMap<Integer, String> tmpConstantNames;
+    
     public KL last;
 
     LinkedList<KL> queue = new LinkedList<>();

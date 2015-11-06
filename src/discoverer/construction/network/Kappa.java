@@ -37,7 +37,7 @@ public class Kappa extends KL {
 
     public void initOffset() {
         if (Global.getInitKappaAdaptiveOffset() > 0) {
-            offset = 1 / (2 * (Global.getRg().nextDouble() - 0.5) * Global.getInitKappaAdaptiveOffset() * rules.size());
+            offset = 1 / (2 * (Global.getRandomDouble() - 0.5) * Global.getInitKappaAdaptiveOffset() * rules.size());
         } else {
             offset = WeightInitializator.getWeight();
         }

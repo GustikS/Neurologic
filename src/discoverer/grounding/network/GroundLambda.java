@@ -82,6 +82,16 @@ public class GroundLambda extends GroundKL implements Serializable {
         return s;
     }
 
+    public String toString(HashMap<Integer, String> constNames) {
+        String s = general.getName() + "(";
+        for (Integer i : getTermList()) {
+            s += constNames.get(i) + ",";
+        }
+        s = s.substring(0, s.length() - 1);
+        s += ")#" + getId();
+        return s;
+    }
+
     public void addConjuctsAvgFrom(Set<GroundLambda> gls) {
         if (gls == null) {
             return;
@@ -141,4 +151,8 @@ public class GroundLambda extends GroundKL implements Serializable {
      }
      }
      */
+
+    public boolean isElement() {
+        return conjuncts.isEmpty() && conjunctsAvg.isEmpty();
+    }
 }

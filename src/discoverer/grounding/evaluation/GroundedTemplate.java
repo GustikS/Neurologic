@@ -20,7 +20,7 @@ public class GroundedTemplate implements Serializable {
     private Set<KappaRule> activeRules;
     //public Set<Double> inputsMax = new HashSet<>();
     //public Set<Double> inputsAvg = new HashSet<>();
-    public List<GroundKL> groundNeurons;
+    public List<GroundKL> groundNeurons;    //only neurons, no fact neurons!
 
     public GroundedTemplate() {
         valMax = null;

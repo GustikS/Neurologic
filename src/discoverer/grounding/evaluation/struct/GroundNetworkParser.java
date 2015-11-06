@@ -29,8 +29,8 @@ public class GroundNetworkParser {
     }
 
     /**
-     * traverse the ground tree/network from top literal by DFS post-order and load all neurons on the way to "neurons"
-     * + sets parent-counts right
+     * traverse the ground tree/network from top literal by DFS post-order and
+     * load all neurons on the way to "neurons" + sets parent-counts right
      *
      * @param b
      * @return
@@ -63,10 +63,11 @@ public class GroundNetworkParser {
     }
 
     /**
-     * traverse the ground tree/network from top literal by DFS post-order and load all neurons on the way to "neurons"
-     * + sets parent-counts right
+     * traverse the ground tree/network from top literal by DFS post-order and
+     * load all neurons on the way to "neurons" + sets parent-counts right
+     *
      * @param b
-     * @return 
+     * @return
      */
     public static Set<GroundKL> parseMAX(GroundedTemplate b) {
         clear();
@@ -113,6 +114,10 @@ public class GroundNetworkParser {
         if (Global.isDebugEnabled()) {
             System.out.println("counting: " + gl);
         }
+        if (gl.isElement()) {
+            facts.add(gl);
+            return;
+        }
 
         gl.incrGroundParents();  //we came to this GroundLambda from some parent
 
@@ -148,7 +153,12 @@ public class GroundNetworkParser {
 
     private static void parseMAX(GroundLambda gl) {
         gl.incrGroundParents();  //we came to this GroundLambda from some parent
-
+        
+        if (gl.isElement()) {
+            facts.add(gl);
+            return;
+        }
+        
         if (gl.getGroundParents() > 1) {
             return; // ha - if I already visited this node before - do not continue - first time visit pruning (oposite to backprop)
         }

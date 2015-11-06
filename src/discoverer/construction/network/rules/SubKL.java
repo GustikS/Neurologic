@@ -8,9 +8,11 @@ import java.util.*;
 /**
  * partially grounded kappa or lambda
  */
-public class SubKL implements Serializable {
+public abstract class SubKL implements Serializable {
 
     protected List<Terminal> termsList;
+
+    public abstract Integer getId();
 
     public List<Terminal> getTermsList() {
         return termsList;
@@ -39,4 +41,5 @@ public class SubKL implements Serializable {
     public boolean contains(Terminal term) {
         return termsList.contains(term);
     }
+
 }

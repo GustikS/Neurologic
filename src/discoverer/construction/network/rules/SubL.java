@@ -1,5 +1,6 @@
 package discoverer.construction.network.rules;
 
+import discoverer.construction.ElementMapper;
 import discoverer.construction.Terminal;
 import discoverer.construction.network.Lambda;
 import java.io.Serializable;
@@ -26,8 +27,11 @@ public class SubL extends SubKL implements Serializable {
         return sb.toString();
     }
 
-    public SubL(Lambda l) {
+    public SubL(Lambda l, boolean isHead) {
         parent = l;
+        if (!isHead && isElement() && !parent.hasId()) {
+            parent.setId(ElementMapper.map(parent.getName()));
+        }
     }
 
     @Override
@@ -85,7 +89,7 @@ public class SubL extends SubKL implements Serializable {
     }
 
     public SubL clone() {
-        SubL sl = new SubL(this.getParent());
+        SubL sl = new SubL(this.getParent(), true);
         for (Terminal t : this.getTerms()) {
             Terminal tt = new Terminal("");
             tt.setBind(t.getBind());
@@ -94,7 +98,11 @@ public class SubL extends SubKL implements Serializable {
         return sl;
     }
 
-    public boolean isElement() {
+    public final boolean isElement() {
         return parent.isElement();
+    }
+
+    public Integer getId() {
+        return parent.getId();
     }
 }

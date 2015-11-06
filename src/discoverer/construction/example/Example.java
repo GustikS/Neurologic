@@ -3,6 +3,7 @@ package discoverer.construction.example;
 import discoverer.construction.network.Kappa;
 import discoverer.construction.network.rules.SubK;
 import discoverer.construction.Terminal;
+import discoverer.construction.network.rules.SubKL;
 import java.io.Serializable;
 import java.util.*;
 
@@ -65,6 +66,11 @@ public class Example implements Serializable {
         return possibleChunks.containsKey(k.getId());
     }
 
+    /**
+     * not used (?)
+     * @param sk
+     * @return 
+     */
     public Boolean containsNG(SubK sk) {
         int len = sk.getTerms().size() + 1;
         List<Integer> ia2 = new ArrayList<Integer>(len);
@@ -79,13 +85,13 @@ public class Example implements Serializable {
         return contains2NG(ia2);
     }
 
-    public Boolean contains(SubK sk) {
-        int len = sk.getTerms().size() + 1;
+    public Boolean contains(SubKL skl) {
+        int len = skl.getTerms().size() + 1;
         int[] ia = new int[len];
 
-        ia[0] = sk.getId();
+        ia[0] = skl.getId();
         for (int i = 1; i < ia.length; i++) {
-            Terminal t = sk.getTerm(i - 1);
+            Terminal t = skl.getTerm(i - 1);
             ia[i] = t.isBind() ? t.getBind() : -1;
         }
 

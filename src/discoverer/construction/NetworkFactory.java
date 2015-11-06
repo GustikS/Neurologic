@@ -46,6 +46,13 @@ public class NetworkFactory {
      */
     public LiftedTemplate construct(String[] rules) {
         KL kl = null;
+
+        if (Global.isCheckback()) {
+            for (int i = 0; i < 42; i++) {
+                Global.getRandomDouble();   //to synchronize initizalization of new template with lambda elements
+            }
+        }
+
         for (int x = 0; x < rules.length; x++) {
             String[][] tokens = Parser.parseRule(rules[x]);
 
@@ -103,7 +110,7 @@ public class NetworkFactory {
      */
     private Lambda handleLambdaLine(String[][] tokens, String original) {
         Lambda l = lFactory.construct(tokens[1][0]);
-        SubL sl = new SubL(l);
+        SubL sl = new SubL(l, true);
         for (int i = 1; i < tokens[1].length; i++) {
             Terminal v = vFactory.construct(tokens[1][i]);
             sl.addVariable(v);
@@ -164,7 +171,7 @@ public class NetworkFactory {
 
         for (int i = 2; i < tokens.length; i++) {
             Lambda l = lFactory.construct(tokens[i][0]);
-            SubL sl = new SubL(l);
+            SubL sl = new SubL(l, false);
             for (int j = 1; j < tokens[i].length; j++) {
                 Terminal t = constructTerm(tokens[i][j]);
                 sl.addVariable(t);
@@ -192,7 +199,8 @@ public class NetworkFactory {
     }
 
     /**
-     * mergeElements saved network with a new one - replace some with pretrained weights
+     * mergeElements saved network with a new one - replace some with pretrained
+     * weights
      *
      * @param network
      * @param savedNet

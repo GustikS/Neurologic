@@ -111,11 +111,10 @@ public class ForwardChecker {
     }
 
     private static boolean checkCompute(SubL sl) {
-        /*
-         if (sl.isElement()) {
-         return example.contains(sl);
-         }
-         */
+        if (sl.isElement()) {
+            return example.contains(sl);
+        }
+
         return check(sl.getParent(), sl.getTerms());
     }
 
@@ -164,12 +163,7 @@ public class ForwardChecker {
     }
 
     private static boolean check(LambdaRule lr, List<Terminal> vars) {
-        /*
-         if (lr == null){
-         System.out.println("stop");
-         return false;
-         }
-         */
+
         lr.consumeVars(vars);
         Terminal lastBindedTerm = lr.getLastBindedVar();
 
