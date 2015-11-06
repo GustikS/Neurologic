@@ -2,6 +2,7 @@ package discoverer.grounding.network;
 
 import discoverer.construction.network.Lambda;
 import discoverer.construction.Terminal;
+import discoverer.global.Global;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,22 +13,20 @@ import java.util.Set;
 /**
  * Grounded node -- lambda = rule neuron
  */
-public class GroundLambda extends GroundKL implements Serializable{
-    
+public class GroundLambda extends GroundKL implements Serializable {
+
     private Lambda general;
-    
+
     //change this into static arrays for performance!!
-    
     private List<GroundKappa> conjuncts;
     private HashMap<GroundKappa, Integer> conjunctsAvg;
-    
+
     public List<List<GroundKappa>> fullBodyGroundings;
-    
+
     //public GroundKappa[] bodyLiterals;
     //public int[] bodyLiteralCounts;
-    
     private int conjunctsCountForAvg = 0; //number of all body-groundings for AVG
-    
+
     public GroundLambda(Lambda l, List<Terminal> terms) {
         super(terms);
         general = l;
@@ -35,7 +34,7 @@ public class GroundLambda extends GroundKL implements Serializable{
         conjunctsAvg = new HashMap<>();
         fullBodyGroundings = new ArrayList<>();
     }
-    
+
     @Override
     public GroundLambda cloneMe() {
         GroundLambda gl = new GroundLambda(general);
@@ -44,35 +43,34 @@ public class GroundLambda extends GroundKL implements Serializable{
         gl.setTermList(getTermList());
         return gl;
     }
-    
+
     public GroundLambda(Lambda k) {
         super();
         general = k;
         conjuncts = new ArrayList<GroundKappa>();
         conjunctsAvg = new HashMap<>();
     }
-    
+
     public void addConjunct(GroundKappa gk) {
         conjuncts.add(gk);
     }
-    
+
     /*
-    private void addConjunctAvg(GroundKappa gk) {
-        if (!conjunctsAvg.containsKey(gk)) {
-            getConjunctsAvg().put(gk, 0);
-        }
-        getConjunctsAvg().put(gk, getConjunctsAvg().get(gk) + 1);
-    }
-    */
-    
+     private void addConjunctAvg(GroundKappa gk) {
+     if (!conjunctsAvg.containsKey(gk)) {
+     getConjunctsAvg().put(gk, 0);
+     }
+     getConjunctsAvg().put(gk, getConjunctsAvg().get(gk) + 1);
+     }
+     */
     public List<GroundKappa> getConjuncts() {
         return conjuncts;
     }
-    
+
     public Lambda getGeneral() {
         return general;
     }
-    
+
     @Override
     public String toString() {
         String s = general.getName() + "(";
@@ -83,16 +81,18 @@ public class GroundLambda extends GroundKL implements Serializable{
         s += ")#" + getId();
         return s;
     }
-    
+
     public void addConjuctsAvgFrom(Set<GroundLambda> gls) {
         if (gls == null) {
             return;
         }
-        
+
         conjunctsCountForAvg += gls.size();  //the number of body groundings
 
         for (GroundLambda gl : gls) {   //all GroundLambdas are the same here
-            fullBodyGroundings.add(gl.conjuncts);   //also store the uncompressed representation here
+            if (Global.uncompressedLambda) {
+                fullBodyGroundings.add(gl.conjuncts);   //also store the uncompressed representation here
+            }
             for (GroundKappa gk : gl.conjuncts) {
                 if (!conjunctsAvg.containsKey(gk)) {
                     getConjunctsAvg().put(gk, 0);
@@ -131,14 +131,14 @@ public class GroundLambda extends GroundKL implements Serializable{
     }
 
     /*
-    @Override
-    public void transform2Arrays() {
-        bodyLiterals = new GroundKappa[conjunctsAvg.size()];
-        int i=0;
-        for (Map.Entry<GroundKappa, Integer> bodylit : conjunctsAvg.entrySet()) {
-            bodyLiterals[i] = bodylit.getKey();
-            bodyLiteralCounts[i++] = bodylit.getValue();
-        }
-    }
-    */
+     @Override
+     public void transform2Arrays() {
+     bodyLiterals = new GroundKappa[conjunctsAvg.size()];
+     int i=0;
+     for (Map.Entry<GroundKappa, Integer> bodylit : conjunctsAvg.entrySet()) {
+     bodyLiterals[i] = bodylit.getKey();
+     bodyLiteralCounts[i++] = bodylit.getValue();
+     }
+     }
+     */
 }

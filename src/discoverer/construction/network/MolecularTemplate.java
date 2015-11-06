@@ -44,38 +44,19 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 
 /**
- * A placeholder for the whole network and affiliated functions the network
- * itself is otherwise treated recursively by the last/final KL node
+ * 
+ *
+ * this class has some sophisticated merging options, the superclass is more
+ * lightweight
  *
  * @author Gusta
  */
-public class LiftedNetwork implements Serializable {
-
-    public double[] sharedWeights; //the shared sharedWeights
+public class MolecularTemplate extends LiftedTemplate implements Serializable {
     
-    public HashMap<Object, Integer> weightMapping;  //Kappa offsets and KappaRule's weights to indicies in sharedWeights
-
-    public HashMap<GroundKL, GroundNeuron> neuronMapping; //for checking - have we already visited this groundKL?
-    
-    public GroundNetwork tmpActiveNet; //auxiliary to get reference from neurons to their mother network (without storing pointer in them cause of serialization)
-
     //--------old stuff
-    
-    public KL last;
 
     int clustersCount;
     int elementsCount;
-
-    LinkedList<KL> queue = new LinkedList<>();
-    /*PriorityQueue<KL> queueSorted = new PriorityQueue<KL>(new Comparator<KL>() { //tmp for BFS
-     public int compare(KL kl1, KL kl2) {
-     return (kl1.toString().compareToIgnoreCase(kl2.toString()));    //lexicograhpical ordering
-     }
-     });*/
-
-    public LinkedHashSet<Rule> rules = new LinkedHashSet<>();   //=for network input/output file
-    private HashSet<Kappa> kappas = new HashSet<>();
-    private HashSet<Lambda> lambdas = new HashSet<>();
 
     private LinkedHashSet<Kappa> elements = new LinkedHashSet<>();
     LinkedHashSet<Kappa> clusters = new LinkedHashSet<>();
@@ -86,19 +67,7 @@ public class LiftedNetwork implements Serializable {
     //for weight matrix export
     KappaRule[][] weightMatrix;
 
-    public static String weightFolder = "weights/";
-    
-    
-    /**
-     * reinitialize all kappa offests and kapparule sharedWeights of the
-     * template
-     */
-    public void invalidateWeights() {
-        for (int i = 0; i < sharedWeights.length; i++) {
-            sharedWeights[i] = WeightInitializator.getWeight();
-        }
-    }
-
+    @Override
     public String toString() {
         return "rules=" + rules.size() + ",kappas=" + getKappas().size() + ", lambdas=" + getLambdas().size() + ",elements=" + getElements().size() + ",clusters=" + clustersCount;
     }
@@ -106,7 +75,8 @@ public class LiftedNetwork implements Serializable {
     /**
      * reinitialize all kappa offests and kapparule weights
      */
-    public void invalidateWeightObjects() {
+    @Override
+    public void invalidateWeights() {
         for (Kappa k : getKappas()) {
             k.initOffset();
         }
@@ -118,7 +88,7 @@ public class LiftedNetwork implements Serializable {
         }
     }
 
-    public LiftedNetwork mergeOnTop(LiftedNetwork net) {
+    public MolecularTemplate mergeOnTop(MolecularTemplate net) {
         if (net == null) {
             return this;
         }
@@ -145,7 +115,7 @@ public class LiftedNetwork implements Serializable {
             }
         }
         l1.getRules().addAll(l2.getRules());
-        LiftedNetwork network = new LiftedNetwork(last);    //pro jistotu
+        MolecularTemplate network = new MolecularTemplate(last);    //pro jistotu
 
         return network;
     }
@@ -156,7 +126,7 @@ public class LiftedNetwork implements Serializable {
      *
      * @param net
      */
-    public void merge(LiftedNetwork net) {
+    public void mergeElements(MolecularTemplate net) {
         if (net == null) {
             return;
         }
@@ -182,26 +152,14 @@ public class LiftedNetwork implements Serializable {
         Glogger.process("...succesfully replaced " + mrgs + " cluster-rule weights from pretrained template!");
     }
 
-    public LiftedNetwork(KL kl) {
-
-        last = kl;
-        queue.add(kl);
-
-        (new File(weightFolder)).mkdirs();
-
-        while (!queue.isEmpty()) {
-            KL first = queue.remove();
-            if (first instanceof Kappa) {
-                getRules((Kappa) first);
-            } else {
-                getRules((Lambda) first);
-            }
-        }
+    public MolecularTemplate(KL kl) {
+        super(kl);
         elementsCount = elements.size();
         clustersCount = clusters.size();
         createWeightMatrix();
     }
 
+    
     private void getRules(Kappa k) {
         getKappas().add(k);
         if (k.isElement()) {
@@ -215,14 +173,6 @@ public class LiftedNetwork implements Serializable {
             }
             queue.add(lam);
             rules.add(kr);
-        }
-    }
-
-    private void getRules(Lambda l) {
-        getLambdas().add(l);
-        rules.add(l.getRule());
-        for (SubK sk : l.getRule().getBody()) {
-            queue.add(sk.getParent());
         }
     }
 
@@ -248,86 +198,6 @@ public class LiftedNetwork implements Serializable {
             }
         }
         return false;
-    }
-
-    public void exportTemplate(String name) {
-        BufferedWriter test = null;
-        StringBuilder sb = new StringBuilder();
-        try {
-            test = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(weightFolder + name + "-rules.w"), "utf-8"));
-            ArrayList<Rule> rulzz = new ArrayList(rules);
-            for (int i = rulzz.size() - 1; i >= 0; i--) {
-                sb.append(rulzz.get(i)).append("\n");
-            }
-            test.write(sb.toString());
-            test.close();
-            exportOffsets(test, name);
-        } catch (UnsupportedEncodingException ex) {
-            Logger.getLogger(Saver.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(Saver.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            try {
-                test.close();
-            } catch (IOException ex) {
-                Logger.getLogger(Saver.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-    }
-
-    public static void saveNetwork(LiftedNetwork network, String name) {
-        File file = null;
-
-        if (Global.isGUI()) {
-            JFrame jf = new JFrame();
-            JFileChooser fileChooser = new JFileChooser();
-            if (fileChooser.showOpenDialog(jf) == JFileChooser.APPROVE_OPTION) {
-                file = fileChooser.getSelectedFile();
-            }
-        } else {
-            file = new File(weightFolder + name + "-networkObject");
-        }
-
-        try {
-            FileOutputStream fos = new FileOutputStream(file.getAbsoluteFile());
-            ObjectOutputStream save = new ObjectOutputStream(fos);
-            save.writeObject(network);
-            save.close();
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(Saver.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(Saver.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }
-
-    public static LiftedNetwork loadNetwork() {
-        File file = null;
-        LiftedNetwork network = null;
-
-        if (Global.isGUI()) {
-            JFrame jf = new JFrame();
-            JFileChooser fileChooser = new JFileChooser();
-            if (fileChooser.showOpenDialog(jf) == JFileChooser.APPROVE_OPTION) {
-                file = fileChooser.getSelectedFile();
-            }
-        } else {
-            file = new File(weightFolder + "networkObject");
-        }
-
-        try {
-            FileInputStream fos = new FileInputStream(file.getAbsoluteFile());
-            ObjectInputStream save = new ObjectInputStream(fos);
-            network = (LiftedNetwork) save.readObject();
-            save.close();
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(Saver.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(Saver.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Saver.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return network;
     }
 
     public void exportWeightMatrix(String name) {
@@ -363,20 +233,6 @@ public class LiftedNetwork implements Serializable {
                 Logger.getLogger(Saver.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-    }
-
-    void exportOffsets(BufferedWriter test, String name) throws IOException, FileNotFoundException, UnsupportedEncodingException {
-        LinkedList<String> kapString = new LinkedList<>();
-        test = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(weightFolder + name + "-offsets.w"), "utf-8"));
-
-        for (Kappa kap : getKappas()) {
-            kapString.add(kap + " : " + kap.getOffset() + "\n");
-        }
-        Collections.sort(kapString);
-        for (String ks : kapString) {
-            test.write(ks);
-        }
-        test.close();
     }
 
     private void createWeightMatrix() {
@@ -449,33 +305,6 @@ public class LiftedNetwork implements Serializable {
         }
     }
 
-    /**
-     * @return the kappas
-     */
-    public HashSet<Kappa> getKappas() {
-        return kappas;
-    }
-
-    /**
-     * @param kappas the kappas to set
-     */
-    public void setKappas(HashSet<Kappa> kappas) {
-        this.kappas = kappas;
-    }
-
-    /**
-     * @return the lambdas
-     */
-    public HashSet<Lambda> getLambdas() {
-        return lambdas;
-    }
-
-    /**
-     * @param lambdas the lambdas to set
-     */
-    public void setLambdas(HashSet<Lambda> lambdas) {
-        this.lambdas = lambdas;
-    }
 
     /**
      * @return the elements
@@ -492,16 +321,4 @@ public class LiftedNetwork implements Serializable {
 
     }
 
-    public boolean setWeightsFromArray(HashMap<Object, Integer> weightMapping, double[] sharedWeights) {
-        for (Rule rule : rules) {
-            if (rule instanceof KappaRule) {
-                KappaRule kr = (KappaRule) rule;
-                kr.setWeight(sharedWeights[weightMapping.get(kr)]);
-            }
-        }
-        for (Kappa kappa : getKappas()) {
-            kappa.setOffset(sharedWeights[weightMapping.get(kappa)]);
-        }
-        return true;
-    }
 }

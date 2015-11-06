@@ -40,4 +40,8 @@ public class Lambda extends KL {
         setOffset(-rule.getBodyLen() + Global.getInitLambdaAdaptiveOffset() + 0.0);
         //initialW = 0.0;
     }
+
+    public boolean isElement() {
+        return rule == null;
+    }
 }

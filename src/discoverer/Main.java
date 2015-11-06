@@ -1,11 +1,13 @@
 package discoverer;
 
+import discoverer.construction.network.LightTemplate;
 import discoverer.grounding.network.groundNetwork.NeuralCrossvalidation;
 import discoverer.crossvalidation.Crossvalidation;
 import discoverer.global.Global;
 import discoverer.global.FileToStringListJava6;
 import discoverer.global.Glogger;
 import discoverer.global.Settings;
+import discoverer.learning.Sample;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.HelpFormatter;
@@ -20,7 +22,7 @@ import org.apache.commons.cli.PosixParser;
 public class Main {
 
     //cutoff on example number
-    private static final String defaultMaxExamples = "1000";  //we can decrease the overall number of examples (stratified) for speedup
+    private static final String defaultMaxExamples = "10";  //we can decrease the overall number of examples (stratified) for speedup
     //
     public static String defaultLearningSteps = "4000";  //learnSteps per epocha
     public static String defaultLearningEpochs = "1";  //learn epochae = grounding cycles
@@ -311,9 +313,9 @@ public class Main {
         //create logger for all messages within the program
         Glogger.init();
 
-        LiftedDataset groundDataset = createDataset(test, exs, rules, pretrainedRules);
+        LiftedDataset groundedDataset = createDataset(test, exs, rules, pretrainedRules);
 
-        learnOn(groundDataset);
+        learnOn(groundedDataset);
     }
 
     /**
@@ -333,26 +335,43 @@ public class Main {
 
         if (Global.loadGroundedDataset) {
             sampleSet = LiftedDataset.loadDataset(Settings.getDataset().replaceAll("-", "/") + ".ser");
-            if (sampleSet != null) {
-                return sampleSet;
+        }
+        
+        if (sampleSet == null) {
+            if (test == null) {
+                Glogger.info("no test set, will do " + Settings.folds + "-fold crossvalidation");
+                sampleSet = new GroundedDataset(exs, rules, pretrainedRules);
+            } else {
+                Glogger.info("test set provided, will do simple train-test evaluation as (1-fold) crossvalidation");
+                sampleSet = new GroundedDataset(exs, test, rules, pretrainedRules);
             }
         }
 
-        if (test == null) {
-            Glogger.info("no test set, will do crossvalidation");
-            sampleSet = new GroundedDataset(exs, rules, pretrainedRules);
-        } else {
-            Glogger.info("test set provided, will do simple train-test evaluation as (1-fold) crossvalidation");
-            sampleSet = new GroundedDataset(exs, test, rules, pretrainedRules);
-        }
-        if (Global.fastVersion) {
+        if (Global.fastVersion && !(sampleSet instanceof NeuralDataset)) {
             sampleSet = new NeuralDataset(sampleSet);
         }
 
-        if (Global.saveDataset) {
+        if (Global.saveGroundedDataset) {
+            /*
+            sampleSet.saveSampleSet(Settings.getDataset().replaceAll("-", "/") + "samplesLK.ser", sampleSet.sampleSplitter.samples);
+            
+            sampleSet.saveDataset(Settings.getDataset().replaceAll("-", "/") + "Groundeddataset.ser");
+            
+            sampleSet = new NeuralDataset(sampleSet);
+            sampleSet.saveDataset(Settings.getDataset().replaceAll("-", "/") + "NeuralDataset.ser");
+            
+            sampleSet.saveSampleSet(Settings.getDataset().replaceAll("-", "/") + "samplesBoth.ser", sampleSet.sampleSplitter.samples);
+            for (Sample sam : sampleSet.sampleSplitter.samples) {
+                sam.makeMeSmall();
+            }
+            sampleSet.saveSampleSet(Settings.getDataset().replaceAll("-", "/") + "samplesNeural.ser", sampleSet.sampleSplitter.samples);
+            sampleSet.saveDataset(Settings.getDataset().replaceAll("-", "/") + "NeuralDatasetSamples1.ser");
+            
+            sampleSet.network = new LightTemplate(sampleSet.network.sharedWeights, sampleSet.network.name2weight);
+            */
             sampleSet.saveDataset(Settings.getDataset().replaceAll("-", "/") + ".ser");
+            
         }
-
         return sampleSet;
     }
 

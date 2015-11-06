@@ -3,7 +3,6 @@ package discoverer.grounding.evaluation;
 import discoverer.grounding.network.GroundKL;
 import discoverer.grounding.network.GroundLambda;
 import discoverer.construction.network.rules.KappaRule;
-import discoverer.grounding.network.groundNetwork.GroundStructure;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -11,7 +10,7 @@ import java.util.List;
 import java.util.Set;
 
 /* object for representing the result of substitution search*/
-public class GroundedTemplate extends GroundStructure implements Serializable {
+public class GroundedTemplate implements Serializable {
 
     public Double valMax;  //the value is always synchronized with the value of the Object last
     public Double valAvg;

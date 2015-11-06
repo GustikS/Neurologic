@@ -4,6 +4,9 @@ import discoverer.construction.network.KL;
 import discoverer.construction.network.Kappa;
 import discoverer.construction.network.rules.KappaRule;
 import discoverer.construction.network.Lambda;
+import discoverer.construction.network.LiftedTemplate;
+import discoverer.construction.network.LightTemplate;
+import discoverer.construction.network.MolecularTemplate;
 import discoverer.construction.network.rules.LambdaRule;
 import discoverer.construction.network.rules.SubK;
 import discoverer.global.Glogger;
@@ -96,7 +99,13 @@ public class Dotter {
         dot.clear();
     }
 
-    public static void draw(KL kl, String nam) {
+    public static void draw(LightTemplate net, String nam) {
+        KL kl = null;
+        if (net instanceof MolecularTemplate){
+            kl = ((MolecularTemplate) net).last;
+        } else {
+            Glogger.err("Drawing of the lightweight LiftedNetwork not supported yet");
+        }
         dot.add(intro);
         name = nam;
 

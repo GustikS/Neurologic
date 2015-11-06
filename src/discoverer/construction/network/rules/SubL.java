@@ -93,4 +93,8 @@ public class SubL extends SubKL implements Serializable {
         }
         return sl;
     }
+
+    public boolean isElement() {
+        return parent.isElement();
+    }
 }

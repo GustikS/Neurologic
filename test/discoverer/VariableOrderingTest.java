@@ -4,7 +4,7 @@ import discoverer.construction.Terminal;
 import discoverer.construction.network.rules.LambdaRule;
 import discoverer.construction.NetworkFactory;
 import discoverer.construction.network.Lambda;
-import discoverer.construction.network.LiftedNetwork;
+import discoverer.construction.network.MolecularTemplate;
 import discoverer.global.Global;
 import java.util.*;
 import static org.junit.Assert.*;
@@ -23,7 +23,7 @@ public class VariableOrderingTest {
         };
 
         NetworkFactory nf = new NetworkFactory();
-        LiftedNetwork net = nf.construct(rules);
+        MolecularTemplate net = nf.construct(rules);
         Lambda l = (Lambda) net.last;
         LambdaRule lr = l.getRule();
 

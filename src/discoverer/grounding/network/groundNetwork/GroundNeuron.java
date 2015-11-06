@@ -30,4 +30,9 @@ public class GroundNeuron implements Serializable {
         groundParentsChecked = 0;
         groundParentDerivativeAccumulated = 0;
     }
+    
+    @Override
+    public String toString() {
+        return name;
+    }
 }

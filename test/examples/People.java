@@ -5,7 +5,7 @@ import discoverer.construction.NetworkFactory;
 import discoverer.construction.network.KL;
 import discoverer.construction.ExampleFactory;
 import discoverer.construction.example.Example;
-import discoverer.construction.network.LiftedNetwork;
+import discoverer.construction.network.MolecularTemplate;
 import discoverer.drawing.Dotter;
 import discoverer.drawing.GroundDotter;
 import discoverer.global.Global;
@@ -32,7 +32,7 @@ public class People {
         String example = "1.0 male(bob),female(alice),parent(bob,alice),parent(eve,alice).";
         
         NetworkFactory nf = new NetworkFactory();
-        LiftedNetwork last = nf.construct(rules);
+        MolecularTemplate last = nf.construct(rules);
 
         ExampleFactory ef = new ExampleFactory();
         Example e = ef.construct(example);

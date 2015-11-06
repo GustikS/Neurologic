@@ -6,8 +6,9 @@
 package discoverer.grounding.network.groundNetwork;
 
 import discoverer.NeuralDataset;
+import discoverer.construction.network.LightTemplate;
 import discoverer.learning.learners.Learning;
-import discoverer.construction.network.LiftedNetwork;
+import discoverer.construction.network.MolecularTemplate;
 import discoverer.global.Global;
 import discoverer.global.Glogger;
 import discoverer.global.Settings;
@@ -26,7 +27,7 @@ import java.util.List;
  */
 public class LearnerFast extends Learning {
 
-    LiftedNetwork liftedTemplate;
+    LightTemplate liftedTemplate;
 
     final int learningSteps = Settings.learningSteps;
     final int restartCount = Settings.restartCount;
@@ -39,7 +40,7 @@ public class LearnerFast extends Learning {
     private double[] bestWeights;   //for saving
     private LearningStep bestResult;
 
-    public Results solveFast(LiftedNetwork net, List<Sample> roundStore) {
+    public Results solveFast(LightTemplate net, List<Sample> roundStore) {
         liftedTemplate = net;
 
         Glogger.clock("starting to solveFast");

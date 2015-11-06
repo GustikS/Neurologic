@@ -9,7 +9,7 @@ import discoverer.construction.ExampleFactory;
 import discoverer.construction.NetworkFactory;
 import discoverer.construction.example.Example;
 import discoverer.construction.network.Kappa;
-import discoverer.construction.network.LiftedNetwork;
+import discoverer.construction.network.MolecularTemplate;
 import discoverer.construction.network.rules.KappaRule;
 import discoverer.drawing.Dotter;
 import discoverer.drawing.GroundDotter;
@@ -45,7 +45,7 @@ public class StringTest {
         String[] rules = FileToStringListJava6.convert("in/strings/easy-rules.txt", Integer.MAX_VALUE);
 
         NetworkFactory nf = new NetworkFactory();
-        LiftedNetwork net = nf.construct(rules);
+        MolecularTemplate net = nf.construct(rules);
 
         Dotter.draw(net.last, "strings");
 
@@ -67,7 +67,7 @@ public class StringTest {
         String[] rules = FileToStringListJava6.convert("in/strings/easy-rules.txt", Integer.MAX_VALUE);
 
         NetworkFactory nf = new NetworkFactory();
-        LiftedNetwork net = nf.construct(rules);
+        MolecularTemplate net = nf.construct(rules);
 
         Dotter.draw(net.last, "strings");
 

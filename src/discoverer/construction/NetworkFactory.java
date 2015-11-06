@@ -12,7 +12,8 @@ import discoverer.construction.network.Kappa;
 import discoverer.construction.network.KappaFactory;
 import discoverer.construction.network.Lambda;
 import discoverer.construction.network.LambdaFactory;
-import discoverer.construction.network.LiftedNetwork;
+import discoverer.construction.network.LiftedTemplate;
+import discoverer.construction.network.MolecularTemplate;
 import discoverer.global.Global;
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +44,7 @@ public class NetworkFactory {
      * @param rules
      * @return
      */
-    public LiftedNetwork construct(String[] rules) {
+    public LiftedTemplate construct(String[] rules) {
         KL kl = null;
         for (int x = 0; x < rules.length; x++) {
             String[][] tokens = Parser.parseRule(rules[x]);
@@ -64,8 +65,12 @@ public class NetworkFactory {
             }
         }
         //setup network
-        LiftedNetwork network = new LiftedNetwork(kl);  //a wrapper for the last KL literal
-        //---
+        LiftedTemplate network;
+        if (Global.molecularTemplates) {
+            network = new MolecularTemplate(kl);  //a wrapper for the last KL literal
+        } else {
+            network = new LiftedTemplate(kl);
+        }
         return network;
     }
 
@@ -187,7 +192,7 @@ public class NetworkFactory {
     }
 
     /**
-     * merge saved network with a new one - replace some with pretrained weights
+     * mergeElements saved network with a new one - replace some with pretrained weights
      *
      * @param network
      * @param savedNet

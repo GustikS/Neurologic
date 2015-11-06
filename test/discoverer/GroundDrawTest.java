@@ -4,7 +4,7 @@ import discoverer.construction.NetworkFactory;
 import discoverer.construction.network.KL;
 import discoverer.construction.ExampleFactory;
 import discoverer.construction.example.Example;
-import discoverer.construction.network.LiftedNetwork;
+import discoverer.construction.network.MolecularTemplate;
 import discoverer.drawing.Dotter;
 import discoverer.drawing.GroundDotter;
 import discoverer.global.FileToStringListJava6;
@@ -28,7 +28,7 @@ public class GroundDrawTest {
         String[] rules = FileToStringListJava6.convert("in/strings/easy-rules.txt", Integer.MAX_VALUE);
         
         NetworkFactory nf = new NetworkFactory();
-        LiftedNetwork net = nf.construct(rules);
+        MolecularTemplate net = nf.construct(rules);
 
         Dotter.draw(net.last, "strings");
         
@@ -79,7 +79,7 @@ public class GroundDrawTest {
 
         String[] ex = { "1.0 b(b,b), b(a,b), b(b,c), b(c,a), b(c,d), b(c,e), atom(a,c), atom(b,c), atom(c,c), atom(d,cl), atom(d,br).", };
         NetworkFactory nf = new NetworkFactory();
-        LiftedNetwork last = nf.construct(rules);
+        MolecularTemplate last = nf.construct(rules);
 
         ExampleFactory eFactory = new ExampleFactory();
         Example e = eFactory.construct(ex[0]);
@@ -121,7 +121,7 @@ public class GroundDrawTest {
 
         String[] ex = { "1.0 b(b,b), b(a,b), b(b,c), b(c,a), b(c,d), b(c,e), b(d,e), atom(a,c), atom(b,c), atom(c,c), atom(d,cl), atom(d,br).", };
         NetworkFactory nf = new NetworkFactory();
-        LiftedNetwork last = nf.construct(rules);
+        MolecularTemplate last = nf.construct(rules);
 
         ExampleFactory eFactory = new ExampleFactory();
         Example e = eFactory.construct(ex[0]);

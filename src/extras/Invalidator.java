@@ -4,7 +4,7 @@ import discoverer.construction.network.KL;
 import discoverer.construction.network.Kappa;
 import discoverer.construction.network.rules.KappaRule;
 import discoverer.construction.network.Lambda;
-import discoverer.construction.network.LiftedNetwork;
+import discoverer.construction.network.MolecularTemplate;
 import discoverer.construction.network.rules.SubK;
 import discoverer.construction.network.WeightInitializator;
 
@@ -12,8 +12,8 @@ import discoverer.construction.network.WeightInitializator;
  * Invalidator for edge weights
  */
 public class Invalidator {
-    public static void invalidate(LiftedNetwork net) {
-        KL kl = net.last;   //now after introducing LiftedNetwork-class this recursion could be shrotcuted by going throug arraylist of rules only
+    public static void invalidate(MolecularTemplate net) {
+        KL kl = net.last;   //now after introducing MolecularTemplate-class this recursion could be shrotcuted by going throug arraylist of rules only
         
         if (kl instanceof Kappa)
             invalidate((Kappa) kl);

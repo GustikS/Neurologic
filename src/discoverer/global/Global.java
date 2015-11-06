@@ -49,15 +49,17 @@ public final class Global {
     private static boolean initWithAVG = false;
     private static boolean loadNetworkObject = false;
     private static boolean GUI = false;
-    private static mergingOptions merging = mergingOptions.weights;
+    private static mergingOptions merging = null;
 
     public static boolean exporting = true;
     public static boolean drawing = false;
     public static boolean longName = false;
-    public static boolean saveDataset = true;
-    public static boolean loadGroundedDataset = true;
+    public static boolean saveGroundedDataset = true;
+    public static boolean loadGroundedDataset = false;
     public static boolean uncompressedLambda = false;
     public static boolean fastVersion = true;
+    public static boolean memoryLight = false;  //saves 60% by removing groundKL structures (keeps only neural), makes sense with fastVersion on only
+    public static boolean molecularTemplates = true;
 
     /**
      * @return the merging

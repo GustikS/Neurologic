@@ -6,7 +6,7 @@
 package discoverer.learning.learners;
 
 import discoverer.construction.example.Example;
-import discoverer.construction.network.LiftedNetwork;
+import discoverer.construction.network.MolecularTemplate;
 import discoverer.global.Global;
 import discoverer.global.Glogger;
 import discoverer.global.Settings;
@@ -30,7 +30,7 @@ import java.util.List;
 public class LearnerCheckback extends Learning{
     
     //----------------------OLD STUFF (for backward copatibility testing)-----------------------------
-    public Results checkback(LiftedNetwork last, List<Sample> roundStore) {
+    public Results checkback(MolecularTemplate last, List<Sample> roundStore) {
         
         Glogger.process("-------------checkBack----------------");
         for (int a = 0; a < Settings.restartCount; a++) {    //restarting the whole procedure
@@ -72,7 +72,7 @@ public class LearnerCheckback extends Learning{
         return results;
     }
 
-    public Results checkbackAvg(LiftedNetwork last, List<Sample> roundStore) {
+    public Results checkbackAvg(MolecularTemplate last, List<Sample> roundStore) {
         Results res;
         Glogger.process("-------------checkBackAVG----------------");
         for (int a = 0; a < Settings.restartCount; a++) {    //restarting the whole procedure

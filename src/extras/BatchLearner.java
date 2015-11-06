@@ -3,7 +3,7 @@ package extras;
 import discoverer.construction.example.Example;
 import discoverer.construction.network.KL;
 import discoverer.construction.network.Kappa;
-import discoverer.construction.network.LiftedNetwork;
+import discoverer.construction.network.MolecularTemplate;
 import discoverer.construction.network.rules.KappaRule;
 import discoverer.global.Global;
 import discoverer.global.Settings;
@@ -80,7 +80,7 @@ public class BatchLearner {
      * @param learnRate lrate
      * @param restartCount experimental restarted strategy
      */
-    public Results solve(LiftedNetwork last, List<Sample> roundStore) {
+    public Results solve(MolecularTemplate last, List<Sample> roundStore) {
         
         Results results = null;
         for (int a = 0; a < Settings.restartCount; a++) {

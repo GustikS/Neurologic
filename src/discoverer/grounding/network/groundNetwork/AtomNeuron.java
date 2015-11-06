@@ -5,7 +5,7 @@
  */
 package discoverer.grounding.network.groundNetwork;
 
-import discoverer.construction.network.LiftedNetwork;
+import discoverer.construction.network.MolecularTemplate;
 import discoverer.construction.network.rules.KappaRule;
 import discoverer.global.Global;
 import discoverer.global.Tuple;
@@ -24,7 +24,7 @@ public class AtomNeuron extends GroundNeuron {
     public RuleAggNeuron[] inputNeurons;
     public int offsetWeightIndex;
 
-    public AtomNeuron(GroundKappa grk, LiftedNetwork net) {
+    public AtomNeuron(GroundKappa grk, MolecularTemplate net) {
         name = grk.toString();
         outputValue = grk.getValueAvg();
 
@@ -52,9 +52,5 @@ public class AtomNeuron extends GroundNeuron {
             net.sharedWeights[inputWeightIndices[i++]] = grl.y.getWeight();
         }
         net.tmpActiveNet.addNeuron(this); //rather put these leaking "this" on the end of contructor
-    }
-
-    public String toString() {
-        return name;
     }
 }

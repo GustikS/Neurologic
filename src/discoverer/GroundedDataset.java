@@ -10,7 +10,7 @@ import discoverer.construction.example.Example;
 import discoverer.construction.network.KL;
 import discoverer.construction.network.Kappa;
 import discoverer.construction.network.Lambda;
-import discoverer.construction.network.LiftedNetwork;
+import discoverer.construction.network.MolecularTemplate;
 import discoverer.construction.network.WeightInitializator;
 import discoverer.construction.network.rules.KappaRule;
 import discoverer.construction.network.rules.Rule;
@@ -57,8 +57,9 @@ public class GroundedDataset extends LiftedDataset {
         examples = createExamples(ex, Settings.maxExamples);
         Glogger.process("created example structures");
 
-        samples = prepareGroundings(examples, network);
+        samples = prepareGroundings(examples, (MolecularTemplate) network);
         Glogger.process("prepared network groundings");
+
         //k-fold stratified example(same #positives in folds) splitting structure - treated as 1fold CV here
         sampleSplitter = new SampleSplitter(Settings.folds, samples);
 
@@ -72,8 +73,8 @@ public class GroundedDataset extends LiftedDataset {
         List<Example> testEx = createExamples(test, Settings.maxExamples);
         Glogger.process("created example structures");
 
-        List<Sample> trainSamples = prepareGroundings(examples, network);
-        List<Sample> testSamples = prepareGroundings(examples, network);
+        List<Sample> trainSamples = prepareGroundings(examples, (MolecularTemplate) network);
+        List<Sample> testSamples = prepareGroundings(examples, (MolecularTemplate) network);
         Glogger.process("prepared network groundings");
 
         examples = trainEx;
@@ -81,7 +82,7 @@ public class GroundedDataset extends LiftedDataset {
 
         //k-fold stratified example(same #positives in folds) splitting structure - treated as 1fold CV here
         sampleSplitter = new SampleSplitter(trainSamples, testSamples);
-        
+
     }
 
     /**
@@ -94,7 +95,7 @@ public class GroundedDataset extends LiftedDataset {
      * @param last output node
      * @return list with balls from first run
      */
-    public final List<Sample> prepareGroundings(List<Example> examples, LiftedNetwork net) {
+    public final List<Sample> prepareGroundings(List<Example> examples, MolecularTemplate net) {
         //find max. and average substitution for all examples
         ForwardChecker.exnum = 0;
         List<Sample> sampleStore = new ArrayList<>(examples.size());
@@ -106,7 +107,7 @@ public class GroundedDataset extends LiftedDataset {
             Glogger.info("example: " + e + " , maxVal: " + b.valMax + ", avgVal: " + b.valAvg);
             sampleStore.add(new Sample(e, b));
         }
-
+        
         Glogger.process("...done with intial grounding of examples");
 
         //here calculate for each proof-tree(=GroundedTemplate b = ground network) numbers of parents for each GroundKappa/Lambda

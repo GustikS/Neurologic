@@ -9,7 +9,8 @@ import discoverer.construction.ExampleFactory;
 import discoverer.global.Global;
 import discoverer.construction.network.KL;
 import discoverer.construction.NetworkFactory;
-import discoverer.construction.network.LiftedNetwork;
+import discoverer.construction.network.LightTemplate;
+import discoverer.construction.network.MolecularTemplate;
 import discoverer.construction.network.rules.KappaRule;
 import discoverer.construction.network.rules.Rule;
 import discoverer.drawing.Dotter;
@@ -53,14 +54,14 @@ public class Crossvalidation {
         splitter = ss;
     }
 
-    public final void trainTest(LiftedNetwork network, List<Sample> trainEx, List<Sample> testEx, int fold) {
+    public final void trainTest(LightTemplate network, List<Sample> trainEx, List<Sample> testEx, int fold) {
         if (Global.exporting) {
             network.exportWeightMatrix("init-fold" + fold);
         }
 
         Glogger.process("------------------processing fold " + fold + "----------------------");
 
-        Results res = train(network, trainEx);
+        Results res = this.train(network, trainEx);
         Glogger.process("--------------finished training, going to test----------------------");
         trainErr += res.getLearningError();
         testErr += this.test(network, res, testEx);
@@ -69,10 +70,10 @@ public class Crossvalidation {
         if (Global.exporting) {
             network.exportTemplate("learned-fold" + fold);
             network.exportWeightMatrix("learned-fold" + fold);
-            LiftedNetwork.saveNetwork(network, "learned-fold" + fold);
+            MolecularTemplate.saveNetwork(network, "learned-fold" + fold);
         }
         if (Global.drawing) {
-            Dotter.draw(network.last, "learned_fold" + fold);
+            Dotter.draw(network, "learned_fold" + fold);
         }
         
         Glogger.LogRes("--------------");
@@ -100,7 +101,7 @@ public class Crossvalidation {
 
             trainTest(dataset.network, dataset.sampleSplitter.getTrain(), dataset.sampleSplitter.getTest(), dataset.sampleSplitter.testFold);
             //Invalidator.invalidate(network); //1st
-            dataset.network.invalidateWeightObjects();
+            dataset.network.invalidateWeights();
             
             dataset.network.merge(dataset.pretrainedNetwork); // 2nd
         }
@@ -155,9 +156,10 @@ public class Crossvalidation {
      * @param learnRate
      * @return
      */
-    public Results train(LiftedNetwork network, List<Sample> examples) {
+    public Results train(LightTemplate net, List<Sample> examples) {
         //double thresh;
         Results res = null;
+        MolecularTemplate network = (MolecularTemplate) net;
 
         if (Global.isCheckback()) {
             if (Global.getGrounding() == Global.groundingSet.avg) {
@@ -178,9 +180,6 @@ public class Crossvalidation {
                 LearnerIterative s = new LearnerIterative();
                 res = s.solveMaxIterative(network, examples);
             }
-        } else if (Global.fastVersion) {
-            LearnerFast s = new LearnerFast();
-            res = s.solveFast(network, examples);
         } else {
             if (Global.getGrounding() == Global.groundingSet.avg) {
                 LearnerStandard s = new LearnerStandard();
@@ -197,12 +196,14 @@ public class Crossvalidation {
     /**
      * non-fast(neural) version!
      * perform grounding on examples again!
+     * @param netw
      * @param net
      * @param res
      * @param examples
      * @return 
      */
-    public double test(LiftedNetwork net, Results res, List<Sample> examples) {
+    public double test(LightTemplate netw, Results res, List<Sample> examples) {
+        MolecularTemplate net = (MolecularTemplate) netw;
         KL network = net.last;
         ForwardChecker.exnum = 0;
         double error = 0.0;

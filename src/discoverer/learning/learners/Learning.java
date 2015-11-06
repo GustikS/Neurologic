@@ -3,7 +3,7 @@ package discoverer.learning.learners;
 import discoverer.grounding.evaluation.struct.GroundNetworkParser;
 import discoverer.construction.example.Example;
 import discoverer.construction.network.Kappa;
-import discoverer.construction.network.LiftedNetwork;
+import discoverer.construction.network.MolecularTemplate;
 import discoverer.construction.network.rules.KappaRule;
 import discoverer.global.Global;
 import discoverer.global.Glogger;
@@ -105,7 +105,7 @@ public class Learning {
         return Global.getLearnDecayA() / (Global.getLearnDecayB() + step);
     }
 
-    protected Results endTraining(List<Sample> roundStore, LiftedNetwork net) {
+    protected Results endTraining(List<Sample> roundStore, MolecularTemplate net) {
         //learning finished!
         Glogger.process("backpropagation on fold finished");
         //LOADING the final best model from training
@@ -154,7 +154,7 @@ public class Learning {
         }
     }
 
-    protected Results saveTemplate(List<Sample> roundStore, LiftedNetwork net) {
+    protected Results saveTemplate(List<Sample> roundStore, MolecularTemplate net) {
         //need to evaluate results for the whole batch separatelly (after all example evaluations)
         evaluate(roundStore);
 
@@ -202,7 +202,7 @@ public class Learning {
 
     }
 
-    protected void reGround(List<Sample> roundStore, LiftedNetwork net) {
+    protected void reGround(List<Sample> roundStore, MolecularTemplate net) {
         results.clear();
         ForwardChecker.exnum = 0;
         for (Sample roundElement : roundStore) {

@@ -12,6 +12,7 @@ public class Sample implements Serializable {
 
     public int position;
 
+    //these are empty in the memoryLight version
     private Example example = null;
     private GroundedTemplate ball = null;
 
@@ -48,5 +49,9 @@ public class Sample implements Serializable {
     public void makeMeSmall() {
         setExample(null);
         setBall(null);
+    }
+    
+    public void deleteNeurons() {
+        neuralNetwork = null;
     }
 }

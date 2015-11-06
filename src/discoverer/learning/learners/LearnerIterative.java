@@ -6,7 +6,7 @@
 package discoverer.learning.learners;
 
 import discoverer.construction.example.Example;
-import discoverer.construction.network.LiftedNetwork;
+import discoverer.construction.network.MolecularTemplate;
 import discoverer.global.Global;
 import discoverer.global.Glogger;
 import discoverer.global.Settings;
@@ -39,7 +39,7 @@ public class LearnerIterative extends LearnerStandard {
      * @param learnRate
      * @return
      */
-    public Results solveAvgIterative(LiftedNetwork last, List<Sample> roundStore) {
+    public Results solveAvgIterative(MolecularTemplate last, List<Sample> roundStore) {
 
         int restart = 0;
         int step = 0;
@@ -104,7 +104,7 @@ public class LearnerIterative extends LearnerStandard {
      * @param learnRate
      * @return
      */
-    public Results solveMaxIterative(LiftedNetwork last, List<Sample> roundStore) {
+    public Results solveMaxIterative(MolecularTemplate last, List<Sample> roundStore) {
         
         int restart = 0;
         int step = 0;

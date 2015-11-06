@@ -5,7 +5,7 @@
  */
 package discoverer.grounding.network.groundNetwork;
 
-import discoverer.construction.network.LiftedNetwork;
+import discoverer.construction.network.MolecularTemplate;
 import discoverer.global.Global;
 import discoverer.grounding.network.GroundKappa;
 import discoverer.grounding.network.GroundLambda;
@@ -31,7 +31,7 @@ public class RuleAggNeuron extends GroundNeuron {
     public double lambdaOffset;
 
     //public GroundLambda grl;
-    RuleAggNeuron(GroundLambda gl, LiftedNetwork net) {
+    RuleAggNeuron(GroundLambda gl, MolecularTemplate net) {
         name = gl.toString();
         outputValue = gl.getValueAvg();
         //grl = gl;
@@ -79,10 +79,5 @@ public class RuleAggNeuron extends GroundNeuron {
             }
         }
         net.tmpActiveNet.addNeuron(this); //rather put these "this" on the end of contructor
-    }
-
-    @Override
-    public String toString() {
-        return name;
     }
 }

@@ -6,7 +6,7 @@
 package discoverer.learning.learners;
 
 import discoverer.construction.example.Example;
-import discoverer.construction.network.LiftedNetwork;
+import discoverer.construction.network.MolecularTemplate;
 import discoverer.global.Global;
 import discoverer.global.Glogger;
 import discoverer.global.Settings;
@@ -48,7 +48,7 @@ public class LearnerStandard extends Learning {
      * @param learnRate
      * @return
      */
-    public Results solveMax(LiftedNetwork last, List<Sample> roundStore) {
+    public Results solveMax(MolecularTemplate last, List<Sample> roundStore) {
 
         Glogger.process("-------------solveMax----------------");
         for (int a = 0; a < Settings.restartCount; a++) {    //restarting the whole procedure
@@ -113,7 +113,7 @@ public class LearnerStandard extends Learning {
      * @param learnRate
      * @return
      */
-    public Results solveAvg(LiftedNetwork last, List<Sample> roundStore) {
+    public Results solveAvg(MolecularTemplate last, List<Sample> roundStore) {
 
         //evaluate(roundStore);
         long time0 = System.currentTimeMillis();
@@ -153,7 +153,7 @@ public class LearnerStandard extends Learning {
             }
             saveTemplate(roundStore, last);
             Glogger.LogTrain("...restart " + a);
-            last.invalidateWeightObjects();
+            last.invalidateWeights();
             //Invalidator.invalidate(last);       //reset all sharedWeights before restart
         }
         Glogger.info("finished training");

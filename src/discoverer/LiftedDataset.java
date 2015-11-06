@@ -10,7 +10,9 @@ import discoverer.construction.ExampleFactory;
 import discoverer.construction.NetworkFactory;
 import discoverer.construction.example.Example;
 import discoverer.construction.network.Kappa;
-import discoverer.construction.network.LiftedNetwork;
+import discoverer.construction.network.LiftedTemplate;
+import discoverer.construction.network.LightTemplate;
+import discoverer.construction.network.MolecularTemplate;
 import discoverer.construction.network.rules.KappaRule;
 import discoverer.construction.network.rules.Rule;
 import discoverer.drawing.Dotter;
@@ -35,10 +37,10 @@ import java.util.List;
  */
 public class LiftedDataset implements Serializable {
 
-    public LiftedNetwork network;
+    public LightTemplate network;
 
     String[] pretrained = null;
-    public LiftedNetwork pretrainedNetwork = null;
+    public LightTemplate pretrainedNetwork = null;
 
     public SampleSplitter sampleSplitter;
 
@@ -54,44 +56,48 @@ public class LiftedDataset implements Serializable {
         //createSharedWeights();
     }
 
-    private LiftedNetwork createNetworkMerge(String[] rules) {
+    private LiftedTemplate createNetworkMerge(String[] rules) {
+        LiftedTemplate pretrainedN = null;
         if (pretrained != null && pretrained.length > 0) {
-            pretrainedNetwork = createNetwork(pretrained, "pretrained"); // 1st
+            pretrainedN = createNetwork(pretrained, "pretrained"); // 1st
         }
 
-        network = createNetwork(rules, "network"); // 2nd
+        LiftedTemplate net = createNetwork(rules, "network"); // 2nd
 
         if (Global.getMerging() == Global.mergingOptions.weights) {
-            network.merge(pretrainedNetwork); // 3rd
-            Glogger.process("merged weights with template of : " + pretrainedNetwork);
+            net.merge(pretrainedN); // 3rd
+            Glogger.process("merged weights with template of : " + pretrainedN);
         }
         if (Global.getMerging() == Global.mergingOptions.onTop) {
-            network = network.mergeOnTop(pretrainedNetwork); // 3rd
-            Glogger.process("merged structures on top (side by side) with template of : " + pretrainedNetwork);
+            net = net.mergeOnTop(pretrainedN); // 3rd
+            Glogger.process("merged structures on top (side by side) with template of : " + pretrainedN);
         }
 
         if (Global.drawing) {
-            Dotter.draw(network.last);
+            Dotter.draw(net.last);
         }
 
         if (Global.exporting) {
-            network.exportTemplate("merged");
-            network.exportWeightMatrix("merged");
+            net.exportTemplate("merged");
+            net.exportWeightMatrix("merged");
         }
 
-        return network;
+        network = net;
+        pretrainedNetwork = pretrainedN;
+
+        return net;
     }
 
-    final LiftedNetwork createNetwork(String[] rules, String name) {
+    final LiftedTemplate createNetwork(String[] rules, String name) {
         //factory + subfactories initialization
         NetworkFactory nf = null;
         //constructs the whole L-K network from rules with support of grounded classes and element mappers, return LAST line rule's literal(=KL)!
-        LiftedNetwork net = null;
+        LiftedTemplate net = null;
 
         if (rules.length == 0) {
             Glogger.out("network template -" + name + "- is empty, may try to load manually if GUI is on...");
             if (Global.isLoadLiftedNetworkObject()) {
-                net = LiftedNetwork.loadNetwork();
+                net = LiftedTemplate.loadNetwork();
                 return net;
             }
             return null;
@@ -172,15 +178,43 @@ public class LiftedDataset implements Serializable {
     public static LiftedDataset loadDataset(String path) {
         LiftedDataset sampleStore = null;
         try {
-            Glogger.process("loading grounded dataset from a file: " + path + ".ser");
+            Glogger.process("trying to load grounded dataset from a file: " + path);
             FileInputStream in = new FileInputStream(path);
             ObjectInputStream ois = new ObjectInputStream(in);
             sampleStore = (LiftedDataset) (ois.readObject());
             Glogger.process("grounded network examples succesfully loaded from : " + path + ".ser");
         } catch (IOException | ClassNotFoundException e) {
-            Glogger.err("Problem loading dataset: " + e);
+            Glogger.info("Problem loading grounded dataset: " + e);
+            Glogger.info("-> Will try to ground the dataset as ussual instead");
         }
         return sampleStore;
     }
 
+    public boolean saveSampleSet(String path, List<Sample> sampleSet){
+        try {
+            Glogger.process("Saving grounded dataset...");
+            FileOutputStream out = new FileOutputStream(path);
+            ObjectOutputStream oos = new ObjectOutputStream(out);
+            oos.writeObject(sampleSet);
+            oos.flush();
+            Glogger.process("Successfully Saved grounded dataset into: " + path);
+            return true;
+        } catch (Exception e) {
+            Glogger.err("Problem serializing: " + e);
+            return false;
+        }
+    }
+    
+    public void savesomething(Object o, String path){
+        try {
+            Glogger.process("Saving something...");
+            FileOutputStream out = new FileOutputStream(path);
+            ObjectOutputStream oos = new ObjectOutputStream(out);
+            oos.writeObject(o);
+            oos.flush();
+            Glogger.process("Successfully Saved something into: " + path);
+        } catch (Exception e) {
+            Glogger.err("Problem serializing: " + e);
+        }
+    }
 }

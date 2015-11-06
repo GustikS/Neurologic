@@ -5,7 +5,7 @@ import discoverer.construction.network.Kappa;
 import discoverer.construction.network.Lambda;
 import discoverer.construction.network.rules.SubK;
 import discoverer.construction.network.KL;
-import discoverer.construction.network.LiftedNetwork;
+import discoverer.construction.network.MolecularTemplate;
 import discoverer.global.Tuple;
 import discoverer.global.Glogger;
 import java.io.BufferedWriter;
@@ -38,7 +38,7 @@ public class Saver {
     private static Set<Tuple<Kappa, Double>> offsets = new HashSet<Tuple<Kappa, Double>>();
     private static Double learnError, threshold, dispersion;
 
-    public static void save(LiftedNetwork net, double le, double th, double disp) {
+    public static void save(MolecularTemplate net, double le, double th, double disp) {
         rules.clear();
         offsets.clear();
         learnError = le;
@@ -59,7 +59,7 @@ public class Saver {
         }
     }
 
-    public static void save2(LiftedNetwork net, double le, double th, double disp) {
+    public static void save2(MolecularTemplate net, double le, double th, double disp) {
         KL network = net.last;  //this recursion could be shortcutted too!
 
         rules.clear();
