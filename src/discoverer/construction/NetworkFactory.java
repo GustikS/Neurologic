@@ -50,13 +50,13 @@ public class NetworkFactory {
 
             boolean isLambdaLine = tokens[0][0].isEmpty();
 
-            //the self handling of each K/L rule, adding it to base
+            //the self handling of each K/L rule, adding it to the base
             kl = isLambdaLine ? handleLambdaLine(tokens, rules[x]) : handleKappaLine(tokens, rules[x]);
 
             vFactory.clear();
         }
 
-        kl.dropout = -1;
+        kl.dropout = -1;    //do never drop the last element of the network!! (otherwise there is no network :))
 
         if (Global.isKappaAdaptiveOffset()) {
             for (Kappa kappa : kFactory.getKappas()) {
@@ -64,7 +64,7 @@ public class NetworkFactory {
             }
         }
         //setup network
-        LiftedNetwork network = new LiftedNetwork(kl);  //a wrapper for the last KL
+        LiftedNetwork network = new LiftedNetwork(kl);  //a wrapper for the last KL literal
         //---
         return network;
     }

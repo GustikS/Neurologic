@@ -5,6 +5,7 @@
  */
 package discoverer.grounding.network.groundNetwork;
 
+import discoverer.construction.network.LiftedNetwork;
 import discoverer.global.Global;
 import discoverer.grounding.network.GroundKappa;
 import discoverer.grounding.network.GroundLambda;
@@ -28,14 +29,13 @@ public class RuleAggNeuron extends GroundNeuron {
     public int maxBodyGroundingIndex;
 
     public double lambdaOffset;
-    
-    public GroundLambda grl;
 
-    RuleAggNeuron(GroundLambda gl) {
+    //public GroundLambda grl;
+    RuleAggNeuron(GroundLambda gl, LiftedNetwork net) {
         name = gl.toString();
         outputValue = gl.getValueAvg();
-        grl = gl;
-        
+        //grl = gl;
+
         lambdaOffset = gl.getGeneral().getOffset();
         groundParentsCount = gl.getGroundParents();
 
@@ -47,14 +47,14 @@ public class RuleAggNeuron extends GroundNeuron {
             if (gl.getConjunctsAvg().isEmpty()) {
                 return;
             }
-            //TODO check correctness HERE
+            //TODO check correctness of the uncompressed version HERE
             for (int j = 0; j < inputNeuronsCompressed.length; j++) {
                 List<GroundKappa> oneBodyGrounding = gl.fullBodyGroundings.get(j);
                 for (int k = 0; k < oneBodyGrounding.size(); k++) {
-                    GroundNeuron gn = Global.neuralDataset.neuronMapping.get(oneBodyGrounding.get(k));
+                    GroundNeuron gn = net.neuronMapping.get(oneBodyGrounding.get(k));
                     if (gn == null) {
-                        ruleBodyGroundings[j][k] = new AtomNeuron(oneBodyGrounding.get(k));
-                        Global.neuralDataset.neuronMapping.put(oneBodyGrounding.get(k), ruleBodyGroundings[j][k]);
+                        ruleBodyGroundings[j][k] = new AtomNeuron(oneBodyGrounding.get(k), net);
+                        net.neuronMapping.put(oneBodyGrounding.get(k), ruleBodyGroundings[j][k]);
                     } else {
                         ruleBodyGroundings[j][k] = (AtomNeuron) gn;
                     }
@@ -68,21 +68,21 @@ public class RuleAggNeuron extends GroundNeuron {
                 return;
             }
             for (Map.Entry<GroundKappa, Integer> gki : gl.getConjunctsAvg().entrySet()) {
-                GroundNeuron gn = Global.neuralDataset.neuronMapping.get(gki.getKey());
+                GroundNeuron gn = net.neuronMapping.get(gki.getKey());
                 if (gn == null) {
-                    inputNeuronsCompressed[i] = new AtomNeuron(gki.getKey());
-                    Global.neuralDataset.neuronMapping.put(gki.getKey(), inputNeuronsCompressed[i]);
+                    inputNeuronsCompressed[i] = new AtomNeuron(gki.getKey(), net);
+                    net.neuronMapping.put(gki.getKey(), inputNeuronsCompressed[i]);
                 } else {
                     inputNeuronsCompressed[i] = (AtomNeuron) gn;
                 }
                 inputNeuronCompressedCounts[i++] = gki.getValue();
             }
         }
-        Global.neuralDataset.tmpActiveNet.addNeuron(this); //rather put these "this" on the end of contructor
+        net.tmpActiveNet.addNeuron(this); //rather put these "this" on the end of contructor
     }
-    
+
     @Override
-    public String toString(){
+    public String toString() {
         return name;
     }
 }

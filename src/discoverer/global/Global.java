@@ -8,9 +8,8 @@ import java.util.*;
 //settings
 
 public final class Global {
-    
-    public static NeuralDataset neuralDataset;
 
+    //public static NeuralDataset neuralDataset;
     private static int seed;
     /**
      * generating random weights and offsets
@@ -48,15 +47,15 @@ public final class Global {
     private static int history = 200;
     //---special stuff
     private static boolean initWithAVG = false;
-    private static boolean manualLoadNetwork = false;
+    private static boolean loadNetworkObject = false;
     private static boolean GUI = false;
     private static mergingOptions merging = mergingOptions.weights;
 
     public static boolean exporting = true;
     public static boolean drawing = false;
     public static boolean longName = false;
-    public static boolean saveGroundings = false;
-    public static boolean loadGroundings = false;
+    public static boolean saveDataset = true;
+    public static boolean loadGroundedDataset = true;
     public static boolean uncompressedLambda = false;
     public static boolean fastVersion = true;
 
@@ -114,6 +113,7 @@ public final class Global {
 
         handmade, longtail, uniform
     };
+
     private static batch batch;
     private static groundingSet grounding;
     private static activationSet lambdaActivation;
@@ -589,17 +589,17 @@ public final class Global {
     }
 
     /**
-     * @return the manualLoadNetwork
+     * @return the loadNetworkObject
      */
-    public static boolean isManualLoadNetwork() {
-        return manualLoadNetwork;
+    public static boolean isLoadLiftedNetworkObject() {
+        return loadNetworkObject;
     }
 
     /**
-     * @param aManualLoadNetwork the manualLoadNetwork to set
+     * @param aManualLoadNetwork the loadNetworkObject to set
      */
-    public static void setManualLoadNetwork(boolean aManualLoadNetwork) {
-        manualLoadNetwork = aManualLoadNetwork;
+    public static void setLoadNetworkObject(boolean aManualLoadNetwork) {
+        loadNetworkObject = aManualLoadNetwork;
     }
 
     /**

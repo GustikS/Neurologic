@@ -3,6 +3,7 @@ package discoverer.grounding.evaluation;
 import discoverer.grounding.network.GroundKL;
 import discoverer.grounding.network.GroundLambda;
 import discoverer.construction.network.rules.KappaRule;
+import discoverer.grounding.network.groundNetwork.GroundStructure;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -10,7 +11,7 @@ import java.util.List;
 import java.util.Set;
 
 /* object for representing the result of substitution search*/
-public class GroundedTemplate implements Serializable{
+public class GroundedTemplate extends GroundStructure implements Serializable {
 
     public Double valMax;  //the value is always synchronized with the value of the Object last
     public Double valAvg;
@@ -143,14 +144,14 @@ public class GroundedTemplate implements Serializable{
          }*/
         lastAvg.addAll(gls);    //too time-consuming!!
     }
-    
-    public void loadGroundNeurons(Set<GroundKL> neurons){
+
+    public void loadGroundNeurons(Set<GroundKL> neurons) {
         //GroundNetworkParser.parseMAX(this);
         groundNeurons.clear();
         groundNeurons.addAll(neurons);
     }
-    
-    public void invalidateNeurons(){
+
+    public void invalidateNeurons() {
         for (GroundKL gkl : groundNeurons) {
             gkl.invalidate();
         }

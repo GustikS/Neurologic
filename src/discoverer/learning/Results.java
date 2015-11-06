@@ -162,7 +162,7 @@ public class Results {
             }
         }
         double err = error / results.size();
-        Glogger.info("Fold Train error calculated : " + err);
+        Glogger.info("Fold Train error calculated (testCheck) : " + err);
     }
 
     public boolean isBetterThen(Results res2) {

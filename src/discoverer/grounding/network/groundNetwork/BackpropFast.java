@@ -5,15 +5,9 @@
  */
 package discoverer.grounding.network.groundNetwork;
 
-import discoverer.construction.example.Example;
-import discoverer.construction.network.Kappa;
 import discoverer.global.Global;
-import discoverer.global.Glogger;
 import discoverer.global.Settings;
-import discoverer.grounding.evaluation.GroundedTemplate;
-import discoverer.grounding.network.GroundKappa;
-import discoverer.grounding.network.GroundLambda;
-import discoverer.learning.Weights;
+import discoverer.learning.Sample;
 import java.util.Map;
 
 /**
@@ -23,17 +17,19 @@ import java.util.Map;
 public final class BackpropFast {
 
     private static double[] weightUpdates;
-    private static final double[] sharedWeights = Global.neuralDataset.sharedWeights;
+    private static double[] sharedWeights;
     private static final boolean fullLambda = Global.uncompressedLambda;
     private static final Global.groundingSet grounding = Global.getGrounding();
 
-    public static boolean updateWeights(GroundNetwork gnet) {
+    public static boolean updateWeights(double[] sharedW, Sample sam) {
+        sharedWeights = sharedW;
+        GroundNetwork gnet = sam.neuralNetwork;
         weightUpdates = new double[sharedWeights.length];
 
         if (gnet.outputNeuron == null) {
             return false;
         }
-        double baseDerivative = (gnet.targetValue - gnet.outputNeuron.outputValue);  //output error-level derivative
+        double baseDerivative = (sam.targetValue - gnet.outputNeuron.outputValue);  //output error-level derivative
 
         if (gnet.outputNeuron instanceof AtomNeuron) {
             derive((AtomNeuron) gnet.outputNeuron, Settings.learnRate * baseDerivative);
@@ -42,7 +38,7 @@ public final class BackpropFast {
         }
 
         for (int i = weightUpdates.length - 1; i >= 0; i--) {
-            Global.neuralDataset.sharedWeights[i] += weightUpdates[i];
+            sharedWeights[i] += weightUpdates[i];
         }
 
         //writeoutUpdates(weightUpdates);
@@ -111,6 +107,7 @@ public final class BackpropFast {
         }
     }
 
+    /*
     private static void writeoutUpdates(double[] weightUpdates) {
         for (Map.Entry<Object, Integer> w : Global.neuralDataset.weightMapping.entrySet()) {
             if (weightUpdates[Global.neuralDataset.weightMapping.get(w.getKey())] > 0) {
@@ -119,4 +116,5 @@ public final class BackpropFast {
         }
 
     }
+    */
 }

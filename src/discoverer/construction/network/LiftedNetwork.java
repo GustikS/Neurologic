@@ -12,6 +12,9 @@ import discoverer.construction.network.rules.SubK;
 import discoverer.global.Global;
 import discoverer.global.Glogger;
 import discoverer.global.Settings;
+import discoverer.grounding.network.GroundKL;
+import discoverer.grounding.network.groundNetwork.GroundNetwork;
+import discoverer.grounding.network.groundNetwork.GroundNeuron;
 import discoverer.learning.Saver;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -48,6 +51,16 @@ import javax.swing.JFrame;
  */
 public class LiftedNetwork implements Serializable {
 
+    public double[] sharedWeights; //the shared sharedWeights
+    
+    public HashMap<Object, Integer> weightMapping;  //Kappa offsets and KappaRule's weights to indicies in sharedWeights
+
+    public HashMap<GroundKL, GroundNeuron> neuronMapping; //for checking - have we already visited this groundKL?
+    
+    public GroundNetwork tmpActiveNet; //auxiliary to get reference from neurons to their mother network (without storing pointer in them cause of serialization)
+
+    //--------old stuff
+    
     public KL last;
 
     int clustersCount;
@@ -74,6 +87,17 @@ public class LiftedNetwork implements Serializable {
     KappaRule[][] weightMatrix;
 
     public static String weightFolder = "weights/";
+    
+    
+    /**
+     * reinitialize all kappa offests and kapparule sharedWeights of the
+     * template
+     */
+    public void invalidateWeights() {
+        for (int i = 0; i < sharedWeights.length; i++) {
+            sharedWeights[i] = WeightInitializator.getWeight();
+        }
+    }
 
     public String toString() {
         return "rules=" + rules.size() + ",kappas=" + getKappas().size() + ", lambdas=" + getLambdas().size() + ",elements=" + getElements().size() + ",clusters=" + clustersCount;
@@ -82,7 +106,7 @@ public class LiftedNetwork implements Serializable {
     /**
      * reinitialize all kappa offests and kapparule weights
      */
-    public void invalidateWeights() {
+    public void invalidateWeightObjects() {
         for (Kappa k : getKappas()) {
             k.initOffset();
         }
@@ -472,7 +496,7 @@ public class LiftedNetwork implements Serializable {
         for (Rule rule : rules) {
             if (rule instanceof KappaRule) {
                 KappaRule kr = (KappaRule) rule;
-                    kr.setWeight(sharedWeights[weightMapping.get(kr)]);
+                kr.setWeight(sharedWeights[weightMapping.get(kr)]);
             }
         }
         for (Kappa kappa : getKappas()) {

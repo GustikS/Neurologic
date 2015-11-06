@@ -12,6 +12,7 @@ public class FileToStringListJava6 {
      * converts a given string into a string array line by line
      *
      * @param p
+     * @param maxline
      * @param maxLineLength
      * @return
      */

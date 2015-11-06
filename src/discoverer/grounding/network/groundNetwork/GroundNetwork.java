@@ -6,11 +6,13 @@
 package discoverer.grounding.network.groundNetwork;
 
 import discoverer.construction.network.KL;
+import discoverer.construction.network.LiftedNetwork;
 import discoverer.global.Global;
 import discoverer.grounding.network.GroundKL;
 import discoverer.grounding.network.GroundKappa;
 import discoverer.grounding.network.GroundLambda;
 import discoverer.learning.Sample;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -18,26 +20,25 @@ import java.util.HashMap;
  *
  * @author Gusta
  */
-public class GroundNetwork {
+public class GroundNetwork extends GroundStructure implements Serializable {
+
     String name;
 
     public GroundNeuron[] allNeurons;
     private int neuronCounter = 0;
 
     public GroundNeuron outputNeuron;
-    double targetValue;
 
-    public GroundNetwork createNetwork(Sample sample) {
+    public GroundNetwork createNetwork(Sample sample, LiftedNetwork net) {
         name = sample.position + " : " + sample.getExample().hash;
-        targetValue = sample.getExample().getExpectedValue();
         if (sample.getBall().getLast() instanceof GroundKappa) {
             GroundKappa gk = (GroundKappa) sample.getBall().getLast();  //runs the recursion down
-            outputNeuron = new AtomNeuron(gk);
-            Global.neuralDataset.neuronMapping.put(gk, outputNeuron);
+            outputNeuron = new AtomNeuron(gk, net);
+            //Global.neuralDataset.neuronMapping.put(gk, outputNeuron);
         } else {
             GroundLambda gl = (GroundLambda) sample.getBall().getLast();  //runs the recursion down
-            outputNeuron = new RuleAggNeuron(gl);
-            Global.neuralDataset.neuronMapping.put(gl, outputNeuron);
+            outputNeuron = new RuleAggNeuron(gl, net);
+            //Global.neuralDataset.neuronMapping.put(gl, outputNeuron);
         }
         return this;
     }
@@ -45,9 +46,9 @@ public class GroundNetwork {
     void addNeuron(GroundNeuron gn) {
         allNeurons[neuronCounter++] = gn;
     }
-    
-    public void invalidateNeuronValues(){
-        for (int i = allNeurons.length-1; i >= 0; i--) {
+
+    public void invalidateNeuronValues() {
+        for (int i = allNeurons.length - 1; i >= 0; i--) {
             allNeurons[i].invalidateValue();
         }
     }

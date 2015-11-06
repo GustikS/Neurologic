@@ -45,37 +45,43 @@ import java.util.Set;
  */
 public class GroundedDataset extends LiftedDataset {
 
+    public List<Example> examples;  //raw example structures
     public List<Sample> samples;    //samples contain groundedTemplates (=Balls), they are too memory expensive
 
     //public NeuralDataset neuralNetworks;
     public GroundedDataset(String[] ex, String[] rules, String[] PretrainedRules) {
-        super(ex, rules, PretrainedRules);
+        super(rules, PretrainedRules);
+
         Glogger.process("created lifted network structure");
         //creates examples with corresponding ID mapping and chunk representations
         examples = createExamples(ex, Settings.maxExamples);
         Glogger.process("created example structures");
 
         samples = prepareGroundings(examples, network);
+        Glogger.process("prepared network groundings");
         //k-fold stratified example(same #positives in folds) splitting structure - treated as 1fold CV here
-        es = new SampleSplitter(Settings.folds, samples);
+        sampleSplitter = new SampleSplitter(Settings.folds, samples);
 
     }
 
     public GroundedDataset(String[] train, String[] test, String[] rules, String[] Pretrainedrules) {
-        super(train, test, rules, Pretrainedrules);
+        super(rules, Pretrainedrules);
 
+        Glogger.process("created lifted network structure");
         List<Example> trainEx = createExamples(train, Settings.maxExamples);
         List<Example> testEx = createExamples(test, Settings.maxExamples);
+        Glogger.process("created example structures");
 
         List<Sample> trainSamples = prepareGroundings(examples, network);
         List<Sample> testSamples = prepareGroundings(examples, network);
+        Glogger.process("prepared network groundings");
 
         examples = trainEx;
         examples.addAll(testEx);
 
         //k-fold stratified example(same #positives in folds) splitting structure - treated as 1fold CV here
-        es = new SampleSplitter(trainSamples, testSamples);
-
+        sampleSplitter = new SampleSplitter(trainSamples, testSamples);
+        
     }
 
     /**
@@ -93,23 +99,11 @@ public class GroundedDataset extends LiftedDataset {
         ForwardChecker.exnum = 0;
         List<Sample> sampleStore = new ArrayList<>(examples.size());
 
-        if (Global.loadGroundings) {
-            try {
-                Glogger.process("loading ground network examples from a file: " + Settings.getDataset().replaceAll("-", "/") + ".ser");
-                FileInputStream in = new FileInputStream(Settings.getDataset().replaceAll("-", "/") + ".ser");
-                ObjectInputStream ois = new ObjectInputStream(in);
-                sampleStore = (List<Sample>) (ois.readObject());
-                return sampleStore;
-            } catch (IOException | ClassNotFoundException e) {
-                Glogger.err("Problem serializing: " + e);
-            }
-        }
-
-        Glogger.process("searching for initial substition trees for each example...");
+        Glogger.process("searching for initial substition prove-trees for each example...");
         ForwardChecker.exnum = 0;
         for (Example e : examples) {
             GroundedTemplate b = Grounder.solve(net.last, e);
-            Glogger.info("example: " + e + " , maxVal: " + b.valMax + ", avgVal: " + b.valAvg.doubleValue());
+            Glogger.info("example: " + e + " , maxVal: " + b.valMax + ", avgVal: " + b.valAvg);
             sampleStore.add(new Sample(e, b));
         }
 
@@ -124,19 +118,7 @@ public class GroundedDataset extends LiftedDataset {
             } else if (Global.getGrounding() == Global.groundingSet.max) {
                 neurons = GroundNetworkParser.parseMAX(b);
             }
-            b.loadGroundNeurons(neurons);
-        }
-
-        if (Global.saveGroundings) {
-            try {
-                FileOutputStream out = new FileOutputStream(Settings.getDataset().replaceAll("-", "/") + ".ser");
-                ObjectOutputStream oos = new ObjectOutputStream(out);
-                oos.writeObject(sampleStore);
-                oos.flush();
-                Glogger.process("Saved example ground network into: " + Settings.getDataset().replaceAll("-", "/") + ".ser");
-            } catch (Exception e) {
-                Glogger.err("Problem serializing: " + e);
-            }
+            b.loadGroundNeurons(neurons);   //store all ground L/K in an array for fast and simple operations instead of DFS for each simple pass
         }
 
         return sampleStore;

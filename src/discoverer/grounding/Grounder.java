@@ -32,6 +32,7 @@ import java.util.Set;
 public class Grounder {
     
     private static final boolean forwardCheckEnabled = Global.isForwardCheckEnabled();
+    private static final boolean pruning = Global.isPruning();
     private static final boolean cacheEnabled = Global.isCacheEnabled();
     private static final boolean debugEnabled = Global.isDebugEnabled();
     
@@ -196,7 +197,7 @@ public class Grounder {
         //---
         gl.setValueAvg(b.valAvg);
         
-        if (Global.isDebugEnabled()) {
+        if (debugEnabled) {
             System.out.println(l + "\t->\t" + b.valAvg);
         }
         
@@ -356,7 +357,7 @@ public class Grounder {
             out.addAvg(tmp);
 
             //-------------------------
-            if (Global.isPruning()) {
+            if (pruning) {
                 double upperBound = out.valMax + lr.getBodyLen() - i;
                 if (best.valMax != null && best.valMax >= upperBound) {
                     //HERE - pruning

@@ -7,12 +7,14 @@ package discoverer.grounding.network.groundNetwork;
 
 import discoverer.construction.network.KL;
 import discoverer.global.Global;
+import java.io.Serializable;
 
 /**
  *
  * @author Gusta
  */
-public class GroundNeuron {
+public class GroundNeuron implements Serializable {
+
     String name;
 
     public boolean dropMe = false;

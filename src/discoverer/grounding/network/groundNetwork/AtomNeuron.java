@@ -5,11 +5,13 @@
  */
 package discoverer.grounding.network.groundNetwork;
 
+import discoverer.construction.network.LiftedNetwork;
 import discoverer.construction.network.rules.KappaRule;
 import discoverer.global.Global;
 import discoverer.global.Tuple;
 import discoverer.grounding.network.GroundKappa;
 import discoverer.grounding.network.GroundLambda;
+import java.io.Serializable;
 import java.util.HashSet;
 
 /**
@@ -22,13 +24,13 @@ public class AtomNeuron extends GroundNeuron {
     public RuleAggNeuron[] inputNeurons;
     public int offsetWeightIndex;
 
-    public AtomNeuron(GroundKappa grk) {
+    public AtomNeuron(GroundKappa grk, LiftedNetwork net) {
         name = grk.toString();
         outputValue = grk.getValueAvg();
 
         groundParentsCount = grk.getGroundParents();
-        offsetWeightIndex = Global.neuralDataset.weightMapping.get(grk.getGeneral());
-        Global.neuralDataset.sharedWeights[offsetWeightIndex] = grk.getGeneral().getOffset();
+        offsetWeightIndex = net.weightMapping.get(grk.getGeneral());
+        net.sharedWeights[offsetWeightIndex] = grk.getGeneral().getOffset();
 
         inputNeurons = new RuleAggNeuron[grk.getDisjunctsAvg().size()];
         if (grk.getDisjunctsAvg().isEmpty()) {
@@ -39,17 +41,17 @@ public class AtomNeuron extends GroundNeuron {
         int i = 0;
         for (Tuple<HashSet<GroundLambda>, KappaRule> grl : grk.getDisjunctsAvg()) {
             GroundLambda bodyLambda = grl.x.iterator().next();
-            GroundNeuron gn = Global.neuralDataset.neuronMapping.get(bodyLambda);   //have we already visited this groundLambda?
+            GroundNeuron gn = net.neuronMapping.get(bodyLambda);   //have we already visited this groundLambda?
             if (gn == null) {
-                inputNeurons[i] = new RuleAggNeuron(bodyLambda);   //there shouldn't be more than 1 literal in KappaRule (it's not real rule)
-                Global.neuralDataset.neuronMapping.put(bodyLambda, inputNeurons[i]);
+                inputNeurons[i] = new RuleAggNeuron(bodyLambda, net);   //there shouldn't be more than 1 literal in KappaRule (it's not real rule)
+                net.neuronMapping.put(bodyLambda, inputNeurons[i]);
             } else {
                 inputNeurons[i] = (RuleAggNeuron) gn;
             }
-            inputWeightIndices[i] = Global.neuralDataset.weightMapping.get(grl.y);
-            Global.neuralDataset.sharedWeights[inputWeightIndices[i++]] = grl.y.getWeight();
+            inputWeightIndices[i] = net.weightMapping.get(grl.y);
+            net.sharedWeights[inputWeightIndices[i++]] = grl.y.getWeight();
         }
-        Global.neuralDataset.tmpActiveNet.addNeuron(this); //rather put these leaking "this" on the end of contructor
+        net.tmpActiveNet.addNeuron(this); //rather put these leaking "this" on the end of contructor
     }
 
     public String toString() {

@@ -43,7 +43,6 @@ public class EvaluatorFast extends Evaluator {
         } else {
             return evaluateFast((RuleAggNeuron) gnet.outputNeuron);
         }
-
     }
 
     public static double evaluateFast(AtomNeuron an) {
@@ -130,6 +129,7 @@ public class EvaluatorFast extends Evaluator {
         return rn.outputValue;
     }
 
+    /*
     private static final void writeOutError(RuleAggNeuron rn) {
         int i = 0;
 
@@ -170,4 +170,5 @@ public class EvaluatorFast extends Evaluator {
 
         System.out.println("before " + before + ", neuralOut " + neuralOut + ", " + "lambda1 " + lambdaOut1 + ", lambda2 " + lambdaOut2);
     }
+    */
 }

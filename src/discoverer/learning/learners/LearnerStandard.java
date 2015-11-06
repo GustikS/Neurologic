@@ -115,8 +115,8 @@ public class LearnerStandard extends Learning {
      */
     public Results solveAvg(LiftedNetwork last, List<Sample> roundStore) {
 
-        evaluate(roundStore);
-        
+        //evaluate(roundStore);
+        long time0 = System.currentTimeMillis();
         for (int a = 0; a < Settings.restartCount; a++) {    //restarting the whole procedure
             results.past.clear();
             Glogger.process("--------SolveAVG-----------------------------------------------------------------------------------------------------------------------");
@@ -153,10 +153,11 @@ public class LearnerStandard extends Learning {
             }
             saveTemplate(roundStore, last);
             Glogger.LogTrain("...restart " + a);
-            last.invalidateWeights();
+            last.invalidateWeightObjects();
             //Invalidator.invalidate(last);       //reset all sharedWeights before restart
         }
         Glogger.info("finished training");
+        Glogger.info("learning time : " + (System.currentTimeMillis() - time0));
         endTraining(roundStore, last);
 
         return results;

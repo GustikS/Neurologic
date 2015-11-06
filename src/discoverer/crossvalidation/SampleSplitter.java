@@ -10,6 +10,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
+import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -22,18 +23,22 @@ import java.util.logging.Logger;
 /**
  * Splitter for performing stratified n-fold crossval
  */
-public class SampleSplitter {
+public class SampleSplitter implements Serializable {
 
     public int foldCount;
     public int testFold = 0;
-    private final List<List<Sample>> folds;
+    public final List<List<Sample>> folds;
+    public final List<Sample> samples;
 
     public SampleSplitter(List<Sample> train, List<Sample> test) {
         folds = new ArrayList<>();
         folds.add(train);
         folds.add(test);
         testFold = 1;
-        foldCount = 1; //maybe
+        foldCount = 2; //should be checked
+        samples = new ArrayList<>(train.size() + test.size());
+        samples.addAll(train);
+        samples.addAll(test);
     }
 
     /**
@@ -46,6 +51,8 @@ public class SampleSplitter {
     public SampleSplitter(int k, List<Sample> ex) {
         numberSamples(ex);
         folds = new ArrayList<>();
+        samples = new ArrayList<>();
+        samples.addAll(ex);
 
         List<Sample> positives = getPositives(ex);
         List<Sample> negatives = getNegatives(ex);
@@ -155,8 +162,14 @@ public class SampleSplitter {
     }
 
     private void numberSamples(List<Sample> ex) {
+        if (Global.isOutputFolds()) {
+            Glogger.process("---------------------------whole sample set------------------------------");
+        }
         for (int i = 0; i < ex.size(); i++) {
-            ex.get(i).position=i;
+            ex.get(i).position = i;
+            if (Global.isOutputFolds()) {
+                Glogger.info("sample " + i + " : " + ex.get(i).toString());
+            }
         }
     }
 }

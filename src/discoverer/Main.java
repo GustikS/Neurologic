@@ -1,5 +1,6 @@
 package discoverer;
 
+import discoverer.grounding.network.groundNetwork.NeuralCrossvalidation;
 import discoverer.crossvalidation.Crossvalidation;
 import discoverer.global.Global;
 import discoverer.global.FileToStringListJava6;
@@ -19,14 +20,14 @@ import org.apache.commons.cli.PosixParser;
 public class Main {
 
     //cutoff on example number
-    private static final String defaultMaxExamples = "10";  //we can decrease the overall number of examples (stratified) for speedup
+    private static final String defaultMaxExamples = "1000";  //we can decrease the overall number of examples (stratified) for speedup
     //
-    public static String defaultLearningSteps = "50";  //learnSteps per epocha
+    public static String defaultLearningSteps = "4000";  //learnSteps per epocha
     public static String defaultLearningEpochs = "1";  //learn epochae = grounding cycles
     //  learnEpochae * LearningSteps = learning steps for AVG variant
     private static final String defaultFolds = "1"; // 1 = training only
     private static final String defaultLearningRate = "0.3"; //0.05 default from Vojta, it's good to increase, reasonable <0.1 , 1>
-    //learnRate = 5 -> gets stuck very soon (<=10 steps) around 23% acc (+ jumping), unable to learn
+    //learnRate = 5 -> gets stuck very soon (<=10 steps) around 23% acc (+ jumping), unable to learnOn
     //learnRate = 1 -> plato around 600 steps with 10% acc (+ BIG jumping +-3%, but also +10%)
     //learnRate = 0.5 -> plato around 1000 steps with 8% acc (+ jumping +-3%) -> can break into some best results (0.3%) with saving
     //learnRate = 0.3 -> plato around 1000 steps with 8% acc, just a very mild jumping, very good apparent behavior
@@ -49,7 +50,7 @@ public class Main {
     private static String defaultSGD = "1";     // >0 => stochastic gradient descend is ON
     private static String defaultCumSteps = "0"; // "on" or number of steps, <= 0 => OFF
     private static String defaultLearnDecay = "0"; // >0 => learnRate decay strategy is ON
-    private static int maxReadline = 10000; //cut-of reading input files (not used)
+    private static int maxReadline = 100000; //cut-of reading input files (not used)
 
     public static Options getOptions() {
         Options options = new Options();
@@ -57,13 +58,13 @@ public class Main {
         OptionBuilder.hasArg(true);
         OptionBuilder.isRequired(true);
         OptionBuilder.withArgName("RULE-FILE");
-        OptionBuilder.withDescription("File with rules");
+        OptionBuilder.withDescription("File with lifted rules");
         options.addOption(OptionBuilder.create("r"));
 
         OptionBuilder.withLongOpt("pretrained");
         OptionBuilder.hasArg();
         OptionBuilder.withArgName("PRETRAINED");
-        OptionBuilder.withDescription("File with network template");
+        OptionBuilder.withDescription("File with pretrained network template");
         options.addOption(OptionBuilder.create("t"));
 
         OptionBuilder.withLongOpt("examples");
@@ -210,6 +211,7 @@ public class Main {
             return;
         }
 
+        //parsing command line options - needs external library commons-CLI
         String ground = cmd.getOptionValue("gr", defaultGrounding);
         Settings.setGrounding(ground);
 
@@ -245,7 +247,6 @@ public class Main {
         String decay = cmd.getOptionValue("lrd", defaultLearnDecay);
         Settings.setLrDecay(decay);
 
-        //parsing command line options - needs external library commons-CLI
         Global.setBatch(cmd.hasOption("b") ? Global.batch.YES : Global.batch.NO);
 
         String tmp = cmd.getOptionValue("size", defaultMaxExamples);
@@ -266,7 +267,7 @@ public class Main {
         tmp = cmd.getOptionValue("rs", defaultRestartCount);
         Settings.setRestartCount(Integer.parseInt(tmp));
 
-        //get examples one by one from file
+        //get examples from file
         String dataset = cmd.getOptionValue("e");
         Settings.setDataset(dataset);
         String[] exs = FileToStringListJava6.convert(dataset, maxReadline);
@@ -275,6 +276,7 @@ public class Main {
             return;
         }
 
+        //separate test set?
         String[] test = null;
         String tt = cmd.getOptionValue("test");
         if (tt != null) {
@@ -290,20 +292,52 @@ public class Main {
             Glogger.err("no rules");
         }
 
+        //we want sigmoid at the output, not identity (for proper error measurement)
         if (Global.getKappaActivation() == Global.activationSet.id) {
-            rules = addFinalLambda(rules);  //a hack to end with lambda
+            if (rules[rules.length - 1].contains("Kappa")) {  //does it end with Kappa - Warning - sensitive to literal name!
+                rules = addFinalLambda(rules);  //a hack to end with lambda
+            }
         }
 
+        //pretrained template with some lifted literals in common (will be mapped onto new template)
         String pretrained = cmd.getOptionValue("t");
         Settings.setPretrained(pretrained);
         String[] pretrainedRules = FileToStringListJava6.convert(pretrained, maxReadline);
-        //Glogger.out("pretrained= " + pretrained + " of length: " + pretrainedRules.length);
+        if (pretrainedRules != null) {
+            Glogger.out("pretrained= " + pretrained + " of length: " + pretrainedRules.length);
+        }
 
+        //-------------------------------------end of parameter parsing-------------------------------------------
+        //create logger for all messages within the program
         Glogger.init();
 
-        //Glogger.process(Settings.getString());
+        LiftedDataset groundDataset = createDataset(test, exs, rules, pretrainedRules);
 
-        LiftedDataset sampleSet;
+        learnOn(groundDataset);
+    }
+
+    /**
+     * creating some form of grounded dataset (learning process) after all
+     * parameters are set
+     *
+     * @param test
+     * @param exs
+     * @param rules
+     * @param pretrainedRules
+     */
+    static LiftedDataset createDataset(String[] test, String[] exs, String[] rules, String[] pretrainedRules) {
+
+        //Glogger.process(Settings.getString());
+        //---------------dataset-sample set creation
+        LiftedDataset sampleSet = null;
+
+        if (Global.loadGroundedDataset) {
+            sampleSet = LiftedDataset.loadDataset(Settings.getDataset().replaceAll("-", "/") + ".ser");
+            if (sampleSet != null) {
+                return sampleSet;
+            }
+        }
+
         if (test == null) {
             Glogger.info("no test set, will do crossvalidation");
             sampleSet = new GroundedDataset(exs, rules, pretrainedRules);
@@ -311,8 +345,27 @@ public class Main {
             Glogger.info("test set provided, will do simple train-test evaluation as (1-fold) crossvalidation");
             sampleSet = new GroundedDataset(exs, test, rules, pretrainedRules);
         }
-        //main solving
-        Crossvalidation cross = new Crossvalidation(sampleSet);
+        if (Global.fastVersion) {
+            sampleSet = new NeuralDataset(sampleSet);
+        }
+
+        if (Global.saveDataset) {
+            sampleSet.saveDataset(Settings.getDataset().replaceAll("-", "/") + ".ser");
+        }
+
+        return sampleSet;
+    }
+
+    static void learnOn(LiftedDataset sampleSet) {
+        //main
+        Crossvalidation cross;
+        if (Global.fastVersion) {
+            cross = new NeuralCrossvalidation(sampleSet);
+        } else {
+            cross = new Crossvalidation(sampleSet.sampleSplitter);
+        }
+
+        cross.crossvalidate(sampleSet);
     }
 
     /**

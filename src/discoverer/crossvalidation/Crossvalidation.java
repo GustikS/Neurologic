@@ -46,18 +46,24 @@ public class Crossvalidation {
     double testErr = 0;
     double testMaj = 0;
     double trainErr = 0;
+    
+    SampleSplitter splitter;
+    
+    public Crossvalidation(SampleSplitter ss) {
+        splitter = ss;
+    }
 
-    public void trainTest(LiftedNetwork network, List<Sample> trainEx, List<Sample> testEx, int fold) {
+    public final void trainTest(LiftedNetwork network, List<Sample> trainEx, List<Sample> testEx, int fold) {
         if (Global.exporting) {
             network.exportWeightMatrix("init-fold" + fold);
         }
 
-        Glogger.process("--------------------processing fold " + fold + "----------------------");
+        Glogger.process("------------------processing fold " + fold + "----------------------");
 
         Results res = train(network, trainEx);
-        Glogger.process("-------finished training, going to test----------------------");
+        Glogger.process("--------------finished training, going to test----------------------");
         trainErr += res.getLearningError();
-        testErr += test(network, res, testEx);
+        testErr += this.test(network, res, testEx);
         testMaj += testM(testEx, trainEx);
 
         if (Global.exporting) {
@@ -68,7 +74,7 @@ public class Crossvalidation {
         if (Global.drawing) {
             Dotter.draw(network.last, "learned_fold" + fold);
         }
-        //Network nn = LiftedNetwork.loadNetwork();
+        
         Glogger.LogRes("--------------");
         Glogger.LogRes("Fold train error: " + trainErr);   //do NOT change the texts here (used in excel macro)
         Glogger.LogRes("Fold test error: " + testErr);
@@ -88,20 +94,20 @@ public class Crossvalidation {
      * @param pretrained
      * @param ex
      */
-    public Crossvalidation(LiftedDataset dataset) {
+    public void crossvalidate(LiftedDataset dataset) {
         
-        for (dataset.es.testFold = 0; dataset.es.testFold < dataset.es.foldCount; dataset.es.testFold++) { //iterating the test fold
+        for (dataset.sampleSplitter.testFold = 0; dataset.sampleSplitter.testFold < dataset.sampleSplitter.foldCount; dataset.sampleSplitter.testFold++) { //iterating the test fold
 
-            trainTest(dataset.network, dataset.es.getTrain(), dataset.es.getTest(), dataset.es.testFold);
+            trainTest(dataset.network, dataset.sampleSplitter.getTrain(), dataset.sampleSplitter.getTest(), dataset.sampleSplitter.testFold);
             //Invalidator.invalidate(network); //1st
-            dataset.network.invalidateWeights();
-
+            dataset.network.invalidateWeightObjects();
+            
             dataset.network.merge(dataset.pretrainedNetwork); // 2nd
         }
 
-        trainErr /= dataset.es.foldCount;
-        testErr /= dataset.es.foldCount;
-        testMaj /= dataset.es.foldCount;
+        trainErr /= dataset.sampleSplitter.foldCount;
+        testErr /= dataset.sampleSplitter.foldCount;
+        testMaj /= dataset.sampleSplitter.foldCount;
         Glogger.LogRes("--------------");
         Glogger.LogRes("Final train error: " + trainErr);   //do NOT change the texts here (used in excel macro)
         Glogger.LogRes("Final test error: " + testErr);
@@ -111,7 +117,7 @@ public class Crossvalidation {
     private double testM(List<Sample> test, List<Sample> train) {
         int pos = 0;
         for (Sample e : train) {
-            if (e.getExample().getExpectedValue() == 1) {
+            if (e.targetValue == 1) {
                 pos++;
             }
         }
@@ -119,13 +125,13 @@ public class Crossvalidation {
         double err = 0;
         if (pos >= (double) train.size() / 2) {
             for (Sample e : test) {
-                if (e.getExample().getExpectedValue() == 0) {
+                if (e.targetValue == 0) {
                     err++;
                 }
             }
         } else {
             for (Sample e : test) {
-                if (e.getExample().getExpectedValue() == 1) {
+                if (e.targetValue == 1) {
                     err++;
                 }
             }
@@ -188,6 +194,14 @@ public class Crossvalidation {
         return res;
     }
 
+    /**
+     * non-fast(neural) version!
+     * perform grounding on examples again!
+     * @param net
+     * @param res
+     * @param examples
+     * @return 
+     */
     public double test(LiftedNetwork net, Results res, List<Sample> examples) {
         KL network = net.last;
         ForwardChecker.exnum = 0;
