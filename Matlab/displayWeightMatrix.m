@@ -14,6 +14,8 @@ for str = lambdaH
 end
 lambdaH = res(1:end-1);
 
+
+
 if strcmp(type,'all')
     %% the whole matrix
     figure('name',name,'units','normalized','outerposition',[0 0 1 1]);
@@ -57,6 +59,36 @@ if strcmp(type,'atoms')
     % this is where the atoms should be!!
     kappaSubIndex = [1:3];
     lambdaSubIndex = [244:(244+atomCount-1)];
+    mat = allweights(kappaSubIndex,lambdaSubIndex);
+    lH = lambdaH(1,lambdaSubIndex)';
+    kH = kappaH(kappaSubIndex,1);
+    
+    drawSubMatrix(mat,lH,kH);
+    %title(strcat('atom-type clustering at improvement step - ',num2str(step)));
+end
+
+if strcmp(type,'letters')
+    step = name(isstrprop(name, 'digit'));
+    figure('name',step,'units','normalized','outerposition',[0 0 1 1]);
+    %% atoms
+    % this is where the atoms should be!!
+    kappaSubIndex = [1:3];
+    lambdaSubIndex = [10:64];
+    mat = allweights(kappaSubIndex,lambdaSubIndex);
+    lH = lambdaH(1,lambdaSubIndex)';
+    kH = kappaH(kappaSubIndex,1);
+    
+    drawSubMatrix(mat,lH,kH);
+    %title(strcat('atom-type clustering at improvement step - ',num2str(step)));
+end
+
+if strcmp(type,'times')
+    step = name(isstrprop(name, 'digit'));
+    figure('name',step,'units','normalized','outerposition',[0 0 1 1]);
+    %% atoms
+    % this is where the atoms should be!!
+    kappaSubIndex = [1:3];
+    lambdaSubIndex = [10:12];
     mat = allweights(kappaSubIndex,lambdaSubIndex);
     lH = lambdaH(1,lambdaSubIndex)';
     kH = kappaH(kappaSubIndex,1);

@@ -21,7 +21,7 @@ public class Webflow extends Flow {
     long timestamp;
 
     public String hash;
-    
+
     int sc_bytes;
     int cs_bytes;
 
@@ -35,15 +35,17 @@ public class Webflow extends Flow {
     int sc_httpStatus;
     String sc_resultCode;
 
+    
+    boolean noURL = true;
     /**
      *
      * @param features
      * @param ida
      */
-    public Webflow(String[] features, String ida) {
+    public Webflow(String[] features, boolean positiveFormat) {
         if (features.length == 16) {
-            hash = ida;
-            
+            hash = "fl" + id++;
+
             try {
                 timestamp = Long.parseLong(features[0]);
             } catch (NumberFormatException numberFormatException) {
@@ -66,7 +68,7 @@ public class Webflow extends Flow {
             try {
                 cs_url = new URL(features[7]);
             } catch (MalformedURLException ex) {
-                Logger.getLogger(Webflow.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println("malformed URL: " + features[7]);
             }
             cs_username = features[8];
             try {
@@ -75,25 +77,60 @@ public class Webflow extends Flow {
             }
             cs_userAgent = features[10];
             cs_mimeType = features[11];
-            cs_label = features[12];
-            try {
-                cs_referer = new URL(features[13]);
-            } catch (MalformedURLException ex) {
-                Logger.getLogger(Webflow.class.getName()).log(Level.SEVERE, null, ex);
+
+            int i = 12;
+            if (positiveFormat) {
+                cs_label = features[i++];
             }
             try {
-                sc_httpStatus = Integer.parseInt(features[14]);
+                cs_referer = new URL(features[i++]);
+            } catch (MalformedURLException ex) {
+                System.out.println("malformed referer's URL: " + features[i - 1]);
+            }
+            try {
+                sc_httpStatus = Integer.parseInt(features[i++]);
             } catch (NumberFormatException numberFormatException) {
             }
-            sc_resultCode = features[15];
+            sc_resultCode = features[i++];
+
+            if (!positiveFormat) {
+                cs_label = features[i];
+            }
         }
     }
 
     public String getRelationalRepresentaiton() {
         StringParser sp = new StringParser();
-        String urlStruct = sp.string2Structure("urlNext", cs_url.toString(), hash);
-        String refererStruct = sp.string2Structure("refNext", cs_referer.toString(), hash);
+        StringBuilder sb = new StringBuilder();
 
-        return "\n " + urlStruct + "\n" + refererStruct;
+        sb.append("flow(").append(hash).append("), ");
+
+        sb.append("destPort(").append(hash).append(",").append("p" + destPort).append("), ");
+        sb.append("port" + destPort).append("(").append("p" + destPort).append("), ");
+        sb.append("srcPort(").append(hash).append(",").append("p" + srcPort).append("), ");
+        sb.append("port" + srcPort).append("(").append("p" + srcPort).append("), ");
+        sb.append("httpStatus(").append(hash).append(",").append("h" + sc_httpStatus).append("), ");
+        sb.append("http" + sc_httpStatus).append("(").append("h" + sc_httpStatus).append("), ");
+
+        sb.append("duration(").append(hash).append(",").append("d" + duration).append("), ");
+        sb.append(NumericValuePredicate.getRelational("time", "d" + duration)).append(", ");
+        sb.append("csBytes(").append(hash).append(",").append("b" + cs_bytes).append("), ");
+        sb.append(NumericValuePredicate.getRelational("bytes", "b" + cs_bytes)).append(", ");
+        sb.append("scBytes(").append(hash).append(",").append("b" + sc_bytes).append("), ");
+        sb.append(NumericValuePredicate.getRelational("bytes", "b" + sc_bytes)).append(", ");
+
+        sb.append("hasURL(").append(hash).append(",").append(hash).append("-Url), ");
+        sb.append("hasRef(").append(hash).append(",").append(hash).append("-Ref), ");
+        
+        if (!noURL) {
+            sb.append("\n");
+            sb.append(sp.string2Structure("next", cs_url.toString(), hash + "-Url"));
+            if (cs_referer != null) {
+                sb.append("\n");
+                sb.append(sp.string2Structure("next", cs_referer.toString(), hash + "-Ref"));
+            }
+        }
+
+        return sb.toString();
     }
 }

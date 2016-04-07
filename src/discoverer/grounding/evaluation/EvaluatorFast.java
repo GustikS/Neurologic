@@ -59,7 +59,6 @@ public class EvaluatorFast extends Evaluator {
         if (an.outputValue != 0.0000000) {
             return an.outputValue;  //it doesnt make sense for fact neuron (isElement) to have zero value
         }
-        
 
         //double[] inputs = new double[an.inputWeightIndices.length];
         an.sumedInputs = sharedWeights[an.offsetWeightIndex];
@@ -87,13 +86,18 @@ public class EvaluatorFast extends Evaluator {
         if (rn.outputValue != 0.0000000) {
             return rn.outputValue;
         }
-        
-        if (rn.inputNeuronsCompressed.length == 0) {
+
+        if (rn.inputNeuronsCompressed != null && rn.inputNeuronsCompressed.length == 0) {
             rn.outputValue = 0.5;
             return 0.5;
         }
 
         if (fullLambda) {   //all body grounding calculated separately
+            if (rn.ruleBodyGroundings.length == 0) {
+                rn.outputValue = 0.5;
+                return 0.5;
+            }
+            
             double[] outerInputs = new double[rn.ruleBodyGroundings.length];
             for (int i = rn.ruleBodyGroundings.length - 1; i >= 0; i--) {
                 //double[] innerInputs = new double[rn.ruleBodyGroundings[i].length];  //inside one body-grounding
@@ -131,45 +135,45 @@ public class EvaluatorFast extends Evaluator {
     }
 
     /*
-    private static final void writeOutError(RuleAggNeuron rn) {
-        int i = 0;
+     private static final void writeOutError(RuleAggNeuron rn) {
+     int i = 0;
 
-        double neuron = 0;
-        Double lambda = 0.0;
+     double neuron = 0;
+     Double lambda = 0.0;
 
-        ArrayList<Double> inputs = new ArrayList<>(rn.grl.getConjunctsAvg().size());
+     ArrayList<Double> inputs = new ArrayList<>(rn.grl.getConjunctsAvg().size());
 
-        for (Map.Entry<GroundKappa, Integer> grki : rn.grl.getConjunctsAvg().entrySet()) {
-            neuron += rn.inputNeuronsCompressed[i].outputValue * rn.inputNeuronCompressedCounts[i] / rn.ruleBodyGroundingsCount;
-            lambda += grki.getKey().getValueAvg() * grki.getValue() / rn.grl.getConjunctsCountForAvg();
-            inputs.add(grki.getKey().getValueAvg() * grki.getValue() / rn.grl.getConjunctsCountForAvg());
+     for (Map.Entry<GroundKappa, Integer> grki : rn.grl.getConjunctsAvg().entrySet()) {
+     neuron += rn.inputNeuronsCompressed[i].outputValue * rn.inputNeuronCompressedCounts[i] / rn.ruleBodyGroundingsCount;
+     lambda += grki.getKey().getValueAvg() * grki.getValue() / rn.grl.getConjunctsCountForAvg();
+     inputs.add(grki.getKey().getValueAvg() * grki.getValue() / rn.grl.getConjunctsCountForAvg());
 
-            NumberFormat formatter = new DecimalFormat("#0.00000000000000000000000000000000000000000000");
-            System.out.println(formatter.format(grki.getKey().getValueAvg()) + " -> " + grki.getValue());
-            System.out.println(formatter.format(rn.inputNeuronsCompressed[i].outputValue) + " -> " + rn.inputNeuronCompressedCounts[i]);
-            if (grki.getKey().getValueAvg() != rn.inputNeuronsCompressed[i].outputValue || grki.getValue() != rn.inputNeuronCompressedCounts[i]) {
-                System.out.println("one input");
-            }
-            i++;
-        }
-        if (neuron != lambda) {
-            System.out.println("summation");
-        }
-        if (rn.lambdaOffset != rn.grl.getGeneral().getOffset()) {
-            System.out.println("offset");
-        }
-        if (neuron != rn.sumedInputs) {
-            System.out.println("suma");
-        }
+     NumberFormat formatter = new DecimalFormat("#0.00000000000000000000000000000000000000000000");
+     System.out.println(formatter.format(grki.getKey().getValueAvg()) + " -> " + grki.getValue());
+     System.out.println(formatter.format(rn.inputNeuronsCompressed[i].outputValue) + " -> " + rn.inputNeuronCompressedCounts[i]);
+     if (grki.getKey().getValueAvg() != rn.inputNeuronsCompressed[i].outputValue || grki.getValue() != rn.inputNeuronCompressedCounts[i]) {
+     System.out.println("one input");
+     }
+     i++;
+     }
+     if (neuron != lambda) {
+     System.out.println("summation");
+     }
+     if (rn.lambdaOffset != rn.grl.getGeneral().getOffset()) {
+     System.out.println("offset");
+     }
+     if (neuron != rn.sumedInputs) {
+     System.out.println("suma");
+     }
 
-        double before = rn.outputValue;
+     double before = rn.outputValue;
 
-        double neuralOut = ActivationsFast.lambdaActivation(rn.sumedInputs, rn.lambdaOffset);
-        double lambdaOut1 = ActivationsFast.lambdaActivation(lambda, rn.grl.getGeneral().getOffset());
+     double neuralOut = ActivationsFast.lambdaActivation(rn.sumedInputs, rn.lambdaOffset);
+     double lambdaOut1 = ActivationsFast.lambdaActivation(lambda, rn.grl.getGeneral().getOffset());
 
-        double lambdaOut2 = Activations.lambdaActivation(inputs, rn.grl.getGeneral().getOffset());
+     double lambdaOut2 = Activations.lambdaActivation(inputs, rn.grl.getGeneral().getOffset());
 
-        System.out.println("before " + before + ", neuralOut " + neuralOut + ", " + "lambda1 " + lambdaOut1 + ", lambda2 " + lambdaOut2);
-    }
-    */
+     System.out.println("before " + before + ", neuralOut " + neuralOut + ", " + "lambda1 " + lambdaOut1 + ", lambda2 " + lambdaOut2);
+     }
+     */
 }

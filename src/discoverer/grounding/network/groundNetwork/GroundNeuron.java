@@ -15,7 +15,7 @@ import java.io.Serializable;
  */
 public class GroundNeuron implements Serializable {
 
-    String name;
+    public String name;
 
     public boolean dropMe = false;
     public double outputValue;
@@ -35,4 +35,5 @@ public class GroundNeuron implements Serializable {
     public String toString() {
         return name;
     }
+    
 }

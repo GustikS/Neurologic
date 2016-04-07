@@ -1,7 +1,7 @@
 package discoverer;
 
 import discoverer.construction.network.LightTemplate;
-import discoverer.grounding.network.groundNetwork.NeuralCrossvalidation;
+import discoverer.crossvalidation.NeuralCrossvalidation;
 import discoverer.crossvalidation.Crossvalidation;
 import discoverer.global.Global;
 import discoverer.global.FileToStringListJava6;
@@ -22,19 +22,19 @@ import org.apache.commons.cli.PosixParser;
 public class Main {
 
     //cutoff on example number
-    private static final String defaultMaxExamples = "3000";  //we can decrease the overall number of examples (stratified) for speedup
+    private static final String defaultMaxExamples = "100000";  //we can decrease the overall number of examples (stratified) for speedup
     //
-    public static String defaultLearningSteps = "400";  //learnSteps per epocha
+    public static String defaultLearningSteps = "3000";  //learnSteps per epocha
     public static String defaultLearningEpochs = "1";  //learn epochae = grounding cycles
     //  learnEpochae * LearningSteps = learning steps for AVG variant
-    private static final String defaultFolds = "2"; // 1 = training only
+    private static final String defaultFolds = "4"; // 1 = training only
     private static final String defaultLearningRate = "0.3"; //0.05 default from Vojta, it's good to increase, reasonable <0.1 , 1>
     //learnRate = 5 -> gets stuck very soon (<=10 steps) around 23% acc (+ jumping), unable to learnOn
     //learnRate = 1 -> plato around 600 steps with 10% acc (+ BIG jumping +-3%, but also +10%)
     //learnRate = 0.5 -> plato around 1000 steps with 8% acc (+ jumping +-3%) -> can break into some best results (0.3%) with saving
     //learnRate = 0.3 -> plato around 1000 steps with 8% acc, just a very mild jumping, very good apparent behavior
     //learnRate = 0.1 -> stable plato around 600 steps with 11% (no jumping, very stable, stuck)
-    public static final String defaultRestartCount = "1";  //#restarts per fold
+    public static final String defaultRestartCount = "2";  //#restarts per fold
     //max-avg
     public static final String defaultGrounding = "avg";    //avg or max
     public static String defaultActivations = "sig_id";    //lambda_kappa activation functions
@@ -53,6 +53,7 @@ public class Main {
     private static String defaultCumSteps = "0"; // "on" or number of steps, <= 0 => OFF
     private static String defaultLearnDecay = "0"; // >0 => learnRate decay strategy is ON
     private static int maxReadline = 100000; //cut-of reading input files (not used)
+    private static boolean multiLine = false; //example can spread to multiple lines, delimited by empty line (\n\n)
 
     public static Options getOptions() {
         Options options = new Options();
@@ -213,66 +214,18 @@ public class Main {
             return;
         }
 
-        //parsing command line options - needs external library commons-CLI
-        String ground = cmd.getOptionValue("gr", defaultGrounding);
-        Settings.setGrounding(ground);
-
-        String activation = cmd.getOptionValue("ac", defaultActivations);
-        Settings.setActivations(activation);
-
-        String initialization = cmd.getOptionValue("wi", defaultInitialization);
-        Settings.setInitials(initialization);
-
-        Global.setKappaAdaptiveOffset(cmd.hasOption("ko"));
-
-        String koffset = cmd.getOptionValue("ko", defaultKappaAdaptiveOffset);
-        Settings.setKoffset(koffset);
-
-        String loffset = cmd.getOptionValue("lo", defaultLambdaAdaptiveOffset);
-        Settings.setLoffset(loffset);
-
-        String seed = cmd.getOptionValue("sd", defaultSeed);
-        Settings.setSeed(seed);
-
-        String drop = cmd.getOptionValue("dr", defaultDropoutRate);
-        Settings.setDropout(drop);
-
-        String sgd = cmd.getOptionValue("sgd", defaultSGD);
-        Settings.setSGD(sgd);
-
-        String cum = cmd.getOptionValue("cum", defaultCumSteps);
-        Settings.setCumSteps(cum);
-
-        String save = cmd.getOptionValue("save", defaultSaving);
-        Settings.setSave(save);
-
-        String decay = cmd.getOptionValue("lrd", defaultLearnDecay);
-        Settings.setLrDecay(decay);
-
-        Global.setBatch(cmd.hasOption("b") ? Global.batch.YES : Global.batch.NO);
-
-        String tmp = cmd.getOptionValue("size", defaultMaxExamples);
-        Settings.setMaxExamples(Integer.parseInt(tmp));
-
-        tmp = cmd.getOptionValue("ls", defaultLearningSteps);
-        Settings.setLearningSteps(Integer.parseInt(tmp));
-
-        tmp = cmd.getOptionValue("le", defaultLearningEpochs);
-        Settings.setLearningEpochs(Integer.parseInt(tmp));
-
-        tmp = cmd.getOptionValue("lr", defaultLearningRate);
-        Settings.setLearnRate(Double.parseDouble(tmp));
-
-        tmp = cmd.getOptionValue("f", defaultFolds);
-        Settings.setFolds(Integer.parseInt(tmp));
-
-        tmp = cmd.getOptionValue("rs", defaultRestartCount);
-        Settings.setRestartCount(Integer.parseInt(tmp));
+        setParameters(cmd);
 
         //get examples from file
         String dataset = cmd.getOptionValue("e");
         Settings.setDataset(dataset);
-        String[] exs = FileToStringListJava6.convert(dataset, maxReadline);
+        String[] exs = null;
+        if (multiLine) {
+            exs = FileToStringListJava6.convertMultiline(dataset, maxReadline);
+        } else {
+            exs = FileToStringListJava6.convert(dataset, maxReadline);
+        }
+        
         if (exs.length == 0) {
             Glogger.err("no examples");
             return;
@@ -296,7 +249,7 @@ public class Main {
 
         //we want sigmoid at the output, not identity (for proper error measurement)
         if (Global.getKappaActivation() == Global.activationSet.id) {
-            if (rules[rules.length - 1].contains("Kappa")) {  //does it end with Kappa - Warning - sensitive to literal name!
+            if (rules[rules.length - 1].startsWith("0.") || rules[rules.length - 1].startsWith("1.")) {  //does it end with Kappa line?
                 rules = addFinalLambda(rules);  //a hack to end with lambda
             }
         }
@@ -318,6 +271,64 @@ public class Main {
         learnOn(groundedDataset);
     }
 
+    public static void setParameters(CommandLine cmd) throws NumberFormatException {
+        //parsing command line options - needs external library commons-CLI
+        String ground = cmd.getOptionValue("gr", defaultGrounding);
+        Settings.setGrounding(ground);
+        
+        String activation = cmd.getOptionValue("ac", defaultActivations);
+        Settings.setActivations(activation);
+        
+        String initialization = cmd.getOptionValue("wi", defaultInitialization);
+        Settings.setInitials(initialization);
+        
+        Global.setKappaAdaptiveOffset(cmd.hasOption("ko"));
+        
+        String koffset = cmd.getOptionValue("ko", defaultKappaAdaptiveOffset);
+        Settings.setKoffset(koffset);
+        
+        String loffset = cmd.getOptionValue("lo", defaultLambdaAdaptiveOffset);
+        Settings.setLoffset(loffset);
+        
+        String seed = cmd.getOptionValue("sd", defaultSeed);
+        Settings.setSeed(seed);
+        
+        String drop = cmd.getOptionValue("dr", defaultDropoutRate);
+        Settings.setDropout(drop);
+        
+        String sgd = cmd.getOptionValue("sgd", defaultSGD);
+        Settings.setSGD(sgd);
+        
+        String cum = cmd.getOptionValue("cum", defaultCumSteps);
+        Settings.setCumSteps(cum);
+        
+        String save = cmd.getOptionValue("save", defaultSaving);
+        Settings.setSave(save);
+        
+        String decay = cmd.getOptionValue("lrd", defaultLearnDecay);
+        Settings.setLrDecay(decay);
+        
+        Global.setBatch(cmd.hasOption("b") ? Global.batch.YES : Global.batch.NO);
+        
+        String tmp = cmd.getOptionValue("size", defaultMaxExamples);
+        Settings.setMaxExamples(Integer.parseInt(tmp));
+        
+        tmp = cmd.getOptionValue("ls", defaultLearningSteps);
+        Settings.setLearningSteps(Integer.parseInt(tmp));
+        
+        tmp = cmd.getOptionValue("le", defaultLearningEpochs);
+        Settings.setLearningEpochs(Integer.parseInt(tmp));
+        
+        tmp = cmd.getOptionValue("lr", defaultLearningRate);
+        Settings.setLearnRate(Double.parseDouble(tmp));
+        
+        tmp = cmd.getOptionValue("f", defaultFolds);
+        Settings.setFolds(Integer.parseInt(tmp));
+        
+        tmp = cmd.getOptionValue("rs", defaultRestartCount);
+        Settings.setRestartCount(Integer.parseInt(tmp));
+    }
+
     /**
      * creating some form of grounded dataset (learning process) after all
      * parameters are set
@@ -336,7 +347,7 @@ public class Main {
         if (Global.loadGroundedDataset) {
             sampleSet = LiftedDataset.loadDataset(Settings.getDataset().replaceAll("-", "/") + ".ser");
         }
-        
+
         if (sampleSet == null) {
             if (test == null) {
                 Glogger.info("no test set, will do " + Settings.folds + "-fold crossvalidation");
@@ -353,24 +364,24 @@ public class Main {
 
         if (Global.saveGroundedDataset) {
             /*
-            sampleSet.saveSampleSet(Settings.getDataset().replaceAll("-", "/") + "samplesLK.ser", sampleSet.sampleSplitter.samples);
+             sampleSet.saveSampleSet(Settings.getDataset().replaceAll("-", "/") + "samplesLK.ser", sampleSet.sampleSplitter.samples);
             
-            sampleSet.saveDataset(Settings.getDataset().replaceAll("-", "/") + "Groundeddataset.ser");
+             sampleSet.saveDataset(Settings.getDataset().replaceAll("-", "/") + "Groundeddataset.ser");
             
-            sampleSet = new NeuralDataset(sampleSet);
-            sampleSet.saveDataset(Settings.getDataset().replaceAll("-", "/") + "NeuralDataset.ser");
+             sampleSet = new NeuralDataset(sampleSet);
+             sampleSet.saveDataset(Settings.getDataset().replaceAll("-", "/") + "NeuralDataset.ser");
             
-            sampleSet.saveSampleSet(Settings.getDataset().replaceAll("-", "/") + "samplesBoth.ser", sampleSet.sampleSplitter.samples);
-            for (Sample sam : sampleSet.sampleSplitter.samples) {
-                sam.makeMeSmall();
-            }
-            sampleSet.saveSampleSet(Settings.getDataset().replaceAll("-", "/") + "samplesNeural.ser", sampleSet.sampleSplitter.samples);
-            sampleSet.saveDataset(Settings.getDataset().replaceAll("-", "/") + "NeuralDatasetSamples1.ser");
+             sampleSet.saveSampleSet(Settings.getDataset().replaceAll("-", "/") + "samplesBoth.ser", sampleSet.sampleSplitter.samples);
+             for (Sample sam : sampleSet.sampleSplitter.samples) {
+             sam.makeMeSmall();
+             }
+             sampleSet.saveSampleSet(Settings.getDataset().replaceAll("-", "/") + "samplesNeural.ser", sampleSet.sampleSplitter.samples);
+             sampleSet.saveDataset(Settings.getDataset().replaceAll("-", "/") + "NeuralDatasetSamples1.ser");
             
-            sampleSet.network = new LightTemplate(sampleSet.network.sharedWeights, sampleSet.network.name2weight);
-            */
+             sampleSet.network = new LightTemplate(sampleSet.network.sharedWeights, sampleSet.network.name2weight);
+             */
             sampleSet.saveDataset(Settings.getDataset().replaceAll("-", "/") + ".ser");
-            
+
         }
         return sampleSet;
     }

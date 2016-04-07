@@ -18,6 +18,8 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.io.Writer;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.BitSet;
 import java.util.HashMap;
@@ -44,7 +46,7 @@ public class Convertor {
     //static String out = "in\\ncigi\\examples";
     private static boolean cutTogeneral = false;
     //static String path = "C:\\Users\\IBM_ADMIN\\Google Drive\\Neuralogic\\sourcecodes\\gusta\\extra-data\\NCIGI\\DATA\\out\\";
-    static String path = "C:/ncigi";
+    static String path = "C:\\Users\\gusta\\googledrive\\Github\\LRNN\\Neurologic\\in\\nci";
 
     public static void main2(String[] args) {
         File[] files = new File(path).listFiles();
@@ -57,7 +59,28 @@ public class Convertor {
         }
     }
 
-    public static void main3(String[] args) {
+    public static void main(String[] args) {
+        File[] files = new File(path).listFiles();
+
+        for (File file : files) {
+            String newname = file.getName();
+            /*
+            String newname = file.getName().substring(0, file.getName().indexOf(".txt"));
+            new File(path + "/" + newname).mkdir();
+            try {
+                Files.copy(new File(path + "/" + file.getName() + "/examples").toPath(), new File(path + "/" + newname + "/examples").toPath(), StandardCopyOption.REPLACE_EXISTING);
+            } catch (IOException ex) {
+                Logger.getLogger(Convertor.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            */
+            String[] ex = FileToStringListJava6.convert(path + "/" + newname + "/examples", 200000);
+            Templator.createTemplate(ex, path + "/" + newname + "/1", 1, 1);
+            Templator.createTemplate(ex, path + "/" + newname + "/2", 2, 2);
+            Templator.createTemplate(ex, path + "/" + newname + "/3", 3, 3);
+        }
+    }
+
+    public static void main0(String[] args) {
         File[] files = new File(path).listFiles();
 
         for (File file : files) {
@@ -70,7 +93,7 @@ public class Convertor {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main3(String[] args) {
         String[] ex = FileToStringListJava6.convert("C:\\Users\\IBM_ADMIN\\Google Drive\\Neuralogic\\sourcecodes\\gusta\\Neurologic\\in\\muta\\cilp\\examples", 10000);
         createCILP(ex, "C:\\Users\\IBM_ADMIN\\Google Drive\\Neuralogic\\sourcecodes\\gusta\\Neurologic\\in\\muta\\cilp\\out");
     }
@@ -169,12 +192,11 @@ public class Convertor {
                 newEx.add(newLit);
                 newLit = split[5] + "(" + getNumber(split[1], split[2]) + ")";
                 newEx.add(newLit);
-            } else {    // our default format bond(d59_23, d59_5, 0), or some other bond = keep it
-                if (literal.contains("(") && !literal.contains(")")) {
-                    newEx.add(literal + ")");
-                } else {
-                    newEx.add(literal);
-                }
+            } else // our default format bond(d59_23, d59_5, 0), or some other bond = keep it
+            if (literal.contains("(") && !literal.contains(")")) {
+                newEx.add(literal + ")");
+            } else {
+                newEx.add(literal);
             }
         } else if (literal.startsWith("atom")) { //e.g., atom(tr000, tr000_4)
             //skip this thing
@@ -317,7 +339,7 @@ public class Convertor {
     private static String transform2CILP(String example) {
         StringBuilder newone = new StringBuilder();
         int cl = example.indexOf(" ");
-        newone.append(example.subSequence(0, cl+1));
+        newone.append(example.subSequence(0, cl + 1));
         String[] split = example.substring(cl).split("\\),");
 
         for (String s : split) {
@@ -336,7 +358,7 @@ public class Convertor {
                 newone.append("bond(" + ff + "," + ss + "), ");
             }
         }
-        
-        return newone.toString().substring(0,newone.length()-2);
+
+        return newone.toString().substring(0, newone.length() - 2);
     }
 }

@@ -15,10 +15,11 @@ import java.util.LinkedList;
 public class Configurations {
 
     public static String dataPath = "../in/";
+    public static String ruleFileName = "3rules";
 
     //private static final String[] data = new String[]{"ptc/mm", "ptc/mr", "ptc/fm", "ptc/fr"};
-    private static final String[] data = getAllDatasetsFrom("C:\\Users\\IBM_ADMIN\\Google Drive\\Neuralogic\\sourcecodes\\gusta\\Neurologic\\in\\nci\\");
-            
+    private static final String[] data = getAllDatasetsFrom("C:\\Users\\gusta\\googledrive\\Github\\LRNN\\Neurologic\\in\\nci\\");
+    
     //some prepared parameter-value configurations to choose from if one wants to try out a parameter
     public static String[] folds = new String[]{"-f", "1", "5", "10"};
     public static String[] groundings = new String[]{"-gr", "max", "avg"};
@@ -58,7 +59,7 @@ public class Configurations {
         String[] exs = new String[data.length + 1];
         exs[0] = "-e";
         for (int i = 0; i < data.length; i++) {
-            exs[i + 1] = dataPath + data[i] + "/examples " + "-r " + dataPath + data[i] + "/rules";
+            exs[i + 1] = dataPath + data[i] + "/examples " + "-r " + dataPath + data[i] + "/" + ruleFileName;
         }
         return exs;
     }

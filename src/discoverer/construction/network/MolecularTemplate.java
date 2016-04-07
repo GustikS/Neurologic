@@ -44,7 +44,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 
 /**
- * 
+ *
  *
  * this class has some sophisticated merging options, the superclass is more
  * lightweight
@@ -52,9 +52,8 @@ import javax.swing.JFrame;
  * @author Gusta
  */
 public class MolecularTemplate extends LiftedTemplate implements Serializable {
-    
-    //--------old stuff
 
+    //--------old stuff
     int clustersCount;
     int elementsCount;
 
@@ -105,14 +104,13 @@ public class MolecularTemplate extends LiftedTemplate implements Serializable {
                 Glogger.err("not the same final structure");
                 return this;
             }
-        } else { //kappa
-            if (last instanceof Kappa) {
-                l1 = (Kappa) last;
-                l2 = (Kappa) net.last;
-            } else {
-                Glogger.err("not the same final structure");
-                return this;
-            }
+        } else //kappa
+        if (last instanceof Kappa) {
+            l1 = (Kappa) last;
+            l2 = (Kappa) net.last;
+        } else {
+            Glogger.err("not the same final structure");
+            return this;
         }
         l1.getRules().addAll(l2.getRules());
         MolecularTemplate network = new MolecularTemplate(last);    //pro jistotu
@@ -156,10 +154,11 @@ public class MolecularTemplate extends LiftedTemplate implements Serializable {
         super(kl);
         elementsCount = elements.size();
         clustersCount = clusters.size();
-        createWeightMatrix();
+        if (Global.createWeightMatrix) {
+            createWeightMatrix();
+        }
     }
 
-    
     private void getRules(Kappa k) {
         getKappas().add(k);
         if (k.isElement()) {
@@ -201,6 +200,9 @@ public class MolecularTemplate extends LiftedTemplate implements Serializable {
     }
 
     public void exportWeightMatrix(String name) {
+        if (weightMatrix==null){
+            return;
+        }
         BufferedWriter test = null;
         try {
             test = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(weightFolder + name + "-weightMatrix.csv"), "utf-8"));
@@ -304,7 +306,6 @@ public class MolecularTemplate extends LiftedTemplate implements Serializable {
             i++;
         }
     }
-
 
     /**
      * @return the elements

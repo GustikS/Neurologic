@@ -17,7 +17,7 @@ public class FileToStringListJava6 {
      * @return
      */
     public static String[] convert(String p, int maxline) {
-        if (p == null){
+        if (p == null) {
             return null;
         }
         List<String> lines = new ArrayList<String>();
@@ -29,6 +29,42 @@ public class FileToStringListJava6 {
                 if (line.length() != 0 && line.length() < maxline) {
                     lines.add(line);
                 }
+            }
+
+        } catch (Exception ioe) {
+            Glogger.out(ioe.getMessage() + "- file not found");
+        } finally {
+            try {
+                buffReader.close();
+            } catch (Exception ioe1) {
+                //Glogger.err(ioe1.getMessage());
+            }
+        }
+
+        return ListToArray(lines);
+    }
+
+    public static String[] convertMultiline(String p, int maxline) {
+        if (p == null) {
+            return null;
+        }
+
+        List<String> lines = new ArrayList<String>();
+        BufferedReader buffReader = null;
+        try {
+            buffReader = new BufferedReader(new FileReader(p));
+            String line = null;
+            StringBuilder ex = new StringBuilder();
+            while ((line = buffReader.readLine()) != null) {
+                if (!line.equals("")) {
+                    ex.append(line);
+                } else {
+                    lines.add(ex.toString());
+                    ex = new StringBuilder();
+                }
+            }
+            if (ex.length() != 0){
+                lines.add(ex.toString());
             }
 
         } catch (Exception ioe) {

@@ -63,7 +63,7 @@ public class Weights {
      * @param d
      */
     public void addW(KappaRule kr, Double d) {
-        updates.add(new Tuple<>(kr, d));
+        updates.add(new Tuple<Object, Double>(kr, d));
         if (weights.containsKey(kr)) {
             weights.put(kr, weights.get(kr) + d);
             addedWeightsCount.put(kr, addedWeightsCount.get(kr) + 1);
@@ -74,7 +74,7 @@ public class Weights {
     }
 
     public void addW(Kappa k, Double d) {
-        updates.add(new Tuple<>(k, d));
+        updates.add(new Tuple<Object, Double>(k, d));
         if (weights.containsKey(k)) {
             weights.put(k, weights.get(k) + d);
             addedWeightsCount.put(k, addedWeightsCount.get(k) + 1);

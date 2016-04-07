@@ -105,6 +105,8 @@ public class JsonFlowParser extends Templator {
                 Logger.getLogger(JsonFlowParser.class.getName()).log(Level.SEVERE, null, ex);
             } catch (IOException ex) {
                 Logger.getLogger(JsonFlowParser.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (JSONException ex) {
+                Logger.getLogger(JsonFlowParser.class.getName()).log(Level.SEVERE, null, ex);
             } finally {
                 try {
                     br.close();
@@ -119,22 +121,26 @@ public class JsonFlowParser extends Templator {
     private static HashMap<String, HashSet> getincidents(ArrayList<JSONObject> flows) {
         HashMap<String, HashSet> inci = new HashMap<>();
         for (JSONObject flow : flows) {
-            JSONObject cta = (JSONObject) flow.get("cta");
-            String id = (String) cta.get("incidentId");
-            String name = (String) cta.get("incidentName");
-            if (inci.get(id) == null) {
-                inci.put(id, new HashSet());
-            }
-            inci.get(id).add(flow);
-            if (incidents.get(id) == null) {
-                incidents.put(id, cta);
-            }
-            if (urls.get(name) == null) {
-                urls.put(name, new HashSet<URL>());
-            }
             try {
-                urls.get(name).add(new URL(flow.getJSONObject("http").getString("url")));
-            } catch (MalformedURLException ex) {
+                JSONObject cta = (JSONObject) flow.get("cta");
+                String id = (String) cta.get("incidentId");
+                String name = (String) cta.get("incidentName");
+                if (inci.get(id) == null) {
+                    inci.put(id, new HashSet());
+                }
+                inci.get(id).add(flow);
+                if (incidents.get(id) == null) {
+                    incidents.put(id, cta);
+                }
+                if (urls.get(name) == null) {
+                    urls.put(name, new HashSet<URL>());
+                }
+                try {
+                    urls.get(name).add(new URL(flow.getJSONObject("http").getString("url")));
+                } catch (MalformedURLException ex) {
+                    Logger.getLogger(JsonFlowParser.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } catch (JSONException ex) {
                 Logger.getLogger(JsonFlowParser.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
@@ -176,6 +182,8 @@ public class JsonFlowParser extends Templator {
         } catch (UnsupportedEncodingException ex) {
             Logger.getLogger(JsonFlowParser.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
+            Logger.getLogger(JsonFlowParser.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (JSONException ex) {
             Logger.getLogger(JsonFlowParser.class.getName()).log(Level.SEVERE, null, ex);
         }
 

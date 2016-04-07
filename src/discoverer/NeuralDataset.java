@@ -44,7 +44,7 @@ public class NeuralDataset extends LiftedDataset implements Serializable {
         pretrained = ld.pretrained;
         sampleSplitter = ld.sampleSplitter;
 
-        LiftedTemplate net = (LiftedTemplate) ld.network;
+        LiftedTemplate net = ld.network;
 
         net.weightMapping = new HashMap<>(net.rules.size());
         net.neuronMapping = new HashMap<>(net.rules.size());
@@ -68,7 +68,7 @@ public class NeuralDataset extends LiftedDataset implements Serializable {
             net.name2weight.put(woi.getKey().toString(), woi.getValue());
         }
         if (Global.memoryLight) {
-            super.network = new LightTemplate(net.sharedWeights, net.name2weight);
+            super.network = new LiftedTemplate(net.sharedWeights, net.name2weight);
         } else {
             super.network = net;
         }
@@ -105,11 +105,13 @@ public class NeuralDataset extends LiftedDataset implements Serializable {
         //groundNetworks = new GroundNetwork[samples.size()];
         for (int i = 0; i < samples.size(); i++) {
             Sample sample = samples.get(i);
-            sample.neuralNetwork = new GroundNetwork();
-            sample.neuralNetwork.allNeurons = new GroundNeuron[sample.getBall().groundNeurons.size()];  //only higher layer (no-fact) neurons!
-            net.tmpActiveNet = sample.neuralNetwork;
-            net.tmpConstantNames = sample.getExample().constantNames;
-            sample.neuralNetwork.createNetwork(sample, net);
+            if (sample.getBall().getLast() != null) {
+                sample.neuralNetwork = new GroundNetwork();
+                sample.neuralNetwork.allNeurons = new GroundNeuron[sample.getBall().groundNeurons.size()];  //only higher layer (no-fact) neurons!
+                net.tmpActiveNet = sample.neuralNetwork;
+                net.tmpConstantNames = sample.getExample().constantNames;
+                sample.neuralNetwork.createNetwork(sample, net);
+            }
             sample.targetValue = sample.getExample().getExpectedValue();
 
             if (Global.memoryLight) {

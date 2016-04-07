@@ -37,7 +37,7 @@ import java.util.List;
  */
 public class LiftedDataset implements Serializable {
 
-    public LightTemplate network;
+    public LiftedTemplate network;
 
     String[] pretrained = null;
     public LightTemplate pretrainedNetwork = null;

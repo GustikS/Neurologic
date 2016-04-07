@@ -13,7 +13,7 @@ import java.net.URL;
  */
 public class Flow {
 
-    public int ID;
+    public static int id = 0;
     public String eventID;
     //
     public Start start;

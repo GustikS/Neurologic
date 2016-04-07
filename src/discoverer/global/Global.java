@@ -41,7 +41,7 @@ public final class Global {
     private static boolean learnDecay;    //learn rate decay yes or no  
     //---
     private static boolean checkback = false;    //compatibility test with Vojta's version (keep false unless testing)
-    private static boolean outputFolds = true;
+    private static boolean outputFolds = false;
     //convergence criteria for AVG (max is within function bellow)
     private static double convergenceLimit = 0.01;
     private static int history = 200;
@@ -51,15 +51,19 @@ public final class Global {
     private static boolean GUI = false;
     private static mergingOptions merging = null;
 
-    public static boolean exporting = true;
+    public static boolean exporting = false;
+    public static boolean createWeightMatrix = false;   //matrix of neural weight for printing with Matlab etc.
+    
     public static boolean drawing = false;
     public static boolean longName = false;
     public static boolean saveGroundedDataset = false;
     public static boolean loadGroundedDataset = false;
     public static boolean uncompressedLambda = false;
     public static boolean fastVersion = true;
-    public static boolean memoryLight = false;  //saves 60% by removing groundKL structures (keeps only neural), makes sense with fastVersion on only
+    public static boolean memoryLight = true;  //saves 60% by removing groundKL structures (keeps only neural), makes sense with fastVersion on only
     public static boolean molecularTemplates = true;
+    
+    
 
     /**
      * @return the merging

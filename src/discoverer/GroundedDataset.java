@@ -10,6 +10,7 @@ import discoverer.construction.example.Example;
 import discoverer.construction.network.KL;
 import discoverer.construction.network.Kappa;
 import discoverer.construction.network.Lambda;
+import discoverer.construction.network.LiftedTemplate;
 import discoverer.construction.network.MolecularTemplate;
 import discoverer.construction.network.WeightInitializator;
 import discoverer.construction.network.rules.KappaRule;
@@ -57,7 +58,7 @@ public class GroundedDataset extends LiftedDataset {
         examples = createExamples(ex, Settings.maxExamples);
         Glogger.process("created example structures");
 
-        samples = prepareGroundings(examples, (MolecularTemplate) network);
+        samples = prepareGroundings(examples, network);
         Glogger.process("prepared network groundings");
 
         //k-fold stratified example(same #positives in folds) splitting structure - treated as 1fold CV here
@@ -94,13 +95,14 @@ public class GroundedDataset extends LiftedDataset {
      * @param last output node
      * @return list with balls from first run
      */
-    public final List<Sample> prepareGroundings(List<Example> examples, MolecularTemplate net) {
+    public final List<Sample> prepareGroundings(List<Example> examples, LiftedTemplate net) {
         //find max. and average substitution for all examples
         ForwardChecker.exnum = 0;
         List<Sample> sampleStore = new ArrayList<>(examples.size());
 
         Glogger.process("searching for initial substition prove-trees for each example...");
         ForwardChecker.exnum = 0;
+        int i = 0;
         for (Example e : examples) {
             GroundedTemplate b = Grounder.solve(net.last, e);
             Glogger.info("example: " + e + " , maxVal: " + b.valMax + ", avgVal: " + b.valAvg);

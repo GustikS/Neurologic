@@ -23,7 +23,7 @@ import discoverer.grounding.evaluation.GroundedTemplate;
 import discoverer.grounding.Grounder;
 import discoverer.grounding.network.GroundKappa;
 import discoverer.grounding.network.GroundLambda;
-import discoverer.grounding.network.groundNetwork.LearnerFast;
+import discoverer.learning.learners.LearnerFast;
 import discoverer.learning.Result;
 import discoverer.learning.Results;
 import discoverer.learning.Sample;
@@ -47,14 +47,19 @@ public class Crossvalidation {
     double testErr = 0;
     double testMaj = 0;
     double trainErr = 0;
-    
+
     SampleSplitter splitter;
-    
+
     public Crossvalidation(SampleSplitter ss) {
         splitter = ss;
     }
 
     public final void trainTest(LightTemplate network, List<Sample> trainEx, List<Sample> testEx, int fold) {
+
+        double foldtrainErr = 0;
+        double foldtestErr = 0;
+        double foldtestMaj = 0;
+
         if (Global.exporting) {
             network.exportWeightMatrix("init-fold" + fold);
         }
@@ -63,9 +68,9 @@ public class Crossvalidation {
 
         Results res = this.train(network, trainEx);
         Glogger.process("--------------finished training, going to test----------------------");
-        trainErr += res.getLearningError();
-        testErr += this.test(network, res, testEx);
-        testMaj += testM(testEx, trainEx);
+        foldtrainErr = res.getLearningError();
+        foldtestErr = this.test(network, res, testEx);
+        foldtestMaj = testM(testEx, trainEx);
 
         if (Global.exporting) {
             network.exportTemplate("learned-fold" + fold);
@@ -75,17 +80,20 @@ public class Crossvalidation {
         if (Global.drawing) {
             Dotter.draw(network, "learned_fold" + fold);
         }
-        
-        Glogger.LogRes("--------------");
-        Glogger.LogRes("Fold train error: " + trainErr);   //do NOT change the texts here (used in excel macro)
-        Glogger.LogRes("Fold test error: " + testErr);
-        Glogger.LogRes("Fold majority error: " + testMaj);
 
+        Glogger.LogRes("--------------");
+        Glogger.LogRes("Fold train error: " + foldtrainErr);   //do NOT change the texts here (used in excel macro)
+        Glogger.LogRes("Fold test error: " + foldtestErr);
+        Glogger.LogRes("Fold majority error: " + foldtestMaj);
+
+        testErr += foldtestErr;
+        trainErr += foldtrainErr;
+        testMaj += foldtestMaj;
     }
 
     /**
-     * Performs crossvalidation according to example-splitter of the lifted dataset
-     * train-test = 1fold crossval
+     * Performs crossvalidation according to example-splitter of the lifted
+     * dataset train-test = 1fold crossval
      *
      * @param dataset
      * @param network
@@ -96,23 +104,34 @@ public class Crossvalidation {
      * @param ex
      */
     public void crossvalidate(LiftedDataset dataset) {
-        
+        long tim;
+        Glogger.info("starting crossvalidation " + (tim = System.currentTimeMillis()));
         for (dataset.sampleSplitter.testFold = 0; dataset.sampleSplitter.testFold < dataset.sampleSplitter.foldCount; dataset.sampleSplitter.testFold++) { //iterating the test fold
 
             trainTest(dataset.network, dataset.sampleSplitter.getTrain(), dataset.sampleSplitter.getTest(), dataset.sampleSplitter.testFold);
+
+            if (Global.exporting) {
+                LightTemplate.exportSharedWeights(dataset.network.sharedWeights, 99);
+                dataset.saveDataset(Settings.getDataset().replaceAll("-", "/") + ".ser");
+            }
+            
             //Invalidator.invalidate(network); //1st
             dataset.network.invalidateWeights();
-            
+
             dataset.network.merge(dataset.pretrainedNetwork); // 2nd
         }
+        Glogger.process("finished crossvalidation " + (System.currentTimeMillis() - tim));
 
         trainErr /= dataset.sampleSplitter.foldCount;
         testErr /= dataset.sampleSplitter.foldCount;
         testMaj /= dataset.sampleSplitter.foldCount;
+
         Glogger.LogRes("--------------");
         Glogger.LogRes("Final train error: " + trainErr);   //do NOT change the texts here (used in excel macro)
         Glogger.LogRes("Final test error: " + testErr);
         Glogger.LogRes("Final majority error: " + testMaj);
+
+        Glogger.process("finished learning");
     }
 
     private double testM(List<Sample> test, List<Sample> train) {
@@ -139,7 +158,7 @@ public class Crossvalidation {
         }
 
         err /= test.size();
-        Glogger.LogRes("Majority for this fold -> " + err + "\n");
+        //Glogger.LogRes("Majority for this fold -> " + err + "\n");
         return err;
     }
 
@@ -180,27 +199,25 @@ public class Crossvalidation {
                 LearnerIterative s = new LearnerIterative();
                 res = s.solveMaxIterative(network, examples);
             }
-        } else {
-            if (Global.getGrounding() == Global.groundingSet.avg) {
-                LearnerStandard s = new LearnerStandard();
-                res = s.solveAvg(network, examples);
-            } else if (Global.getGrounding() == Global.groundingSet.max) {
-                LearnerStandard s = new LearnerStandard();
-                res = s.solveMax(network, examples);
-            }
+        } else if (Global.getGrounding() == Global.groundingSet.avg) {
+            LearnerStandard s = new LearnerStandard();
+            res = s.solveAvg(network, examples);
+        } else if (Global.getGrounding() == Global.groundingSet.max) {
+            LearnerStandard s = new LearnerStandard();
+            res = s.solveMax(network, examples);
         }
 
         return res;
     }
 
     /**
-     * non-fast(neural) version!
-     * perform grounding on examples again!
+     * non-fast(neural) version! perform grounding on examples again!
+     *
      * @param netw
      * @param net
      * @param res
      * @param examples
-     * @return 
+     * @return
      */
     public double test(LightTemplate netw, Results res, List<Sample> examples) {
         MolecularTemplate net = (MolecularTemplate) netw;

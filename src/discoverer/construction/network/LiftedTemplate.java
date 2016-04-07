@@ -48,7 +48,7 @@ public class LiftedTemplate extends LightTemplate {
 
     public GroundNetwork tmpActiveNet; //auxiliary to get reference from neurons to their mother network (without storing pointer in them cause of serialization)
     public HashMap<Integer, String> tmpConstantNames;
-    
+
     public KL last;
 
     LinkedList<KL> queue = new LinkedList<>();
@@ -61,6 +61,11 @@ public class LiftedTemplate extends LightTemplate {
     public LinkedHashSet<Rule> rules = new LinkedHashSet<>();   //=for network input/output file
     private HashSet<Kappa> kappas = new HashSet<>();
     private HashSet<Lambda> lambdas = new HashSet<>();
+
+    public LiftedTemplate(double[] sharedW, HashMap<String, Integer> name2weights) {
+        sharedWeights = sharedW;
+        name2weight = name2weights;
+    }
 
     public static LiftedTemplate loadNetwork() {
         File file = null;

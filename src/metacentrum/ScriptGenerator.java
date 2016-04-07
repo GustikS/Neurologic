@@ -25,7 +25,7 @@ public class ScriptGenerator {
     static Writer script;
     static Writer qsub;
 
-    private static final String walltime = "2w";
+    private static final String walltime = "4d";
     private static final String queue = "-q q_" + walltime + "@wagap.cerit-sc.cz";
     //private static final String queue = "";
     private static final String javaPars = " -XX:+UseSerialGC -XX:NewSize=2000m -Xms4096m -Xmx14g";
@@ -50,10 +50,10 @@ public class ScriptGenerator {
             //scripts.add(Configurations.learnDecay);
             //scripts.add(Configurations.activations);
             //scripts.add(Configurations.initials);
-            scripts.add(Configurations.groundings);
+            //scripts.add(Configurations.groundings);
             //scripts.add(Configurations.cumSteps);
             //scripts.add(Configurations.dropouts);
-            generate("randomNCI", "randomNCI", scripts, common);
+            generate("graphlets", "graphlets3", scripts, common);
         } catch (IOException ex) {
             Logger.getLogger(ScriptGenerator.class.getName()).log(Level.SEVERE, null, ex);
         }

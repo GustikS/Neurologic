@@ -126,8 +126,16 @@ public class GroundNetworkParser {
         }
 
         neurons.add(gl);
-        for (Map.Entry<GroundKappa, Integer> gk : gl.getConjunctsAvg().entrySet()) {
-            parseAVG(gk.getKey());
+        if (Global.uncompressedLambda) {
+            for (List<GroundKappa> gk : gl.fullBodyGroundings) {
+                for (GroundKappa gk1 : gk) {
+                    parseAVG(gk1);
+                }
+            }
+        } else {
+            for (Map.Entry<GroundKappa, Integer> gk : gl.getConjunctsAvg().entrySet()) {
+                parseAVG(gk.getKey());
+            }
         }
     }
 
@@ -153,19 +161,27 @@ public class GroundNetworkParser {
 
     private static void parseMAX(GroundLambda gl) {
         gl.incrGroundParents();  //we came to this GroundLambda from some parent
-        
+
         if (gl.isElement()) {
             facts.add(gl);
             return;
         }
-        
+
         if (gl.getGroundParents() > 1) {
             return; // ha - if I already visited this node before - do not continue - first time visit pruning (oposite to backprop)
         }
 
         neurons.add(gl);
-        for (GroundKappa gk : gl.getConjuncts()) {
-            parseMAX(gk);
+        if (Global.uncompressedLambda) {
+            for (List<GroundKappa> gk : gl.fullBodyGroundings) {
+                for (GroundKappa gk1 : gk) {
+                    parseMAX(gk1);
+                }
+            }
+        } else {
+            for (GroundKappa gk : gl.getConjuncts()) {
+                parseMAX(gk);
+            }
         }
     }
 }

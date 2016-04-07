@@ -8,6 +8,7 @@ package discoverer.construction.network;
 import discoverer.global.Global;
 import discoverer.global.Glogger;
 import discoverer.learning.Saver;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -15,6 +16,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.OutputStreamWriter;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.logging.Level;
@@ -82,7 +84,7 @@ public class LightTemplate implements Serializable {
 
     public static LightTemplate loadNetwork() {
         File file = null;
-        MolecularTemplate network = null;
+        LiftedTemplate network = null;
 
         if (Global.isGUI()) {
             JFrame jf = new JFrame();
@@ -97,7 +99,7 @@ public class LightTemplate implements Serializable {
         try {
             FileInputStream fos = new FileInputStream(file.getAbsoluteFile());
             ObjectInputStream save = new ObjectInputStream(fos);
-            network = (MolecularTemplate) save.readObject();
+            network = (LiftedTemplate) save.readObject();
             save.close();
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Saver.class.getName()).log(Level.SEVERE, null, ex);
@@ -126,4 +128,17 @@ public class LightTemplate implements Serializable {
         return null;
     }
 
+    public static void exportSharedWeights(double[] sharedW, int progress) {
+         BufferedWriter test = null;
+        try {
+            test = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(weightFolder + progress + "wector.csv"), "utf-8"));
+            for (int i = 0; i < sharedW.length; i++) {
+                test.write(sharedW[i] + ",");
+            }
+            test.flush();
+            test.close();
+        } catch (Exception e) {
+            Glogger.err("file problem : " + e.getMessage());
+        }
+    }
 }

@@ -30,6 +30,7 @@ public class Templator extends Convertor {
     //static int maxGraphletSize = 3; // (min is 2)
     public static String kappaPrefix = "atom";
     public static String bondPrefix = "bond";
+    public static String bondID = "DMY"; // this is a flows object identifier
     //------------------------------------------------------
 
     static String[] variables = new String[]{"A", "B", "C", "D", "E", "F", "G"}; //some  for variables
@@ -53,12 +54,12 @@ public class Templator extends Convertor {
         //template = FileToStringListJava6.convert("C:\\Users\\IBM_ADMIN\\Google Drive\\Neuralogic\\sourcecodes\\gusta\\Neurologic\\in\\genericTemplate.txt", 10000);
 
         String in = "in\\muta\\examples";
-        String out = "in\\muta\\test";
+        String out = "in\\muta\\rules1";
 
         String[] ex = FileToStringListJava6.convert(in, 10000);
 
         //createRings(ex, out);
-        createTemplate(ex, out, 3, 3);
+        createTemplate(ex, out, 1, 1);
     }
 
     static ArrayList<String> atomComb = new ArrayList<>();
@@ -79,13 +80,13 @@ public class Templator extends Convertor {
             int cc = Math.min(graphletsCount - featCount, (int) (Math.pow(atomClusters, chainSize) * Math.pow(bondClusters, chainSize - 1)) / 2);
             createRandomGraphlets(cc);
         } else {
-            createGraphlets(new ArrayList<>(), 0);
+            createGraphlets(new ArrayList<String>(), 0);
         }
         fins.addAll(features);
         int lambdas = features.size();
         features.clear();
         for (int i = 0; i < lambdas; i++) {
-            fins.add("0.0 finalKappa(DMY) :- lambda_" + prefix + i + "(DMY2).");
+            fins.add("0.0 finalKappa(" + bondID + ") :- lambda_" + prefix + i + "(" + bondID + "2).");
         }
         featCount += lambdas;
         return fins;
@@ -107,9 +108,15 @@ public class Templator extends Convertor {
      * @param position
      */
     public static void createGraphlets(ArrayList<String> rule, int position) {
+        String localid = "";
+        /*
+        if (!bondID.equals("")) {
+            localid = bondID + ",";
+        }
+         */
         if (position == featSize) {
             StringBuilder fin = new StringBuilder();
-            fin.append("lambda_").append(prefix).append(f++).append("(DMY) :- ");
+            fin.append("lambda_").append(prefix).append(f++).append("(").append(bondID).append(") :- ");
             for (int i = 0; i < rule.size(); i++) {
                 fin.append(rule.get(i));
             }
@@ -127,9 +134,9 @@ public class Templator extends Convertor {
         } else {
             for (int j = 1; j <= bondClusters; j++) {
                 if (bondTypes) {
-                    rule.add(bondPrefix + "(" + variables[atomIndex] + "," + variables[++atomIndex] + ",B" + (atomIndex - 1) + "), bondKappa_" + prefix + j + "(B" + (atomIndex - 1) + "), ");
+                    rule.add(bondPrefix + "(" + localid + variables[atomIndex] + "," + variables[++atomIndex] + ",B" + (atomIndex - 1) + "), bondKappa_" + prefix + j + "(B" + (atomIndex - 1) + "), ");
                 } else {
-                    rule.add(bondPrefix + "(" + variables[atomIndex] + "," + variables[++atomIndex] + "), ");
+                    rule.add(bondPrefix + "(" + localid + variables[atomIndex] + "," + variables[++atomIndex] + "), ");
                 }
 
                 createGraphlets(rule, ++position);
@@ -146,6 +153,10 @@ public class Templator extends Convertor {
 
     public static void createRandomGraphlets(int rowcount) {
         int j = 0;
+        String localid = "";
+        if (!bondID.equals("")) {
+            localid = bondID + ",";
+        }
         ArrayList<String> rule = new ArrayList<>();
         for (int i = 0; i < rowcount; i++) {
             atomIndex = 0;
@@ -157,14 +168,14 @@ public class Templator extends Convertor {
                 } else {
                     j = (int) (Math.random() * bondClusters + 1);
                     if (bondTypes) {
-                        rule.add("bond(" + variables[atomIndex] + "," + variables[++atomIndex] + ",B" + (atomIndex - 1) + "), bondKappa_" + j + "(B" + (atomIndex - 1) + "), ");
+                        rule.add(bondPrefix + "(" + localid + variables[atomIndex] + "," + variables[++atomIndex] + ",B" + (atomIndex - 1) + "), bondKappa_" + j + "(B" + (atomIndex - 1) + "), ");
                     } else {
-                        rule.add("bond(" + variables[atomIndex] + "," + variables[++atomIndex] + "), ");
+                        rule.add(bondPrefix + "(" + localid + variables[atomIndex] + "," + variables[++atomIndex] + "), ");
                     }
                 }
             }
             StringBuilder fin = new StringBuilder();
-            fin.append("lambda_").append(prefix).append(f++).append("(DMY) :- ");
+            fin.append("lambda_").append(prefix).append(f++).append("(" + bondID + ") :- ");
             for (int a = 0; a < rule.size(); a++) {
                 fin.append(rule.get(a));
             }
@@ -178,7 +189,7 @@ public class Templator extends Convertor {
             StringBuilder ex = new StringBuilder("1.0 ");
             for (int i = 0; i < atoms.size() - 1; i++) {
                 ex.append(atoms.get(i)).append("(").append(atoms.get(i)).append(i).append("),");
-                ex.append("bond(").append(atoms.get(i)).append(i).append(",").append(atoms.get(i + 1)).append(i + 1).append(",b0),");
+                ex.append(bondPrefix + "(").append(atoms.get(i)).append(i).append(",").append(atoms.get(i + 1)).append(i + 1).append(",b0),");
             }
             ex.append(atoms.get(atoms.size() - 1)).append("(").append(atoms.get(atoms.size() - 1)).append(atoms.size() - 1).append(").");
             atomComb.add(ex.toString());
@@ -397,7 +408,13 @@ public class Templator extends Convertor {
                 if (noLambdaBindings) {
                     String[] split = lambdarule.split("/");
                     atom = split[0];
-                    int count = Integer.parseInt(split[1]);
+                    int count;
+                    try {
+                        count = Integer.parseInt(split[1]);
+                    } catch (Exception e) {
+                        count = 1;
+                        atom = "/";
+                    }
                     args = arguments(count);
                 } else {
                     String[] split = lambdarule.split(":-");
@@ -450,7 +467,9 @@ public class Templator extends Convertor {
 
             //dictionary resolvation:
             //String[] literals = example.substring(2).replaceAll("[ .]", "").split("\\)[,]");
-            String[] literals = example.substring(example.indexOf(" ")).replaceAll(" ", "").split("\\)[,]");
+            String str = example.substring(example.indexOf(" ")).replaceAll(" ", "");
+            str = str.substring(0, str.length()-1);
+            String[] literals = str.split("\\)[,]");
 
             createSignatures(literals);
 

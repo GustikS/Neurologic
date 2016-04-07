@@ -7,6 +7,7 @@ package discoverer.grounding.network.groundNetwork;
 
 import discoverer.construction.network.LiftedTemplate;
 import discoverer.global.Global;
+import discoverer.global.Glogger;
 import discoverer.grounding.network.GroundKappa;
 import discoverer.grounding.network.GroundLambda;
 import java.util.List;
@@ -27,20 +28,21 @@ public class RuleAggNeuron extends GroundNeuron {
     public AtomNeuron[][] ruleBodyGroundings = null; //uncompressed representation with proper rule neurons each with sigmoid, then avg
     public double[] sumedInputsOfEachBodyGrounding = null;
     public int maxBodyGroundingIndex;
-
+    
     public double lambdaOffset;
 
     //public GroundLambda grl;
     RuleAggNeuron(GroundLambda gl, LiftedTemplate net) {
         name = gl.toString(net.tmpConstantNames);
+        
         outputValue = gl.getValueAvg();
         //grl = gl;
 
         lambdaOffset = gl.getGeneral().getOffset();
         groundParentsCount = gl.getGroundParents();
-
+        
         ruleBodyGroundingsCount = gl.getConjunctsCountForAvg();
-
+        
         if (Global.uncompressedLambda) {
             ruleBodyGroundings = new AtomNeuron[gl.getConjunctsCountForAvg()][gl.getConjuncts().size()];
             sumedInputsOfEachBodyGrounding = new double[gl.getConjunctsCountForAvg()];
@@ -48,7 +50,7 @@ public class RuleAggNeuron extends GroundNeuron {
                 return;
             }
             //TODO check correctness of the uncompressed version HERE
-            for (int j = 0; j < inputNeuronsCompressed.length; j++) {
+            for (int j = 0; j < gl.getConjunctsCountForAvg(); j++) {
                 List<GroundKappa> oneBodyGrounding = gl.fullBodyGroundings.get(j);
                 for (int k = 0; k < oneBodyGrounding.size(); k++) {
                     GroundNeuron gn = net.neuronMapping.get(oneBodyGrounding.get(k));

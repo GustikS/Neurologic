@@ -2,8 +2,14 @@ clear all  clc, close all;
 
 % type = 'finals';
 % type = 'bonds';
- type = 'atoms';
+% type = 'atoms';
 % type = 'all';
+
+ type = 'letters';
+ mypath = '../weights/flows/letters/';
+ 
+%  type = 'times';
+%  mypath = '../weights/flows/relations/';
 
 % mypath = '../weights/mutaFlipAtRestart/';
 % mypath = '../weights/';
@@ -12,7 +18,11 @@ clear all  clc, close all;
 % atomCount = 36;
 % bondCount = 6;
 
-mypath = '../weights/ptcmr/';
+% mypath = '../weights/ptcmr/';
+% atomCount = 19;
+% bondCount = 4;
+
+
 atomCount = 19;
 bondCount = 4;
 
@@ -22,5 +32,5 @@ files = dir(strcat(mypath,'*.csv'));
 
 for file = files(idx)'
     displayWeightMatrix(strcat(mypath,file.name), type, atomCount, bondCount);
-    break
+%      break
 end

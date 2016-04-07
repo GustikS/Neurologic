@@ -15,6 +15,7 @@ import discoverer.construction.network.rules.Rule;
 import discoverer.construction.network.rules.SubK;
 import discoverer.construction.network.rules.SubL;
 import discoverer.construction.Terminal;
+import discoverer.global.Glogger;
 import discoverer.grounding.evaluation.Evaluator;
 import discoverer.learning.functions.Activations;
 import java.awt.Desktop;
@@ -68,11 +69,14 @@ public class Grounder {
 
         GroundedTemplate b = kl instanceof Kappa ? solve2((Kappa) kl, null) : solve2((Lambda) kl, null);    //always Kappa only...first literal is without variables(ignoring them)
 
+        ForwardChecker.printRuns();
+        
         if (b == null) {
+            Glogger.err("Warning, unentailed example by the template!" + e.hash);
             return new GroundedTemplate(Global.getFalseAtomValue());
         }
 
-        ForwardChecker.printRuns();
+        
         //ForwardChecker.clear();
 
         return b;   //warning - now can return null if the given KL program and Example e have no grounded solution! //replaced with -1 empty GroundedTemplate
