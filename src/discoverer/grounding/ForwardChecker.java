@@ -1,8 +1,8 @@
 package discoverer.grounding;
 
-import discoverer.construction.network.Kappa;
+import discoverer.construction.template.Kappa;
 import discoverer.construction.network.rules.KappaRule;
-import discoverer.construction.network.Lambda;
+import discoverer.construction.template.Lambda;
 import discoverer.construction.network.rules.LambdaRule;
 import discoverer.construction.network.rules.Rule;
 import discoverer.construction.network.rules.SubK;

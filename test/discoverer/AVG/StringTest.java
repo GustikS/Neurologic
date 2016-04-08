@@ -6,14 +6,14 @@
 package discoverer.AVG;
 
 import discoverer.construction.ExampleFactory;
-import discoverer.construction.NetworkFactory;
+import discoverer.construction.TemplateFactory;
 import discoverer.construction.example.Example;
-import discoverer.construction.network.Kappa;
-import discoverer.construction.network.MolecularTemplate;
+import discoverer.construction.template.Kappa;
+import discoverer.construction.template.MolecularTemplate;
 import discoverer.construction.network.rules.KappaRule;
 import discoverer.drawing.Dotter;
 import discoverer.drawing.GroundDotter;
-import discoverer.global.FileToStringListJava6;
+import discoverer.global.FileToStringList;
 import discoverer.global.Global;
 import discoverer.grounding.Grounder;
 import discoverer.grounding.evaluation.GroundedTemplate;
@@ -42,15 +42,15 @@ public class StringTest {
         Global.setKappaActivation(Global.activationSet.id);
         Global.setWeightInit(Global.weightInitSet.handmade);
         Global.setRg(new Random(1));
-        String[] rules = FileToStringListJava6.convert("in/strings/easy-rules.txt", Integer.MAX_VALUE);
+        String[] rules = FileToStringList.convert("in/strings/easy-rules.txt", Integer.MAX_VALUE);
 
-        NetworkFactory nf = new NetworkFactory();
+        TemplateFactory nf = new TemplateFactory();
         MolecularTemplate net = nf.construct(rules);
 
         Dotter.draw(net.last, "strings");
 
         ExampleFactory eFactory = new ExampleFactory();
-        String[] examples = FileToStringListJava6.convert("in/strings/easy-examples.txt", Integer.MAX_VALUE);
+        String[] examples = FileToStringList.convert("in/strings/easy-examples.txt", Integer.MAX_VALUE);
         Example e = eFactory.construct(examples[0]);
 
         GroundedTemplate b = Grounder.solve(net.last, e);
@@ -64,15 +64,15 @@ public class StringTest {
         Global.setKappaActivation(Global.activationSet.sig);
         Global.setWeightInit(Global.weightInitSet.handmade);
         Global.setRg(new Random(1));
-        String[] rules = FileToStringListJava6.convert("in/strings/easy-rules.txt", Integer.MAX_VALUE);
+        String[] rules = FileToStringList.convert("in/strings/easy-rules.txt", Integer.MAX_VALUE);
 
-        NetworkFactory nf = new NetworkFactory();
+        TemplateFactory nf = new TemplateFactory();
         MolecularTemplate net = nf.construct(rules);
 
         Dotter.draw(net.last, "strings");
 
         ExampleFactory eFactory = new ExampleFactory();
-        String[] ex = FileToStringListJava6.convert("in/strings/easy-examples.txt", Integer.MAX_VALUE);
+        String[] ex = FileToStringList.convert("in/strings/easy-examples.txt", Integer.MAX_VALUE);
         
         for (int i = 0; i < ex.length; i++) {
             Example e = eFactory.construct(ex[i]);

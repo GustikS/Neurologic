@@ -5,10 +5,11 @@
  */
 package templates;
 
-import discoverer.global.FileToStringListJava6;
+import discoverer.global.FileToStringList;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
+import static templates.Convertor.writeOut;
 import static templates.Convertor.writeOut;
 
 /**
@@ -56,7 +57,7 @@ public class Templator extends Convertor {
         String in = "in\\muta\\examples";
         String out = "in\\muta\\rules1";
 
-        String[] ex = FileToStringListJava6.convert(in, 10000);
+        String[] ex = FileToStringList.convert(in, 10000);
 
         //createRings(ex, out);
         createTemplate(ex, out, 1, 1);

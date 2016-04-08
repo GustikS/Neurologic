@@ -7,12 +7,12 @@ package discoverer;
 
 import discoverer.crossvalidation.SampleSplitter;
 import discoverer.construction.ExampleFactory;
-import discoverer.construction.NetworkFactory;
+import discoverer.construction.TemplateFactory;
 import discoverer.construction.example.Example;
-import discoverer.construction.network.Kappa;
-import discoverer.construction.network.LiftedTemplate;
-import discoverer.construction.network.LightTemplate;
-import discoverer.construction.network.MolecularTemplate;
+import discoverer.construction.template.Kappa;
+import discoverer.construction.template.LiftedTemplate;
+import discoverer.construction.template.LightTemplate;
+import discoverer.construction.template.MolecularTemplate;
 import discoverer.construction.network.rules.KappaRule;
 import discoverer.construction.network.rules.Rule;
 import discoverer.drawing.Dotter;
@@ -33,7 +33,9 @@ import java.util.List;
 
 /**
  *
- * @author Gusta
+ * Abstraction of a dataset of the level of original template(rules) - contains
+ * high level structures and features - e.g. template creation, merging, saving
+ * and loading
  */
 public class LiftedDataset implements Serializable {
 
@@ -90,7 +92,7 @@ public class LiftedDataset implements Serializable {
 
     final LiftedTemplate createNetwork(String[] rules, String name) {
         //factory + subfactories initialization
-        NetworkFactory nf = null;
+        TemplateFactory nf = null;
         //constructs the whole L-K network from rules with support of grounded classes and element mappers, return LAST line rule's literal(=KL)!
         LiftedTemplate net = null;
 
@@ -103,7 +105,7 @@ public class LiftedDataset implements Serializable {
             return null;
         }
 
-        nf = new NetworkFactory();
+        nf = new TemplateFactory();
         net = nf.construct(rules);
 
         net.exportTemplate(name);
@@ -190,7 +192,7 @@ public class LiftedDataset implements Serializable {
         return sampleStore;
     }
 
-    public boolean saveSampleSet(String path, List<Sample> sampleSet){
+    public boolean saveSampleSet(String path, List<Sample> sampleSet) {
         try {
             Glogger.process("Saving grounded dataset...");
             FileOutputStream out = new FileOutputStream(path);
@@ -204,8 +206,8 @@ public class LiftedDataset implements Serializable {
             return false;
         }
     }
-    
-    public void savesomething(Object o, String path){
+
+    public void savesomething(Object o, String path) {
         try {
             Glogger.process("Saving something...");
             FileOutputStream out = new FileOutputStream(path);

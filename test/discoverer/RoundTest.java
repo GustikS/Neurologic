@@ -2,11 +2,11 @@ package discoverer;
 
 import discoverer.learning.Weights;
 import discoverer.construction.network.rules.KappaRule;
-import discoverer.construction.network.Kappa;
-import discoverer.construction.NetworkFactory;
+import discoverer.construction.template.Kappa;
+import discoverer.construction.TemplateFactory;
 import discoverer.construction.ExampleFactory;
 import discoverer.construction.example.Example;
-import discoverer.construction.network.MolecularTemplate;
+import discoverer.construction.template.MolecularTemplate;
 import discoverer.global.Global;
 import discoverer.grounding.evaluation.Evaluator;
 import discoverer.grounding.evaluation.GroundedTemplate;
@@ -56,7 +56,7 @@ public class RoundTest {
             "1.0 b(a,b), b(b,c), b(c,a), b(c,d), b(c,e), atom(a,c), atom(b,c), atom(c,c), atom(d,cl), atom(d,br).",
             "1.0 b(a,b), b(b,c), b(c,a), b(c,d), b(c,e), atom(a,c), atom(b,c), atom(c,c), atom(d,cl), atom(d,br).",};
 
-        NetworkFactory nf = new NetworkFactory();
+        TemplateFactory nf = new TemplateFactory();
         MolecularTemplate last = nf.construct(rules);
 
         ExampleFactory eFactory = new ExampleFactory();

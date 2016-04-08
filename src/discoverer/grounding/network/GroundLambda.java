@@ -1,6 +1,6 @@
 package discoverer.grounding.network;
 
-import discoverer.construction.network.Lambda;
+import discoverer.construction.template.Lambda;
 import discoverer.construction.Terminal;
 import discoverer.global.Global;
 import java.io.Serializable;

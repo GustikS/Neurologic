@@ -1,8 +1,8 @@
 package discoverer;
 
 import discoverer.construction.ConstantFactory;
-import discoverer.construction.NetworkFactory;
-import discoverer.construction.network.KL;
+import discoverer.construction.TemplateFactory;
+import discoverer.construction.template.KL;
 import discoverer.construction.ExampleFactory;
 import discoverer.construction.example.Example;
 import org.junit.*;
@@ -29,7 +29,7 @@ public class ExampleFactoryTest {
         };
 
 
-        NetworkFactory nf = new NetworkFactory();
+        TemplateFactory nf = new TemplateFactory();
         KL last = nf.construct(rules);
 
         ExampleFactory ef = new ExampleFactory();

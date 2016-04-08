@@ -6,9 +6,9 @@
 package discoverer.learning.learners;
 
 import discoverer.NeuralDataset;
-import discoverer.construction.network.LightTemplate;
+import discoverer.construction.template.LightTemplate;
 import discoverer.learning.learners.Learning;
-import discoverer.construction.network.MolecularTemplate;
+import discoverer.construction.template.MolecularTemplate;
 import discoverer.global.Global;
 import discoverer.global.Glogger;
 import discoverer.global.Settings;

@@ -5,7 +5,7 @@
  */
 package extra;
 
-import discoverer.construction.network.WeightInitializator;
+import discoverer.construction.template.WeightInitializator;
 import discoverer.global.Global;
 import java.util.Random;
 import org.junit.Ignore;

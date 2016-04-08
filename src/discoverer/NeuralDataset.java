@@ -5,11 +5,11 @@
  */
 package discoverer;
 
-import discoverer.construction.network.Kappa;
-import discoverer.construction.network.LiftedTemplate;
-import discoverer.construction.network.LightTemplate;
-import discoverer.construction.network.MolecularTemplate;
-import discoverer.construction.network.WeightInitializator;
+import discoverer.construction.template.Kappa;
+import discoverer.construction.template.LiftedTemplate;
+import discoverer.construction.template.LightTemplate;
+import discoverer.construction.template.MolecularTemplate;
+import discoverer.construction.template.WeightInitializator;
 import discoverer.construction.network.rules.KappaRule;
 import discoverer.construction.network.rules.Rule;
 import discoverer.crossvalidation.SampleSplitter;
@@ -22,13 +22,13 @@ import discoverer.learning.Sample;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 /**
- *
- * @author Gusta this object is the only thing necessary for learning phase -
- * for future memory tuning
+ * This is a lightweight dataset representation - this class contains only all
+ * the things necessary for learning phase - for memory saving and speedup
  */
 public class NeuralDataset extends LiftedDataset implements Serializable {
 
@@ -59,18 +59,18 @@ public class NeuralDataset extends LiftedDataset implements Serializable {
      * sets the Lifted Network template from previous LitedDataset or creates a
      * new lightweight version of it
      *
-     * @param net
+     * @param template
      */
-    final void makeTemplate(LiftedTemplate net) {
+    final void makeTemplate(LiftedTemplate template) {
         //makeMeSmall(network);
-        net.name2weight = new HashMap<>(net.rules.size());
-        for (Map.Entry<Object, Integer> woi : net.weightMapping.entrySet()) {
-            net.name2weight.put(woi.getKey().toString(), woi.getValue());
+        template.name2weight = new LinkedHashMap<>(template.rules.size());
+        for (Map.Entry<Object, Integer> woi : template.weightMapping.entrySet()) {
+            template.name2weight.put(woi.getKey().toString(), woi.getValue());
         }
         if (Global.memoryLight) {
-            super.network = new LiftedTemplate(net.sharedWeights, net.name2weight);
+            super.network = new LiftedTemplate(template.sharedWeights, template.name2weight);
         } else {
-            super.network = net;
+            super.network = template;
         }
     }
 

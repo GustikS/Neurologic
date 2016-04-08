@@ -1,6 +1,6 @@
 package discoverer.grounding.network;
 
-import discoverer.construction.network.Kappa;
+import discoverer.construction.template.Kappa;
 import discoverer.construction.network.rules.KappaRule;
 import discoverer.construction.Terminal;
 import discoverer.global.Tuple;

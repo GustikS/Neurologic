@@ -5,7 +5,7 @@
  */
 package discoverer.grounding.network.groundNetwork;
 
-import discoverer.construction.network.KL;
+import discoverer.construction.template.KL;
 import discoverer.global.Global;
 import java.io.Serializable;
 

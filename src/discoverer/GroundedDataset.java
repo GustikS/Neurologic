@@ -7,12 +7,12 @@ package discoverer;
 
 import discoverer.crossvalidation.SampleSplitter;
 import discoverer.construction.example.Example;
-import discoverer.construction.network.KL;
-import discoverer.construction.network.Kappa;
-import discoverer.construction.network.Lambda;
-import discoverer.construction.network.LiftedTemplate;
-import discoverer.construction.network.MolecularTemplate;
-import discoverer.construction.network.WeightInitializator;
+import discoverer.construction.template.KL;
+import discoverer.construction.template.Kappa;
+import discoverer.construction.template.Lambda;
+import discoverer.construction.template.LiftedTemplate;
+import discoverer.construction.template.MolecularTemplate;
+import discoverer.construction.template.WeightInitializator;
 import discoverer.construction.network.rules.KappaRule;
 import discoverer.construction.network.rules.Rule;
 import discoverer.global.Global;
@@ -38,18 +38,16 @@ import java.util.List;
 import java.util.Set;
 
 /**
- *
- * @author Gusta this class fieds are not static but are accessed from various
- * other classes, i.e. mainly the shared weights thus a reference to
- * GroundedDataset object must be somewhere stored statically
- * (Global.neuralDataset)
+ * An abstraction of a grounded dataset, i.e. set of ground proof-tree networks
+ * this class fields are not static but are accessed from various other classes,
+ * i.e. mainly the shared weights thus a reference to GroundedDataset object
+ * must be somewhere stored statically (Global.neuralDataset)
  */
 public class GroundedDataset extends LiftedDataset {
 
     public List<Example> examples;  //raw example structures
     public List<Sample> samples;    //samples contain groundedTemplates (=Balls), they are too memory expensive
 
-    //public NeuralDataset neuralNetworks;
     public GroundedDataset(String[] ex, String[] rules, String[] PretrainedRules) {
         super(rules, PretrainedRules);
 
@@ -108,7 +106,7 @@ public class GroundedDataset extends LiftedDataset {
             Glogger.info("example: " + e + " , maxVal: " + b.valMax + ", avgVal: " + b.valAvg);
             sampleStore.add(new Sample(e, b));
         }
-        
+
         Glogger.process("...done with intial grounding of examples");
 
         //here calculate for each proof-tree(=GroundedTemplate b = ground network) numbers of parents for each GroundKappa/Lambda

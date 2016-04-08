@@ -2,7 +2,7 @@ package discoverer;
 
 import discoverer.construction.Terminal;
 import discoverer.construction.network.rules.SubK;
-import discoverer.construction.network.Kappa;
+import discoverer.construction.template.Kappa;
 import static org.junit.Assert.*;
 
 import org.junit.Test;

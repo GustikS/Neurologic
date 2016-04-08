@@ -5,9 +5,9 @@
  */
 package discoverer.grounding.network.groundNetwork;
 
-import discoverer.construction.network.KL;
-import discoverer.construction.network.LiftedTemplate;
-import discoverer.construction.network.MolecularTemplate;
+import discoverer.construction.template.KL;
+import discoverer.construction.template.LiftedTemplate;
+import discoverer.construction.template.MolecularTemplate;
 import discoverer.global.Global;
 import discoverer.grounding.network.GroundKL;
 import discoverer.grounding.network.GroundKappa;

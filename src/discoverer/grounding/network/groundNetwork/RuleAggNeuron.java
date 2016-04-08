@@ -5,7 +5,7 @@
  */
 package discoverer.grounding.network.groundNetwork;
 
-import discoverer.construction.network.LiftedTemplate;
+import discoverer.construction.template.LiftedTemplate;
 import discoverer.global.Global;
 import discoverer.global.Glogger;
 import discoverer.grounding.network.GroundKappa;

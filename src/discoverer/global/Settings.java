@@ -368,7 +368,7 @@ public class Settings {
      * @param aDataset the dataset to set
      */
     public static void setDataset(String aDataset) {
-        dataset = aDataset.replace("/", "-").replaceAll("\\.", "");
+        dataset = aDataset.replace("/", "_").replaceAll("\\.", "");
     }
 
     /**
@@ -385,7 +385,7 @@ public class Settings {
         if (aPretrained == null) {
             aPretrained = "none";
         }
-        pretrained = aPretrained.replace("/", "-").replaceAll("\\.", "");
+        pretrained = aPretrained.replace("/", "_").replaceAll("\\.", "");
     }
 
     /**
@@ -399,7 +399,7 @@ public class Settings {
      * @param aRules the rules to set
      */
     public static void setRules(String aRules) {
-        rules = aRules.replace("/", "-").replaceAll("\\.", "");
+        rules = aRules.replace("/", "_").replaceAll("\\.", "");
     }
 
     /**
@@ -413,7 +413,7 @@ public class Settings {
      * @param aTestSet the testSet to set
      */
     public static void setTestSet(String aTestSet) {
-        testSet = aTestSet.replace("/", "-").replaceAll("\\.", "");
+        testSet = aTestSet.replace("/", "_").replaceAll("\\.", "");
     }
 
 }

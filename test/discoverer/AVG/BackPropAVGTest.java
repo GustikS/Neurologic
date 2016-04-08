@@ -12,10 +12,10 @@ import discoverer.construction.ExampleFactory;
 import discoverer.global.Global;
 import discoverer.drawing.GroundDotter;
 import discoverer.grounding.Grounder;
-import discoverer.construction.network.KL;
-import discoverer.construction.network.Kappa;
+import discoverer.construction.template.KL;
+import discoverer.construction.template.Kappa;
 import discoverer.construction.network.rules.KappaRule;
-import discoverer.construction.NetworkFactory;
+import discoverer.construction.TemplateFactory;
 import discoverer.grounding.evaluation.struct.GroundNetworkParser;
 import discoverer.learning.Weights;
 import java.util.*;
@@ -96,7 +96,7 @@ public class BackPropAVGTest {
          *String[] ex = { "0.0 bond(tr000_4, tr000_2, 0), cl(tr000_4), c(tr000_2), 1(0), bond(tr000_2, tr000_4, 0), bond(tr000_5, tr000_2, 1), h(tr000_5), 1(1), bond(tr000_2, tr000_5, 1), bond(tr000_3, tr000_2, 2), cl(tr000_3), 1(2), bond(tr000_2, tr000_3, 2), bond(tr000_2, tr000_1, 3), cl(tr000_1), 1(3), bond(tr000_1, tr000_2, 3).", };
          */
 
-        NetworkFactory nf = new NetworkFactory();
+        TemplateFactory nf = new TemplateFactory();
         KL last = nf.construct(rules);
 
         ExampleFactory eFactory = new ExampleFactory();
@@ -209,7 +209,7 @@ public class BackPropAVGTest {
          *String[] ex = { "0.0 bond(tr000_4, tr000_2, 0), cl(tr000_4), c(tr000_2), 1(0), bond(tr000_2, tr000_4, 0), bond(tr000_5, tr000_2, 1), h(tr000_5), 1(1), bond(tr000_2, tr000_5, 1), bond(tr000_3, tr000_2, 2), cl(tr000_3), 1(2), bond(tr000_2, tr000_3, 2), bond(tr000_2, tr000_1, 3), cl(tr000_1), 1(3), bond(tr000_1, tr000_2, 3).", };
          */
 
-        NetworkFactory nf = new NetworkFactory();
+        TemplateFactory nf = new TemplateFactory();
         KL last = nf.construct(rules);
 
         ExampleFactory eFactory = new ExampleFactory();

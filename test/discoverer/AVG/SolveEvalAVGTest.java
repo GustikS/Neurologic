@@ -6,8 +6,8 @@ import discoverer.construction.example.Example;
 import discoverer.construction.ExampleFactory;
 import discoverer.global.Global;
 import discoverer.grounding.Grounder;
-import discoverer.construction.network.KL;
-import discoverer.construction.NetworkFactory;
+import discoverer.construction.template.KL;
+import discoverer.construction.TemplateFactory;
 import java.util.*;
 import static org.junit.Assert.*;
 import org.junit.*;
@@ -48,7 +48,7 @@ public class SolveEvalAVGTest {
             "0.0 node1(c1), edge1(c1,c2), node3(c2), edge1(c2,c2)"
         };
 
-        NetworkFactory nf = new NetworkFactory();
+        TemplateFactory nf = new TemplateFactory();
         KL last = nf.construct(rules);
 
         for (int i = 0; i < ex.length; i++) {
@@ -85,7 +85,7 @@ public class SolveEvalAVGTest {
 
         String[] ex = {"1.0 atom(z,c), atom(d,cl), atom(d,br).",};
 
-        NetworkFactory nf = new NetworkFactory();
+        TemplateFactory nf = new TemplateFactory();
         KL last = nf.construct(rules);
 
         ExampleFactory eFactory = new ExampleFactory();
@@ -138,7 +138,7 @@ public class SolveEvalAVGTest {
             "0.0 node1(c1), edge1(c1,c2), node3(c2), edge1(c2,c2)"
         };
 
-        NetworkFactory nf = new NetworkFactory();
+        TemplateFactory nf = new TemplateFactory();
         KL last = nf.construct(rules);
         for (int i = 0; i < ex.length; i++) {
 
@@ -181,7 +181,7 @@ public class SolveEvalAVGTest {
 
         String[] ex = {"1.0 b(a,b), b(b,c), b(c,a), b(c,d), b(c,e), atom(a,c), atom(b,c), atom(c,c), atom(d,cl), atom(d,br).",};
 
-        NetworkFactory nf = new NetworkFactory();
+        TemplateFactory nf = new TemplateFactory();
         KL last = nf.construct(rules);
 
         ExampleFactory eFactory = new ExampleFactory();
@@ -235,7 +235,7 @@ public class SolveEvalAVGTest {
         String[] ex = {"1.0 b(a,b), b(b,c), b(c,a), b(c,d), b(c,e), atom(a,c), atom(b,c), atom(c,c), atom(d,cl), atom(d,br).",};
         //String[] ex = { "1.0 atom(d,cl), atom(d,br).", };
 
-        NetworkFactory nf = new NetworkFactory();
+        TemplateFactory nf = new TemplateFactory();
         KL last = nf.construct(rules);
 
         ExampleFactory eFactory = new ExampleFactory();
@@ -297,7 +297,7 @@ public class SolveEvalAVGTest {
 
         String[] ex = {"1.0 b(a,b), b(b,c), b(c,a), b(c,d), b(c,e), atom(a,c), atom(b,c), atom(c,c), atom(d,cl), atom(d,br).",};
 
-        NetworkFactory nf = new NetworkFactory();
+        TemplateFactory nf = new TemplateFactory();
         KL last = nf.construct(rules);
 
         ExampleFactory eFactory = new ExampleFactory();
@@ -318,7 +318,7 @@ public class SolveEvalAVGTest {
 
         String[] ex = {"1.0 b(a,b), b(b,c), b(c,a), b(c,d), b(c,e), atom(a,c), atom(b,c), atom(c,c), atom(d,cl), atom(d,br).",};
 
-        NetworkFactory nf = new NetworkFactory();
+        TemplateFactory nf = new TemplateFactory();
         KL last = nf.construct(rules);
 
         ExampleFactory eFactory = new ExampleFactory();
@@ -352,7 +352,7 @@ public class SolveEvalAVGTest {
             "0.1 k11(QQ) :- l11(Q11).",};
 
         String[] ex = {"1.0 b(a,b), b(b,c), b(c,a), b(c,d), b(c,e), atom(a,c), atom(b,c), atom(c,c), atom(d,cl), atom(d,br).",};
-        NetworkFactory nf = new NetworkFactory();
+        TemplateFactory nf = new TemplateFactory();
         KL last = nf.construct(rules);
 
         ExampleFactory eFactory = new ExampleFactory();

@@ -6,7 +6,7 @@
 package discoverer.learning.learners;
 
 import discoverer.construction.example.Example;
-import discoverer.construction.network.MolecularTemplate;
+import discoverer.construction.template.MolecularTemplate;
 import discoverer.global.Global;
 import discoverer.global.Glogger;
 import discoverer.global.Settings;

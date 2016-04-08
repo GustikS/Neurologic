@@ -1,11 +1,11 @@
 package examples;
 
 import discoverer.*;
-import discoverer.construction.NetworkFactory;
-import discoverer.construction.network.KL;
+import discoverer.construction.TemplateFactory;
+import discoverer.construction.template.KL;
 import discoverer.construction.ExampleFactory;
 import discoverer.construction.example.Example;
-import discoverer.construction.network.MolecularTemplate;
+import discoverer.construction.template.MolecularTemplate;
 import discoverer.drawing.Dotter;
 import discoverer.drawing.GroundDotter;
 import discoverer.global.Global;
@@ -31,7 +31,7 @@ public class People {
         
         String example = "1.0 male(bob),female(alice),parent(bob,alice),parent(eve,alice).";
         
-        NetworkFactory nf = new NetworkFactory();
+        TemplateFactory nf = new TemplateFactory();
         MolecularTemplate last = nf.construct(rules);
 
         ExampleFactory ef = new ExampleFactory();

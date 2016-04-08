@@ -1,10 +1,10 @@
 package discoverer;
 
-import discoverer.construction.network.LightTemplate;
+import discoverer.construction.template.LightTemplate;
 import discoverer.crossvalidation.NeuralCrossvalidation;
 import discoverer.crossvalidation.Crossvalidation;
 import discoverer.global.Global;
-import discoverer.global.FileToStringListJava6;
+import discoverer.global.FileToStringList;
 import discoverer.global.Glogger;
 import discoverer.global.Settings;
 import discoverer.learning.Sample;
@@ -22,19 +22,19 @@ import org.apache.commons.cli.PosixParser;
 public class Main {
 
     //cutoff on example number
-    private static final String defaultMaxExamples = "100000";  //we can decrease the overall number of examples (stratified) for speedup
+    private static final String defaultMaxExamples = "10000";  //we can decrease the overall number of examples (stratified) for speedup
     //
     public static String defaultLearningSteps = "3000";  //learnSteps per epocha
     public static String defaultLearningEpochs = "1";  //learn epochae = grounding cycles
     //  learnEpochae * LearningSteps = learning steps for AVG variant
-    private static final String defaultFolds = "4"; // 1 = training only
+    private static final String defaultFolds = "1"; // 1 = training only
     private static final String defaultLearningRate = "0.3"; //0.05 default from Vojta, it's good to increase, reasonable <0.1 , 1>
     //learnRate = 5 -> gets stuck very soon (<=10 steps) around 23% acc (+ jumping), unable to learnOn
     //learnRate = 1 -> plato around 600 steps with 10% acc (+ BIG jumping +-3%, but also +10%)
     //learnRate = 0.5 -> plato around 1000 steps with 8% acc (+ jumping +-3%) -> can break into some best results (0.3%) with saving
     //learnRate = 0.3 -> plato around 1000 steps with 8% acc, just a very mild jumping, very good apparent behavior
     //learnRate = 0.1 -> stable plato around 600 steps with 11% (no jumping, very stable, stuck)
-    public static final String defaultRestartCount = "2";  //#restarts per fold
+    public static final String defaultRestartCount = "1";  //#restarts per fold
     //max-avg
     public static final String defaultGrounding = "avg";    //avg or max
     public static String defaultActivations = "sig_id";    //lambda_kappa activation functions
@@ -53,7 +53,6 @@ public class Main {
     private static String defaultCumSteps = "0"; // "on" or number of steps, <= 0 => OFF
     private static String defaultLearnDecay = "0"; // >0 => learnRate decay strategy is ON
     private static int maxReadline = 100000; //cut-of reading input files (not used)
-    private static boolean multiLine = false; //example can spread to multiple lines, delimited by empty line (\n\n)
 
     public static Options getOptions() {
         Options options = new Options();
@@ -215,15 +214,17 @@ public class Main {
         }
 
         setParameters(cmd);
+        
+        //---------------------loading all input files
 
         //get examples from file
         String dataset = cmd.getOptionValue("e");
         Settings.setDataset(dataset);
         String[] exs = null;
-        if (multiLine) {
-            exs = FileToStringListJava6.convertMultiline(dataset, maxReadline);
+        if (Global.multiLine) {
+            exs = FileToStringList.convertMultiline(dataset, maxReadline);
         } else {
-            exs = FileToStringListJava6.convert(dataset, maxReadline);
+            exs = FileToStringList.convert(dataset, maxReadline);
         }
         
         if (exs.length == 0) {
@@ -236,13 +237,13 @@ public class Main {
         String tt = cmd.getOptionValue("test");
         if (tt != null) {
             Settings.setTestSet(tt);
-            test = FileToStringListJava6.convert(tt, maxReadline);
+            test = FileToStringList.convert(tt, maxReadline);
         }
 
-        //get rules one by one from file
+        //get rules one by one from a file
         String rls = cmd.getOptionValue("r");
         Settings.setRules(rls);
-        String[] rules = FileToStringListJava6.convert(rls, maxReadline);
+        String[] rules = FileToStringList.convert(rls, maxReadline);
         if (rules.length == 0) {
             Glogger.err("no rules");
         }
@@ -257,7 +258,7 @@ public class Main {
         //pretrained template with some lifted literals in common (will be mapped onto new template)
         String pretrained = cmd.getOptionValue("t");
         Settings.setPretrained(pretrained);
-        String[] pretrainedRules = FileToStringListJava6.convert(pretrained, maxReadline);
+        String[] pretrainedRules = FileToStringList.convert(pretrained, maxReadline);
         if (pretrainedRules != null) {
             Glogger.out("pretrained= " + pretrained + " of length: " + pretrainedRules.length);
         }
@@ -266,8 +267,10 @@ public class Main {
         //create logger for all messages within the program
         Glogger.init();
 
+        //create ground networks dataset
         LiftedDataset groundedDataset = createDataset(test, exs, rules, pretrainedRules);
 
+        //start learning
         learnOn(groundedDataset);
     }
 

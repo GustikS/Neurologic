@@ -3,8 +3,8 @@ package discoverer;
 import discoverer.construction.ElementMapper;
 import discoverer.construction.ConstantFactory;
 import discoverer.construction.network.rules.Rule;
-import discoverer.construction.network.Kappa;
-import discoverer.construction.NetworkFactory;
+import discoverer.construction.template.Kappa;
+import discoverer.construction.TemplateFactory;
 import static org.junit.Assert.*;
 import org.junit.*;
 
@@ -38,7 +38,7 @@ public class NetFactoryTest {
             "0.14 k13(X) :- l13(X).",
         };
 
-        NetworkFactory nf = new NetworkFactory();
+        TemplateFactory nf = new TemplateFactory();
         Kappa last = (Kappa) nf.construct(rules);
 
         System.out.println("id:\t" + last.getId());

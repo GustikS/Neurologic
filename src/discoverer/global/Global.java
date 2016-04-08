@@ -51,9 +51,9 @@ public final class Global {
     private static boolean GUI = false;
     private static mergingOptions merging = null;
 
-    public static boolean exporting = false;
-    public static boolean createWeightMatrix = false;   //matrix of neural weight for printing with Matlab etc.
-    
+    public static boolean exporting = true;
+    public static boolean createWeightMatrix = true;   //matrix of neural weight for printing with Matlab etc.
+
     public static boolean drawing = false;
     public static boolean longName = false;
     public static boolean saveGroundedDataset = false;
@@ -62,8 +62,8 @@ public final class Global {
     public static boolean fastVersion = true;
     public static boolean memoryLight = true;  //saves 60% by removing groundKL structures (keeps only neural), makes sense with fastVersion on only
     public static boolean molecularTemplates = true;
-    
-    
+
+    public static boolean multiLine = false; //example can spread to multiple lines, delimited by empty line (\n\n)
 
     /**
      * @return the merging
@@ -687,4 +687,25 @@ public final class Global {
         weightInit = aWeightInit;
     }
 
+    /**
+     * Just a generic method for sorting map by values
+     *
+     * @param <K>
+     * @param <V>
+     * @param map
+     * @return
+     */
+    public static <K, V extends Comparable<? super V>> SortedSet<Map.Entry<K, V>> sortByValues(Map<K, V> map) {
+        SortedSet<Map.Entry<K, V>> sortedEntries = new TreeSet<Map.Entry<K, V>>(
+                new Comparator<Map.Entry<K, V>>() {
+            @Override
+            public int compare(Map.Entry<K, V> e1, Map.Entry<K, V> e2) {
+                int res = e1.getValue().compareTo(e2.getValue());
+                return res != 0 ? res : 1; // Special fix to preserve items with equal values
+            }
+        }
+        );
+        sortedEntries.addAll(map.entrySet());
+        return sortedEntries;
+    }
 }

@@ -2,9 +2,9 @@ package discoverer;
 
 import discoverer.construction.Terminal;
 import discoverer.construction.network.rules.LambdaRule;
-import discoverer.construction.NetworkFactory;
-import discoverer.construction.network.Lambda;
-import discoverer.construction.network.MolecularTemplate;
+import discoverer.construction.TemplateFactory;
+import discoverer.construction.template.Lambda;
+import discoverer.construction.template.MolecularTemplate;
 import discoverer.global.Global;
 import java.util.*;
 import static org.junit.Assert.*;
@@ -22,7 +22,7 @@ public class VariableOrderingTest {
             "l21(X) :- atom(X,Y), atom(Z,cl), atom(Q,a,R,c,d).",
         };
 
-        NetworkFactory nf = new NetworkFactory();
+        TemplateFactory nf = new TemplateFactory();
         MolecularTemplate net = nf.construct(rules);
         Lambda l = (Lambda) net.last;
         LambdaRule lr = l.getRule();

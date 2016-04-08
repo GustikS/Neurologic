@@ -1,6 +1,6 @@
 package discoverer.construction.example;
 
-import discoverer.construction.network.Kappa;
+import discoverer.construction.template.Kappa;
 import discoverer.construction.network.rules.SubK;
 import discoverer.construction.Terminal;
 import discoverer.construction.network.rules.SubKL;

@@ -7,8 +7,8 @@ package discoverer.crossvalidation;
 
 import discoverer.LiftedDataset;
 import discoverer.NeuralDataset;
-import discoverer.construction.network.LightTemplate;
-import discoverer.construction.network.MolecularTemplate;
+import discoverer.construction.template.LightTemplate;
+import discoverer.construction.template.MolecularTemplate;
 import discoverer.crossvalidation.Crossvalidation;
 import discoverer.global.Global;
 import discoverer.global.Glogger;

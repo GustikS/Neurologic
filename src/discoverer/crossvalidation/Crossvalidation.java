@@ -7,10 +7,10 @@ import extras.BatchLearner;
 import discoverer.construction.example.Example;
 import discoverer.construction.ExampleFactory;
 import discoverer.global.Global;
-import discoverer.construction.network.KL;
-import discoverer.construction.NetworkFactory;
-import discoverer.construction.network.LightTemplate;
-import discoverer.construction.network.MolecularTemplate;
+import discoverer.construction.template.KL;
+import discoverer.construction.TemplateFactory;
+import discoverer.construction.template.LightTemplate;
+import discoverer.construction.template.MolecularTemplate;
 import discoverer.construction.network.rules.KappaRule;
 import discoverer.construction.network.rules.Rule;
 import discoverer.drawing.Dotter;
@@ -75,7 +75,7 @@ public class Crossvalidation {
         if (Global.exporting) {
             network.exportTemplate("learned-fold" + fold);
             network.exportWeightMatrix("learned-fold" + fold);
-            MolecularTemplate.saveNetwork(network, "learned-fold" + fold);
+            MolecularTemplate.saveTemplate(network, "learned-fold" + fold);
         }
         if (Global.drawing) {
             Dotter.draw(network, "learned_fold" + fold);

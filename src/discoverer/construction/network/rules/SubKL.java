@@ -1,7 +1,7 @@
 package discoverer.construction.network.rules;
 
 import discoverer.construction.Terminal;
-import discoverer.construction.network.KL;
+import discoverer.construction.template.KL;
 import java.io.Serializable;
 import java.util.*;
 

@@ -6,7 +6,7 @@
 package extra;
 
 import discoverer.learning.learners.Learning;
-import discoverer.construction.network.WeightInitializator;
+import discoverer.construction.template.WeightInitializator;
 import org.junit.Test;
 
 /**

@@ -1,6 +1,6 @@
 package extras;
 
-import discoverer.construction.network.Kappa;
+import discoverer.construction.template.Kappa;
 import discoverer.construction.network.rules.KappaRule;
 
 /**

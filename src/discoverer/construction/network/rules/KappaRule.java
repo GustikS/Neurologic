@@ -1,10 +1,10 @@
 package discoverer.construction.network.rules;
 
 import discoverer.construction.Terminal;
-import discoverer.construction.network.Kappa;
+import discoverer.construction.template.Kappa;
 import discoverer.construction.network.rules.SubL;
 import discoverer.construction.network.rules.SubK;
-import discoverer.construction.network.WeightInitializator;
+import discoverer.construction.template.WeightInitializator;
 import java.io.Serializable;
 
 /**
@@ -24,7 +24,7 @@ public class KappaRule extends Rule implements Serializable {
     public String toString() {
         return String.format("%.15f", getWeight()) + " " + head.toString() + " :- " + body.toString() + ".";
     }
-
+    
     @Override
     public boolean equals(Object o) {
         if (o == null) {

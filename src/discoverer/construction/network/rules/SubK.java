@@ -2,7 +2,7 @@ package discoverer.construction.network.rules;
 
 import discoverer.construction.Terminal;
 import discoverer.construction.ElementMapper;
-import discoverer.construction.network.Kappa;
+import discoverer.construction.template.Kappa;
 import java.io.Serializable;
 
 /**

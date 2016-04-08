@@ -2,7 +2,7 @@ package discoverer.construction.network.rules;
 
 import discoverer.construction.ElementMapper;
 import discoverer.construction.Terminal;
-import discoverer.construction.network.Lambda;
+import discoverer.construction.template.Lambda;
 import java.io.Serializable;
 
 /**

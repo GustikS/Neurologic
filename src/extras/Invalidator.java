@@ -1,12 +1,12 @@
 package discoverer.learning;
 
-import discoverer.construction.network.KL;
-import discoverer.construction.network.Kappa;
+import discoverer.construction.template.KL;
+import discoverer.construction.template.Kappa;
 import discoverer.construction.network.rules.KappaRule;
-import discoverer.construction.network.Lambda;
-import discoverer.construction.network.MolecularTemplate;
+import discoverer.construction.template.Lambda;
+import discoverer.construction.template.MolecularTemplate;
 import discoverer.construction.network.rules.SubK;
-import discoverer.construction.network.WeightInitializator;
+import discoverer.construction.template.WeightInitializator;
 
 /**
  * Invalidator for edge weights

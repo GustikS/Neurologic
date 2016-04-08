@@ -1,14 +1,14 @@
 package discoverer;
 
-import discoverer.construction.NetworkFactory;
-import discoverer.construction.network.KL;
+import discoverer.construction.TemplateFactory;
+import discoverer.construction.template.KL;
 import discoverer.construction.ExampleFactory;
 import discoverer.construction.example.Example;
-import discoverer.construction.network.LiftedTemplate;
-import discoverer.construction.network.MolecularTemplate;
+import discoverer.construction.template.LiftedTemplate;
+import discoverer.construction.template.MolecularTemplate;
 import discoverer.drawing.Dotter;
 import discoverer.drawing.GroundDotter;
-import discoverer.global.FileToStringListJava6;
+import discoverer.global.FileToStringList;
 import discoverer.global.Global;
 import discoverer.grounding.evaluation.GroundedTemplate;
 import discoverer.grounding.Grounder;
@@ -26,15 +26,15 @@ public class GroundDrawTest {
         Global.setKappaActivation(Global.activationSet.id);
         Global.setWeightInit(Global.weightInitSet.handmade);
         Global.setRg(new Random(1));
-        String[] rules = FileToStringListJava6.convert("in/strings/easy-rules2.txt", Integer.MAX_VALUE);
+        String[] rules = FileToStringList.convert("in/strings/easy-rules2.txt", Integer.MAX_VALUE);
         
-        NetworkFactory nf = new NetworkFactory();
+        TemplateFactory nf = new TemplateFactory();
         LiftedTemplate net = nf.construct(rules);
 
         //Dotter.draw(net.last, "strings");
         
         ExampleFactory eFactory = new ExampleFactory();
-        String[] examples = FileToStringListJava6.convert("in/strings/easy-examples.txt", Integer.MAX_VALUE);
+        String[] examples = FileToStringList.convert("in/strings/easy-examples.txt", Integer.MAX_VALUE);
         Example e = eFactory.construct(examples[0]);
 
         GroundedTemplate b = Grounder.solve(net.last, e);
@@ -79,7 +79,7 @@ public class GroundDrawTest {
         };
 
         String[] ex = { "1.0 b(b,b), b(a,b), b(b,c), b(c,a), b(c,d), b(c,e), atom(a,c), atom(b,c), atom(c,c), atom(d,cl), atom(d,br).", };
-        NetworkFactory nf = new NetworkFactory();
+        TemplateFactory nf = new TemplateFactory();
         MolecularTemplate last = nf.construct(rules);
 
         ExampleFactory eFactory = new ExampleFactory();
@@ -121,7 +121,7 @@ public class GroundDrawTest {
         };
 
         String[] ex = { "1.0 b(b,b), b(a,b), b(b,c), b(c,a), b(c,d), b(c,e), b(d,e), atom(a,c), atom(b,c), atom(c,c), atom(d,cl), atom(d,br).", };
-        NetworkFactory nf = new NetworkFactory();
+        TemplateFactory nf = new TemplateFactory();
         MolecularTemplate last = nf.construct(rules);
 
         ExampleFactory eFactory = new ExampleFactory();

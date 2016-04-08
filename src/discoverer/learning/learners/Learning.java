@@ -2,8 +2,8 @@ package discoverer.learning.learners;
 
 import discoverer.grounding.evaluation.struct.GroundNetworkParser;
 import discoverer.construction.example.Example;
-import discoverer.construction.network.Kappa;
-import discoverer.construction.network.MolecularTemplate;
+import discoverer.construction.template.Kappa;
+import discoverer.construction.template.MolecularTemplate;
 import discoverer.construction.network.rules.KappaRule;
 import discoverer.global.Global;
 import discoverer.global.Glogger;
