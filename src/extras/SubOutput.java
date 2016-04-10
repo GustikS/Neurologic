@@ -18,8 +18,8 @@ public class SubOutput {
         binds = new int[len];
         hash = computeHash();
         for (int i = 0; i < sk.getTerms().size(); i++) {
-            Integer b1 = sk.getTerm(i).getBind();
-            binds[i] = b1 == null ? -1 : b1;
+            int b1 = sk.getTerm(i).getBind();
+            binds[i] = b1 == -1 ? -1 : b1;
         }
     }
 
@@ -29,8 +29,8 @@ public class SubOutput {
         binds = new int[len];
         hash = computeHash();
         for (int i = 0; i < sl.getTerms().size(); i++) {
-            Integer b1 = sl.getTerm(i).getBind();
-            binds[i] = b1 == null ? -1 : b1;
+            int b1 = sl.getTerm(i).getBind();
+            binds[i] = b1 == -1 ? -1 : b1;
         }
     }
 

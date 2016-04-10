@@ -206,17 +206,4 @@ public class LiftedDataset implements Serializable {
             return false;
         }
     }
-
-    public void savesomething(Object o, String path) {
-        try {
-            Glogger.process("Saving something...");
-            FileOutputStream out = new FileOutputStream(path);
-            ObjectOutputStream oos = new ObjectOutputStream(out);
-            oos.writeObject(o);
-            oos.flush();
-            Glogger.process("Successfully Saved something into: " + path);
-        } catch (Exception e) {
-            Glogger.err("Problem serializing: " + e);
-        }
-    }
 }

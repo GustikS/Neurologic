@@ -5,7 +5,7 @@
  */
 package discoverer.grounding.network;
 
-import discoverer.construction.Terminal;
+import discoverer.construction.Variable;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +15,7 @@ import java.util.Set;
  *
  * @author Gusta
  */
-public abstract class GroundKL implements Serializable{
+public abstract class GroundKL implements Serializable {
 
     private static int counter = 0;
 
@@ -29,27 +29,27 @@ public abstract class GroundKL implements Serializable{
     private Double valueAvg;
 
     private int id;
-    private List<Integer> termList;
-    private List<String> termNames;
+    private int[] termList;
+    private String[] termNames;
 
     /**
      * this is a truly ground K/L
      *
      * @param terms
      */
-    public GroundKL(List<Terminal> terms) {
+    public GroundKL(List<Variable> terms) {
         groundParents = 0;
         groundParentsChecked = 0;
         groundParentDerivative = 0;
 
         id = counter++;
-        termList = new ArrayList<Integer>();
-        termNames = new ArrayList<>();
+        termList = new int[terms.size()];
+        termNames = new String[terms.size()];
 
         if (terms != null) {
-            for (Terminal t : terms) {
-                termList.add(t.getBind());
-                termNames.add(t.getName());
+            for (int i = 0; i < terms.size(); i++) {
+                termList[i] = terms.get(i).getBind();
+                termNames[i] = terms.get(i).getName();
             }
         }
     }
@@ -63,9 +63,8 @@ public abstract class GroundKL implements Serializable{
     }
 
     public abstract GroundKL cloneMe();
-    
-    //public abstract void transform2Arrays();
 
+    //public abstract void transform2Arrays();
     /**
      * delete values and parent counters for backpropagation calculation
      */
@@ -157,14 +156,14 @@ public abstract class GroundKL implements Serializable{
     /**
      * @return the termList
      */
-    public List<Integer> getTermList() {
+    public int[] getTermList() {
         return termList;
     }
 
     /**
      * @param termList the termList to set
      */
-    public void setTermList(List<Integer> termList) {
+    public void setTermList(int[] termList) {
         this.termList = termList;
     }
 
@@ -189,14 +188,14 @@ public abstract class GroundKL implements Serializable{
     /**
      * @return the termNames
      */
-    public List<String> getTermNames() {
+    public String[] getTermNames() {
         return termNames;
     }
 
     /**
      * @param termNames the termNames to set
      */
-    public void setTermNames(List<String> termNames) {
+    public void setTermNames(String[] termNames) {
         this.termNames = termNames;
     }
 }

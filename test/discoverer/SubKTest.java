@@ -1,6 +1,6 @@
 package discoverer;
 
-import discoverer.construction.Terminal;
+import discoverer.construction.Variable;
 import discoverer.construction.network.rules.SubK;
 import discoverer.construction.template.Kappa;
 import static org.junit.Assert.*;
@@ -13,11 +13,11 @@ public class SubKTest {
     public void test1() {
         Kappa k = new Kappa("test", 0.5);
         SubK sk1 = new SubK(k, true);
-        Terminal t1 = new Terminal("A", 1); Terminal t2 = new Terminal("B", 2); Terminal t3 = new Terminal("C", -1);
+        Variable t1 = new Variable("A", 1); Variable t2 = new Variable("B", 2); Variable t3 = new Variable("C", -1);
         sk1.addVariable(t1); sk1.addVariable(t2); sk1.addVariable(t3);
 
         SubK sk2 = new SubK(k, true);
-        Terminal tt1 = new Terminal("A", 1); Terminal tt2 = new Terminal("B", 2); Terminal tt3 = new Terminal("C", -1);
+        Variable tt1 = new Variable("A", 1); Variable tt2 = new Variable("B", 2); Variable tt3 = new Variable("C", -1);
         sk2.addVariable(tt1); sk2.addVariable(tt2); sk2.addVariable(tt3);
 
         assertEquals(sk1, sk2);
@@ -27,11 +27,11 @@ public class SubKTest {
     public void test2() {
         Kappa k = new Kappa("test", 0.5);
         SubK sk1 = new SubK(k, true);
-        Terminal t1 = new Terminal("A", 2); Terminal t2 = new Terminal("B", 2); Terminal t3 = new Terminal("C", -1);
+        Variable t1 = new Variable("A", 2); Variable t2 = new Variable("B", 2); Variable t3 = new Variable("C", -1);
         sk1.addVariable(t1); sk1.addVariable(t2); sk1.addVariable(t3);
 
         SubK sk2 = new SubK(k, true);
-        Terminal tt1 = new Terminal("A", 1); Terminal tt2 = new Terminal("B", 2); Terminal tt3 = new Terminal("C", -1);
+        Variable tt1 = new Variable("A", 1); Variable tt2 = new Variable("B", 2); Variable tt3 = new Variable("C", -1);
         sk2.addVariable(tt1); sk2.addVariable(tt2); sk2.addVariable(tt3);
 
         assertFalse(sk1.equals(sk2));

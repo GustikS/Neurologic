@@ -7,14 +7,8 @@ package discoverer;
 
 import discoverer.crossvalidation.SampleSplitter;
 import discoverer.construction.example.Example;
-import discoverer.construction.template.KL;
-import discoverer.construction.template.Kappa;
-import discoverer.construction.template.Lambda;
 import discoverer.construction.template.LiftedTemplate;
 import discoverer.construction.template.MolecularTemplate;
-import discoverer.construction.template.WeightInitializator;
-import discoverer.construction.network.rules.KappaRule;
-import discoverer.construction.network.rules.Rule;
 import discoverer.global.Global;
 import discoverer.global.Glogger;
 import discoverer.global.Settings;
@@ -23,19 +17,14 @@ import discoverer.grounding.Grounder;
 import discoverer.grounding.evaluation.GroundedTemplate;
 import discoverer.grounding.evaluation.struct.GroundNetworkParser;
 import discoverer.grounding.network.GroundKL;
-import discoverer.grounding.network.groundNetwork.GroundNetwork;
-import discoverer.grounding.network.groundNetwork.GroundNeuron;
 import discoverer.learning.Sample;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 /**
  * An abstraction of a grounded dataset, i.e. set of ground proof-tree networks
@@ -89,22 +78,65 @@ public class GroundedDataset extends LiftedDataset {
      * GroundedTemplate result returned as couples in Sample
      *
      * @param examples examples
+     * @param template
      * @param net
      * @param last output node
      * @return list with balls from first run
      */
-    public final List<Sample> prepareGroundings(List<Example> examples, LiftedTemplate net) {
+    public final List<Sample> prepareGroundings(List<Example> examples, LiftedTemplate template) {
         //find max. and average substitution for all examples
-        ForwardChecker.exnum = 0;
         List<Sample> sampleStore = new ArrayList<>(examples.size());
 
         Glogger.process("searching for initial substition prove-trees for each example...");
-        ForwardChecker.exnum = 0;
-        int i = 0;
-        for (Example e : examples) {
-            GroundedTemplate b = Grounder.solve(net.last, e);
-            Glogger.info("example: " + e + " , maxVal: " + b.valMax + ", avgVal: " + b.valAvg);
-            sampleStore.add(new Sample(e, b));
+
+        //Global.savesomething(template, "cc");
+        if (Global.parallelGrounding) {
+            Glogger.process("Parallel threads workfold splitting");
+            List<List<Example>> workFolds = new LinkedList<>();
+            for (int i = 0; i < Global.numOfThreads; i++) {
+                workFolds.add(new LinkedList<>());
+            }
+            for (int i = 0; i < examples.size(); i++) {
+                workFolds.get(i % Global.numOfThreads).add(examples.get(i));
+            }
+            ExecutorService exec = Executors.newFixedThreadPool(Global.numOfThreads);
+            Glogger.process("Parallel threads created");
+            try {
+                for (int j = 0; j < Global.numOfThreads; j++) {
+                    List<Example> wex = workFolds.get(j);
+                    int thrd = j;
+                    exec.submit(new Runnable() {
+                        @Override
+                        public void run() {
+                            Grounder grounder = new Grounder();
+                            grounder.forwardChecker.exnum = 0;
+                            //unfortunatelly the threads cannot be run completely parallel on the same template, it's way too complitated, we need separate templates
+                            LiftedTemplate net = (LiftedTemplate) Global.makeDeepCopy(template);
+                            //LiftedTemplate net = (LiftedTemplate) Global.loadSomething("cc");
+                            for (Example e : wex) {
+                                GroundedTemplate b = grounder.solve(net.last, e);
+                                Glogger.info("thread " + thrd + " - example: " + e + " , maxVal: " + b.valMax + ", avgVal: " + b.valAvg);
+                                sampleStore.add(new Sample(e, b));
+                            }
+                        }
+                    });
+                }
+            } finally {
+                exec.shutdown();
+                try {
+                    exec.awaitTermination(Integer.MAX_VALUE, TimeUnit.SECONDS);
+                } catch (InterruptedException e) {
+                    Glogger.err("Threads problem while grounding...");
+                }
+            }
+        } else {
+            Grounder grounder = new Grounder();
+            grounder.forwardChecker.exnum = 0;
+            for (Example e : examples) {
+                GroundedTemplate b = grounder.solve(template.last, e);
+                Glogger.info("example: " + e + " , maxVal: " + b.valMax + ", avgVal: " + b.valAvg);
+                sampleStore.add(new Sample(e, b));
+            }
         }
 
         Glogger.process("...done with intial grounding of examples");

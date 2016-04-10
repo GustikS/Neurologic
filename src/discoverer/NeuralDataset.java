@@ -64,8 +64,8 @@ public class NeuralDataset extends LiftedDataset implements Serializable {
     final void makeTemplate(LiftedTemplate template) {
         //makeMeSmall(network);
         template.name2weight = new LinkedHashMap<>(template.rules.size());
-        for (Map.Entry<Object, Integer> woi : template.weightMapping.entrySet()) {
-            template.name2weight.put(woi.getKey().toString(), woi.getValue());
+        for (Map.Entry<String, Integer> woi : template.weightMapping.entrySet()) {
+            template.name2weight.put(woi.getKey(), woi.getValue());
         }
         if (Global.memoryLight) {
             super.network = new LiftedTemplate(template.sharedWeights, template.name2weight);
@@ -83,12 +83,12 @@ public class NeuralDataset extends LiftedDataset implements Serializable {
         int weightCounter = 0;
         for (Rule rule : network.rules) {
             if (rule instanceof KappaRule) {
-                network.weightMapping.put(rule, weightCounter++);
+                network.weightMapping.put(((KappaRule) rule).toString(), weightCounter++);
             }
         }
         for (Kappa kappa : network.getKappas()) {
             //if (!kappa.getRules().isEmpty()) {    // - nope, let's learn Kappa elements offsets too in the fast version! :)
-            network.weightMapping.put(kappa, weightCounter++);
+            network.weightMapping.put(kappa.toString(), weightCounter++);
             //}
         }
         network.sharedWeights = new double[weightCounter];

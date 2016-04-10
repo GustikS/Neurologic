@@ -22,7 +22,7 @@ import org.apache.commons.cli.PosixParser;
 public class Main {
 
     //cutoff on example number
-    private static final String defaultMaxExamples = "10000";  //we can decrease the overall number of examples (stratified) for speedup
+    private static final String defaultMaxExamples = "1000";  //we can decrease the overall number of examples (stratified) for speedup
     //
     public static String defaultLearningSteps = "3000";  //learnSteps per epocha
     public static String defaultLearningEpochs = "1";  //learn epochae = grounding cycles

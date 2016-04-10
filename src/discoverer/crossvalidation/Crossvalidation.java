@@ -1,41 +1,25 @@
 package discoverer.crossvalidation;
 
 import discoverer.LiftedDataset;
-import discoverer.learning.learners.Learning;
-import discoverer.learning.Invalidator;
-import extras.BatchLearner;
-import discoverer.construction.example.Example;
-import discoverer.construction.ExampleFactory;
 import discoverer.global.Global;
 import discoverer.construction.template.KL;
-import discoverer.construction.TemplateFactory;
 import discoverer.construction.template.LightTemplate;
 import discoverer.construction.template.MolecularTemplate;
-import discoverer.construction.network.rules.KappaRule;
-import discoverer.construction.network.rules.Rule;
 import discoverer.drawing.Dotter;
-import discoverer.drawing.GroundDotter;
 import discoverer.global.Glogger;
 import discoverer.global.Settings;
-import discoverer.global.Tuple;
 import discoverer.grounding.ForwardChecker;
 import discoverer.grounding.evaluation.GroundedTemplate;
 import discoverer.grounding.Grounder;
 import discoverer.grounding.network.GroundKappa;
 import discoverer.grounding.network.GroundLambda;
-import discoverer.learning.learners.LearnerFast;
 import discoverer.learning.Result;
 import discoverer.learning.Results;
 import discoverer.learning.Sample;
-import discoverer.learning.Saver;
 import discoverer.learning.learners.LearnerCheckback;
 import discoverer.learning.learners.LearnerIterative;
 import discoverer.learning.learners.LearnerStandard;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.LinkedHashSet;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -49,6 +33,8 @@ public class Crossvalidation {
     double trainErr = 0;
 
     SampleSplitter splitter;
+
+    Grounder grounder = new Grounder();
 
     public Crossvalidation(SampleSplitter ss) {
         splitter = ss;
@@ -114,7 +100,7 @@ public class Crossvalidation {
                 LightTemplate.exportSharedWeights(dataset.network.sharedWeights, 99);
                 dataset.saveDataset(Settings.getDataset().replaceAll("-", "/") + ".ser");
             }
-            
+
             //Invalidator.invalidate(network); //1st
             dataset.network.invalidateWeights();
 
@@ -189,8 +175,8 @@ public class Crossvalidation {
                 res = s.checkback(network, examples);
             }
         } else if (Global.getBatch() == Global.batch.YES) {
-            BatchLearner bs = new BatchLearner();
-            res = bs.solve(network, examples);
+            //BatchLearner bs = new BatchLearner();
+            //res = bs.solve(network, examples);
         } else if (Global.isCumulativeRestarts()) {
             if (Global.getGrounding() == Global.groundingSet.avg) {
                 LearnerIterative s = new LearnerIterative();
@@ -222,7 +208,7 @@ public class Crossvalidation {
     public double test(LightTemplate netw, Results res, List<Sample> examples) {
         MolecularTemplate net = (MolecularTemplate) netw;
         KL network = net.last;
-        ForwardChecker.exnum = 0;
+        grounder.forwardChecker.exnum = 0;
         double error = 0.0;
 
         Results results = new Results();    //we didn't store the whole ground networks(one for each example), just the weights of program
@@ -230,7 +216,7 @@ public class Crossvalidation {
         HashMap<String, Double> atoms = new HashMap<>();
 
         for (Sample example : examples) {
-            GroundedTemplate b = Grounder.solve(network, example.getExample());
+            GroundedTemplate b = grounder.solve(network, example.getExample());
 
             double ballValue = -1;
             if (b != null) {

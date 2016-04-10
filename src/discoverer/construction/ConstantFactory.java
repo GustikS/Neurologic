@@ -8,7 +8,7 @@ import java.util.*;
  */
 public class ConstantFactory {
 
-    private static Map<String, Terminal> constMap = new HashMap<String, Terminal>();    //this is static, needs to be cleaned between runs!!
+    private static Map<String, Variable> constMap = new HashMap<String, Variable>();    //this is static, needs to be cleaned between runs!!
     private static int nextConst = 0;
 
     public static void clearConstantFactory() {
@@ -19,12 +19,12 @@ public class ConstantFactory {
         nextConst = 0;
     }
 
-    public static Terminal construct(String name) {
+    public static Variable construct(String name) {
         if (constMap.containsKey(name)) {
             return constMap.get(name);
         }
 
-        Terminal t = new Terminal(name, nextConst++);
+        Variable t = new Variable(name, nextConst++);
         constMap.put(name, t);
         return t;
     }
@@ -41,7 +41,7 @@ public class ConstantFactory {
         return nextConst;
     }
 
-    public static Map<String, Terminal> getConstMap() {
+    public static Map<String, Variable> getConstMap() {
         return constMap;
     }
 }

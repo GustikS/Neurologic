@@ -1,6 +1,6 @@
 package discoverer.construction.network.rules;
 
-import discoverer.construction.Terminal;
+import discoverer.construction.Variable;
 import discoverer.construction.ElementMapper;
 import discoverer.construction.template.Kappa;
 import java.io.Serializable;
@@ -18,7 +18,7 @@ public class SubK extends SubKL implements Serializable {
         sb.append(parent.toString());
         if (getTermsList().size() > 0) {
             sb.append("(");
-            for (Terminal v : getTermsList()) {
+            for (Variable v : getTermsList()) {
                 sb.append(v);
                 sb.append(",");
             }
@@ -47,11 +47,18 @@ public class SubK extends SubKL implements Serializable {
         return parent.getId();
     }
 
-    public int countScoreFor(Terminal var) {
+    /**
+     * score = if this SubK contains the respective variable, then how much is
+     * this SubK constraned already?
+     *
+     * @param var
+     * @return
+     */
+    public int countScoreFor(Variable var) {
         boolean present = false;
         int score = 0;
 
-        for (Terminal t : termsList) {
+        for (Variable t : termsList) {
             if (var == t) {
                 present = true;
             }
@@ -63,11 +70,29 @@ public class SubK extends SubKL implements Serializable {
         return present ? score : 0;
     }
 
+    /**
+     * it should be a relative constrain, i.e. start with most contrained
+     * literals, not just the ones with most binded variables
+     *
+     * @param var
+     * @return
+     */
+    public int countScoreFor2(Variable var) {
+        int score = 0;
+
+        for (Variable t : termsList) {
+            if (t != var && !t.isBind()) {
+                score -= 1; //for every unbound variable
+            }
+        }
+        return score;
+    }
+
     @Override
     public int hashCode() {
         int hash = 17;
         hash = 31 * hash + parent.hashCode();
-        for (Terminal term : termsList) {
+        for (Variable term : termsList) {
             Integer bind = term.getBind();
             if (bind != null) {
                 hash = 31 * hash + bind.hashCode();
@@ -93,18 +118,18 @@ public class SubK extends SubKL implements Serializable {
         }
 
         for (int i = 0; i < getTermsList().size(); i++) {
-            Integer bind1 = this.getTerms().get(i).getBind();
-            Integer bind2 = sk.getTerms().get(i).getBind();
-            if (bind1 == null && bind2 != null) {
+            int bind1 = this.getTerms().get(i).getBind();
+            int bind2 = sk.getTerms().get(i).getBind();
+            if (bind1 == -1 && bind2 != -1) {
                 return false;
             }
-            if (bind1 != null && bind2 == null) {
+            if (bind1 != -1 && bind2 == -1) {
                 return false;
             }
-            if (bind1 == null && bind2 == null) {
+            if (bind1 == -1 && bind2 == -1) {
                 continue;
             }
-            if (!bind1.equals(bind2)) {
+            if (bind1!=bind2) {
                 return false;
             }
         }
@@ -114,8 +139,8 @@ public class SubK extends SubKL implements Serializable {
 
     public SubK clone() {
         SubK sk = new SubK(this.getParent(), true);
-        for (Terminal t : this.getTerms()) {
-            Terminal tt = new Terminal("");
+        for (Variable t : this.getTerms()) {
+            Variable tt = new Variable("");
             tt.setBind(t.getBind());
             sk.addVariable(tt);
         }

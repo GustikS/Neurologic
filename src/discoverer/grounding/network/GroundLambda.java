@@ -1,7 +1,7 @@
 package discoverer.grounding.network;
 
 import discoverer.construction.template.Lambda;
-import discoverer.construction.Terminal;
+import discoverer.construction.Variable;
 import discoverer.global.Global;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -27,7 +27,7 @@ public class GroundLambda extends GroundKL implements Serializable {
     //public int[] bodyLiteralCounts;
     private int conjunctsCountForAvg = 0; //number of all body-groundings for AVG
 
-    public GroundLambda(Lambda l, List<Terminal> terms) {
+    public GroundLambda(Lambda l, List<Variable> terms) {
         super(terms);
         general = l;
         conjuncts = new ArrayList<GroundKappa>();
@@ -74,7 +74,7 @@ public class GroundLambda extends GroundKL implements Serializable {
     @Override
     public String toString() {
         String s = general.getName() + "(";
-        for (Integer i : getTermList()) {
+        for (int i : getTermList()) {
             s += i + ",";
         }
         s = s.substring(0, s.length() - 1);
@@ -84,7 +84,7 @@ public class GroundLambda extends GroundKL implements Serializable {
 
     public String toString(HashMap<Integer, String> constNames) {
         String s = general.getName() + "(";
-        for (Integer i : getTermList()) {
+        for (int i : getTermList()) {
             s += constNames.get(i) + ",";
         }
         s = s.substring(0, s.length() - 1);
@@ -151,7 +151,6 @@ public class GroundLambda extends GroundKL implements Serializable {
      }
      }
      */
-
     public boolean isElement() {
         return conjuncts.isEmpty() && conjunctsAvg.isEmpty();
     }

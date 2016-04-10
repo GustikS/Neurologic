@@ -38,6 +38,7 @@ public class Learning {
 
     protected Results results = new Results();
     protected int progress = 0;
+    Grounder grounder = new Grounder();
 
     /**
      * AVG variant with no grounding-epochae implements strategy for number of
@@ -113,11 +114,11 @@ public class Learning {
         //-------------
         Glogger.process("Loading...Saver loaded the best network template");
         Glogger.process("Grounding the best template...");
-        ForwardChecker.exnum = 0;
+        grounder.forwardChecker.exnum = 0;
         results.clear();
         for (Sample roundElement : roundStore) {  //so we need to calculate the proof-tree output again
             Example e = roundElement.getExample();
-            GroundedTemplate b = Grounder.solve(net.last, e);   //so again create the proof-tree
+            GroundedTemplate b = grounder.solve(net.last, e);   //so again create the proof-tree
             roundElement.setBall(b);
             if (Global.getGrounding() == Global.groundingSet.avg) {
                 results.add(new Result(b.valAvg, e.getExpectedValue()));
@@ -204,10 +205,10 @@ public class Learning {
 
     protected void reGround(List<Sample> roundStore, MolecularTemplate net) {
         results.clear();
-        ForwardChecker.exnum = 0;
+        grounder.forwardChecker.exnum = 0;
         for (Sample roundElement : roundStore) {
             Example e = roundElement.getExample();
-            GroundedTemplate b = Grounder.solve(net.last, e);    // resubstitution for every example
+            GroundedTemplate b = grounder.solve(net.last, e);    // resubstitution for every example
             GroundNetworkParser.parseMAX(b);
             roundElement.setBall(b);
             results.add(new Result(b.valMax, e.getExpectedValue()));

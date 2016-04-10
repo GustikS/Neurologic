@@ -1,6 +1,6 @@
 package discoverer.construction;
 
-import discoverer.construction.Terminal;
+import discoverer.construction.Variable;
 import java.util.*;
 
 /**
@@ -8,20 +8,20 @@ import java.util.*;
  * - ensures same name variables will refer to the same variable instance with hashmap
  */
 public class VariableFactory {
-    private Map<String, Terminal> varMap;
+    private Map<String, Variable> varMap;
 
     /**
      * stores hashmap of terminals
      */
     public VariableFactory() {
-        varMap = new HashMap<String, Terminal>();
+        varMap = new HashMap<String, Variable>();
     }
 
-    public Terminal construct(String name) {
-        Terminal t = varMap.get(name);
+    public Variable construct(String name) {
+        Variable t = varMap.get(name);
 
         if (t == null) {
-            t = new Terminal(name);
+            t = new Variable(name);
             varMap.put(name, t);
             if (name.contains("DMY"))
                 t.setDummy();

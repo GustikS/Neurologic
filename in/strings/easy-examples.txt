@@ -1,4 +1,0 @@
-1 next(a0,a1), a(a0), next(a1,a2), a(a1), a(a2). 
-1 next(a0,a1), a(a0), next(a1,a2), a(a1), a(a2). 
-0 next(b0,b1), b(b0), next(b1,b2), b(b1), b(b2). 
-0 next(b0,b1), b(b0), next(b1,b2), b(b1), b(b2). 

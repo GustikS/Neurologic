@@ -4,7 +4,7 @@ import discoverer.construction.network.rules.LambdaRule;
 import discoverer.construction.network.rules.KappaRule;
 import discoverer.construction.network.rules.SubL;
 import discoverer.construction.network.rules.SubK;
-import discoverer.construction.Terminal;
+import discoverer.construction.Variable;
 import discoverer.construction.ConstantFactory;
 import discoverer.construction.Parser;
 import discoverer.construction.template.KL;
@@ -81,7 +81,7 @@ public class TemplateFactory {
         return network;
     }
 
-    private Terminal constructTerm(String s) {
+    private Variable constructTerm(String s) {
         boolean isVariable = s.matches("^[A-Z].*");
 
         return isVariable ? vFactory.construct(s) : ConstantFactory.construct(s);
@@ -112,7 +112,7 @@ public class TemplateFactory {
         Lambda l = lFactory.construct(tokens[1][0]);
         SubL sl = new SubL(l, true);
         for (int i = 1; i < tokens[1].length; i++) {
-            Terminal v = vFactory.construct(tokens[1][i]);
+            Variable v = vFactory.construct(tokens[1][i]);
             sl.addVariable(v);
         }
         LambdaRule lr = new LambdaRule();
@@ -122,14 +122,14 @@ public class TemplateFactory {
             Kappa k = kFactory.construct(tokens[i][0]);
             SubK sk = new SubK(k, false);
             for (int j = 1; j < tokens[i].length; j++) {
-                Terminal t = constructTerm(tokens[i][j]);
+                Variable t = constructTerm(tokens[i][j]);
                 sk.addVariable(t);
             }
             lr.addBodyEl(sk);
         }
 
         l.setRule(lr);
-        lr.original = original;
+        lr.originalName = original;
         return l;
     }
 
@@ -162,25 +162,25 @@ public class TemplateFactory {
         Kappa k = kFactory.construct(tokens[1][0]);
         SubK sk = new SubK(k, true);
         for (int i = 1; i < tokens[1].length; i++) {
-            Terminal v = vFactory.construct(tokens[1][i]);
+            Variable v = vFactory.construct(tokens[1][i]);
             sk.addVariable(v);
         }
         KappaRule kr = new KappaRule(w);
-        kr.addHead(sk);
+        kr.setHead(sk);
         kappaRules.add(kr);
 
         for (int i = 2; i < tokens.length; i++) {
             Lambda l = lFactory.construct(tokens[i][0]);
             SubL sl = new SubL(l, false);
             for (int j = 1; j < tokens[i].length; j++) {
-                Terminal t = constructTerm(tokens[i][j]);
+                Variable t = constructTerm(tokens[i][j]);
                 sl.addVariable(t);
             }
             kr.setBody(sl);
         }
 
         k.addRule(kr);
-        kr.original = original;
+        kr.originalName = original;
         return k;
     }
 

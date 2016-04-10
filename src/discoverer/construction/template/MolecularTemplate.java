@@ -209,11 +209,11 @@ public class MolecularTemplate extends LiftedTemplate implements Serializable {
             test = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(weightFolder + name + "-weightMatrix.csv"), "utf-8"));
             test.write("weights,");
             for (int i = 1; i < weightMatrix[0].length; i++) {
-                test.write(weightMatrix[0][i].original + ",");
+                test.write(weightMatrix[0][i].originalName + ",");
             }
             test.write("\n");
             for (int i = 1; i < weightMatrix.length; i++) {
-                test.write(weightMatrix[i][0].original + ",");
+                test.write(weightMatrix[i][0].originalName + ",");
                 for (int j = 1; j < weightMatrix[0].length; j++) {
                     if (weightMatrix[i][j] != null) {
                         test.write(weightMatrix[i][j].getWeight() + ",");
@@ -280,7 +280,7 @@ public class MolecularTemplate extends LiftedTemplate implements Serializable {
         Collections.sort(kappaRowOrder);
         for (String kappa : kappaRowOrder) {
             KappaRule kap = new KappaRule(-1);
-            kap.original = kappa;
+            kap.originalName = kappa;
             weightMatrix[i++][0] = kap;
         }
         i = 1;
@@ -288,7 +288,7 @@ public class MolecularTemplate extends LiftedTemplate implements Serializable {
         //Collections.sort(sortedLambdas);
         for (String lambda : lambda2Column.keySet()) {
             KappaRule kap = new KappaRule(-1);
-            kap.original = lambda;
+            kap.originalName = lambda;
             weightMatrix[0][i++] = kap;
         }
         i = 1;

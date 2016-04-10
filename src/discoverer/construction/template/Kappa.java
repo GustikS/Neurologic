@@ -2,18 +2,19 @@ package discoverer.construction.template;
 
 import discoverer.construction.network.rules.KappaRule;
 import discoverer.global.Global;
+import java.io.Serializable;
 import java.util.*;
 
 /**
  * Kappa node = atom neuron
  */
-public class Kappa extends KL {
+public class Kappa extends KL implements Serializable {
 
     private List<KappaRule> rules;
     public double offset;
     public double step;
     public double deltaW;
-    private Double gradient;
+    //private Double gradient;
     private Integer id;
 
     public Kappa(String name) {
@@ -43,6 +44,7 @@ public class Kappa extends KL {
         }
     }
 
+    /*
     public double getGradient() {
         return gradient;
     }
@@ -58,7 +60,8 @@ public class Kappa extends KL {
     public void eraseGradient() {
         gradient = null;
     }
-
+     */
+    
     public void addRule(KappaRule kr) {
         rules.add(kr);
     }

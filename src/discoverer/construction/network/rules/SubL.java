@@ -1,7 +1,7 @@
 package discoverer.construction.network.rules;
 
 import discoverer.construction.ElementMapper;
-import discoverer.construction.Terminal;
+import discoverer.construction.Variable;
 import discoverer.construction.template.Lambda;
 import java.io.Serializable;
 
@@ -18,7 +18,7 @@ public class SubL extends SubKL implements Serializable {
         sb.append(parent.toString());
         if (getTermsList().size() > 0) {
             sb.append("(");
-            for (Terminal v : getTermsList()) {
+            for (Variable v : getTermsList()) {
                 sb.append(v);
                 sb.append(",");
             }
@@ -43,13 +43,12 @@ public class SubL extends SubKL implements Serializable {
     public int hashCode() {
         int hash = 17;
         hash = 31 * hash + parent.hashCode();
-        for (Terminal term : termsList) {
-            Integer bind = term.getBind();
-            if (bind != null) {
-                hash = 31 * hash + bind.hashCode();
+        for (Variable term : termsList) {
+            int bind = term.getBind();
+            if (bind != -1) {
+                hash = 31 * hash + bind;
             }
         }
-
         return hash;
     }
 
@@ -69,18 +68,18 @@ public class SubL extends SubKL implements Serializable {
         }
 
         for (int i = 0; i < getTermsList().size(); i++) {
-            Integer bind1 = this.getTerms().get(i).getBind();
-            Integer bind2 = sl.getTerms().get(i).getBind();
-            if (bind1 == null && bind2 != null) {
+            int bind1 = this.getTerms().get(i).getBind();
+            int bind2 = sl.getTerms().get(i).getBind();
+            if (bind1 == -1 && bind2 != -1) {
                 return false;
             }
-            if (bind1 != null && bind2 == null) {
+            if (bind1 != -1 && bind2 == -1) {
                 return false;
             }
-            if (bind1 == null && bind2 == null) {
+            if (bind1 == -1 && bind2 == -1) {
                 continue;
             }
-            if (!bind1.equals(bind2)) {
+            if (bind1 != bind2) {
                 return false;
             }
         }
@@ -90,8 +89,8 @@ public class SubL extends SubKL implements Serializable {
 
     public SubL clone() {
         SubL sl = new SubL(this.getParent(), true);
-        for (Terminal t : this.getTerms()) {
-            Terminal tt = new Terminal("");
+        for (Variable t : this.getTerms()) {
+            Variable tt = new Variable("");
             tt.setBind(t.getBind());
             sl.addVariable(tt);
         }

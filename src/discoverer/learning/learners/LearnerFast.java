@@ -27,6 +27,7 @@ import discoverer.learning.Sample;
 import discoverer.learning.Sample;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Stream;
 
 /**
  *
@@ -63,10 +64,17 @@ public class LearnerFast extends Learning {
                 if (isSGD) {
                     Collections.shuffle(roundStore, Global.getRg());    //stochastic gradient descend
                 }
-                for (Sample sample : roundStore) {  //for each example network
-                    if (sample.neuralNetwork == null) {
-                        continue;   //unentailed sample
-                    }
+
+                Stream<Sample> stream;
+                if (Global.parallelSGD) {
+                    stream = roundStore.parallelStream();
+                } else {
+                    stream = roundStore.stream();
+                }
+
+                stream.filter((sample) -> !(sample.neuralNetwork == null)).forEach((sample) -> {
+                    //un-entailed sample
+                    //for each example network
                     GroundNetwork gnet = sample.neuralNetwork;
                     if (dropout > 0) {
                         gnet.dropOut(dropout);
@@ -77,7 +85,7 @@ public class LearnerFast extends Learning {
                         EvaluatorFast.evaluateFast(gnet, net.sharedWeights);
                     }
                     BackpropFast.updateWeights(net.sharedWeights, sample);
-                }
+                });
                 if (saving) { //saving after each batch
                     saveBestWeights(roundStore, net.sharedWeights);
                 }

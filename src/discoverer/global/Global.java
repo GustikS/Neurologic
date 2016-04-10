@@ -2,9 +2,18 @@ package discoverer.global;
 
 import discoverer.Main;
 import discoverer.GroundedDataset;
-import discoverer.NeuralDataset;
-import discoverer.learning.functions.Activations;
+import discoverer.LiftedDataset;
+import discoverer.construction.template.LiftedTemplate;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 //settings
 
 public final class Global {
@@ -64,6 +73,16 @@ public final class Global {
     public static boolean molecularTemplates = true;
 
     public static boolean multiLine = false; //example can spread to multiple lines, delimited by empty line (\n\n)
+    public static boolean parallelGrounding = true;
+    public static boolean parallelSGD = false; //experimental!!
+    public static int numOfThreads = 4;
+
+    public static boolean relativeVariableSelection = true; //ordering of variables when grounding goes for the ones that leave the least number of other variables free, otherwise goes just for the most contrained literals (Vojta's version)
+    public static boolean alldiff = true;
+
+    public static void setupThreads() {
+        numOfThreads = Runtime.getRuntime().availableProcessors();
+    }
 
     /**
      * @return the merging
@@ -707,5 +726,57 @@ public final class Global {
         );
         sortedEntries.addAll(map.entrySet());
         return sortedEntries;
+    }
+
+    public static Object makeDeepCopy(Object net) {
+        ObjectOutputStream oos = null;
+        try {
+            ByteArrayOutputStream bos = new ByteArrayOutputStream();
+            oos = new ObjectOutputStream(bos);
+            oos.writeObject(net);
+            oos.flush();
+            oos.close();
+            bos.close();
+            byte[] byteData = bos.toByteArray();
+            ByteArrayInputStream bais = new ByteArrayInputStream(byteData);
+            Object newnet = new ObjectInputStream(bais).readObject();
+            return newnet;
+        } catch (IOException ex) {
+            Logger.getLogger(GroundedDataset.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(GroundedDataset.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                oos.close();
+            } catch (IOException ex) {
+                Logger.getLogger(GroundedDataset.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return null;
+    }
+
+    public static void savesomething(Object o, String path) {
+        try {
+            Glogger.process("Saving something...");
+            FileOutputStream out = new FileOutputStream(path);
+            ObjectOutputStream oos = new ObjectOutputStream(out);
+            oos.writeObject(o);
+            oos.flush();
+            Glogger.process("Successfully Saved something into: " + path);
+        } catch (Exception e) {
+            Glogger.err("Problem serializing: " + e);
+        }
+    }
+
+    public static Object loadSomething(String path) {
+        try {
+            Glogger.process("trying to load something from a file: " + path);
+            FileInputStream in = new FileInputStream(path);
+            ObjectInputStream ois = new ObjectInputStream(in);
+            return ois.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            Glogger.info("Problem loading " + e);
+        }
+        return null;
     }
 }

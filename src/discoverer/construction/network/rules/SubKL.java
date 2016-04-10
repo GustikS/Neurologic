@@ -1,36 +1,37 @@
 package discoverer.construction.network.rules;
 
-import discoverer.construction.Terminal;
+import discoverer.construction.Variable;
 import discoverer.construction.template.KL;
 import java.io.Serializable;
 import java.util.*;
 
 /**
- * partially grounded kappa or lambda
+ * partially grounded kappa or lambda, basically the only thing this class
+ * provides is the termList
  */
 public abstract class SubKL implements Serializable {
 
-    protected List<Terminal> termsList;
+    protected List<Variable> termsList;
 
     public abstract Integer getId();
 
-    public List<Terminal> getTermsList() {
+    public List<Variable> getTermsList() {
         return termsList;
     }
 
     public SubKL() {
-        termsList = new ArrayList<Terminal>();
+        termsList = new ArrayList<Variable>();
     }
 
-    public Terminal getTerm(int i) {
+    public Variable getTerm(int i) {
         return termsList.get(i);
     }
 
-    public List<Terminal> getTerms() {
+    public List<Variable> getTerms() {
         return termsList;
     }
 
-    public void addVariable(Terminal t) {
+    public void addVariable(Variable t) {
         termsList.add(t);
     }
 
@@ -38,7 +39,7 @@ public abstract class SubKL implements Serializable {
         return null;
     }
 
-    public boolean contains(Terminal term) {
+    public boolean contains(Variable term) {
         return termsList.contains(term);
     }
 

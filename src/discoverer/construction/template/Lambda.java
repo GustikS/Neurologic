@@ -2,11 +2,12 @@ package discoverer.construction.template;
 
 import discoverer.construction.network.rules.LambdaRule;
 import discoverer.global.Global;
+import java.io.Serializable;
 
 /**
  * Lambda node = rule neuron
  */
-public class Lambda extends KL {
+public class Lambda extends KL implements Serializable {
 
     private LambdaRule rule;
     private double offset;

@@ -1,6 +1,6 @@
 package discoverer.construction.network.rules;
 
-import discoverer.construction.Terminal;
+import discoverer.construction.Variable;
 import discoverer.construction.network.rules.SubL;
 import discoverer.construction.network.rules.SubK;
 import discoverer.global.Global;
@@ -73,7 +73,7 @@ public class LambdaRule extends Rule implements Serializable {
      */
     public void addBodyEl(SubK e) {
         body.add(e);
-        for (Terminal t : e.getTerms()) {
+        for (Variable t : e.getTerms()) {
             if (!t.isBind()) {
                 unbound.add(t);
             }
@@ -85,17 +85,22 @@ public class LambdaRule extends Rule implements Serializable {
     }
 
     @Override
-    public Terminal getNextUnbound() {
-        for (Terminal var : unbound) {
+    /**
+     * choose next variable from the yet unbound variables of this rule, choose
+     * the one with a highest score/priority = the one that appears in body
+     * literals with the most of other variables within then already
+     * grounded(bind), choose randomly at draws
+     */
+    public Variable getNextUnbound() {
+        for (Variable var : unbound) {
             if (var.isDummy()) {
                 return var;
             }
         }
 
-        ArrayList<Terminal> winners = new ArrayList<Terminal>();
-        int highestScore = 0;
-
-        for (Terminal var : unbound) {
+        ArrayList<Variable> winners = new ArrayList<>(unbound.size());
+        int highestScore = Integer.MIN_VALUE;   //choose the variable with the least number of remaining problems (highest negative value)
+        for (Variable var : unbound) {
             int newScore = countScoreFor(var);
 
             if (newScore == highestScore) {
@@ -106,17 +111,26 @@ public class LambdaRule extends Rule implements Serializable {
                 winners.add(var);
             }
         }
-
+        //if a draw, take a randomized choice of variable
         int randomIndex = Global.getRandomInt(winners.size());
         return winners.get(randomIndex);
     }
 
-    public int countScoreFor(Terminal var) {
+    /**
+     * score = how many grounded(bind) terms do the body literals contain taht
+     * have this variable present within them?
+     *
+     * @param var
+     * @return
+     */
+    public int countScoreFor(Variable var) {
         int score = 0;
         for (SubK sk : body) {
-            score += sk.countScoreFor(var);
+            //get number of remaining free vars other than var for each SubK
+            if (Global.relativeVariableSelection)
+            score += sk.countScoreFor2(var);
         }
 
-        return score;
+        return score;  //return number of (remaining) problems for this var as a negative value!
     }
 }

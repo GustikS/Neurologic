@@ -21,6 +21,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * 
+ * @author Gusta
+
 public class BatchLearner {
     private Map<Object, Double> weightAccumulator;
 
@@ -28,12 +32,6 @@ public class BatchLearner {
         weightAccumulator = new HashMap<Object, Double>();
     }
 
-    /** Method for handling the first learning run
-     *
-     * @param examples examples
-     * @param last output node
-     * @return list with balls from first run
-     */
     public List<Sample> firstRun(List<Example> examples, KL last) {
         List<Sample> roundStore = new ArrayList<Sample>();
         for (Example e: examples) {
@@ -44,10 +42,6 @@ public class BatchLearner {
         return roundStore;
     }
 
-    /** Method for refreshig weights in net
-     *
-     * @param w weights to refresh
-     */
     public void refreshWeights(Weights w) {
         for (Map.Entry<Object, Double> entryWeights: w.getWeights().entrySet()) {
             Object o = entryWeights.getKey();
@@ -70,16 +64,6 @@ public class BatchLearner {
         }
     }
 
-    /** Method for running a computation
-     *
-     * @param last output node
-     * @param roundStore
-     * @param exmaples examples
-     * @param learningSteps how many backprops
-     * @param learningEpochs how many resubstitutions
-     * @param learnRate lrate
-     * @param restartCount experimental restarted strategy
-     */
     public Results solve(MolecularTemplate last, List<Sample> roundStore) {
         
         Results results = null;
@@ -167,3 +151,4 @@ public class BatchLearner {
         return results;
     }
 }
+*/

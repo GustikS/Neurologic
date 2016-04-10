@@ -32,7 +32,7 @@ public class AtomNeuron extends GroundNeuron {
         outputValue = grk.getValueAvg();
 
         groundParentsCount = grk.getGroundParents();
-        offsetWeightIndex = net.weightMapping.get(grk.getGeneral());
+        offsetWeightIndex = net.weightMapping.get(grk.getGeneral().toString());
         net.sharedWeights[offsetWeightIndex] = grk.getGeneral().getOffset();
 
         inputNeurons = new RuleAggNeuron[grk.getDisjunctsAvg().size()];
@@ -51,7 +51,7 @@ public class AtomNeuron extends GroundNeuron {
             } else {
                 inputNeurons[i] = (RuleAggNeuron) gn;
             }
-            inputWeightIndices[i] = net.weightMapping.get(grl.y);
+            inputWeightIndices[i] = net.weightMapping.get(grl.y.toString());
             net.sharedWeights[inputWeightIndices[i++]] = grl.y.getWeight();
         }
         net.tmpActiveNet.addNeuron(this); //rather put these leaking "this" on the end of contructor

@@ -7,7 +7,7 @@ import discoverer.construction.network.rules.LambdaRule;
 import discoverer.construction.network.rules.Rule;
 import discoverer.construction.network.rules.SubK;
 import discoverer.construction.network.rules.SubL;
-import discoverer.construction.Terminal;
+import discoverer.construction.Variable;
 import discoverer.construction.example.Example;
 import discoverer.construction.network.rules.SubKL;
 import discoverer.global.Global;
@@ -19,25 +19,25 @@ import java.util.*;
  */
 public class ForwardChecker {
 
-    private static Example example;
-    private static HashMap<SubKL, Boolean> cache;
+    private Example example;
+    private HashMap<SubKL, Boolean> cache;
 
-    private static final boolean cacheEnabled = Global.isCacheEnabled();
-    private static final boolean debugEnabled = Global.isDebugEnabled();
-    private static int runs = 0;
+    private final boolean cacheEnabled = Global.isCacheEnabled();
+    private final boolean debugEnabled = Global.isDebugEnabled();
+    public int runs = 0;
 
-    public static int exnum = 0;
+    public int exnum = 0;
 
-    public static void printRuns() {
+    public void printRuns() {
         Glogger.info(exnum++ + " example -> #forward checker runs:(" + runs + ")");
         runs = 0;
     }
 
-    public static void clear() {
+    public void clear() {
         cache.clear();
     }
 
-    public static boolean shouldContinue(Rule r, Example e) {
+    public boolean shouldContinue(Rule r, Example e) {
         runs++;
         if (example != e) {
             example = e;
@@ -70,7 +70,7 @@ public class ForwardChecker {
      * @param o
      * @return
      */
-    public static boolean check(SubK o) {
+    public boolean check(SubK o) {
         if (!cacheEnabled) {
             return checkCompute(o);
         }
@@ -86,7 +86,7 @@ public class ForwardChecker {
         return b;
     }
 
-    public static boolean check(SubL o) {
+    public boolean check(SubL o) {
         if (!cacheEnabled) {
             return checkCompute(o);
         }
@@ -101,7 +101,7 @@ public class ForwardChecker {
         return b;
     }
 
-    private static boolean checkCompute(SubK sk) {
+    private boolean checkCompute(SubK sk) {
         if (sk.isElement()) {
             return example.contains(sk);
         }
@@ -110,7 +110,7 @@ public class ForwardChecker {
         return check(k, sk.getTerms());
     }
 
-    private static boolean checkCompute(SubL sl) {
+    private boolean checkCompute(SubL sl) {
         if (sl.isElement()) {
             return example.contains(sl);
         }
@@ -118,7 +118,7 @@ public class ForwardChecker {
         return check(sl.getParent(), sl.getTerms());
     }
 
-    private static boolean check(Kappa k, List<Terminal> vars) {
+    private boolean check(Kappa k, List<Variable> vars) {
         for (KappaRule kr : k.getRules()) {
             if (check(kr, vars)) {
                 return true;
@@ -128,21 +128,21 @@ public class ForwardChecker {
         return false;
     }
 
-    private static boolean check(Lambda l, List<Terminal> vars) {
+    private boolean check(Lambda l, List<Variable> vars) {
         return check(l.getRule(), vars);
     }
 
-    private static boolean check(KappaRule kr, List<Terminal> vars) {
-        kr.consumeVars(vars);
+    private boolean check(KappaRule kr, List<Variable> vars) {
+        kr.unifyVariablesWith(vars);
         SubL sl = kr.getBody();
         boolean ret = check(sl);
         if (vars != null) {
-            kr.unconsumeVars();
+            kr.unbindHead();
         }
         return ret;
     }
 
-    private static boolean checkConstrainedToVar(LambdaRule lr, Terminal lastBinded) {
+    private boolean checkConstrainedToVar(LambdaRule lr, Variable lastBinded) {
         for (SubK sk : lr.getBody()) {
             if (sk.contains(lastBinded) && !check(sk)) {
                 return false;
@@ -152,7 +152,7 @@ public class ForwardChecker {
         return true;
     }
 
-    private static boolean checkAll(LambdaRule lr) {
+    private boolean checkAll(LambdaRule lr) {
         for (SubK sk : lr.getBody()) {
             if (!check(sk)) {
                 return false;
@@ -162,15 +162,15 @@ public class ForwardChecker {
         return true;
     }
 
-    private static boolean check(LambdaRule lr, List<Terminal> vars) {
+    private boolean check(LambdaRule lr, List<Variable> vars) {
 
-        lr.consumeVars(vars);
-        Terminal lastBindedTerm = lr.getLastBindedVar();
+        lr.unifyVariablesWith(vars);
+        Variable lastBindedTerm = lr.getLastBindedVar();
 
         boolean ret = lastBindedTerm == null ? checkAll(lr) : checkConstrainedToVar(lr, lastBindedTerm);
 
         if (vars != null) {
-            lr.unconsumeVars();
+            lr.unbindHead();
         }
 
         return ret;

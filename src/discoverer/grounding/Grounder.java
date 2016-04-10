@@ -14,7 +14,7 @@ import discoverer.construction.network.rules.LambdaRule;
 import discoverer.construction.network.rules.Rule;
 import discoverer.construction.network.rules.SubK;
 import discoverer.construction.network.rules.SubL;
-import discoverer.construction.Terminal;
+import discoverer.construction.Variable;
 import discoverer.global.Glogger;
 import discoverer.grounding.evaluation.Evaluator;
 import discoverer.learning.functions.Activations;
@@ -32,15 +32,17 @@ import java.util.Set;
  */
 public class Grounder {
 
-    private static final boolean forwardCheckEnabled = Global.isForwardCheckEnabled();
-    private static final boolean pruning = Global.isPruning();
-    private static final boolean cacheEnabled = Global.isCacheEnabled();
-    private static final boolean debugEnabled = Global.isDebugEnabled();
+    private final boolean forwardCheckEnabled = Global.isForwardCheckEnabled();
+    private final boolean pruning = Global.isPruning();
+    private final boolean cacheEnabled = Global.isCacheEnabled();
+    private final boolean debugEnabled = Global.isDebugEnabled();
 
-    private static Example example;
-    private static HashMap<Object, GroundedTemplate> cache;
+    private Example example;
+    private HashMap<Object, GroundedTemplate> cache;
+    
+    public ForwardChecker forwardChecker = new ForwardChecker();
 
-    private static void prepareCache() {
+    private void prepareCache() {
         if (cacheEnabled) {
             if (cache == null) {
                 cache = new HashMap<Object, GroundedTemplate>();
@@ -58,7 +60,7 @@ public class Grounder {
      * @param e
      * @return
      */
-    public static GroundedTemplate solve(KL kl, Example e) {
+    public GroundedTemplate solve(KL kl, Example e) {
         //return Solvator.solve(kl, e);
         if (debugEnabled) {
             System.out.println("Entering to solve\t" + kl);
@@ -69,16 +71,14 @@ public class Grounder {
 
         GroundedTemplate b = kl instanceof Kappa ? solve2((Kappa) kl, null) : solve2((Lambda) kl, null);    //always Kappa only...first literal is without variables(ignoring them)
 
-        ForwardChecker.printRuns();
-        
+        forwardChecker.printRuns();
+
         if (b == null) {
             Glogger.err("Warning, unentailed example by the template!" + e.hash);
             return new GroundedTemplate(Global.getFalseAtomValue());
         }
 
-        
         //ForwardChecker.clear();
-
         return b;   //warning - now can return null if the given KL program and Example e have no grounded solution! //replaced with -1 empty GroundedTemplate
     }
 
@@ -92,9 +92,9 @@ public class Grounder {
      * @param vars
      * @return
      */
-    public static GroundedTemplate solve2(Kappa k, List<Terminal> vars) {
+    public GroundedTemplate solve2(Kappa k, List<Variable> vars) {
         if (debugEnabled) {
-            System.out.println("Solve\t" + k + "\tvariables\t" + vars);
+            System.out.println("Solve literal\t" + k + "with \tvariables\t" + vars);
         }
 
         GroundedTemplate b = new GroundedTemplate();
@@ -161,7 +161,7 @@ public class Grounder {
      * @param vars
      * @return
      */
-    public static GroundedTemplate solve2(Lambda l, List<Terminal> vars) {
+    public GroundedTemplate solve2(Lambda l, List<Variable> vars) {
         if (debugEnabled) {
             System.out.println("Solve\t" + l + "\tvariables\t" + vars);
         }
@@ -215,12 +215,12 @@ public class Grounder {
      * @param vars
      * @return
      */
-    public static GroundedTemplate solve(Rule r, List<Terminal> vars) {
+    public GroundedTemplate solve(Rule r, List<Variable> vars) {
         if (debugEnabled) {
-            System.out.println("Solve\t" + r + "\tvariables\t" + vars);
+            System.out.println("Solving rule\t" + r + " with \tvariables\t" + vars);
         }
 
-        r.consumeVars(vars);    //head -> body variable binding/unification
+        r.unifyVariablesWith(vars);    //head -> body variable binding/unification
         r.setLastBindedVar(null);
 
         //-------------------//we will assemble the average on the level of rules(bodies)
@@ -244,12 +244,12 @@ public class Grounder {
      * @param best
      * @return
      */
-    public static GroundedTemplate bindAll(Rule r, GroundedTemplate best) {
+    public GroundedTemplate bindAll(Rule r, GroundedTemplate best) {
         if (debugEnabled) {
-            System.out.println("BindingAll\t" + r);
+            System.out.println("BindingAll variables in \t" + r);
         }
 
-        if (forwardCheckEnabled && !ForwardChecker.shouldContinue(r, example)) {
+        if (forwardCheckEnabled && !forwardChecker.shouldContinue(r, example)) {
             //return new GroundedTemplate();
             return null;
         }
@@ -265,10 +265,13 @@ public class Grounder {
             return solvedBound;
         }
 
-        Terminal toBind = r.getNextUnbound();   //get next unbound variable from all body literals
+        Variable toBind = r.getNextUnbound();   //get next best(score) unbound variable for the rule
         for (int i = 0; i < example.getConstCount(); i++) { // all possible bindings of variables in rule r
             if (debugEnabled) {
-                System.out.println("\t toBind=" + toBind + " -> " + (i + 1) + " of " + example.getConstCount());
+                System.out.println("\t toBind = " + toBind + " -> trying constant " + example.constantNames.get(i) + " of total " + example.getConstCount() + " in the example");
+            }
+            if (Global.alldiff && r.usedTerms.contains(i)) {
+                continue; //ALLDIFF functionality - that's it :)
             }
             r.bind(toBind, i);
             r.setLastBindedVar(toBind);
@@ -300,7 +303,7 @@ public class Grounder {
      * @param best
      * @return
      */
-    public static GroundedTemplate solveBound(Rule r, GroundedTemplate best) {
+    public GroundedTemplate solveBound(Rule r, GroundedTemplate best) {
         if (debugEnabled) {
             System.out.println("Dispatching solving bound\t" + r);
         }
@@ -308,7 +311,7 @@ public class Grounder {
         if (r instanceof KappaRule) {
             return solveBoundKR((KappaRule) r);
         } else {
-            return solveBoundLR((LambdaRule) r, best);
+            return solveGroundedLR((LambdaRule) r, best);
         }
     }
 
@@ -319,7 +322,7 @@ public class Grounder {
      * @param kr
      * @return
      */
-    public static GroundedTemplate solveBoundKR(KappaRule kr) {
+    public GroundedTemplate solveBoundKR(KappaRule kr) {
         if (debugEnabled) {
             System.out.println("Solving bound\t" + kr);
         }
@@ -339,9 +342,9 @@ public class Grounder {
      * @param best
      * @return
      */
-    public static GroundedTemplate solveBoundLR(LambdaRule lr, GroundedTemplate best) {
+    public GroundedTemplate solveGroundedLR(LambdaRule lr, GroundedTemplate best) {
         if (debugEnabled) {
-            System.out.println("Solving bound\t" + lr);
+            System.out.println("Solving grounded\t" + lr);
         }
 
         GroundLambda gl = new GroundLambda(lr.getHead().getParent(), lr.getHead().getTerms());
@@ -393,7 +396,7 @@ public class Grounder {
      * @param o
      * @return
      */
-    public static GroundedTemplate solve(Object o) {
+    public GroundedTemplate solve(Object o) {
         if (o instanceof SubK) {
             return solve((SubK) o);
         } else {
@@ -409,7 +412,7 @@ public class Grounder {
      * @param sk
      * @return
      */
-    public static GroundedTemplate solve(SubK sk) {
+    public GroundedTemplate solve(SubK sk) {
         if (debugEnabled) {
             System.out.println("Computing\t" + sk);
         }
@@ -450,7 +453,7 @@ public class Grounder {
      * @param sl
      * @return
      */
-    public static GroundedTemplate solve(SubL sl) {
+    public GroundedTemplate solve(SubL sl) {
         if (debugEnabled) {
             System.out.println("Computing\t" + sl);
         }
@@ -493,7 +496,7 @@ public class Grounder {
      * @param o
      * @return
      */
-    public static GroundedTemplate cachedSolve(Object o) {
+    public GroundedTemplate cachedSolve(Object o) {
         if (!cacheEnabled) {
             return solve(o);
         }
@@ -543,7 +546,7 @@ public class Grounder {
      *        return b.clone();
      *    }
      */
-    /*
+ /*
      *private static double upperBound(LambdaRule lr, int index) {
      *    int i = 0;
      *    double est = 0.0;

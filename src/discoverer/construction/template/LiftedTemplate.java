@@ -22,6 +22,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.OutputStreamWriter;
+import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -40,9 +41,9 @@ import javax.swing.JFrame;
  *
  * @author Gusta
  */
-public class LiftedTemplate extends LightTemplate {
+public class LiftedTemplate extends LightTemplate implements Serializable {
 
-    public HashMap<Object, Integer> weightMapping;  //Kappa offsets and KappaRule's weights to indicies in sharedWeights
+    public HashMap<String, Integer> weightMapping;  //Kappa offsets and KappaRule's weights to indicies in sharedWeights
 
     public HashMap<GroundKL, GroundNeuron> neuronMapping; //for checking if we have already visited this groundKL?
 

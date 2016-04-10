@@ -1,7 +1,8 @@
 /nbproject/private/
 /desktop.ini
-/weights/
-/in/
+/weights*
+/in*
 /build*
 /dist(*
 /folds/
+*.ser

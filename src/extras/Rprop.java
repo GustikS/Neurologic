@@ -6,7 +6,7 @@ import discoverer.construction.network.rules.KappaRule;
 /**
  * Experimental!
  * Try to perform RPROP in learning, BAD RESULTS!
- */
+
 public class Rprop {
     private static final double etaPos = 1.3;
     private static final double etaNeg = 0.5;
@@ -69,3 +69,4 @@ public class Rprop {
         return newW;
     }
 }
+ */

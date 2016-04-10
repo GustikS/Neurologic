@@ -2,7 +2,7 @@ package discoverer.grounding.network;
 
 import discoverer.construction.template.Kappa;
 import discoverer.construction.network.rules.KappaRule;
-import discoverer.construction.Terminal;
+import discoverer.construction.Variable;
 import discoverer.global.Tuple;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -49,7 +49,7 @@ public class GroundKappa extends GroundKL {
      * @param k
      * @param terms
      */
-    public GroundKappa(Kappa k, List<Terminal> terms) {
+    public GroundKappa(Kappa k, List<Variable> terms) {
         super(terms);
         general = k;
         disjuncts = new ArrayList<Tuple<GroundLambda, KappaRule>>();
@@ -88,7 +88,7 @@ public class GroundKappa extends GroundKL {
     @Override
     public String toString() {
         String s = general.getName() + "(";
-        for (Integer i : getTermList()) {
+        for (int i : getTermList()) {
             s += i + ",";
         }
         s = s.substring(0, s.length() - 1);
@@ -97,7 +97,7 @@ public class GroundKappa extends GroundKL {
     }
     public String toString(HashMap<Integer,String> constNames) {
         String s = general.getName() + "(";
-        for (Integer i : getTermList()) {
+        for (int i : getTermList()) {
             s += constNames.get(i) + ",";
         }
         s = s.substring(0, s.length() - 1);

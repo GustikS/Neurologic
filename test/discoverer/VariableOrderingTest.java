@@ -1,6 +1,6 @@
 package discoverer;
 
-import discoverer.construction.Terminal;
+import discoverer.construction.Variable;
 import discoverer.construction.network.rules.LambdaRule;
 import discoverer.construction.TemplateFactory;
 import discoverer.construction.template.Lambda;
@@ -27,9 +27,9 @@ public class VariableOrderingTest {
         Lambda l = (Lambda) net.last;
         LambdaRule lr = l.getRule();
 
-        Terminal t1 = lr.getNextUnbound(); lr.unbound.remove(t1);
-        Terminal t2 = lr.getNextUnbound(); lr.unbound.remove(t2);
-        Terminal t3 = lr.getNextUnbound(); lr.unbound.remove(t3);
+        Variable t1 = lr.getNextUnbound(); lr.unbound.remove(t1);
+        Variable t2 = lr.getNextUnbound(); lr.unbound.remove(t2);
+        Variable t3 = lr.getNextUnbound(); lr.unbound.remove(t3);
 
         String var1 = t1.getName();
         String var2 = t2.getName();

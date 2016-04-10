@@ -2,7 +2,7 @@ package discoverer.construction.example;
 
 import discoverer.construction.template.Kappa;
 import discoverer.construction.network.rules.SubK;
-import discoverer.construction.Terminal;
+import discoverer.construction.Variable;
 import discoverer.construction.network.rules.SubKL;
 import java.io.Serializable;
 import java.util.*;
@@ -77,7 +77,7 @@ public class Example implements Serializable {
         ia2.add(sk.getId());
 
         for (int i = 1; i < len; i++) {
-            Terminal t = sk.getTerm(i - 1);
+            Variable t = sk.getTerm(i - 1);
             int x = t.isBind() ? t.getBind() : -1;
             ia2.add(x);
         }
@@ -91,7 +91,7 @@ public class Example implements Serializable {
 
         ia[0] = skl.getId();
         for (int i = 1; i < ia.length; i++) {
-            Terminal t = skl.getTerm(i - 1);
+            Variable t = skl.getTerm(i - 1);
             ia[i] = t.isBind() ? t.getBind() : -1;
         }
 
