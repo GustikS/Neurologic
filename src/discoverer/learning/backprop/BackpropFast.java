@@ -3,10 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package discoverer.grounding.network.groundNetwork;
+package discoverer.learning.backprop;
 
 import discoverer.global.Global;
 import discoverer.global.Settings;
+import discoverer.learning.functions.ActivationsFast;
+import discoverer.grounding.network.groundNetwork.AtomNeuron;
+import discoverer.grounding.network.groundNetwork.GroundNetwork;
+import discoverer.grounding.network.groundNetwork.RuleAggNeuron;
 import discoverer.learning.Sample;
 import java.util.Map;
 
@@ -54,7 +58,12 @@ public final class BackpropFast {
         atomNeuron.groundParentDerivativeAccumulated += derivative;
 
         if (atomNeuron.groundParentsChecked == atomNeuron.groundParentsCount) { //all parents have sent their message from the top
-            double currentLevelDerivate = atomNeuron.groundParentDerivativeAccumulated * ActivationsFast.kappaActivationDerived(atomNeuron.sumedInputs);
+            double currentLevelDerivate;
+            if (Global.adaptiveActivations) {
+                currentLevelDerivate = atomNeuron.groundParentDerivativeAccumulated * ActivationsFast.kappaActivationDerived(atomNeuron.activation, atomNeuron.sumedInputs);
+            } else {
+                currentLevelDerivate = atomNeuron.groundParentDerivativeAccumulated * ActivationsFast.kappaActivationDerived(atomNeuron.sumedInputs);
+            }
             weightUpdates[atomNeuron.offsetWeightIndex] += currentLevelDerivate * 1; //offset weight update with current level (derived function on input value)
 
             for (int i = 0; i < atomNeuron.inputNeurons.length; i++) {
@@ -77,7 +86,11 @@ public final class BackpropFast {
                 currentLevelDerivative = ruleAggNeuron.groundParentDerivativeAccumulated;
                 deriveBodyGroundings(ruleAggNeuron, currentLevelDerivative);
             } else {
-                currentLevelDerivative = ruleAggNeuron.groundParentDerivativeAccumulated * ActivationsFast.lambdaActivationDerived(ruleAggNeuron.sumedInputs);
+                if (Global.adaptiveActivations) {
+                    currentLevelDerivative = ruleAggNeuron.groundParentDerivativeAccumulated * ActivationsFast.lambdaActivationDerived(ruleAggNeuron.activation, ruleAggNeuron.sumedInputs);
+                } else {
+                    currentLevelDerivative = ruleAggNeuron.groundParentDerivativeAccumulated * ActivationsFast.lambdaActivationDerived(ruleAggNeuron.sumedInputs);
+                }
                 for (int i = 0; i < ruleAggNeuron.inputNeuronsCompressed.length; i++) {
                     derive(ruleAggNeuron.inputNeuronsCompressed[i], currentLevelDerivative * ruleAggNeuron.inputNeuronCompressedCounts[i] * ActivationsFast.aggregationDerived(ruleAggNeuron.ruleBodyGroundingsCount));
                 }
@@ -88,13 +101,23 @@ public final class BackpropFast {
     void deriveBodyGroundings(RuleAggNeuron ruleAggNeuron, double currentLevelDerivative) {
         if (grounding == Global.groundingSet.max) {
             int i = ruleAggNeuron.maxBodyGroundingIndex;
-            double oneGroundRuleDerivative = ActivationsFast.aggregationDerived(ruleAggNeuron.ruleBodyGroundings.length) * ActivationsFast.lambdaActivationDerived(ruleAggNeuron.sumedInputsOfEachBodyGrounding[i], ruleAggNeuron.lambdaOffset);
+            double oneGroundRuleDerivative;
+            if (Global.adaptiveActivations) {
+                oneGroundRuleDerivative = ActivationsFast.aggregationDerived(ruleAggNeuron.ruleBodyGroundings.length) * ActivationsFast.lambdaActivationDerived(ruleAggNeuron.activation, ruleAggNeuron.sumedInputsOfEachBodyGrounding[i], ruleAggNeuron.lambdaOffset);
+            } else {
+                oneGroundRuleDerivative = ActivationsFast.aggregationDerived(ruleAggNeuron.ruleBodyGroundings.length) * ActivationsFast.lambdaActivationDerived(ruleAggNeuron.sumedInputsOfEachBodyGrounding[i], ruleAggNeuron.lambdaOffset);
+            }
             for (int j = 0; j < ruleAggNeuron.ruleBodyGroundings[i].length; j++) {
                 derive(ruleAggNeuron.ruleBodyGroundings[i][j], currentLevelDerivative * oneGroundRuleDerivative);
             }
         } else {
             for (int i = 0; i < ruleAggNeuron.ruleBodyGroundings.length; i++) {
-                double oneGroundRuleDerivative = ActivationsFast.aggregationDerived(ruleAggNeuron.ruleBodyGroundings.length) * ActivationsFast.lambdaActivationDerived(ruleAggNeuron.sumedInputsOfEachBodyGrounding[i], ruleAggNeuron.lambdaOffset);
+                double oneGroundRuleDerivative;
+                if (Global.adaptiveActivations) {
+                    oneGroundRuleDerivative = ActivationsFast.aggregationDerived(ruleAggNeuron.ruleBodyGroundings.length) * ActivationsFast.lambdaActivationDerived(ruleAggNeuron.activation, ruleAggNeuron.sumedInputsOfEachBodyGrounding[i], ruleAggNeuron.lambdaOffset);
+                } else {
+                    oneGroundRuleDerivative = ActivationsFast.aggregationDerived(ruleAggNeuron.ruleBodyGroundings.length) * ActivationsFast.lambdaActivationDerived(ruleAggNeuron.sumedInputsOfEachBodyGrounding[i], ruleAggNeuron.lambdaOffset);
+                }
                 for (int j = 0; j < ruleAggNeuron.ruleBodyGroundings[i].length; j++) {
                     derive(ruleAggNeuron.ruleBodyGroundings[i][j], currentLevelDerivative * oneGroundRuleDerivative);
                 }

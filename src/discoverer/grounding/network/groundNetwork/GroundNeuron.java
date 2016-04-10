@@ -16,6 +16,7 @@ import java.io.Serializable;
 public class GroundNeuron implements Serializable {
 
     public String name;
+    public Global.activationSet activation;
 
     public boolean dropMe = false;
     public double outputValue;

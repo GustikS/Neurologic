@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package discoverer.grounding.network.groundNetwork;
+package discoverer.learning.functions;
 
 import discoverer.global.Global;
 import java.util.List;
@@ -12,13 +12,13 @@ import java.util.List;
  *
  * @author Gusta
  */
-public final class ActivationsFast {
+public class ActivationsFast extends Activations {
 
     public static final Global.activationSet lambda = Global.getLambdaActivation();
     public static final Global.activationSet kappa = Global.getKappaActivation();
     public static final Global.groundingSet aggregation = Global.getGrounding();
 
-    private static final double switchMe(Global.activationSet literal, double[] inputs, double offset) throws AssertionError {
+    protected static final double switchMe(Global.activationSet literal, double[] inputs, double offset) throws AssertionError {
         switch (literal) {
             case sig:
                 for (double input : inputs) {
@@ -42,7 +42,7 @@ public final class ActivationsFast {
         }
     }
 
-    private static final double switchMeDerived(Global.activationSet literal, double[] inputs, double offset) throws AssertionError {
+    protected static final double switchMeDerived(Global.activationSet literal, double[] inputs, double offset) throws AssertionError {
         switch (literal) {
             case sig:
                 for (double input : inputs) {
@@ -66,7 +66,7 @@ public final class ActivationsFast {
         }
     }
 
-    private static final double switchMe(Global.activationSet literal, double input, double offset) throws AssertionError {
+    protected static final double switchMe(Global.activationSet literal, double input, double offset) throws AssertionError {
         switch (literal) {
             case sig:
                 return sigmoid(offset + input);
@@ -79,7 +79,7 @@ public final class ActivationsFast {
         }
     }
 
-    private static final double switchMeDerived(Global.activationSet literal, double input, double offset) throws AssertionError {
+    protected static final double switchMeDerived(Global.activationSet literal, double input, double offset) throws AssertionError {
         switch (literal) {
             case sig:
                 return sigmoidDerived(offset + input);
@@ -92,7 +92,7 @@ public final class ActivationsFast {
         }
     }
 
-    private static final double switchMe(Global.activationSet literal, double input) throws AssertionError {
+    protected static final double switchMe(Global.activationSet literal, double input) throws AssertionError {
         switch (literal) {
             case sig:
                 return sigmoid(input);
@@ -105,7 +105,7 @@ public final class ActivationsFast {
         }
     }
 
-    private static final double switchMeDerived(Global.activationSet literal, double input) throws AssertionError {
+    protected static final double switchMeDerived(Global.activationSet literal, double input) throws AssertionError {
         switch (literal) {
             case sig:
                 return sigmoidDerived(input);
@@ -166,39 +166,56 @@ public final class ActivationsFast {
         return switchMeDerived(lambda, input);
     }
 
-    public static final double identity(double x) {
-        return x;
+    //----------------
+    public static final double kappaActivation(Global.activationSet kappaAct, double[] inputs, double offset) {
+        return switchMe(kappaAct == null ? kappa : kappaAct, inputs, offset);
     }
 
-    public static final double identityDerived(double x) {
-        return 1;
+    public static final double kappaActivationDerived(Global.activationSet kappaAct, double[] inputs, double offset) {
+        return switchMeDerived(kappaAct == null ? kappa : kappaAct, inputs, offset);
     }
 
-    public static final double sigmoid(double x) {
-        return (1 / (1 + Math.pow(Math.E, -x)));
+    public static final double lambdaActivation(Global.activationSet lambdaAct, double[] inputs, double offset) {
+        return switchMe(lambdaAct == null ? lambda : lambdaAct, inputs, offset);
     }
 
-    public static final double sigmoidDerived(double x) {
-        double sx = sigmoid(x);
-        return sx * (1 - sx);
+    public static final double lambdaActivationDerived(Global.activationSet lambdaAct, double[] inputs, double offset) {
+        return switchMeDerived(lambdaAct == null ? lambda : lambdaAct, inputs, offset);
     }
 
-    public static final double relu(double x) {
-        if (x > 0) {
-            return x;
-        } else {
-            return 0;
-        }
+    public static final double kappaActivation(Global.activationSet kappaAct, double input, double offset) {
+        return switchMe(kappaAct == null ? kappa : kappaAct, input, offset);
     }
 
-    public static final double reluDerived(double x) {
-        if (x > 0) {
-            return 1;
-        } else {
-            return 0;
-        }
+    public static final double kappaActivationDerived(Global.activationSet kappaAct, double input, double offset) {
+        return switchMeDerived(kappaAct == null ? kappa : kappaAct, input, offset);
     }
 
+    public static final double lambdaActivation(Global.activationSet lambdaAct, double input, double offset) {
+        return switchMe(lambdaAct == null ? lambda : lambdaAct, input, offset);
+    }
+
+    public static final double lambdaActivationDerived(Global.activationSet lambdaAct, double input, double offset) {
+        return switchMeDerived(lambdaAct == null ? lambda : lambdaAct, input, offset);
+    }
+
+    public static final double kappaActivation(Global.activationSet kappaAct, double input) {
+        return switchMe(kappaAct == null ? kappa : kappaAct, input);
+    }
+
+    public static final double kappaActivationDerived(Global.activationSet kappaAct, double input) {
+        return switchMeDerived(kappaAct == null ? kappa : kappaAct, input);
+    }
+
+    public static final double lambdaActivation(Global.activationSet lambdaAct, double input) {
+        return switchMe(lambdaAct == null ? lambda : lambdaAct, input);
+    }
+
+    public static final double lambdaActivationDerived(Global.activationSet lambdaAct, double input) {
+        return switchMeDerived(lambdaAct == null ? lambda : lambdaAct, input);
+    }
+
+    //-------------
     public static final double softMax(double[] inputs, double offset) {
         return 0;
     }

@@ -10,7 +10,6 @@ import java.io.Serializable;
 public class Lambda extends KL implements Serializable {
 
     private LambdaRule rule;
-    private double offset;
     private Integer id;
 
     public Lambda(String name) {

@@ -1,6 +1,7 @@
 package discoverer.learning.functions;
 
 import discoverer.global.Global;
+import discoverer.global.Glogger;
 import java.util.List;
 import java.util.Set;
 
@@ -112,5 +113,21 @@ public class Activations {
 
     public static final double softMaxDerived(List<Double> inputs, double offset) {
         return 0;
+    }
+
+    public static Global.activationSet translate(String value) {
+        switch (value) {
+            case "sig":
+                return Global.activationSet.sig;
+            case "id":
+                return Global.activationSet.id;
+            case "relu":
+                return Global.activationSet.relu;
+            case "softmax":
+                return Global.activationSet.softmax;
+            default:
+                Glogger.err("Couldn't recognize activaiton function : " + value);
+                return Global.activationSet.sig;
+        }
     }
 }

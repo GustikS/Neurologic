@@ -16,7 +16,7 @@ import discoverer.learning.backprop.BackpropDownAvg;
 import discoverer.grounding.evaluation.Evaluator;
 import discoverer.grounding.evaluation.struct.Dropout;
 import discoverer.grounding.network.GroundKL;
-import discoverer.grounding.network.groundNetwork.BackpropFast;
+import discoverer.learning.backprop.BackpropFast;
 import discoverer.grounding.network.groundNetwork.GroundNetwork;
 import discoverer.learning.Invalidator;
 import discoverer.learning.Result;

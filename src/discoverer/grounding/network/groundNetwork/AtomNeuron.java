@@ -28,7 +28,8 @@ public class AtomNeuron extends GroundNeuron {
 
     public AtomNeuron(GroundKappa grk, LiftedTemplate net) {
         name = grk.toString(net.tmpConstantNames);
-
+        activation = grk.getGeneral().activation;
+        
         outputValue = grk.getValueAvg();
 
         groundParentsCount = grk.getGroundParents();

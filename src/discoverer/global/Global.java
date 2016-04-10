@@ -78,10 +78,11 @@ public final class Global {
     public static boolean parallelGrounding = true;
     public static boolean parallelTraining = true; //experimental!!
     public static int numOfThreads = 4;
-    public static boolean batchMode = true;
+    public static boolean batchMode = false;
 
     public static boolean relativeVariableSelection = true; //ordering of variables when grounding goes for the ones that leave the least number of other variables free, otherwise goes just for the most contrained literals (Vojta's version)
     public static boolean alldiff = true;
+    public static final boolean adaptiveActivations = false;
 
     public static void setupThreads() {
         numOfThreads = Runtime.getRuntime().availableProcessors();

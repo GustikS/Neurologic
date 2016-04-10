@@ -9,7 +9,9 @@ import java.io.Serializable;
  */
 public abstract class KL extends Element implements Serializable {
 
+    public double offset;
     public double dropout;
+    public Global.activationSet activation;
 
     public KL() {
     }

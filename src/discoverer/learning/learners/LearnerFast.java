@@ -15,7 +15,7 @@ import discoverer.global.Glogger;
 import discoverer.global.Settings;
 import discoverer.grounding.evaluation.Evaluator;
 import discoverer.grounding.evaluation.EvaluatorFast;
-import discoverer.grounding.network.groundNetwork.BackpropFast;
+import discoverer.learning.backprop.BackpropFast;
 import discoverer.grounding.network.groundNetwork.GroundNetwork;
 import discoverer.grounding.network.groundNetwork.GroundNeuron;
 import discoverer.learning.LearningStep;

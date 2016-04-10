@@ -11,7 +11,6 @@ import java.util.*;
 public class Kappa extends KL implements Serializable {
 
     private List<KappaRule> rules;
-    public double offset;
     public double step;
     public double deltaW;
     //private Double gradient;

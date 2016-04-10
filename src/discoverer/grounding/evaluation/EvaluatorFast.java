@@ -8,7 +8,7 @@ package discoverer.grounding.evaluation;
 import discoverer.global.Global;
 import static discoverer.grounding.evaluation.Evaluator.ignoreDropout;
 import discoverer.grounding.network.GroundKappa;
-import discoverer.grounding.network.groundNetwork.ActivationsFast;
+import discoverer.learning.functions.ActivationsFast;
 import discoverer.grounding.network.groundNetwork.AtomNeuron;
 import discoverer.grounding.network.groundNetwork.GroundNetwork;
 import discoverer.grounding.network.groundNetwork.RuleAggNeuron;
@@ -73,7 +73,11 @@ public class EvaluatorFast extends Evaluator {
          System.out.println("stop");
          }
          */
-        an.outputValue = ActivationsFast.kappaActivation(an.sumedInputs);
+        if (Global.adaptiveActivations) {
+            an.outputValue = ActivationsFast.kappaActivation(an.activation, an.sumedInputs);
+        } else {
+            an.outputValue = ActivationsFast.kappaActivation(an.sumedInputs);
+        }
         return an.outputValue;
     }
 
@@ -97,7 +101,7 @@ public class EvaluatorFast extends Evaluator {
                 rn.outputValue = 0.5;
                 return 0.5;
             }
-            
+
             double[] outerInputs = new double[rn.ruleBodyGroundings.length];
             for (int i = rn.ruleBodyGroundings.length - 1; i >= 0; i--) {
                 //double[] innerInputs = new double[rn.ruleBodyGroundings[i].length];  //inside one body-grounding
@@ -107,7 +111,11 @@ public class EvaluatorFast extends Evaluator {
                     //rn.sumedInputsOfEachBodyGrounding[i] += innerInputs[j];
                     rn.sumedInputsOfEachBodyGrounding[i] += evaluateFast(rn.ruleBodyGroundings[i][j]);
                 }
-                outerInputs[i] = ActivationsFast.lambdaActivation(rn.sumedInputsOfEachBodyGrounding[i], rn.lambdaOffset);
+                if (Global.adaptiveActivations) {
+                    outerInputs[i] = ActivationsFast.lambdaActivation(rn.activation, rn.sumedInputsOfEachBodyGrounding[i], rn.lambdaOffset);
+                } else {
+                    outerInputs[i] = ActivationsFast.lambdaActivation(rn.sumedInputsOfEachBodyGrounding[i], rn.lambdaOffset);
+                }
             }
             if (grounding == Global.groundingSet.max) {
                 int index = ActivationsFast.getMaximumIndex(outerInputs);
@@ -129,7 +137,11 @@ public class EvaluatorFast extends Evaluator {
              writeOutError(rn);
              }
              */
-            rn.outputValue = ActivationsFast.lambdaActivation(rn.sumedInputs);
+            if (Global.adaptiveActivations) {
+                rn.outputValue = ActivationsFast.lambdaActivation(rn.activation, rn.sumedInputs);
+            } else {
+                rn.outputValue = ActivationsFast.lambdaActivation(rn.sumedInputs);
+            }
         }
         return rn.outputValue;
     }

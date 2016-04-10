@@ -15,24 +15,28 @@ import discoverer.construction.template.LambdaFactory;
 import discoverer.construction.template.LiftedTemplate;
 import discoverer.construction.template.MolecularTemplate;
 import discoverer.global.Global;
+import discoverer.global.Glogger;
+import discoverer.learning.functions.Activations;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Factory for whole network
  */
 public class TemplateFactory {
-
+    
     private KappaFactory kFactory = new KappaFactory();
     private LambdaFactory lFactory = new LambdaFactory();
     private VariableFactory vFactory = new VariableFactory();
-
+    
     private List<KappaRule> kappaRules = new ArrayList<KappaRule>();
-
+    
     public TemplateFactory() {
         ConstantFactory.clearConstantFactory();
     }
-
+    
     public List<KappaRule> getKappaRules() {
         return kappaRules;
     }
@@ -46,24 +50,38 @@ public class TemplateFactory {
      */
     public LiftedTemplate construct(String[] rules) {
         KL kl = null;
-
+        HashMap<String, KL> klNames = new HashMap<>();
+        HashMap<String, String> activations = new HashMap<>();
+        HashMap<String, Double> offsets = new HashMap<>();
+        
         if (Global.isCheckback()) {
             for (int i = 0; i < 42; i++) {
                 Global.getRandomDouble();   //to synchronize initizalization of new template with lambda elements
             }
         }
-
+        
         for (int x = 0; x < rules.length; x++) {
-            String[][] tokens = Parser.parseRule(rules[x]);
-
-            boolean isLambdaLine = tokens[0][0].isEmpty();
-
-            //the self handling of each K/L rule, adding it to the base
-            kl = isLambdaLine ? handleLambdaLine(tokens, rules[x]) : handleKappaLine(tokens, rules[x]);
-
-            vFactory.clear();
+            
+            if (rules[x].contains(":-")) {  //this is a rule..
+                String[][] tokens = Parser.parseRule(rules[x]);
+                boolean isLambdaLine = tokens[0][0].isEmpty();
+                //the self handling of each K/L rule, adding it to the base
+                kl = isLambdaLine ? handleLambdaLine(tokens, rules[x]) : handleKappaLine(tokens, rules[x]);
+                klNames.put(kl.name, kl);
+                vFactory.clear();
+            } else if (rules[x].contains("[")) {    //this is activation function specification
+                String[] split = rules[x].split(" ");
+                activations.put(split[0].trim(), split[1].substring(split[1].indexOf("[") + 1, split[1].indexOf("]")));
+            } else if (rules[x].contains(".")) {
+                String[] split = rules[x].split(" ");
+                try {
+                    offsets.put(split[0].trim(), Double.parseDouble(split[1].trim()));
+                } catch (Exception ex) {
+                    Glogger.err("Couldn't parse offset from " + rules[x]);
+                }
+            }
         }
-
+        
         kl.dropout = -1;    //do never drop the last element of the network!! (otherwise there is no network :))
 
         if (Global.isKappaAdaptiveOffset()) {
@@ -71,6 +89,15 @@ public class TemplateFactory {
                 kappa.initOffset();
             }
         }
+        //setup offsets if specified for some literals
+        for (Map.Entry<String,Double> ent : offsets.entrySet()) {
+            klNames.get(ent.getKey()).offset = ent.getValue();
+        }
+        //setup activation functions - new feature!
+        for (Map.Entry<String,String> ent : activations.entrySet()) {
+            klNames.get(ent.getKey()).activation = Activations.translate(ent.getValue());
+        }
+        
         //setup network
         LiftedTemplate network;
         if (Global.molecularTemplates) {
@@ -80,10 +107,10 @@ public class TemplateFactory {
         }
         return network;
     }
-
+    
     private Variable constructTerm(String s) {
         boolean isVariable = s.matches("^[A-Z].*");
-
+        
         return isVariable ? vFactory.construct(s) : ConstantFactory.construct(s);
     }
 
@@ -117,7 +144,7 @@ public class TemplateFactory {
         }
         LambdaRule lr = new LambdaRule();
         lr.addHead(sl);
-
+        
         for (int i = 2; i < tokens.length; i++) {
             Kappa k = kFactory.construct(tokens[i][0]);
             SubK sk = new SubK(k, false);
@@ -127,7 +154,7 @@ public class TemplateFactory {
             }
             lr.addBodyEl(sk);
         }
-
+        
         l.setRule(lr);
         lr.originalName = original;
         return l;
@@ -168,7 +195,7 @@ public class TemplateFactory {
         KappaRule kr = new KappaRule(w);
         kr.setHead(sk);
         kappaRules.add(kr);
-
+        
         for (int i = 2; i < tokens.length; i++) {
             Lambda l = lFactory.construct(tokens[i][0]);
             SubL sl = new SubL(l, false);
@@ -178,12 +205,12 @@ public class TemplateFactory {
             }
             kr.setBody(sl);
         }
-
+        
         k.addRule(kr);
         kr.originalName = original;
         return k;
     }
-
+    
     public void printWeights() {
         System.out.println("-----------------offsets-------------");
         int i = 0;
@@ -195,7 +222,7 @@ public class TemplateFactory {
         for (KappaRule kappaRule : kappaRules) {
             System.out.println(i++ + " -> " + kappaRule.getWeight());
         }
-
+        
     }
 
     /**
