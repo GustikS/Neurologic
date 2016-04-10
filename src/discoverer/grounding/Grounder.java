@@ -71,7 +71,7 @@ public class Grounder {
 
         GroundedTemplate b = kl instanceof Kappa ? solve2((Kappa) kl, null) : solve2((Lambda) kl, null);    //always Kappa only...first literal is without variables(ignoring them)
 
-        forwardChecker.printRuns();
+        //forwardChecker.printRuns();
 
         if (b == null) {
             Glogger.err("Warning, unentailed example by the template!" + e.hash);

@@ -89,7 +89,7 @@ public class RoundTest {
                         continue;
                     }
 
-                    Weights w = BackpropGroundKappa.getNewWeights(b, e, Global.batch.NO, 0.05);
+                    Weights w = BackpropGroundKappa.getNewWeights(b, e, Global.batchMode.NO, 0.05);
 
                     for (Map.Entry<Object, Double> t : w.getWeights().entrySet()) {
                         Object o = t.getKey();

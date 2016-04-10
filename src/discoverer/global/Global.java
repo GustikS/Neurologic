@@ -17,6 +17,8 @@ import java.util.logging.Logger;
 //settings
 
 public final class Global {
+    //parallelTraining + SGD = funny experiment (not synchronized access to weights)
+    //parallelTrainin + Batch = very natural, no hange in behavior
 
     //public static NeuralDataset neuralDataset;
     private static int seed;
@@ -74,14 +76,19 @@ public final class Global {
 
     public static boolean multiLine = false; //example can spread to multiple lines, delimited by empty line (\n\n)
     public static boolean parallelGrounding = true;
-    public static boolean parallelSGD = false; //experimental!!
+    public static boolean parallelTraining = true; //experimental!!
     public static int numOfThreads = 4;
+    public static boolean batchMode = true;
 
     public static boolean relativeVariableSelection = true; //ordering of variables when grounding goes for the ones that leave the least number of other variables free, otherwise goes just for the most contrained literals (Vojta's version)
     public static boolean alldiff = true;
 
     public static void setupThreads() {
         numOfThreads = Runtime.getRuntime().availableProcessors();
+    }
+
+    public static void setupStreamThreads(int count) {
+        System.setProperty("java.util.concurrent.ForkJoinPool.common.parallelism", count + "");
     }
 
     /**
@@ -104,30 +111,11 @@ public final class Global {
         weights, onTop
     };
 
-    /**
-     * @return the batch
-     */
-    public static batch getBatch() {
-        return batch;
-    }
-
-    /**
-     * @param aBatch the batch to set
-     */
-    public static void setBatch(batch aBatch) {
-        batch = aBatch;
-    }
-
     //----taken as parameters from Main
     public static enum groundingSet {
 
         max, avg
     };
-
-    public static enum batch {
-
-        NO, YES;
-    }
 
     public static enum activationSet {
 
@@ -139,7 +127,6 @@ public final class Global {
         handmade, longtail, uniform
     };
 
-    private static batch batch;
     private static groundingSet grounding;
     private static activationSet lambdaActivation;
     private static activationSet kappaActivation;

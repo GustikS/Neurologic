@@ -16,18 +16,18 @@ import java.util.Map;
  */
 public final class BackpropFast {
 
-    private static double[] weightUpdates;
-    private static double[] sharedWeights;
+    private double[] weightUpdates;
+    private double[] sharedWeights;
     private static final boolean fullLambda = Global.uncompressedLambda;
     private static final Global.groundingSet grounding = Global.getGrounding();
 
-    public static boolean updateWeights(double[] sharedW, Sample sam) {
+    public double[] getWeightUpdates(double[] sharedW, Sample sam) {
         sharedWeights = sharedW;
         GroundNetwork gnet = sam.neuralNetwork;
         weightUpdates = new double[sharedWeights.length];
 
         if (gnet.outputNeuron == null) {
-            return false;
+            return weightUpdates;
         }
         double baseDerivative = (sam.targetValue - gnet.outputNeuron.outputValue);  //output error-level derivative
 
@@ -37,16 +37,11 @@ public final class BackpropFast {
             derive((RuleAggNeuron) gnet.outputNeuron, Settings.learnRate * baseDerivative);
         }
 
-        for (int i = weightUpdates.length - 1; i >= 0; i--) {
-            sharedWeights[i] += weightUpdates[i];
-        }
-
         //writeoutUpdates(weightUpdates);
-
-        return true;
+        return weightUpdates;
     }
 
-    private static void derive(AtomNeuron atomNeuron, double derivative) {
+    private void derive(AtomNeuron atomNeuron, double derivative) {
         if (atomNeuron.dropMe) {
             return;
         }
@@ -69,7 +64,7 @@ public final class BackpropFast {
         }
     }
 
-    private static void derive(RuleAggNeuron ruleAggNeuron, double derivative) {
+    private void derive(RuleAggNeuron ruleAggNeuron, double derivative) {
         if (ruleAggNeuron.dropMe) {
             return;
         }
@@ -90,7 +85,7 @@ public final class BackpropFast {
         }
     }
 
-    static void deriveBodyGroundings(RuleAggNeuron ruleAggNeuron, double currentLevelDerivative) {
+    void deriveBodyGroundings(RuleAggNeuron ruleAggNeuron, double currentLevelDerivative) {
         if (grounding == Global.groundingSet.max) {
             int i = ruleAggNeuron.maxBodyGroundingIndex;
             double oneGroundRuleDerivative = ActivationsFast.aggregationDerived(ruleAggNeuron.ruleBodyGroundings.length) * ActivationsFast.lambdaActivationDerived(ruleAggNeuron.sumedInputsOfEachBodyGrounding[i], ruleAggNeuron.lambdaOffset);
@@ -116,5 +111,5 @@ public final class BackpropFast {
         }
 
     }
-    */
+     */
 }

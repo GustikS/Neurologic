@@ -17,6 +17,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -171,5 +172,27 @@ public class SampleSplitter implements Serializable {
                 Glogger.info("sample " + i + " : " + ex.get(i).toString());
             }
         }
+    }
+
+    public static List<List<Example>> splitExampleList(List<Example> examples1, int folds) {
+        List<List<Example>> workFolds = new LinkedList<>();
+        for (int i = 0; i < folds; i++) {
+            workFolds.add(new LinkedList<>());
+        }
+        for (int i = 0; i < examples1.size(); i++) {
+            workFolds.get(i % folds).add(examples1.get(i));
+        }
+        return workFolds;
+    }
+
+    public static List<List<Sample>> splitSampleList(List<Sample> examples1, int folds) {
+        List<List<Sample>> workFolds = new LinkedList<>();
+        for (int i = 0; i < folds; i++) {
+            workFolds.add(new LinkedList<>());
+        }
+        for (int i = 0; i < examples1.size(); i++) {
+            workFolds.get(i % folds).add(examples1.get(i));
+        }
+        return workFolds;
     }
 }

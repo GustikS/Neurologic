@@ -22,9 +22,9 @@ import org.apache.commons.cli.PosixParser;
 public class Main {
 
     //cutoff on example number
-    private static final String defaultMaxExamples = "1000";  //we can decrease the overall number of examples (stratified) for speedup
+    private static final String defaultMaxExamples = "10000";  //we can decrease the overall number of examples (stratified) for speedup
     //
-    public static String defaultLearningSteps = "3000";  //learnSteps per epocha
+    public static String defaultLearningSteps = "1000";  //learnSteps per epocha
     public static String defaultLearningEpochs = "1";  //learn epochae = grounding cycles
     //  learnEpochae * LearningSteps = learning steps for AVG variant
     private static final String defaultFolds = "1"; // 1 = training only
@@ -214,9 +214,8 @@ public class Main {
         }
 
         setParameters(cmd);
-        
-        //---------------------loading all input files
 
+        //---------------------loading all input files
         //get examples from file
         String dataset = cmd.getOptionValue("e");
         Settings.setDataset(dataset);
@@ -226,7 +225,7 @@ public class Main {
         } else {
             exs = FileToStringList.convert(dataset, maxReadline);
         }
-        
+
         if (exs.length == 0) {
             Glogger.err("no examples");
             return;
@@ -278,56 +277,56 @@ public class Main {
         //parsing command line options - needs external library commons-CLI
         String ground = cmd.getOptionValue("gr", defaultGrounding);
         Settings.setGrounding(ground);
-        
+
         String activation = cmd.getOptionValue("ac", defaultActivations);
         Settings.setActivations(activation);
-        
+
         String initialization = cmd.getOptionValue("wi", defaultInitialization);
         Settings.setInitials(initialization);
-        
+
         Global.setKappaAdaptiveOffset(cmd.hasOption("ko"));
-        
+
         String koffset = cmd.getOptionValue("ko", defaultKappaAdaptiveOffset);
         Settings.setKoffset(koffset);
-        
+
         String loffset = cmd.getOptionValue("lo", defaultLambdaAdaptiveOffset);
         Settings.setLoffset(loffset);
-        
+
         String seed = cmd.getOptionValue("sd", defaultSeed);
         Settings.setSeed(seed);
-        
+
         String drop = cmd.getOptionValue("dr", defaultDropoutRate);
         Settings.setDropout(drop);
-        
+
         String sgd = cmd.getOptionValue("sgd", defaultSGD);
         Settings.setSGD(sgd);
-        
+
         String cum = cmd.getOptionValue("cum", defaultCumSteps);
         Settings.setCumSteps(cum);
-        
+
         String save = cmd.getOptionValue("save", defaultSaving);
         Settings.setSave(save);
-        
+
         String decay = cmd.getOptionValue("lrd", defaultLearnDecay);
         Settings.setLrDecay(decay);
-        
-        Global.setBatch(cmd.hasOption("b") ? Global.batch.YES : Global.batch.NO);
-        
+
+        //Global.batchMode = cmd.hasOption("b");
+
         String tmp = cmd.getOptionValue("size", defaultMaxExamples);
         Settings.setMaxExamples(Integer.parseInt(tmp));
-        
+
         tmp = cmd.getOptionValue("ls", defaultLearningSteps);
         Settings.setLearningSteps(Integer.parseInt(tmp));
-        
+
         tmp = cmd.getOptionValue("le", defaultLearningEpochs);
         Settings.setLearningEpochs(Integer.parseInt(tmp));
-        
+
         tmp = cmd.getOptionValue("lr", defaultLearningRate);
         Settings.setLearnRate(Double.parseDouble(tmp));
-        
+
         tmp = cmd.getOptionValue("f", defaultFolds);
         Settings.setFolds(Integer.parseInt(tmp));
-        
+
         tmp = cmd.getOptionValue("rs", defaultRestartCount);
         Settings.setRestartCount(Integer.parseInt(tmp));
     }

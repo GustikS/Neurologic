@@ -9,6 +9,7 @@ import discoverer.NeuralDataset;
 import discoverer.construction.template.LightTemplate;
 import discoverer.learning.learners.Learning;
 import discoverer.construction.template.MolecularTemplate;
+import discoverer.crossvalidation.SampleSplitter;
 import discoverer.global.Global;
 import discoverer.global.Glogger;
 import discoverer.global.Settings;
@@ -25,8 +26,12 @@ import discoverer.learning.Results;
 import discoverer.learning.Results;
 import discoverer.learning.Sample;
 import discoverer.learning.Sample;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
 
 /**
@@ -47,9 +52,16 @@ public class LearnerFast extends Learning {
 
     private double[] bestWeights;   //for saving
     private LearningStep bestResult;
+    BackpropFast backpropFast = new BackpropFast();
 
     public Results solveFast(LightTemplate net, List<Sample> roundStore) {
         liftedTemplate = net;
+        List<List<Sample>> workFolds = null;
+        double[] batchWeightUpdates = new double[net.sharedWeights.length];
+        if (Global.batchMode) {
+            workFolds = SampleSplitter.splitSampleList(roundStore, Global.numOfThreads);
+        }
+        Stream<Sample> stream;
 
         Glogger.clock("starting to solveFast");
 
@@ -64,14 +76,11 @@ public class LearnerFast extends Learning {
                 if (isSGD) {
                     Collections.shuffle(roundStore, Global.getRg());    //stochastic gradient descend
                 }
-
-                Stream<Sample> stream;
-                if (Global.parallelSGD) {
+                if (Global.parallelTraining) {
                     stream = roundStore.parallelStream();
                 } else {
                     stream = roundStore.stream();
                 }
-
                 stream.filter((sample) -> !(sample.neuralNetwork == null)).forEach((sample) -> {
                     //un-entailed sample
                     //for each example network
@@ -84,8 +93,26 @@ public class LearnerFast extends Learning {
                     } else {
                         EvaluatorFast.evaluateFast(gnet, net.sharedWeights);
                     }
-                    BackpropFast.updateWeights(net.sharedWeights, sample);
+                    if (Global.batchMode) {
+                        backpropFast = new BackpropFast();  //in the parallel mode we want each thread to have their own weight updates
+                        double[] weightUpdates = backpropFast.getWeightUpdates(net.sharedWeights, sample);
+                        for (int j = weightUpdates.length - 1; j >= 0; j--) {
+                            batchWeightUpdates[j] += weightUpdates[j];
+                        }
+                    } else {
+                        double[] weightUpdates = backpropFast.getWeightUpdates(net.sharedWeights, sample);
+                        //now update the weights after each sample
+                        for (int j = weightUpdates.length - 1; j >= 0; j--) {
+                            net.sharedWeights[j] += weightUpdates[j];
+                        }
+                    }
                 });
+                if (Global.batchMode) {
+                    for (int j = batchWeightUpdates.length - 1; j >= 0; j--) {
+                        net.sharedWeights[j] += batchWeightUpdates[j];
+                    }
+                    Arrays.fill(batchWeightUpdates, 0); //renew the batch updates
+                }
                 if (saving) { //saving after each batch
                     saveBestWeights(roundStore, net.sharedWeights);
                 }
@@ -95,12 +122,17 @@ public class LearnerFast extends Learning {
             Glogger.clock("");
             net.invalidateWeights();
         }
+
         Glogger.clock("!!finished learning!!");
 
         net.sharedWeights = bestWeights; //=LOADING the final best model from training
-        Glogger.process("---best template weights so far <- loaded---");
+
+        Glogger.process(
+                "---best template weights so far <- loaded---");
         Results evaluatedNetworks = evaluateNetworks(roundStore, bestWeights);
-        Glogger.process("backpropagation on fold finished");
+
+        Glogger.process(
+                "backpropagation on fold finished");
 
         return evaluatedNetworks;
     }

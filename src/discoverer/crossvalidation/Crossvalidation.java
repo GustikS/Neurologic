@@ -174,7 +174,7 @@ public class Crossvalidation {
                 LearnerCheckback s = new LearnerCheckback();
                 res = s.checkback(network, examples);
             }
-        } else if (Global.getBatch() == Global.batch.YES) {
+        } else if (Global.batchMode) {
             //BatchLearner bs = new BatchLearner();
             //res = bs.solve(network, examples);
         } else if (Global.isCumulativeRestarts()) {

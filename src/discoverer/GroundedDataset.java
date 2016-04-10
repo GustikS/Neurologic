@@ -92,14 +92,10 @@ public class GroundedDataset extends LiftedDataset {
         //Global.savesomething(template, "cc");
         if (Global.parallelGrounding) {
             Glogger.process("Parallel threads workfold splitting");
-            List<List<Example>> workFolds = new LinkedList<>();
-            for (int i = 0; i < Global.numOfThreads; i++) {
-                workFolds.add(new LinkedList<>());
-            }
-            for (int i = 0; i < examples.size(); i++) {
-                workFolds.get(i % Global.numOfThreads).add(examples.get(i));
-            }
+            List<List<Example>> workFolds = (List<List<Example>>) SampleSplitter.splitExampleList(examples, Global.numOfThreads);
             ExecutorService exec = Executors.newFixedThreadPool(Global.numOfThreads);
+            int[] omg = new int[1]; //global example counter
+            omg[0] = 0;
             Glogger.process("Parallel threads created");
             try {
                 for (int j = 0; j < Global.numOfThreads; j++) {
@@ -115,7 +111,7 @@ public class GroundedDataset extends LiftedDataset {
                             //LiftedTemplate net = (LiftedTemplate) Global.loadSomething("cc");
                             for (Example e : wex) {
                                 GroundedTemplate b = grounder.solve(net.last, e);
-                                Glogger.info("thread " + thrd + " - example: " + e + " , maxVal: " + b.valMax + ", avgVal: " + b.valAvg);
+                                Glogger.info("example #" + omg[0]++ + " on thread " + thrd + "-> #forward checker runs:(" + grounder.forwardChecker.runs + ")" + " : target: " + e + " , maxVal: " + b.valMax + ", avgVal: " + b.valAvg);
                                 sampleStore.add(new Sample(e, b));
                             }
                         }
@@ -134,7 +130,7 @@ public class GroundedDataset extends LiftedDataset {
             grounder.forwardChecker.exnum = 0;
             for (Example e : examples) {
                 GroundedTemplate b = grounder.solve(template.last, e);
-                Glogger.info("example: " + e + " , maxVal: " + b.valMax + ", avgVal: " + b.valAvg);
+                Glogger.info("example #" + grounder.forwardChecker.exnum++ + " -> #forward checker runs:(" + grounder.forwardChecker.runs + ")" + " : target: " + e + " , maxVal: " + b.valMax + ", avgVal: " + b.valAvg);
                 sampleStore.add(new Sample(e, b));
             }
         }
@@ -155,4 +151,5 @@ public class GroundedDataset extends LiftedDataset {
 
         return sampleStore;
     }
+
 }
