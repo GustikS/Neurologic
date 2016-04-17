@@ -7,6 +7,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 /* object for representing the result of substitution search*/
@@ -21,6 +22,8 @@ public class GroundedTemplate implements Serializable {
     //public Set<Double> inputsMax = new HashSet<>();
     //public Set<Double> inputsAvg = new HashSet<>();
     public List<GroundKL> groundNeurons;    //only neurons, no fact neurons!
+    
+    public Map<Integer,String> constantNames;   //constantnames mapping back from their IDs for debugging and drawing
 
     public GroundedTemplate() {
         valMax = null;

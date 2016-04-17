@@ -43,14 +43,19 @@ public abstract class GroundKL implements Serializable {
         groundParentDerivative = 0;
 
         id = counter++;
-        termList = new int[terms.size()];
-        termNames = new String[terms.size()];
 
         if (terms != null) {
+
+            termList = new int[terms.size()];
+            termNames = new String[terms.size()];
+            
             for (int i = 0; i < terms.size(); i++) {
                 termList[i] = terms.get(i).getBind();
                 termNames[i] = terms.get(i).getName();
             }
+        } else {
+            //termList = new int[0];
+            //termNames = new String[0];
         }
     }
 

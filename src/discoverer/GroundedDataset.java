@@ -60,8 +60,8 @@ public class GroundedDataset extends LiftedDataset {
         List<Example> testEx = createExamples(test, Settings.maxExamples);
         Glogger.process("created example structures");
 
-        List<Sample> trainSamples = prepareGroundings(examples, (MolecularTemplate) network);
-        List<Sample> testSamples = prepareGroundings(examples, (MolecularTemplate) network);
+        List<Sample> trainSamples = prepareGroundings(trainEx, (MolecularTemplate) network);
+        List<Sample> testSamples = prepareGroundings(testEx, (MolecularTemplate) network);
         Glogger.process("prepared network groundings");
 
         examples = trainEx;

@@ -63,8 +63,13 @@ public class ExampleFactory {
         }
 
         e.setConstCount(constId);
+        //constants from the example
         for (Map.Entry<String,Integer> ent : constMap.entrySet()) {
             e.constantNames.put(ent.getValue(), ent.getKey());
+        }
+        //and constants from the template! (if any)
+        for (Map.Entry<String,Variable> ent : ConstantFactory.getConstMap().entrySet()) {
+            e.constantNames.put(ent.getValue().getBind(), ent.getKey());
         }
         //resets all example-related hashmaps for IDs
         clear();

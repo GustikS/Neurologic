@@ -29,7 +29,7 @@ public final class Global {
 
     private static boolean cacheEnabled = true;
     private static boolean forwardCheckEnabled = true;
-    private static boolean debugEnabled = false;
+    private static boolean debugEnabled = true;
     private static boolean infoEnabled = true;
     private static boolean pruning = true;
     private static double falseAtomValue = -1;   //non-entailed example output
@@ -62,7 +62,7 @@ public final class Global {
     private static boolean GUI = false;
     private static mergingOptions merging = null;
 
-    public static boolean exporting = true;
+    public static boolean exporting = false;
     public static boolean createWeightMatrix = true;   //matrix of neural weight for printing with Matlab etc.
 
     public static boolean drawing = false;

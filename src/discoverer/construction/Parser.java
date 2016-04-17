@@ -64,7 +64,10 @@ public class Parser {
         String[] ruleSplit = rule.substring(weightLen).replaceAll(" ", "").split(":-");
 
         String[] parsedHead = parseLiteral(ruleSplit[0]);
-        String[] bodyLiterals = ruleSplit[1].split("\\)[,.]");
+        if (ruleSplit[1].endsWith(".")){
+            ruleSplit[1] = ruleSplit[1].substring(0, ruleSplit[1].length()-1);
+        }
+        String[] bodyLiterals = ruleSplit[1].split("\\)[,]");
 
         String[][] tokens = new String[bodyLiterals.length + 2][];
 

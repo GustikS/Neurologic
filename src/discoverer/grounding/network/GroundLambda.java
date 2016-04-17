@@ -73,23 +73,31 @@ public class GroundLambda extends GroundKL implements Serializable {
 
     @Override
     public String toString() {
-        String s = general.getName() + "(";
-        for (int i : getTermList()) {
-            s += i + ",";
+        StringBuilder s = new StringBuilder(general.getName());
+        if (getTermList() != null) {
+            s.append("(");
+            for (int i : getTermList()) {
+                s.append(i).append(",");
+            }
+            s.deleteCharAt(s.length() - 1);
+            s.append(")");
         }
-        s = s.substring(0, s.length() - 1);
-        s += ")#" + getId();
-        return s;
+        s.append("#").append(getId());
+        return s.toString();
     }
 
-    public String toString(HashMap<Integer, String> constNames) {
-        String s = general.getName() + "(";
-        for (int i : getTermList()) {
-            s += constNames.get(i) + ",";
+    public String toString(Map<Integer, String> constNames) {
+        StringBuilder s = new StringBuilder(general.getName());
+        if (getTermList() != null) {
+            s.append("(");
+            for (int i : getTermList()) {
+                s.append(constNames.get(i)).append(",");
+            }
+            s.deleteCharAt(s.length() - 1);
+            s.append(")");
         }
-        s = s.substring(0, s.length() - 1);
-        s += ")#" + getId();
-        return s;
+        s.append("#").append(getId());
+        return s.toString();
     }
 
     public void addConjuctsAvgFrom(Set<GroundLambda> gls) {

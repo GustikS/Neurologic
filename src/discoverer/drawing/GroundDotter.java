@@ -23,6 +23,7 @@ import java.util.Set;
 public class GroundDotter extends Dotter {
 
     private static String name = "ground";
+    public static Map<Integer,String> constantNames;
 
     private static void writeToFile() {
         try {
@@ -53,7 +54,8 @@ public class GroundDotter extends Dotter {
         if (b == null) {
             return;
         }
-
+        constantNames = b.constantNames;
+        
         dot.add(intro);
         Object top = b.getLast();
         if (top instanceof GroundKappa) {
@@ -69,12 +71,13 @@ public class GroundDotter extends Dotter {
         dot.clear();
     }
 
-    public static void draw(GroundedTemplate b, String nam) {
+    public static void drawMax(GroundedTemplate b, String nam) {
         if (b == null) {
             return;
         }
-
+        
         name = nam;
+        constantNames = b.constantNames;
 
         dot.add(intro);
         Object top = b.getLast();
@@ -97,6 +100,7 @@ public class GroundDotter extends Dotter {
         }
 
         name = nam;
+        constantNames = b.constantNames;
 
         dot.add(intro);
         Object top = b.getLast();
@@ -123,7 +127,7 @@ public class GroundDotter extends Dotter {
         }
 
         for (Tuple<GroundLambda, KappaRule> t : gk.getDisjuncts()) {
-            String s = "\"" + gk + "\nval: " + df.format(gk.getValue()) + "\noffset: " + df.format(gk.getGeneral().offset) + "\" -> " + "\"" + t.x + "\nval: " + df.format(t.x.getValue()) + "\"" + " [ label = \"" + df.format(t.y.getWeight()) + "\" ];";
+            String s = "\"" + gk.toString(constantNames) + "\nval: " + df.format(gk.getValue()) + "\noffset: " + df.format(gk.getGeneral().offset) + "\" -> " + "\"" + t.x.toString(constantNames) + "\nval: " + df.format(t.x.getValue()) + "\"" + " [ label = \"" + df.format(t.y.getWeight()) + "\" ];";
             dot.add(s);
         }
 
@@ -140,7 +144,7 @@ public class GroundDotter extends Dotter {
         }
 
         for (GroundKappa gk : gl.getConjuncts()) {
-            String s = "\"" + gl + "\nval: " + df.format(gl.getValue()) + "\" -> \"" + gk + "\nval: " + df.format(gk.getValue()) + "\noffset: " + df.format(gk.getGeneral().offset) + "\";";
+            String s = "\"" + gl.toString(constantNames) + "\nval: " + df.format(gl.getValue()) + "\" -> \"" + gk.toString(constantNames) + "\nval: " + df.format(gk.getValue()) + "\noffset: " + df.format(gk.getGeneral().offset) + "\";";
             dot.add(s);
             draw(gk);
         }
@@ -162,10 +166,10 @@ public class GroundDotter extends Dotter {
         }
 
         for (Tuple<HashSet<GroundLambda>, KappaRule> t : gk.getDisjunctsAvg()) {
-            String s = "\"" + gk + "\nvalAVG: " + df.format(gk.getValueAvg()) + "\noffset: " + df.format(gk.getGeneral().offset) + "\" -> " + "\"kapR{" + t.x + "}\"" + " [ label = \"" + df.format(t.y.getWeight()) + "\" ];";
+            String s = "\"" + gk.toString(constantNames) + "\nvalAVG: " + df.format(gk.getValueAvg()) + "\noffset: " + df.format(gk.getGeneral().offset) + "\" -> " + "\"kapR{" + t.x + "}\"" + " [ label = \"" + df.format(t.y.getWeight()) + "\" ];";
             dot.add(s);
             for (GroundLambda gl : t.x) {
-                String ss = "\"" + "kapR{" + t.x + "}\"" + " -> " + "\"" + gl + "\nvalAvg: " + df.format(gl.getValueAvg()) + "\n#ground: " + gl.getConjunctsCountForAvg() + "\"" + " [ label = \"1x\" ];";
+                String ss = "\"" + "kapR{" + t.x + "}\"" + " -> " + "\"" + gl.toString(constantNames) + "\nvalAvg: " + df.format(gl.getValueAvg()) + "\n#ground: " + gl.getConjunctsCountForAvg() + "\"" + " [ label = \"1x\" ];";
                 dot.add(ss);
             }
         }
@@ -183,7 +187,7 @@ public class GroundDotter extends Dotter {
             return;
         }
         for (Map.Entry<GroundKappa, Integer> t : gl.getConjunctsAvg().entrySet()) {
-            String s = "\"" + gl + "\nvalAvg: " + df.format(gl.getValueAvg()) + "\n#ground: " + gl.getConjunctsCountForAvg() + "\"" + " -> \"" + t.getKey() + "\nvalAVG: " + df.format(t.getKey().getValueAvg()) + "\noffset: " + (t.getKey().isElement() ? "N/A" : df.format(t.getKey().getGeneral().offset)) + "\"" + " [ label = \"" + df.format(t.getValue()) + "x\" ];";
+            String s = "\"" + gl.toString(constantNames) + "\nvalAvg: " + df.format(gl.getValueAvg()) + "\n#ground: " + gl.getConjunctsCountForAvg() + "\"" + " -> \"" + t.getKey().toString(constantNames) + "\nvalAVG: " + df.format(t.getKey().getValueAvg()) + "\noffset: " + (t.getKey().isElement() ? "N/A" : df.format(t.getKey().getGeneral().offset)) + "\"" + " [ label = \"" + df.format(t.getValue()) + "x\" ];";
             dot.add(s);
             drawAvg(t.getKey());
         }

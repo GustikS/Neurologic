@@ -77,7 +77,9 @@ public class Grounder {
             Glogger.err("Warning, unentailed example by the template!" + e.hash);
             return new GroundedTemplate(Global.getFalseAtomValue());
         }
-
+        
+        b.constantNames = e.constantNames;
+        
         //ForwardChecker.clear();
         return b;   //warning - now can return null if the given KL program and Example e have no grounded solution! //replaced with -1 empty GroundedTemplate
     }
