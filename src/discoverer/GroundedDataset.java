@@ -110,7 +110,7 @@ public class GroundedDataset extends LiftedDataset {
                             LiftedTemplate net = (LiftedTemplate) Global.makeDeepCopy(template);
                             //LiftedTemplate net = (LiftedTemplate) Global.loadSomething("cc");
                             for (Example e : wex) {
-                                GroundedTemplate b = grounder.solve(net.last, e);
+                                GroundedTemplate b = grounder.groundTemplate(net.last, e);
                                 Glogger.info("example #" + omg[0]++ + " on thread " + thrd + "-> #forward checker runs:(" + grounder.forwardChecker.runs + ")" + " : target: " + e + " , maxVal: " + b.valMax + ", avgVal: " + b.valAvg);
                                 sampleStore.add(new Sample(e, b));
                             }
@@ -129,7 +129,7 @@ public class GroundedDataset extends LiftedDataset {
             Grounder grounder = new Grounder();
             grounder.forwardChecker.exnum = 0;
             for (Example e : examples) {
-                GroundedTemplate b = grounder.solve(template.last, e);
+                GroundedTemplate b = grounder.groundTemplate(template.last, e);
                 Glogger.info("example #" + grounder.forwardChecker.exnum++ + " -> #forward checker runs:(" + grounder.forwardChecker.runs + ")" + " : target: " + e + " , maxVal: " + b.valMax + ", avgVal: " + b.valAvg);
                 sampleStore.add(new Sample(e, b));
             }

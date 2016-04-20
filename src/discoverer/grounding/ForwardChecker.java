@@ -52,7 +52,7 @@ public class ForwardChecker {
         }
 
         if (debugEnabled) {
-            System.out.print("[ForwardChecker]\t" + r + "\t-->\t" + r.unbound);
+            System.out.print("[ForwardChecker]\t" + r + "\t-->\t usedTerms: " + r.usedTerms + "\t-->\t solveVars: " + r.unbound);
         }
 
         boolean ret = r instanceof KappaRule ? check((KappaRule) r, null) : check((LambdaRule) r, null);
@@ -133,7 +133,7 @@ public class ForwardChecker {
     }
 
     private boolean check(KappaRule kr, List<Variable> vars) {
-        kr.unifyVariablesWith(vars);
+        kr.headUnification(vars);
         SubL sl = kr.getBody();
         boolean ret = check(sl);
         if (vars != null) {
@@ -164,7 +164,7 @@ public class ForwardChecker {
 
     private boolean check(LambdaRule lr, List<Variable> vars) {
 
-        lr.unifyVariablesWith(vars);
+        lr.headUnification(vars);
         Variable lastBindedTerm = lr.getLastBindedVar();
 
         boolean ret = lastBindedTerm == null ? checkAll(lr) : checkConstrainedToVar(lr, lastBindedTerm);

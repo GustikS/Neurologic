@@ -13,6 +13,7 @@ import discoverer.grounding.evaluation.GroundedTemplate;
 import discoverer.grounding.Grounder;
 import discoverer.grounding.network.GroundKappa;
 import discoverer.grounding.network.GroundLambda;
+import discoverer.learning.LearningStep;
 import discoverer.learning.Result;
 import discoverer.learning.Results;
 import discoverer.learning.Sample;
@@ -20,6 +21,7 @@ import discoverer.learning.learners.LearnerCheckback;
 import discoverer.learning.learners.LearnerIterative;
 import discoverer.learning.learners.LearnerStandard;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -34,17 +36,14 @@ public class Crossvalidation {
 
     SampleSplitter splitter;
 
-    Grounder grounder = new Grounder();
+    List<Results> foldResults;
 
     public Crossvalidation(SampleSplitter ss) {
         splitter = ss;
+        foldResults = new LinkedList<>();
     }
 
-    public final void trainTest(LightTemplate network, List<Sample> trainEx, List<Sample> testEx, int fold) {
-
-        double foldtrainErr = 0;
-        double foldtestErr = 0;
-        double foldtestMaj = 0;
+    public Results trainTestFold(LightTemplate network, List<Sample> trainEx, List<Sample> testEx, int fold) {
 
         if (Global.exporting) {
             network.exportWeightMatrix("init-fold" + fold);
@@ -54,9 +53,9 @@ public class Crossvalidation {
 
         Results res = this.train(network, trainEx);
         Glogger.process("--------------finished training, going to test----------------------");
-        foldtrainErr = res.getLearningError();
-        foldtestErr = this.test(network, res, testEx);
-        foldtestMaj = testM(testEx, trainEx);
+        res = this.test(network, res, testEx);
+        res.majority = new LearningStep();
+        res.majority.setError(testMajority(testEx, trainEx));
 
         if (Global.exporting) {
             network.exportTemplate("learned-fold" + fold);
@@ -68,13 +67,15 @@ public class Crossvalidation {
         }
 
         Glogger.LogRes("--------------");
-        Glogger.LogRes("Fold train error: " + foldtrainErr);   //do NOT change the texts here (used in excel macro)
-        Glogger.LogRes("Fold test error: " + foldtestErr);
-        Glogger.LogRes("Fold majority error: " + foldtestMaj);
+        Glogger.LogRes("Fold train error: " + res.training.getError());   //do NOT change the texts here (used in excel macro)
+        Glogger.LogRes("Fold test error: " + res.testing.getError());
+        Glogger.LogRes("Fold majority error: " + res.majority.getError());
 
-        testErr += foldtestErr;
-        trainErr += foldtrainErr;
-        testMaj += foldtestMaj;
+        trainErr += res.training.getError();
+        testErr += res.testing.getError();
+        testMaj += res.majority.getError();
+
+        return res;
     }
 
     /**
@@ -90,11 +91,12 @@ public class Crossvalidation {
      * @param ex
      */
     public void crossvalidate(LiftedDataset dataset) {
-        long tim;
-        Glogger.info("starting crossvalidation " + (tim = System.currentTimeMillis()));
+        long time;
+        Glogger.info("starting crossvalidation " + (time = System.currentTimeMillis()));
         for (dataset.sampleSplitter.testFold = 0; dataset.sampleSplitter.testFold < dataset.sampleSplitter.foldCount; dataset.sampleSplitter.testFold++) { //iterating the test fold
 
-            trainTest(dataset.network, dataset.sampleSplitter.getTrain(), dataset.sampleSplitter.getTest(), dataset.sampleSplitter.testFold);
+            Results foldRes = trainTestFold(dataset.network, dataset.sampleSplitter.getTrain(), dataset.sampleSplitter.getTest(), dataset.sampleSplitter.testFold);
+            foldResults.add(foldRes);
 
             if (Global.exporting) {
                 LightTemplate.exportSharedWeights(dataset.network.sharedWeights, 99);
@@ -106,7 +108,7 @@ public class Crossvalidation {
 
             dataset.network.merge(dataset.pretrainedNetwork); // 2nd
         }
-        Glogger.process("finished crossvalidation " + (System.currentTimeMillis() - tim));
+        Glogger.process("finished crossvalidation " + (System.currentTimeMillis() - time));
 
         trainErr /= dataset.sampleSplitter.foldCount;
         testErr /= dataset.sampleSplitter.foldCount;
@@ -120,7 +122,7 @@ public class Crossvalidation {
         Glogger.process("finished learning");
     }
 
-    private double testM(List<Sample> test, List<Sample> train) {
+    private double testMajority(List<Sample> test, List<Sample> train) {
         int pos = 0;
         for (Sample e : train) {
             if (e.targetValue == 1) {
@@ -192,6 +194,7 @@ public class Crossvalidation {
             LearnerStandard s = new LearnerStandard();
             res = s.solveMax(network, examples);
         }
+        res.training = res.actualResult;
 
         return res;
     }
@@ -201,122 +204,52 @@ public class Crossvalidation {
      *
      * @param netw
      * @param net
-     * @param res
+     * @param trainResults
      * @param examples
      * @return
      */
-    public double test(LightTemplate netw, Results res, List<Sample> examples) {
+    public Results test(LightTemplate netw, Results trainResults, List<Sample> examples) {
+        Grounder grounder = new Grounder();
         MolecularTemplate net = (MolecularTemplate) netw;
         KL network = net.last;
         grounder.forwardChecker.exnum = 0;
         double error = 0.0;
 
-        Results results = new Results();    //we didn't store the whole ground networks(one for each example), just the weights of program
+        //we didn't store the whole ground networks(one for each example), just the weights of program
         HashMap<String, Double> ballvalues = new HashMap<>();
         HashMap<String, Double> atoms = new HashMap<>();
 
+        trainResults.results.clear();;
+
         for (Sample example : examples) {
-            GroundedTemplate b = grounder.solve(network, example.getExample());
+            GroundedTemplate b = grounder.groundTemplate(network, example.getExample());
 
             double ballValue = -1;
             if (b != null) {
-                if (Global.getGrounding() == Global.groundingSet.avg) {
-                    ballValue = b.valAvg;
-                } else if (Global.getGrounding() == Global.groundingSet.max) {
-                    ballValue = b.valMax;
-                } else {
-                    throw new AssertionError();
+                if (null != Global.getGrounding()) {
+                    switch (Global.getGrounding()) {
+                        case avg:
+                            ballValue = b.valAvg;
+                            break;
+                        case max:
+                            ballValue = b.valMax;
+                            break;
+                        default:
+                            throw new AssertionError();
+                    }
                 }
             }
             //ballvalues.add(ballValue);
 
-            GroundKappa toxic;
-            if (b.getLast() instanceof GroundLambda) {
-                GroundLambda last = (GroundLambda) b.getLast();
-                List<GroundKappa> conjuncts = last.getConjuncts();
-                toxic = conjuncts.get(0);
-            } else {
-                GroundKappa last = (GroundKappa) b.getLast();
-                toxic = last;
-            }
-
-            GroundLambda ring5 = null;
-            GroundLambda ring4 = null;
-            GroundLambda ring3 = null;
-            for (int i = 0; i < toxic.getDisjuncts().size(); i++) {
-                if (toxic.getDisjuncts().get(i).x.getGeneral().getName().contains("ring5")) {
-                    ring5 = toxic.getDisjuncts().get(i).x;
-                }
-                if (toxic.getDisjuncts().get(i).x.getGeneral().getName().contains("ring4")) {
-                    ring4 = toxic.getDisjuncts().get(i).x;
-                }
-                if (toxic.getDisjuncts().get(i).x.getGeneral().getName().contains("ring3")) {
-                    ring3 = toxic.getDisjuncts().get(i).x;
-                }
-            }
-            if (ring5 != null) {
-                String r5 = "";
-                for (GroundKappa gk : ring5.getConjuncts()) {
-                    //r5 += example.constantNames.get(term) + "-";
-                    r5 += gk.getDisjuncts().get(0).x.getConjuncts().get(0).getGeneral().getName() + "-";
-                }
-                r5 += ring5.getConjuncts().get(ring5.getConjuncts().size() - 1).getDisjuncts().get(0).x.getConjuncts().get(1).getGeneral().getName();
-                atoms.put(r5, ring5.getValueAvg());
-
-                r5 = "";
-                for (Integer term : ring5.getTermList()) {
-                    r5 += example.getExample().constantNames.get(term) + "-";
-                }
-                ballvalues.put(r5, ring5.getValueAvg());
-            }
-
-            if (ring4 != null) {
-                String r4 = "";
-                for (GroundKappa gk : ring4.getConjuncts()) {
-                    //r5 += example.constantNames.get(term) + "-";
-                    r4 += gk.getDisjuncts().get(0).x.getConjuncts().get(0).getGeneral().getName() + "-";
-                }
-                r4 += ring4.getConjuncts().get(ring4.getConjuncts().size() - 1).getDisjuncts().get(0).x.getConjuncts().get(1).getGeneral().getName();
-                atoms.put(r4, ring4.getValueAvg());
-
-                r4 = "";
-                for (Integer term : ring4.getTermList()) {
-                    r4 += example.getExample().constantNames.get(term) + "-";
-                }
-                ballvalues.put(r4, ring4.getValueAvg());
-            }
-
-            if (ring3 != null) {
-                String r3 = "";
-                for (GroundKappa gk : ring3.getConjuncts()) {
-                    //r5 += example.constantNames.get(term) + "-";
-                    r3 += gk.getDisjuncts().get(0).x.getConjuncts().get(0).getGeneral().getName() + "-";
-                }
-                r3 += ring3.getConjuncts().get(ring3.getConjuncts().size() - 1).getDisjuncts().get(0).x.getConjuncts().get(1).getGeneral().getName();
-                atoms.put(r3, ring3.getValueAvg());
-
-                r3 = "";
-                for (Integer term : ring3.getTermList()) {
-                    r3 += example.getExample().constantNames.get(term) + "-";
-                }
-                ballvalues.put(r3, ring3.getValueAvg());
-            } else {
-                //ballvalues.add(-1.0);
-            }
-
-            results.add(new Result(ballValue, example.getExample().getExpectedValue()));
-
-            double clas = ballValue > res.getThreshold() ? 1.0 : 0.0;
-            Glogger.info("Classified -> " + clas + " Expected -> " + example.getExample().getExpectedValue() + " Out -> " + ballValue + " Thresh -> " + res.getThreshold());
-            if (clas != example.getExample().getExpectedValue()) {
-                error += 1.0;
-            }
+            trainResults.add(new Result(ballValue, example.getExample().getExpectedValue()));
         }
+        trainResults.computeTest();
+        trainResults.testing = trainResults.actualResult;
 
-        double err = error / examples.size();
-        Glogger.LogRes("Fold Train error : " + res.getLearningError());
-        Glogger.LogRes("Fold Test error : " + err);
-        Glogger.LogRes("Fold re-calculated threshold Test error : " + results.getLearningError());
+        Glogger.LogRes("Fold Train error : " + trainResults.training.getError());
+        Glogger.LogRes("Fold Test error : " + trainResults.testing.getError());
+        trainResults.actualResult.setError(null);
+        Glogger.LogRes("Fold re-calculated threshold Test error : " + trainResults.getLearningError());
 
         Glogger.LogTrain("------test sample values-----");
         int a = 0;
@@ -329,7 +262,7 @@ public class Crossvalidation {
         }
         Glogger.LogTrain("------end of test sample values-----");
 
-        return err;
+        return trainResults;
     }
 
 }

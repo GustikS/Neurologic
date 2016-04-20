@@ -24,14 +24,13 @@ import java.util.List;
 
 /**
  *
- * @author Gusta
- * OLD STUFF (for backward compatibility testing)
+ * @author Gusta OLD STUFF (for backward compatibility testing)
  */
-public class LearnerCheckback extends Learning{
-    
+public class LearnerCheckback extends Learning {
+
     //----------------------OLD STUFF (for backward copatibility testing)-----------------------------
     public Results checkback(MolecularTemplate last, List<Sample> roundStore) {
-        
+
         Glogger.process("-------------checkBack----------------");
         for (int a = 0; a < Settings.restartCount; a++) {    //restarting the whole procedure
             Glogger.process("---------------------------------------------------------------------------------------------------------------------");
@@ -39,7 +38,7 @@ public class LearnerCheckback extends Learning{
             for (int x = 0; x < Settings.learningEpochs; x++) {      //learningEpochs = maximal substitution cycles for all examples
                 Glogger.process("-------epochae: " + x);
                 for (int i = 0; i < Settings.learningSteps; i++) {       //learningSteps = backpropagation steps
-                    Results res = new Results();
+                    results.clearResultList();
                     Glogger.process("------learning step: " + i);
                     for (Sample result : roundStore) {     //for each example(result)
                         Example e = result.getExample();
@@ -50,11 +49,11 @@ public class LearnerCheckback extends Learning{
                         Weights w = BackpropDown.getNewWeights(b, e);  //backpropagation
                         refreshWeights(w);  //update
                         b.valMax = Evaluator.evaluateMax(b);  //forward propagation
-                        res.add(new Result(b.valMax, e.getExpectedValue()));
+                        results.add(new Result(b.valMax, e.getExpectedValue()));
                         Glogger.debug("Example: " + e + "\t : Weight learning: " + old + " -> " + b.valMax);
                     }   //learning errors on this fixed ground tree (found as max subst before learning)
-                    Glogger.LogTrain("bp_step", new Double[]{res.getLearningError(), res.getDispersion(), res.getMajorityClass(), res.getThreshold()});
-                    Glogger.process("Training error before max. subst. =\t" + res.getLearningError() + " (maj: " + res.getMajorityClass() + ")" + " (disp: " + res.getDispersion() + ")");
+                    Glogger.LogTrain("bp_step", new Double[]{results.getLearningError(), results.getDispersion(), results.getMajorityClass(), results.getThreshold()});
+                    Glogger.process("Training error before max. subst. =\t" + results.getLearningError() + " (maj: " + results.getMajorityClass() + ")" + " (disp: " + results.getDispersion() + ")");
 
                     Glogger.process("-----------proper evaluation at the end of bp-step (minibatch)");
                     saveTemplate(roundStore, last);
@@ -73,13 +72,12 @@ public class LearnerCheckback extends Learning{
     }
 
     public Results checkbackAvg(MolecularTemplate last, List<Sample> roundStore) {
-        Results res;
         Glogger.process("-------------checkBackAVG----------------");
         for (int a = 0; a < Settings.restartCount; a++) {    //restarting the whole procedure
             Glogger.process("-------------------------------------------------------------------------------------------------------------------------------");
             Glogger.process("------------Restart: " + a);
             for (int i = 0; i < Settings.learningSteps; i++) {       //learningSteps = backpropagation steps
-                res = new Results();
+                results.clearResultList();
                 if (Global.isLearnDecay()) {
                     Settings.learnRate = learnDecay(i, Settings.learnRate);
                 }
@@ -96,10 +94,10 @@ public class LearnerCheckback extends Learning{
                     Weights w = BackpropDownAvg.getNewWeights(b, e);  //backpropagation
                     refreshWeights(w);  //update sharedWeights
                     b.valAvg = Evaluator.evaluateAvg(b);  //forward propagation
-                    res.add(new Result(b.valAvg, e.getExpectedValue()));
+                    results.add(new Result(b.valAvg, e.getExpectedValue()));
                 }
-                Glogger.LogTrain("bp_step", new Double[]{res.getLearningError(), res.getDispersion(), res.getMajorityClass(), res.getThreshold()});
-                Glogger.process("Training error before max. subst. =\t" + res.getLearningError() + " (maj: " + res.getMajorityClass() + ")" + " (disp: " + res.getDispersion() + ")");
+                Glogger.LogTrain("bp_step", new Double[]{results.getLearningError(), results.getDispersion(), results.getMajorityClass(), results.getThreshold()});
+                Glogger.process("Training error before max. subst. =\t" + results.getLearningError() + " (maj: " + results.getMajorityClass() + ")" + " (disp: " + results.getDispersion() + ")");
             }
             saveTemplate(roundStore, last);
             Glogger.LogTrain("...restart " + a);

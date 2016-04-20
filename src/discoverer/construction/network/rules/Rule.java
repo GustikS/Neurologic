@@ -54,11 +54,12 @@ public abstract class Rule implements Serializable {
 
     /**
      * unifying/(un)binding of this Rule head's variables/terms and consumed
-     * list of variables(must be same size)
+     * list of variables(must be same size) - this is for going from line to
+     * line to find unification (while the name of variables might change)
      *
      * @param vars
      */
-    public void unifyVariablesWith(List<Variable> vars) {
+    public void headUnification(List<Variable> vars) {
         if (vars == null || vars.isEmpty()) {
             return;
         }
@@ -86,9 +87,14 @@ public abstract class Rule implements Serializable {
     }
 
     public void bind(Variable var, int c) {
+        if (var.isBind()) {  //we are changing the bind
+            usedTerms.remove(var.getBind());
+            usedTerms.add(c);
+        } else {    //we have new binding
+            unbound.remove(var);
+            usedTerms.add(c);
+        }
         var.setBind(c);
-        unbound.remove(var);
-        usedTerms.add(c);
     }
 
     public void unbind(Variable var) {

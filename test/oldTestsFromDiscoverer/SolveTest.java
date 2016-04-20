@@ -63,7 +63,7 @@ public class SolveTest {
     }
 
     private void print(Example e, KL network) {
-        GroundedTemplate b = Grounder.solve(network, e);
+        GroundedTemplate b = Grounder.groundTemplate(network, e);
         System.out.println(b.valMax);
 
 /*

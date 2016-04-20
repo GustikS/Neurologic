@@ -100,7 +100,7 @@ public class DrawTest {
         ExampleFactory ef = new ExampleFactory();
         Example e = ef.construct(ex);
 
-        GroundedTemplate b = Grounder.solve(last.last, e);
+        GroundedTemplate b = Grounder.groundTemplate(last.last, e);
 
         Dotter.draw(last.last, "modra3");
         GroundDotter.drawMax(b, "modraGround3");

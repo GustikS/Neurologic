@@ -127,8 +127,7 @@ public class LearnerFast extends Learning {
 
         net.sharedWeights = bestWeights; //=LOADING the final best model from training
 
-        Glogger.process(
-                "---best template weights so far <- loaded---");
+        Glogger.process("---best template weights so far <- loaded---");
         Results evaluatedNetworks = evaluateNetworks(roundStore, bestWeights);
 
         Glogger.process(
@@ -139,13 +138,13 @@ public class LearnerFast extends Learning {
 
     private void saveBestWeights(List<Sample> sams, double[] sharedW) {
         Results res = evaluateNetworks(sams, sharedW);
-        if (res.actual.isBetterThen(bestResult)) {
+        if (res.actualResult.isBetterThen(bestResult)) {
             Glogger.process("----train error improvement, saving actual template weights----");
             bestWeights = new double[sharedW.length];
             for (int i = 0; i < sharedW.length; i++) {
                 bestWeights[i] = sharedW[i];
             }
-            bestResult = res.actual;
+            bestResult = res.actualResult;
             if (weightMatrixExporting) {
                 liftedTemplate.exportSharedWeights(sharedW, progress);
                 liftedTemplate.exportWeightMatrix("improvement" + progress++);
@@ -154,21 +153,21 @@ public class LearnerFast extends Learning {
     }
 
     private Results evaluateNetworks(List<Sample> sams, double[] sharedW) {
-        Results res = new Results();
+        results.clearResultList();
         for (Sample sam : sams) {
             if (sam.neuralNetwork == null) {
-                res.add(new Result(Global.getFalseAtomValue(), sam.targetValue)); //unentailed sample
+                results.add(new Result(Global.getFalseAtomValue(), sam.targetValue)); //unentailed sample
                 continue;
             }
             sam.neuralNetwork.outputNeuron.outputValue = EvaluatorFast.evaluateFast(sam.neuralNetwork, sharedW);
 
             //System.out.println(gnet.name + "\n" + gnet.outputNeuron.outputValue);
             //writeOutNeurons(gnet.allNeurons);
-            res.add(new Result(sam.neuralNetwork.outputNeuron.outputValue, sam.targetValue));
+            results.add(new Result(sam.neuralNetwork.outputNeuron.outputValue, sam.targetValue));
         }
-        Glogger.LogTrain("backprop step : ", new Double[]{res.getLearningError(), res.getDispersion(), res.getMajorityClass(), res.getThreshold()});
-        Glogger.process("All Ground Networks Evaluation : train error " + res.getLearningError() + " (maj: " + res.getMajorityClass() + ")" + " (disp: " + res.getDispersion() + ")");
-        return res;
+        Glogger.LogTrain("backprop step : ", new Double[]{results.getLearningError(), results.getDispersion(), results.getMajorityClass(), results.getThreshold()});
+        Glogger.process("All Ground Networks Evaluation : train error " + results.getLearningError() + " (maj: " + results.getMajorityClass() + ")" + " (disp: " + results.getDispersion() + ")");
+        return results;
     }
 
     private void writeOutNeurons(GroundNeuron[] allNeurons) {

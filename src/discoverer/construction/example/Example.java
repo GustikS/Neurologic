@@ -12,7 +12,7 @@ import java.util.*;
  */
 public class Example implements Serializable {
 
-    private double expVal;
+    private double targetVal;
     private Chunks chunks;
     //map of existing chunks from other examples
     private Map<Integer, List<Integer>> possibleChunks;
@@ -32,7 +32,7 @@ public class Example implements Serializable {
      * @param ihash
      */
     public Example(Double exp, Map<Integer, List<Integer>> map, String ihash) {
-        expVal = exp;
+        targetVal = exp;
         chunks = new Chunks();
         possibleChunks = map;
         hash = ihash;
@@ -47,7 +47,7 @@ public class Example implements Serializable {
     }
 
     public double getExpectedValue() {
-        return expVal;
+        return targetVal;
     }
 
     public void addChunk(int[] numeral) {
@@ -128,6 +128,6 @@ public class Example implements Serializable {
 
     @Override
     public String toString() {
-        return Double.toString(expVal);
+        return Double.toString(targetVal);
     }
 }

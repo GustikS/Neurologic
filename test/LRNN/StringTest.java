@@ -54,7 +54,7 @@ public class StringTest {
         String[] examples = FileToStringList.convert("in/strings/easy-examples.txt", Integer.MAX_VALUE);
         Example e = eFactory.construct(examples[0]);
 
-        GroundedTemplate b = grounder.solve(net.last, e);
+        GroundedTemplate b = grounder.groundTemplate(net.last, e);
 
         GroundDotter.drawMax(b, "string_ground");
     }
@@ -79,7 +79,7 @@ public class StringTest {
         
         for (int i = 0; i < ex.length; i++) {
             Example e = eFactory.construct(ex[i]);
-            GroundedTemplate b = grounder.solve(net.last, e);
+            GroundedTemplate b = grounder.groundTemplate(net.last, e);
             if (b == null) {
                 b = new GroundedTemplate(-1);
             }
@@ -91,7 +91,7 @@ public class StringTest {
         while (true) {
             for (Map.Entry<Example, GroundedTemplate> entry : roundStore.entrySet()) {
                 Example e = entry.getKey();
-                GroundedTemplate b = grounder.solve(net.last, e);
+                GroundedTemplate b = grounder.groundTemplate(net.last, e);
                 if (b == null) {
                     b = new GroundedTemplate(-1);
                 }

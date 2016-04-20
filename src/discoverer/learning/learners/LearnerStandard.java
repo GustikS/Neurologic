@@ -55,13 +55,13 @@ public class LearnerStandard extends Learning {
             if (Global.isInitWithAVG()) {
                 Glogger.process("----initializing weights with AVG variant----");
                 solveAvg(last, roundStore);
-                results = new Results();
+                results.clearResultList();
             }
             Glogger.process("---------------------------------------------------------------------------------------------------------------------");
             Glogger.process("------------Restart: " + a);
             for (int x = 0; x < Settings.learningEpochs; x++) {      //learningEpochs = maximal substitution cycles for all examples
                 Glogger.process("-------epochae: " + x);
-                results.past.clear();
+                results.trainingHistory.clear();
                 for (int i = 0; i < Settings.learningSteps; i++) {       //learningSteps = backpropagation steps
                     if (Global.isLearnDecay()) {
                         Settings.learnRate = learnDecay(i + (x * Settings.learningSteps), Settings.learnRate);
@@ -118,7 +118,7 @@ public class LearnerStandard extends Learning {
         //evaluate(roundStore);
         long time0 = System.currentTimeMillis();
         for (int a = 0; a < Settings.restartCount; a++) {    //restarting the whole procedure
-            results.past.clear();
+            results.trainingHistory.clear();
             Glogger.process("--------SolveAVG-----------------------------------------------------------------------------------------------------------------------");
             Glogger.process("------------Restart: " + a);
             for (int i = 0; i < Settings.learningSteps; i++) {       //learningSteps = backpropagation steps

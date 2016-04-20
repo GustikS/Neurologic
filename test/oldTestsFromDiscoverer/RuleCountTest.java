@@ -59,7 +59,7 @@ public class RuleCountTest {
 
         ExampleFactory eFactory = new ExampleFactory();
         Example e = eFactory.construct(ex[0]);
-        GroundedTemplate b = Grounder.solve(last.last, e);
+        GroundedTemplate b = Grounder.groundTemplate(last.last, e);
 
         getAllKappaRules(b);
 

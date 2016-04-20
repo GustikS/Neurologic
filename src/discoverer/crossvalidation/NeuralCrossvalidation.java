@@ -37,32 +37,28 @@ public class NeuralCrossvalidation extends Crossvalidation {
      * @param trainResults
      */
     @Override
-    public double test(LightTemplate net, Results trainResults, List<Sample> examples) {
-        Results results = new Results();    //we do not ground again here
-        double error = 0.0;
+    public Results test(LightTemplate net, Results trainResults, List<Sample> testExamples) {
+        //we do not ground again here
 
-        for (Sample sample : examples) {
+        trainResults.clearResultList();
+        for (Sample sample : testExamples) {
             double eval = EvaluatorFast.evaluateFast(sample.neuralNetwork, net.sharedWeights);
-
-            results.add(new Result(eval, sample.targetValue));
-
-            double clas = eval > trainResults.getThreshold() ? 1.0 : 0.0;
-            Glogger.info("Example " + sample.position + " -" + sample.toString() + " : Classified -> " + clas + " Expected -> " + sample.targetValue + " Out -> " + eval + " Thresh -> " + trainResults.getThreshold());
-            if (clas != sample.targetValue) {
-                error += 1.0;
-            }
+            trainResults.add(new Result(eval, sample.targetValue));
         }
-        error /= examples.size();
+        trainResults.computeTest();
+        trainResults.testing = trainResults.actualResult;
         /*
          Glogger.LogRes("Fold Train error : " + trainResults.getLearningError());
          Glogger.LogRes("Fold Test error : " + error);
          Glogger.LogRes("Fold re-calculated threshold Test error (invalid, theoretical value) : " + results.getLearningError());
          */
-        return error;
+        return trainResults;
     }
 
     public Results train(LightTemplate network, List<Sample> examples) {
         LearnerFast s = new LearnerFast();
-        return s.solveFast(network, examples);
+        Results res = s.solveFast(network, examples);
+        res.training = res.actualResult;
+        return res;
     }
 }

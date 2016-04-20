@@ -75,7 +75,7 @@ public class Atoms {
         Example e = ef.construct(example);
 
         Grounder grounder = new Grounder();
-        GroundedTemplate b = grounder.solve(last.last, e);
+        GroundedTemplate b = grounder.groundTemplate(last.last, e);
 
         Dotter.draw(last.last, "atoms");
         GroundDotter.drawMax(b, "atomsGroundMax");

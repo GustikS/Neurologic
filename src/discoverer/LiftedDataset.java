@@ -58,7 +58,7 @@ public class LiftedDataset implements Serializable {
         //createSharedWeights();
     }
 
-    private LiftedTemplate createNetworkMerge(String[] rules) {
+    public LiftedTemplate createNetworkMerge(String[] rules) {
         LiftedTemplate pretrainedN = null;
         if (pretrained != null && pretrained.length > 0) {
             pretrainedN = createNetwork(pretrained, "pretrained"); // 1st

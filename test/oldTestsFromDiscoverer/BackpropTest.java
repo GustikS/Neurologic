@@ -71,13 +71,13 @@ public class BackpropTest {
         ExampleFactory eFactory = new ExampleFactory();
         Example e = eFactory.construct(ex[0]);
 
-        GroundedTemplate b = Grounder.solve(last, e);
+        GroundedTemplate b = Grounder.groundTemplate(last, e);
         System.out.println(b.valMax);
         double learnRate = 0.15;
         Weights w = BackpropGroundKappa.getNewWeights(b, e, Batch.NO, learnRate);
         print(w);
         System.out.println(Evaluator.evaluateMax(b));
-        b = Grounder.solve(last, e);
+        b = Grounder.groundTemplate(last, e);
         System.out.println(b.valMax);
         System.out.println(Evaluator.evaluateMax(b));
         System.out.println(b.getActiveRules().size());

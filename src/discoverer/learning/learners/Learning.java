@@ -115,10 +115,10 @@ public class Learning {
         Glogger.process("Loading...Saver loaded the best network template");
         Glogger.process("Grounding the best template...");
         grounder.forwardChecker.exnum = 0;
-        results.clear();
+        results.clearResultList();
         for (Sample roundElement : roundStore) {  //so we need to calculate the proof-tree output again
             Example e = roundElement.getExample();
-            GroundedTemplate b = grounder.solve(net.last, e);   //so again create the proof-tree
+            GroundedTemplate b = grounder.groundTemplate(net.last, e);   //so again create the proof-tree
             roundElement.setBall(b);
             if (Global.getGrounding() == Global.groundingSet.avg) {
                 results.add(new Result(b.valAvg, e.getExpectedValue()));
@@ -175,26 +175,32 @@ public class Learning {
     }
 
     protected void evaluate(List<Sample> roundStore) throws AssertionError {
-        results.clear();
+        results.clearResultList();
         for (Sample result : roundStore) {
             Example e = result.getExample();
             GroundedTemplate b = result.getBall();
-            if (Global.getGrounding() == Global.groundingSet.avg) {
-                double old = b.valAvg;
-                b.valAvg = Evaluator.evaluateAvg(b);  //forward propagation
+            if (null != Global.getGrounding()) {
+                switch (Global.getGrounding()) {
+                    case avg: {
+                        double old = b.valAvg;
+                        b.valAvg = Evaluator.evaluateAvg(b);  //forward propagation
+                        //System.out.println(result.position + " : " + b.valAvg.toString());
+                        //writeOutNeurons(result);
 
-                //System.out.println(result.position + " : " + b.valAvg.toString());
-                //writeOutNeurons(result);
-
-                results.add(new Result(b.valAvg, e.getExpectedValue()));    //store the average value output in the result
-                Glogger.debug("Example: " + e + "Weight learned at the end of a minibatch: " + old + " -> " + b.valAvg);
-            } else if (Global.getGrounding() == Global.groundingSet.max) {
-                double old = b.valMax;
-                b.valMax = Evaluator.evaluateMax(b);  //forward propagation
-                results.add(new Result(b.valMax, e.getExpectedValue()));    //store the average value output in the result
-                Glogger.debug("Example: " + e + "Weight learned at the end of a minibatch: " + old + " -> " + b.valMax);
-            } else {
-                throw new AssertionError();
+                        results.add(new Result(b.valAvg, e.getExpectedValue()));    //store the average value output in the result
+                        Glogger.debug("Example: " + e + "Weight learned at the end of a minibatch: " + old + " -> " + b.valAvg);
+                        break;
+                    }
+                    case max: {
+                        double old = b.valMax;
+                        b.valMax = Evaluator.evaluateMax(b);  //forward propagation
+                        results.add(new Result(b.valMax, e.getExpectedValue()));    //store the average value output in the result
+                        Glogger.debug("Example: " + e + "Weight learned at the end of a minibatch: " + old + " -> " + b.valMax);
+                        break;
+                    }
+                    default:
+                        throw new AssertionError();
+                }
             }
         }
 
@@ -204,11 +210,11 @@ public class Learning {
     }
 
     protected void reGround(List<Sample> roundStore, MolecularTemplate net) {
-        results.clear();
+        results.clearResultList();
         grounder.forwardChecker.exnum = 0;
         for (Sample roundElement : roundStore) {
             Example e = roundElement.getExample();
-            GroundedTemplate b = grounder.solve(net.last, e);    // resubstitution for every example
+            GroundedTemplate b = grounder.groundTemplate(net.last, e);    // resubstitution for every example
             GroundNetworkParser.parseMAX(b);
             roundElement.setBall(b);
             results.add(new Result(b.valMax, e.getExpectedValue()));

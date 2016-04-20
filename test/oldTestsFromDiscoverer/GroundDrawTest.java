@@ -37,7 +37,7 @@ public class GroundDrawTest {
         String[] examples = FileToStringList.convert("in/strings/easy-examples.txt", Integer.MAX_VALUE);
         Example e = eFactory.construct(examples[0]);
 
-        GroundedTemplate b = Grounder.solve(net.last, e);
+        GroundedTemplate b = Grounder.groundTemplate(net.last, e);
 
         GroundDotter.drawMax(b, "string_ground");
     }
@@ -85,7 +85,7 @@ public class GroundDrawTest {
         ExampleFactory eFactory = new ExampleFactory();
         Example e = eFactory.construct(ex[0]);
 
-        GroundedTemplate b = Grounder.solve(last.last, e);
+        GroundedTemplate b = Grounder.groundTemplate(last.last, e);
 
         Dotter.draw(last.last, b.getActiveRules());
         GroundDotter.draw(b);
@@ -127,7 +127,7 @@ public class GroundDrawTest {
         ExampleFactory eFactory = new ExampleFactory();
         Example e = eFactory.construct(ex[0]);
 
-        GroundedTemplate b = Grounder.solve(last.last, e);
+        GroundedTemplate b = Grounder.groundTemplate(last.last, e);
 
         Dotter.draw(last.last, b.getActiveRules());
         GroundDotter.draw(b);

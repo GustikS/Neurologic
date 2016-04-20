@@ -8,6 +8,8 @@ import discoverer.global.FileToStringList;
 import discoverer.global.Glogger;
 import discoverer.global.Settings;
 import discoverer.learning.Sample;
+import java.util.LinkedList;
+import java.util.List;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.HelpFormatter;
@@ -22,7 +24,7 @@ import org.apache.commons.cli.PosixParser;
 public class Main {
 
     //cutoff on example number
-    private static final String defaultMaxExamples = "10";  //we can decrease the overall number of examples (stratified) for speedup
+    private static final String defaultMaxExamples = "10000";  //we can decrease the overall number of examples (stratified) for speedup
     //
     public static String defaultLearningSteps = "1000";  //learnSteps per epocha
     public static String defaultLearningEpochs = "1";  //learn epochae = grounding cycles
@@ -208,63 +210,15 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        CommandLine cmd = parseArguments(args);
-        if (cmd == null) {
-            return;
-        }
-
-        setParameters(cmd);
-
-        //---------------------loading all input files
-        //get examples from file
-        String dataset = cmd.getOptionValue("e");
-        Settings.setDataset(dataset);
-        String[] exs = null;
-        if (Global.multiLine) {
-            exs = FileToStringList.convertMultiline(dataset, maxReadline);
-        } else {
-            exs = FileToStringList.convert(dataset, maxReadline);
-        }
-
-        if (exs.length == 0) {
-            Glogger.err("no examples");
-            return;
-        }
-
-        //separate test set?
-        String[] test = null;
-        String tt = cmd.getOptionValue("test");
-        if (tt != null) {
-            Settings.setTestSet(tt);
-            test = FileToStringList.convert(tt, maxReadline);
-        }
-
-        //get rules one by one from a file
-        String rls = cmd.getOptionValue("r");
-        Settings.setRules(rls);
-        String[] rules = FileToStringList.convert(rls, maxReadline);
-        if (rules.length == 0) {
-            Glogger.err("no rules");
-        }
-
-        //we want sigmoid at the output, not identity (for proper error measurement)
-        if (Global.getKappaActivation() == Global.activationSet.id) {
-            if (rules[rules.length - 1].startsWith("0.") || rules[rules.length - 1].startsWith("1.")) {  //does it end with Kappa line?
-                rules = addFinalLambda(rules);  //a hack to end with lambda
-            }
-        }
-
-        //pretrained template with some lifted literals in common (will be mapped onto new template)
-        String pretrained = cmd.getOptionValue("t");
-        Settings.setPretrained(pretrained);
-        String[] pretrainedRules = FileToStringList.convert(pretrained, maxReadline);
-        if (pretrainedRules != null) {
-            Glogger.out("pretrained= " + pretrained + " of length: " + pretrainedRules.length);
-        }
-
-        //-------------------------------------end of parameter parsing-------------------------------------------
+        //setup all parameters and load all the necessary input files
+        List<String[]> inputs = setupFromArguments(args);
         //create logger for all messages within the program
         Glogger.init();
+
+        String[] test = inputs.get(0);
+        String[] exs = inputs.get(1);
+        String[] rules = inputs.get(2);
+        String[] pretrainedRules = inputs.get(3);
 
         //create ground networks dataset
         LiftedDataset groundedDataset = createDataset(test, exs, rules, pretrainedRules);
@@ -273,6 +227,12 @@ public class Main {
         learnOn(groundedDataset);
     }
 
+    /**
+     * parse commandline for all possible parameters
+     *
+     * @param cmd
+     * @throws NumberFormatException
+     */
     public static void setParameters(CommandLine cmd) throws NumberFormatException {
         //parsing command line options - needs external library commons-CLI
         String ground = cmd.getOptionValue("gr", defaultGrounding);
@@ -311,7 +271,6 @@ public class Main {
         Settings.setLrDecay(decay);
 
         //Global.batchMode = cmd.hasOption("b");
-
         String tmp = cmd.getOptionValue("size", defaultMaxExamples);
         Settings.setMaxExamples(Integer.parseInt(tmp));
 
@@ -339,8 +298,9 @@ public class Main {
      * @param exs
      * @param rules
      * @param pretrainedRules
+     * @return 
      */
-    static LiftedDataset createDataset(String[] test, String[] exs, String[] rules, String[] pretrainedRules) {
+    public static LiftedDataset createDataset(String[] test, String[] exs, String[] rules, String[] pretrainedRules) {
 
         //Glogger.process(Settings.getString());
         //---------------dataset-sample set creation
@@ -417,5 +377,88 @@ public class Main {
         rls[rls.length - 1] = "finalLambda :- " + fin + ".";
 
         return rls;
+    }
+
+    /**
+     * setup all parameters and load all the necessary input files
+     *
+     * @param args
+     * @return
+     */
+    public static List<String[]> setupFromArguments(String[] args) {
+        List<String[]> inputs = new LinkedList<>();
+
+        CommandLine cmd = parseArguments(args);
+        if (cmd == null) {
+            return null;
+        }
+
+        setParameters(cmd);
+
+        //---------------------loading all input files
+        //get examples from file
+        String dataset = cmd.getOptionValue("e");
+
+        String[] exs = getExamples(dataset);
+
+        //separate test set?
+        String[] test = null;
+        String tt = cmd.getOptionValue("test");
+        if (tt != null) {
+            Settings.setTestSet(tt);
+            test = FileToStringList.convert(tt, maxReadline);
+        }
+
+        //get rules one by one from a file
+        String rls = cmd.getOptionValue("r");
+        Settings.setRules(rls);
+        String[] rules = FileToStringList.convert(rls, maxReadline);
+        if (rules.length == 0) {
+            Glogger.err("no rules");
+        }
+
+        //we want sigmoid at the output, not identity (for proper error measurement)
+        if (Global.getKappaActivation() == Global.activationSet.id) {
+            if (rules[rules.length - 1].matches("^[0-9\\.]+.*")) {  //does it end with Kappa line?
+                rules = addFinalLambda(rules);  //a hack to end with lambda
+            }
+        }
+
+        //pretrained template with some lifted literals in common (will be mapped onto new template)
+        String pretrained = cmd.getOptionValue("t");
+        Settings.setPretrained(pretrained);
+        String[] pretrainedRules = FileToStringList.convert(pretrained, maxReadline);
+        if (pretrainedRules != null) {
+            Glogger.out("pretrained= " + pretrained + " of length: " + pretrainedRules.length);
+        }
+
+        inputs.add(test);
+        inputs.add(exs);
+        inputs.add(rules);
+        inputs.add(pretrainedRules);
+
+        return inputs;
+    }
+
+    /**
+     * load examples from a file
+     *
+     * @param exampleFile
+     * @return
+     */
+    public static String[] getExamples(String exampleFile) {
+        String[] exs = null;
+        Settings.setDataset(exampleFile);
+        if (Global.multiLine) {
+            exs = FileToStringList.convertMultiline(exampleFile, maxReadline);
+        } else {
+            exs = FileToStringList.convert(exampleFile, maxReadline);
+        }
+
+        if (exs.length == 0) {
+            Glogger.err("no examples");
+            return null;
+        }
+        return exs;
     }
 }

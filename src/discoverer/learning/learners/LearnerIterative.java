@@ -48,7 +48,7 @@ public class LearnerIterative extends LearnerStandard {
             Glogger.process("-------------------------------------------------------------------------------------------------------------------------------");
             Glogger.process("------------Restart: " + restart);
             int i = 0;
-            results.past.clear();
+            results.trainingHistory.clear();
             while (continueRestart(i++, restart)) {       //learningSteps = backpropagation steps
                 if (step++ >= Global.getCumMaxSteps()) {
                     learn = false;
@@ -117,10 +117,10 @@ public class LearnerIterative extends LearnerStandard {
             if (Global.isInitWithAVG()) {
                 Glogger.process("----initializing weights with AVG variant----");
                 solveAvg(last, roundStore);
-                results = new Results();
+                results.clearResultList();
             }
 
-            results.past.clear();
+            results.trainingHistory.clear();
             while (learn & continueRestartEpochae(epochae++, restart)) {       //learningSteps = backpropagation steps
 
                 Glogger.LogTrain("---epochae: " + epochae);

@@ -104,7 +104,7 @@ public class BackPropAVGTest {
 
         //Dotter.draw(last);
         //-----------solving
-        GroundedTemplate b = grounder.solve(last.last, e);
+        GroundedTemplate b = grounder.groundTemplate(last.last, e);
         //GroundDotter.draw(b);
         //GroundDotter.drawAVG(b, "tavg");
         //------
@@ -135,7 +135,7 @@ public class BackPropAVGTest {
         }
 
         System.out.println("check:" + Evaluator.evaluateMax(b));
-        b = grounder.solve(last.last, e);
+        b = grounder.groundTemplate(last.last, e);
         System.out.println("val " + b.valMax);
         System.out.println("eval " + Evaluator.evaluateMax(b));
         //System.out.println(b.getActiveRules().size());
@@ -218,7 +218,7 @@ public class BackPropAVGTest {
 
         Dotter.draw(last, "state0");
         //-----------solving
-        GroundedTemplate b = grounder.solve(last.last, e);
+        GroundedTemplate b = grounder.groundTemplate(last.last, e);
         //GroundDotter.draw(b);
         GroundDotter.drawAVG(b, "stateground0");
         //------
@@ -226,7 +226,7 @@ public class BackPropAVGTest {
         System.out.println("avgVal: " + b.valAvg);
         System.out.println("Avg: " + Evaluator.evaluateAvg(b));
         System.out.println("val: " + Evaluator.evaluateMax(b));
-        b = grounder.solve(last.last, e);
+        b = grounder.groundTemplate(last.last, e);
         //GroundDotter.drawAVG(b, "backprGroundAvg0");
         System.out.println("grounder...");
         System.out.println("val: " + b.valMax);
@@ -257,7 +257,7 @@ public class BackPropAVGTest {
         //Dotter.draw(last, "before");
         System.out.println("grounder..");
         //GroundInvalidator.invalidate(b);
-        b = grounder.solve(last.last, e);
+        b = grounder.groundTemplate(last.last, e);
         Dotter.draw(last, "after");
         System.out.println("avg " + b.valAvg);
         System.out.println("avg " + Evaluator.evaluateAvg(b));
@@ -265,7 +265,7 @@ public class BackPropAVGTest {
         System.out.println("val" + b.valMax);
         System.out.println("val" + Evaluator.evaluateMax(b));
         System.out.println("grounder...");
-        b = grounder.solve(last.last, e);
+        b = grounder.groundTemplate(last.last, e);
         System.out.println("avg" + b.valAvg);
         System.out.println("val" + b.valMax);
         //System.out.println(b.getActiveRules().size());

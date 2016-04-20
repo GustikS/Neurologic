@@ -62,7 +62,7 @@ public class RoundTest {
         ExampleFactory eFactory = new ExampleFactory();
         for (int i = 0; i < ex.length; i++) {
             Example e = eFactory.construct(ex[i]);
-            GroundedTemplate b = Grounder.solve(last.last, e);
+            GroundedTemplate b = Grounder.groundTemplate(last.last, e);
             if (b == null) {
                 b = new GroundedTemplate(-1);
             }
@@ -73,7 +73,7 @@ public class RoundTest {
         while (true) {
             for (Map.Entry<Example, GroundedTemplate> entry : roundStore.entrySet()) {
                 Example e = entry.getKey();
-                GroundedTemplate b = Grounder.solve(last.last, e);
+                GroundedTemplate b = Grounder.groundTemplate(last.last, e);
                 if (b == null) {
                     b = new GroundedTemplate(-1);
                 }

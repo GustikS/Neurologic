@@ -60,7 +60,7 @@ public class Grounder {
      * @param e
      * @return
      */
-    public GroundedTemplate solve(KL kl, Example e) {
+    public GroundedTemplate groundTemplate(KL kl, Example e) {
         //return Solvator.solve(kl, e);
         if (debugEnabled) {
             System.out.println("Entering to solve\t" + kl);
@@ -69,7 +69,7 @@ public class Grounder {
         example = e;
         prepareCache();
 
-        GroundedTemplate b = kl instanceof Kappa ? solve2((Kappa) kl, null) : solve2((Lambda) kl, null);    //always Kappa only...first literal is without variables(ignoring them)
+        GroundedTemplate b = kl instanceof Kappa ? solveKappaGivenVars((Kappa) kl, null) : solveLambdaGivenVars((Lambda) kl, null);    //always Kappa only...first literal is without variables(ignoring them)
 
         //forwardChecker.printRuns();
 
@@ -94,9 +94,9 @@ public class Grounder {
      * @param vars
      * @return
      */
-    public GroundedTemplate solve2(Kappa k, List<Variable> vars) {
+    public GroundedTemplate solveKappaGivenVars(Kappa k, List<Variable> vars) {
         if (debugEnabled) {
-            System.out.println("Solve literal\t" + k + "with \tvariables\t" + vars);
+            System.out.println("Solve literal\t" + k + "\twith variables\t" + vars);
         }
 
         GroundedTemplate b = new GroundedTemplate();
@@ -106,7 +106,7 @@ public class Grounder {
         List<Double> inputsAvg = new ArrayList<>();
         boolean cancel = true;
         for (KappaRule r : k.getRules()) {
-            GroundedTemplate tmp = solve(r, vars);  //tmp.val is consisten but valAvg is not, needs to be computed here
+            GroundedTemplate tmp = headMatching(r, vars);  //tmp.val is consisten but valAvg is not, needs to be computed here
             if (tmp == null || tmp.getLast() == null) { //only if there is no true grounding found for this rule then skip
                 continue;
             }
@@ -163,12 +163,12 @@ public class Grounder {
      * @param vars
      * @return
      */
-    public GroundedTemplate solve2(Lambda l, List<Variable> vars) {
+    public GroundedTemplate solveLambdaGivenVars(Lambda l, List<Variable> vars) {
         if (debugEnabled) {
-            System.out.println("Solve\t" + l + "\tvariables\t" + vars);
+            System.out.println("Solve lambda\t" + l + "\tvariables\t" + vars);
         }
 
-        GroundedTemplate b = solve(l.getRule(), vars);      //there is only one rule for lambda node
+        GroundedTemplate b = headMatching(l.getRule(), vars);      //there is only one rule for lambda node
 
         if (b == null || b.getLast() == null) {
             return null;    //if I didn't solve this Lambda's rule(+vars), there is nothing to send!
@@ -214,19 +214,19 @@ public class Grounder {
      * solving ONE (lambda/kappa) rule - consuming variables and binding rule r
      *
      * @param r
-     * @param vars
+     * @param vars - variables binded from the above call (to be unified with the head)
      * @return
      */
-    public GroundedTemplate solve(Rule r, List<Variable> vars) {
+    public GroundedTemplate headMatching(Rule r, List<Variable> vars) {
         if (debugEnabled) {
             System.out.println("Solving rule\t" + r + " with \tvariables\t" + vars);
         }
 
-        r.unifyVariablesWith(vars);    //head -> body variable binding/unification
-        r.setLastBindedVar(null);
+        r.headUnification(vars);    //head of rule variable binding/unification/matching from previous line/call
+        r.setLastBindedVar(null);   //
 
         //-------------------//we will assemble the average on the level of rules(bodies)
-        return bindAll(r, new GroundedTemplate());  //extensive combination binding of unbound variables
+        return bindAllVarsInRule(r, new GroundedTemplate());  //extensive combination binding of unbound variables
     }
 
     /**
@@ -246,7 +246,7 @@ public class Grounder {
      * @param best
      * @return
      */
-    public GroundedTemplate bindAll(Rule r, GroundedTemplate best) {
+    public GroundedTemplate bindAllVarsInRule(Rule r, GroundedTemplate best) {
         if (debugEnabled) {
             System.out.println("BindingAll variables in \t" + r);
         }
@@ -273,11 +273,11 @@ public class Grounder {
                 System.out.println("\t toBind = " + toBind + " -> trying constant " + example.constantNames.get(i) + " of total " + example.getConstCount() + " in the example");
             }
             if (Global.alldiff && r.usedTerms.contains(i)) {
-                continue; //ALLDIFF functionality - that's it :)
+                 continue; //ALLDIFF functionality - that's it :)
             }
             r.bind(toBind, i);
             r.setLastBindedVar(toBind);
-            GroundedTemplate b = bindAll(r, best);  //and bind the rest recursively
+            GroundedTemplate b = bindAllVarsInRule(r, best);  //and bind the rest recursively
 
             //------------this is not really pruning, just holding the best so far GroundedTemplate.val(doesn't hurt the average grounding agregation)
             if ((b != null) && ((best.valMax == null) || (b.valMax >= best.valMax))) {    //if this binding of current toBind variable to i-th constant is best so far
@@ -330,7 +330,7 @@ public class Grounder {
         }
 
         SubL body = kr.getBody();
-        GroundedTemplate b = cachedSolve(body);
+        GroundedTemplate b = cachedSolveGroundLiteral(body);
 
         return b;
     }
@@ -354,7 +354,7 @@ public class Grounder {
         GroundedTemplate out = new GroundedTemplate();
         int i = 1;
         for (SubK sk : lr.getBody()) {
-            GroundedTemplate tmp = cachedSolve(sk); //go solve one of body's ground kappa literal SubK
+            GroundedTemplate tmp = cachedSolveGroundLiteral(sk); //go solve one of body's ground kappa literal SubK
             if (tmp == null) {   //HERE - now I only care if I got this grounding entailed/confirmed
                 return null;  //if I didn't I have no information to send (not just setting value to 0)
             }
@@ -400,9 +400,9 @@ public class Grounder {
      */
     public GroundedTemplate solve(Object o) {
         if (o instanceof SubK) {
-            return solve((SubK) o);
+            return solveGroundKappa((SubK) o);
         } else {
-            return solve((SubL) o);
+            return solveGroundLambda((SubL) o);
         }
     }
 
@@ -414,7 +414,7 @@ public class Grounder {
      * @param sk
      * @return
      */
-    public GroundedTemplate solve(SubK sk) {
+    public GroundedTemplate solveGroundKappa(SubK sk) {
         if (debugEnabled) {
             System.out.println("Computing\t" + sk);
         }
@@ -442,7 +442,7 @@ public class Grounder {
             b.valAvg = val;
             gk.setValueAvg(val);
         } else {
-            b = solve2(parent, sk.getTerms());
+            b = solveKappaGivenVars(parent, sk.getTerms());
         }
 
         return b;
@@ -455,7 +455,7 @@ public class Grounder {
      * @param sl
      * @return
      */
-    public GroundedTemplate solve(SubL sl) {
+    public GroundedTemplate solveGroundLambda(SubL sl) {
         if (debugEnabled) {
             System.out.println("Computing\t" + sl);
         }
@@ -483,7 +483,7 @@ public class Grounder {
             gl.setValueAvg(val);
             return b;
         } else {
-            return solve2(parent, sl.getTerms());   //go solve Lambda parent of this ground lambda literal
+            return solveLambdaGivenVars(parent, sl.getTerms());   //go solve Lambda parent of this ground lambda literal
         }
     }
 
@@ -498,7 +498,7 @@ public class Grounder {
      * @param o
      * @return
      */
-    public GroundedTemplate cachedSolve(Object o) {
+    public GroundedTemplate cachedSolveGroundLiteral(Object o) {
         if (!cacheEnabled) {
             return solve(o);
         }
@@ -509,7 +509,7 @@ public class Grounder {
             if (cache.containsKey(sk)) {
                 b = cache.get(sk);
             } else {
-                b = solve(sk);   //go solve one ground kappa literal SubK
+                b = solveGroundKappa(sk);   //go solve one ground kappa literal SubK
                 cache.put(sk.clone(), b);    //I'll save it even if it's null (so as to remember it is not entailed)
             }
         } else {
@@ -517,7 +517,7 @@ public class Grounder {
             if (cache.containsKey(sl)) {
                 b = cache.get(sl);
             } else {
-                b = solve(sl);   //if the solved lambda grounding is false I store it anyway
+                b = solveGroundLambda(sl);   //if the solved lambda grounding is false I store it anyway
                 cache.put(sl.clone(), b);    //we store this (false) SubL with corresponding (empty) ball
             }
         }

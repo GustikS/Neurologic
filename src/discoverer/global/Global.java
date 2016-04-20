@@ -28,10 +28,10 @@ public final class Global {
     private static Random rg;
 
     private static boolean cacheEnabled = true;
-    private static boolean forwardCheckEnabled = true;
-    private static boolean debugEnabled = true;
+    private static boolean forwardCheckEnabled = true; //do not try to turn this off (super-slow, but also grounding may change due to alldiff=true)
+    private static boolean debugEnabled = false;
     private static boolean infoEnabled = true;
-    private static boolean pruning = true;
+    private static boolean pruning = true;  //for AVG grounding and results , pruning=false is necessary!
     private static double falseAtomValue = -1;   //non-entailed example output
     //public static boolean lambdaSigmoid = false;
     private static double initLambdaAdaptiveOffset;
