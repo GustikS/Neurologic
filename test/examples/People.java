@@ -77,12 +77,8 @@ public class People {
         Grounder grounder = new Grounder();
         GroundedTemplate b = grounder.groundTemplate(last.last, e);
 
-        Dotter.draw(last.last,
-                "people2");
-        GroundDotter.drawMax(b,
-                "peopleGroundMax2");
-        GroundDotter.drawAVG(b,
-                "peopleGroundAvg2");
+        Dotter.draw(last.last, "people2");
+        GroundDotter.drawMax(b, "peopleGroundMax2");
+        GroundDotter.drawAVG(b, "peopleGroundAvg2");
     }
-
 }

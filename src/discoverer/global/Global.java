@@ -27,9 +27,9 @@ public final class Global {
      */
     private static Random rg;
 
-    private static boolean cacheEnabled = true;
-    private static boolean forwardCheckEnabled = true; //do not try to turn this off (super-slow, but also grounding may change due to alldiff=true)
-    private static boolean debugEnabled = false;
+    private static boolean cacheEnabled = true; //false -> creates trees instead of networks
+    private static boolean forwardCheckEnabled = true; //do not try to turn this off (super-slow, and maybe also grounding may change due to alldiff=true (not sure))
+    private static boolean debugEnabled = false;  //very detailed info (too slow for an actual run)
     private static boolean infoEnabled = true;
     private static boolean pruning = true;  //for AVG grounding and results , pruning=false is necessary!
     private static double falseAtomValue = -1;   //non-entailed example output
@@ -81,8 +81,11 @@ public final class Global {
     public static boolean batchMode = false;
 
     public static boolean relativeVariableSelection = true; //ordering of variables when grounding goes for the ones that leave the least number of other variables free, otherwise goes just for the most contrained literals (Vojta's version)
-    public static boolean alldiff = true;
+    public static boolean alldiff = false;
     public static final boolean adaptiveActivations = false;
+    
+    //---Structure Learning parameters
+    public static boolean regularizedBackprop = false;
 
     public static void setupThreads() {
         numOfThreads = Runtime.getRuntime().availableProcessors();

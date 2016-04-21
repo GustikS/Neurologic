@@ -164,12 +164,14 @@ public class Dotter {
     }
 
     private static void draw(LambdaRule lr) {
-        for (SubK sk : lr.getBody()) {
-            if (!visited.contains(lr)) {
-                String s = "\"" + lr.getHead().getParent().getName() + "\" -> \"" + sk.getParent().getName() + "\noffset: " + sk.getParent().offset + "\";";
-                dot.add(s);
+        if (lr != null) {
+            for (SubK sk : lr.getBody()) {
+                if (!visited.contains(lr)) {
+                    String s = "\"" + lr.getHead().getParent().getName() + "\" -> \"" + sk.getParent().getName() + "\noffset: " + sk.getParent().offset + "\";";
+                    dot.add(s);
+                }
+                draw(sk.getParent());
             }
-            draw(sk.getParent());
         }
         visited.add(lr);
     }

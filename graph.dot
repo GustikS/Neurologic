@@ -1,42 +1,58 @@
 digraph G {
-"finalLambda)#5
+"finalLambda)#6
 valAvg: 0,386376289119583
 #ground: 2" -> "finalKappa(adam)#1
 valAVG: 0,5374298453437496
 offset: 0,1" [ label = "1x" ];
 "finalKappa(adam)#1
 valAVG: 0,5374298453437496
-offset: 0,1" -> "kapR{[sibling(0,1)#2]}" [ label = "0,1" ];
-"kapR{[sibling(0,1)#2]}" -> "sibling(adam,sid)#2
+offset: 0,1" -> "kapR{[sibling(0,1)#4, sibling(0,0)#2]}" [ label = "0,1" ];
+"kapR{[sibling(0,1)#4, sibling(0,0)#2]}" -> "sibling(adam,sid)#4
 valAvg: 0,5
 #ground: 1" [ label = "1x" ];
-"sibling(adam,sid)#2
+"kapR{[sibling(0,1)#4, sibling(0,0)#2]}" -> "sibling(adam,adam)#2
 valAvg: 0,5
-#ground: 1" -> "male(sid)#4
+#ground: 1" [ label = "1x" ];
+"sibling(adam,sid)#4
+valAvg: 0,5
+#ground: 1" -> "male(sid)#5
 valAVG: 1
 offset: N/A" [ label = "1x" ];
-"sibling(adam,sid)#2
+"sibling(adam,sid)#4
 valAvg: 0,5
 #ground: 1" -> "male(adam)#3
 valAVG: 1
 offset: N/A" [ label = "1x" ];
-"finalLambda)#5
+"sibling(adam,adam)#2
+valAvg: 0,5
+#ground: 1" -> "male(adam)#3
+valAVG: 1
+offset: N/A" [ label = "2x" ];
+"finalLambda)#6
 valAvg: 0,386376289119583
-#ground: 2" -> "finalKappa(sid)#6
+#ground: 2" -> "finalKappa(sid)#7
 valAVG: 0,5374298453437496
 offset: 0,1" [ label = "1x" ];
-"finalKappa(sid)#6
+"finalKappa(sid)#7
 valAVG: 0,5374298453437496
-offset: 0,1" -> "kapR{[sibling(1,0)#7]}" [ label = "0,1" ];
-"kapR{[sibling(1,0)#7]}" -> "sibling(sid,adam)#7
+offset: 0,1" -> "kapR{[sibling(1,1)#9, sibling(1,0)#8]}" [ label = "0,1" ];
+"kapR{[sibling(1,1)#9, sibling(1,0)#8]}" -> "sibling(sid,sid)#9
 valAvg: 0,5
 #ground: 1" [ label = "1x" ];
-"sibling(sid,adam)#7
+"kapR{[sibling(1,1)#9, sibling(1,0)#8]}" -> "sibling(sid,adam)#8
 valAvg: 0,5
-#ground: 1" -> "male(sid)#4
+#ground: 1" [ label = "1x" ];
+"sibling(sid,sid)#9
+valAvg: 0,5
+#ground: 1" -> "male(sid)#5
+valAVG: 1
+offset: N/A" [ label = "2x" ];
+"sibling(sid,adam)#8
+valAvg: 0,5
+#ground: 1" -> "male(sid)#5
 valAVG: 1
 offset: N/A" [ label = "1x" ];
-"sibling(sid,adam)#7
+"sibling(sid,adam)#8
 valAvg: 0,5
 #ground: 1" -> "male(adam)#3
 valAVG: 1

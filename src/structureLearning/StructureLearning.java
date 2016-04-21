@@ -5,11 +5,18 @@
  */
 package structureLearning;
 
+import discoverer.GroundedDataset;
 import discoverer.LiftedDataset;
 import discoverer.Main;
+import discoverer.construction.template.LightTemplate;
+import discoverer.crossvalidation.NeuralCrossvalidation;
 import discoverer.crossvalidation.SampleSplitter;
 import discoverer.global.Glogger;
 import discoverer.global.Settings;
+import discoverer.learning.Results;
+import discoverer.learning.Sample;
+import discoverer.learning.learners.LearnerFast;
+import discoverer.learning.learners.LearnerStructured;
 import java.util.List;
 
 /**
@@ -17,53 +24,91 @@ import java.util.List;
  * @author Gusta
  */
 public class StructureLearning {
-    
+
     public static void main(String[] args) {
         StructureLearning sl = new StructureLearning();
-        String arguments = "-r -e";
-        sl.init(arguments.split(" "));
+        String arguments = "-r ./templateFile -e ./exampleFile";
+        sl.init(arguments);
     }
-    
+
     /**
-     * redirect to the usual startup and return some initial grounded dataset (may even be non-grounded, i.e. Samples with empty GroundedTemplates)
-     * @param args
-     * @return 
+     * redirect to the usual startup and return some initial grounded dataset
+     * (may even be non-grounded, i.e. Samples with empty GroundedTemplates)
+     *
+     * @param params - just as if starting the whole LRNN
+     * @return
      */
-    public LiftedDataset init(String[] args) {
+    public GroundedDataset init(String params) {
         //setup all parameters and load all the necessary input files
-        List<String[]> inputs = Main.setupFromArguments(args);
+        List<String[]> inputs = Main.setupFromArguments(params.split(" "));
         //create logger for all messages within the program
         Glogger.init();
 
-        String[] test = inputs.get(0);
+        //String[] test = inputs.get(0);
         String[] exs = inputs.get(1);
         String[] rules = inputs.get(2);
         String[] pretrainedRules = inputs.get(3);
 
-        //create ground networks dataset - if Globa.fastVersion is on, thsi will be a NeuralDataset
-        LiftedDataset groundedDataset = Main.createDataset(test, exs, rules, pretrainedRules);
+        GroundedDataset groundedDataset = new GroundedDataset(exs, rules, pretrainedRules);
 
         return groundedDataset;
     }
-    /*
-    public LiftedDataset reGroundMe(GroundedDataset previousRound, String[] newTemplate){
-        GroundedDataset dataset = (GroundedDataset)
-                
-        previousRound.network = previousRound.createNetworkMerge(newTemplate);
+
+    /**
+     * reground previously groundedDataset with a new template, expects the
+     * whole dataset (all train+test)
+     *
+     * @param previousRound - complete grounded dataset
+     * @param newTemplate - list of rules as strings, corresponding template
+     * object will be (re)created
+     * @return complete new dataset
+     */
+    public GroundedDataset reGroundMe(GroundedDataset previousRound, String[] newTemplate) {
+        GroundedDataset dataset = previousRound;
+
+        dataset.network = dataset.createNetwork(newTemplate, "network");
         Glogger.process("created lifted network structure");
 
-        samples = prepareGroundings(previousRound.examples, network);
+        List<Sample> preparedGroundings = dataset.prepareGroundings(previousRound.examples, previousRound.network);
         Glogger.process("prepared network groundings");
 
         //k-fold stratified example(same #positives in folds) splitting structure - treated as 1fold CV here
-        sampleSplitter = new SampleSplitter(Settings.folds, samples);
+        dataset.sampleSplitter = new SampleSplitter(Settings.folds, preparedGroundings);
 
-        return groundedDataset;
+        return dataset;
     }
-    
-    public LiftedDataset backprop(LiftedDataset groundSamples, Double[] weights, String backPropType){
-        //TODO zpropagovat Results az na vystup crossvaldiace
-        return null;
+
+    /**
+     * Learn by backprop on given list of grounded networks(samples) and a
+     * template object. The weights of the template will be changed and Results
+     * from training returned. The type of backprop is mean to be set through
+     * Global.someFlag
+     *
+     * @param template - template object (already created from string rules)
+     * @param samples - grounded samples w.r.t. that template
+     * @param learningSteps - for BP
+     * @param depth - for BP
+     * @param regularizer - for special BP
+     * @return Results object with training filled and error history
+     */
+    public Results train(LightTemplate template, List<Sample> samples, int learningSteps, int depth, int regularizer) {
+        LearnerStructured learner = new LearnerStructured(learningSteps, depth, regularizer);
+        Results results = learner.solveStructured(template, samples);
+        results.training = results.actualResult;
+        return results;
     }
-*/
+
+    /**
+     * pure evaluation of a template on a given set of ground samples
+     *
+     * @param template - template object (already created from string rules)
+     * @param samples - grounded samples w.r.t. that template
+     * @return - Results object with testing filled
+     */
+    public Results test(LightTemplate template, List<Sample> samples) {
+        NeuralCrossvalidation learning = new NeuralCrossvalidation();
+        Results results = learning.test(template, new Results(), samples);
+        return results;
+    }
+
 }

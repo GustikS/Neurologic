@@ -38,6 +38,9 @@ public class Crossvalidation {
 
     List<Results> foldResults;
 
+    public Crossvalidation() {
+    }
+
     public Crossvalidation(SampleSplitter ss) {
         splitter = ss;
         foldResults = new LinkedList<>();

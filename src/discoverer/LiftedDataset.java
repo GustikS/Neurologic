@@ -90,7 +90,7 @@ public class LiftedDataset implements Serializable {
         return net;
     }
 
-    final LiftedTemplate createNetwork(String[] rules, String name) {
+    public final LiftedTemplate createNetwork(String[] rules, String name) {
         //factory + subfactories initialization
         TemplateFactory nf = null;
         //constructs the whole L-K network from rules with support of grounded classes and element mappers, return LAST line rule's literal(=KL)!
