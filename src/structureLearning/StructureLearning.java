@@ -8,6 +8,8 @@ package structureLearning;
 import discoverer.GroundedDataset;
 import discoverer.LiftedDataset;
 import discoverer.Main;
+import discoverer.construction.network.rules.Rule;
+import discoverer.construction.template.LiftedTemplate;
 import discoverer.construction.template.LightTemplate;
 import discoverer.crossvalidation.NeuralCrossvalidation;
 import discoverer.crossvalidation.SampleSplitter;
@@ -17,6 +19,7 @@ import discoverer.learning.Results;
 import discoverer.learning.Sample;
 import discoverer.learning.learners.LearnerFast;
 import discoverer.learning.learners.LearnerStructured;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -95,6 +98,12 @@ public class StructureLearning {
         LearnerStructured learner = new LearnerStructured(learningSteps, depth, regularizer);
         Results results = learner.solveStructured(template, samples);
         results.training = results.actualResult;
+        
+        if (template instanceof LiftedTemplate){
+            LiftedTemplate templ = (LiftedTemplate) template;
+            templ.setWeightsFromArray(templ.weightMapping, templ.sharedWeights);    //map the learned weights back to original logical structures (rules)
+        }
+        
         return results;
     }
 
@@ -111,4 +120,19 @@ public class StructureLearning {
         return results;
     }
 
+    /**
+     * export template back into string-lines representation (with weights)
+     * @param template
+     * @return 
+     */
+    public String exportTemplate(LiftedTemplate template) {
+        StringBuilder sb = new StringBuilder();
+        if (!template.rules.isEmpty()) {
+            ArrayList<Rule> rulzz = new ArrayList(template.rules);
+            for (int i = rulzz.size() - 1; i >= 0; i--) {
+                sb.append(rulzz.get(i)).append("\n");
+            }
+        }
+        return sb.toString();
+    }
 }

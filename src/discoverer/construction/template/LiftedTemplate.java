@@ -208,15 +208,21 @@ public class LiftedTemplate extends LightTemplate implements Serializable {
         this.lambdas = lambdas;
     }
 
-    public boolean setWeightsFromArray(HashMap<Object, Integer> weightMapping, double[] sharedWeights) {
+    /**
+     * backwards mapping of learned weights to template's rules
+     * @param weightMapping
+     * @param sharedWeights
+     * @return 
+     */
+    public boolean setWeightsFromArray(HashMap<String, Integer> weightMapping, double[] sharedWeights) {
         for (Rule rule : rules) {
             if (rule instanceof KappaRule) {
                 KappaRule kr = (KappaRule) rule;
-                kr.setWeight(sharedWeights[weightMapping.get(kr)]);
+                kr.setWeight(sharedWeights[weightMapping.get(kr.toString())]);
             }
         }
         for (Kappa kappa : getKappas()) {
-            kappa.setOffset(sharedWeights[weightMapping.get(kappa)]);
+            kappa.setOffset(sharedWeights[weightMapping.get(kappa.toString())]);
         }
         return true;
     }

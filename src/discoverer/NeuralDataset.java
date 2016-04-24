@@ -7,20 +7,15 @@ package discoverer;
 
 import discoverer.construction.template.Kappa;
 import discoverer.construction.template.LiftedTemplate;
-import discoverer.construction.template.LightTemplate;
 import discoverer.construction.template.MolecularTemplate;
-import discoverer.construction.template.WeightInitializator;
 import discoverer.construction.network.rules.KappaRule;
 import discoverer.construction.network.rules.Rule;
-import discoverer.crossvalidation.SampleSplitter;
+import discoverer.drawing.GroundDotter;
 import discoverer.global.Global;
-import discoverer.global.Settings;
-import discoverer.grounding.network.GroundKL;
 import discoverer.grounding.network.groundNetwork.GroundNetwork;
 import discoverer.grounding.network.groundNetwork.GroundNeuron;
 import discoverer.learning.Sample;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -114,6 +109,10 @@ public class NeuralDataset extends LiftedDataset implements Serializable {
             }
             sample.targetValue = sample.getExample().getExpectedValue();
 
+            GroundDotter.drawAVG(sample.getBall(),"testNormal");
+            
+            GroundDotter.draw(sample.neuralNetwork,"testNeural",net.sharedWeights);
+            
             if (Global.memoryLight) {
                 sample.makeMeSmall();   //make the sample small!
             }

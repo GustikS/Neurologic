@@ -14,6 +14,7 @@ import discoverer.global.Tuple;
 import discoverer.grounding.network.GroundKappa;
 import discoverer.grounding.network.GroundLambda;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
 
 /**
@@ -29,32 +30,40 @@ public class AtomNeuron extends GroundNeuron {
     public AtomNeuron(GroundKappa grk, LiftedTemplate net) {
         name = grk.toString(net.tmpConstantNames);
         activation = grk.getGeneral().activation;
-        
+
         outputValue = grk.getValueAvg();
 
         groundParentsCount = grk.getGroundParents();
         offsetWeightIndex = net.weightMapping.get(grk.getGeneral().toString());
         net.sharedWeights[offsetWeightIndex] = grk.getGeneral().getOffset();
 
-        inputNeurons = new RuleAggNeuron[grk.getDisjunctsAvg().size()];
+        ArrayList<RuleAggNeuron> dynInputNeurons = new ArrayList<>(grk.getDisjunctsAvg().size()*2); //unfortunatelly we do not know this size in advance, i.e. how many groundings each kapparule has
+
         if (grk.getDisjunctsAvg().isEmpty()) {
+            //inputNeurons = new RuleAggNeuron[0];    //used as flag for fact neurons -> changed to null instead
             return;
         }
 
-        inputWeightIndices = new int[grk.getDisjunctsAvg().size()];
+        ArrayList<Integer> dynInputWeightIndices = new ArrayList<>(grk.getDisjunctsAvg().size()*2); //unfortunatelly we do not know this size in advance
         int i = 0;
         for (Tuple<HashSet<GroundLambda>, KappaRule> grl : grk.getDisjunctsAvg()) {
-            GroundLambda bodyLambda = grl.x.iterator().next();
-            GroundNeuron gn = net.neuronMapping.get(bodyLambda);   //have we already visited this groundLambda?
-            if (gn == null) {
-                inputNeurons[i] = new RuleAggNeuron(bodyLambda, net);   //there shouldn't be more than 1 literal in KappaRule (it's not real rule)
-                net.neuronMapping.put(bodyLambda, inputNeurons[i]);
-            } else {
-                inputNeurons[i] = (RuleAggNeuron) gn;
+            for (GroundLambda lambdaHead : grl.x) {
+                GroundNeuron gn = net.neuronMapping.get(lambdaHead);   //have we already visited this groundLambda?
+                if (gn == null) {
+                    RuleAggNeuron ragg = new RuleAggNeuron(lambdaHead, net);
+                    dynInputNeurons.add(ragg);
+                    net.neuronMapping.put(lambdaHead, ragg);
+                } else {
+                    dynInputNeurons.add((RuleAggNeuron) gn);
+                }
+                Integer idx = net.weightMapping.get(grl.y.toString());  //index to this kapparule's weight
+                dynInputWeightIndices.add(idx);
+                net.sharedWeights[idx] = grl.y.getWeight();
+                i++;
             }
-            inputWeightIndices[i] = net.weightMapping.get(grl.y.toString());
-            net.sharedWeights[inputWeightIndices[i++]] = grl.y.getWeight();
         }
-        net.tmpActiveNet.addNeuron(this); //rather put these leaking "this" on the end of contructor
+        inputNeurons = dynInputNeurons.toArray(new RuleAggNeuron[dynInputNeurons.size()]);
+        inputWeightIndices = dynInputWeightIndices.stream().mapToInt(a->a).toArray();   //Integer array to int[]
+        net.tmpActiveNet.addNeuron(this); //rather put these leaking "this" at the end of contructor
     }
 }

@@ -10,6 +10,9 @@ import discoverer.drawing.GroundDotter;
 import discoverer.global.Global;
 import discoverer.grounding.evaluation.GroundedTemplate;
 import discoverer.grounding.Grounder;
+import discoverer.grounding.network.groundNetwork.GroundNetwork;
+import discoverer.grounding.network.groundNetwork.GroundNeuron;
+import discoverer.learning.Sample;
 import java.util.*;
 import static org.junit.Assert.*;
 import org.junit.*;
@@ -69,16 +72,17 @@ public class People {
         String example = "1.0 male(adam),male(sid).";
 
         TemplateFactory nf = new TemplateFactory();
-        MolecularTemplate last = (MolecularTemplate) nf.construct(rules);
+        MolecularTemplate template = (MolecularTemplate) nf.construct(rules);
 
         ExampleFactory ef = new ExampleFactory();
         Example e = ef.construct(example);
 
         Grounder grounder = new Grounder();
-        GroundedTemplate b = grounder.groundTemplate(last.last, e);
+        GroundedTemplate b = grounder.groundTemplate(template.last, e);
 
-        Dotter.draw(last.last, "people2");
+        Dotter.draw(template.last, "people2");
         GroundDotter.drawMax(b, "peopleGroundMax2");
         GroundDotter.drawAVG(b, "peopleGroundAvg2");
+
     }
 }

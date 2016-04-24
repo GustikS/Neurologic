@@ -1,60 +1,50 @@
 digraph G {
 "finalLambda)#6
-valAvg: 0,386376289119583
-#ground: 2" -> "finalKappa(adam)#1
-valAVG: 0,5374298453437496
-offset: 0,1" [ label = "1x" ];
-"finalKappa(adam)#1
-valAVG: 0,5374298453437496
-offset: 0,1" -> "kapR{[sibling(0,1)#4, sibling(0,0)#2]}" [ label = "0,1" ];
-"kapR{[sibling(0,1)#4, sibling(0,0)#2]}" -> "sibling(adam,sid)#4
-valAvg: 0,5
-#ground: 1" [ label = "1x" ];
-"kapR{[sibling(0,1)#4, sibling(0,0)#2]}" -> "sibling(adam,adam)#2
-valAvg: 0,5
-#ground: 1" [ label = "1x" ];
-"sibling(adam,sid)#4
-valAvg: 0,5
-#ground: 1" -> "male(sid)#5
-valAVG: 1
-offset: N/A" [ label = "1x" ];
-"sibling(adam,sid)#4
-valAvg: 0,5
-#ground: 1" -> "male(adam)#3
-valAVG: 1
-offset: N/A" [ label = "1x" ];
-"sibling(adam,adam)#2
-valAvg: 0,5
-#ground: 1" -> "male(adam)#3
-valAVG: 1
-offset: N/A" [ label = "2x" ];
-"finalLambda)#6
-valAvg: 0,386376289119583
-#ground: 2" -> "finalKappa(sid)#7
-valAVG: 0,5374298453437496
-offset: 0,1" [ label = "1x" ];
+val: 0,33614477746163895" -> "finalKappa(sid)#7
+val: 0,3194778651045107
+offset: 0,2755221624994224";
 "finalKappa(sid)#7
-valAVG: 0,5374298453437496
-offset: 0,1" -> "kapR{[sibling(1,1)#9, sibling(1,0)#8]}" [ label = "0,1" ];
-"kapR{[sibling(1,1)#9, sibling(1,0)#8]}" -> "sibling(sid,sid)#9
-valAvg: 0,5
-#ground: 1" [ label = "1x" ];
-"kapR{[sibling(1,1)#9, sibling(1,0)#8]}" -> "sibling(sid,adam)#8
-valAvg: 0,5
-#ground: 1" [ label = "1x" ];
+val: 0,3194778651045107
+offset: 0,2755221624994224" -> "sibling(sid,adam)#8
+val: 0,5" [ label = "0,0879114052101766" ];
+"sibling(sid,adam)#8
+val: 0,5" -> "male(adam)#3
+val: 1
+offset: 0,06125980504647721";
+"sibling(sid,adam)#8
+val: 0,5" -> "male(sid)#5
+val: 1
+offset: 0,06125980504647721";
+"finalKappa(sid)#7
+val: 0,3194778651045107
+offset: 0,2755221624994224" -> "sibling(sid,sid)#9
+val: 0,5" [ label = "0,0879114052101766" ];
 "sibling(sid,sid)#9
-valAvg: 0,5
-#ground: 1" -> "male(sid)#5
-valAVG: 1
-offset: N/A" [ label = "2x" ];
-"sibling(sid,adam)#8
-valAvg: 0,5
-#ground: 1" -> "male(sid)#5
-valAVG: 1
-offset: N/A" [ label = "1x" ];
-"sibling(sid,adam)#8
-valAvg: 0,5
-#ground: 1" -> "male(adam)#3
-valAVG: 1
-offset: N/A" [ label = "1x" ];
+val: 0,5" -> "male(sid)#5
+val: 1
+offset: 0,06125980504647721";
+"finalLambda)#6
+val: 0,33614477746163895" -> "finalKappa(adam)#1
+val: 0,3194778651045107
+offset: 0,2755221624994224";
+"finalKappa(adam)#1
+val: 0,3194778651045107
+offset: 0,2755221624994224" -> "sibling(adam,sid)#4
+val: 0,5" [ label = "0,0879114052101766" ];
+"sibling(adam,sid)#4
+val: 0,5" -> "male(adam)#3
+val: 1
+offset: 0,06125980504647721";
+"sibling(adam,sid)#4
+val: 0,5" -> "male(sid)#5
+val: 1
+offset: 0,06125980504647721";
+"finalKappa(adam)#1
+val: 0,3194778651045107
+offset: 0,2755221624994224" -> "sibling(adam,adam)#2
+val: 0,5" [ label = "0,0879114052101766" ];
+"sibling(adam,adam)#2
+val: 0,5" -> "male(adam)#3
+val: 1
+offset: 0,06125980504647721";
 }
