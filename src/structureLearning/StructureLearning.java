@@ -8,6 +8,7 @@ package structureLearning;
 import discoverer.GroundedDataset;
 import discoverer.LiftedDataset;
 import discoverer.Main;
+import discoverer.NeuralDataset;
 import discoverer.construction.network.rules.Rule;
 import discoverer.construction.template.LiftedTemplate;
 import discoverer.construction.template.LightTemplate;
@@ -94,14 +95,22 @@ public class StructureLearning {
      * @param regularizer - for special BP
      * @return Results object with training filled and error history
      */
-    public Results train(LightTemplate template, List<Sample> samples, int learningSteps, int depth, int regularizer) {
+    public Results train(GroundedDataset gdata, int learningSteps, int depth, int regularizer) {
+        NeuralDataset neuraldata = new NeuralDataset(gdata);
+        
         LearnerStructured learner = new LearnerStructured(learningSteps, depth, regularizer);
-        Results results = learner.solveStructured(template, samples);
+        Results results = learner.solveStructured(neuraldata.network, neuraldata.sampleSplitter.samples);
         results.training = results.actualResult;
         
-        if (template instanceof LiftedTemplate){
-            LiftedTemplate templ = (LiftedTemplate) template;
+        //map all (neurally) learned weights back to logical structures (kappa rules and offsets)
+        if (neuraldata.network instanceof LiftedTemplate){
+            LiftedTemplate templ = (LiftedTemplate) neuraldata.network;
             templ.setWeightsFromArray(templ.weightMapping, templ.sharedWeights);    //map the learned weights back to original logical structures (rules)
+        }
+        
+        //map learned outputs back to ball Avg outputs (just to make sure), samples should be in the same order (it's the same SampleSplitter)
+        for (int i = 0; i < neuraldata.sampleSplitter.samples.size(); i++) {
+            gdata.sampleSplitter.samples.get(i).getBall().valAvg = neuraldata.sampleSplitter.samples.get(i).neuralNetwork.outputNeuron.outputValue;
         }
         
         return results;

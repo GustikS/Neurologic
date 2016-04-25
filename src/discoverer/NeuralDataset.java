@@ -109,9 +109,9 @@ public class NeuralDataset extends LiftedDataset implements Serializable {
             }
             sample.targetValue = sample.getExample().getExpectedValue();
 
-            GroundDotter.drawAVG(sample.getBall(),"testNormal");
+            //GroundDotter.drawAVG(sample.getBall(),"testNormal");
             
-            GroundDotter.draw(sample.neuralNetwork,"testNeural",net.sharedWeights);
+            //GroundDotter.draw(sample.neuralNetwork,"testNeural",net.sharedWeights);
             
             if (Global.memoryLight) {
                 sample.makeMeSmall();   //make the sample small!
