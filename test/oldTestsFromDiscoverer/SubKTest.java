@@ -1,7 +1,7 @@
 package oldTestsFromDiscoverer;
 
 import discoverer.construction.Variable;
-import discoverer.construction.network.rules.SubK;
+import discoverer.construction.template.rules.SubK;
 import discoverer.construction.template.Kappa;
 import static org.junit.Assert.*;
 

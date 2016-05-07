@@ -5,10 +5,10 @@
  */
 package discoverer.construction.template;
 
-import discoverer.construction.network.rules.KappaRule;
-import discoverer.construction.network.rules.LambdaRule;
-import discoverer.construction.network.rules.Rule;
-import discoverer.construction.network.rules.SubK;
+import discoverer.construction.template.rules.KappaRule;
+import discoverer.construction.template.rules.LambdaRule;
+import discoverer.construction.template.rules.Rule;
+import discoverer.construction.template.rules.SubK;
 import discoverer.global.Global;
 import discoverer.global.Glogger;
 import discoverer.global.Settings;
@@ -76,6 +76,11 @@ public class MolecularTemplate extends LiftedTemplate implements Serializable {
      */
     @Override
     public void invalidateWeights() {
+        if (sharedWeights != null){
+            super.invalidateWeights();
+            return;
+        }
+        
         for (Kappa k : getKappas()) {
             k.initOffset();
         }

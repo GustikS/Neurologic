@@ -8,8 +8,8 @@ package discoverer;
 import discoverer.construction.template.Kappa;
 import discoverer.construction.template.LiftedTemplate;
 import discoverer.construction.template.MolecularTemplate;
-import discoverer.construction.network.rules.KappaRule;
-import discoverer.construction.network.rules.Rule;
+import discoverer.construction.template.rules.KappaRule;
+import discoverer.construction.template.rules.Rule;
 import discoverer.drawing.GroundDotter;
 import discoverer.global.Global;
 import discoverer.grounding.network.groundNetwork.GroundNetwork;
@@ -39,7 +39,7 @@ public class NeuralDataset extends LiftedDataset implements Serializable {
         pretrained = ld.pretrained;
         sampleSplitter = ld.sampleSplitter;
 
-        LiftedTemplate net = ld.network;
+        LiftedTemplate net = ld.template;
 
         net.weightMapping = new HashMap<>(net.rules.size());
         net.neuronMapping = new HashMap<>(net.rules.size());
@@ -56,16 +56,16 @@ public class NeuralDataset extends LiftedDataset implements Serializable {
      *
      * @param template
      */
-    final void makeTemplate(LiftedTemplate template) {
+    public final void makeTemplate(LiftedTemplate template) {
         //makeMeSmall(network);
         template.name2weight = new LinkedHashMap<>(template.rules.size());
         for (Map.Entry<String, Integer> woi : template.weightMapping.entrySet()) {
             template.name2weight.put(woi.getKey(), woi.getValue());
         }
         if (Global.memoryLight) {
-            super.network = new LiftedTemplate(template.sharedWeights, template.name2weight);
+            super.template = new LiftedTemplate(template.sharedWeights, template.name2weight);
         } else {
-            super.network = template;
+            super.template = template;
         }
     }
 

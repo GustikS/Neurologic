@@ -1,8 +1,8 @@
-package discoverer.construction.network.rules;
+package discoverer.construction.template.rules;
 
 import discoverer.construction.Variable;
-import discoverer.construction.network.rules.SubL;
-import discoverer.construction.network.rules.SubK;
+import discoverer.construction.template.rules.SubL;
+import discoverer.construction.template.rules.SubK;
 import discoverer.global.Global;
 import java.io.Serializable;
 import java.util.*;

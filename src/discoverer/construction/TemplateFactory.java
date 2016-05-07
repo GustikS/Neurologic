@@ -1,9 +1,9 @@
 package discoverer.construction;
 
-import discoverer.construction.network.rules.LambdaRule;
-import discoverer.construction.network.rules.KappaRule;
-import discoverer.construction.network.rules.SubL;
-import discoverer.construction.network.rules.SubK;
+import discoverer.construction.template.rules.LambdaRule;
+import discoverer.construction.template.rules.KappaRule;
+import discoverer.construction.template.rules.SubL;
+import discoverer.construction.template.rules.SubK;
 import discoverer.construction.Variable;
 import discoverer.construction.ConstantFactory;
 import discoverer.construction.Parser;

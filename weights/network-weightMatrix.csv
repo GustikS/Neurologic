@@ -1,2 +1,2 @@
-weights,sibling = male,
-finalKappa,0.0879114052101766,
+weights,mother = parent,father = parent,
+res,0.10045773645126843,0.21317675999595487,

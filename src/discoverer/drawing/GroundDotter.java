@@ -2,7 +2,7 @@ package discoverer.drawing;
 
 import discoverer.grounding.network.GroundKappa;
 import discoverer.grounding.network.GroundLambda;
-import discoverer.construction.network.rules.KappaRule;
+import discoverer.construction.template.rules.KappaRule;
 import discoverer.global.Glogger;
 import discoverer.global.Tuple;
 import discoverer.grounding.evaluation.GroundedTemplate;
@@ -49,7 +49,7 @@ public class GroundDotter extends Dotter {
         }
     }
 
-    public static void draw(GroundedTemplate b) {
+    public static void drawMax(GroundedTemplate b) {
         if (b == null) {
             return;
         }
@@ -58,9 +58,9 @@ public class GroundDotter extends Dotter {
         dot.add(intro);
         Object top = b.getLast();
         if (top instanceof GroundKappa) {
-            drawMax((GroundKappa) top);
+            GroundDotter.drawMax((GroundKappa) top);
         } else {
-            drawMax((GroundLambda) top);
+            GroundDotter.drawMax((GroundLambda) top);
         }
 
         dot.add(outro);
@@ -81,9 +81,9 @@ public class GroundDotter extends Dotter {
         dot.add(intro);
         Object top = b.getLast();
         if (top instanceof GroundKappa) {
-            drawMax((GroundKappa) top);
+            GroundDotter.drawMax((GroundKappa) top);
         } else {
-            drawMax((GroundLambda) top);
+            GroundDotter.drawMax((GroundLambda) top);
         }
 
         dot.add(outro);
@@ -133,7 +133,7 @@ public class GroundDotter extends Dotter {
         visited.add(gk);
 
         for (Tuple<GroundLambda, KappaRule> t : gk.getDisjuncts()) {
-            drawMax(t.x);
+            GroundDotter.drawMax(t.x);
         }
     }
 
@@ -145,7 +145,7 @@ public class GroundDotter extends Dotter {
         for (GroundKappa gk : gl.getConjuncts()) {
             String s = "\"" + gl.toString(constantNames) + "\nval: " + df.format(gl.getValue()) + "\" -> \"" + gk.toString(constantNames) + "\nval: " + df.format(gk.getValue()) + "\noffset: " + df.format(gk.getGeneral().offset) + "\";";
             dot.add(s);
-            drawMax(gk);
+            GroundDotter.drawMax(gk);
         }
 
         visited.add(gl);
@@ -198,7 +198,7 @@ public class GroundDotter extends Dotter {
          }*/
     }
 
-    public static void draw(GroundNetwork net, String nam, double[] sharedweights) {
+    public static void drawNeural(GroundNetwork net, String nam, double[] sharedweights) {
         if (net == null) {
             return;
         }
@@ -209,9 +209,9 @@ public class GroundDotter extends Dotter {
         dot.add(intro);
         GroundNeuron top = net.outputNeuron;
         if (top instanceof AtomNeuron) {
-            draw((AtomNeuron) top, sharedweights);
+            drawNeural((AtomNeuron) top, sharedweights);
         } else {
-            draw((RuleAggNeuron) top, sharedweights);
+            drawNeural((RuleAggNeuron) top, sharedweights);
         }
 
         dot.add(outro);
@@ -221,7 +221,7 @@ public class GroundDotter extends Dotter {
         dot.clear();
     }
 
-    private static void draw(AtomNeuron an, double[] sharedweights) {
+    private static void drawNeural(AtomNeuron an, double[] sharedweights) {
         if (an.inputNeurons == null) {
             return;
         }
@@ -234,13 +234,13 @@ public class GroundDotter extends Dotter {
             RuleAggNeuron ragg = an.inputNeurons[i];
             String s = "\"" + an + "\nval: " + df.format(an.outputValue) + "\noffset: " + df.format(sharedweights[an.offsetWeightIndex]) + "\" -> " + "\"" + ragg + "\nval: " + df.format(ragg.outputValue) + "\"" + " [ label = \"" + df.format(sharedweights[an.inputWeightIndices[i]]) + "\" ];";
             dot.add(s);
-            draw(ragg, sharedweights);
+            drawNeural(ragg, sharedweights);
         }
 
         visited.add(an);
     }
 
-    private static void draw(RuleAggNeuron ragg, double[] sharedweights) {
+    private static void drawNeural(RuleAggNeuron ragg, double[] sharedweights) {
         if (visited.contains(ragg)) {
             return;
         }
@@ -248,7 +248,7 @@ public class GroundDotter extends Dotter {
             AtomNeuron an = ragg.inputNeuronsCompressed[i];
             String s = "\"" + ragg + "\nval: " + df.format(ragg.outputValue) + "\" -> \"" + an + "\nval: " + df.format(an.outputValue) + "\noffset: " + df.format(sharedweights[an.offsetWeightIndex]) + "\";";
             dot.add(s);
-            draw(an, sharedweights);
+            drawNeural(an, sharedweights);
         }
 
         visited.add(ragg);

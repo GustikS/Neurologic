@@ -5,7 +5,7 @@ import discoverer.grounding.evaluation.GroundedTemplate;
 import discoverer.construction.example.Example;
 import discoverer.grounding.network.GroundKappa;
 import discoverer.grounding.network.GroundLambda;
-import discoverer.construction.network.rules.KappaRule;
+import discoverer.construction.template.rules.KappaRule;
 import discoverer.global.Global;
 import discoverer.learning.functions.Activations;
 import discoverer.global.Tuple;

@@ -1,6 +1,6 @@
 package oldTestsFromDiscoverer;
 
-import discoverer.construction.network.rules.KappaRule;
+import discoverer.construction.template.rules.KappaRule;
 import discoverer.construction.TemplateFactory;
 import discoverer.grounding.network.GroundKappa;
 import discoverer.grounding.network.GroundLambda;

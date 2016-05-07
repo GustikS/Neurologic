@@ -1,7 +1,7 @@
 package oldTestsFromDiscoverer;
 
 import discoverer.construction.Variable;
-import discoverer.construction.network.rules.LambdaRule;
+import discoverer.construction.template.rules.LambdaRule;
 import discoverer.construction.TemplateFactory;
 import discoverer.construction.template.Lambda;
 import discoverer.construction.template.MolecularTemplate;

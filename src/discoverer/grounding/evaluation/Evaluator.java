@@ -3,7 +3,7 @@ package discoverer.grounding.evaluation;
 import discoverer.global.Global;
 import discoverer.grounding.network.GroundKappa;
 import discoverer.grounding.network.GroundLambda;
-import discoverer.construction.network.rules.KappaRule;
+import discoverer.construction.template.rules.KappaRule;
 import discoverer.learning.functions.Activations;
 import discoverer.global.Tuple;
 import discoverer.grounding.network.GroundKL;
@@ -33,6 +33,13 @@ public class Evaluator {
         return avg;
     }
 
+    public static double getSumValFrom(Set<GroundLambda> gls) {
+        double sum = 0;
+        for (GroundKL gl : gls) {
+            sum += gl.getValueAvg();    //we will recursively sum up the average values valAvg (the max. values are calculated separately in val)
+        }
+        return sum;
+    }
 
     public static double evaluateMax(GroundedTemplate b) {
         if (b == null) {
@@ -126,6 +133,10 @@ public class Evaluator {
             return 0;
         }
 
+        if (gk.toString().contains("res")) {
+            System.out.println("");
+        }
+
         if (gk.isElement()) {
             return gk.getValueAvg();
             //return gk.getValue(); //-should be the same
@@ -140,16 +151,17 @@ public class Evaluator {
         ArrayList<Double> inputs = new ArrayList<>(gk.getDisjunctsAvg().size());
         for (Tuple<HashSet<GroundLambda>, KappaRule> t : gk.getDisjunctsAvg()) {
             double avg = 0;
-            if (t.x.size() > 1) {
+            /*if (t.x.size() > 1) {
                 System.out.println("stop");
-            }
+            }*/
             for (GroundLambda gl : t.x) {
                 avg += evaluateAvg(gl);
             }
             /*if (t.x.isEmpty()){
              System.out.println("problem");
              }*/
-            avg /= t.x.size();
+
+            //avg /= t.x.size();    //there is no averaging here!
             //out += avg * t.y.getWeight();
             inputs.add(avg * t.y.getWeight());
         }
@@ -174,7 +186,7 @@ public class Evaluator {
         //double avg = 0;
         for (Map.Entry<GroundKappa, Integer> gk : gl.getConjunctsAvg().entrySet()) {
             //avg += evaluateAvg(gk.getKey()) * gk.getValue();
-            inputs.add(evaluateAvg(gk.getKey()) * gk.getValue() / gl.getConjunctsCountForAvg());
+            inputs.add(evaluateAvg(gk.getKey()) * gk.getValue() / gl.getConjunctsCountForAvg());    //AVERAGING HERE
         }
         //avg /= gl.getConjunctsCountForAvg();    //they are all averaged by the number of body groundings
 

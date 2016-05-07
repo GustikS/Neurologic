@@ -12,7 +12,7 @@ import discoverer.global.Global;
 import discoverer.drawing.GroundDotter;
 import discoverer.grounding.Grounder;
 import discoverer.construction.template.Kappa;
-import discoverer.construction.network.rules.KappaRule;
+import discoverer.construction.template.rules.KappaRule;
 import discoverer.construction.TemplateFactory;
 import discoverer.construction.template.MolecularTemplate;
 import discoverer.grounding.evaluation.struct.GroundNetworkParser;

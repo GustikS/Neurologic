@@ -8,12 +8,12 @@ import discoverer.grounding.network.GroundKappa;
 import discoverer.grounding.network.GroundLambda;
 import discoverer.construction.template.KL;
 import discoverer.construction.template.Kappa;
-import discoverer.construction.network.rules.KappaRule;
+import discoverer.construction.template.rules.KappaRule;
 import discoverer.construction.template.Lambda;
-import discoverer.construction.network.rules.LambdaRule;
-import discoverer.construction.network.rules.Rule;
-import discoverer.construction.network.rules.SubK;
-import discoverer.construction.network.rules.SubL;
+import discoverer.construction.template.rules.LambdaRule;
+import discoverer.construction.template.rules.Rule;
+import discoverer.construction.template.rules.SubK;
+import discoverer.construction.template.rules.SubL;
 import discoverer.construction.Variable;
 import discoverer.global.Glogger;
 import discoverer.grounding.evaluation.Evaluator;
@@ -118,7 +118,7 @@ public class Grounder {
             //- calculate the average, weight it and add
             Set<GroundLambda> lastAvg = tmp.getLastAvg();   //this set of GroundLambda must have already been evaluated(the have value set) through solve2(Lambda..)
             gk.addDisjunctAvg(lastAvg, r);
-            tmp.setValAvg(Evaluator.getAvgValFrom(lastAvg));
+            tmp.setValAvg(Evaluator.getSumValFrom(lastAvg));
             tmp.weightAvgWith(w);
             b.addAvg(tmp);
             //b.addActiveRule(r);   //we omit active rules completely in the new version

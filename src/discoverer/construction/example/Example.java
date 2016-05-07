@@ -1,9 +1,9 @@
 package discoverer.construction.example;
 
 import discoverer.construction.template.Kappa;
-import discoverer.construction.network.rules.SubK;
+import discoverer.construction.template.rules.SubK;
 import discoverer.construction.Variable;
-import discoverer.construction.network.rules.SubKL;
+import discoverer.construction.template.rules.SubKL;
 import java.io.Serializable;
 import java.util.*;
 

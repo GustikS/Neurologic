@@ -2,7 +2,7 @@ package oldTestsFromDiscoverer;
 
 import discoverer.construction.ElementMapper;
 import discoverer.construction.ConstantFactory;
-import discoverer.construction.network.rules.Rule;
+import discoverer.construction.template.rules.Rule;
 import discoverer.construction.template.Kappa;
 import discoverer.construction.TemplateFactory;
 import static org.junit.Assert.*;

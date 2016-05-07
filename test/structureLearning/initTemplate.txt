@@ -1,0 +1,5 @@
+mother(C,M) :- parent(C,M), female(M).
+father(C,F) :- parent(C,F), male(F).
+0.0 res :- mother(C,M).
+0.0 res :- father(C,F).
+finalLambda :- res.

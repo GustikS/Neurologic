@@ -1,6 +1,6 @@
 package discoverer.learning;
 
-import discoverer.construction.network.rules.KappaRule;
+import discoverer.construction.template.rules.KappaRule;
 import discoverer.construction.template.Kappa;
 import discoverer.global.Tuple;
 import java.util.*;

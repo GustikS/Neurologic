@@ -5,7 +5,7 @@
  */
 package discoverer.grounding.evaluation.struct;
 
-import discoverer.construction.network.rules.KappaRule;
+import discoverer.construction.template.rules.KappaRule;
 import discoverer.global.Global;
 import discoverer.global.Tuple;
 import discoverer.grounding.evaluation.GroundedTemplate;

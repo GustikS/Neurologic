@@ -1,11 +1,12 @@
-package discoverer.construction.network.rules;
+package discoverer.construction.template.rules;
 
 import discoverer.construction.Variable;
 import discoverer.construction.template.Kappa;
-import discoverer.construction.network.rules.SubL;
-import discoverer.construction.network.rules.SubK;
+import discoverer.construction.template.rules.SubL;
+import discoverer.construction.template.rules.SubK;
 import discoverer.construction.template.WeightInitializator;
 import java.io.Serializable;
+import java.util.LinkedList;
 import java.util.Objects;
 
 /**
@@ -14,6 +15,8 @@ import java.util.Objects;
  */
 public class KappaRule extends Rule implements Serializable {
 
+    //public static LinkedList<KappaRule> counter = new LinkedList<>();
+    
     private double weight;    //I don't want this to be a public object anymore
     public double step;
     //private Double gradient;
@@ -61,6 +64,8 @@ public class KappaRule extends Rule implements Serializable {
         //step = 0.01;
         setWeight(w != 0 ? w : WeightInitializator.getWeight());
         drawn = false;
+        
+    //    counter.add(this);
     }
 
     public boolean isDrawn() {

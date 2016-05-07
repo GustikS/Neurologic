@@ -1,50 +1,66 @@
 digraph G {
-"finalLambda)#6
-val: 0,33614477746163895" -> "finalKappa(sid)#7
-val: 0,3194778651045107
+"finalLambda)#21
+val: 0,559361567778146" -> "res)#22
+val: 1,2385714182532077
+offset: 0,1487723615646522";
+"res)#22
+val: 1,2385714182532077
+offset: 0,1487723615646522" -> "mother(bob,alice)#23
+val: 0,5" [ label = "0,15617840344182213" ];
+"mother(bob,alice)#23
+val: 0,5" -> "parent(bob,alice)#24
+val: 1
+offset: 0,06125980504647721";
+"mother(bob,alice)#23
+val: 0,5" -> "female(alice)#25
+val: 1
 offset: 0,2755221624994224";
-"finalKappa(sid)#7
-val: 0,3194778651045107
-offset: 0,2755221624994224" -> "sibling(sid,adam)#8
-val: 0,5" [ label = "0,0879114052101766" ];
-"sibling(sid,adam)#8
-val: 0,5" -> "male(adam)#3
+"res)#22
+val: 1,2385714182532077
+offset: 0,1487723615646522" -> "mother(eve,alice)#26
+val: 0,5" [ label = "0,15617840344182213" ];
+"mother(eve,alice)#26
+val: 0,5" -> "parent(eve,alice)#27
 val: 1
 offset: 0,06125980504647721";
-"sibling(sid,adam)#8
-val: 0,5" -> "male(sid)#5
+"mother(eve,alice)#26
+val: 0,5" -> "female(alice)#25
 val: 1
-offset: 0,06125980504647721";
-"finalKappa(sid)#7
-val: 0,3194778651045107
-offset: 0,2755221624994224" -> "sibling(sid,sid)#9
-val: 0,5" [ label = "0,0879114052101766" ];
-"sibling(sid,sid)#9
-val: 0,5" -> "male(sid)#5
-val: 1
-offset: 0,06125980504647721";
-"finalLambda)#6
-val: 0,33614477746163895" -> "finalKappa(adam)#1
-val: 0,3194778651045107
 offset: 0,2755221624994224";
-"finalKappa(adam)#1
-val: 0,3194778651045107
-offset: 0,2755221624994224" -> "sibling(adam,sid)#4
-val: 0,5" [ label = "0,0879114052101766" ];
-"sibling(adam,sid)#4
-val: 0,5" -> "male(adam)#3
+"res)#22
+val: 1,2385714182532077
+offset: 0,1487723615646522" -> "father(bob,george)#28
+val: 0,5" [ label = "0,2527035650661886" ];
+"father(bob,george)#28
+val: 0,5" -> "parent(bob,george)#29
 val: 1
 offset: 0,06125980504647721";
-"sibling(adam,sid)#4
-val: 0,5" -> "male(sid)#5
+"father(bob,george)#28
+val: 0,5" -> "male(george)#30
+val: 1
+offset: 0,0879114052101766";
+"res)#22
+val: 1,2385714182532077
+offset: 0,1487723615646522" -> "bisex(eve,alice)#33
+val: 0,5" [ label = "0,5381792471424262" ];
+"bisex(eve,alice)#33
+val: 0,5" -> "parent(eve,alice)#27
 val: 1
 offset: 0,06125980504647721";
-"finalKappa(adam)#1
-val: 0,3194778651045107
-offset: 0,2755221624994224" -> "sibling(adam,adam)#2
-val: 0,5" [ label = "0,0879114052101766" ];
-"sibling(adam,adam)#2
-val: 0,5" -> "male(adam)#3
+"res)#22
+val: 1,2385714182532077
+offset: 0,1487723615646522" -> "bisex(bob,alice)#31
+val: 0,5" [ label = "0,5381792471424262" ];
+"bisex(bob,alice)#31
+val: 0,5" -> "parent(bob,alice)#24
+val: 1
+offset: 0,06125980504647721";
+"res)#22
+val: 1,2385714182532077
+offset: 0,1487723615646522" -> "bisex(bob,george)#32
+val: 0,5" [ label = "0,5381792471424262" ];
+"bisex(bob,george)#32
+val: 0,5" -> "parent(bob,george)#29
 val: 1
 offset: 0,06125980504647721";
 }

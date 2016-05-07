@@ -3,7 +3,7 @@ package discoverer.grounding.evaluation.struct;
 import discoverer.grounding.network.GroundKL;
 import discoverer.grounding.network.GroundKappa;
 import discoverer.grounding.network.GroundLambda;
-import discoverer.construction.network.rules.KappaRule;
+import discoverer.construction.template.rules.KappaRule;
 import discoverer.global.Tuple;
 import discoverer.grounding.evaluation.GroundedTemplate;
 import java.util.HashSet;

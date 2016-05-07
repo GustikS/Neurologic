@@ -9,13 +9,16 @@ import discoverer.GroundedDataset;
 import discoverer.LiftedDataset;
 import discoverer.Main;
 import discoverer.NeuralDataset;
-import discoverer.construction.network.rules.Rule;
+import discoverer.construction.template.rules.KappaRule;
+import discoverer.construction.template.rules.Rule;
 import discoverer.construction.template.LiftedTemplate;
 import discoverer.construction.template.LightTemplate;
 import discoverer.crossvalidation.NeuralCrossvalidation;
 import discoverer.crossvalidation.SampleSplitter;
+import discoverer.global.Global;
 import discoverer.global.Glogger;
 import discoverer.global.Settings;
+import discoverer.grounding.evaluation.Evaluator;
 import discoverer.learning.Results;
 import discoverer.learning.Sample;
 import discoverer.learning.learners.LearnerFast;
@@ -47,6 +50,12 @@ public class StructureLearning {
         List<String[]> inputs = Main.setupFromArguments(params.split(" "));
         //create logger for all messages within the program
         Glogger.init();
+        Global.memoryLight = false;
+        Global.parallelTraining = false;
+        Global.parallelGrounding = false;
+        //
+        Global.createWeightMatrix = false;
+        Global.exporting = false;
 
         //String[] test = inputs.get(0);
         String[] exs = inputs.get(1);
@@ -54,6 +63,7 @@ public class StructureLearning {
         String[] pretrainedRules = inputs.get(3);
 
         GroundedDataset groundedDataset = new GroundedDataset(exs, rules, pretrainedRules);
+        new NeuralDataset(groundedDataset); //this is just to create sharedWeights and corresponding mappings
 
         return groundedDataset;
     }
@@ -63,23 +73,28 @@ public class StructureLearning {
      * whole dataset (all train+test)
      *
      * @param previousRound - complete grounded dataset
-     * @param newTemplate - list of rules as strings, corresponding template
+     * @param newRules
      * object will be (re)created
      * @return complete new dataset
      */
-    public GroundedDataset reGroundMe(GroundedDataset previousRound, String[] newTemplate) {
-        GroundedDataset dataset = previousRound;
+    public void reGroundMe(GroundedDataset previousRound, String[] newRules) {
 
-        dataset.network = dataset.createNetwork(newTemplate, "network");
+        LiftedTemplate newTemplate = previousRound.createNetwork(newRules, "template");
         Glogger.process("created lifted network structure");
 
-        List<Sample> preparedGroundings = dataset.prepareGroundings(previousRound.examples, previousRound.network);
+        //map all (neurally) learned weights back to logical structures (kappa rules and offsets)
+        newTemplate.setWeightsFromArray(previousRound.template.weightMapping, previousRound.template.sharedWeights);    //map the learned weights back to original logical structures (rules)
+
+        previousRound.template = newTemplate;
+        
+        List<Sample> preparedGroundings = previousRound.prepareGroundings(previousRound.examples, previousRound.template);
         Glogger.process("prepared network groundings");
 
         //k-fold stratified example(same #positives in folds) splitting structure - treated as 1fold CV here
-        dataset.sampleSplitter = new SampleSplitter(Settings.folds, preparedGroundings);
-
-        return dataset;
+        previousRound.sampleSplitter = new SampleSplitter(Settings.folds, preparedGroundings);
+        previousRound.samples = preparedGroundings;
+        
+        new NeuralDataset(previousRound); //this is just to create sharedWeights and corresponding mappings
     }
 
     /**
@@ -97,23 +112,23 @@ public class StructureLearning {
      */
     public Results train(GroundedDataset gdata, int learningSteps, int depth, int regularizer) {
         NeuralDataset neuraldata = new NeuralDataset(gdata);
-        
+
         LearnerStructured learner = new LearnerStructured(learningSteps, depth, regularizer);
-        Results results = learner.solveStructured(neuraldata.network, neuraldata.sampleSplitter.samples);
+        Results results = learner.solveStructured(neuraldata.template, neuraldata.sampleSplitter.samples);
         results.training = results.actualResult;
-        
+
         //map all (neurally) learned weights back to logical structures (kappa rules and offsets)
-        if (neuraldata.network instanceof LiftedTemplate){
-            LiftedTemplate templ = (LiftedTemplate) neuraldata.network;
+        if (neuraldata.template instanceof LiftedTemplate) {
+            LiftedTemplate templ = (LiftedTemplate) neuraldata.template;
             templ.setWeightsFromArray(templ.weightMapping, templ.sharedWeights);    //map the learned weights back to original logical structures (rules)
         }
-        
+
         //map learned outputs back to ball Avg outputs (just to make sure), samples should be in the same order (it's the same SampleSplitter)
-        for (int i = 0; i < neuraldata.sampleSplitter.samples.size(); i++) {
-            gdata.sampleSplitter.samples.get(i).getBall().valAvg = neuraldata.sampleSplitter.samples.get(i).neuralNetwork.outputNeuron.outputValue;
+        for (Sample sam : gdata.sampleSplitter.samples) {
+            Evaluator.evaluateAvg(sam.getBall());
         }
-        
-        return results;
+
+        return results; //contains all the training information
     }
 
     /**
@@ -123,16 +138,17 @@ public class StructureLearning {
      * @param samples - grounded samples w.r.t. that template
      * @return - Results object with testing filled
      */
-    public Results test(LightTemplate template, List<Sample> samples) {
+    public Results test(LightTemplate template, List<Sample> samples, Results trainRes) {
         NeuralCrossvalidation learning = new NeuralCrossvalidation();
-        Results results = learning.test(template, new Results(), samples);
+        Results results = learning.test(template, trainRes, samples);
         return results;
     }
 
     /**
      * export template back into string-lines representation (with weights)
+     *
      * @param template
-     * @return 
+     * @return
      */
     public String exportTemplate(LiftedTemplate template) {
         StringBuilder sb = new StringBuilder();

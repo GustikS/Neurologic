@@ -11,7 +11,7 @@ import discoverer.global.Global;
 import discoverer.grounding.network.GroundKL;
 import discoverer.grounding.network.GroundKappa;
 import discoverer.grounding.network.GroundLambda;
-import discoverer.construction.network.rules.KappaRule;
+import discoverer.construction.template.rules.KappaRule;
 import discoverer.global.Glogger;
 import discoverer.global.Settings;
 import discoverer.learning.functions.Activations;

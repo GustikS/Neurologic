@@ -2,7 +2,7 @@ package discoverer.grounding.evaluation;
 
 import discoverer.grounding.network.GroundKL;
 import discoverer.grounding.network.GroundLambda;
-import discoverer.construction.network.rules.KappaRule;
+import discoverer.construction.template.rules.KappaRule;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;

@@ -15,6 +15,7 @@ public class LearningStep {
     private Double error;
     private Double majorityErr;
     private Double dispersion;
+    private Double mse;
 
     double sum100 = 0;
     int count100 = 0;
@@ -95,6 +96,20 @@ public class LearningStep {
             return true;
         }
         return false;
+    }
+
+    /**
+     * @return the mse
+     */
+    public Double getMse() {
+        return mse;
+    }
+
+    /**
+     * @param mse the mse to set
+     */
+    public void setMse(Double mse) {
+        this.mse = mse;
     }
 
 }

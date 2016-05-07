@@ -1,7 +1,7 @@
 package oldTestsFromDiscoverer;
 
 import discoverer.learning.Weights;
-import discoverer.construction.network.rules.KappaRule;
+import discoverer.construction.template.rules.KappaRule;
 import discoverer.construction.template.Kappa;
 import discoverer.construction.TemplateFactory;
 import discoverer.construction.ExampleFactory;

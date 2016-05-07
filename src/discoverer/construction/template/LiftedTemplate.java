@@ -6,9 +6,9 @@
 package discoverer.construction.template;
 
 import static discoverer.construction.template.LightTemplate.weightFolder;
-import discoverer.construction.network.rules.KappaRule;
-import discoverer.construction.network.rules.Rule;
-import discoverer.construction.network.rules.SubK;
+import discoverer.construction.template.rules.KappaRule;
+import discoverer.construction.template.rules.Rule;
+import discoverer.construction.template.rules.SubK;
 import discoverer.global.Global;
 import discoverer.grounding.network.GroundKL;
 import discoverer.grounding.network.groundNetwork.GroundNetwork;
@@ -47,6 +47,7 @@ public class LiftedTemplate extends LightTemplate implements Serializable {
 
     public HashMap<GroundKL, GroundNeuron> neuronMapping; //for checking if we have already visited this groundKL?
 
+    //------------
     public GroundNetwork tmpActiveNet; //auxiliary to get reference from neurons to their mother network (without storing pointer in them cause of serialization)
     public HashMap<Integer, String> tmpConstantNames;
 
@@ -210,19 +211,26 @@ public class LiftedTemplate extends LightTemplate implements Serializable {
 
     /**
      * backwards mapping of learned weights to template's rules
+     *
      * @param weightMapping
      * @param sharedWeights
-     * @return 
+     * @return
      */
     public boolean setWeightsFromArray(HashMap<String, Integer> weightMapping, double[] sharedWeights) {
+        Integer idx;
         for (Rule rule : rules) {
             if (rule instanceof KappaRule) {
                 KappaRule kr = (KappaRule) rule;
-                kr.setWeight(sharedWeights[weightMapping.get(kr.toString())]);
+                if ((idx = weightMapping.get(kr.toString())) != null) {
+                    //System.out.println(kr + " : " + kr.getWeight() + " -> " + sharedWeights[idx]);
+                    kr.setWeight(sharedWeights[idx]);
+                }
             }
         }
         for (Kappa kappa : getKappas()) {
-            kappa.setOffset(sharedWeights[weightMapping.get(kappa.toString())]);
+            if ((idx = weightMapping.get(kappa.toString())) != null) {
+                kappa.setOffset(sharedWeights[idx]);
+            }
         }
         return true;
     }

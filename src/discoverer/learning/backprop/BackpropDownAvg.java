@@ -10,7 +10,7 @@ import discoverer.construction.example.Example;
 import discoverer.grounding.network.GroundKL;
 import discoverer.grounding.network.GroundKappa;
 import discoverer.grounding.network.GroundLambda;
-import discoverer.construction.network.rules.KappaRule;
+import discoverer.construction.template.rules.KappaRule;
 import discoverer.global.Glogger;
 import discoverer.global.Settings;
 import discoverer.learning.functions.Activations;
@@ -70,12 +70,12 @@ public class BackpropDownAvg {
             weights.addW(gk.getGeneral(), myDerivative);   //updating offset weight (it's inner derivative is just 1, so no more computations needed)
 
             for (Tuple<HashSet<GroundLambda>, KappaRule> tup : gk.getDisjunctsAvg()) {
-                if (tup.x.size()>1){
+                /*if (tup.x.size()>1){
                     Glogger.process("stop");
-                }
-                weights.addW(tup.y, myDerivative * Evaluator.getAvgValFrom(tup.x));    //updating Kappa-rule's weight (it's inner derivative is just the value of corresponding GroundLambda)
+                }*/
+                weights.addW(tup.y, myDerivative * Evaluator.getSumValFrom(tup.x));    //updating Kappa-rule's weight (it's inner derivative is just the value of corresponding GroundLambda(s!))
                 for (GroundLambda gl : tup.x) {
-                    derive(gl, myDerivative * tup.y.getWeight() * (1.0 / tup.x.size()));    //dive into solving the corresponding GroundLambda (they are averaged so each gl provides 1/n value only)
+                    derive(gl, myDerivative * tup.y.getWeight());    //dive into solving the corresponding GroundLambda(s!) (they are sumed so each gl provides independent value)
                 }
             }
         }
@@ -104,7 +104,7 @@ public class BackpropDownAvg {
         //double result = gk.getGeneral().getOffset();
         List<Double> inputs = new ArrayList<>();
         for (Tuple<HashSet<GroundLambda>, KappaRule> t : gk.getDisjunctsAvg()) {
-            inputs.add(Evaluator.getAvgValFrom(t.x) * t.y.getWeight());
+            inputs.add(Evaluator.getSumValFrom(t.x) * t.y.getWeight());
             //result += GroundKL.getAvgValFrom(t.x) * t.y.getWeight();     //we need to sum it up again because the value we have is after sigmoid
         }
         double result = Activations.kappaActivationDerived(inputs, gk.getGeneral().getOffset());    //and we need to feed it through a DERIVED sigmoid

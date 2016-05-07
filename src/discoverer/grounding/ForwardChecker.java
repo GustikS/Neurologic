@@ -1,15 +1,15 @@
 package discoverer.grounding;
 
 import discoverer.construction.template.Kappa;
-import discoverer.construction.network.rules.KappaRule;
+import discoverer.construction.template.rules.KappaRule;
 import discoverer.construction.template.Lambda;
-import discoverer.construction.network.rules.LambdaRule;
-import discoverer.construction.network.rules.Rule;
-import discoverer.construction.network.rules.SubK;
-import discoverer.construction.network.rules.SubL;
+import discoverer.construction.template.rules.LambdaRule;
+import discoverer.construction.template.rules.Rule;
+import discoverer.construction.template.rules.SubK;
+import discoverer.construction.template.rules.SubL;
 import discoverer.construction.Variable;
 import discoverer.construction.example.Example;
-import discoverer.construction.network.rules.SubKL;
+import discoverer.construction.template.rules.SubKL;
 import discoverer.global.Global;
 import discoverer.global.Glogger;
 import java.util.*;

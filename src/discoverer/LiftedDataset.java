@@ -13,8 +13,8 @@ import discoverer.construction.template.Kappa;
 import discoverer.construction.template.LiftedTemplate;
 import discoverer.construction.template.LightTemplate;
 import discoverer.construction.template.MolecularTemplate;
-import discoverer.construction.network.rules.KappaRule;
-import discoverer.construction.network.rules.Rule;
+import discoverer.construction.template.rules.KappaRule;
+import discoverer.construction.template.rules.Rule;
 import discoverer.drawing.Dotter;
 import discoverer.global.Global;
 import discoverer.global.Glogger;
@@ -39,10 +39,10 @@ import java.util.List;
  */
 public class LiftedDataset implements Serializable {
 
-    public LiftedTemplate network;
+    public LiftedTemplate template;
 
     String[] pretrained = null;
-    public LightTemplate pretrainedNetwork = null;
+    public LightTemplate pretrainedTemplate = null;
 
     public SampleSplitter sampleSplitter;
 
@@ -53,7 +53,7 @@ public class LiftedDataset implements Serializable {
     //public double[] sharedWeights; //the shared sharedWeights
     public LiftedDataset(String[] rules, String[] PretrainedRules) {
         pretrained = PretrainedRules;
-        network = createNetworkMerge(rules);
+        template = createNetworkMerge(rules);
 
         //createSharedWeights();
     }
@@ -84,8 +84,8 @@ public class LiftedDataset implements Serializable {
             net.exportWeightMatrix("merged");
         }
 
-        network = net;
-        pretrainedNetwork = pretrainedN;
+        template = net;
+        pretrainedTemplate = pretrainedN;
 
         return net;
     }

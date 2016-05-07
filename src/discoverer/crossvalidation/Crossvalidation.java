@@ -98,18 +98,18 @@ public class Crossvalidation {
         Glogger.info("starting crossvalidation " + (time = System.currentTimeMillis()));
         for (dataset.sampleSplitter.testFold = 0; dataset.sampleSplitter.testFold < dataset.sampleSplitter.foldCount; dataset.sampleSplitter.testFold++) { //iterating the test fold
 
-            Results foldRes = trainTestFold(dataset.network, dataset.sampleSplitter.getTrain(), dataset.sampleSplitter.getTest(), dataset.sampleSplitter.testFold);
+            Results foldRes = trainTestFold(dataset.template, dataset.sampleSplitter.getTrain(), dataset.sampleSplitter.getTest(), dataset.sampleSplitter.testFold);
             foldResults.add(foldRes);
 
             if (Global.exporting) {
-                LightTemplate.exportSharedWeights(dataset.network.sharedWeights, 99);
+                LightTemplate.exportSharedWeights(dataset.template.sharedWeights, 99);
                 dataset.saveDataset(Settings.getDataset().replaceAll("-", "/") + ".ser");
             }
 
             //Invalidator.invalidate(network); //1st
-            dataset.network.invalidateWeights();
+            dataset.template.invalidateWeights();
 
-            dataset.network.merge(dataset.pretrainedNetwork); // 2nd
+            dataset.template.merge(dataset.pretrainedTemplate); // 2nd
         }
         Glogger.process("finished crossvalidation " + (System.currentTimeMillis() - time));
 

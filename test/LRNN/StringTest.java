@@ -10,7 +10,7 @@ import discoverer.construction.TemplateFactory;
 import discoverer.construction.example.Example;
 import discoverer.construction.template.Kappa;
 import discoverer.construction.template.MolecularTemplate;
-import discoverer.construction.network.rules.KappaRule;
+import discoverer.construction.template.rules.KappaRule;
 import discoverer.drawing.Dotter;
 import discoverer.drawing.GroundDotter;
 import discoverer.global.FileToStringList;

@@ -1,6 +1,6 @@
 package discoverer.construction.template;
 
-import discoverer.construction.network.rules.KappaRule;
+import discoverer.construction.template.rules.KappaRule;
 import discoverer.global.Global;
 import java.io.Serializable;
 import java.util.*;

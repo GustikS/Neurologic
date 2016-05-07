@@ -1,13 +1,12 @@
 package oldTestsFromDiscoverer;
 
 import discoverer.learning.Weights;
-import discoverer.construction.network.rules.KappaRule;
+import discoverer.construction.template.rules.KappaRule;
 import discoverer.construction.template.Kappa;
 import discoverer.construction.TemplateFactory;
 import discoverer.construction.template.KL;
 import discoverer.construction.ExampleFactory;
 import discoverer.construction.example.Example;
-import discoverer.global.Batch;
 import discoverer.global.Global;
 import discoverer.grounding.evaluation.Evaluator;
 import discoverer.grounding.evaluation.GroundedTemplate;

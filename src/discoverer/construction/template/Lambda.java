@@ -1,6 +1,6 @@
 package discoverer.construction.template;
 
-import discoverer.construction.network.rules.LambdaRule;
+import discoverer.construction.template.rules.LambdaRule;
 import discoverer.global.Global;
 import java.io.Serializable;
 

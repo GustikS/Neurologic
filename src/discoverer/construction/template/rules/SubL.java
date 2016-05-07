@@ -1,4 +1,4 @@
-package discoverer.construction.network.rules;
+package discoverer.construction.template.rules;
 
 import discoverer.construction.ElementMapper;
 import discoverer.construction.Variable;

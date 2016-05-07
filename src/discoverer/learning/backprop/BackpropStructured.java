@@ -62,7 +62,7 @@ public class BackpropStructured {
             return;
         }
 
-        if (atomNeuron.inputNeurons.length == 0) {
+        if (atomNeuron.inputNeurons == null) {
             return;
         }
 

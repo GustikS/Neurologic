@@ -45,7 +45,7 @@ public class GroundedDataset extends LiftedDataset {
         examples = createExamples(ex, Settings.maxExamples);
         Glogger.process("created example structures");
 
-        samples = prepareGroundings(examples, network);
+        samples = prepareGroundings(examples, template);
         Glogger.process("prepared network groundings");
 
         //k-fold stratified example(same #positives in folds) splitting structure - treated as 1fold CV here
@@ -60,8 +60,8 @@ public class GroundedDataset extends LiftedDataset {
         List<Example> testEx = createExamples(test, Settings.maxExamples);
         Glogger.process("created example structures");
 
-        List<Sample> trainSamples = prepareGroundings(trainEx, (MolecularTemplate) network);
-        List<Sample> testSamples = prepareGroundings(testEx, (MolecularTemplate) network);
+        List<Sample> trainSamples = prepareGroundings(trainEx, (MolecularTemplate) template);
+        List<Sample> testSamples = prepareGroundings(testEx, (MolecularTemplate) template);
         Glogger.process("prepared network groundings");
 
         examples = trainEx;
@@ -147,9 +147,11 @@ public class GroundedDataset extends LiftedDataset {
                 neurons = GroundNetworkParser.parseMAX(b);
             }
             b.loadGroundNeurons(neurons);   //store all ground L/K in an array for fast and simple operations instead of DFS for each simple pass
+            if (Global.learnableFacts) {
+                b.groundNeurons.addAll(GroundNetworkParser.facts);  //also include fact neurons in the evaluation (as in neural)
+            }
         }
 
         return sampleStore;
     }
-
 }

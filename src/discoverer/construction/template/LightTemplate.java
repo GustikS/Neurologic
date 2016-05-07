@@ -38,8 +38,8 @@ public class LightTemplate implements Serializable {
     public double[] sharedWeights; //the shared sharedWeights
 
     public HashMap<String, Integer> name2weight;
-
-    public static String weightFolder = "weights/";
+    
+    public static String weightFolder = Global.weightFolder;
 
     public LightTemplate() {
     }

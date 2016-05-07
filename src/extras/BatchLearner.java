@@ -4,7 +4,7 @@ import discoverer.construction.example.Example;
 import discoverer.construction.template.KL;
 import discoverer.construction.template.Kappa;
 import discoverer.construction.template.MolecularTemplate;
-import discoverer.construction.network.rules.KappaRule;
+import discoverer.construction.template.rules.KappaRule;
 import discoverer.global.Global;
 import discoverer.global.Settings;
 import discoverer.grounding.evaluation.GroundedTemplate;

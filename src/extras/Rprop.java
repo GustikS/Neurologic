@@ -1,7 +1,7 @@
 package extras;
 
 import discoverer.construction.template.Kappa;
-import discoverer.construction.network.rules.KappaRule;
+import discoverer.construction.template.rules.KappaRule;
 
 /**
  * Experimental!

@@ -89,6 +89,7 @@ public class Results {
      */
     private void computeTrain() {
         computeMajority();
+        computeMSE();
         Collections.sort(results); //iterate in ascending order
 
         int bad = 0;
@@ -128,9 +129,9 @@ public class Results {
             i++;
         }
 
-        actualResult.setDispersion((Double) Math.abs((zeroSum / zeroes) - (oneSum / ones)));
+        actualResult.setDispersion(Math.abs((zeroSum / zeroes) - (oneSum / ones)));
 
-        actualResult.setError((Double) (double) bestBad / results.size());    //?what
+        actualResult.setError((double) bestBad / results.size());    //?what
 
         if (bestResult != null) {
             double left = bestResult.getActual();
@@ -162,7 +163,7 @@ public class Results {
         if (actualResult == null) {
             return true;
         }
-        if (actualResult.getError() > res2.actualResult.getError()) {
+        if (actualResult.getMse() > res2.actualResult.getMse()) {
             return true;
         }
         return false;
@@ -170,6 +171,7 @@ public class Results {
 
     public void computeTest() {
         computeMajority();
+        computeMSE();
         double error = 0;
         for (Result res : results) {
             double clas = res.getActual() > training.getThresh() ? 1.0 : 0.0;
@@ -181,6 +183,15 @@ public class Results {
         actualResult.setError(error / results.size());
     }
 
+    void computeMSE(){
+        double mse = 0;
+        for (Result result : results) {
+            mse += (result.getExpected() - result.getActual()) * (result.getExpected() - result.getActual());
+        }
+        mse /= results.size();
+        actualResult.setMse(mse);
+    }
+    
     void computeMajority() {
         int pos = 0;
         for (Result result : results) {

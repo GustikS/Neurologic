@@ -1,0 +1,2 @@
+1.0 male(bob),female(alice),parent(bob,alice),parent(eve,alice),parent(bob,george),male(george).
+0.0 male(bob),female(alice),parent(bob,alice).

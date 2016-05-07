@@ -88,7 +88,7 @@ public class GroundDrawTest {
         GroundedTemplate b = Grounder.groundTemplate(last.last, e);
 
         Dotter.draw(last.last, b.getActiveRules());
-        GroundDotter.draw(b);
+        GroundDotter.drawMax(b);
     }
     
     @Ignore
@@ -130,6 +130,6 @@ public class GroundDrawTest {
         GroundedTemplate b = Grounder.groundTemplate(last.last, e);
 
         Dotter.draw(last.last, b.getActiveRules());
-        GroundDotter.draw(b);
+        GroundDotter.drawMax(b);
     }
 }
