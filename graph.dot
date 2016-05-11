@@ -1,66 +1,18 @@
 digraph G {
-"finalLambda)#21
-val: 0,559361567778146" -> "res)#22
-val: 1,2385714182532077
-offset: 0,1487723615646522";
-"res)#22
-val: 1,2385714182532077
-offset: 0,1487723615646522" -> "mother(bob,alice)#23
-val: 0,5" [ label = "0,15617840344182213" ];
-"mother(bob,alice)#23
-val: 0,5" -> "parent(bob,alice)#24
-val: 1
-offset: 0,06125980504647721";
-"mother(bob,alice)#23
-val: 0,5" -> "female(alice)#25
-val: 1
-offset: 0,2755221624994224";
-"res)#22
-val: 1,2385714182532077
-offset: 0,1487723615646522" -> "mother(eve,alice)#26
-val: 0,5" [ label = "0,15617840344182213" ];
-"mother(eve,alice)#26
-val: 0,5" -> "parent(eve,alice)#27
-val: 1
-offset: 0,06125980504647721";
-"mother(eve,alice)#26
-val: 0,5" -> "female(alice)#25
-val: 1
-offset: 0,2755221624994224";
-"res)#22
-val: 1,2385714182532077
-offset: 0,1487723615646522" -> "father(bob,george)#28
-val: 0,5" [ label = "0,2527035650661886" ];
-"father(bob,george)#28
-val: 0,5" -> "parent(bob,george)#29
-val: 1
-offset: 0,06125980504647721";
-"father(bob,george)#28
-val: 0,5" -> "male(george)#30
-val: 1
-offset: 0,0879114052101766";
-"res)#22
-val: 1,2385714182532077
-offset: 0,1487723615646522" -> "bisex(eve,alice)#33
-val: 0,5" [ label = "0,5381792471424262" ];
-"bisex(eve,alice)#33
-val: 0,5" -> "parent(eve,alice)#27
-val: 1
-offset: 0,06125980504647721";
-"res)#22
-val: 1,2385714182532077
-offset: 0,1487723615646522" -> "bisex(bob,alice)#31
-val: 0,5" [ label = "0,5381792471424262" ];
-"bisex(bob,alice)#31
-val: 0,5" -> "parent(bob,alice)#24
-val: 1
-offset: 0,06125980504647721";
-"res)#22
-val: 1,2385714182532077
-offset: 0,1487723615646522" -> "bisex(bob,george)#32
-val: 0,5" [ label = "0,5381792471424262" ];
-"bisex(bob,george)#32
-val: 0,5" -> "parent(bob,george)#29
-val: 1
-offset: 0,06125980504647721";
+"finalLambda)#17
+val: 0,3461917982684022" -> "finalKappa(adam)#18
+val: 0,36417891280722925
+offset: 0,33200917325849616";
+"finalKappa(adam)#18
+val: 0,36417891280722925
+offset: 0,33200917325849616" -> "apAtom5Lambda(adam)#19
+val: 0,2733439950587851" [ label = "0,11768957844424081" ];
+"apAtom5Lambda(adam)#19
+val: 0,2733439950587851" -> "apAtom4(adam)#20
+val: 0,022277862233948058
+offset: 0,00786345516668464";
+"apAtom4(adam)#20
+val: 0,022277862233948058
+offset: 0,00786345516668464" -> "male(adam)#21
+val: 0,5" [ label = "0,028828814134526835" ];
 }

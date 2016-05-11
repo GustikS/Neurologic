@@ -1,5 +1,5 @@
-father(C,F) :- parent(C,F),male(F).
-mother(C,M) :- parent(C,M),female(M).
-res :- father(C,F).
-res :- mother(C,M).
-finalLambda :- res.
+apAtom4(X0) :- male(X0).
+apAtom4(X0) :- female(X0).
+apAtom5Lambda(X0) :- apAtom4(X0).
+finalKappa(X0) :- apAtom5Lambda(X0).
+finalLambda :- finalKappa(X).

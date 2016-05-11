@@ -8,6 +8,7 @@ package discoverer;
 import discoverer.crossvalidation.SampleSplitter;
 import discoverer.construction.example.Example;
 import discoverer.construction.template.LiftedTemplate;
+import discoverer.construction.template.LightTemplate;
 import discoverer.construction.template.MolecularTemplate;
 import discoverer.global.Global;
 import discoverer.global.Glogger;
@@ -36,6 +37,24 @@ public class GroundedDataset extends LiftedDataset {
 
     public List<Example> examples;  //raw example structures
     public List<Sample> samples;    //samples contain groundedTemplates (=Balls), they are too memory expensive
+
+    /**
+     * Used e.g. for regrounding existing examples with a new template
+     * @param inExamples
+     * @param newTemplate 
+     */
+    public GroundedDataset(List<Example> inExamples, String[] newTemplate) {
+        super(newTemplate, null);
+        
+        Glogger.process("created new lifted template structure");
+        examples = inExamples;
+        Glogger.process("copied example structures");
+        
+        samples = prepareGroundings(examples, template);
+        Glogger.process("prepared network groundings");
+        
+        sampleSplitter = new SampleSplitter(Settings.folds, samples);
+    }
 
     public GroundedDataset(String[] ex, String[] rules, String[] PretrainedRules) {
         super(rules, PretrainedRules);
@@ -151,7 +170,6 @@ public class GroundedDataset extends LiftedDataset {
                 b.groundNeurons.addAll(GroundNetworkParser.facts);  //also include fact neurons in the evaluation (as in neural)
             }
         }
-
         return sampleStore;
     }
 }

@@ -1,0 +1,3 @@
+0.0 finalKappa(X0) :- female(X0).
+0.0 finalKappa(X0) :- male(X0).
+finalLambda :- finalKappa(X).

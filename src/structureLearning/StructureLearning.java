@@ -72,29 +72,19 @@ public class StructureLearning {
      * reground previously groundedDataset with a new template, expects the
      * whole dataset (all train+test)
      *
-     * @param previousRound - complete grounded dataset
-     * @param newRules
-     * object will be (re)created
+     * @param previousDataset - complete grounded dataset
+     * @param newTemplate object will be (re)created
      * @return complete new dataset
      */
-    public void reGroundMe(GroundedDataset previousRound, String[] newRules) {
+    public GroundedDataset reGroundMe(GroundedDataset previousDataset, String[] newTemplate) {
 
-        LiftedTemplate newTemplate = previousRound.createNetwork(newRules, "template");
-        Glogger.process("created lifted network structure");
+        GroundedDataset newDataset = new GroundedDataset(previousDataset.examples, newTemplate);
 
         //map all (neurally) learned weights back to logical structures (kappa rules and offsets)
-        newTemplate.setWeightsFromArray(previousRound.template.weightMapping, previousRound.template.sharedWeights);    //map the learned weights back to original logical structures (rules)
+        newDataset.template.setWeightsFromArray(previousDataset.template.weightMapping, previousDataset.template.sharedWeights);    //map the learned weights back to original logical structures (rules)
 
-        previousRound.template = newTemplate;
-        
-        List<Sample> preparedGroundings = previousRound.prepareGroundings(previousRound.examples, previousRound.template);
-        Glogger.process("prepared network groundings");
-
-        //k-fold stratified example(same #positives in folds) splitting structure - treated as 1fold CV here
-        previousRound.sampleSplitter = new SampleSplitter(Settings.folds, preparedGroundings);
-        previousRound.samples = preparedGroundings;
-        
-        new NeuralDataset(previousRound); //this is just to create sharedWeights and corresponding mappings
+        new NeuralDataset(newDataset); //this is just to create sharedWeights and corresponding mappings
+        return newDataset;
     }
 
     /**

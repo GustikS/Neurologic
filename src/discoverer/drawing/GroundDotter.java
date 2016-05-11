@@ -94,7 +94,7 @@ public class GroundDotter extends Dotter {
     }
 
     public static void drawAVG(GroundedTemplate b, String nam) {
-        if (b == null) {
+        if (b == null || b.getLast() == null) {
             return;
         }
 

@@ -1,0 +1,4 @@
+1.0 male(adam).
+0.0 male(adam).
+1.0 female(a),male(b).
+1.0 sibling(x,y).
