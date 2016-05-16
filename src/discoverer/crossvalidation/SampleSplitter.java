@@ -28,8 +28,8 @@ public class SampleSplitter implements Serializable {
 
     public int foldCount;
     public int testFold = 0;
-    public final List<List<Sample>> folds;
-    public final List<Sample> samples;
+    public List<List<Sample>> folds;
+    public List<Sample> samples;
 
     public SampleSplitter(List<Sample> train, List<Sample> test) {
         folds = new ArrayList<>();

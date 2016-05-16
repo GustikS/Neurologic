@@ -57,12 +57,17 @@ public class StructureLearning {
         Global.createWeightMatrix = false;
         Global.exporting = false;
 
-        //String[] test = inputs.get(0);
+        String[] test = inputs.get(0);
         String[] exs = inputs.get(1);
         String[] rules = inputs.get(2);
         String[] pretrainedRules = inputs.get(3);
 
-        GroundedDataset groundedDataset = new GroundedDataset(exs, rules, pretrainedRules);
+        GroundedDataset groundedDataset = null;
+        if (test != null) {
+            groundedDataset = new GroundedDataset(exs, test, rules, pretrainedRules);
+        } else {
+            groundedDataset = new GroundedDataset(exs, rules, pretrainedRules);
+        }
         new NeuralDataset(groundedDataset); //this is just to create sharedWeights and corresponding mappings
 
         return groundedDataset;
