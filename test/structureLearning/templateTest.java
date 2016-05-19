@@ -9,8 +9,10 @@ import discoverer.GroundedDataset;
 import discoverer.construction.template.Kappa;
 import discoverer.drawing.Dotter;
 import discoverer.drawing.GroundDotter;
+import discoverer.grounding.evaluation.EvaluatorFast;
 import discoverer.grounding.network.GroundKL;
 import discoverer.grounding.network.GroundKappa;
+import discoverer.learning.Result;
 import discoverer.learning.Results;
 import discoverer.learning.Sample;
 import java.util.HashSet;
@@ -26,7 +28,7 @@ public class templateTest {
 
     public static void main(String[] args) {
         templateTest bf = new templateTest();
-        bf.trainTestLRNN();
+        bf.testLRNN();
     }
 
     @Test
@@ -69,7 +71,29 @@ public class templateTest {
         Dotter.draw(initDataset.template, "liftedAfterTraining");
 
         Results testResults = sli.test(initDataset.template, test, trainResults);
-        
+
+        System.out.println("test error: " + testResults.testing.getError());
+        System.out.println("test mse: " + testResults.testing.getMse());
+    }
+
+    @Test
+    public void testLRNN() {
+        StructureLearning sli = new StructureLearning();
+        String arguments = "-e ../in/muta/test/train -test ../in/muta/test/test -r ../in/muta/test/template.txt";
+        GroundedDataset initDataset = sli.init(arguments);
+
+        List<Sample> train = initDataset.sampleSplitter.getTrain();
+        List<Sample> test = initDataset.sampleSplitter.getTest();
+
+        Results tres = new Results();
+        for (Sample sample : test) {
+            double eval = EvaluatorFast.evaluateFast(sample.neuralNetwork, initDataset.template.sharedWeights);
+            tres.add(new Result(eval, sample.targetValue));
+        }
+        tres.computeTrain();
+        tres.training = tres.actualResult;
+        Results testResults = sli.test(initDataset.template, test, tres);
+        Dotter.draw(initDataset.template, "liftedAfterInit");
         System.out.println("test error: " + testResults.testing.getError());
         System.out.println("test mse: " + testResults.testing.getMse());
     }

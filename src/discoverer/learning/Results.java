@@ -87,7 +87,7 @@ public class Results {
     /**
      * including computing (moving) threshold
      */
-    private void computeTrain() {
+    public void computeTrain() {
         computeMajority();
         computeMSE();
         Collections.sort(results); //iterate in ascending order
