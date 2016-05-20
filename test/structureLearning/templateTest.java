@@ -79,7 +79,7 @@ public class templateTest {
     @Test
     public void testLRNN() {
         StructureLearning sli = new StructureLearning();
-        String arguments = "-e ../in/muta/test/train -test ../in/muta/test/test -r ../in/muta/test/template.txt";
+        String arguments = "-e ../in/muta/test3/examples.txt -r ../in/muta/test3/template.txt";
         GroundedDataset initDataset = sli.init(arguments);
 
         List<Sample> train = initDataset.sampleSplitter.getTrain();

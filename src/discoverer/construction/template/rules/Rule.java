@@ -65,6 +65,10 @@ public abstract class Rule implements Serializable {
         }
 
         SubKL head = getHead();
+        if (head.termsList.isEmpty()) {
+            return; //TODO, this shouldn't happen
+        }
+        
         for (int i = 0; i < vars.size(); i++) {
             Variable var = head.getTerm(i);
             Variable boundedVar = vars.get(i);
