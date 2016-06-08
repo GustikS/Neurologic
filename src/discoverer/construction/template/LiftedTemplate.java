@@ -119,6 +119,9 @@ public class LiftedTemplate extends LightTemplate implements Serializable {
         for (KappaRule kr : k.getRules()) {
             Lambda lam = kr.getBody().getParent();
             queue.add(lam);
+            if (rules.contains(kr)) {
+                return;
+            }
             rules.add(kr);
         }
     }
@@ -126,6 +129,9 @@ public class LiftedTemplate extends LightTemplate implements Serializable {
     private void getRules(Lambda l) {
         getLambdas().add(l);
         if (l.getRule() == null) {
+            return;
+        }
+        if (rules.contains(l.getRule())) {
             return;
         }
         rules.add(l.getRule());

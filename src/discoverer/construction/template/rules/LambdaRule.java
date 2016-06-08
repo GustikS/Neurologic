@@ -17,7 +17,7 @@ public class LambdaRule extends Rule implements Serializable {
     private Double lowerBound;
 
     public LambdaRule() {
-        body = new ArrayList<SubK>();
+        body = new ArrayList<>();
         drawn = false;
     }
 
@@ -127,10 +127,59 @@ public class LambdaRule extends Rule implements Serializable {
         int score = 0;
         for (SubK sk : body) {
             //get number of remaining free vars other than var for each SubK
-            if (Global.relativeVariableSelection)
-            score += sk.countScoreFor2(var);
+            if (Global.relativeVariableSelection) {
+                score += sk.countScoreFor2(var);
+            }
         }
 
         return score;  //return number of (remaining) problems for this var as a negative value!
+    }
+
+    @Override
+    public Rule getUnbindClone() {
+        LambdaRule clone = new LambdaRule();
+
+        //clone and unbind the head
+        SubL sl = new SubL(this.head.getParent(), true);
+        for (Variable t : this.head.getTerms()) {
+            Variable tt = null;
+            if (!clone.unbound.contains(t)) {
+                tt = new Variable(t.name);
+                clone.unbound.add(tt);
+            } else {
+                for (Variable var : clone.unbound) {
+                    if (t.equals(var)) {
+                        tt = var;
+                        break;
+                    }
+                }
+            }
+            sl.addVariable(tt);
+        }
+        clone.addHead(sl);
+
+        //clone and unbind the body
+        for (SubK sk : this.body) {
+            SubK sk2 = new SubK(sk.getParent(), true);
+            for (Variable t : sk.getTerms()) {
+                Variable tt = null;
+                if (!clone.unbound.contains(t)) {
+                    tt = new Variable(t.name);
+                    clone.unbound.add(tt);
+                } else {
+                    for (Variable var : clone.unbound) {
+                        if (t.equals(var)) {
+                            tt = var;
+                            break;
+                        }
+                    }
+                }
+                sk2.addVariable(tt);
+            }
+            clone.body.add(sk2);
+        }
+
+        clone.originalName = this.originalName;
+        return clone;
     }
 }

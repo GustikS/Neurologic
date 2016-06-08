@@ -58,6 +58,11 @@ public class SampleSplitter implements Serializable {
         List<Sample> positives = getPositives(ex);
         List<Sample> negatives = getNegatives(ex);
 
+        if (ex.size() < k) {
+            Glogger.err("Too many fold and too few examples!!");
+            return;
+        }
+
         int foldLen = (int) Math.floor((double) ex.size() / k);
         //repaired fold count - extra fold for remaining samples
         foldCount = k;

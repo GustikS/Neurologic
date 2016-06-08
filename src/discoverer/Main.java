@@ -26,7 +26,7 @@ public class Main {
     //cutoff on example number
     private static final String defaultMaxExamples = "10000";  //we can decrease the overall number of examples (stratified) for speedup
     //
-    public static String defaultLearningSteps = "1000";  //learnSteps per epocha
+    public static String defaultLearningSteps = "3000";  //learnSteps per epocha
     public static String defaultLearningEpochs = "1";  //learn epochae = grounding cycles
     //  learnEpochae * LearningSteps = learning steps for AVG variant
     private static final String defaultFolds = "1"; // 1 = training only

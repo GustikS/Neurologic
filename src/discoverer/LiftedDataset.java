@@ -94,23 +94,23 @@ public class LiftedDataset implements Serializable {
         //factory + subfactories initialization
         TemplateFactory nf = null;
         //constructs the whole L-K network from rules with support of grounded classes and element mappers, return LAST line rule's literal(=KL)!
-        LiftedTemplate tempate = null;
+        LiftedTemplate template = null;
 
         if (rules.length == 0) {
             Glogger.out("network template -" + name + "- is empty, may try to load manually if GUI is on...");
             if (Global.isLoadLiftedNetworkObject()) {
-                tempate = LiftedTemplate.loadNetwork();
-                return tempate;
+                template = LiftedTemplate.loadNetwork();
+                return template;
             }
             return null;
         }
 
         nf = new TemplateFactory();
-        tempate = nf.construct(rules);
+        template = nf.construct(rules);
 
-        tempate.exportTemplate(name);
-        tempate.exportWeightMatrix(name);
-        return tempate;
+        template.exportTemplate(name);
+        template.exportWeightMatrix(name);
+        return template;
     }
 
     /**

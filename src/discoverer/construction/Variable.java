@@ -12,6 +12,29 @@ public class Variable extends Element implements Serializable {
     private int bind = -1;
     private boolean dummy;
 
+    @Override
+    public int hashCode() {
+        return name.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Variable other = (Variable) obj;
+        if (!this.name.equals(other.name)) {
+            return false;
+        }
+        return true;
+    }
+
     public Variable(String n) {
         super(n);
         dummy = false;

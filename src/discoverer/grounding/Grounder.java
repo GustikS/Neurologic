@@ -15,6 +15,7 @@ import discoverer.construction.template.rules.Rule;
 import discoverer.construction.template.rules.SubK;
 import discoverer.construction.template.rules.SubL;
 import discoverer.construction.Variable;
+import discoverer.construction.template.rules.SubKL;
 import discoverer.global.Glogger;
 import discoverer.grounding.evaluation.Evaluator;
 import discoverer.learning.functions.Activations;
@@ -38,16 +39,22 @@ public class Grounder {
     private final boolean debugEnabled = Global.isDebugEnabled();
 
     private Example example;
-    private HashMap<Object, GroundedTemplate> cache;
-    
+    private HashMap<SubKL, GroundedTemplate> cache;
+    private HashSet<SubKL> openAtomList;    //for recursion
+    private HashMap<String, Integer> openRuleList;   //for recursion
+
     public ForwardChecker forwardChecker = new ForwardChecker();
 
     private void prepareCache() {
         if (cacheEnabled) {
             if (cache == null) {
-                cache = new HashMap<Object, GroundedTemplate>();
+                cache = new HashMap<>();
+                openAtomList = new HashSet<>(); //these are for recursion
+                openRuleList = new HashMap<>();
             } else {
                 cache.clear();
+                openAtomList.clear();
+                openRuleList.clear();
             }
         }
     }
@@ -72,14 +79,13 @@ public class Grounder {
         GroundedTemplate b = kl instanceof Kappa ? solveKappaGivenVars((Kappa) kl, null) : solveLambdaGivenVars((Lambda) kl, null);    //always Kappa only...first literal is without variables(ignoring them)
 
         //forwardChecker.printRuns();
-
         if (b == null) {
             Glogger.err("Warning, unentailed example by the template!" + e.hash);
             return new GroundedTemplate(Global.getFalseAtomValue());
         }
-        
+
         b.constantNames = e.constantNames;
-        
+
         //ForwardChecker.clear();
         return b;   //warning - now can return null if the given KL program and Example e have no grounded solution! //replaced with -1 empty GroundedTemplate
     }
@@ -106,7 +112,7 @@ public class Grounder {
         List<Double> inputsAvg = new ArrayList<>();
         boolean cancel = true;
         for (KappaRule r : k.getRules()) {
-            GroundedTemplate tmp = headMatching(r, vars);  //tmp.val is consisten but valAvg is not, needs to be computed here
+            GroundedTemplate tmp = ruleHeadMatching(r, vars);  //tmp.val is consistent but valAvg is not, needs to be computed here
             if (tmp == null || tmp.getLast() == null) { //only if there is no true grounding found for this rule then skip
                 continue;
             }
@@ -168,7 +174,7 @@ public class Grounder {
             System.out.println("Solve lambda\t" + l + "\tvariables\t" + vars);
         }
 
-        GroundedTemplate b = headMatching(l.getRule(), vars);      //there is only one rule for lambda node
+        GroundedTemplate b = ruleHeadMatching(l.getRule(), vars);      //there is only one rule for lambda node
 
         if (b == null || b.getLast() == null) {
             return null;    //if I didn't solve this Lambda's rule(+vars), there is nothing to send!
@@ -214,19 +220,37 @@ public class Grounder {
      * solving ONE (lambda/kappa) rule - consuming variables and binding rule r
      *
      * @param r
-     * @param vars - variables binded from the above call (to be unified with the head)
+     * @param vars - variables binded from the above call (to be unified with
+     * the head)
      * @return
      */
-    public GroundedTemplate headMatching(Rule r, List<Variable> vars) {
+    public GroundedTemplate ruleHeadMatching(Rule r, List<Variable> vars) {
         if (debugEnabled) {
             System.out.println("Solving rule\t" + r + " with \tvariables\t" + vars);
         }
 
-        r.headUnification(vars);    //head of rule variable binding/unification/matching from previous line/call
-        r.setLastBindedVar(null);   //
+        //check if we are on a recursive path
+        if (openRuleList.containsKey(r.originalName)) {
+            //actually it would be better to replace this with a remember-unbind-solve-bind procedure instead of cloning
+            r = r.getUnbindClone(); //gets a copy of this repeated (recursive) rule, which disregards all the previous variable-binding! (like a new stack allocation)
+            openRuleList.put(r.originalName, openRuleList.get(r.originalName) + 1);
+        } else {
+            openRuleList.put(r.originalName, 0);
+        }
 
+        r.ruleHeadUnification(vars);    //head of rule variable binding/unification/matching from previous line/call
+        r.setLastBindedVar(null);   //
+        
         //-------------------//we will assemble the average on the level of rules(bodies)
-        return bindAllVarsInRule(r, new GroundedTemplate());  //extensive combination binding of unbound variables
+        GroundedTemplate result = bindAllVarsInRule(r, new GroundedTemplate()); //extensive combination binding of unbound variables
+
+        int depth = openRuleList.get(r.originalName);
+        if (depth > 0) {
+            openRuleList.put(r.originalName, depth - 1);
+        } else {
+            openRuleList.remove(r.originalName);
+        }
+        return result;
     }
 
     /**
@@ -273,7 +297,7 @@ public class Grounder {
                 System.out.println("\t toBind = " + toBind + " -> trying constant " + example.constantNames.get(i) + " of total " + example.getConstCount() + " in the example");
             }
             if (Global.alldiff && r.usedTerms.contains(i)) {
-                 continue; //ALLDIFF functionality - that's it :)
+                continue; //ALLDIFF functionality - that's it :)
             }
             r.bind(toBind, i);
             r.setLastBindedVar(toBind);
@@ -498,9 +522,16 @@ public class Grounder {
      * @param o
      * @return
      */
-    public GroundedTemplate cachedSolveGroundLiteral(Object o) {
+    public GroundedTemplate cachedSolveGroundLiteral(SubKL o) {
+        if (openAtomList.contains(o)) {
+            return null;    //we are in a recursive cycle here! -> return null, because we just cannot finish proof in this branch based on the same fact we came from
+        }
+        openAtomList.add(o);
+
         if (!cacheEnabled) {
-            return solve(o);
+            GroundedTemplate solved = solve(o);
+            openAtomList.remove(o);
+            return solved;
         }
 
         GroundedTemplate b;
@@ -521,6 +552,9 @@ public class Grounder {
                 cache.put(sl.clone(), b);    //we store this (false) SubL with corresponding (empty) ball
             }
         }
+
+        openAtomList.remove(o);
+
         if (b != null) {
             return b.clone();
         }

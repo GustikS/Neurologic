@@ -59,7 +59,7 @@ public abstract class Rule implements Serializable {
      *
      * @param vars
      */
-    public void headUnification(List<Variable> vars) {
+    public void ruleHeadUnification(List<Variable> vars) {
         if (vars == null || vars.isEmpty()) {
             return;
         }
@@ -68,7 +68,7 @@ public abstract class Rule implements Serializable {
         if (head.termsList.isEmpty()) {
             return; //TODO, this shouldn't happen
         }
-        
+
         for (int i = 0; i < vars.size(); i++) {
             Variable var = head.getTerm(i);
             Variable boundedVar = vars.get(i);
@@ -115,4 +115,7 @@ public abstract class Rule implements Serializable {
     }
 
     protected abstract SubKL getHead();
+
+    public abstract Rule getUnbindClone();
+
 }

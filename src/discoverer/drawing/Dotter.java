@@ -31,6 +31,7 @@ public class Dotter {
     protected static List<String> dot = new ArrayList<String>();
     protected static final String dotFileName = "graph.dot";
     protected static Set<Object> visited = new HashSet<Object>();
+    protected static Set<Object> open = new HashSet<Object>();
     protected static Set<KappaRule> actives;
 
     public static DecimalFormat df = new DecimalFormat("##.###################");
@@ -80,6 +81,7 @@ public class Dotter {
         writeToFile();
         convertToImage();
         visited.clear();
+        open.clear();
         dot.clear();
     }
 
@@ -96,6 +98,7 @@ public class Dotter {
         writeToFile();
         convertToImage();
         visited.clear();
+        open.clear();
         dot.clear();
     }
 
@@ -113,6 +116,7 @@ public class Dotter {
         writeToFile();
         convertToImage();
         visited.clear();
+        open.clear();
         dot.clear();
     }
 
@@ -136,6 +140,7 @@ public class Dotter {
         writeToFile();
         convertToImage();
         visited.clear();
+        open.clear();
         dot.clear();
     }
 
@@ -151,7 +156,8 @@ public class Dotter {
 
     private static void draw(KappaRule kr) {
         //if (!visited.contains(kr) && actives.contains(kr)) {
-        if (!visited.contains(kr)) {
+        if (!visited.contains(kr) && !open.contains(kr)) {
+            open.add(kr);
             String s = "\"" + kr.getHead().getParent().getName() + "\noffset: " + kr.getHead().getParent().offset + "\" -> \"" + kr.getBody().getParent().getName() + "\" [ label = \"" + df.format(kr.getWeight()) + "\" ];";
             dot.add(s);
             visited.add(kr);
@@ -164,12 +170,11 @@ public class Dotter {
     }
 
     private static void draw(LambdaRule lr) {
-        if (lr != null) {
+        if (lr != null && !visited.contains(lr) && !open.contains(lr)) {
             for (SubK sk : lr.getBody()) {
-                if (!visited.contains(lr)) {
-                    String s = "\"" + lr.getHead().getParent().getName() + "\" -> \"" + sk.getParent().getName() + "\noffset: " + sk.getParent().offset + "\";";
-                    dot.add(s);
-                }
+                open.add(lr);
+                String s = "\"" + lr.getHead().getParent().getName() + "\" -> \"" + sk.getParent().getName() + "\noffset: " + sk.getParent().offset + "\";";
+                dot.add(s);
                 draw(sk.getParent());
             }
         }

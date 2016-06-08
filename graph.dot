@@ -1,14 +1,16 @@
 digraph G {
-"finalLambda" -> "finalKappa
-offset: 0.001827385102345147";
-"finalKappa
-offset: 0.001827385102345147" -> "lambda_A1" [ label = "0,13999381361982444" ];
-"lambda_A1" -> "atomKappa_A2
-offset: 0.02521575478409943";
-"atomKappa_A2
-offset: 0.02521575478409943" -> "bond" [ label = "0,011864989176039842" ];
-"lambda_A1" -> "apAtom60
+"finalLambda" -> "finalK
 offset: 0.0879114052101766";
-"apAtom60
-offset: 0.0879114052101766" -> "h_3" [ label = "0,11638463772401231" ];
+"finalK
+offset: 0.0879114052101766" -> "pathL" [ label = "1" ];
+"pathL" -> "nextK
+offset: 0.06125980504647721";
+"nextK
+offset: 0.06125980504647721" -> "nextL" [ label = "1" ];
+"pathL" -> "pathK
+offset: 0.2755221624994224";
+"pathK
+offset: 0.2755221624994224" -> "nextL" [ label = "1" ];
+"pathK
+offset: 0.2755221624994224" -> "pathL" [ label = "1" ];
 }

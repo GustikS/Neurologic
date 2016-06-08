@@ -6,6 +6,7 @@ import discoverer.construction.template.rules.SubL;
 import discoverer.construction.template.rules.SubK;
 import discoverer.construction.template.WeightInitializator;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Objects;
 
@@ -16,7 +17,6 @@ import java.util.Objects;
 public class KappaRule extends Rule implements Serializable {
 
     //public static LinkedList<KappaRule> counter = new LinkedList<>();
-    
     private double weight;    //I don't want this to be a public object anymore
     public double step;
     //private Double gradient;
@@ -64,8 +64,8 @@ public class KappaRule extends Rule implements Serializable {
         //step = 0.01;
         setWeight(w != 0 ? w : WeightInitializator.getWeight());
         drawn = false;
-        
-    //    counter.add(this);
+
+        //    counter.add(this);
     }
 
     public boolean isDrawn() {
@@ -93,7 +93,6 @@ public class KappaRule extends Rule implements Serializable {
         gradient = null;
     }
      */
-    
     public void setHead(SubK h) {
         head = h;
     }
@@ -136,5 +135,52 @@ public class KappaRule extends Rule implements Serializable {
         }
 
         return super.unbound.iterator().next();
+    }
+
+    @Override
+    public KappaRule getUnbindClone() {
+        KappaRule clone = new KappaRule(this.weight);
+
+        //important that this also sets the unbound list of terms - should be full now, i.e. forget all the bindings!
+        //create new unbind body
+        SubL sl = new SubL(this.body.getParent(), true);
+        for (Variable t : this.body.getTerms()) {
+            Variable tt = null;
+            if (!clone.unbound.contains(t)) {
+                tt = new Variable(t.name);
+                clone.unbound.add(tt);
+            } else {
+                for (Variable var : clone.unbound) {
+                    if (t.equals(var)) {
+                        tt = var;
+                        break;
+                    }
+                }
+            }
+            sl.addVariable(tt);
+        }
+        clone.body = sl;
+
+        //and unbound head
+        SubK sk = new SubK(this.head.getParent(), true);
+        for (Variable t : this.head.getTerms()) {
+            Variable tt = null;
+            if (!clone.unbound.contains(t)) {
+                tt = new Variable(t.name);
+                clone.unbound.add(tt);
+            } else {
+                for (Variable var : clone.unbound) {
+                    if (t.equals(var)) {
+                        tt = var;
+                        break;
+                    }
+                }
+            }
+            sk.addVariable(tt);
+        }
+        clone.setHead(sk);
+
+        clone.originalName = this.originalName;
+        return clone;
     }
 }

@@ -163,7 +163,10 @@ public class Results {
         if (actualResult == null) {
             return true;
         }
-        if (actualResult.getMse() > res2.actualResult.getMse()) {
+        if (actualResult.getError() > res2.actualResult.getError()) {
+            return true;
+        }
+        if (actualResult.getError() == res2.actualResult.getError() && actualResult.getMse() > res2.actualResult.getMse()) {
             return true;
         }
         return false;
@@ -183,7 +186,7 @@ public class Results {
         actualResult.setError(error / results.size());
     }
 
-    void computeMSE(){
+    void computeMSE() {
         double mse = 0;
         for (Result result : results) {
             mse += (result.getExpected() - result.getActual()) * (result.getExpected() - result.getActual());
@@ -191,7 +194,7 @@ public class Results {
         mse /= results.size();
         actualResult.setMse(mse);
     }
-    
+
     void computeMajority() {
         int pos = 0;
         for (Result result : results) {
