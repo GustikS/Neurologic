@@ -32,11 +32,13 @@ public class Recursion {
 
     @Test
     public void initLRNN() {
-        Global.debugEnabled = false;
+        Global.debugEnabled = true;
         Global.drawing = true;
+        //
         StructureLearning sli = new StructureLearning();
         String arguments = "-r ../in/recursion/template.txt -e ../in/recursion/sample.txt";
         GroundedDataset dataset = sli.init(arguments);
+
         Dotter.draw(dataset.template, "liftedAfterInit");
         int i = 0;
         Set<Kappa> allKappas = new HashSet<>();

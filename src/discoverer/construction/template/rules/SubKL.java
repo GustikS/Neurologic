@@ -12,7 +12,14 @@ import java.util.*;
 public abstract class SubKL implements Serializable {
 
     protected List<Variable> termsList;
-
+    /*
+    @Override
+    public abstract int hashCode();
+    
+    @Override
+    public abstract boolean equals(Object o);
+    */
+    
     public abstract Integer getId();
 
     public List<Variable> getTermsList() {

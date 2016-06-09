@@ -112,7 +112,7 @@ public class Grounder {
         List<Double> inputsAvg = new ArrayList<>();
         boolean cancel = true;
         for (KappaRule r : k.getRules()) {
-            GroundedTemplate tmp = ruleHeadMatching(r, vars);  //tmp.val is consistent but valAvg is not, needs to be computed here
+            GroundedTemplate tmp = ruleHeadMatching(k, r, vars);  //tmp.val is consistent but valAvg is not, needs to be computed here
             if (tmp == null || tmp.getLast() == null) { //only if there is no true grounding found for this rule then skip
                 continue;
             }
@@ -174,7 +174,7 @@ public class Grounder {
             System.out.println("Solve lambda\t" + l + "\tvariables\t" + vars);
         }
 
-        GroundedTemplate b = ruleHeadMatching(l.getRule(), vars);      //there is only one rule for lambda node
+        GroundedTemplate b = ruleHeadMatching(l, l.getRule(), vars);      //there is only one rule for lambda node
 
         if (b == null || b.getLast() == null) {
             return null;    //if I didn't solve this Lambda's rule(+vars), there is nothing to send!
@@ -219,36 +219,75 @@ public class Grounder {
     /**
      * solving ONE (lambda/kappa) rule - consuming variables and binding rule r
      *
+     * @param parent
      * @param r
      * @param vars - variables binded from the above call (to be unified with
      * the head)
      * @return
      */
-    public GroundedTemplate ruleHeadMatching(Rule r, List<Variable> vars) {
+    public GroundedTemplate ruleHeadMatching(KL parent, Rule r, List<Variable> vars) {
         if (debugEnabled) {
             System.out.println("Solving rule\t" + r + " with \tvariables\t" + vars);
         }
 
-        //check if we are on a recursive path
+        //check if we are on a recursive path and if so, clone this rule
+        Rule r2;
         if (openRuleList.containsKey(r.originalName)) {
             //actually it would be better to replace this with a remember-unbind-solve-bind procedure instead of cloning
-            r = r.getUnbindClone(); //gets a copy of this repeated (recursive) rule, which disregards all the previous variable-binding! (like a new stack allocation)
-            openRuleList.put(r.originalName, openRuleList.get(r.originalName) + 1);
+            r2 = r.getUnbindClone(); //gets a copy of this repeated (recursive) rule, which disregards all the previous variable-binding! (like a new stack allocation)
+            //reset the POINTER of the Parent to this NEW RULE
+            if (parent instanceof Lambda) {
+                Lambda par = (Lambda) parent;
+                par.setRule((LambdaRule) r2);
+            } else {
+                Kappa par = (Kappa) parent;
+                for (KappaRule kr : par.getRules()) {
+                    if (kr.equals(r)) {
+                        kr = (KappaRule) r2;
+                    }
+                }
+            }
+            openRuleList.put(r2.originalName, openRuleList.get(r2.originalName) + 1);
         } else {
-            openRuleList.put(r.originalName, 0);
+            r2 = r;
+            openRuleList.put(r2.originalName, 0);
         }
 
-        r.ruleHeadUnification(vars);    //head of rule variable binding/unification/matching from previous line/call
-        r.setLastBindedVar(null);   //
-        
-        //-------------------//we will assemble the average on the level of rules(bodies)
-        GroundedTemplate result = bindAllVarsInRule(r, new GroundedTemplate()); //extensive combination binding of unbound variables
+        if (forwardCheckEnabled) {
+            forwardChecker.openSet.add(parent);
+        }
 
-        int depth = openRuleList.get(r.originalName);
+        r2.ruleHeadUnification(vars);    //head of rule variable binding/unification/matching from previous line/call
+        r2.setLastBindedVar(null);   //
+
+        //-------------------//we will assemble the average on the level of rules(bodies)
+        GroundedTemplate result = bindAllVarsInRule(r2, new GroundedTemplate()); //extensive combination binding of unbound variables
+
+        //solved, so remove one instance of this opened rule from openRuleList
+        int depth = openRuleList.get(r2.originalName);
         if (depth > 0) {
-            openRuleList.put(r.originalName, depth - 1);
+            openRuleList.put(r2.originalName, depth - 1);
         } else {
-            openRuleList.remove(r.originalName);
+            openRuleList.remove(r2.originalName);
+        }
+        
+        if (forwardCheckEnabled) {
+            forwardChecker.openSet.remove(parent);
+        }
+        
+        //if the clone r2 is a new rule, reset parent rule POINTER to the ORIGINAL RULE
+        if (r2 != r) {
+            if (parent instanceof Lambda) {
+                Lambda par = (Lambda) parent;
+                par.setRule((LambdaRule) r);
+            } else {
+                Kappa par = (Kappa) parent;
+                for (KappaRule kr : par.getRules()) {
+                    if (kr.equals(r)) {
+                        kr = (KappaRule) r;
+                    }
+                }
+            }
         }
         return result;
     }
@@ -331,7 +370,7 @@ public class Grounder {
      */
     public GroundedTemplate solveBound(Rule r, GroundedTemplate best) {
         if (debugEnabled) {
-            System.out.println("Dispatching solving bound\t" + r);
+            System.out.println("Dispatching solving bound rule\t" + r);
         }
 
         if (r instanceof KappaRule) {
@@ -350,7 +389,7 @@ public class Grounder {
      */
     public GroundedTemplate solveBoundKR(KappaRule kr) {
         if (debugEnabled) {
-            System.out.println("Solving bound\t" + kr);
+            System.out.println("Solving bound rule's body of \t" + kr);
         }
 
         SubL body = kr.getBody();

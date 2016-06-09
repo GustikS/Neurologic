@@ -9,6 +9,7 @@ import discoverer.construction.template.rules.SubK;
 import discoverer.construction.template.rules.SubL;
 import discoverer.construction.Variable;
 import discoverer.construction.example.Example;
+import discoverer.construction.template.KL;
 import discoverer.construction.template.rules.SubKL;
 import discoverer.global.Global;
 import discoverer.global.Glogger;
@@ -20,8 +21,8 @@ import java.util.*;
 public class ForwardChecker {
 
     private Example example;
-    private HashMap<SubKL, Boolean> cache;
-    private HashSet<SubKL> openList;
+    private HashMap<SubKL, Boolean> cache = new HashMap<>();
+    public HashSet<KL> openSet = new HashSet<>();
 
     private final boolean cacheEnabled = Global.isCacheEnabled();
     private final boolean debugEnabled = Global.isDebugEnabled();
@@ -36,7 +37,7 @@ public class ForwardChecker {
 
     public void clear() {
         cache.clear();
-        openList.clear();
+        openSet.clear();
     }
 
     public boolean shouldContinue(Rule r, Example e) {
@@ -45,12 +46,7 @@ public class ForwardChecker {
             example = e;
 
             if (cacheEnabled) {
-                if (cache == null) {
-                    cache = new HashMap<>();
-                    openList = new HashSet<>();
-                } else {
-                    clear();
-                }
+                clear();
             }
         }
 
@@ -78,11 +74,6 @@ public class ForwardChecker {
             return checkCompute(o);
         }
 
-        if (openList.contains(o)) {
-            return true;    //we are in a recursive cycle here! -> return true because we actually do not know (and thus cannot prune)
-        }
-        openList.add(o);
-        
         Boolean b;
         b = cache.get(o);
         if (b == null) {
@@ -99,11 +90,6 @@ public class ForwardChecker {
             return checkCompute(o);
         }
 
-        if (openList.contains(o)) {
-            return true;    //we are in a recursive cycle here! -> return true because we actually do not know (and thus cannot prune)
-        }
-        openList.add(o);
-
         Boolean b;
         b = cache.get(o);
         if (b == null) {
@@ -115,30 +101,45 @@ public class ForwardChecker {
     }
 
     private boolean checkCompute(SubK sk) {
-        if (openList.contains(sk)) {
-            return true;    //we are in a recursive cycle here! -> return true because we actually do not know (and thus cannot prune)
-        }
-        openList.add(sk);
-        
+
         if (sk.isElement()) {
             return example.contains(sk);
         }
 
-        Kappa k = sk.getParent();
-        return check(k, sk.getTerms());
-    }
-
-    private boolean checkCompute(SubL sl) {
-        if (openList.contains(sl)) {
+        if (openSet.contains(sk.getParent())) {
+            /*
+            KL[] toArray = openSet.toArray(new KL[openSet.size()]);
+            for (int i = 0; i < toArray.length; i++) {
+                System.out.println(toArray[0].hashCode() == toArray[i].hashCode() && toArray[0].equals(toArray[i]));
+            }
+            */
             return true;    //we are in a recursive cycle here! -> return true because we actually do not know (and thus cannot prune)
         }
-        openList.add(sl);
+        openSet.add(sk.getParent());
+
+        boolean check = check(sk.getParent(), sk.getTerms());
         
+        openSet.remove(sk.getParent());
+        
+        return check;
+    }
+
+    private boolean checkCompute(SubL sl) { 
+
         if (sl.isElement()) {
             return example.contains(sl);
         }
 
-        return check(sl.getParent(), sl.getTerms());
+        if (openSet.contains(sl.getParent())) {
+            return true;    //we are in a recursive cycle here! -> return true because we actually do not know (and thus cannot prune)
+        }
+        openSet.add(sl.getParent());
+
+        boolean check = check(sl.getParent(), sl.getTerms());
+        
+        openSet.remove(sl.getParent());
+        
+        return check;
     }
 
     private boolean check(Kappa k, List<Variable> vars) {
@@ -165,6 +166,20 @@ public class ForwardChecker {
         return ret;
     }
 
+    private boolean check(LambdaRule lr, List<Variable> vars) {
+
+        lr.ruleHeadUnification(vars);
+        Variable lastBindedTerm = lr.getLastBindedVar();
+
+        boolean ret = lastBindedTerm == null ? checkAll(lr) : checkConstrainedToVar(lr, lastBindedTerm);
+
+        if (vars != null) {
+            lr.unbindHead();
+        }
+
+        return ret;
+    }
+
     private boolean checkConstrainedToVar(LambdaRule lr, Variable lastBinded) {
         for (SubK sk : lr.getBody()) {
             if (sk.contains(lastBinded) && !check(sk)) {
@@ -181,21 +196,6 @@ public class ForwardChecker {
                 return false;
             }
         }
-
         return true;
-    }
-
-    private boolean check(LambdaRule lr, List<Variable> vars) {
-
-        lr.ruleHeadUnification(vars);
-        Variable lastBindedTerm = lr.getLastBindedVar();
-
-        boolean ret = lastBindedTerm == null ? checkAll(lr) : checkConstrainedToVar(lr, lastBindedTerm);
-
-        if (vars != null) {
-            lr.unbindHead();
-        }
-
-        return ret;
     }
 }

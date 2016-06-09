@@ -89,6 +89,7 @@ public final class Global {
     
     //---Structure Learning parameters
     public static boolean regularizedBackprop = false;
+    public static boolean forwardchecker;
     
 
     public static void setupThreads() {
