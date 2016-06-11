@@ -31,7 +31,7 @@ public class BackpropDown {
     private static Weights weights = new Weights(); //storing intermediate weight updates(Kappa + Double tuple updates)
     static double learnRate;
 
-    public static Weights getNewWeights(GroundedTemplate b, Example e) {
+    public static Weights getNewWeights(GroundedTemplate b, double targetVal) {
         learnRate = Settings.learnRate;
         weights.clear();
         GroundKL o = b.getLast(); //final Kappa node(assuming Kappa output only anyway)
@@ -39,7 +39,7 @@ public class BackpropDown {
             return weights;
         }
 
-        double baseDerivative = -1 * (e.getExpectedValue() - b.valMax);  //output error-level derivative
+        double baseDerivative = -1 * (targetVal - b.valMax);  //output error-level derivative
 
         if (o instanceof GroundKappa) {
             derive((GroundKappa) o, baseDerivative);

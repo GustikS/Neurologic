@@ -10,7 +10,6 @@ import java.io.Serializable;
 public class Lambda extends KL implements Serializable {
 
     private LambdaRule rule;
-    private Integer id;
 
     public Lambda(String name) {
         super(name);
@@ -46,15 +45,4 @@ public class Lambda extends KL implements Serializable {
         return rule == null;
     }
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer i) {
-        id = i;
-    }
-
-    public boolean hasId() {
-        return id != null;
-    }
 }

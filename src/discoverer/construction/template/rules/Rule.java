@@ -2,6 +2,7 @@ package discoverer.construction.template.rules;
 
 import discoverer.construction.Variable;
 import discoverer.construction.template.rules.SubKL;
+import discoverer.global.Global;
 import java.io.Serializable;
 import java.util.*;
 
@@ -15,9 +16,12 @@ public abstract class Rule implements Serializable {
     private Variable lastBindedVar;
     public Set<Integer> usedTerms;
 
+    public LinkedHashSet<Variable> allVars;
+
     public Rule() {
         unbound = new HashSet<>();
         usedTerms = new HashSet<>();
+        allVars = new LinkedHashSet<>();
     }
 
     /*
@@ -58,32 +62,65 @@ public abstract class Rule implements Serializable {
      * line to find unification (while the name of variables might change)
      *
      * @param vars
+     * @return returns the OLD bindings! - or null if the unification fails!
      */
-    public void ruleHeadUnification(List<Variable> vars) {
+    public boolean ruleHeadUnification(List<Variable> vars) {
         if (vars == null || vars.isEmpty()) {
-            return;
+            return true;  //there is nothing to unify
         }
 
         SubKL head = getHead();
-        if (head.termsList.isEmpty()) {
-            return; //TODO, this shouldn't happen
+        if (Global.debugEnabled && head.termsList.size() != vars.size()) {
+            return false; //TODO, this shouldn't happen
         }
 
+        //and start new binding
         for (int i = 0; i < vars.size(); i++) {
-            Variable var = head.getTerm(i);
-            Variable boundedVar = vars.get(i);
-            if (boundedVar.isBind()) {
-                bind(var, boundedVar.getBind());
-            } else {
-                unbind(var);
-            }
+            Variable headVar = head.getTerm(i);
+            Variable newVar = vars.get(i);
+            if (newVar.isBind() && !headVar.isBind()) { //regular binding
+                bind(headVar, newVar.getBind());
+            } else if (!newVar.isBind() && headVar.isBind()) {  //reverse binding! - this can only happend in forwardchecker! (unbound queries)
+                bind(newVar, headVar.getBind());
+            } else if (newVar.isBind() && headVar.isBind() && newVar.getBind() != headVar.getBind()) {   //different binds - not unificable!
+                return false;
+            } //else do nothing - both binds are same (either bound or unbound)
         }
+        return true;   //return the old bindings!
     }
 
     /**
-     * unbind all of head's Terms(Terminals)
+     * like a rule head unification, but this always succeeds as it enforces the
+     * input binding onto the head literal (e.g. for restoration purpose)
+     *
+     * @param binding
      */
-    public void unbindHead() {
+    public void forceRuleUnification(int[] binding) {
+        int i = 0;
+        for (Variable var : allVars) {
+            if (binding[i] == -1) {
+                unbind(var);
+            } else {
+                bind(var, binding[i]);
+            }
+            i++;
+        }
+    }
+
+    public int[] getAllVariableBindings() {
+        int[] bindings = new int[allVars.size()];
+        int i = 0;
+        for (Variable var : allVars) {
+            bindings[i++] = var.getBind();
+        }
+        return bindings;
+    }
+
+    /**
+     * unbind all of head's Terms(Terminals) TODO - dangerous, do not do...use
+     * setHeadsBinding instead!
+     */
+    private void unbindHead() {
         SubKL head = getHead();
         for (Variable v : head.getTerms()) {
             unbind(v);
@@ -114,7 +151,7 @@ public abstract class Rule implements Serializable {
         return unbound.isEmpty();
     }
 
-    protected abstract SubKL getHead();
+    public abstract SubKL getHead();
 
     public abstract Rule getUnbindClone();
 

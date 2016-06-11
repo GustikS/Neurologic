@@ -4,6 +4,7 @@ import discoverer.construction.template.Kappa;
 import discoverer.construction.template.rules.SubK;
 import discoverer.construction.Variable;
 import discoverer.construction.template.rules.SubKL;
+import discoverer.construction.template.rules.SubL;
 import java.io.Serializable;
 import java.util.*;
 
@@ -27,12 +28,12 @@ public class Example implements Serializable {
     /**
      * new example from expected value and map of literal occurrences
      *
-     * @param exp
+     * @param expected
      * @param map
      * @param ihash
      */
-    public Example(Double exp, Map<Integer, List<Integer>> map, String ihash) {
-        targetVal = exp;
+    public Example(Double expected, Map<Integer, List<Integer>> map, String ihash) {
+        targetVal = expected;
         chunks = new Chunks();
         possibleChunks = map;
         hash = ihash;
@@ -129,5 +130,9 @@ public class Example implements Serializable {
     @Override
     public String toString() {
         return Double.toString(targetVal);
+    }
+
+    public double getFactValue(SubKL skl) {
+        return 1.0;
     }
 }

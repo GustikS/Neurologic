@@ -22,7 +22,7 @@ public class ForwardChecker {
 
     private Example example;
     private HashMap<SubKL, Boolean> cache = new HashMap<>();
-    public HashSet<KL> openSet = new HashSet<>();
+    public HashSet<KL> openLiteralSet = new HashSet<>();
 
     private final boolean cacheEnabled = Global.isCacheEnabled();
     private final boolean debugEnabled = Global.isDebugEnabled();
@@ -37,7 +37,7 @@ public class ForwardChecker {
 
     public void clear() {
         cache.clear();
-        openSet.clear();
+        openLiteralSet.clear();
     }
 
     public boolean shouldContinue(Rule r, Example e) {
@@ -51,7 +51,7 @@ public class ForwardChecker {
         }
 
         if (debugEnabled) {
-            System.out.print("[ForwardChecker]\t" + r + "\t-->\t usedTerms: " + r.usedTerms + "\t-->\t solveVars: " + r.unbound);
+            System.out.print("[ForwardChecker]: rule\t" + r + "\t-->\t usedTerms: " + r.usedTerms + "\t-->\t unboundVars: " + r.unbound);
         }
 
         boolean ret = r instanceof KappaRule ? check((KappaRule) r, null) : check((LambdaRule) r, null);
@@ -106,38 +106,38 @@ public class ForwardChecker {
             return example.contains(sk);
         }
 
-        if (openSet.contains(sk.getParent())) {
+        if (openLiteralSet.contains(sk.getParent())) {
             /*
             KL[] toArray = openSet.toArray(new KL[openSet.size()]);
             for (int i = 0; i < toArray.length; i++) {
                 System.out.println(toArray[0].hashCode() == toArray[i].hashCode() && toArray[0].equals(toArray[i]));
             }
-            */
+             */
             return true;    //we are in a recursive cycle here! -> return true because we actually do not know (and thus cannot prune)
         }
-        openSet.add(sk.getParent());
+        openLiteralSet.add(sk.getParent());
 
         boolean check = check(sk.getParent(), sk.getTerms());
-        
-        openSet.remove(sk.getParent());
+
+        boolean remove = openLiteralSet.remove(sk.getParent());
         
         return check;
     }
 
-    private boolean checkCompute(SubL sl) { 
+    private boolean checkCompute(SubL sl) {
 
         if (sl.isElement()) {
             return example.contains(sl);
         }
 
-        if (openSet.contains(sl.getParent())) {
+        if (openLiteralSet.contains(sl.getParent())) {
             return true;    //we are in a recursive cycle here! -> return true because we actually do not know (and thus cannot prune)
         }
-        openSet.add(sl.getParent());
+        openLiteralSet.add(sl.getParent());
 
         boolean check = check(sl.getParent(), sl.getTerms());
-        
-        openSet.remove(sl.getParent());
+
+        boolean remove = openLiteralSet.remove(sl.getParent());
         
         return check;
     }
@@ -157,26 +157,36 @@ public class ForwardChecker {
     }
 
     private boolean check(KappaRule kr, List<Variable> vars) {
-        kr.ruleHeadUnification(vars);
+        int[] bindingBefore = kr.getAllVariableBindings();
+        boolean unificationSuccess = kr.ruleHeadUnification(vars);
+        if (!unificationSuccess) {
+            kr.forceRuleUnification(bindingBefore);
+            return false;
+        }
+
         SubL sl = kr.getBody();
         boolean ret = check(sl);
-        if (vars != null) {
-            kr.unbindHead();
+
+        if (vars != null && !vars.isEmpty()) {
+            kr.forceRuleUnification(bindingBefore);
         }
         return ret;
     }
 
     private boolean check(LambdaRule lr, List<Variable> vars) {
-
-        lr.ruleHeadUnification(vars);
-        Variable lastBindedTerm = lr.getLastBindedVar();
-
-        boolean ret = lastBindedTerm == null ? checkAll(lr) : checkConstrainedToVar(lr, lastBindedTerm);
-
-        if (vars != null) {
-            lr.unbindHead();
+        int[] bindingBefore = lr.getAllVariableBindings();
+        boolean unificationSuccess = lr.ruleHeadUnification(vars);
+        if (!unificationSuccess) {
+            lr.forceRuleUnification(bindingBefore);
+            return false;
         }
 
+        Variable lastBindedTerm = lr.getLastBindedVar();
+        boolean ret = lastBindedTerm == null ? checkAll(lr) : checkConstrainedToVar(lr, lastBindedTerm);
+
+        if (vars != null && !vars.isEmpty()) {
+            lr.forceRuleUnification(bindingBefore);
+        }
         return ret;
     }
 

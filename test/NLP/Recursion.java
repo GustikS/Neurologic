@@ -34,9 +34,10 @@ public class Recursion {
     public void initLRNN() {
         Global.debugEnabled = true;
         Global.drawing = true;
+        Global.molecularTemplates = true;
         //
         StructureLearning sli = new StructureLearning();
-        String arguments = "-r ../in/recursion/template.txt -e ../in/recursion/sample.txt";
+        String arguments = "-r ../in/recursion/template2.txt -e ../in/recursion/sample.txt";
         GroundedDataset dataset = sli.init(arguments);
 
         Dotter.draw(dataset.template, "liftedAfterInit");

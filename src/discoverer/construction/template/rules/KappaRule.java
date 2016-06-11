@@ -95,6 +95,12 @@ public class KappaRule extends Rule implements Serializable {
      */
     public void setHead(SubK h) {
         head = h;
+        for (Variable t : h.getTermsList()) {
+            if (!t.isBind()) {
+                unbound.add(t);
+                allVars.add(t);
+            }
+        }
     }
 
     public void setBody(SubL b) {
@@ -102,6 +108,7 @@ public class KappaRule extends Rule implements Serializable {
         for (Variable t : b.getTermsList()) {
             if (!t.isBind()) {
                 unbound.add(t);
+                allVars.add(t);
             }
         }
     }
@@ -133,7 +140,6 @@ public class KappaRule extends Rule implements Serializable {
                 return var;
             }
         }
-
         return super.unbound.iterator().next();
     }
 

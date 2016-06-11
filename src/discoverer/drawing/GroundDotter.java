@@ -3,6 +3,7 @@ package discoverer.drawing;
 import discoverer.grounding.network.GroundKappa;
 import discoverer.grounding.network.GroundLambda;
 import discoverer.construction.template.rules.KappaRule;
+import discoverer.global.Global;
 import discoverer.global.Glogger;
 import discoverer.global.Tuple;
 import discoverer.grounding.evaluation.GroundedTemplate;
@@ -49,6 +50,14 @@ public class GroundDotter extends Dotter {
         }
     }
 
+    public static void draw(GroundedTemplate b, String name){
+        if (Global.getGrounding().equals(Global.groundingSet.avg)){
+            drawAVG(b, name);
+        } else {
+            drawMax(b, name);
+        }
+    }
+    
     public static void drawMax(GroundedTemplate b) {
         if (b == null) {
             return;

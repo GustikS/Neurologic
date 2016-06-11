@@ -14,7 +14,6 @@ public class Kappa extends KL implements Serializable {
     public double step;
     public double deltaW;
     //private Double gradient;
-    private Integer id;
 
     public Kappa(String name) {
         super(name);
@@ -69,24 +68,12 @@ public class Kappa extends KL implements Serializable {
         offset = d;
     }
 
-    public void setId(Integer i) {
-        id = i;
-    }
-
     public double getOffset() {
         return offset;
     }
 
     public boolean isElement() {
         return rules.isEmpty();
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public boolean hasId() {
-        return id != null;
     }
 
     public List<KappaRule> getRules() {

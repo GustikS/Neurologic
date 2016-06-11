@@ -43,30 +43,50 @@ import javax.swing.JFrame;
  */
 public class LiftedTemplate extends LightTemplate implements Serializable {
 
+    public LinkedHashSet<Rule> rules = new LinkedHashSet<>();   //=for network input/output file
+    private HashSet<Kappa> kappas = new HashSet<>();
+    private HashSet<Lambda> lambdas = new HashSet<>();
+    public HashMap<Integer, String> constantNames;
+
+    //------------
     public HashMap<String, Integer> weightMapping;  //Kappa offsets and KappaRule's weights to indicies in sharedWeights
 
     public HashMap<GroundKL, GroundNeuron> neuronMapping; //for checking if we have already visited this groundKL?
 
     //------------
     public GroundNetwork tmpActiveNet; //auxiliary to get reference from neurons to their mother network (without storing pointer in them cause of serialization)
-    public HashMap<Integer, String> tmpConstantNames;
 
     public KL last;
 
     LinkedList<KL> queue = new LinkedList<>();
+
     /*PriorityQueue<KL> queueSorted = new PriorityQueue<KL>(new Comparator<KL>() { //tmp for BFS
      public int compare(KL kl1, KL kl2) {
      return (kl1.toString().compareToIgnoreCase(kl2.toString()));    //lexicograhpical ordering
      }
      });*/
-
-    public LinkedHashSet<Rule> rules = new LinkedHashSet<>();   //=for network input/output file
-    private HashSet<Kappa> kappas = new HashSet<>();
-    private HashSet<Lambda> lambdas = new HashSet<>();
+    public LiftedTemplate() {
+    }
 
     public LiftedTemplate(double[] sharedW, HashMap<String, Integer> name2weights) {
         sharedWeights = sharedW;
         name2weight = name2weights;
+    }
+
+    public LiftedTemplate(KL kl) {
+        last = kl;
+        queue.add(kl);
+
+        (new File(weightFolder)).mkdirs();
+
+        while (!queue.isEmpty()) {
+            KL first = queue.remove();
+            if (first instanceof Kappa) {
+                this.getRules((Kappa) first);
+            } else {
+                getRules((Lambda) first);
+            }
+        }
     }
 
     public static LiftedTemplate loadNetwork() {
@@ -96,22 +116,6 @@ public class LiftedTemplate extends LightTemplate implements Serializable {
             Logger.getLogger(Saver.class.getName()).log(Level.SEVERE, null, ex);
         }
         return network;
-    }
-
-    public LiftedTemplate(KL kl) {
-        last = kl;
-        queue.add(kl);
-
-        (new File(weightFolder)).mkdirs();
-
-        while (!queue.isEmpty()) {
-            KL first = queue.remove();
-            if (first instanceof Kappa) {
-                this.getRules((Kappa) first);
-            } else {
-                getRules((Lambda) first);
-            }
-        }
     }
 
     private void getRules(Kappa k) {

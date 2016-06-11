@@ -12,22 +12,94 @@ import java.util.*;
 public abstract class SubKL implements Serializable {
 
     protected List<Variable> termsList;
-    /*
+
+    
+    public abstract KL getParent();
+
     @Override
-    public abstract int hashCode();
+    public abstract SubKL clone();
     
     @Override
-    public abstract boolean equals(Object o);
-    */
-    
-    public abstract Integer getId();
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(getParent().toString());
+        if (getTermsList().size() > 0) {
+            sb.append("(");
+            for (Variable v : getTermsList()) {
+                sb.append(v);
+                sb.append(",");
+            }
+            sb.replace(sb.length() - 1, sb.length(), ")");
+        }
+        return sb.toString();
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 17;
+        hash = 31 * hash + getParent().hashCode();
+        for (Variable term : termsList) {
+            int bind = term.getBind();
+            if (bind != -1) {
+                hash = 31 * hash + bind;
+            }
+        }
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null) {
+            return false;
+        }
+        if (!(o instanceof SubKL)) {
+            return false;
+        }
+
+        SubKL skl = (SubKL) o;
+
+        if (skl.getParent() != this.getParent()) {
+            return false;
+        }
+
+        for (int i = 0; i < getTermsList().size(); i++) {
+            int bind1 = this.getTerms().get(i).getBind();
+            int bind2 = skl.getTerms().get(i).getBind();
+            if (bind1 == -1 && bind2 != -1) {
+                return false;
+            }
+            if (bind1 != -1 && bind2 == -1) {
+                return false;
+            }
+            if (bind1 == -1 && bind2 == -1) {
+                continue;
+            }
+            if (bind1 != bind2) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public Integer getId() {
+        return getParent().getId();
+    }
+
+    public int[] getBinding() {
+        int[] bindings = new int[termsList.size()];
+        for (int i = 0; i < bindings.length; i++) {
+            bindings[i] = termsList.get(i).getBind();
+        }
+        return bindings;
+    }
 
     public List<Variable> getTermsList() {
         return termsList;
     }
 
     public SubKL() {
-        termsList = new ArrayList<Variable>();
+        termsList = new ArrayList<>();
     }
 
     public Variable getTerm(int i) {
@@ -40,10 +112,6 @@ public abstract class SubKL implements Serializable {
 
     public void addVariable(Variable t) {
         termsList.add(t);
-    }
-
-    public KL getParent() {
-        return null;
     }
 
     public boolean contains(Variable term) {

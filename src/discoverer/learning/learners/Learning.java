@@ -38,7 +38,7 @@ public class Learning {
 
     protected Results results = new Results();
     protected int progress = 0;
-    Grounder grounder = new Grounder();
+    public Grounder grounder = new Grounder();
 
     /**
      * AVG variant with no grounding-epochae implements strategy for number of

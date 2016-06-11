@@ -343,7 +343,6 @@ public class Main {
              sampleSet.network = new LightTemplate(sampleSet.network.sharedWeights, sampleSet.network.name2weight);
              */
             sampleSet.saveDataset(Settings.getDataset().replaceAll("-", "/") + ".ser");
-
         }
         return sampleSet;
     }

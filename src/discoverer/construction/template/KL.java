@@ -13,6 +13,8 @@ public abstract class KL extends Element implements Serializable {
     public double dropout;
     public Global.activationSet activation;
 
+    private Integer id;
+
     public KL() {
     }
 
@@ -24,7 +26,20 @@ public abstract class KL extends Element implements Serializable {
             dropout = Global.getDropout();
         }
     }
-    /*
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer i) {
+        id = i;
+    }
+
+    public boolean hasId() {
+        return id != null;
+    }
+
+    
     @Override
     public int hashCode() {
         return name.hashCode();
@@ -47,5 +62,4 @@ public abstract class KL extends Element implements Serializable {
         }
         return true;
     }
-     */
 }

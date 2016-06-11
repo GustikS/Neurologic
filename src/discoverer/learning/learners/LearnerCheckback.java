@@ -46,7 +46,7 @@ public class LearnerCheckback extends Learning {
                         double old = b.valMax;
                         //b.valMax = Evaluator.evaluateMax(b);  //forward propagation
                         //double old = b.valMax;
-                        Weights w = BackpropDown.getNewWeights(b, e);  //backpropagation
+                        Weights w = BackpropDown.getNewWeights(b, e.getExpectedValue());  //backpropagation
                         refreshWeights(w);  //update
                         b.valMax = Evaluator.evaluateMax(b);  //forward propagation
                         results.add(new Result(b.valMax, e.getExpectedValue()));
@@ -91,7 +91,7 @@ public class LearnerCheckback extends Learning {
                     double old = b.valAvg;
 
                     Glogger.debug("Example: " + e + "Weight change from last minibatch (after 1-bp over all other examples) " + old + " -> " + b.valAvg);
-                    Weights w = BackpropDownAvg.getNewWeights(b, e);  //backpropagation
+                    Weights w = BackpropDownAvg.getNewWeights(b, e.getExpectedValue());  //backpropagation
                     refreshWeights(w);  //update sharedWeights
                     b.valAvg = Evaluator.evaluateAvg(b);  //forward propagation
                     results.add(new Result(b.valAvg, e.getExpectedValue()));

@@ -31,7 +31,24 @@ public class LambdaRule extends Rule implements Serializable {
 
     public void addHead(SubL h) {
         head = h;
+        for (Variable t : h.getTermsList()) {
+            if (!t.isBind()) {
+                unbound.add(t);
+                allVars.add(t);
+            }
+        }
     }
+
+    public void addBodyConjunct(SubK e) {
+        body.add(e);
+        for (Variable t : e.getTerms()) {
+            if (!t.isBind()) {
+                unbound.add(t);
+                allVars.add(t);
+            }
+        }
+    }
+
     public boolean drawn;
 
     public boolean isDrawn() {
@@ -63,21 +80,6 @@ public class LambdaRule extends Rule implements Serializable {
             sb.replace(sb.length() - 1, sb.length(), ".");
         }
         return sb.toString();
-    }
-
-    /**
-     * adds grounded Kappa literal to body adds every not Binded variable to
-     * unbound Terminal List
-     *
-     * @param e
-     */
-    public void addBodyEl(SubK e) {
-        body.add(e);
-        for (Variable t : e.getTerms()) {
-            if (!t.isBind()) {
-                unbound.add(t);
-            }
-        }
     }
 
     public SubL getHead() {

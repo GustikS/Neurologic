@@ -33,7 +33,7 @@ public class RuleAggNeuron extends GroundNeuron {
 
     //public GroundLambda grl;
     RuleAggNeuron(GroundLambda gl, LiftedTemplate net) {
-        name = gl.toString(net.tmpConstantNames);
+        name = gl.toString(net.constantNames);
         activation = gl.getGeneral().activation;
         
         outputValue = gl.getValueAvg();

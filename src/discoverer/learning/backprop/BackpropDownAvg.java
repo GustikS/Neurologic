@@ -31,14 +31,14 @@ public class BackpropDownAvg {
 
     private static Weights weights = new Weights(); //storing intermediate weight updates(Kappa + Double tuple updates)
 
-    public static Weights getNewWeights(GroundedTemplate b, Example e) {
+    public static Weights getNewWeights(GroundedTemplate b, double targetVal) {
         weights.clear();
         GroundKL o = b.getLast(); //final Kappa node(assuming Kappa output only anyway)
         if (o == null) {
             return weights;
         }
 
-        double baseDerivative = /*(-1)**/ (e.getExpectedValue() - b.valAvg);  //output error-level derivative
+        double baseDerivative = /*(-1)**/ (targetVal - b.valAvg);  //output error-level derivative
 
         if (o instanceof GroundKappa) {
             derive((GroundKappa) o, Settings.learnRate * baseDerivative);

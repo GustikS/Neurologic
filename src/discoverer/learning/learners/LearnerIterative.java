@@ -74,7 +74,7 @@ public class LearnerIterative extends LearnerStandard {
                         b.valAvg = Evaluator.evaluateAvg(b);  //forward propagation
                     }
                     Glogger.debug("Example: " + e + "Weight change from last minibatch (after 1-bp over all other examples) " + old + " -> " + b.valAvg);
-                    Weights w = BackpropDownAvg.getNewWeights(b, e);  //backpropagation
+                    Weights w = BackpropDownAvg.getNewWeights(b, e.getExpectedValue());  //backpropagation
                     refreshWeights(w);  //update sharedWeights
                 }
 
@@ -150,7 +150,7 @@ public class LearnerIterative extends LearnerStandard {
                             b.valMax = Evaluator.evaluateMax(b);  //forward propagation
                         }
                         Glogger.debug("Example: " + e + "Example's weight change from last minibatch (after 1-bp over all other examples) " + old + " -> " + b.valAvg);
-                        Weights w = BackpropDown.getNewWeights(b, e);  //backpropagation
+                        Weights w = BackpropDown.getNewWeights(b, e.getExpectedValue());  //backpropagation
                         refreshWeights(w);  //update sharedWeights
                     }   //learning errors on this fixed ground tree (found as max subst before learning)}
                 }

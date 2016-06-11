@@ -28,7 +28,7 @@ public class AtomNeuron extends GroundNeuron {
     public int offsetWeightIndex;
 
     public AtomNeuron(GroundKappa grk, LiftedTemplate net) {
-        name = grk.toString(net.tmpConstantNames);
+        name = grk.toString(net.constantNames);
         activation = grk.getGeneral().activation;
 
         outputValue = grk.getValueAvg();

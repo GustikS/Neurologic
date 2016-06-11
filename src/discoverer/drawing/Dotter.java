@@ -101,7 +101,7 @@ public class Dotter {
         open.clear();
         dot.clear();
     }
-
+    
     public static void draw(KL kl, String nam) {
         dot.add(intro);
         name = nam;
@@ -179,5 +179,29 @@ public class Dotter {
             }
         }
         visited.add(lr);
+    }
+
+    public static void draw(Collection<KL> kls, String nam) {
+        dot.add(intro);
+        name = nam;
+
+        for (KL kl : kls) {
+            if (kl instanceof Kappa) {
+                Kappa k = (Kappa) kl;
+                for (KappaRule kr : k.getRules()) {
+                    draw(kr);
+                }
+            } else {
+                Lambda l = (Lambda) kl;
+                draw(l.getRule());
+            }
+        }
+        
+        dot.add(outro);
+        writeToFile();
+        convertToImage();
+        visited.clear();
+        open.clear();
+        dot.clear();
     }
 }

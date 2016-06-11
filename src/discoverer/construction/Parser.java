@@ -23,6 +23,25 @@ public class Parser {
         return tokens;
     }
 
+    public static String[][] parseFacts(String[] facts) {
+        String[][] tokens = new String[facts.length][];
+        for (int i = 0; i < facts.length; i++) {
+            int expLen = getWeightLen(facts[i]);
+            String expected = facts[i].substring(0, expLen).replaceAll(" ", "");
+
+            String[] literals = facts[i].substring(expLen).replaceAll("[ .]", "").split("\\)[,]");
+
+            tokens[i] = new String[1];
+            tokens[i][0] = expected;
+
+            for (int j = 0; j < literals.length; j++) {
+                tokens[j + 1] = parseLiteral(literals[j]);
+            }
+        }
+
+        return tokens;
+    }
+
     /**
      * turns examples string(set of literals) into (weight,{literal(variables)})
      *
@@ -64,8 +83,8 @@ public class Parser {
         String[] ruleSplit = rule.substring(weightLen).replaceAll(" ", "").split(":-");
 
         String[] parsedHead = parseLiteral(ruleSplit[0]);
-        if (ruleSplit[1].endsWith(".")){
-            ruleSplit[1] = ruleSplit[1].substring(0, ruleSplit[1].length()-1);
+        if (ruleSplit[1].endsWith(".")) {
+            ruleSplit[1] = ruleSplit[1].substring(0, ruleSplit[1].length() - 1);
         }
         String[] bodyLiterals = ruleSplit[1].split("\\)[,]");
 
@@ -98,7 +117,7 @@ public class Parser {
      */
     private static String[] parseLiteral(String literal) {
         String[] tokens = literal.replaceAll("\\)", "").split("[\\(,]");
-
+        tokens[0] += "/" + (tokens.length - 1);
         return tokens;
     }
 
@@ -109,7 +128,7 @@ public class Parser {
      * @param line Line with given rule
      * @return index of last index
      */
-    private static int getWeightLen(String line) {
+    public static int getWeightLen(String line) {
         for (int i = 0; i < line.length(); i++) {
             char c = line.charAt(i);
             if (!(c == '.' || c == ' ' || c == '-' || (c >= '0' && c <= '9'))) {
@@ -121,8 +140,9 @@ public class Parser {
 
     /**
      * does the rule contain [activationFcn] ?
+     *
      * @param rule
-     * @return 
+     * @return
      */
     private static int getActivationFcnEnd(String rule) {
         int a = rule.indexOf("[");

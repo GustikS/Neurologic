@@ -12,21 +12,6 @@ public class SubK extends SubKL implements Serializable {
 
     private Kappa parent;
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(parent.toString());
-        if (getTermsList().size() > 0) {
-            sb.append("(");
-            for (Variable v : getTermsList()) {
-                sb.append(v);
-                sb.append(",");
-            }
-            sb.replace(sb.length() - 1, sb.length(), ")");
-        }
-        return sb.toString();
-    }
-
     public SubK(Kappa k, boolean isHead) {
         parent = k;
         if (!isHead && isElement() && !parent.hasId()) {
@@ -41,10 +26,6 @@ public class SubK extends SubKL implements Serializable {
 
     public boolean isElement() {
         return parent.isElement();
-    }
-
-    public Integer getId() {
-        return parent.getId();
     }
 
     /**
@@ -89,58 +70,10 @@ public class SubK extends SubKL implements Serializable {
     }
 
     @Override
-    public int hashCode() {
-        int hash = 17;
-        hash = 31 * hash + parent.hashCode();
-        for (Variable term : termsList) {
-            Integer bind = term.getBind();
-            if (bind != null) {
-                hash = 31 * hash + bind.hashCode();
-            }
-        }
-
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (o == null) {
-            return false;
-        }
-        if (!(o instanceof SubK)) {
-            return false;
-        }
-
-        SubK sk = (SubK) o;
-
-        if (sk.getParent() != this.getParent()) {
-            return false;
-        }
-
-        for (int i = 0; i < getTermsList().size(); i++) {
-            int bind1 = this.getTerms().get(i).getBind();
-            int bind2 = sk.getTerms().get(i).getBind();
-            if (bind1 == -1 && bind2 != -1) {
-                return false;
-            }
-            if (bind1 != -1 && bind2 == -1) {
-                return false;
-            }
-            if (bind1 == -1 && bind2 == -1) {
-                continue;
-            }
-            if (bind1!=bind2) {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
     public SubK clone() {
         SubK sk = new SubK(this.getParent(), true);
         for (Variable t : this.getTerms()) {
-            Variable tt = new Variable("");
+            Variable tt = new Variable(t.name);
             tt.setBind(t.getBind());
             sk.addVariable(tt);
         }
