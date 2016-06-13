@@ -4,6 +4,7 @@ import discoverer.construction.ConstantFactory;
 import discoverer.construction.ElementMapper;
 import discoverer.construction.Parser;
 import discoverer.construction.example.Example;
+import discoverer.global.Global;
 import java.util.*;
 
 /**
@@ -11,7 +12,7 @@ import java.util.*;
  */
 public class ExampleFactory {
 
-    private static Map<String, Integer> constMap;
+    private static LinkedHashMap<String, Integer> constMap;
     //map of all example elements -> ID, unique only within the scope of an example!
     private static Map<String, Integer> elMap;
     //map of all example literal name elementMapper ID -> index of occurence, literals exclusively in the example are unique only within the scope of the example!
@@ -21,6 +22,10 @@ public class ExampleFactory {
     private static int elId;
     //position of actual(increasing) literal in example
     private static int possId;
+
+    public static Map<String, Integer> getConstMap() {
+        return constMap;
+    }
 
     public int getElId() {
         return elId;
@@ -34,7 +39,7 @@ public class ExampleFactory {
      * stores map of constants, elements(literals) and their IDs
      */
     public ExampleFactory() {
-        constMap = new HashMap<String, Integer>();
+        constMap = new LinkedHashMap<String, Integer>();
         elMap = new HashMap<String, Integer>();
         idMap = new HashMap<Integer, List<Integer>>();
         constId = ConstantFactory.getConstCount();
@@ -50,12 +55,18 @@ public class ExampleFactory {
      * @return
      */
     public Example construct(String ex) {
-        String[][] tokens = Parser.parseExample(ex);
-        double w = Double.parseDouble(tokens[0][0]);
-        //new example, contains idMap of literal IDs -> occurences
-        Example e = new Example(w, idMap, ex);
+        //resets all example-related hashmaps for IDs
+        clear();
 
-        for (int i = 1; i < tokens.length; i++) {
+        double w = Parser.extractWeight(ex);
+        ex = ex.trim().substring(ex.indexOf(" "), ex.length());
+        
+        Example e = new Example(w, idMap, ex);
+        
+        String[][] tokens = Parser.parseExample(ex);
+
+        //new example, contains idMap of literal IDs -> occurences
+        for (int i = 0; i < tokens.length; i++) {
             //encode this literal(variables) into numeric IDs properly(hashmaps)
             int[] raw = encode(tokens[i]);
             //add this literal(variables) IDs as chunk to chunk-store
@@ -64,15 +75,13 @@ public class ExampleFactory {
 
         e.setConstCount(constId);
         //constants from the example
-        for (Map.Entry<String,Integer> ent : constMap.entrySet()) {
+        for (Map.Entry<String, Integer> ent : constMap.entrySet()) {
             e.constantNames.put(ent.getValue(), ent.getKey());
         }
         //and constants from the template! (if any)
-        for (Map.Entry<String,Variable> ent : ConstantFactory.getConstMap().entrySet()) {
+        for (Map.Entry<String, Variable> ent : ConstantFactory.getConstMap().entrySet()) {
             e.constantNames.put(ent.getValue().getBind(), ent.getKey());
         }
-        //resets all example-related hashmaps for IDs
-        clear();
         return e;
     }
 
@@ -151,4 +160,5 @@ public class ExampleFactory {
         }
         return possId++;
     }
+
 }

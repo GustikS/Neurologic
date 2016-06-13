@@ -23,23 +23,10 @@ public class Parser {
         return tokens;
     }
 
-    public static String[][] parseFacts(String[] facts) {
-        String[][] tokens = new String[facts.length][];
-        for (int i = 0; i < facts.length; i++) {
-            int expLen = getWeightLen(facts[i]);
-            String expected = facts[i].substring(0, expLen).replaceAll(" ", "");
-
-            String[] literals = facts[i].substring(expLen).replaceAll("[ .]", "").split("\\)[,]");
-
-            tokens[i] = new String[1];
-            tokens[i][0] = expected;
-
-            for (int j = 0; j < literals.length; j++) {
-                tokens[j + 1] = parseLiteral(literals[j]);
-            }
-        }
-
-        return tokens;
+    public static double extractWeight(String example) {
+        int expLen = getWeightLen(example);
+        String expected = example.substring(0, expLen).trim();
+        return Double.parseDouble(expected);
     }
 
     /**
@@ -49,17 +36,11 @@ public class Parser {
      * @return
      */
     public static String[][] parseExample(String example) {
-        int expLen = getWeightLen(example);
-        String expected = example.substring(0, expLen).replaceAll(" ", "");
-
-        String[] literals = example.substring(expLen).replaceAll("[ .]", "").split("\\)[,]");
-        String[][] tokens = new String[literals.length + 1][];
-
-        tokens[0] = new String[1];
-        tokens[0][0] = expected;
+        String[] literals = example.replaceAll("[ .]", "").split("\\)[,]");
+        String[][] tokens = new String[literals.length][];
 
         for (int i = 0; i < literals.length; i++) {
-            tokens[i + 1] = parseLiteral(literals[i]);
+            tokens[i] = parseLiteral(literals[i]);
         }
 
         return tokens;

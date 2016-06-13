@@ -30,6 +30,16 @@ public class ForwardChecker {
 
     public int exnum = 0;
 
+    public void setupForNewExample(Example e) {
+        if (example != e) {
+            example = e;
+
+            if (cacheEnabled) {
+                clear();
+            }
+        }
+    }
+
     public void printRuns() {
         Glogger.info(exnum++ + " example -> #forward checker runs:(" + runs + ")");
         runs = 0;
@@ -40,18 +50,11 @@ public class ForwardChecker {
         openLiteralSet.clear();
     }
 
-    public boolean shouldContinue(Rule r, Example e) {
+    public boolean shouldContinue(Rule r) {
         runs++;
-        if (example != e) {
-            example = e;
-
-            if (cacheEnabled) {
-                clear();
-            }
-        }
 
         if (debugEnabled) {
-            System.out.print("[ForwardChecker]: rule\t" + r + "\t-->\t usedTerms: " + r.usedTerms + "\t-->\t unboundVars: " + r.unbound);
+            System.out.print("[ForwardChecker]: rule\t" + r + "\t-->\t usedTerms: " + Grounder.getBindingsNames(example, r.usedTerms) + "\t-->\t unboundVars: " + r.unbound);
         }
 
         boolean ret = r instanceof KappaRule ? check((KappaRule) r, null) : check((LambdaRule) r, null);
@@ -120,7 +123,7 @@ public class ForwardChecker {
         boolean check = check(sk.getParent(), sk.getTerms());
 
         boolean remove = openLiteralSet.remove(sk.getParent());
-        
+
         return check;
     }
 
@@ -138,7 +141,7 @@ public class ForwardChecker {
         boolean check = check(sl.getParent(), sl.getTerms());
 
         boolean remove = openLiteralSet.remove(sl.getParent());
-        
+
         return check;
     }
 
@@ -167,9 +170,9 @@ public class ForwardChecker {
         SubL sl = kr.getBody();
         boolean ret = check(sl);
 
-        if (vars != null && !vars.isEmpty()) {
-            kr.forceRuleUnification(bindingBefore);
-        }
+        //if (vars != null && !vars.isEmpty()) {
+        kr.forceRuleUnification(bindingBefore);     //rebind even if the vars are null because the binding could have come from bellow now!
+        //}
         return ret;
     }
 
@@ -184,9 +187,9 @@ public class ForwardChecker {
         Variable lastBindedTerm = lr.getLastBindedVar();
         boolean ret = lastBindedTerm == null ? checkAll(lr) : checkConstrainedToVar(lr, lastBindedTerm);
 
-        if (vars != null && !vars.isEmpty()) {
-            lr.forceRuleUnification(bindingBefore);
-        }
+        //if (vars != null && !vars.isEmpty()) {
+        lr.forceRuleUnification(bindingBefore);
+        //}
         return ret;
     }
 

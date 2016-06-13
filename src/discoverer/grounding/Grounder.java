@@ -76,6 +76,7 @@ public class Grounder {
 
         example = e;
         prepareCache();
+        forwardChecker.setupForNewExample(e);
 
         GroundedTemplate b = kl instanceof Kappa ? solveKappaGivenVars((Kappa) kl, null) : solveLambdaGivenVars((Lambda) kl, null);    //always Kappa only...first literal is without variables(ignoring them)
 
@@ -228,7 +229,7 @@ public class Grounder {
      */
     public GroundedTemplate ruleHeadMatching(Rule r, List<Variable> vars) {
         if (debugEnabled) {
-            System.out.println("Solving rule\t" + r + " with " + r.unbound.size() + " unboudVars " + "\tgiven variables\t" + vars + "\tbound to\t" + getBindingsNames(vars));
+            System.out.println("HeadMatching rule\t" + r + " with " + r.unbound.size() + " unboudVars " + "\tgiven variables\t" + vars + "\tbound to\t" + getBindingsNames(vars));
         }
 
         //remember current binding of the rule head's Variables!
@@ -288,7 +289,7 @@ public class Grounder {
             System.out.println("Binding-All remaining variables in \t" + r);
         }
 
-        if (forwardCheckEnabled && !forwardChecker.shouldContinue(r, example)) {
+        if (forwardCheckEnabled && !forwardChecker.shouldContinue(r)) {
             //return new GroundedTemplate();
             return null;
         }
@@ -620,7 +621,7 @@ public class Grounder {
      *    return est;
      *}
      */
-    private String getBindingsNames(List<Variable> vars) {
+    public String getBindingsNames(List<Variable> vars) {
         if (vars == null) {
             return " null";
         }
@@ -630,5 +631,29 @@ public class Grounder {
         }
 //        sb.replace(sb.length() - 1, sb.length(), "");
         return sb.toString();
+    }
+
+    public static String getBindingsNames(Example example, Set<Integer> binds) {
+        if (binds == null) {
+            return " null";
+        }
+        StringBuilder sb = new StringBuilder();
+        for (Integer var : binds) {
+            sb.append(example.constantNames.get(var)).append(",");
+        }
+//        sb.replace(sb.length() - 1, sb.length(), "");
+        return sb.toString();
+    }
+
+    public SubKL addOpenAtom(KL kl, List<Variable> vars) {
+        SubKL skl = kl instanceof Kappa ? new SubK((Kappa) kl, true) : new SubL((Lambda) kl, true);
+        openAtomList.add(skl);
+        forwardChecker.openLiteralSet.add(kl);
+        return skl;
+    }
+
+    public void removeOpenAtom(SubKL skl) {
+        openAtomList.remove(skl);
+        forwardChecker.openLiteralSet.remove(skl.getParent());
     }
 }

@@ -10,6 +10,7 @@ import discoverer.construction.Parser;
 import discoverer.construction.Variable;
 import discoverer.construction.example.Example;
 import discoverer.construction.template.rules.Rule;
+import discoverer.construction.template.rules.SubKL;
 import discoverer.global.Global;
 import discoverer.global.Glogger;
 import discoverer.grounding.Grounder;
@@ -46,7 +47,8 @@ public class NLPtemplate extends LiftedTemplate {
      * @param iRules
      * @param iQueries
      */
-    public NLPtemplate(HashMap<String, KL> klNames) {
+    public NLPtemplate(KL kl, HashMap<String, KL> klNames) {
+        last = kl;
         KLs = klNames;
         //+ maybe extract rules as well
 
@@ -68,8 +70,10 @@ public class NLPtemplate extends LiftedTemplate {
         if (clearingCache) {
             prover.prepareCache();
         }
-
+        prover.forwardChecker.setupForNewExample(facts);
+        SubKL skl = prover.addOpenAtom(target, vars);
         GroundedTemplate answer = target instanceof Kappa ? prover.solveKappaGivenVars((Kappa) target, vars) : prover.solveLambdaGivenVars((Lambda) target, vars);
+        prover.removeOpenAtom(skl);
 
         prover.forwardChecker.printRuns();
         if (answer == null) {
@@ -88,5 +92,9 @@ public class NLPtemplate extends LiftedTemplate {
             newWeights = BackpropDown.getNewWeights(proof, targetVal);
         }
         learning.refreshWeights(newWeights);
+    }
+
+    public GroundedTemplate evaluate(Example facts) {
+        return prover.groundTemplate(last, facts);
     }
 }
