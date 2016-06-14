@@ -29,6 +29,8 @@ public class ForwardChecker {
     public int runs = 0;
 
     public int exnum = 0;
+    private final boolean templateConstansts = Global.templateConstants;
+    private final boolean recursion = Global.recursion;
 
     public void setupForNewExample(Example e) {
         if (example != e) {
@@ -109,20 +111,18 @@ public class ForwardChecker {
             return example.contains(sk);
         }
 
-        if (openLiteralSet.contains(sk.getParent())) {
-            /*
-            KL[] toArray = openSet.toArray(new KL[openSet.size()]);
-            for (int i = 0; i < toArray.length; i++) {
-                System.out.println(toArray[0].hashCode() == toArray[i].hashCode() && toArray[0].equals(toArray[i]));
+        if (recursion) {
+            if (openLiteralSet.contains(sk.getParent())) {
+                return true;    //we are in a recursive cycle here! -> return true because we actually do not know (and thus cannot prune)
             }
-             */
-            return true;    //we are in a recursive cycle here! -> return true because we actually do not know (and thus cannot prune)
+            openLiteralSet.add(sk.getParent());
         }
-        openLiteralSet.add(sk.getParent());
 
         boolean check = check(sk.getParent(), sk.getTerms());
 
-        boolean remove = openLiteralSet.remove(sk.getParent());
+        if (recursion) {
+            openLiteralSet.remove(sk.getParent());
+        }
 
         return check;
     }
@@ -133,14 +133,18 @@ public class ForwardChecker {
             return example.contains(sl);
         }
 
-        if (openLiteralSet.contains(sl.getParent())) {
-            return true;    //we are in a recursive cycle here! -> return true because we actually do not know (and thus cannot prune)
+        if (recursion) {
+            if (openLiteralSet.contains(sl.getParent())) {
+                return true;    //we are in a recursive cycle here! -> return true because we actually do not know (and thus cannot prune)
+            }
+            openLiteralSet.add(sl.getParent());
         }
-        openLiteralSet.add(sl.getParent());
 
         boolean check = check(sl.getParent(), sl.getTerms());
 
-        boolean remove = openLiteralSet.remove(sl.getParent());
+        if (recursion) {
+            openLiteralSet.remove(sl.getParent());
+        }
 
         return check;
     }
@@ -160,9 +164,15 @@ public class ForwardChecker {
     }
 
     private boolean check(KappaRule kr, List<Variable> vars) {
-        int[] bindingBefore = kr.getAllVariableBindings();
-        boolean unificationSuccess = kr.ruleHeadUnification(vars);
-        if (!unificationSuccess) {
+        int[] bindingBefore = null;
+        boolean unificationSuccess = false;
+        if (templateConstansts) {
+            bindingBefore = kr.getAllVariableBindings();
+            unificationSuccess = kr.ruleHeadUnification(vars);
+        } else {
+            kr.forceRuleHeadUnification(vars);
+        }
+        if (templateConstansts && !unificationSuccess) {
             kr.forceRuleUnification(bindingBefore);
             return false;
         }
@@ -170,16 +180,25 @@ public class ForwardChecker {
         SubL sl = kr.getBody();
         boolean ret = check(sl);
 
-        //if (vars != null && !vars.isEmpty()) {
-        kr.forceRuleUnification(bindingBefore);     //rebind even if the vars are null because the binding could have come from bellow now!
-        //}
+        if (templateConstansts) {
+            kr.forceRuleUnification(bindingBefore);
+        } else if (vars != null && !vars.isEmpty()) {
+            kr.unbindHead();     //rebind even if the vars are null because the binding could have come from bellow now!
+        }
+
         return ret;
     }
 
     private boolean check(LambdaRule lr, List<Variable> vars) {
-        int[] bindingBefore = lr.getAllVariableBindings();
-        boolean unificationSuccess = lr.ruleHeadUnification(vars);
-        if (!unificationSuccess) {
+        int[] bindingBefore = null;
+        boolean unificationSuccess = false;
+        if (templateConstansts) {
+            bindingBefore = lr.getAllVariableBindings();
+            unificationSuccess = lr.ruleHeadUnification(vars);
+        } else {
+            lr.forceRuleHeadUnification(vars);
+        }
+        if (templateConstansts && !unificationSuccess) {
             lr.forceRuleUnification(bindingBefore);
             return false;
         }
@@ -187,9 +206,11 @@ public class ForwardChecker {
         Variable lastBindedTerm = lr.getLastBindedVar();
         boolean ret = lastBindedTerm == null ? checkAll(lr) : checkConstrainedToVar(lr, lastBindedTerm);
 
-        //if (vars != null && !vars.isEmpty()) {
-        lr.forceRuleUnification(bindingBefore);
-        //}
+        if (templateConstansts) {
+            lr.forceRuleUnification(bindingBefore);
+        } else if (vars != null && !vars.isEmpty()) {
+            lr.unbindHead();     //rebind even if the vars are null because the binding could have come from bellow now!
+        }
         return ret;
     }
 

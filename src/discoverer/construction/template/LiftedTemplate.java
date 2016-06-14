@@ -173,7 +173,7 @@ public class LiftedTemplate extends LightTemplate implements Serializable {
             test = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(weightFolder + name + "-rules.w"), "utf-8"));
             ArrayList<Rule> rulzz = new ArrayList(rules);
             for (int i = rulzz.size() - 1; i >= 0; i--) {
-                sb.append(rulzz.get(i)).append("\n");
+                sb.append(rulzz.get(i).toFullString()).append("\n");
             }
             test.write(sb.toString());
             test.close();

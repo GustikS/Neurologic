@@ -133,10 +133,6 @@ public class Evaluator {
             return 0;
         }
 
-        if (gk.toString().contains("res")) {
-            System.out.println("");
-        }
-
         if (gk.isElement()) {
             return gk.getValueAvg();
             //return gk.getValue(); //-should be the same
@@ -174,6 +170,11 @@ public class Evaluator {
         if (!ignoreDropout && gl.dropMe) {
             gl.setValueAvg(0.0);
             return 0;
+        }
+        
+        if (gl.isElement()) {
+            return gl.getValueAvg();
+            //return gk.getValue(); //-should be the same
         }
 
         Double out = gl.getValueAvg();

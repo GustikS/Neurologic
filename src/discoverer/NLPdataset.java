@@ -14,16 +14,28 @@ import discoverer.construction.Variable;
 import discoverer.construction.example.Example;
 import discoverer.construction.template.KL;
 import discoverer.construction.template.LiftedTemplate;
+import static discoverer.construction.template.LightTemplate.weightFolder;
 import discoverer.construction.template.NLPtemplate;
+import discoverer.construction.template.rules.Rule;
 import discoverer.drawing.Dotter;
 import discoverer.drawing.GroundDotter;
 import discoverer.global.Global;
 import discoverer.global.Glogger;
+import discoverer.grounding.evaluation.Evaluator;
 import discoverer.grounding.evaluation.GroundedTemplate;
+import discoverer.grounding.network.GroundKL;
+import discoverer.learning.Saver;
+import java.io.BufferedWriter;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -55,6 +67,7 @@ public class NLPdataset extends Main {
         //start learning
         dataset.learnOn(queries);
         //dataset.evaluate();
+        dataset.export("NLP");
     }
 
     private NLPdataset(String[] iFacts, String[] iRules) {
@@ -62,7 +75,9 @@ public class NLPdataset extends Main {
         Global.molecularTemplates = false;
         Global.NLPtemplate = true;
         Global.weightedFacts = true;
-        
+        Global.templateConstants = true;
+        Global.recursion = true;
+
         templateFactory = new TemplateFactory();
         template = (NLPtemplate) templateFactory.construct(iRules);
 
@@ -80,13 +95,13 @@ public class NLPdataset extends Main {
             sb.append(iFacts[i].substring(expLen, iFacts[i].length())).append(",");
         }
         sb.replace(sb.length() - 1, sb.length(), ".");
-        
+
         facts = eFactory.construct(sb.toString());
 
         if (Global.weightedFacts) {
             facts.setWeightedFacts(weights, templateFactory.constructFacts(sb.toString()));
         }
-        
+
         for (Map.Entry<String, Integer> ent : ExampleFactory.getConstMap().entrySet()) {
             ConstantFactory.construct(ent.getKey());
         }
@@ -121,7 +136,41 @@ public class NLPdataset extends Main {
             GroundedTemplate proof = template.query(target, vars, facts);
             GroundDotter.draw(proof, i + "beforeLearning_" + query.substring(wLen, query.length()));
             template.updateWeights(proof, targetValue);
-            GroundDotter.draw(proof, i++ + "afterLearning_" + query.substring(wLen, query.length()));
+            GroundDotter.draw(proof, i + "afterLearning_" + query.substring(wLen, query.length()));
+            double res = template.evaluateProof(proof);
+            GroundDotter.draw(proof, i++ + "afterEvaluation_" + query.substring(wLen, query.length()));
+        }
+    }
+
+    public void export(String destination) {
+        template.exportTemplate(destination);
+        BufferedWriter writer = null;
+        try {
+            writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(weightFolder + destination + "-facts.w"), "utf-8"));
+            for (GroundKL gkl : facts.storedFacts.values()) {
+                double val;
+                if (Global.getGrounding() == Global.groundingSet.avg) {
+                    val = gkl.getValueAvg();
+                } else {
+                    val = gkl.getValue();
+                }
+                StringBuilder sb = new StringBuilder(val + "  " + gkl.getGeneral().name + "(");
+                for (int i : gkl.getTermList()) {
+                    sb.append(facts.constantNames.get(i)).append(",");
+                }
+                sb.replace(sb.length() - 1, sb.length(), ")\n");
+                writer.write(sb.toString());
+            }
+        } catch (UnsupportedEncodingException ex) {
+            Logger.getLogger(Saver.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Saver.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                writer.close();
+            } catch (IOException ex) {
+                Logger.getLogger(Saver.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 }

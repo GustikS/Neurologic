@@ -38,6 +38,9 @@ public class Grounder {
     private final boolean cacheEnabled = Global.isCacheEnabled();
     private final boolean debugEnabled = Global.isDebugEnabled();
 
+    private final boolean templateConstansts = Global.templateConstants;
+    private final boolean recursion = Global.recursion;
+
     public Example example;
     private HashMap<SubKL, GroundedTemplate> cache;
     private HashSet<SubKL> openAtomList;    //for recursion
@@ -233,36 +236,46 @@ public class Grounder {
         }
 
         //remember current binding of the rule head's Variables!
-        int[] bindingBefore = r.getAllVariableBindings();  //remember the last "stack position" binding
+        int[] bindingBefore = null;
+        if (templateConstansts || recursion) {
+            bindingBefore = r.getAllVariableBindings();  //remember the last "stack position" binding
+        }
         //check if we are on a recursive path and if so, remember currect binding, recall the original binding, and after finish rebind to the remembered!
         boolean firstEncounter = true;
-        if (openRuleSet.containsKey(r.originalName)) {
+        if (recursion && openRuleSet.containsKey(r.originalName)) {
             firstEncounter = false;
             r.forceRuleUnification(openRuleSet.get(r.originalName));    //reset this recursive rules' bindings to the original ones!
         }
 
         //head of rule variable binding/unification/matching from previous line/call
         //catch - the UNIFICATION MAY FAIL!!
-        boolean unificationSuccess = r.ruleHeadUnification(vars);
-        if (!unificationSuccess) {
+        boolean unificationSuccess = false;
+        if (templateConstansts) {
+            unificationSuccess = r.ruleHeadUnification(vars);
+        } else {
+            r.forceRuleHeadUnification(vars);
+        }
+        if (templateConstansts && !unificationSuccess) {
             r.forceRuleUnification(bindingBefore);
             return null;
         }
 
         r.setLastBindedVar(null);
 
-        if (firstEncounter) {
+        if (recursion && firstEncounter) {
             openRuleSet.put(r.originalName, bindingBefore);    //else just remember now these original bindings
         }
 
         GroundedTemplate groundResult = bindAllVarsInRule(r, new GroundedTemplate()); //extensive combination binding of unbound variables
 
         //solved, so if this was first encountering of the rule, remove it from openlist
-        if (firstEncounter) {
+        if (recursion && firstEncounter) {
             openRuleSet.remove(r.originalName);
         }
         //reverse to the original binding before we leave!!!
-        r.forceRuleUnification(bindingBefore);
+        if (templateConstansts || recursion) {
+            r.forceRuleUnification(bindingBefore);
+        }
 
         return groundResult;
     }
@@ -461,31 +474,36 @@ public class Grounder {
         }
 
         Kappa parent = sk.getParent();
-
         GroundedTemplate b;
         if (parent.isElement()) {   //= literal with no rules
             double val;
             if (example.contains(sk)) {
+                GroundKappa gk = null;
+
                 if (weightedFacts) {
-                    val = example.getFactValue(sk);
+                    //val = example.getFactValue(sk);
+                    gk = (GroundKappa) example.getFact(sk);
+                    val = gk.getValue();
                 } else {
                     val = 1.0;    //assigning values from example - ignoring example value?
+                    gk = new GroundKappa(sk.getParent(), sk.getTerms());        //this GroundKappa is with no Sigmoid
+                    gk.setValue(val);
+                    gk.setValueAvg(val);
                 }
+
+                b = new GroundedTemplate(val);
+
+                b.setLast(gk);
+                //HERE - (end of recursion here(binding to an example)) starting the recursion tree with both val and valAvg set up
+                b.valAvg = val;
+
             } else {
                 return null;    //HERE - this is different, if this ground kappa SubK is not entailed return false/null, not just a zero value
             }
-
             if (debugEnabled) {
                 System.out.println(sk + " is found in example with " + val);
             }
 
-            b = new GroundedTemplate(val);
-            GroundKappa gk = new GroundKappa(sk.getParent(), sk.getTerms());        //this GroundKappa is with no Sigmoid
-            gk.setValue(val);
-            b.setLast(gk);
-            //HERE - (end of recursion here(binding to an example)) starting the recursion tree with both val and valAvg set up
-            b.valAvg = val;
-            gk.setValueAvg(val);
         } else {
             b = solveKappaGivenVars(parent, sk.getTerms());
         }
@@ -510,30 +528,35 @@ public class Grounder {
         if (parent.isElement()) {   //= literal with no rules
             double val;
             if (example.contains(sl)) {
+                GroundLambda gl = null;
+                
                 if (weightedFacts) {
-                    val = example.getFactValue(sl);
+                    gl = (GroundLambda) example.getFact(sl);
+                    val = gl.getValue();
                 } else {
                     val = 1.0;    //assigning values from example - ignoring example value?
+                    gl = new GroundLambda(sl.getParent(), sl.getTerms());        //this GroundKLambda is with no Sigmoid
+                    gl.setValue(val);
+                    gl.setValueAvg(val);
                 }
+                
+                b = new GroundedTemplate(val);
+
+                b.setLast(gl);
+                //HERE - (end of recursion here(binding to an example)) starting the recursion tree with both val and valAvg set up
+                b.valAvg = val;
+                
             } else {
                 return null;    //HERE - this is different, if this ground kappa SubK is not entailed return false/null, not just a zero value
             }
-
             if (debugEnabled) {
                 System.out.println(sl + " is found in example with: " + val);
             }
 
-            b = new GroundedTemplate(val);
-            GroundLambda gl = new GroundLambda(sl.getParent(), sl.getTerms());        //this GroundKappa is with no Sigmoid
-            gl.setValue(val);
-            b.setLast(gl);
-            //HERE - (end of recursion here(binding to an example)) starting the recursion tree with both val and valAvg set up
-            b.valAvg = val;
-            gl.setValueAvg(val);
-            return b;
         } else {
-            return solveLambdaGivenVars(parent, sl.getTerms());   //go solve Lambda parent of this ground lambda literal
+            b = solveLambdaGivenVars(parent, sl.getTerms());   //go solve Lambda parent of this ground lambda literal
         }
+        return b;
     }
 
     /**
@@ -548,21 +571,27 @@ public class Grounder {
      * @return
      */
     public GroundedTemplate cachedSolveGroundLiteral(SubKL o) {
-        if (openAtomList.contains(o)) {
-            return null;    //we are in a recursive cycle here! -> return null, because we just cannot finish proof in this branch based on the same fact we came from
+        boolean added = false;
+        if (recursion) {
+            if (openAtomList.contains(o)) {
+                return null;    //we are in a recursive cycle here! -> return null, because we just cannot finish proof in this branch based on the same fact we came from
+            }
+            added = forwardChecker.openLiteralSet.add(o.getParent());
         }
-
-        boolean added = forwardChecker.openLiteralSet.add(o.getParent());
 
         SubKL clone = o.clone();
 
-        openAtomList.add(clone);
+        if (recursion) {
+            openAtomList.add(clone);
+        }
 
         if (!cacheEnabled) {    //this is unlikely to be useful...
             GroundedTemplate solved = solve(o);
-            openAtomList.remove(clone);
-            if (added) {
-                forwardChecker.openLiteralSet.remove(o.getParent());
+            if (recursion) {
+                openAtomList.remove(clone);
+                if (added) {
+                    forwardChecker.openLiteralSet.remove(o.getParent());
+                }
             }
             return solved;
         }
@@ -572,13 +601,15 @@ public class Grounder {
         if (cache.containsKey(o)) { //recall the ground solution of this literal, if exists
             b = cache.get(o);
         } else {    //otherwise try to prove it and store the ground result
-            b = o instanceof SubK ? solveGroundKappa((SubK) o) : solveGroundLambda((SubL) o);
+            b = solve(o);
             cache.put(clone, b);
         }
 
-        openAtomList.remove(clone);
-        if (added) {
-            forwardChecker.openLiteralSet.remove(o.getParent());    //TODO zamyslet se jestli je tohle uplne obecne spravne
+        if (recursion) {
+            openAtomList.remove(clone);
+            if (added) {
+                forwardChecker.openLiteralSet.remove(o.getParent());    //TODO zamyslet se jestli je tohle uplne obecne spravne
+            }
         }
 
         if (b != null) {

@@ -11,6 +11,7 @@ import discoverer.grounding.network.GroundKL;
 import discoverer.grounding.network.GroundKappa;
 import discoverer.grounding.network.GroundLambda;
 import discoverer.construction.template.rules.KappaRule;
+import discoverer.global.Global;
 import discoverer.global.Glogger;
 import discoverer.global.Settings;
 import discoverer.learning.functions.Activations;
@@ -57,7 +58,7 @@ public class BackpropDownAvg {
             return;
         }
 
-        if (gk.isElement()) {
+        if (!Global.weightedFacts && gk.isElement()) {
             return; //we do not update the weights for example atoms (but it would be possible and might be interesting)
         }
 
@@ -67,6 +68,12 @@ public class BackpropDownAvg {
         if (gk.getGroundParentsChecked() == gk.getGroundParents()) { //all parents checked
             double firstDerivative = firstPartKappaDerivative(gk);
             double myDerivative = gk.getGroundParentDerivative() * firstDerivative;
+            
+            if (gk.isElement()){
+                weights.addW(gk, myDerivative);
+                return;
+            }
+            
             weights.addW(gk.getGeneral(), myDerivative);   //updating offset weight (it's inner derivative is just 1, so no more computations needed)
 
             for (Tuple<HashSet<GroundLambda>, KappaRule> tup : gk.getDisjunctsAvg()) {
@@ -86,12 +93,22 @@ public class BackpropDownAvg {
             Glogger.debug("dropping " + gl);
             return;
         }
+        
+        if (!Global.weightedFacts && gl.isElement()) {
+            return; //we do not update the weights for example atoms (but it would be possible and might be interesting)
+        }
 
         gl.addGroundParentDerivative(derivative);
         gl.incrGroundParentsChecked();
 
         if (gl.getGroundParentsChecked() == gl.getGroundParents()) {    //all parent's derivatives evaluated
             double firstDerivative = firstPartLambdaDerivative(gl);
+            
+            if (gl.isElement()){
+                weights.addW(gl, gl.getGroundParentDerivative() * firstDerivative);
+                return;
+            }
+            
             for (Map.Entry<GroundKappa, Integer> wGk : gl.getConjunctsAvg().entrySet()) {
                 //each GroundKappa in conjunction is weighted by the occurence, and they are all averaged by the number of body groundings
                 derive(wGk.getKey(), gl.getGroundParentDerivative() * firstDerivative * wGk.getValue() * (1.0 / gl.getConjunctsCountForAvg()));

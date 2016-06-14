@@ -6,10 +6,9 @@
 package discoverer.grounding.network;
 
 import discoverer.construction.Variable;
+import discoverer.construction.template.KL;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 /**
  *
@@ -68,6 +67,7 @@ public abstract class GroundKL implements Serializable {
     }
 
     public abstract GroundKL cloneMe();
+    public abstract KL getGeneral();
 
     //public abstract void transform2Arrays();
     /**

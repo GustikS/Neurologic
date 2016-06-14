@@ -23,6 +23,8 @@ public abstract class Rule implements Serializable {
         usedTerms = new HashSet<>();
         allVars = new LinkedHashSet<>();
     }
+    
+    public abstract String toFullString();
 
     /*
     @Override
@@ -88,6 +90,31 @@ public abstract class Rule implements Serializable {
         }
         return true;   //return the old bindings!
     }
+    
+    /**
+     * we do not ask what was the previous binding and force the new one
+     * @param vars 
+     */
+    public void forceRuleHeadUnification(List<Variable> vars) {
+        if (vars == null || vars.isEmpty()) {
+            return;
+        }
+
+        SubKL head = getHead();
+        if (head.termsList.isEmpty()) {
+            return; //TODO, this shouldn't happen
+        }
+
+        for (int i = 0; i < vars.size(); i++) {
+            Variable var = head.getTerm(i);
+            Variable boundedVar = vars.get(i);
+            if (boundedVar.isBind()) {
+                bind(var, boundedVar.getBind());
+            } else {
+                unbind(var);
+            }
+        }
+    }
 
     /**
      * like a rule head unification, but this always succeeds as it enforces the
@@ -120,7 +147,7 @@ public abstract class Rule implements Serializable {
      * unbind all of head's Terms(Terminals) TODO - dangerous, do not do...use
      * setHeadsBinding instead!
      */
-    private void unbindHead() {
+    public void unbindHead() {
         SubKL head = getHead();
         for (Variable v : head.getTerms()) {
             unbind(v);

@@ -166,8 +166,8 @@ public class GroundedDataset extends LiftedDataset {
                 neurons = GroundNetworkParser.parseMAX(b);
             }
             b.loadGroundNeurons(neurons);   //store all ground L/K in an array for fast and simple operations instead of DFS for each simple pass
-            if (Global.learnableFacts) {
-                b.groundNeurons.addAll(GroundNetworkParser.facts);  //also include fact neurons in the evaluation (as in neural)
+            if (Global.learnableElements) {
+                b.groundNeurons.addAll(GroundNetworkParser.elements);  //also include fact neurons in the evaluation (as in neural)
             }
         }
         return sampleStore;

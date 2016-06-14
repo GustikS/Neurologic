@@ -81,6 +81,20 @@ public class LambdaRule extends Rule implements Serializable {
         }
         return sb.toString();
     }
+    
+    public String toFullString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(head.toString());
+        sb.append(" :- ");
+        if (body.size() > 0) {
+            for (SubK sk : body) {
+                sb.append(sk.toString());
+                sb.append(",");
+            }
+            sb.replace(sb.length() - 1, sb.length(), ".");
+        }
+        return sb.toString();
+    }
 
     public SubL getHead() {
         return head;

@@ -84,13 +84,15 @@ public final class Global {
     public static boolean relativeVariableSelection = true; //ordering of variables when grounding goes for the ones that leave the least number of other variables free, otherwise goes just for the most contrained literals (Vojta's version)
     public static boolean alldiff = true;
     public static final boolean adaptiveActivations = false;
-    public static boolean learnableFacts = false;
+    public static boolean learnableElements = false;
 
     public static String weightFolder = "weights/";
 
     //---Structure Learning parameters
     public static boolean regularizedBackprop = false;
     public static boolean weightedFacts = false;
+    public static boolean templateConstants = false;
+    public static boolean recursion = false;
 
     public static void setupThreads() {
         numOfThreads = Runtime.getRuntime().availableProcessors();

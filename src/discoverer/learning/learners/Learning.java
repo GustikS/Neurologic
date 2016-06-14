@@ -147,9 +147,13 @@ public class Learning {
             if (o instanceof Kappa) {
                 Kappa k = (Kappa) o;
                 k.setOffset(k.getOffset() + newWeight);
-            } else {
+            } else if (o instanceof KappaRule) {
                 KappaRule kr = (KappaRule) o;
                 kr.setWeight(kr.getWeight() + newWeight);
+            } else { //updating GroundKL value
+                GroundKL gkl = (GroundKL) o;
+                gkl.setValueAvg(gkl.getValueAvg() + newWeight);
+                gkl.setValue(gkl.getValue() + newWeight);
             }
         }
     }

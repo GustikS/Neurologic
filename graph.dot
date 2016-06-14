@@ -1,52 +1,8 @@
 digraph G {
-"eatsK/2(lassie,milk)#0
-valAVG: 0,6126229750019128
-offset: 0,11638463772401231" -> "kapR{[eatsL/2(0,4)#1]}" [ label = "1" ];
-"kapR{[eatsL/2(0,4)#1]}" -> "eatsL/2(lassie,milk)#1
-valAvg: 0,3419666164734403
-#ground: 1" [ label = "1x" ];
-"eatsL/2(lassie,milk)#1
-valAvg: 0,3419666164734403
-#ground: 1" -> "is-aK/2(lassie,mammal)#2
-valAVG: 0,6580747618243235
-offset: 0,2755221624994224" [ label = "1x" ];
-"is-aK/2(lassie,mammal)#2
-valAVG: 0,6580747618243235
-offset: 0,2755221624994224" -> "kapR{[is-aL/2(0,3)#3]}" [ label = "1" ];
-"kapR{[is-aL/2(0,3)#3]}" -> "is-aL/2(lassie,mammal)#3
-valAvg: 0,3792042708252237
-#ground: 1" [ label = "1x" ];
-"is-aL/2(lassie,mammal)#3
-valAvg: 0,3792042708252237
-#ground: 1" -> "is-aEK/2(lassie,dog)#4
-valAVG: 0,7429312220668192
-offset: 0,06125980504647721" [ label = "1x" ];
-"is-aEK/2(lassie,dog)#4
-valAVG: 0,7429312220668192
-offset: 0,06125980504647721" -> "kapR{[is-a/2(0,2)#5]}" [ label = "1" ];
-"kapR{[is-a/2(0,2)#5]}" -> "is-a/2(lassie,dog)#5
-valAvg: 1
-#ground: 0" [ label = "1x" ];
-"is-aL/2(lassie,mammal)#3
-valAvg: 0,3792042708252237
-#ground: 1" -> "is-aK/2(dog,mammal)#6
-valAVG: 0,7641417216809647
-offset: 0,2755221624994224" [ label = "1x" ];
-"is-aK/2(dog,mammal)#6
-valAVG: 0,7641417216809647
-offset: 0,2755221624994224" -> "kapR{[is-a/2(2,3)#7]}" [ label = "1" ];
-"kapR{[is-a/2(2,3)#7]}" -> "is-a/2(dog,mammal)#7
-valAvg: 0,9
-#ground: 0" [ label = "1x" ];
-"eatsL/2(lassie,milk)#1
-valAvg: 0,3419666164734403
-#ground: 1" -> "eatsKE/2(mammal,milk)#8
-valAVG: 0,6873826929419529
-offset: 0,0879114052101766" [ label = "1x" ];
-"eatsKE/2(mammal,milk)#8
-valAVG: 0,6873826929419529
-offset: 0,0879114052101766" -> "kapR{[eats/2(3,4)#9]}" [ label = "1" ];
-"kapR{[eats/2(3,4)#9]}" -> "eats/2(mammal,milk)#9
-valAvg: 0,7
+"is-aK/2(lassie,dog)#11
+valAVG: 0,9999995912128236
+offset: 4,623912317981465" -> "kapR{[is-a/2(0,2)#0]}" [ label = "5,004600958974101" ];
+"kapR{[is-a/2(0,2)#0]}" -> "is-a/2(lassie,dog)#0
+valAvg: 2,0153771545943266
 #ground: 0" [ label = "1x" ];
 }

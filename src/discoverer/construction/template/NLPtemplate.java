@@ -5,8 +5,6 @@
  */
 package discoverer.construction.template;
 
-import discoverer.construction.ExampleFactory;
-import discoverer.construction.Parser;
 import discoverer.construction.Variable;
 import discoverer.construction.example.Example;
 import discoverer.construction.template.rules.Rule;
@@ -14,17 +12,18 @@ import discoverer.construction.template.rules.SubKL;
 import discoverer.global.Global;
 import discoverer.global.Glogger;
 import discoverer.grounding.Grounder;
+import discoverer.grounding.evaluation.Evaluator;
 import discoverer.grounding.evaluation.GroundedTemplate;
+import discoverer.grounding.evaluation.struct.GroundNetworkParser;
+import discoverer.grounding.network.GroundKL;
 import discoverer.learning.Weights;
 import discoverer.learning.backprop.BackpropDown;
 import discoverer.learning.backprop.BackpropDownAvg;
 import discoverer.learning.learners.Learning;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  *
@@ -47,11 +46,13 @@ public class NLPtemplate extends LiftedTemplate {
      * @param iRules
      * @param iQueries
      */
-    public NLPtemplate(KL kl, HashMap<String, KL> klNames) {
-        last = kl;
+    public NLPtemplate(KL ikl, HashMap<String, KL> klNames, List<Rule> irules) {
+        last = ikl;
         KLs = klNames;
         //+ maybe extract rules as well
-
+        for (Rule irule : irules) {
+            rules.add(irule);
+        }
         //interesting - maybe now the cache may stay and be reused over many queries, because the fact structures stay the same? (if there are no new facts comming)
         prover.prepareCache();
     }
@@ -81,6 +82,17 @@ public class NLPtemplate extends LiftedTemplate {
             return new GroundedTemplate(Global.getFalseAtomValue());
         }
         answer.constantNames = facts.constantNames;
+
+        GroundedTemplate b = answer;
+        Set<GroundKL> groundKLs = null;
+        if (Global.getGrounding() == Global.groundingSet.avg) {
+            groundKLs = GroundNetworkParser.parseAVG(b);
+        } else if (Global.getGrounding() == Global.groundingSet.max) {
+            groundKLs = GroundNetworkParser.parseMAX(b);
+        }
+        b.loadGroundNeurons(groundKLs);   //store all ground L/K in an array for fast and simple operations instead of DFS for each simple pass
+        //b.groundNeurons.addAll(GroundNetworkParser.elements);  //no, do not add the fact neurons as their values will get invalidated then
+
         return answer;
     }
 
@@ -94,7 +106,18 @@ public class NLPtemplate extends LiftedTemplate {
         learning.refreshWeights(newWeights);
     }
 
+    public double evaluateProof(GroundedTemplate proof) {
+        if (Global.getGrounding().equals(Global.groundingSet.avg)) {
+            proof.valAvg = Evaluator.evaluateAvg(proof);  //forward propagation
+            return proof.valAvg;
+        } else {
+            proof.valMax = Evaluator.evaluateMax(proof);  //forward propagation
+            return proof.valMax;
+        }
+    }
+
     public GroundedTemplate evaluate(Example facts) {
         return prover.groundTemplate(last, facts);
     }
+
 }

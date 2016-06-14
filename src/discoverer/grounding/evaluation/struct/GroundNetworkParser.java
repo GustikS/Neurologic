@@ -21,11 +21,11 @@ import java.util.Set;
 public class GroundNetworkParser {
 
     public static Set<GroundKL> neurons = new HashSet<>();
-    public static List<GroundKL> facts = new ArrayList<>();
+    public static Set<GroundKL> elements = new HashSet<>();
 
     private static void clear() {
         neurons.clear();
-        facts.clear();
+        elements.clear();
     }
 
     /**
@@ -94,7 +94,7 @@ public class GroundNetworkParser {
         gk.incrGroundParents(); //we came to this GroundKappa from some parent
 
         if (gk.isElement()) {
-            facts.add(gk);
+            elements.add(gk);
             return;
         }
 
@@ -114,12 +114,13 @@ public class GroundNetworkParser {
         if (Global.isDebugEnabled()) {
             System.out.println("counting: " + gl);
         }
+        
+        gl.incrGroundParents();  //we came to this GroundLambda from some parent
+        
         if (gl.isElement()) {
-            facts.add(gl);
+            elements.add(gl);
             return;
         }
-
-        gl.incrGroundParents();  //we came to this GroundLambda from some parent
 
         if (gl.getGroundParents() > 1) {
             return; // ha - if I already visited this node before - do not continue - first time visit pruning (oposite to backprop)
@@ -143,7 +144,7 @@ public class GroundNetworkParser {
         gk.incrGroundParents(); //we came to this GroundKappa from some parent
 
         if (gk.isElement()) {
-            facts.add(gk);
+            elements.add(gk);
             return;
         }
 
@@ -163,7 +164,7 @@ public class GroundNetworkParser {
         gl.incrGroundParents();  //we came to this GroundLambda from some parent
 
         if (gl.isElement()) {
-            facts.add(gl);
+            elements.add(gl);
             return;
         }
 

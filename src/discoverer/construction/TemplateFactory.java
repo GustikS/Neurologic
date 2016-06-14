@@ -4,9 +4,6 @@ import discoverer.construction.template.rules.LambdaRule;
 import discoverer.construction.template.rules.KappaRule;
 import discoverer.construction.template.rules.SubL;
 import discoverer.construction.template.rules.SubK;
-import discoverer.construction.Variable;
-import discoverer.construction.ConstantFactory;
-import discoverer.construction.Parser;
 import discoverer.construction.template.KL;
 import discoverer.construction.template.Kappa;
 import discoverer.construction.template.KappaFactory;
@@ -15,6 +12,7 @@ import discoverer.construction.template.LambdaFactory;
 import discoverer.construction.template.LiftedTemplate;
 import discoverer.construction.template.MolecularTemplate;
 import discoverer.construction.template.NLPtemplate;
+import discoverer.construction.template.rules.Rule;
 import discoverer.construction.template.rules.SubKL;
 import discoverer.global.Global;
 import discoverer.global.Glogger;
@@ -34,14 +32,14 @@ public class TemplateFactory {
     private LambdaFactory lFactory = new LambdaFactory();
     private VariableFactory vFactory = new VariableFactory();
 
-    private List<KappaRule> kappaRules = new ArrayList<KappaRule>();
+    private LinkedList<Rule> templateRules = new LinkedList<>();
 
     public TemplateFactory() {
         ConstantFactory.clearConstantFactory();
     }
 
-    public List<KappaRule> getKappaRules() {
-        return kappaRules;
+    public List<Rule> geRules() {
+        return templateRules;
     }
 
     /**
@@ -107,7 +105,7 @@ public class TemplateFactory {
         if (Global.molecularTemplates) {
             network = new MolecularTemplate(kl);  //a wrapper for the last KL literal
         } else if (Global.NLPtemplate) {
-            network = new NLPtemplate(kl, klNames);
+            network = new NLPtemplate(kl, klNames, templateRules);
         } else {
             network = new LiftedTemplate(kl);
         }
@@ -150,6 +148,7 @@ public class TemplateFactory {
         }
         LambdaRule lr = new LambdaRule();
         lr.addHead(sl);
+        templateRules.addFirst(lr);
 
         for (int i = 2; i < tokens.length; i++) {
             Kappa k = kFactory.construct(tokens[i][0]);
@@ -200,7 +199,7 @@ public class TemplateFactory {
         }
         KappaRule kr = new KappaRule(w);
         kr.setHead(sk);
-        kappaRules.add(kr);
+        templateRules.addFirst(kr);
 
         for (int i = 2; i < tokens.length; i++) {
             Lambda l = lFactory.construct(tokens[i][0]);
@@ -216,7 +215,7 @@ public class TemplateFactory {
         kr.originalName = original;
         return k;
     }
-    
+
     public List<SubKL> constructFacts(String facts) {
         facts = facts.trim().substring(facts.indexOf(" "), facts.length());
         String[][] tokens = Parser.parseQuery(facts);
@@ -234,7 +233,6 @@ public class TemplateFactory {
         return skls;
     }
 
-
     public void printWeights() {
         System.out.println("-----------------offsets-------------");
         int i = 0;
@@ -243,8 +241,10 @@ public class TemplateFactory {
         }
         System.out.println("----------------ruleweights--------------");
         i = 0;
-        for (KappaRule kappaRule : kappaRules) {
-            System.out.println(i++ + " -> " + kappaRule.getWeight());
+        for (Rule rule : templateRules) {
+            if (rule instanceof KappaRule) {
+                System.out.println(i++ + " -> " + ((KappaRule) rule).getWeight());
+            }
         }
 
     }

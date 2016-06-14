@@ -3,6 +3,8 @@ package discoverer.learning;
 import discoverer.construction.template.rules.KappaRule;
 import discoverer.construction.template.Kappa;
 import discoverer.global.Tuple;
+import discoverer.grounding.network.GroundKL;
+import discoverer.grounding.network.GroundKappa;
 import java.util.*;
 
 /**
@@ -84,6 +86,17 @@ public class Weights {
         }
     }
 
+    public void addW(GroundKL k, double d) {
+        updates.add(new Tuple<>(k, d));
+        if (weights.containsKey(k)) {
+            weights.put(k, weights.get(k) + d);
+            addedWeightsCount.put(k, addedWeightsCount.get(k) + 1);
+        } else {
+            weights.put(k, d);
+            addedWeightsCount.put(k, 1);
+        }
+    }
+    
     public void addD(KappaRule kr, Double d) {
         diffs.put(kr, d);
     }
