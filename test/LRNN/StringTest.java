@@ -13,7 +13,7 @@ import discoverer.construction.template.MolecularTemplate;
 import discoverer.construction.template.rules.KappaRule;
 import discoverer.drawing.Dotter;
 import discoverer.drawing.GroundDotter;
-import discoverer.global.FileToStringList;
+import discoverer.global.TextFileReader;
 import discoverer.global.Global;
 import discoverer.grounding.Grounder;
 import discoverer.grounding.evaluation.GroundedTemplate;
@@ -43,7 +43,7 @@ public class StringTest {
         Global.setWeightInit(Global.weightInitSet.handmade);
         Global.setRg(new Random(1));
         Grounder grounder = new Grounder();
-        String[] rules = FileToStringList.convert("in/strings/easy-rules.txt", Integer.MAX_VALUE);
+        String[] rules = TextFileReader.convert("in/strings/easy-rules.txt", Integer.MAX_VALUE);
 
         TemplateFactory nf = new TemplateFactory();
         MolecularTemplate net = (MolecularTemplate) nf.construct(rules);
@@ -51,7 +51,7 @@ public class StringTest {
         Dotter.draw(net.last, "strings");
 
         ExampleFactory eFactory = new ExampleFactory();
-        String[] examples = FileToStringList.convert("in/strings/easy-examples.txt", Integer.MAX_VALUE);
+        String[] examples = TextFileReader.convert("in/strings/easy-examples.txt", Integer.MAX_VALUE);
         Example e = eFactory.construct(examples[0]);
 
         GroundedTemplate b = grounder.groundTemplate(net.last, e);
@@ -66,7 +66,7 @@ public class StringTest {
         Global.setKappaActivation(Global.activationSet.sig);
         Global.setWeightInit(Global.weightInitSet.handmade);
         Global.setRg(new Random(1));
-        String[] rules = FileToStringList.convert("in/strings/easy-rules.txt", Integer.MAX_VALUE);
+        String[] rules = TextFileReader.convert("in/strings/easy-rules.txt", Integer.MAX_VALUE);
         Grounder grounder = new Grounder();
 
         TemplateFactory nf = new TemplateFactory();
@@ -75,7 +75,7 @@ public class StringTest {
         Dotter.draw(net.last, "strings");
 
         ExampleFactory eFactory = new ExampleFactory();
-        String[] ex = FileToStringList.convert("in/strings/easy-examples.txt", Integer.MAX_VALUE);
+        String[] ex = TextFileReader.convert("in/strings/easy-examples.txt", Integer.MAX_VALUE);
         
         for (int i = 0; i < ex.length; i++) {
             Example e = eFactory.construct(ex[i]);

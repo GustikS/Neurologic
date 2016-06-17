@@ -10,6 +10,9 @@ import discoverer.global.Glogger;
 import discoverer.global.Settings;
 import discoverer.grounding.ForwardChecker;
 import discoverer.GroundedDataset;
+import discoverer.NLPdataset;
+import discoverer.construction.TemplateFactory;
+import discoverer.construction.template.specialPredicates.SpecialPredicate;
 import discoverer.grounding.evaluation.GroundedTemplate;
 import discoverer.grounding.Grounder;
 import discoverer.learning.backprop.BackpropDownAvg;
@@ -152,6 +155,10 @@ public class Learning {
                 kr.setWeight(kr.getWeight() + newWeight);
             } else { //updating GroundKL value
                 GroundKL gkl = (GroundKL) o;
+                if (gkl.getGeneral().special){
+                    SpecialPredicate special = TemplateFactory.specialPredicatesMap.get(gkl.getGeneral());
+                    special.update(Grounder.getBindingsNames(NLPdataset.facts, gkl.getTermList()),newWeight);
+                }
                 gkl.setValueAvg(gkl.getValueAvg() + newWeight);
                 gkl.setValue(gkl.getValue() + newWeight);
             }

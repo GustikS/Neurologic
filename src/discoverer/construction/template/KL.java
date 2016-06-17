@@ -14,6 +14,7 @@ public abstract class KL extends Element implements Serializable {
     public Global.activationSet activation;
 
     private Integer id;
+    public boolean special = false;
 
     public KL() {
     }
@@ -39,7 +40,6 @@ public abstract class KL extends Element implements Serializable {
         return id != null;
     }
 
-    
     @Override
     public int hashCode() {
         return name.hashCode();

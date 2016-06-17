@@ -1,5 +1,6 @@
 package discoverer.grounding;
 
+import discoverer.construction.TemplateFactory;
 import discoverer.construction.template.Kappa;
 import discoverer.construction.template.rules.KappaRule;
 import discoverer.construction.template.Lambda;
@@ -108,6 +109,12 @@ public class ForwardChecker {
     private boolean checkCompute(SubK sk) {
 
         if (sk.isElement()) {
+            if (sk.getParent().special) {
+                boolean a =  TemplateFactory.specialPredicatesMap.get(sk.getParent()).isTrue(Grounder.getBindingsNames(example, sk.getTerms()));
+                if (a){
+                    System.out.println("");
+                }
+            }
             return example.contains(sk);
         }
 
@@ -130,6 +137,9 @@ public class ForwardChecker {
     private boolean checkCompute(SubL sl) {
 
         if (sl.isElement()) {
+            if (sl.getParent().special) {
+                return TemplateFactory.specialPredicatesMap.get(sl.getParent()).evaluate(Grounder.getBindingsNames(example, sl.getTerms())) != 0;
+            }
             return example.contains(sl);
         }
 

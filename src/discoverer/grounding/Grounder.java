@@ -1,5 +1,6 @@
 package discoverer.grounding;
 
+import discoverer.construction.TemplateFactory;
 import discoverer.grounding.evaluation.GroundedTemplate;
 import discoverer.construction.example.Example;
 import discoverer.global.Global;
@@ -16,6 +17,7 @@ import discoverer.construction.template.rules.SubK;
 import discoverer.construction.template.rules.SubL;
 import discoverer.construction.Variable;
 import discoverer.construction.template.rules.SubKL;
+import discoverer.construction.template.specialPredicates.SpecialPredicate;
 import discoverer.global.Glogger;
 import discoverer.grounding.evaluation.Evaluator;
 import discoverer.learning.functions.Activations;
@@ -107,7 +109,7 @@ public class Grounder {
      */
     public GroundedTemplate solveKappaGivenVars(Kappa k, List<Variable> vars) {
         if (debugEnabled) {
-            System.out.println("Solving Kappa\t" + k + "\tgiven variables\t" + vars + "\tbound to\t" + getBindingsNames(vars));
+            System.out.println("Solving Kappa\t" + k + "\tgiven variables\t" + vars + "\tbound to\t" + getBindingsNames(example, vars));
         }
 
         GroundedTemplate b = new GroundedTemplate();
@@ -176,7 +178,7 @@ public class Grounder {
      */
     public GroundedTemplate solveLambdaGivenVars(Lambda l, List<Variable> vars) {
         if (debugEnabled) {
-            System.out.println("Solving Lambda\t" + l + "\tgiven variables\t" + vars + "\tbound to\t" + getBindingsNames(vars));
+            System.out.println("Solving Lambda\t" + l + "\tgiven variables\t" + vars + "\tbound to\t" + getBindingsNames(example, vars));
         }
 
         GroundedTemplate b = ruleHeadMatching(l.getRule(), vars);      //there is only one rule for lambda node
@@ -232,7 +234,7 @@ public class Grounder {
      */
     public GroundedTemplate ruleHeadMatching(Rule r, List<Variable> vars) {
         if (debugEnabled) {
-            System.out.println("HeadMatching rule\t" + r + " with " + r.unbound.size() + " unboudVars " + "\tgiven variables\t" + vars + "\tbound to\t" + getBindingsNames(vars));
+            System.out.println("HeadMatching rule\t" + r + " with " + r.unbound.size() + " unboudVars " + "\tgiven variables\t" + vars + "\tbound to\t" + getBindingsNames(example, vars));
         }
 
         //remember current binding of the rule head's Variables!
@@ -477,15 +479,22 @@ public class Grounder {
         GroundedTemplate b;
         if (parent.isElement()) {   //= literal with no rules
             double val;
-            if (example.contains(sk)) {
+            if (example.contains(sk) || parent.special) {
                 GroundKappa gk = null;
 
-                if (weightedFacts) {
+                if (weightedFacts & !parent.special) {
                     //val = example.getFactValue(sk);
                     gk = (GroundKappa) example.getFact(sk);
                     val = gk.getValue();
                 } else {
                     val = 1.0;    //assigning values from example - ignoring example value?
+                    if (parent.special) {
+                        SpecialPredicate special = TemplateFactory.specialPredicatesMap.get(parent);
+                        val = special.evaluate(getBindingsNames(example, sk.getTerms()));
+                        if (val < special.threshold) {
+                            return null;
+                        }
+                    }
                     gk = new GroundKappa(sk.getParent(), sk.getTerms());        //this GroundKappa is with no Sigmoid
                     gk.setValue(val);
                     gk.setValueAvg(val);
@@ -527,25 +536,33 @@ public class Grounder {
         GroundedTemplate b;
         if (parent.isElement()) {   //= literal with no rules
             double val;
-            if (example.contains(sl)) {
+            if (example.contains(sl) || parent.special) {
                 GroundLambda gl = null;
-                
-                if (weightedFacts) {
+
+                if (weightedFacts & !parent.special) {
+                    //val = example.getFactValue(sk);
                     gl = (GroundLambda) example.getFact(sl);
                     val = gl.getValue();
                 } else {
                     val = 1.0;    //assigning values from example - ignoring example value?
-                    gl = new GroundLambda(sl.getParent(), sl.getTerms());        //this GroundKLambda is with no Sigmoid
+                    if (parent.special) {
+                        SpecialPredicate special = TemplateFactory.specialPredicatesMap.get(parent);
+                        val = special.evaluate(getBindingsNames(example, sl.getTerms()));
+                        if (val < special.threshold) {
+                            return null;
+                        }
+                    }
+                    gl = new GroundLambda(sl.getParent(), sl.getTerms());        //this GroundKappa is with no Sigmoid
                     gl.setValue(val);
                     gl.setValueAvg(val);
                 }
-                
+
                 b = new GroundedTemplate(val);
 
                 b.setLast(gl);
                 //HERE - (end of recursion here(binding to an example)) starting the recursion tree with both val and valAvg set up
                 b.valAvg = val;
-                
+
             } else {
                 return null;    //HERE - this is different, if this ground kappa SubK is not entailed return false/null, not just a zero value
             }
@@ -652,13 +669,37 @@ public class Grounder {
      *    return est;
      *}
      */
-    public String getBindingsNames(List<Variable> vars) {
+    public static String getBindingsNames(Example example, List<Variable> vars) {
         if (vars == null) {
             return " null";
         }
         StringBuilder sb = new StringBuilder();
         for (Variable var : vars) {
-            sb.append(example.constantNames.get(var.getBind())).append(",");
+            String name;
+            if (!var.isBind()) {
+                name = "VAR";
+            } else {
+                name = example.constantNames.get(var.getBind());
+            }
+            sb.append(name).append(",");
+        }
+//        sb.replace(sb.length() - 1, sb.length(), "");
+        return sb.toString();
+    }
+    
+    public static String getBindingsNames(Example example, int[] binds) {
+        if (binds == null) {
+            return " null";
+        }
+        StringBuilder sb = new StringBuilder();
+        for (int var : binds) {
+            String name;
+            if (var == -1) {
+                name = "VAR";
+            } else {
+                name = example.constantNames.get(var);
+            }
+            sb.append(name).append(",");
         }
 //        sb.replace(sb.length() - 1, sb.length(), "");
         return sb.toString();
@@ -670,7 +711,13 @@ public class Grounder {
         }
         StringBuilder sb = new StringBuilder();
         for (Integer var : binds) {
-            sb.append(example.constantNames.get(var)).append(",");
+            String name;
+            if (var == -1) {
+                name = "VAR";
+            } else {
+                name = example.constantNames.get(var);
+            }
+            sb.append(name).append(",");
         }
 //        sb.replace(sb.length() - 1, sb.length(), "");
         return sb.toString();

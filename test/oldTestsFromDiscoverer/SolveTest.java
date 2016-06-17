@@ -5,7 +5,7 @@ import discoverer.construction.template.KL;
 import discoverer.construction.ExampleFactory;
 import discoverer.construction.example.Example;
 import discoverer.construction.template.MolecularTemplate;
-import discoverer.global.FileToStringList;
+import discoverer.global.TextFileReader;
 import discoverer.global.Global;
 import discoverer.grounding.evaluation.GroundedTemplate;
 import discoverer.grounding.Grounder;
@@ -19,7 +19,7 @@ public class SolveTest {
     @Before
     public void initRandom() {
         Global.setRg(new Random(1L));
-        String[] rules = FileToStringList.convert("../in/muta2/rules", Integer.MAX_VALUE);
+        String[] rules = TextFileReader.convert("../in/muta2/rules", Integer.MAX_VALUE);
         TemplateFactory nf = new TemplateFactory();
         network = nf.construct(rules);
     }
@@ -53,7 +53,7 @@ public class SolveTest {
 
     @Ignore
     public void test2() {
-        String[] rules = FileToStringList.convert("../in/muta2/rules", Integer.MAX_VALUE);
+        String[] rules = TextFileReader.convert("../in/muta2/rules", Integer.MAX_VALUE);
         String[] ex = { "1.0 bond(tr000_4, tr000_2, 0), cl(tr000_4), c(tr000_2), 1(0), bond(tr000_2, tr000_4, 0), bond(tr000_5, tr000_2, 1), h(tr000_5), 1(1), bond(tr000_2, tr000_5, 1), bond(tr000_3, tr000_2, 2), cl(tr000_3), 1(2), bond(tr000_2, tr000_3, 2), bond(tr000_2, tr000_1, 3), cl(tr000_1), 1(3), bond(tr000_1, tr000_2, 3).", };
         TemplateFactory nf = new TemplateFactory();
         MolecularTemplate network = nf.construct(rules);

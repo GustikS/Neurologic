@@ -1,6 +1,8 @@
 package discoverer.construction.template;
 
+import discoverer.construction.TemplateFactory;
 import discoverer.construction.template.Kappa;
+import discoverer.construction.template.specialPredicates.SpecialPredicate;
 import java.util.*;
 
 /**
@@ -21,6 +23,13 @@ public class KappaFactory {
 
         Kappa k = new Kappa(name);
         kappaMap.put(name, k);
+
+        SpecialPredicate special;
+        if ((special = TemplateFactory.specialPredicateNames.get(name)) != null) {
+            k.special = true;
+            TemplateFactory.specialPredicatesMap.put(k, special);
+        }
+
         return k;
     }
 

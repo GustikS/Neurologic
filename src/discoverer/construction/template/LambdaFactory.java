@@ -1,12 +1,15 @@
 package discoverer.construction.template;
 
+import discoverer.construction.TemplateFactory;
 import discoverer.construction.template.Lambda;
+import discoverer.construction.template.specialPredicates.SpecialPredicate;
 import java.util.*;
 
 /**
  * Factory for lambda nodes
  */
 public class LambdaFactory {
+
     private Map<String, Lambda> lambdaMap;
 
     /**
@@ -17,16 +20,26 @@ public class LambdaFactory {
     }
 
     /**
-     * creates new Lambda node from a String name, or return an existing one with the name
+     * creates new Lambda node from a String name, or return an existing one
+     * with the name
+     *
      * @param name
-     * @return 
+     * @return
      */
     public Lambda construct(String name) {
-        if (lambdaMap.containsKey(name))
+        if (lambdaMap.containsKey(name)) {
             return lambdaMap.get(name);
-
+        }
+        
         Lambda l = new Lambda(name);
         lambdaMap.put(name, l);
+        
+        SpecialPredicate special;
+        if ((special = TemplateFactory.specialPredicateNames.get(name)) != null){
+            l.special = true;
+            TemplateFactory.specialPredicatesMap.put(l, special);
+        }
+        
         return l;
     }
 }

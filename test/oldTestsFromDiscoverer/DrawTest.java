@@ -7,7 +7,7 @@ import discoverer.construction.example.Example;
 import discoverer.construction.template.MolecularTemplate;
 import discoverer.drawing.Dotter;
 import discoverer.drawing.GroundDotter;
-import discoverer.global.FileToStringList;
+import discoverer.global.TextFileReader;
 import discoverer.global.Global;
 import discoverer.grounding.evaluation.GroundedTemplate;
 import discoverer.grounding.Grounder;
@@ -23,7 +23,7 @@ public class DrawTest {
         Global.setKappaActivation(Global.activationSet.sig);
         Global.setWeightInit(Global.weightInitSet.handmade);
         Global.setRg(new Random(1));
-        String[] rules = FileToStringList.convert("in/strings/easy-rules.txt", Integer.MAX_VALUE);
+        String[] rules = TextFileReader.convert("in/strings/easy-rules.txt", Integer.MAX_VALUE);
         
         TemplateFactory nf = new TemplateFactory();
         MolecularTemplate last = nf.construct(rules);

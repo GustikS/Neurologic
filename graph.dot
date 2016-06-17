@@ -1,8 +1,148 @@
 digraph G {
-"is-aK/2(lassie,dog)#11
-valAVG: 0,9999995912128236
-offset: 4,623912317981465" -> "kapR{[is-a/2(0,2)#0]}" [ label = "5,004600958974101" ];
-"kapR{[is-a/2(0,2)#0]}" -> "is-a/2(lassie,dog)#0
-valAvg: 2,0153771545943266
+"holdsRekK/3(is,lajka,animal)#1
+valAVG: 0,9998364771724776
+offset: 7,68871743269387" -> "kapR{[holdsRekL/3(0,5,4)#12]}" [ label = "2,635563670521843" ];
+"kapR{[holdsRekL/3(0,5,4)#12]}" -> "holdsRekL/3(is,lajka,animal)#12
+valAvg: 0,39068568220250244
+#ground: 1" [ label = "1x" ];
+"holdsRekL/3(is,lajka,animal)#12
+valAvg: 0,39068568220250244
+#ground: 1" -> "holdsRekK/3(is,dog,animal)#17
+valAVG: 0,9998357794933924
+offset: 7,68871743269387" [ label = "1x" ];
+"holdsRekK/3(is,dog,animal)#17
+valAVG: 0,9998357794933924
+offset: 7,68871743269387" -> "kapR{[holdsRekL/3(0,2,4)#27]}" [ label = "2,635563670521843" ];
+"kapR{[holdsRekL/3(0,2,4)#27]}" -> "holdsRekL/3(is,dog,animal)#27
+valAvg: 0,3890700215437633
+#ground: 1" [ label = "1x" ];
+"holdsRekL/3(is,dog,animal)#27
+valAvg: 0,3890700215437633
+#ground: 1" -> "similarK/2(is,is)#3
+valAVG: 0,9093613272412389
+offset: 0,5880558040753436" [ label = "2x" ];
+"similarK/2(is,is)#3
+valAVG: 0,9093613272412389
+offset: 0,5880558040753436" -> "kapR{[similar/2(0,0)#4]}" [ label = "1,5261848393688522" ];
+"kapR{[similar/2(0,0)#4]}" -> "similar/2(is,is)#4
+valAvg: 1,1255554981991145
+#ground: 0" [ label = "1x" ];
+"holdsRekL/3(is,dog,animal)#27
+valAvg: 0,3890700215437633
+#ground: 1" -> "holdsK/3(is,dog,mammal)#28
+valAVG: 0,7303506340656998
+offset: 0,5706157605074726" [ label = "1x" ];
+"holdsK/3(is,dog,mammal)#28
+valAVG: 0,7303506340656998
+offset: 0,5706157605074726" -> "kapR{[holdsL2/3(0,2,3)#29]}" [ label = "1,003775554203985" ];
+"kapR{[holdsL2/3(0,2,3)#29]}" -> "holdsL2/3(is,dog,mammal)#29
+valAvg: 0,42418497524848114
+#ground: 1" [ label = "1x" ];
+"holdsL2/3(is,dog,mammal)#29
+valAvg: 0,42418497524848114
+#ground: 1" -> "similarK/2(is,is)#3
+valAVG: 0,9093613272412389
+offset: 0,5880558040753436" [ label = "1x" ];
+"holdsL2/3(is,dog,mammal)#29
+valAvg: 0,42418497524848114
+#ground: 1" -> "similarK/2(dog,dog)#15
+valAVG: 0,8927231054998509
+offset: 0,5880558040753436" [ label = "1x" ];
+"similarK/2(dog,dog)#15
+valAVG: 0,8927231054998509
+offset: 0,5880558040753436" -> "kapR{[similar/2(2,2)#16]}" [ label = "1,5261848393688522" ];
+"kapR{[similar/2(2,2)#16]}" -> "similar/2(dog,dog)#16
+valAvg: 1,003028811491254
+#ground: 0" [ label = "1x" ];
+"holdsL2/3(is,dog,mammal)#29
+valAvg: 0,42418497524848114
+#ground: 1" -> "similarK/2(mammal,mammal)#30
+valAVG: 0,8922987181985916
+offset: 0,5880558040753436" [ label = "1x" ];
+"similarK/2(mammal,mammal)#30
+valAVG: 0,8922987181985916
+offset: 0,5880558040753436" -> "kapR{[similar/2(3,3)#31]}" [ label = "1,5261848393688522" ];
+"kapR{[similar/2(3,3)#31]}" -> "similar/2(mammal,mammal)#31
+valAvg: 1,0001302812468928
+#ground: 0" [ label = "1x" ];
+"holdsRekL/3(is,dog,animal)#27
+valAvg: 0,3890700215437633
+#ground: 1" -> "holdsRekK/3(is,mammal,animal)#32
+valAVG: 0,9997036917803258
+offset: 7,68871743269387" [ label = "1x" ];
+"holdsRekK/3(is,mammal,animal)#32
+valAVG: 0,9997036917803258
+offset: 7,68871743269387" -> "kapR{[holdsL/3(0,3,4)#49]}" [ label = "1,0050395148633253" ];
+"kapR{[holdsL/3(0,3,4)#49]}" -> "holdsL/3(is,mammal,animal)#49
+valAvg: 0,43291489683717255
+#ground: 1" [ label = "1x" ];
+"holdsL/3(is,mammal,animal)#49
+valAvg: 0,43291489683717255
+#ground: 1" -> "holdsK/3(is,mammal,animal)#41
+valAVG: 0,7300317793577343
+offset: 0,5706157605074726" [ label = "1x" ];
+"holdsK/3(is,mammal,animal)#41
+valAVG: 0,7300317793577343
+offset: 0,5706157605074726" -> "kapR{[holdsL3/3(0,3,4)#42]}" [ label = "1,0002149376051648" ];
+"kapR{[holdsL3/3(0,3,4)#42]}" -> "holdsL3/3(is,mammal,animal)#42
+valAvg: 0,4240769052336691
+#ground: 1" [ label = "1x" ];
+"holdsL3/3(is,mammal,animal)#42
+valAvg: 0,4240769052336691
+#ground: 1" -> "similarK/2(animal,animal)#43
+valAVG: 0,8922806378616455
+offset: 0,5880558040753436" [ label = "1x" ];
+"similarK/2(animal,animal)#43
+valAVG: 0,8922806378616455
+offset: 0,5880558040753436" -> "kapR{[similar/2(4,4)#44]}" [ label = "1,5261848393688522" ];
+"kapR{[similar/2(4,4)#44]}" -> "similar/2(animal,animal)#44
+valAvg: 1,0000070172651754
+#ground: 0" [ label = "1x" ];
+"holdsL3/3(is,mammal,animal)#42
+valAvg: 0,4240769052336691
+#ground: 1" -> "similarK/2(is,is)#3
+valAVG: 0,9093613272412389
+offset: 0,5880558040753436" [ label = "1x" ];
+"holdsL3/3(is,mammal,animal)#42
+valAvg: 0,4240769052336691
+#ground: 1" -> "similarK/2(mammal,mammal)#30
+valAVG: 0,8922987181985916
+offset: 0,5880558040753436" [ label = "1x" ];
+"holdsRekL/3(is,lajka,animal)#12
+valAvg: 0,39068568220250244
+#ground: 1" -> "similarK/2(is,is)#3
+valAVG: 0,9093613272412389
+offset: 0,5880558040753436" [ label = "2x" ];
+"holdsRekL/3(is,lajka,animal)#12
+valAvg: 0,39068568220250244
+#ground: 1" -> "holdsK/3(is,lajka,dog)#13
+valAVG: 0,7370106651448641
+offset: 0,5706157605074726" [ label = "1x" ];
+"holdsK/3(is,lajka,dog)#13
+valAVG: 0,7370106651448641
+offset: 0,5706157605074726" -> "kapR{[holdsL1/3(0,5,2)#14]}" [ label = "1,0887185592299464" ];
+"kapR{[holdsL1/3(0,5,2)#14]}" -> "holdsL1/3(is,lajka,dog)#14
+valAvg: 0,42239853378890335
+#ground: 1" [ label = "1x" ];
+"holdsL1/3(is,lajka,dog)#14
+valAvg: 0,42239853378890335
+#ground: 1" -> "similarK/2(is,is)#3
+valAVG: 0,9093613272412389
+offset: 0,5880558040753436" [ label = "1x" ];
+"holdsL1/3(is,lajka,dog)#14
+valAvg: 0,42239853378890335
+#ground: 1" -> "similarK/2(dog,dog)#15
+valAVG: 0,8927231054998509
+offset: 0,5880558040753436" [ label = "1x" ];
+"holdsL1/3(is,lajka,dog)#14
+valAvg: 0,42239853378890335
+#ground: 1" -> "similarK/2(lajka,lassie)#7
+valAVG: 0,8849807024717332
+offset: 0,5880558040753436" [ label = "1x" ];
+"similarK/2(lajka,lassie)#7
+valAVG: 0,8849807024717332
+offset: 0,5880558040753436" -> "kapR{[similar/2(5,1)#8]}" [ label = "1,5261848393688522" ];
+"kapR{[similar/2(5,1)#8]}" -> "similar/2(lajka,lassie)#8
+valAvg: 0,9516606896052936
 #ground: 0" [ label = "1x" ];
 }

@@ -4,7 +4,7 @@ import discoverer.construction.template.LightTemplate;
 import discoverer.crossvalidation.NeuralCrossvalidation;
 import discoverer.crossvalidation.Crossvalidation;
 import discoverer.global.Global;
-import discoverer.global.FileToStringList;
+import discoverer.global.TextFileReader;
 import discoverer.global.Glogger;
 import discoverer.global.Settings;
 import discoverer.learning.Sample;
@@ -405,13 +405,13 @@ public class Main {
         String tt = cmd.getOptionValue("test");
         if (tt != null) {
             Settings.setTestSet(tt);
-            test = FileToStringList.convert(tt, maxReadline);
+            test = TextFileReader.convert(tt, maxReadline);
         }
 
         //get rules one by one from a file
         String rls = cmd.getOptionValue("r");
         Settings.setRules(rls);
-        String[] rules = FileToStringList.convert(rls, maxReadline);
+        String[] rules = TextFileReader.convert(rls, maxReadline);
         if (rules.length == 0) {
             Glogger.err("no rules");
         }
@@ -426,7 +426,7 @@ public class Main {
         //pretrained template with some lifted literals in common (will be mapped onto new template)
         String pretrained = cmd.getOptionValue("t");
         Settings.setPretrained(pretrained);
-        String[] pretrainedRules = FileToStringList.convert(pretrained, maxReadline);
+        String[] pretrainedRules = TextFileReader.convert(pretrained, maxReadline);
         if (pretrainedRules != null) {
             Glogger.out("pretrained= " + pretrained + " of length: " + pretrainedRules.length);
         }
@@ -449,9 +449,9 @@ public class Main {
         String[] exs = null;
         Settings.setDataset(exampleFile);
         if (Global.multiLine) {
-            exs = FileToStringList.convertMultiline(exampleFile, maxReadline);
+            exs = TextFileReader.convertMultiline(exampleFile, maxReadline);
         } else {
-            exs = FileToStringList.convert(exampleFile, maxReadline);
+            exs = TextFileReader.convert(exampleFile, maxReadline);
         }
 
         if (exs.length == 0) {

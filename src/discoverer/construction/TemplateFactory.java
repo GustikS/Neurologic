@@ -14,6 +14,8 @@ import discoverer.construction.template.MolecularTemplate;
 import discoverer.construction.template.NLPtemplate;
 import discoverer.construction.template.rules.Rule;
 import discoverer.construction.template.rules.SubKL;
+import discoverer.construction.template.specialPredicates.SimilarityPredicate;
+import discoverer.construction.template.specialPredicates.SpecialPredicate;
 import discoverer.global.Global;
 import discoverer.global.Glogger;
 import discoverer.learning.functions.Activations;
@@ -34,8 +36,14 @@ public class TemplateFactory {
 
     private LinkedList<Rule> templateRules = new LinkedList<>();
 
+    public static Map<String,SpecialPredicate> specialPredicateNames;
+    public static Map<KL,SpecialPredicate> specialPredicatesMap;
+    
     public TemplateFactory() {
         ConstantFactory.clearConstantFactory();
+        specialPredicateNames = new HashMap<>();
+        specialPredicateNames.put("similar/2", new SimilarityPredicate("similar"));
+        specialPredicatesMap = new HashMap<>();
     }
 
     public List<Rule> geRules() {

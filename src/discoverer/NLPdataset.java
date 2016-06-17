@@ -6,6 +6,7 @@
 package discoverer;
 
 import discoverer.construction.ConstantFactory;
+import static discoverer.construction.ConstantFactory.loadEmbeddings;
 import discoverer.construction.ExampleFactory;
 import discoverer.construction.Parser;
 import static discoverer.construction.Parser.getWeightLen;
@@ -48,7 +49,7 @@ public class NLPdataset extends Main {
 
     public HashMap<String, Integer> constantNames2Id;
     //facts
-    private Example facts;
+    public static Example facts;
 
     public static void main(String[] args) {
         //setup all parameters and load all the necessary input files
@@ -77,9 +78,15 @@ public class NLPdataset extends Main {
         Global.weightedFacts = true;
         Global.templateConstants = true;
         Global.recursion = true;
+        Global.alldiff = false;
+        Global.embeddings = true;
 
         templateFactory = new TemplateFactory();
         template = (NLPtemplate) templateFactory.construct(iRules);
+
+        if (Global.embeddings) {
+            ConstantFactory.loadEmbeddings("..\\in\\NLP\\eats\\holds\\emb\\embeddings.csv");
+        }
 
         //contruct a fact store = actually like a one huge example graph
         ExampleFactory eFactory = new ExampleFactory();
@@ -105,7 +112,7 @@ public class NLPdataset extends Main {
         for (Map.Entry<String, Integer> ent : ExampleFactory.getConstMap().entrySet()) {
             ConstantFactory.construct(ent.getKey());
         }
-
+        
         template.constantNames = facts.constantNames;
 
         Dotter.draw(template.KLs.values(), "initNLPtemplate");
@@ -143,6 +150,7 @@ public class NLPdataset extends Main {
     }
 
     public void export(String destination) {
+        ConstantFactory.exportEmbeddings(destination);
         template.exportTemplate(destination);
         BufferedWriter writer = null;
         try {

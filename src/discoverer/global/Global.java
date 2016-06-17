@@ -93,6 +93,7 @@ public final class Global {
     public static boolean weightedFacts = false;
     public static boolean templateConstants = false;
     public static boolean recursion = false;
+    public static boolean embeddings = false;
 
     public static void setupThreads() {
         numOfThreads = Runtime.getRuntime().availableProcessors();

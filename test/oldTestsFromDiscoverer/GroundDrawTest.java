@@ -8,7 +8,7 @@ import discoverer.construction.template.LiftedTemplate;
 import discoverer.construction.template.MolecularTemplate;
 import discoverer.drawing.Dotter;
 import discoverer.drawing.GroundDotter;
-import discoverer.global.FileToStringList;
+import discoverer.global.TextFileReader;
 import discoverer.global.Global;
 import discoverer.grounding.evaluation.GroundedTemplate;
 import discoverer.grounding.Grounder;
@@ -26,7 +26,7 @@ public class GroundDrawTest {
         Global.setKappaActivation(Global.activationSet.id);
         Global.setWeightInit(Global.weightInitSet.handmade);
         Global.setRg(new Random(1));
-        String[] rules = FileToStringList.convert("in/strings/easy-rules2.txt", Integer.MAX_VALUE);
+        String[] rules = TextFileReader.convert("in/strings/easy-rules2.txt", Integer.MAX_VALUE);
         
         TemplateFactory nf = new TemplateFactory();
         LiftedTemplate net = nf.construct(rules);
@@ -34,7 +34,7 @@ public class GroundDrawTest {
         //Dotter.draw(net.last, "strings");
         
         ExampleFactory eFactory = new ExampleFactory();
-        String[] examples = FileToStringList.convert("in/strings/easy-examples.txt", Integer.MAX_VALUE);
+        String[] examples = TextFileReader.convert("in/strings/easy-examples.txt", Integer.MAX_VALUE);
         Example e = eFactory.construct(examples[0]);
 
         GroundedTemplate b = Grounder.groundTemplate(net.last, e);

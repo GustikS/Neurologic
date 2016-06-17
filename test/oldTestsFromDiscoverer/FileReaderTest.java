@@ -1,6 +1,6 @@
 package oldTestsFromDiscoverer;
 
-import discoverer.global.FileToStringList;
+import discoverer.global.TextFileReader;
 import static org.junit.Assert.*;
 import java.util.*;
 
@@ -10,7 +10,7 @@ public class FileReaderTest {
 
     @Test
     public void test() {
-        String[] s = FileToStringList.convert("/home/asch/tmp/ondra.txt");
+        String[] s = TextFileReader.convert("/home/asch/tmp/ondra.txt");
         System.out.println(s);
     }
 

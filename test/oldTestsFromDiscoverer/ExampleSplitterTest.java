@@ -3,7 +3,7 @@ package oldTestsFromDiscoverer;
 import discoverer.crossvalidation.SampleSplitter;
 import discoverer.construction.ExampleFactory;
 import discoverer.construction.example.Example;
-import discoverer.global.FileToStringList;
+import discoverer.global.TextFileReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +14,7 @@ import org.junit.Test;
 public class ExampleSplitterTest {
     @Test
     public void test() {
-        String[] ex = FileToStringList.convert("../in/muta/examples", 700);
+        String[] ex = TextFileReader.convert("../in/muta/examples", 700);
 
         ExampleFactory eFactory = new ExampleFactory();
         List<Example> examples = new ArrayList<Example>();
