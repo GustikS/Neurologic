@@ -36,14 +36,17 @@ public class TemplateFactory {
 
     private LinkedList<Rule> templateRules = new LinkedList<>();
 
-    public static Map<String,SpecialPredicate> specialPredicateNames;
-    public static Map<KL,SpecialPredicate> specialPredicatesMap;
-    
+    public static Map<String, SpecialPredicate> specialPredicateNames;
+    public static Map<KL, SpecialPredicate> specialPredicatesMap;
+
     public TemplateFactory() {
         ConstantFactory.clearConstantFactory();
+
         specialPredicateNames = new HashMap<>();
-        specialPredicateNames.put("similar/2", new SimilarityPredicate("similar"));
-        specialPredicatesMap = new HashMap<>();
+        if (Global.embeddings) {
+            specialPredicateNames.put("similar/2", new SimilarityPredicate("similar"));
+            specialPredicatesMap = new HashMap<>();
+        }
     }
 
     public List<Rule> geRules() {

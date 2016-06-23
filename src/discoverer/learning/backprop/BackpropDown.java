@@ -39,12 +39,12 @@ public class BackpropDown {
             return weights;
         }
 
-        double baseDerivative = -1 * (targetVal - b.valMax);  //output error-level derivative
+        double baseDerivative = /*-1**/ (targetVal - b.valMax);  //output error-level derivative
 
         if (o instanceof GroundKappa) {
-            derive((GroundKappa) o, baseDerivative);
+            derive((GroundKappa) o, Settings.learnRate * baseDerivative);
         } else {
-            derive((GroundLambda) o, baseDerivative);
+            derive((GroundLambda) o, Settings.learnRate * baseDerivative);
         }
 
         return weights;
@@ -60,7 +60,7 @@ public class BackpropDown {
             System.out.println("deriving: " + gk);
         }
 
-        if (gk.isElement()) {
+        if (!Global.weightedFacts && gk.isElement()) {
             return; //we do not update the weights for example atoms (but it would be possible and might be interesting)
         }
 
@@ -70,10 +70,16 @@ public class BackpropDown {
         if (gk.getGroundParentsChecked() >= gk.getGroundParents()) { //all parents checked
             double firstDerivative = kappaActivationDerivative(gk);
             double myDerivative = gk.getGroundParentDerivative() * firstDerivative;
-            weights.addW(gk.getGeneral(), -learnRate * myDerivative);   //updating offset weight (it's inner derivative is just 1, so no more computations needed)
+            
+            if (gk.isElement()){
+                weights.addW(gk, myDerivative);
+                return;
+            }
+            
+            weights.addW(gk.getGeneral(), myDerivative);   //updating offset weight (it's inner derivative is just 1, so no more computations needed)
 
             for (Tuple<GroundLambda, KappaRule> tup : gk.getDisjuncts()) {
-                weights.addW(tup.y, -learnRate * myDerivative * tup.x.getValue());    //updating Kappa-rule's weight (it's inner derivative is just the value of corresponding GroundLambda)
+                weights.addW(tup.y, myDerivative * tup.x.getValue());    //updating Kappa-rule's weight (it's inner derivative is just the value of corresponding GroundLambda)
                 derive(tup.x, myDerivative * tup.y.getWeight());    //dive into solving the corresponding GroundLambda
             }
         }
@@ -84,6 +90,10 @@ public class BackpropDown {
             Glogger.debug("dropping " + gl);
             return;
         }
+        
+        if (!Global.weightedFacts && gl.isElement()) {
+            return; //we do not update the weights for example atoms (but it would be possible and might be interesting)
+        }
 
         if (Global.isDebugEnabled()) {
             System.out.println("deriving: " + gl);
@@ -93,6 +103,12 @@ public class BackpropDown {
 
         if (gl.getGroundParentsChecked() == gl.getGroundParents()) {    //all parent's derivatives evaluated
             double firstDerivative = lambdaActivationDerivative(gl);
+            
+            if (gl.isElement()){
+                weights.addW(gl, gl.getGroundParentDerivative() * firstDerivative);
+                return;
+            }
+            
             for (GroundKappa gk : gl.getConjuncts()) {
                 derive(gk, gl.getGroundParentDerivative() * firstDerivative);
             }

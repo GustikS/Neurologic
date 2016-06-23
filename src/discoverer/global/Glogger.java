@@ -28,7 +28,7 @@ public final class Glogger {
     static Writer training;
     static Writer results;
     static Writer test;
-    private static final String resultsDir = "../results";
+    public static String resultsDir = "../results";
     
     static final boolean timeMeasures = true;
     private static long clock = System.currentTimeMillis();

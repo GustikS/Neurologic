@@ -52,10 +52,16 @@ public class NLPdataset extends Main {
     public static Example facts;
 
     public static void main(String[] args) {
+        Glogger.resultsDir = "./results/";
         //setup all parameters and load all the necessary input files
         List<String[]> inputs = setupFromArguments(args);
         //create logger for all messages within the program
         Glogger.init();
+
+        if (inputs.size() < 3) {
+            Glogger.err("Missing input files!");
+            return;
+        }
 
         String[] queries = inputs.get(0);
         String[] facts = inputs.get(1);
@@ -66,26 +72,29 @@ public class NLPdataset extends Main {
         NLPdataset dataset = new NLPdataset(facts, rules);
 
         //start learning
-        dataset.learnOn(queries);
+        String[] results = dataset.learnOn(queries);
         //dataset.evaluate();
-        dataset.export("NLP");
+        dataset.export(results, "NLP");
     }
 
     private NLPdataset(String[] iFacts, String[] iRules) {
-        Global.debugEnabled = true;
-        Global.molecularTemplates = false;
+        Global.weightFolder = "./weights/";
+        weightFolder = "./weights/";
+        Dotter.outPath = "./images/";
+
         Global.NLPtemplate = true;
+        Global.molecularTemplates = false;
         Global.weightedFacts = true;
+
         Global.templateConstants = true;
         Global.recursion = true;
         Global.alldiff = false;
-        Global.embeddings = true;
 
         templateFactory = new TemplateFactory();
         template = (NLPtemplate) templateFactory.construct(iRules);
 
         if (Global.embeddings) {
-            ConstantFactory.loadEmbeddings("..\\in\\NLP\\eats\\holds\\emb\\embeddings.csv");
+            ConstantFactory.loadEmbeddings("./in/embeddings.csv");     //TO change
         }
 
         //contruct a fact store = actually like a one huge example graph
@@ -112,10 +121,12 @@ public class NLPdataset extends Main {
         for (Map.Entry<String, Integer> ent : ExampleFactory.getConstMap().entrySet()) {
             ConstantFactory.construct(ent.getKey());
         }
-        
+
         template.constantNames = facts.constantNames;
 
-        Dotter.draw(template.KLs.values(), "initNLPtemplate");
+        if (Global.drawing) {
+            Dotter.draw(template.KLs.values(), "initNLPtemplate");
+        }
     }
 
     private void evaluate() {
@@ -123,12 +134,17 @@ public class NLPdataset extends Main {
         GroundDotter.draw(proof, "eval");
     }
 
-    private void learnOn(String[] queries) {
+    private String[] learnOn(String[] queries) {
         int i = 0;
+        String[] results = new String[queries.length];
         for (String query : queries) {
+            Double targetValue = null;
 
             int wLen = Parser.getWeightLen(query);
-            double targetValue = Double.parseDouble(query.substring(0, wLen));
+            if (wLen > 0) {
+                targetValue = Double.parseDouble(query.substring(0, wLen));
+            }
+
             String[][] queryTokens = Parser.parseQuery(query.substring(wLen, query.length()));
             String signature = queryTokens[0][0];
             KL target = template.KLs.get(signature);
@@ -141,16 +157,31 @@ public class NLPdataset extends Main {
             }
 
             GroundedTemplate proof = template.query(target, vars, facts);
-            GroundDotter.draw(proof, i + "beforeLearning_" + query.substring(wLen, query.length()));
-            template.updateWeights(proof, targetValue);
-            GroundDotter.draw(proof, i + "afterLearning_" + query.substring(wLen, query.length()));
-            double res = template.evaluateProof(proof);
-            GroundDotter.draw(proof, i++ + "afterEvaluation_" + query.substring(wLen, query.length()));
+            double res = proof.valMax;
+            if (Global.drawing) {
+                GroundDotter.draw(proof, i + "beforeLearning_" + query.substring(wLen, query.length()));
+            }
+            if (targetValue != null) {
+                template.updateWeights(proof, targetValue);
+
+                if (Global.drawing) {
+                    GroundDotter.draw(proof, i + "afterLearning_" + query.substring(wLen, query.length()));
+                }
+                res = template.evaluateProof(proof);
+                if (Global.drawing) {
+                    GroundDotter.draw(proof, i + "afterEvaluation_" + query.substring(wLen, query.length()));
+                }
+            }
+            results[i++] = res + " <- " + query;
+            Glogger.out(results[i - 1]);
         }
+        return results;
     }
 
-    public void export(String destination) {
-        ConstantFactory.exportEmbeddings(destination);
+    public void export(String[] results, String destination) {
+        if (Global.embeddings) {
+            ConstantFactory.exportEmbeddings(destination);
+        }
         template.exportTemplate(destination);
         BufferedWriter writer = null;
         try {
@@ -168,6 +199,22 @@ public class NLPdataset extends Main {
                 }
                 sb.replace(sb.length() - 1, sb.length(), ")\n");
                 writer.write(sb.toString());
+            }
+        } catch (UnsupportedEncodingException ex) {
+            Logger.getLogger(Saver.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Saver.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                writer.close();
+            } catch (IOException ex) {
+                Logger.getLogger(Saver.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        try {
+            writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(weightFolder + destination + "-answers.w"), "utf-8"));
+            for (String result : results) {
+                writer.write(result + "\n");
             }
         } catch (UnsupportedEncodingException ex) {
             Logger.getLogger(Saver.class.getName()).log(Level.SEVERE, null, ex);

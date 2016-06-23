@@ -20,7 +20,7 @@ import java.util.*;
  */
 public class Dotter {
 
-    public static String path = "graphviz/bin/";	// Windows
+    public static String path = "./graphviz/bin/";	// Windows
     public static String outPath = "../images/";
     public static String imgtype = "png";
     private static String name = "graph";

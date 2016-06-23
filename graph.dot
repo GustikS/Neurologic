@@ -1,148 +1,70 @@
 digraph G {
-"holdsRekK/3(is,lajka,animal)#1
-valAVG: 0,9998364771724776
-offset: 7,68871743269387" -> "kapR{[holdsRekL/3(0,5,4)#12]}" [ label = "2,635563670521843" ];
-"kapR{[holdsRekL/3(0,5,4)#12]}" -> "holdsRekL/3(is,lajka,animal)#12
-valAvg: 0,39068568220250244
-#ground: 1" [ label = "1x" ];
-"holdsRekL/3(is,lajka,animal)#12
-valAvg: 0,39068568220250244
-#ground: 1" -> "holdsRekK/3(is,dog,animal)#17
-valAVG: 0,9998357794933924
-offset: 7,68871743269387" [ label = "1x" ];
-"holdsRekK/3(is,dog,animal)#17
-valAVG: 0,9998357794933924
-offset: 7,68871743269387" -> "kapR{[holdsRekL/3(0,2,4)#27]}" [ label = "2,635563670521843" ];
-"kapR{[holdsRekL/3(0,2,4)#27]}" -> "holdsRekL/3(is,dog,animal)#27
-valAvg: 0,3890700215437633
-#ground: 1" [ label = "1x" ];
-"holdsRekL/3(is,dog,animal)#27
-valAvg: 0,3890700215437633
-#ground: 1" -> "similarK/2(is,is)#3
-valAVG: 0,9093613272412389
-offset: 0,5880558040753436" [ label = "2x" ];
-"similarK/2(is,is)#3
-valAVG: 0,9093613272412389
-offset: 0,5880558040753436" -> "kapR{[similar/2(0,0)#4]}" [ label = "1,5261848393688522" ];
-"kapR{[similar/2(0,0)#4]}" -> "similar/2(is,is)#4
-valAvg: 1,1255554981991145
-#ground: 0" [ label = "1x" ];
-"holdsRekL/3(is,dog,animal)#27
-valAvg: 0,3890700215437633
-#ground: 1" -> "holdsK/3(is,dog,mammal)#28
-valAVG: 0,7303506340656998
-offset: 0,5706157605074726" [ label = "1x" ];
-"holdsK/3(is,dog,mammal)#28
-valAVG: 0,7303506340656998
-offset: 0,5706157605074726" -> "kapR{[holdsL2/3(0,2,3)#29]}" [ label = "1,003775554203985" ];
-"kapR{[holdsL2/3(0,2,3)#29]}" -> "holdsL2/3(is,dog,mammal)#29
-valAvg: 0,42418497524848114
-#ground: 1" [ label = "1x" ];
-"holdsL2/3(is,dog,mammal)#29
-valAvg: 0,42418497524848114
-#ground: 1" -> "similarK/2(is,is)#3
-valAVG: 0,9093613272412389
-offset: 0,5880558040753436" [ label = "1x" ];
-"holdsL2/3(is,dog,mammal)#29
-valAvg: 0,42418497524848114
-#ground: 1" -> "similarK/2(dog,dog)#15
-valAVG: 0,8927231054998509
-offset: 0,5880558040753436" [ label = "1x" ];
-"similarK/2(dog,dog)#15
-valAVG: 0,8927231054998509
-offset: 0,5880558040753436" -> "kapR{[similar/2(2,2)#16]}" [ label = "1,5261848393688522" ];
-"kapR{[similar/2(2,2)#16]}" -> "similar/2(dog,dog)#16
-valAvg: 1,003028811491254
-#ground: 0" [ label = "1x" ];
-"holdsL2/3(is,dog,mammal)#29
-valAvg: 0,42418497524848114
-#ground: 1" -> "similarK/2(mammal,mammal)#30
-valAVG: 0,8922987181985916
-offset: 0,5880558040753436" [ label = "1x" ];
-"similarK/2(mammal,mammal)#30
-valAVG: 0,8922987181985916
-offset: 0,5880558040753436" -> "kapR{[similar/2(3,3)#31]}" [ label = "1,5261848393688522" ];
-"kapR{[similar/2(3,3)#31]}" -> "similar/2(mammal,mammal)#31
-valAvg: 1,0001302812468928
-#ground: 0" [ label = "1x" ];
-"holdsRekL/3(is,dog,animal)#27
-valAvg: 0,3890700215437633
-#ground: 1" -> "holdsRekK/3(is,mammal,animal)#32
-valAVG: 0,9997036917803258
-offset: 7,68871743269387" [ label = "1x" ];
-"holdsRekK/3(is,mammal,animal)#32
-valAVG: 0,9997036917803258
-offset: 7,68871743269387" -> "kapR{[holdsL/3(0,3,4)#49]}" [ label = "1,0050395148633253" ];
-"kapR{[holdsL/3(0,3,4)#49]}" -> "holdsL/3(is,mammal,animal)#49
-valAvg: 0,43291489683717255
-#ground: 1" [ label = "1x" ];
-"holdsL/3(is,mammal,animal)#49
-valAvg: 0,43291489683717255
-#ground: 1" -> "holdsK/3(is,mammal,animal)#41
-valAVG: 0,7300317793577343
-offset: 0,5706157605074726" [ label = "1x" ];
-"holdsK/3(is,mammal,animal)#41
-valAVG: 0,7300317793577343
-offset: 0,5706157605074726" -> "kapR{[holdsL3/3(0,3,4)#42]}" [ label = "1,0002149376051648" ];
-"kapR{[holdsL3/3(0,3,4)#42]}" -> "holdsL3/3(is,mammal,animal)#42
-valAvg: 0,4240769052336691
-#ground: 1" [ label = "1x" ];
-"holdsL3/3(is,mammal,animal)#42
-valAvg: 0,4240769052336691
-#ground: 1" -> "similarK/2(animal,animal)#43
-valAVG: 0,8922806378616455
-offset: 0,5880558040753436" [ label = "1x" ];
-"similarK/2(animal,animal)#43
-valAVG: 0,8922806378616455
-offset: 0,5880558040753436" -> "kapR{[similar/2(4,4)#44]}" [ label = "1,5261848393688522" ];
-"kapR{[similar/2(4,4)#44]}" -> "similar/2(animal,animal)#44
-valAvg: 1,0000070172651754
-#ground: 0" [ label = "1x" ];
-"holdsL3/3(is,mammal,animal)#42
-valAvg: 0,4240769052336691
-#ground: 1" -> "similarK/2(is,is)#3
-valAVG: 0,9093613272412389
-offset: 0,5880558040753436" [ label = "1x" ];
-"holdsL3/3(is,mammal,animal)#42
-valAvg: 0,4240769052336691
-#ground: 1" -> "similarK/2(mammal,mammal)#30
-valAVG: 0,8922987181985916
-offset: 0,5880558040753436" [ label = "1x" ];
-"holdsRekL/3(is,lajka,animal)#12
-valAvg: 0,39068568220250244
-#ground: 1" -> "similarK/2(is,is)#3
-valAVG: 0,9093613272412389
-offset: 0,5880558040753436" [ label = "2x" ];
-"holdsRekL/3(is,lajka,animal)#12
-valAvg: 0,39068568220250244
-#ground: 1" -> "holdsK/3(is,lajka,dog)#13
-valAVG: 0,7370106651448641
-offset: 0,5706157605074726" [ label = "1x" ];
-"holdsK/3(is,lajka,dog)#13
-valAVG: 0,7370106651448641
-offset: 0,5706157605074726" -> "kapR{[holdsL1/3(0,5,2)#14]}" [ label = "1,0887185592299464" ];
-"kapR{[holdsL1/3(0,5,2)#14]}" -> "holdsL1/3(is,lajka,dog)#14
-valAvg: 0,42239853378890335
-#ground: 1" [ label = "1x" ];
-"holdsL1/3(is,lajka,dog)#14
-valAvg: 0,42239853378890335
-#ground: 1" -> "similarK/2(is,is)#3
-valAVG: 0,9093613272412389
-offset: 0,5880558040753436" [ label = "1x" ];
-"holdsL1/3(is,lajka,dog)#14
-valAvg: 0,42239853378890335
-#ground: 1" -> "similarK/2(dog,dog)#15
-valAVG: 0,8927231054998509
-offset: 0,5880558040753436" [ label = "1x" ];
-"holdsL1/3(is,lajka,dog)#14
-valAvg: 0,42239853378890335
-#ground: 1" -> "similarK/2(lajka,lassie)#7
-valAVG: 0,8849807024717332
-offset: 0,5880558040753436" [ label = "1x" ];
-"similarK/2(lajka,lassie)#7
-valAVG: 0,8849807024717332
-offset: 0,5880558040753436" -> "kapR{[similar/2(5,1)#8]}" [ label = "1,5261848393688522" ];
-"kapR{[similar/2(5,1)#8]}" -> "similar/2(lajka,lassie)#8
-valAvg: 0,9516606896052936
-#ground: 0" [ label = "1x" ];
+"story/1(game1)#7
+val: 0,34351251383011105" -> "throw/1(game1)#8
+val: 0,6542849831309189
+offset: 0,1543740897246726";
+"throw/1(game1)#8
+val: 0,6542849831309189
+offset: 0,1543740897246726" -> "throwL/3(game1,fred,ball)#21
+val: 0,452603999289927" [ label = "1,0683823753148605" ];
+"throwL/3(game1,fred,ball)#21
+val: 0,452603999289927" -> "eventK/1(game1)#10
+val: 0,8944848588848366
+offset: 0,12337944246854335";
+"eventK/1(game1)#10
+val: 0,8944848588848366
+offset: 0,12337944246854335" -> "game/1(game1)#5
+val: 1,0034974023722656" [ label = "2,006994804744531" ];
+"throwL/3(game1,fred,ball)#21
+val: 0,452603999289927" -> "playerK/1(fred)#14
+val: 0,9576801109324643
+offset: 0,10646905008262461";
+"playerK/1(fred)#14
+val: 0,9576801109324643
+offset: 0,10646905008262461" -> "male/1(fred)#4
+val: 1,0022542426117587" [ label = "3,006011313631356" ];
+"throwL/3(game1,fred,ball)#21
+val: 0,452603999289927" -> "playerK/1(john)#11
+val: 0,9576801109324643
+offset: 0,10646905008262461";
+"playerK/1(john)#11
+val: 0,9576801109324643
+offset: 0,10646905008262461" -> "male/1(john)#3
+val: 1,0022542426117587" [ label = "3,006011313631356" ];
+"throwL/3(game1,fred,ball)#21
+val: 0,452603999289927" -> "interceptableK/1(ball)#12
+val: 0,9999999980613226
+offset: 0,06125980511916238";
+"interceptableK/1(ball)#12
+val: 0,9999999980613226
+offset: 0,06125980511916238" -> "token/1(ball)#0
+val: 10,000000003755911" [ label = "2,0000000007268515" ];
+"story/1(game1)#7
+val: 0,34351251383011105" -> "interception/1(game1)#27
+val: 0,6980349261029651
+offset: 0,356127100906689";
+"interception/1(game1)#27
+val: 0,6980349261029651
+offset: 0,356127100906689" -> "interceptL/3(game1,fred,ball)#37
+val: 0,45260393036012453" [ label = "1,064574663056664" ];
+"interceptL/3(game1,fred,ball)#37
+val: 0,45260393036012453" -> "eventK/1(game1)#10
+val: 0,8944848588848366
+offset: 0,12337944246854335";
+"interceptL/3(game1,fred,ball)#37
+val: 0,45260393036012453" -> "playerK/1(fred)#14
+val: 0,9576801109324643
+offset: 0,10646905008262461";
+"interceptL/3(game1,fred,ball)#37
+val: 0,45260393036012453" -> "playerK/1(john)#11
+val: 0,9576801109324643
+offset: 0,10646905008262461";
+"interceptL/3(game1,fred,ball)#37
+val: 0,45260393036012453" -> "passableK/1(ball)#29
+val: 0,9999997198421641
+offset: 0,0879114151290273";
+"passableK/1(ball)#29
+val: 0,9999997198421641
+offset: 0,0879114151290273" -> "token/1(ball)#0
+val: 10,000000003755911" [ label = "1,500000099188507" ];
 }

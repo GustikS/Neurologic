@@ -23,7 +23,7 @@ public class VariableFactory {
         if (t == null) {
             t = new Variable(name);
             varMap.put(name, t);
-            if (name.contains("DMY"))
+            if (name.startsWith("_"))
                 t.setDummy();
         }
         return t;

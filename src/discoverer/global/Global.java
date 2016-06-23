@@ -86,7 +86,7 @@ public final class Global {
     public static final boolean adaptiveActivations = false;
     public static boolean learnableElements = false;
 
-    public static String weightFolder = "weights/";
+    public static String weightFolder = "./weights/";
 
     //---Structure Learning parameters
     public static boolean regularizedBackprop = false;
@@ -115,6 +115,10 @@ public final class Global {
      */
     public static void setMerging(mergingOptions aMerging) {
         merging = aMerging;
+    }
+
+    public static void setDrawing(String tmp) {
+        drawing = Integer.parseInt(tmp) > 0;
     }
 
     //----taken as parameters from Main

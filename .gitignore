@@ -3,7 +3,6 @@
 /weights*
 /in*
 /build*
-/dist(*
 /folds/
 /graph.dot
 *.ser

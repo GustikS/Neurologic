@@ -22,13 +22,13 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.json.*;
+//import org.json.*;
 import templates.Templator;
 
 /**
  *
  * @author Gusta
- */
+ 
 public class JsonFlowParser extends Templator {
 
     static HashMap<String, JSONObject> incidents = new HashMap<>();
@@ -189,3 +189,4 @@ public class JsonFlowParser extends Templator {
 
     }
 }
+*/

@@ -37,6 +37,8 @@ public class Settings {
     private static String rules;
     private static String pretrained;
     private static String testSet;
+    private static String embeddings;
+    private static String debug;
 
     /**
      * outdated...new way of creating Settings is directly! to synchronize with
@@ -105,6 +107,8 @@ public class Settings {
         sb.append("sgd-").append(getSGD()).append("_");
         //others
         sb.append("save-").append(getSave()).append("_");
+        sb.append("emb-").append(getEmbeddings()).append("_");
+        sb.append("debug-").append(getDebug()).append("_");
         return sb.toString();
     }
 
@@ -414,6 +418,36 @@ public class Settings {
      */
     public static void setTestSet(String aTestSet) {
         testSet = aTestSet.replace("/", "_").replaceAll("\\.", "");
+    }
+
+    /**
+     * @return the embeddings
+     */
+    public static String getEmbeddings() {
+        return embeddings;
+    }
+
+    /**
+     * @param aEmbeddings the embeddings to set
+     */
+    public static void setEmbeddings(String aEmbeddings) {
+        Global.embeddings = Integer.parseInt(aEmbeddings) > 0;
+        embeddings = aEmbeddings;
+    }
+
+    /**
+     * @return the debug
+     */
+    public static String getDebug() {
+        return debug;
+    }
+
+    /**
+     * @param aDebug the debug to set
+     */
+    public static void setDebug(String aDebug) {
+        Global.debugEnabled = Integer.parseInt(aDebug) > 0;
+        debug = aDebug;
     }
 
 }

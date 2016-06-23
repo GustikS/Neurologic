@@ -55,6 +55,9 @@ public class Main {
     private static String defaultCumSteps = "0"; // "on" or number of steps, <= 0 => OFF
     private static String defaultLearnDecay = "0"; // >0 => learnRate decay strategy is ON
     private static int maxReadline = 100000; //cut-of reading input files (not used)
+    private static String defaultDebug = "0";
+    private static String defaultEmbeddings = "0";
+    private static String defaultDrawing = "0";
 
     public static Options getOptions() {
         Options options = new Options();
@@ -185,6 +188,21 @@ public class Main {
         OptionBuilder.withDescription("learning rate decay over time (default: " + defaultLearnDecay + " )");
         OptionBuilder.hasArg();
         options.addOption(OptionBuilder.create("lrd"));
+        
+        OptionBuilder.withLongOpt("embeddings");
+        OptionBuilder.withDescription("Enable/load embeddings from a predefined csv file at ./in/embeddings.csv");
+        OptionBuilder.hasArg();
+        options.addOption(OptionBuilder.create("emb"));
+        
+        OptionBuilder.withLongOpt("debug");
+        OptionBuilder.withDescription("Enable debug mode (=detailed output)");
+        OptionBuilder.hasArg();
+        options.addOption(OptionBuilder.create("debug"));
+        
+        OptionBuilder.withLongOpt("drawing");
+        OptionBuilder.withDescription("Enable picture drawing/exporting into ./images");
+        OptionBuilder.hasArg();
+        options.addOption(OptionBuilder.create("draw"));
 
         return options;
     }
@@ -288,6 +306,15 @@ public class Main {
 
         tmp = cmd.getOptionValue("rs", defaultRestartCount);
         Settings.setRestartCount(Integer.parseInt(tmp));
+        
+        tmp = cmd.getOptionValue("emb", defaultEmbeddings);
+        Settings.setEmbeddings(tmp);
+        
+        tmp = cmd.getOptionValue("debug", defaultDebug);
+        Settings.setDebug(tmp);
+        
+        tmp = cmd.getOptionValue("draw", defaultDrawing);
+        Global.setDrawing(tmp);
     }
 
     /**
