@@ -372,7 +372,7 @@ public class Settings {
      * @param aDataset the dataset to set
      */
     public static void setDataset(String aDataset) {
-        dataset = aDataset.replace("/", "_").replaceAll("\\.", "");
+        dataset = aDataset.replaceAll("/", "_").replace("\\", "_").replaceAll(":", "").replaceAll("\\.", "");
     }
 
     /**

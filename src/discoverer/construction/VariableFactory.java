@@ -4,10 +4,11 @@ import discoverer.construction.Variable;
 import java.util.*;
 
 /**
- * Factory for variables
- * - ensures same name variables will refer to the same variable instance with hashmap
+ * Factory for variables - ensures same name variables will refer to the same
+ * variable instance with hashmap
  */
 public class VariableFactory {
+
     private Map<String, Variable> varMap;
 
     /**
@@ -23,8 +24,9 @@ public class VariableFactory {
         if (t == null) {
             t = new Variable(name);
             varMap.put(name, t);
-            if (name.startsWith("_"))
+            if (name.startsWith("_") || name.startsWith("DMY")) {
                 t.setDummy();
+            }
         }
         return t;
     }

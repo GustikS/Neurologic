@@ -544,7 +544,7 @@ public class Grounder {
                     gl = (GroundLambda) example.getFact(sl);
                     val = gl.getValue();
                 } else {
-                    val = 1.0;    //assigning values from example - ignoring example value?
+                    val = 0.5;    //assigning values from example - ignoring example value?
                     if (parent.special) {
                         SpecialPredicate special = TemplateFactory.specialPredicatesMap.get(parent);
                         val = special.evaluate(getBindingsNames(example, sl.getTerms()));

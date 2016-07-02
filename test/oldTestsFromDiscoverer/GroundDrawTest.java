@@ -80,7 +80,7 @@ public class GroundDrawTest {
 
         String[] ex = { "1.0 b(b,b), b(a,b), b(b,c), b(c,a), b(c,d), b(c,e), atom(a,c), atom(b,c), atom(c,c), atom(d,cl), atom(d,br).", };
         TemplateFactory nf = new TemplateFactory();
-        MolecularTemplate last = nf.construct(rules);
+        MolecularTemplate last = (MolecularTemplate) nf.construct(rules);
 
         ExampleFactory eFactory = new ExampleFactory();
         Example e = eFactory.construct(ex[0]);
