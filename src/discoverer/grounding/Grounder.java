@@ -35,13 +35,13 @@ import java.util.Set;
  */
 public class Grounder {
 
-    private final boolean forwardCheckEnabled = Global.isForwardCheckEnabled();
-    private final boolean pruning = Global.isPruning();
-    private final boolean cacheEnabled = Global.isCacheEnabled();
-    private final boolean debugEnabled = Global.isDebugEnabled();
+    private static final boolean forwardCheckEnabled = Global.isForwardCheckEnabled();
+    private static final boolean pruning = Global.isPruning();
+    private static final boolean cacheEnabled = Global.isCacheEnabled();
+    private static final boolean debugEnabled = Global.isDebugEnabled();
 
-    private final boolean templateConstansts = Global.templateConstants;
-    private final boolean recursion = Global.recursion;
+    private static final boolean templateConstansts = Global.templateConstants;
+    private static final boolean recursion = Global.recursion;
 
     public Example example;
     private HashMap<SubKL, GroundedTemplate> cache;
@@ -327,9 +327,6 @@ public class Grounder {
             }
             if (Global.alldiff && r.usedTerms.contains(i)) {
                 continue; //ALLDIFF functionality - that's it :)
-            }
-            if (example.constantNames.get(i).equals("d")) {
-                System.out.println("");
             }
             r.bind(toBind, i);
             r.setLastBindedVar(toBind);

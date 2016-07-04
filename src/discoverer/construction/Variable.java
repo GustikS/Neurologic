@@ -11,7 +11,7 @@ public class Variable extends Element implements Serializable {
 
     private int bind = -1;
     private boolean dummy;
-
+    
     @Override
     public int hashCode() {
         return name.hashCode();

@@ -25,13 +25,13 @@ public class ForwardChecker {
     private HashMap<SubKL, Boolean> cache = new HashMap<>();
     public HashSet<KL> openLiteralSet = new HashSet<>();
 
-    private final boolean cacheEnabled = Global.isCacheEnabled();
-    private final boolean debugEnabled = Global.isDebugEnabled();
+    private static final boolean cacheEnabled = Global.isCacheEnabled();
+    private static final boolean debugEnabled = Global.isDebugEnabled();
     public int runs = 0;
 
     public int exnum = 0;
-    private final boolean templateConstansts = Global.templateConstants;
-    private final boolean recursion = Global.recursion;
+    private static final boolean templateConstansts = Global.templateConstants;
+    private static final boolean recursion = Global.recursion;
 
     public void setupForNewExample(Example e) {
         if (example != e) {
@@ -109,12 +109,11 @@ public class ForwardChecker {
     private boolean checkCompute(SubK sk) {
 
         if (sk.isElement()) {
+
             if (sk.getParent().special) {
-                boolean a =  TemplateFactory.specialPredicatesMap.get(sk.getParent()).isTrue(Grounder.getBindingsNames(example, sk.getTerms()));
-                if (a){
-                    System.out.println("");
-                }
+                return TemplateFactory.specialPredicatesMap.get(sk.getParent()).isTrue(Grounder.getBindingsNames(example, sk.getTerms()));
             }
+
             return example.contains(sk);
         }
 
@@ -137,9 +136,11 @@ public class ForwardChecker {
     private boolean checkCompute(SubL sl) {
 
         if (sl.isElement()) {
+
             if (sl.getParent().special) {
                 return TemplateFactory.specialPredicatesMap.get(sl.getParent()).evaluate(Grounder.getBindingsNames(example, sl.getTerms())) != 0;
             }
+
             return example.contains(sl);
         }
 

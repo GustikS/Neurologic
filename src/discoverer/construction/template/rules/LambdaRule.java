@@ -81,7 +81,7 @@ public class LambdaRule extends Rule implements Serializable {
         }
         return sb.toString();
     }
-    
+
     public String toFullString() {
         StringBuilder sb = new StringBuilder();
         sb.append(head.toString());
@@ -127,8 +127,14 @@ public class LambdaRule extends Rule implements Serializable {
                 winners.add(var);
             }
         }
+        int randomIndex;
         //if a draw, take a randomized choice of variable
-        int randomIndex = Global.getRandomInt(winners.size());
+        if (Global.deterministicGrounding) {
+            randomIndex = 0;
+        } else {
+            randomIndex = Global.getRandomInt(winners.size());
+        }
+
         return winners.get(randomIndex);
     }
 

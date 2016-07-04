@@ -16,12 +16,12 @@ public abstract class Rule implements Serializable {
     private Variable lastBindedVar;
     public Set<Integer> usedTerms;
 
-    public LinkedHashSet<Variable> allVars;
+    public Set<Variable> allVars;
 
     public Rule() {
         unbound = new HashSet<>();
         usedTerms = new HashSet<>();
-        allVars = new LinkedHashSet<>();
+        allVars = new HashSet<>();
     }
     
     public abstract String toFullString();

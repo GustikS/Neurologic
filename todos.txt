@@ -1,0 +1,33 @@
+investigovat proc - paralelni groundovani neni deterministicke (#forwadchecker runs)
+  - a proc je tam rozdil v casech (nova vezre je pomalejsi), kdyz neni v non-parallel verzi
+
+prechod na maven?
+  -  minimalne submitovat do gitu i veci z nbproject/private
+  
+urychlit groundovani
+  - cely package template.rules
+  - prepsat na int[] co jde
+  - preskakovat dummy, vytvaret nove GroundLambda az kdyz je potreba
+  - urcyhlit clonovani
+  
+-----------
+
+centralnim tematem pro urychleni groundovani je nahrazeni objektu Variable pomoc int
+  - scope variable je jen v ramci jednoho pravidla
+  - tudiz staci aby pravidlo melo pole bindings
+  - promenna je pak jen index (int) do tohohle pole
+
+zjistit proc vraci rekurze jenom jeden proof (ale to je ted detail)
+kreslitko na samply/grafy?
+
+urychlit bindovani tim ze termListy budou pole a bindovani se bude provadet zkopirovanim pole int[]
+  -> predelat Vairable aby bylly jenom int?
+  -> a TermList bude jen int[] !
+---> NE, promenna musi byt OBJEKT, protoze je sdilena pres N literalu!
+  - jeji binding v jendom literalu se musi promitnout v ostatnich
+  
+  -ale termlist asi muze byt pole...
+  navic todo - jeste vice sjednotit SubK a SubL od SubKL a Kappa Lambda do KL
+  a nasledne urychlit pocitani hashCode u SubKL
+
+prekladac do L-K a taky prorezavac/kompresor
