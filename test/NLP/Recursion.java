@@ -6,7 +6,7 @@
 package NLP;
 
 import discoverer.GroundedDataset;
-import discoverer.construction.template.Kappa;
+import discoverer.construction.template.KL;
 import discoverer.drawing.Dotter;
 import discoverer.drawing.GroundDotter;
 import discoverer.global.Global;
@@ -17,7 +17,6 @@ import java.util.HashSet;
 import java.util.Set;
 import org.junit.Test;
 import structureLearning.StructureLearning;
-import structureLearning.beforeAfter;
 
 /**
  *
@@ -42,7 +41,7 @@ public class Recursion {
 
         Dotter.draw(dataset.template, "liftedAfterInit");
         int i = 0;
-        Set<Kappa> allKappas = new HashSet<>();
+        Set<KL> allKappas = new HashSet<>();
         for (Sample sam : dataset.sampleSplitter.samples) {
             for (GroundKL kl : sam.getBall().groundNeurons) {
                 if (kl instanceof GroundKappa) {

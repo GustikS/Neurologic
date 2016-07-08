@@ -16,6 +16,9 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
+import java.util.LinkedList;
 import java.util.PriorityQueue;
 
 /**
@@ -25,11 +28,11 @@ import java.util.PriorityQueue;
 public class NellParser {
 
     static HashMap<String, Integer> conceptCounts = new HashMap<>(3000000);
-    static HashMap<String, HashSet<String[]>> conceptRelations = new HashMap<>(3000000);
+    static HashMap<String, LinkedList<String[]>> conceptRelations = new HashMap<>(3000000);
     static HashSet<String> blacklist = new HashSet<String>();
 
-    static int relationsLimit = 10;
-    
+    static int relationsLimit = 10000000;
+
     public static void main(String[] args) {
         blacklist.add("concept:haswikipediaurl");
         blacklist.add("generalizations");
@@ -38,7 +41,11 @@ public class NellParser {
         HashSet<String> seedWords = new HashSet<>();
         seedWords.add("concept:mammal:monkeys");
         seedWords.add("concept:mammal:monkey");
-        ArrayList<String[]> rulesFromSeedWord = rulesFromSeedWord(seedWords, 1000);
+        seedWords.add("concept:food:banana");
+        seedWords.add("concept:mammal:tiger");
+        seedWords.add("concept:mammal:lion");
+        seedWords.add("concept:mammal:zebra");
+        LinkedHashSet<String[]> rulesFromSeedWord = rulesFromSeedWords(seedWords, 1000);
         System.out.println("--------------------------------------------");
         int a = 0;
         for (String[] strings : rulesFromSeedWord) {
@@ -48,6 +55,8 @@ public class NellParser {
             }
             System.out.println("");
         }
+        System.out.println("-----------------");
+        System.out.println(generateTemplateFromTriples(rulesFromSeedWord));
     }
 
     public static ArrayList<String[]> loadFacts(String p) {
@@ -71,16 +80,24 @@ public class NellParser {
                 //fact[4] = split[8];
                 //fact[5] = split[9];
 
-                for (int j = 0; j <= 2; j++) {
+                if (!fact[0].startsWith("concept") || !fact[2].startsWith("concept")) {
+                    continue;
+                }
+
+                for (int j = 0; j < 1; j = j + 2) {
                     if ((count = conceptCounts.get(fact[j])) == null) {
                         conceptCounts.put(fact[j], 1);
-                        HashSet<String[]> setik = new HashSet<>();
+                        LinkedList<String[]> setik = new LinkedList<>();
                         setik.add(fact);
                         conceptRelations.put(fact[j], setik);
                     } else {
                         conceptCounts.put(fact[j], count + 1);
-                        HashSet<String[]> setik = conceptRelations.get(fact[j]);
-                        setik.add(fact);
+                        LinkedList<String[]> setik = conceptRelations.get(fact[j]);
+                        if (fact[1].equals("generalizations")) {
+                            setik.addFirst(fact);
+                        } else {
+                            setik.add(fact);
+                        }
                         conceptRelations.put(fact[j], setik);
                     }
                 }
@@ -92,13 +109,13 @@ public class NellParser {
         return facts;
     }
 
-    public static ArrayList<String[]> rulesFromSeedWord(HashSet<String> seedWords, int limit) {
-        ArrayList<String[]> outRules = new ArrayList<>();
+    public static LinkedHashSet<String[]> rulesFromSeedWords(HashSet<String> seedWords, int limit) {
+        LinkedHashSet<String[]> outRules = new LinkedHashSet<>();
         PriorityQueue<Tuple> priorityQueue = new PriorityQueue<>(10, new ConnectionDensityComparator());
         HashSet<String> priorityHash = new HashSet<>();
         for (String concept : conceptCounts.keySet()) {
             if (seedWords.contains(concept)) {
-                priorityQueue.add(new Tuple(concept, 1));
+                priorityQueue.add(new Tuple(concept, 1000.0));
                 priorityHash.add(concept);
                 System.out.println(concept);
             }
@@ -107,19 +124,24 @@ public class NellParser {
         while (!priorityQueue.isEmpty() && outRules.size() < limit) {
             Tuple start = priorityQueue.remove();
             System.out.println(a++ + " --> " + start.x);
-            HashSet<String[]> relations = conceptRelations.get(start.x);
+            LinkedList<String[]> relations = conceptRelations.get(start.x);
             int rels = 0;
+
+            relations.addAll(getGeneralizations((String) start.x));
+
             for (String[] relation : relations) {
                 if (rels++ > relationsLimit) {
                     continue;
                 }
                 outRules.add(relation);
                 for (int i = 0; i < 3; i = i + 2) {
+
                     if (priorityHash.contains(relation[i]) || blacklist.contains(relation[i])) {
                         continue;
                     }
-                    int score = getScore(relation[i], priorityHash);
-                    System.out.println(relation[i] + " ----> " + score);
+                    double score = getScore(relation[i], priorityHash);
+
+                    //System.out.println(relation[i] + " ----> " + score);
                     priorityQueue.add(new Tuple(relation[i], -1 * score));
                     priorityHash.add(relation[i]);
                 }
@@ -128,24 +150,73 @@ public class NellParser {
         return outRules;
     }
 
-    private static int getScore(String concept, HashSet<String> priorityHash) {
-        int score = 0;
-        HashSet<String[]> relations = conceptRelations.get(concept);
+    private static double getScore(String concept, HashSet<String> priorityHash) {
+        double score = 0;
+        LinkedList<String[]> relations = conceptRelations.get(concept);
+        if (relations == null) {
+            return 0;
+        }
         for (String[] relation : relations) {
-            for (String element : relation) {
-                if (priorityHash.contains(element)) {
+            for (int i = 0; i < 3; i = i + 1) {
+                if (priorityHash.contains(relation[i])) {
                     score++;
                 }
             }
         }
+        score = score / relations.size() / 3.0;
         return score;
+    }
+
+    private static LinkedList<String[]> getGeneralizations(String concept) {
+        LinkedList<String[]> rules = new LinkedList<>();
+        LinkedList<String> generals = new LinkedList<>();
+        generals.add(concept);
+        while (!generals.isEmpty()) {
+            LinkedList<String[]> relations = conceptRelations.get(generals.remove());
+            if (relations == null) {
+                continue;
+            }
+            int i = 0;
+            while (i < relations.size() && relations.get(i)[1].equals("generalizations")) {
+                rules.add(relations.get(i));
+                generals.add(relations.get(i)[2]);
+                i++;
+            }
+        }
+        return rules;
     }
 
     public static class ConnectionDensityComparator implements Comparator<Tuple> {
 
         @Override
         public int compare(Tuple a, Tuple b) {
-            return Integer.compare((Integer) a.y, (Integer) b.y);
+            return Double.compare((Double) a.y, (Double) b.y);
         }
+    }
+
+    static String generateTemplateFromTriples(LinkedHashSet<String[]> triples) {
+        StringBuilder sb = new StringBuilder();
+        int i = 0;
+        for (String[] triple : triples) {
+            double conf;
+            try {
+                conf = Double.parseDouble(triple[3]);
+                if (triple[3].equals("NaN")){
+                    conf = 0.1;
+                }
+            } catch (Exception e) {
+                conf = 0.1;
+            }
+            sb.append(conf).append(" holdsK(S,P,O) :- holdsL").append(i).append("(S,P,O).\n");
+            sb.append("1.0 similarK" + i + "s(A,B) :- similar(A,B).\n");
+            sb.append("1.0 similarK" + i + "p(A,B) :- similar(A,B).\n");
+            sb.append("1.0 similarK" + i + "o(A,B) :- similar(A,B).\n");
+            sb.append("holdsL").append(i).append("(S,P,O) :- ");
+            sb.append("similarK" + i + "s(S,").append(triple[0]).append("),");
+            sb.append("similarK" + i + "p(P,").append(triple[1]).append("),");
+            sb.append("similarK" + i + "o(O,").append(triple[2]).append(").\n");
+            i++;
+        }
+        return sb.toString();
     }
 }

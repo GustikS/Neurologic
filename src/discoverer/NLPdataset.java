@@ -18,6 +18,7 @@ import discoverer.construction.template.LiftedTemplate;
 import static discoverer.construction.template.LightTemplate.weightFolder;
 import discoverer.construction.template.NLPtemplate;
 import discoverer.construction.template.rules.Rule;
+import discoverer.construction.template.rules.SubKL;
 import discoverer.drawing.Dotter;
 import discoverer.drawing.GroundDotter;
 import discoverer.global.Global;
@@ -50,6 +51,8 @@ public class NLPdataset extends Main {
     public HashMap<String, Integer> constantNames2Id;
     //facts
     public static Example facts;
+
+    private boolean exportCache = true;
 
     public static void main(String[] args) {
         Glogger.resultsDir = "./results/";
@@ -88,7 +91,10 @@ public class NLPdataset extends Main {
 
         Global.templateConstants = true;
         Global.recursion = true;
-        Global.alldiff = false;
+        
+        //Global.alldiff = true;
+        //Global.embeddings = true;
+        //Global.cacheEnabled = true;
 
         templateFactory = new TemplateFactory();
         template = (NLPtemplate) templateFactory.construct(iRules);
@@ -193,7 +199,7 @@ public class NLPdataset extends Main {
                 } else {
                     val = gkl.getValue();
                 }
-                StringBuilder sb = new StringBuilder(val + "  " + gkl.getGeneral().name + "(");
+                StringBuilder sb = new StringBuilder(val + "  " + gkl.getGeneral().getPredicateName() + "(");
                 for (int i : gkl.getTermList()) {
                     sb.append(facts.constantNames.get(i)).append(",");
                 }
@@ -225,6 +231,31 @@ public class NLPdataset extends Main {
                 writer.close();
             } catch (IOException ex) {
                 Logger.getLogger(Saver.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        if (exportCache && Global.isCacheEnabled()) {
+            try {
+                writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(weightFolder + destination + "-cache.w"), "utf-8"));
+                HashMap<SubKL, GroundedTemplate> cache = template.prover.getCache();
+                for (Map.Entry<SubKL, GroundedTemplate> ent : cache.entrySet()) {
+                    if (ent.getValue() == null) {
+                        continue;
+                    }
+                    ent.getValue().constantNames = facts.constantNames;
+                    //System.out.println(ent.getValue() + " : " + ent.getValue().getLast().toString(template.constantNames));
+                    writer.write(ent.getValue() + " : " + ent.getValue().getLast().toString(template.constantNames) + "\n");
+                    GroundDotter.draw(ent.getValue(), ent.getKey().getParent().name);
+                }
+            } catch (UnsupportedEncodingException ex) {
+                Logger.getLogger(Saver.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(Saver.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                try {
+                    writer.close();
+                } catch (IOException ex) {
+                    Logger.getLogger(Saver.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         }
     }

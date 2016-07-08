@@ -107,7 +107,7 @@ public class StringTest {
                         continue;
                     }
 
-                    Weights w = BackpropDown.getNewWeights(b, e);
+                    Weights w = BackpropDown.getNewWeights(b, e.getExpectedValue());
 
                     for (Map.Entry<Object, Double> t : w.getWeights().entrySet()) {
                         Object o = t.getKey();

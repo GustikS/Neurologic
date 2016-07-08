@@ -5,3 +5,5 @@
 /folds/
 /graph.dot
 *.ser
+/results
+/images

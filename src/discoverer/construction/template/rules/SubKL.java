@@ -22,7 +22,7 @@ public abstract class SubKL implements Serializable {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(getParent().toString());
+        sb.append(getParent().getPredicateName());
         if (getTermsList().size() > 0) {
             sb.append("(");
             for (Variable v : getTermsList()) {

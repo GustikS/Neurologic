@@ -9,6 +9,7 @@ import discoverer.construction.Variable;
 import discoverer.construction.example.Example;
 import discoverer.construction.template.rules.Rule;
 import discoverer.construction.template.rules.SubKL;
+import discoverer.drawing.GroundDotter;
 import discoverer.global.Global;
 import discoverer.global.Glogger;
 import discoverer.grounding.Grounder;
@@ -21,8 +22,8 @@ import discoverer.learning.backprop.BackpropDown;
 import discoverer.learning.backprop.BackpropDownAvg;
 import discoverer.learning.learners.Learning;
 import java.util.HashMap;
-import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -74,6 +75,7 @@ public class NLPtemplate extends LiftedTemplate {
         prover.forwardChecker.setupForNewExample(facts);
         SubKL skl = prover.addOpenAtom(target, vars);
         GroundedTemplate answer = target instanceof Kappa ? prover.solveKappaGivenVars((Kappa) target, vars) : prover.solveLambdaGivenVars((Lambda) target, vars);
+
         prover.removeOpenAtom(skl);
 
         prover.forwardChecker.printRuns();

@@ -6,8 +6,7 @@
 package structureLearning;
 
 import discoverer.GroundedDataset;
-import discoverer.construction.template.rules.KappaRule;
-import discoverer.construction.template.Kappa;
+import discoverer.construction.template.KL;
 import discoverer.drawing.Dotter;
 import discoverer.drawing.GroundDotter;
 import discoverer.grounding.network.GroundKL;
@@ -37,7 +36,7 @@ public class beforeAfter {
         GroundedDataset dataset = sli.init(arguments);
         Dotter.draw(dataset.template, "liftedAfterInit");
         int i = 0;
-        Set<Kappa> allKappas = new HashSet<>();
+        Set<KL> allKappas = new HashSet<>();
         for (Sample sam : dataset.sampleSplitter.samples) {
             for (GroundKL kl : sam.getBall().groundNeurons) {
                 if (kl instanceof GroundKappa) {

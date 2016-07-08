@@ -6,7 +6,7 @@
 package structureLearning;
 
 import discoverer.GroundedDataset;
-import discoverer.construction.template.Kappa;
+import discoverer.construction.template.KL;
 import discoverer.drawing.Dotter;
 import discoverer.drawing.GroundDotter;
 import discoverer.grounding.evaluation.EvaluatorFast;
@@ -38,7 +38,7 @@ public class templateTest {
         GroundedDataset dataset = sli.init(arguments);
         Dotter.draw(dataset.template, "liftedAfterInit");
         int i = 0;
-        Set<Kappa> allKappas = new HashSet<>();
+        Set<KL> allKappas = new HashSet<>();
         for (Sample sam : dataset.sampleSplitter.samples) {
             for (GroundKL kl : sam.getBall().groundNeurons) {
                 if (kl instanceof GroundKappa) {

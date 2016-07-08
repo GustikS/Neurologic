@@ -41,7 +41,7 @@ public class GroundedTemplate implements Serializable {
 
     @Override
     public String toString() {
-        return "val: " + valMax.toString() + ", avgVal: " + valAvg.toString();
+        return "maxVal: " + valMax.toString() + ", avgVal: " + valAvg.toString();
     }
 
     public GroundKL getLast() {

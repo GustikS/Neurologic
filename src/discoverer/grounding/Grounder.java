@@ -53,16 +53,16 @@ public class Grounder {
 
     public void prepareCache() {
         if (cacheEnabled) {
-            if (cache == null) {
-                cache = new HashMap<>();
-                openAtomList = new HashSet<>(); //these are for recursion
-                openRuleSet = new HashMap<>();
-            } else {
-                cache.clear();
-                openAtomList.clear();
-                openRuleSet.clear();
-            }
+            cache = new HashMap<>();
         }
+        if (recursion) {
+            openAtomList = new HashSet<>(); //these are for recursion
+            openRuleSet = new HashMap<>();
+        }
+    }
+
+    public HashMap<SubKL, GroundedTemplate> getCache() {
+        return cache;
     }
 
     /**
@@ -616,7 +616,9 @@ public class Grounder {
             b = cache.get(o);
         } else {    //otherwise try to prove it and store the ground result
             b = solve(o);
-            cache.put(clone, b);
+            if (!recursion || b != null) {
+                cache.put(clone, b);
+            }
         }
 
         if (recursion) {
@@ -683,7 +685,7 @@ public class Grounder {
 //        sb.replace(sb.length() - 1, sb.length(), "");
         return sb.toString();
     }
-    
+
     public static String getBindingsNames(Example example, int[] binds) {
         if (binds == null) {
             return " null";

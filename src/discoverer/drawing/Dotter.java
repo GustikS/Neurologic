@@ -23,7 +23,7 @@ public class Dotter {
     public static String path = "./graphviz/bin/";	// Windows
     public static String outPath = "../images/";
     public static String imgtype = "png";
-    private static String name = "graph";
+    public static String name = "graph";
     public static int counter = 0;
 
     protected static String intro = "digraph G {";
@@ -36,7 +36,7 @@ public class Dotter {
 
     public static DecimalFormat df = new DecimalFormat("##.###################");
 
-    private static void writeToFile() {
+     static void writeToFile() {
         try {
             FileWriter fstream = new FileWriter(dotFileName, false);
             BufferedWriter out = new BufferedWriter(fstream);
@@ -50,11 +50,16 @@ public class Dotter {
         }
     }
 
-    private static void convertToImage() {
+     static String sanitize(String name){
+         String sane = name.replaceAll("[:.;'/\\\\]", "_");
+         return sane;
+     }
+     
+     static void convertToImage() {
         Runtime r = Runtime.getRuntime();
         try {
             //Process p = r.exec(path + "dot -T" + imgtype + " -o" + outPath + name + counter++ + "." + imgtype + " graph.dot");
-            Process p = r.exec(path + "dot -T" + imgtype + " -o" + outPath + name + "." + imgtype + " graph.dot");
+            Process p = r.exec(path + "dot -T" + imgtype + " -o" + outPath + sanitize(name) + "." + imgtype + " graph.dot");
             p.waitFor();
         } catch (Exception e) {
             Glogger.err(e.toString());

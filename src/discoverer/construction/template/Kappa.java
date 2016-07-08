@@ -64,14 +64,6 @@ public class Kappa extends KL implements Serializable {
         rules.add(kr);
     }
 
-    public void setOffset(double d) {
-        offset = d;
-    }
-
-    public double getOffset() {
-        return offset;
-    }
-
     public boolean isElement() {
         return rules.isEmpty();
     }

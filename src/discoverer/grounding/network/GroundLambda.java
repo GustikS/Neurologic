@@ -2,6 +2,7 @@ package discoverer.grounding.network;
 
 import discoverer.construction.template.Lambda;
 import discoverer.construction.Variable;
+import discoverer.construction.template.KL;
 import discoverer.global.Global;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -15,8 +16,6 @@ import java.util.Set;
  */
 public class GroundLambda extends GroundKL implements Serializable {
 
-    private Lambda general;
-
     //change this into static arrays for performance!!
     private List<GroundKappa> conjuncts;
     private HashMap<GroundKappa, Integer> conjunctsAvg;
@@ -27,7 +26,7 @@ public class GroundLambda extends GroundKL implements Serializable {
     //public int[] bodyLiteralCounts;
     private int conjunctsCountForAvg = 0; //number of all body-groundings for AVG
 
-    public GroundLambda(Lambda l, List<Variable> terms) {
+    public GroundLambda(KL l, List<Variable> terms) {
         super(terms);
         general = l;
         conjuncts = new ArrayList<GroundKappa>();
@@ -44,7 +43,7 @@ public class GroundLambda extends GroundKL implements Serializable {
         return gl;
     }
 
-    public GroundLambda(Lambda k) {
+    public GroundLambda(KL k) {
         super();
         general = k;
         conjuncts = new ArrayList<GroundKappa>();
@@ -65,39 +64,6 @@ public class GroundLambda extends GroundKL implements Serializable {
      */
     public List<GroundKappa> getConjuncts() {
         return conjuncts;
-    }
-
-    public Lambda getGeneral() {
-        return general;
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder s = new StringBuilder(general.getName());
-        if (getTermList() != null) {
-            s.append("(");
-            for (int i : getTermList()) {
-                s.append(i).append(",");
-            }
-            s.deleteCharAt(s.length() - 1);
-            s.append(")");
-        }
-        s.append("#").append(getId());
-        return s.toString();
-    }
-
-    public String toString(Map<Integer, String> constNames) {
-        StringBuilder s = new StringBuilder(general.getName());
-        if (getTermList() != null) {
-            s.append("(");
-            for (int i : getTermList()) {
-                s.append(constNames.get(i)).append(",");
-            }
-            s.deleteCharAt(s.length() - 1);
-            s.append(")");
-        }
-        s.append("#").append(getId());
-        return s.toString();
     }
 
     public void addConjuctsAvgFrom(Set<GroundLambda> gls) {

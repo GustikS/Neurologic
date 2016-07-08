@@ -9,6 +9,7 @@ import discoverer.construction.Variable;
 import discoverer.construction.template.KL;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -20,6 +21,7 @@ public abstract class GroundKL implements Serializable {
 
     public boolean dropMe = false;
 
+    //maybe remove this to an external hashmap in backrpop
     private int groundParents;
     private int groundParentsChecked;
     private double groundParentDerivative;
@@ -30,6 +32,37 @@ public abstract class GroundKL implements Serializable {
     private int id;
     private int[] termList;
     private String[] termNames;
+    
+    public KL general;
+
+    @Override
+    public String toString() {
+        StringBuilder  s = new StringBuilder (general.getPredicateName());
+        if (getTermList() != null) {
+            s.append("(");
+            for (int i : getTermList()) {
+                s.append(i).append(",");
+            }
+            s.deleteCharAt(s.length() - 1);
+            s.append(")");
+        }
+        s.append("#").append(getId());
+        return s.toString();
+    }
+    
+    public String toString(Map<Integer,String> constNames) {
+        StringBuilder s = new StringBuilder(general.getPredicateName());
+        if (getTermList() != null) {
+            s.append("(");
+            for (int i : getTermList()) {
+                s.append(constNames.get(i)).append(",");
+            }
+            s.deleteCharAt(s.length() - 1);
+            s.append(")");
+        }
+        //s.append("#").append(getId());
+        return s.toString();
+    }
 
     /**
      * this is a truly ground K/L
@@ -47,7 +80,7 @@ public abstract class GroundKL implements Serializable {
 
             termList = new int[terms.size()];
             termNames = new String[terms.size()];
-            
+
             for (int i = 0; i < terms.size(); i++) {
                 termList[i] = terms.get(i).getBind();
                 termNames[i] = terms.get(i).getName();
@@ -67,7 +100,10 @@ public abstract class GroundKL implements Serializable {
     }
 
     public abstract GroundKL cloneMe();
-    public abstract KL getGeneral();
+
+    public KL getGeneral(){
+        return general;
+    }
 
     //public abstract void transform2Arrays();
     /**

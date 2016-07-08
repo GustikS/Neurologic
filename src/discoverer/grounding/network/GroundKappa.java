@@ -3,19 +3,17 @@ package discoverer.grounding.network;
 import discoverer.construction.template.Kappa;
 import discoverer.construction.template.rules.KappaRule;
 import discoverer.construction.Variable;
+import discoverer.construction.template.KL;
 import discoverer.global.Tuple;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 /**
  * Grounded kappa node = atom neuron
  */
 public class GroundKappa extends GroundKL {
-
-    private Kappa general;
 
     //change this into static arrays for performance!!
     
@@ -35,7 +33,7 @@ public class GroundKappa extends GroundKL {
         return gk;
     }
 
-    public GroundKappa(Kappa k) {
+    public GroundKappa(KL k) {
         super();
         general = k;
         disjuncts = new ArrayList<>();
@@ -79,39 +77,6 @@ public class GroundKappa extends GroundKL {
      */
     public List<Tuple<GroundLambda, KappaRule>> getDisjuncts() {
         return disjuncts;
-    }
-
-    public Kappa getGeneral() {
-        return general;
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder  s = new StringBuilder (general.getName());
-        if (getTermList() != null) {
-            s.append("(");
-            for (int i : getTermList()) {
-                s.append(i).append(",");
-            }
-            s.deleteCharAt(s.length() - 1);
-            s.append(")");
-        }
-        s.append("#").append(getId());
-        return s.toString();
-    }
-    
-    public String toString(Map<Integer,String> constNames) {
-        StringBuilder s = new StringBuilder(general.getName());
-        if (getTermList() != null) {
-            s.append("(");
-            for (int i : getTermList()) {
-                s.append(constNames.get(i)).append(",");
-            }
-            s.deleteCharAt(s.length() - 1);
-            s.append(")");
-        }
-        s.append("#").append(getId());
-        return s.toString();
     }
 
     /**

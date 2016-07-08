@@ -22,46 +22,21 @@ import java.util.Map;
  */
 public class GroundDotter extends Dotter {
 
-    private static String name = "ground";
     public static Map<Integer, String> constantNames;
 
-    private static void writeToFile() {
-        try {
-            FileWriter fstream = new FileWriter(dotFileName, false);
-            BufferedWriter out = new BufferedWriter(fstream);
-            for (String s : dot) {
-                out.write(s);
-                out.newLine();
-            }
-            out.close();
-        } catch (Exception e) {
-            Glogger.err(e.toString());
+    public static void draw(GroundedTemplate b, String name) {
+        if (b == null || b.getLast() == null) {
+            return;
         }
-    }
-
-    private static void convertToPdf() {
-        Runtime r = Runtime.getRuntime();
-        try {
-            //Process p = r.exec(path + "dot -T" + imgtype + " -o" + outPath + name + counter++ + "." + imgtype + " graph.dot");
-            Process p = r.exec(path + "dot -T" + imgtype + " -o" + outPath + name + "." + imgtype + " graph.dot");
-            p.waitFor();
-        } catch (Exception e) {
-            Glogger.err(e.toString());
-        }
-    }
-
-    public static void draw(GroundedTemplate b, String name){
-        if (Global.getGrounding().equals(Global.groundingSet.avg)){
+        if (Global.getGrounding().equals(Global.groundingSet.avg)) {
             drawAVG(b, name);
         } else {
             drawMax(b, name);
         }
     }
-    
+
     public static void drawMax(GroundedTemplate b) {
-        if (b == null) {
-            return;
-        }
+        
         constantNames = b.constantNames;
 
         dot.add(intro);
@@ -74,15 +49,12 @@ public class GroundDotter extends Dotter {
 
         dot.add(outro);
         writeToFile();
-        convertToPdf();
+        convertToImage();
         visited.clear();
         dot.clear();
     }
 
     public static void drawMax(GroundedTemplate b, String nam) {
-        if (b == null) {
-            return;
-        }
 
         name = nam;
         constantNames = b.constantNames;
@@ -97,16 +69,13 @@ public class GroundDotter extends Dotter {
 
         dot.add(outro);
         writeToFile();
-        convertToPdf();
+        convertToImage();
         visited.clear();
         dot.clear();
     }
 
     public static void drawAVG(GroundedTemplate b, String nam) {
-        if (b == null || b.getLast() == null) {
-            return;
-        }
-
+        
         name = nam;
         constantNames = b.constantNames;
 
@@ -120,7 +89,7 @@ public class GroundDotter extends Dotter {
 
         dot.add(outro);
         writeToFile();
-        convertToPdf();
+        convertToImage();
         visited.clear();
         dot.clear();
     }
@@ -225,7 +194,7 @@ public class GroundDotter extends Dotter {
 
         dot.add(outro);
         writeToFile();
-        convertToPdf();
+        convertToImage();
         visited.clear();
         dot.clear();
     }

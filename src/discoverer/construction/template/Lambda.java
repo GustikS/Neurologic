@@ -18,14 +18,6 @@ public class Lambda extends KL implements Serializable {
     public Lambda() {
     }
 
-    public void setOffset(double d) {
-        offset = d;
-    }
-
-    public double getOffset() {
-        return offset;
-    }
-
     public LambdaRule getRule() {
         return rule;
     }

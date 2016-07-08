@@ -19,6 +19,10 @@ public abstract class KL extends Element implements Serializable {
     public KL() {
     }
 
+    public String getPredicateName() {
+        return name.substring(0, name.indexOf("/"));
+    }
+
     public KL(String name) {
         super(name);
         if (name.startsWith("final")) {
@@ -26,6 +30,14 @@ public abstract class KL extends Element implements Serializable {
         } else {
             dropout = Global.getDropout();
         }
+    }
+
+    public double getOffset() {
+        return offset;
+    }
+
+    public void setOffset(double off) {
+        offset = off;
     }
 
     public Integer getId() {

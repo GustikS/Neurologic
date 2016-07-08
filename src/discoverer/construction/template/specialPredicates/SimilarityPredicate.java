@@ -66,6 +66,10 @@ public class SimilarityPredicate extends SpecialPredicate {
         double[] vectorA = ConstantFactory.getEmbeddings().get(a);
         double[] vectorB = ConstantFactory.getEmbeddings().get(b);
         
+        if (vectorA == null || vectorB == null){
+            return;
+        }
+        
         double diff = 0;
         for (int i = 0; i < vectorA.length; i++) {
             diff = vectorB[i] - vectorA[i];

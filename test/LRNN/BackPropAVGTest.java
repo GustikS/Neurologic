@@ -127,7 +127,7 @@ public class BackPropAVGTest {
         } else {
             //--
             GroundNetworkParser.parseMAX(b);
-            w = BackpropDown.getNewWeights(b, e);
+            w = BackpropDown.getNewWeights(b, e.getExpectedValue());
             printUpdate(w);
             System.out.println("downval: " + Evaluator.evaluateMax(b));
             Dotter.draw(last, "backprDown_");
@@ -242,7 +242,7 @@ public class BackPropAVGTest {
         Weights w;
         //--
         GroundNetworkParser.parseAVG(b);
-        w = BackpropDownAvg.getNewWeights(b, e);
+        w = BackpropDownAvg.getNewWeights(b, e.getExpectedValue());
         printUpdate(w);
         //---
         System.out.println("downvalAvg: " + Evaluator.evaluateAvg(b));

@@ -58,6 +58,7 @@ public class Main {
     private static String defaultDebug = "0";
     private static String defaultEmbeddings = "0";
     private static String defaultDrawing = "0";
+    private static String defaultAlldiff = "1";
 
     public static Options getOptions() {
         Options options = new Options();
@@ -204,6 +205,11 @@ public class Main {
         OptionBuilder.hasArg();
         options.addOption(OptionBuilder.create("draw"));
 
+        OptionBuilder.withLongOpt("alldiff");
+        OptionBuilder.withDescription("Differently named variables in a single rule must bind to different constants");
+        OptionBuilder.hasArg();
+        options.addOption(OptionBuilder.create("alldiff"));
+        
         return options;
     }
 
@@ -315,6 +321,9 @@ public class Main {
         
         tmp = cmd.getOptionValue("draw", defaultDrawing);
         Global.setDrawing(tmp);
+        
+        tmp = cmd.getOptionValue("alldiff", defaultAlldiff);
+        Global.setAlldiff(tmp);
     }
 
     /**

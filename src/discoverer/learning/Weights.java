@@ -1,5 +1,6 @@
 package discoverer.learning;
 
+import discoverer.construction.template.KL;
 import discoverer.construction.template.rules.KappaRule;
 import discoverer.construction.template.Kappa;
 import discoverer.global.Tuple;
@@ -75,7 +76,7 @@ public class Weights {
         }
     }
 
-    public void addW(Kappa k, Double d) {
+    public void addW(KL k, Double d) {
         updates.add(new Tuple<Object, Double>(k, d));
         if (weights.containsKey(k)) {
             weights.put(k, weights.get(k) + d);
