@@ -29,7 +29,7 @@ public final class Glogger {
     static Writer results;
     static Writer test;
     public static String resultsDir = "../results";
-    
+
     static final boolean timeMeasures = true;
     private static long clock = System.currentTimeMillis();
 
@@ -56,21 +56,23 @@ public final class Glogger {
         String time = dateFormat.format(date); //2014/08/06 15:59:48
         file.append("_").append(time);
 
-        try {
-            createDir(resultsDir);
-            test = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(resultsDir + "/testfile"), "utf-8"));
-            test.write("metacetrum file test : " + time);
-            test.close();
+        if (Global.exporting) {
+            try {
+                createDir(resultsDir);
+                test = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(resultsDir + "/testfile"), "utf-8"));
+                test.write("metacetrum file test : " + time);
+                test.close();
 
-            training = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(resultsDir + "/training_" + file.toString() + ".csv"), "utf-8"));
-            training.write("state, learning_error, dispersion, majority_error, threshold \n");
-            results = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(resultsDir + "/results_" + file.toString() + ".csv"), "utf-8"));
-            LogRes(options.toString());
-            training.flush();
-        } catch (UnsupportedEncodingException | FileNotFoundException ex) {
-            Logger.getLogger(Glogger.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(Glogger.class.getName()).log(Level.SEVERE, null, ex);
+                training = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(resultsDir + "/training_" + file.toString() + ".csv"), "utf-8"));
+                training.write("state, learning_error, dispersion, majority_error, threshold \n");
+                results = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(resultsDir + "/results_" + file.toString() + ".csv"), "utf-8"));
+                LogRes(options.toString());
+                training.flush();
+            } catch (UnsupportedEncodingException | FileNotFoundException ex) {
+                Logger.getLogger(Glogger.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(Glogger.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 
@@ -92,6 +94,9 @@ public final class Glogger {
     }
 
     public static final void LogTrain(String state, Double[] res) {
+        if (!Global.exporting) {
+            return;
+        }
         StringBuilder row = new StringBuilder();
         row.append(state).append(",");
         for (Double re : res) {
@@ -107,6 +112,9 @@ public final class Glogger {
 
     public static final void LogTrain(String res) {
         Glogger.process(res);
+        if (!Global.exporting) {
+            return;
+        }
         try {
             training.write(res + "\n");
             training.flush();
@@ -117,6 +125,9 @@ public final class Glogger {
 
     public static final void LogRes(String res) {
         out(res);
+        if (!Global.exporting) {
+            return;
+        }
         try {
             results.write(res + "\n");
             results.flush();

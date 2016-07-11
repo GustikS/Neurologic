@@ -35,7 +35,7 @@ public class NLPtemplate extends LiftedTemplate {
     public Learning learning = new Learning();
     public Grounder prover = learning.grounder;
 
-    public HashMap<String, KL> KLs = new HashMap<>();
+    public Map<String, KL> KLs = new HashMap<>();
 
     boolean clearingCache = true;
 
@@ -47,7 +47,7 @@ public class NLPtemplate extends LiftedTemplate {
      * @param iRules
      * @param iQueries
      */
-    public NLPtemplate(KL ikl, HashMap<String, KL> klNames, List<Rule> irules) {
+    public NLPtemplate(KL ikl, Map<String, KL> klNames, List<Rule> irules) {
         last = ikl;
         KLs = klNames;
         //+ maybe extract rules as well

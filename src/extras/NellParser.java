@@ -39,13 +39,12 @@ public class NellParser {
         loadFacts("C:\\Users\\Gusta\\Downloads\\NELL.08m.995.esv.csv\\NELL.08m.995.esv.csv");
         System.out.println("--------------------------------------------");
         HashSet<String> seedWords = new HashSet<>();
-        seedWords.add("concept:mammal:monkeys");
         seedWords.add("concept:mammal:monkey");
         seedWords.add("concept:food:banana");
         seedWords.add("concept:mammal:tiger");
         seedWords.add("concept:mammal:lion");
         seedWords.add("concept:mammal:zebra");
-        LinkedHashSet<String[]> rulesFromSeedWord = rulesFromSeedWords(seedWords, 1000);
+        LinkedHashSet<String[]> rulesFromSeedWord = rulesFromSeedWords(seedWords, 100);
         System.out.println("--------------------------------------------");
         int a = 0;
         for (String[] strings : rulesFromSeedWord) {
@@ -84,7 +83,9 @@ public class NellParser {
                     continue;
                 }
 
-                for (int j = 0; j < 1; j = j + 2) {
+                //save all rules for:
+                // 0 = subject  1 = predicate  2 = object
+                for (int j : new int[]{0, 2}) {
                     if ((count = conceptCounts.get(fact[j])) == null) {
                         conceptCounts.put(fact[j], 1);
                         LinkedList<String[]> setik = new LinkedList<>();
@@ -122,19 +123,30 @@ public class NellParser {
         }
         int a = 0;
         while (!priorityQueue.isEmpty() && outRules.size() < limit) {
+
+            //get a top scoring concept
             Tuple start = priorityQueue.remove();
             System.out.println(a++ + " --> " + start.x);
             LinkedList<String[]> relations = conceptRelations.get(start.x);
             int rels = 0;
 
+            //extend the top concept with all its generalizations
             relations.addAll(getGeneralizations((String) start.x));
 
+            //for all its relations
             for (String[] relation : relations) {
-                if (rels++ > relationsLimit) {
+                //if the triplet doesnt connect at least two entities
+                /*
+                if (getAbsoluteScore(relation, priorityHash) <= 0) {
                     continue;
                 }
+                */
+                //add the relation to output
                 outRules.add(relation);
-                for (int i = 0; i < 3; i = i + 2) {
+
+                //for every relation from the top cocnept, add to priorityQueue:
+                // 0 = subject  1 = predicate  2 = object
+                for (int i : new int[]{0, 2}) {
 
                     if (priorityHash.contains(relation[i]) || blacklist.contains(relation[i])) {
                         continue;
@@ -172,18 +184,31 @@ public class NellParser {
         LinkedList<String> generals = new LinkedList<>();
         generals.add(concept);
         while (!generals.isEmpty()) {
-            LinkedList<String[]> relations = conceptRelations.get(generals.remove());
+            String top = generals.remove();
+            LinkedList<String[]> relations = conceptRelations.get(top);
             if (relations == null) {
                 continue;
             }
             int i = 0;
             while (i < relations.size() && relations.get(i)[1].equals("generalizations")) {
-                rules.add(relations.get(i));
-                generals.add(relations.get(i)[2]);
+                if (relations.get(i)[0].equals(top)) {
+                    rules.add(relations.get(i));
+                    generals.add(relations.get(i)[2]);
+                }
                 i++;
             }
         }
         return rules;
+    }
+
+    private static int getAbsoluteScore(String[] triplet, HashSet<String> priorityHash) {
+        int score = 0;
+        for (int i = 0; i < 3; i = i + 1) {
+            if (priorityHash.contains(triplet[i])) {
+                score++;
+            }
+        }
+        return score;
     }
 
     public static class ConnectionDensityComparator implements Comparator<Tuple> {
@@ -201,7 +226,7 @@ public class NellParser {
             double conf;
             try {
                 conf = Double.parseDouble(triple[3]);
-                if (triple[3].equals("NaN")){
+                if (triple[3].equals("NaN")) {
                     conf = 0.1;
                 }
             } catch (Exception e) {
@@ -212,9 +237,9 @@ public class NellParser {
             sb.append("1.0 similarK" + i + "p(A,B) :- similar(A,B).\n");
             sb.append("1.0 similarK" + i + "o(A,B) :- similar(A,B).\n");
             sb.append("holdsL").append(i).append("(S,P,O) :- ");
-            sb.append("similarK" + i + "s(S,").append(triple[0]).append("),");
-            sb.append("similarK" + i + "p(P,").append(triple[1]).append("),");
-            sb.append("similarK" + i + "o(O,").append(triple[2]).append(").\n");
+            sb.append("similarK" + i + "s(S,").append(triple[0].replaceAll(":", "_")).append("),");
+            sb.append("similarK" + i + "p(P,").append(triple[1].replaceAll(":", "_")).append("),");
+            sb.append("similarK" + i + "o(O,").append(triple[2].replaceAll(":", "_")).append(").\n");
             i++;
         }
         return sb.toString();

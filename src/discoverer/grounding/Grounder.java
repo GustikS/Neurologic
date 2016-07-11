@@ -4,7 +4,6 @@ import discoverer.construction.TemplateFactory;
 import discoverer.grounding.evaluation.GroundedTemplate;
 import discoverer.construction.example.Example;
 import discoverer.global.Global;
-import discoverer.grounding.network.GroundKL;
 import discoverer.grounding.network.GroundKappa;
 import discoverer.grounding.network.GroundLambda;
 import discoverer.construction.template.KL;
@@ -21,12 +20,13 @@ import discoverer.construction.template.specialPredicates.SpecialPredicate;
 import discoverer.global.Glogger;
 import discoverer.grounding.evaluation.Evaluator;
 import discoverer.learning.functions.Activations;
-import java.awt.Desktop;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-import java.util.WeakHashMap;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -45,8 +45,11 @@ public class Grounder {
 
     public Example example;
     private HashMap<SubKL, GroundedTemplate> cache;
+
     private HashSet<SubKL> openAtomList;    //for recursion
     private HashMap<String, int[]> openRuleSet;   //for recursion - remember the original vars bindings
+    private LinkedHashMap<SubKL, Integer> recursiveLoops;
+    private int recursiveLoopCount;
 
     public ForwardChecker forwardChecker = new ForwardChecker();
     private static final boolean weightedFacts = Global.weightedFacts;
@@ -56,8 +59,10 @@ public class Grounder {
             cache = new HashMap<>();
         }
         if (recursion) {
-            openAtomList = new HashSet<>(); //these are for recursion
+            openAtomList = new LinkedHashSet<>(); //these are for recursion
             openRuleSet = new HashMap<>();
+            recursiveLoops = new LinkedHashMap<>();
+            recursiveLoopCount = 0;
         }
     }
 
@@ -360,7 +365,7 @@ public class Grounder {
      */
     public GroundedTemplate solveBound(Rule r, GroundedTemplate best) {
         if (debugEnabled) {
-            System.out.println("Solving fully bounded rule\t" + r);
+            System.out.println("Solving fully bounded rule\t" + r + " -> " + getBindingsNames(example, r.usedTerms));
         }
 
         if (r instanceof KappaRule) {
@@ -585,9 +590,17 @@ public class Grounder {
      * @return
      */
     public GroundedTemplate cachedSolveGroundLiteral(SubKL o) {
+        int storedRecursiveLoopCount = recursiveLoopCount;
         boolean added = false;
         if (recursion) {
             if (openAtomList.contains(o)) {
+                Integer recCount = recursiveLoops.get(o);
+                if (recCount == null) {
+                    recursiveLoops.put(o.clone(), 1);
+                } else {
+                    recursiveLoops.put(o.clone(), recCount + 1);
+                }
+                recursiveLoopCount++;
                 return null;    //we are in a recursive cycle here! -> return null, because we just cannot finish proof in this branch based on the same fact we came from
             }
             added = forwardChecker.openLiteralSet.add(o.getParent());
@@ -616,15 +629,20 @@ public class Grounder {
             b = cache.get(o);
         } else {    //otherwise try to prove it and store the ground result
             b = solve(o);
-            if (!recursion || b != null) {
+            if (!recursion || (storedRecursiveLoopCount == recursiveLoopCount && b == null)) {   //if by solving this literal there were no recursive loops added, we can safely store it as it is context independent
                 cache.put(clone, b);
             }
         }
 
+        //remove from actual path as we backtrack
         if (recursion) {
             openAtomList.remove(clone);
             if (added) {
                 forwardChecker.openLiteralSet.remove(o.getParent());    //TODO zamyslet se jestli je tohle uplne obecne spravne
+            }
+            Integer removed = recursiveLoops.remove(clone);
+            if (removed != null) {
+                recursiveLoopCount -= removed;
             }
         }
 

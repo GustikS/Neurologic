@@ -4,12 +4,27 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/Gusta/googledrive/Github/LRNN/Neurologic/src/discoverer/grounding/Grounder.java</file>
-            <file>file:/C:/Users/Gusta/googledrive/Github/LRNN/Neurologic/src/discoverer/construction/template/MolecularTemplate.java</file>
+            <file>file:/C:/Users/Gusta/googledrive/Github/LRNN/Neurologic/src/discoverer/grounding/evaluation/Evaluator.java</file>
             <file>file:/C:/Users/Gusta/googledrive/Github/LRNN/Neurologic/src/discoverer/construction/template/rules/KappaRule.java</file>
-            <file>file:/C:/Users/Gusta/googledrive/Github/LRNN/Neurologic/src/discoverer/construction/template/rules/LambdaRule.java</file>
-            <file>file:/C:/Users/Gusta/googledrive/Github/LRNN/Neurologic/src/discoverer/GroundedDataset.java</file>
-            <file>file:/C:/Users/Gusta/googledrive/Github/LRNN/Neurologic/src/discoverer/global/Global.java</file>
+            <file>file:/C:/Users/Gusta/googledrive/Github/LRNN/Neurologic/src/discoverer/grounding/evaluation/EvaluatorFast.java</file>
+            <file>file:/C:/Users/Gusta/googledrive/Github/LRNN/Neurologic/src/discoverer/grounding/evaluation/GroundedTemplate.java</file>
+            <file>file:/C:/Users/Gusta/googledrive/Github/LRNN/Neurologic/src/discoverer/LiftedDataset.java</file>
+            <file>file:/C:/Users/Gusta/googledrive/Github/LRNN/Neurologic/src/discoverer/grounding/network/GroundLambda.java</file>
+            <file>file:/C:/Users/Gusta/googledrive/Github/LRNN/Neurologic/src/discoverer/construction/Variable.java</file>
+            <file>file:/C:/Users/Gusta/googledrive/Github/LRNN/Neurologic/src/discoverer/grounding/BottomUpConnector.java</file>
             <file>file:/C:/Users/Gusta/googledrive/Github/LRNN/Neurologic/src/discoverer/grounding/ForwardChecker.java</file>
+            <file>file:/C:/Users/Gusta/googledrive/Github/LRNN/Neurologic/src/extras/NellParser.java</file>
+            <file>file:/C:/Users/Gusta/googledrive/Github/LRNN/Neurologic/src/discoverer/construction/template/rules/Rule.java</file>
+            <file>file:/C:/Users/Gusta/googledrive/Github/LRNN/Neurologic/src/discoverer/construction/template/rules/SubKL.java</file>
+            <file>file:/C:/Users/Gusta/googledrive/Github/LRNN/Neurologic/src/discoverer/construction/template/specialPredicates/SimilarityPredicate.java</file>
+            <file>file:/C:/Users/Gusta/googledrive/Github/LRNN/Neurologic/src/discoverer/Main.java</file>
+            <file>file:/C:/Users/Gusta/googledrive/Github/LRNN/Neurologic/src/discoverer/drawing/GroundDotter.java</file>
+            <file>file:/C:/Users/Gusta/googledrive/Github/LRNN/Neurologic/src/discoverer/NLPdataset.java</file>
+            <file>file:/C:/Users/Gusta/googledrive/Github/LRNN/Neurologic/src/discoverer/construction/template/LiftedTemplate.java</file>
+            <file>file:/C:/Users/Gusta/googledrive/Github/LRNN/Neurologic/src/discoverer/global/Glogger.java</file>
+            <file>file:/C:/Users/Gusta/googledrive/Github/LRNN/Neurologic/src/discoverer/global/Global.java</file>
+            <file>file:/C:/Users/Gusta/googledrive/Github/LRNN/Neurologic/src/discoverer/grounding/network/GroundKL.java</file>
+            <file>file:/C:/Users/Gusta/googledrive/Github/LRNN/Neurologic/src/discoverer/construction/template/rules/SubK.java</file>
         </group>
     </open-files>
 </project-private>

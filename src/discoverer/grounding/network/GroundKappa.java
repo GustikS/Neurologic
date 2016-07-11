@@ -50,13 +50,13 @@ public class GroundKappa extends GroundKL {
     public GroundKappa(Kappa k, List<Variable> terms) {
         super(terms);
         general = k;
-        disjuncts = new ArrayList<Tuple<GroundLambda, KappaRule>>();
+        disjuncts = new ArrayList<>();
         disjunctsAvg = new ArrayList<>();
     }
 
     public void addDisjunct(GroundLambda gl, KappaRule kr) {
         Tuple<GroundLambda, KappaRule> t;
-        t = new Tuple<GroundLambda, KappaRule>(gl, kr);
+        t = new Tuple<>(gl, kr);
         disjuncts.add(t);
     }
 

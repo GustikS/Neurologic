@@ -30,14 +30,16 @@ import java.util.Map;
  */
 public class TemplateFactory {
 
-    private KappaFactory kFactory = new KappaFactory();
-    private LambdaFactory lFactory = new LambdaFactory();
-    private VariableFactory vFactory = new VariableFactory();
+    public KappaFactory kFactory = new KappaFactory();
+    public LambdaFactory lFactory = new LambdaFactory();
+    public VariableFactory vFactory = new VariableFactory();
 
     private LinkedList<Rule> templateRules = new LinkedList<>();
 
     public static Map<String, SpecialPredicate> specialPredicateNames;
     public static Map<KL, SpecialPredicate> specialPredicatesMap;
+    
+    public static Map<String,KL> predicatesByName;
 
     public TemplateFactory() {
         ConstantFactory.clearConstantFactory();
@@ -47,9 +49,11 @@ public class TemplateFactory {
             specialPredicateNames.put("similar/2", new SimilarityPredicate("similar"));
             specialPredicatesMap = new HashMap<>();
         }
+        
+        predicatesByName = new HashMap<>();
     }
 
-    public List<Rule> geRules() {
+    public List<Rule> getRules() {
         return templateRules;
     }
 
@@ -62,7 +66,6 @@ public class TemplateFactory {
      */
     public LiftedTemplate construct(String[] rules) {
         KL kl = null;
-        HashMap<String, KL> klNames = new HashMap<>();
         HashMap<String, String> activations = new HashMap<>();
         HashMap<String, Double> offsets = new HashMap<>();
 
@@ -80,7 +83,7 @@ public class TemplateFactory {
                 //the self handling of each K/L rule, adding it to the base
 
                 kl = isLambdaLine ? handleLambdaLine(tokens, rules[x]) : handleKappaLine(tokens, rules[x]);
-                klNames.put(kl.name, kl);
+                predicatesByName.put(kl.name, kl);
                 vFactory.clear();   //scope of variables is one line only!
             } else if (rules[x].contains("[")) {    //this is activation function specification
                 String[] split = rules[x].split(" ");
@@ -104,11 +107,11 @@ public class TemplateFactory {
         }
         //setup offsets if specified for some literals
         for (Map.Entry<String, Double> ent : offsets.entrySet()) {
-            klNames.get(ent.getKey()).offset = ent.getValue();
+            predicatesByName.get(ent.getKey()).offset = ent.getValue();
         }
         //setup activation functions - new feature!
         for (Map.Entry<String, String> ent : activations.entrySet()) {
-            klNames.get(ent.getKey()).activation = Activations.translate(ent.getValue());
+            predicatesByName.get(ent.getKey()).activation = Activations.translate(ent.getValue());
         }
 
         //setup network
@@ -116,7 +119,7 @@ public class TemplateFactory {
         if (Global.molecularTemplates) {
             network = new MolecularTemplate(kl);  //a wrapper for the last KL literal
         } else if (Global.NLPtemplate) {
-            network = new NLPtemplate(kl, klNames, templateRules);
+            network = new NLPtemplate(kl, predicatesByName, templateRules);
         } else {
             network = new LiftedTemplate(kl);
         }
@@ -163,6 +166,7 @@ public class TemplateFactory {
 
         for (int i = 2; i < tokens.length; i++) {
             Kappa k = kFactory.construct(tokens[i][0]);
+            predicatesByName.put(k.name, k);
             SubK sk = new SubK(k, false);
             for (int j = 1; j < tokens[i].length; j++) {
                 Variable t = constructTerm(tokens[i][j]);
@@ -214,6 +218,7 @@ public class TemplateFactory {
 
         for (int i = 2; i < tokens.length; i++) {
             Lambda l = lFactory.construct(tokens[i][0]);
+            predicatesByName.put(l.name, l);
             SubL sl = new SubL(l, false);
             for (int j = 1; j < tokens[i].length; j++) {
                 Variable t = constructTerm(tokens[i][j]);

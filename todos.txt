@@ -42,15 +42,28 @@ urychlit groundovani         --> centralnim prvkem je poradny profiling!
   - urcyhlit clonovani
   - !! aby se bindAll nejelo pres vsechny konstanty ale jen rozumny subset !!
     - tj. aby nejak forwardchecker vraceel tenhle subset
+    
   
   kreslitko na samply/grafy?
+  - a kappa/lambda aby byly jinym tvarem
+  - mozna pridat i barvicky na hrany podle vahy?
   
   automatickou detekci rekurze v templatu a podle ni prepinac
   - stejne tak template constants
   
   
+profiling
+  JProfiler je super, jeste vyzkouset yourkit (mel by umet sam poradt co optimalizovat)
+  
+--> Jprofiler + prejit na IntelliJ bude iltimatni kombo!
+  
+  
+- zrusit KL a GroundKL, resp. je sloucit do jednoho literalu?
+--> a mit tak jen dve reprezentace : 
+    - jednu logickou (puvodni L-K)
+      - podobne jako to ma Ondra - bude slouzit jako interface pro ostatni logicke veci a programy a uzivatele
+    - a druhou neuralni, ground, ktera podleha specifikaci v paperu
+  
 ---problems
 
-pri rekurzivnim templatu zalezi na poradi promennych a pridani pravidel ubere intepretace
-  - evidentne je to tedy citlive na poradi prohledavani
----> je to v cache, a nejspis je to openSetem a zarezavanim pri rekurzi
+rekurze s holds je extreme pomala i na miniaturnim samplu

@@ -108,8 +108,10 @@ public class LiftedDataset implements Serializable {
         nf = new TemplateFactory();
         template = nf.construct(rules);
 
-        template.exportTemplate(name);
-        template.exportWeightMatrix(name);
+        if (Global.exporting) {
+            template.exportTemplate(name);
+            template.exportWeightMatrix(name);
+        }
         return template;
     }
 

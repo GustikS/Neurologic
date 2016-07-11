@@ -24,7 +24,7 @@ import org.apache.commons.cli.PosixParser;
 public class Main {
 
     //cutoff on example number
-    private static final String defaultMaxExamples = "10000";  //we can decrease the overall number of examples (stratified) for speedup
+    private static final String defaultMaxExamples = "100000";  //we can decrease the overall number of examples (stratified) for speedup
     //
     public static String defaultLearningSteps = "1000";  //learnSteps per epocha
     public static String defaultLearningEpochs = "1";  //learn epochae = grounding cycles
@@ -234,6 +234,8 @@ public class Main {
     }
 
     public static void main(String[] args) {
+        args = "-r C:\\Users\\Gusta\\googledrive\\Github\\LRNN\\in\\mutagenesis\\3rules -e C:\\Users\\Gusta\\googledrive\\Github\\LRNN\\in\\mutagenesis\\examples -gr avg".split(" ");
+        
         //setup all parameters and load all the necessary input files
         List<String[]> inputs = setupFromArguments(args);
         //create logger for all messages within the program

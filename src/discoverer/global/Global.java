@@ -76,7 +76,7 @@ public final class Global {
     public static boolean NLPtemplate = false;
 
     public static boolean multiLine = false; //example can spread to multiple lines, delimited by empty line (\n\n)
-    public static boolean parallelGrounding = true;
+    public static boolean parallelGrounding = false;
     public static boolean deterministicGrounding = true;
     public static boolean parallelTraining = true; //experimental!!
     public static int numOfThreads = 4;

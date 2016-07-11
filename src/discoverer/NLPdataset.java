@@ -6,7 +6,6 @@
 package discoverer;
 
 import discoverer.construction.ConstantFactory;
-import static discoverer.construction.ConstantFactory.loadEmbeddings;
 import discoverer.construction.ExampleFactory;
 import discoverer.construction.Parser;
 import static discoverer.construction.Parser.getWeightLen;
@@ -14,16 +13,20 @@ import discoverer.construction.TemplateFactory;
 import discoverer.construction.Variable;
 import discoverer.construction.example.Example;
 import discoverer.construction.template.KL;
-import discoverer.construction.template.LiftedTemplate;
+import discoverer.construction.template.Kappa;
+import discoverer.construction.template.Lambda;
 import static discoverer.construction.template.LightTemplate.weightFolder;
 import discoverer.construction.template.NLPtemplate;
+import discoverer.construction.template.rules.KappaRule;
 import discoverer.construction.template.rules.Rule;
+import discoverer.construction.template.rules.SubK;
 import discoverer.construction.template.rules.SubKL;
+import discoverer.construction.template.rules.SubL;
 import discoverer.drawing.Dotter;
 import discoverer.drawing.GroundDotter;
 import discoverer.global.Global;
 import discoverer.global.Glogger;
-import discoverer.grounding.evaluation.Evaluator;
+import discoverer.grounding.BottomUpConnector;
 import discoverer.grounding.evaluation.GroundedTemplate;
 import discoverer.grounding.network.GroundKL;
 import discoverer.learning.Saver;
@@ -52,7 +55,7 @@ public class NLPdataset extends Main {
     //facts
     public static Example facts;
 
-    private boolean exportCache = true;
+    private boolean exportCache = false;
 
     public static void main(String[] args) {
         Glogger.resultsDir = "./results/";
@@ -91,10 +94,10 @@ public class NLPdataset extends Main {
 
         Global.templateConstants = true;
         Global.recursion = true;
-        
+
         //Global.alldiff = true;
         //Global.embeddings = true;
-        //Global.cacheEnabled = true;
+        Global.cacheEnabled = true;
 
         templateFactory = new TemplateFactory();
         template = (NLPtemplate) templateFactory.construct(iRules);
@@ -133,6 +136,17 @@ public class NLPdataset extends Main {
         if (Global.drawing) {
             Dotter.draw(template.KLs.values(), "initNLPtemplate");
         }
+        
+        String query = "story(th)";
+        BottomUpConnector btmup = new BottomUpConnector();
+        GroundKL groundLRNN = btmup.getGroundLRNN(templateFactory.getRules(), facts.hash.substring(0, facts.hash.lastIndexOf(".")), query);
+        GroundedTemplate b = new GroundedTemplate();
+        b.constantNames = template.constantNames;
+        b.setLast(groundLRNN);
+        template.evaluateProof(b);
+        GroundDotter.draw(b, "bottomUP");
+        System.out.println("nakresleno");
+        
     }
 
     private void evaluate() {
