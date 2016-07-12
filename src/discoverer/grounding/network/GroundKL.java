@@ -7,6 +7,7 @@ package discoverer.grounding.network;
 
 import discoverer.construction.Variable;
 import discoverer.construction.template.KL;
+import discoverer.global.Global;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
@@ -32,12 +33,12 @@ public abstract class GroundKL implements Serializable {
     private int id;
     private int[] termList;
     private String[] termNames;
-    
+
     public KL general;
 
     @Override
     public String toString() {
-        StringBuilder  s = new StringBuilder (general.getPredicateName());
+        StringBuilder s = new StringBuilder(general.getPredicateName());
         if (getTermList() != null) {
             s.append("(");
             for (int i : getTermList()) {
@@ -46,11 +47,13 @@ public abstract class GroundKL implements Serializable {
             s.deleteCharAt(s.length() - 1);
             s.append(")");
         }
-        s.append("#").append(getId());
+        if (Global.uniqueGroundLiteralNames) {
+            s.append("#").append(getId());
+        }
         return s.toString();
     }
-    
-    public String toString(Map<Integer,String> constNames) {
+
+    public String toString(Map<Integer, String> constNames) {
         StringBuilder s = new StringBuilder(general.getPredicateName());
         if (getTermList() != null) {
             s.append("(");
@@ -60,7 +63,9 @@ public abstract class GroundKL implements Serializable {
             s.deleteCharAt(s.length() - 1);
             s.append(")");
         }
-        //s.append("#").append(getId());
+        if (Global.uniqueGroundLiteralNames) {
+            s.append("#").append(getId());
+        }
         return s.toString();
     }
 
@@ -101,7 +106,7 @@ public abstract class GroundKL implements Serializable {
 
     public abstract GroundKL cloneMe();
 
-    public KL getGeneral(){
+    public KL getGeneral() {
         return general;
     }
 

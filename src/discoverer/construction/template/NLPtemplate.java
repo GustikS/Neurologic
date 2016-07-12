@@ -12,6 +12,7 @@ import discoverer.construction.template.rules.SubKL;
 import discoverer.drawing.GroundDotter;
 import discoverer.global.Global;
 import discoverer.global.Glogger;
+import discoverer.grounding.BottomUpConnector;
 import discoverer.grounding.Grounder;
 import discoverer.grounding.evaluation.Evaluator;
 import discoverer.grounding.evaluation.GroundedTemplate;
@@ -33,7 +34,7 @@ import java.util.Set;
 public class NLPtemplate extends LiftedTemplate {
 
     public Learning learning = new Learning();
-    public Grounder prover = learning.grounder;
+    public Grounder prover;
 
     public Map<String, KL> KLs = new HashMap<>();
 
@@ -55,7 +56,12 @@ public class NLPtemplate extends LiftedTemplate {
             rules.add(irule);
         }
         //interesting - maybe now the cache may stay and be reused over many queries, because the fact structures stay the same? (if there are no new facts comming)
-        prover.prepareCache();
+        if (Global.bottomUp) {
+            prover = new BottomUpConnector();
+        } else {
+            prover = learning.grounder;
+            prover.prepareCache();
+        }
     }
 
     /**
@@ -66,7 +72,7 @@ public class NLPtemplate extends LiftedTemplate {
      * @param facts
      * @return
      */
-    public GroundedTemplate query(KL target, List<Variable> vars, Example facts) {
+    public GroundedTemplate queryTopDown(KL target, List<Variable> vars, Example facts) {
         prover.example = facts;
 
         if (clearingCache) {
@@ -96,6 +102,22 @@ public class NLPtemplate extends LiftedTemplate {
         //b.groundNeurons.addAll(GroundNetworkParser.elements);  //no, do not add the fact neurons as their values will get invalidated then
 
         return answer;
+    }
+
+    public GroundedTemplate queryBottomUp(List<Rule> rules, Example facts, String query) {
+        GroundKL groundLRNN = ((BottomUpConnector) prover).getGroundLRNN(rules, facts, query);
+        GroundedTemplate b = new GroundedTemplate();
+        b.constantNames = constantNames;
+        b.setLast(groundLRNN);
+        evaluateProof(b);
+        Set<GroundKL> groundKLs = null;
+        if (Global.getGrounding() == Global.groundingSet.avg) {
+            groundKLs = GroundNetworkParser.parseAVG(b);
+        } else if (Global.getGrounding() == Global.groundingSet.max) {
+            groundKLs = GroundNetworkParser.parseMAX(b);
+        }
+        b.loadGroundNeurons(groundKLs);   //store all ground L/K in an array for fast and simple operations instead of DFS for each simple pass
+        return b;
     }
 
     public void updateWeights(GroundedTemplate proof, double targetVal) {

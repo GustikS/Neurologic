@@ -4,6 +4,7 @@ import discoverer.construction.Variable;
 import discoverer.construction.ElementMapper;
 import discoverer.construction.template.Kappa;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * partially grounded kappa(in rules)
@@ -79,4 +80,5 @@ public class SubK extends SubKL implements Serializable {
         }
         return sk;
     }
+
 }

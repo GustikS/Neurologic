@@ -117,5 +117,9 @@ public abstract class SubKL implements Serializable {
     public boolean contains(Variable term) {
         return termsList.contains(term);
     }
+    
+    public void setTerms(List<Variable> terms) {
+        termsList = terms;
+    }
 
 }

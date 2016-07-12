@@ -27,6 +27,8 @@ public final class Global {
      */
     private static Random rg;
 
+    public static boolean bottomUp = false;  //bottom-up grounding - whoa!
+
     public static boolean cacheEnabled = true; //false -> creates trees instead of networks
     private static boolean forwardCheckEnabled = true; //do not try to turn this off (super-slow, and maybe also grounding may change due to alldiff=true (not sure))
     public static boolean debugEnabled = false;  //very detailed info (too slow for an actual run)
@@ -96,6 +98,8 @@ public final class Global {
     public static boolean templateConstants = false;
     public static boolean recursion = false;
     public static boolean embeddings = false;
+    public static boolean uniqueGroundLiteralNames = false;
+    public static boolean specialPredicates = true;
 
     public static void setupThreads() {
         numOfThreads = Runtime.getRuntime().availableProcessors();
@@ -125,6 +129,10 @@ public final class Global {
 
     public static void setAlldiff(String tmp) {
         alldiff = Integer.parseInt(tmp) > 0;
+    }
+
+    public static void setBottomUp(String tmp) {
+        bottomUp = Integer.parseInt(tmp) > 0;
     }
 
     //----taken as parameters from Main

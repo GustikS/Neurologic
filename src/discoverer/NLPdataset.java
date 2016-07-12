@@ -30,12 +30,14 @@ import discoverer.grounding.BottomUpConnector;
 import discoverer.grounding.evaluation.GroundedTemplate;
 import discoverer.grounding.network.GroundKL;
 import discoverer.learning.Saver;
+import ida.ilp.logic.Literal;
 import java.io.BufferedWriter;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -55,7 +57,9 @@ public class NLPdataset extends Main {
     //facts
     public static Example facts;
 
-    private boolean exportCache = false;
+    private boolean exportCache = true;
+
+    public String embeddingsPath = "./in/embeddings.csv";
 
     public static void main(String[] args) {
         Glogger.resultsDir = "./results/";
@@ -97,13 +101,13 @@ public class NLPdataset extends Main {
 
         //Global.alldiff = true;
         //Global.embeddings = true;
-        Global.cacheEnabled = true;
+        //Global.cacheEnabled = true;
 
         templateFactory = new TemplateFactory();
         template = (NLPtemplate) templateFactory.construct(iRules);
 
         if (Global.embeddings) {
-            ConstantFactory.loadEmbeddings("./in/embeddings.csv");     //TO change
+            ConstantFactory.loadEmbeddings(embeddingsPath);     //TO change
         }
 
         //contruct a fact store = actually like a one huge example graph
@@ -136,17 +140,6 @@ public class NLPdataset extends Main {
         if (Global.drawing) {
             Dotter.draw(template.KLs.values(), "initNLPtemplate");
         }
-        
-        String query = "story(th)";
-        BottomUpConnector btmup = new BottomUpConnector();
-        GroundKL groundLRNN = btmup.getGroundLRNN(templateFactory.getRules(), facts.hash.substring(0, facts.hash.lastIndexOf(".")), query);
-        GroundedTemplate b = new GroundedTemplate();
-        b.constantNames = template.constantNames;
-        b.setLast(groundLRNN);
-        template.evaluateProof(b);
-        GroundDotter.draw(b, "bottomUP");
-        System.out.println("nakresleno");
-        
     }
 
     private void evaluate() {
@@ -165,19 +158,29 @@ public class NLPdataset extends Main {
                 targetValue = Double.parseDouble(query.substring(0, wLen));
             }
 
-            String[][] queryTokens = Parser.parseQuery(query.substring(wLen, query.length()));
-            String signature = queryTokens[0][0];
-            KL target = template.KLs.get(signature);
+            GroundedTemplate proof;
+            if (Global.bottomUp) {
+                proof = template.queryBottomUp(templateFactory.getRules(), facts, query.substring(wLen, query.length()));
+            } else {
+                String[][] queryTokens = Parser.parseQuery(query.substring(wLen, query.length()));
+                String signature = queryTokens[0][0];
+                KL target = template.KLs.get(signature);
 
-            templateFactory.clearVarFactory();
-            List<Variable> vars = new ArrayList<>();
-            for (int j = 1; j < queryTokens[0].length; j++) {
-                Variable t = templateFactory.constructTerm(queryTokens[0][j]);
-                vars.add(t);
+                templateFactory.clearVarFactory();
+                List<Variable> vars = new ArrayList<>();
+                for (int j = 1; j < queryTokens[0].length; j++) {
+                    Variable t = templateFactory.constructTerm(queryTokens[0][j]);
+                    vars.add(t);
+                }
+                proof = template.queryTopDown(target, vars, facts);
             }
 
-            GroundedTemplate proof = template.query(target, vars, facts);
-            double res = proof.valMax;
+            double res;
+            if (Global.getGrounding() == Global.groundingSet.max) {
+                res = proof.valMax;
+            } else {
+                res = proof.valAvg;
+            }
             if (Global.drawing) {
                 GroundDotter.draw(proof, i + "beforeLearning_" + query.substring(wLen, query.length()));
             }
@@ -250,15 +253,27 @@ public class NLPdataset extends Main {
         if (exportCache && Global.isCacheEnabled()) {
             try {
                 writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(weightFolder + destination + "-cache.w"), "utf-8"));
-                HashMap<SubKL, GroundedTemplate> cache = template.prover.getCache();
-                for (Map.Entry<SubKL, GroundedTemplate> ent : cache.entrySet()) {
-                    if (ent.getValue() == null) {
-                        continue;
+                if (Global.bottomUp) {
+                    Collection<GroundKL> cache = ((BottomUpConnector ) template.prover).getBtmUpCache();
+                    for (GroundKL ent : cache) {
+                        if (ent == null || (ent.getValue() == null) && ent.getValueAvg() == null) {
+                            continue;
+                        }
+                        //System.out.println(ent.getValue() + " : " + ent.getValue().getLast().toString(template.constantNames));
+                        writer.write(ent.getValue() + " ; " + ent.getValueAvg() + " ; " + ent.toString(template.constantNames) + "\n");
+                        //GroundDotter.draw(ent.getValue(), ent.getKey().getParent().name);
                     }
-                    ent.getValue().constantNames = facts.constantNames;
-                    //System.out.println(ent.getValue() + " : " + ent.getValue().getLast().toString(template.constantNames));
-                    writer.write(ent.getValue() + " : " + ent.getValue().getLast().toString(template.constantNames) + "\n");
-                    GroundDotter.draw(ent.getValue(), ent.getKey().getParent().name);
+                } else {
+                    HashMap<SubKL, GroundedTemplate> cache = template.prover.getCache();
+                    for (Map.Entry<SubKL, GroundedTemplate> ent : cache.entrySet()) {
+                        if (ent.getValue() == null) {
+                            continue;
+                        }
+                        ent.getValue().constantNames = facts.constantNames;
+                        //System.out.println(ent.getValue() + " : " + ent.getValue().getLast().toString(template.constantNames));
+                        writer.write(ent.getValue() + " -> " + ent.getValue().getLast().toString(template.constantNames) + "\n");
+                        //GroundDotter.draw(ent.getValue(), ent.getKey().getParent().name);
+                    }
                 }
             } catch (UnsupportedEncodingException ex) {
                 Logger.getLogger(Saver.class.getName()).log(Level.SEVERE, null, ex);

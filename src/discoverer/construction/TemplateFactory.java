@@ -14,6 +14,7 @@ import discoverer.construction.template.MolecularTemplate;
 import discoverer.construction.template.NLPtemplate;
 import discoverer.construction.template.rules.Rule;
 import discoverer.construction.template.rules.SubKL;
+import discoverer.construction.template.specialPredicates.NotEqualPredicate;
 import discoverer.construction.template.specialPredicates.SimilarityPredicate;
 import discoverer.construction.template.specialPredicates.SpecialPredicate;
 import discoverer.global.Global;
@@ -45,8 +46,9 @@ public class TemplateFactory {
         ConstantFactory.clearConstantFactory();
 
         specialPredicateNames = new HashMap<>();
-        if (Global.embeddings) {
-            specialPredicateNames.put("similar/2", new SimilarityPredicate("similar"));
+        if (Global.specialPredicates) {
+            specialPredicateNames.put("@similar/2", new SimilarityPredicate("@similar"));
+            specialPredicateNames.put("@neq/2", new NotEqualPredicate("@neq"));
             specialPredicatesMap = new HashMap<>();
         }
         

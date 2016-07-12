@@ -155,12 +155,15 @@ public class Learning {
                 kr.setWeight(kr.getWeight() + newWeight);
             } else { //updating GroundKL value
                 GroundKL gkl = (GroundKL) o;
-                if (gkl.getGeneral().special){
+                if (gkl.getGeneral().special) {
                     SpecialPredicate special = TemplateFactory.specialPredicatesMap.get(gkl.getGeneral());
-                    special.update(Grounder.getBindingsNames(NLPdataset.facts, gkl.getTermList()),newWeight);
+                    special.update(Grounder.getBindingsNames(NLPdataset.facts, gkl.getTermList()), newWeight);
                 }
-                gkl.setValueAvg(gkl.getValueAvg() + newWeight);
-                gkl.setValue(gkl.getValue() + newWeight);
+                if (Global.getGrounding() == Global.groundingSet.avg) {
+                    gkl.setValueAvg(gkl.getValueAvg() + newWeight);
+                } else {
+                    gkl.setValue(gkl.getValue() + newWeight);
+                }
             }
         }
     }

@@ -59,6 +59,7 @@ public class Main {
     private static String defaultEmbeddings = "0";
     private static String defaultDrawing = "0";
     private static String defaultAlldiff = "1";
+    private static String defaultBottomUp = "0";
 
     public static Options getOptions() {
         Options options = new Options();
@@ -210,6 +211,11 @@ public class Main {
         OptionBuilder.hasArg();
         options.addOption(OptionBuilder.create("alldiff"));
         
+        OptionBuilder.withLongOpt("bottomUp");
+        OptionBuilder.withDescription("Use bottom-up grounder (from Ondrej) instead of top-down search (default)");
+        OptionBuilder.hasArg();
+        options.addOption(OptionBuilder.create("bug"));
+        
         return options;
     }
 
@@ -326,6 +332,9 @@ public class Main {
         
         tmp = cmd.getOptionValue("alldiff", defaultAlldiff);
         Global.setAlldiff(tmp);
+        
+        tmp = cmd.getOptionValue("bug", defaultBottomUp);
+        Global.setBottomUp(tmp);
     }
 
     /**

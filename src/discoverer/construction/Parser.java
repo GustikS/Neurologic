@@ -96,7 +96,7 @@ public class Parser {
      *
      * @return Tokens with separated strings
      */
-    private static String[] parseLiteral(String literal) {
+    public static String[] parseLiteral(String literal) {
         String[] tokens = literal.replaceAll("\\)", "").split("[\\(,]");
         tokens[0] += "/" + (tokens.length - 1);
         return tokens;

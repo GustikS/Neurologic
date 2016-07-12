@@ -9,6 +9,7 @@ import discoverer.construction.ConstantFactory;
 import discoverer.construction.Parser;
 import discoverer.construction.TemplateFactory;
 import discoverer.construction.Variable;
+import discoverer.construction.example.Example;
 import discoverer.construction.template.KL;
 import discoverer.construction.template.Kappa;
 import discoverer.construction.template.Lambda;
@@ -19,6 +20,7 @@ import discoverer.construction.template.rules.SubKL;
 import discoverer.construction.template.rules.SubL;
 import discoverer.global.Glogger;
 import discoverer.global.Tuple;
+import discoverer.grounding.evaluation.GroundedTemplate;
 import discoverer.grounding.network.GroundKL;
 import discoverer.grounding.network.GroundKappa;
 import discoverer.grounding.network.GroundLambda;
@@ -30,6 +32,7 @@ import ida.ilp.logic.io.PrologParser;
 import ida.ilp.logic.subsumption.Matching;
 import ida.utils.tuples.Pair;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
@@ -46,16 +49,19 @@ import supertweety.lrnn.grounder.BottomUpGrounder;
  *
  * @author Gusta
  */
-public class BottomUpConnector {
+public class BottomUpConnector extends Grounder {
 
-    Set<Literal> herbrandModel;
+    Map<Literal, GroundKL> herbrandModel;
     Map<Rule, List<List<Literal>>> groundRuleMap;
+    Map<Literal, Map<Rule, List<List<Literal>>>> head2Tails;
 
     boolean caching = true;
     HashMap<Literal, GroundKL> cache;
     HashSet<Literal> openAtomSet;
     int recursiveLoopCount;
     private LinkedHashMap<Literal, Integer> recursiveLoops;
+
+    Example facts;
 
     String[] extraRules = new String[]{"similar(X,X)"};
 
@@ -80,15 +86,17 @@ public class BottomUpConnector {
         }
          */    }
 
-    public GroundKL getGroundLRNN(List<Rule> rules, String facts, String query) {
+    public GroundKL getGroundLRNN(List<Rule> rules, Example ifacts, String query) {
         cache = new HashMap<>();
         openAtomSet = new HashSet<>();
         recursiveLoopCount = 0;
         recursiveLoops = new LinkedHashMap<>();
 
-        Map<Literal, Map<Rule, List<List<Literal>>>> head2Tails = new HashMap<>();
+        this.facts = ifacts;
+
+        head2Tails = new HashMap<>();
         if (groundRuleMap == null) {
-            groundRuleMap = getGroundRules(rules, facts, ConstantFactory.getConstMap().keySet());
+            groundRuleMap = getGroundRules(rules, facts.hash.substring(0, facts.hash.lastIndexOf(".")), ConstantFactory.getConstMap().keySet());
         }
         for (Map.Entry<Rule, List<List<Literal>>> ent : groundRuleMap.entrySet()) {
             for (List<Literal> clause : ent.getValue()) {
@@ -124,14 +132,35 @@ public class BottomUpConnector {
                 start = head;
             }
         }
-        GroundKL output = createGroundLRNN(start, head2Tails);
+        if (start == null) {
+            Glogger.err("Warning, there are no entailing rules found for this query literal! - returning just the literal itself");
+            String[] parseLiteral = Parser.parseLiteral(query);
+            KL kl = TemplateFactory.predicatesByName.get(parseLiteral[0]);
+            List<Variable> terms = new ArrayList<>();
+            for (int i = 1; i < parseLiteral.length; i++) {
+                    Variable var = ConstantFactory.construct(parseLiteral[i]);
+                    terms.add(var);
+            }
+            GroundKL gkl = null;
+            if (kl instanceof Kappa) {
+                gkl = new GroundKappa((Kappa) kl, terms);
+            } else {
+                gkl = new GroundLambda((Lambda) kl, terms);
+            }
+            gkl.setValue(1.0);
+            gkl.setValueAvg(1.0);
+            return gkl;
+        }
+        GroundKL output = createGroundLRNN(start);
+        Glogger.process("ground LRNN created");
         return output;
     }
 
-    private GroundKL createGroundLRNN(Literal top, Map<Literal, Map<Rule, List<List<Literal>>>> head2Tails) {
+    private GroundKL createGroundLRNN(Literal top) {
         int storedRecursiveLoopCount = recursiveLoopCount;
 
         KL kl = TemplateFactory.predicatesByName.get(top.predicate() + "/" + top.arity());
+
         if (openAtomSet.contains(top)) {
             Integer recCount = recursiveLoops.get(top);
             if (recCount == null) {
@@ -155,17 +184,24 @@ public class BottomUpConnector {
 
         GroundKL gkl = null;
         if (kl instanceof Kappa) {
-            gkl = new GroundKappa((Kappa) kl, terms);
-            List<Tuple<HashSet<GroundLambda>, KappaRule>> allDisjuncts = new ArrayList<>();
             if (rule2Bodies == null) {
-                gkl.setValueAvg(1.0);
+                SubK subK = new SubK((Kappa) kl, true);
+                subK.setTerms(terms);
+                gkl = facts.getFact(subK);
+                if (gkl == null) {
+                    gkl = new GroundKappa((Kappa) kl, terms);
+                    gkl.setValueAvg(1.0);
+                }
                 openAtomSet.remove(top);
                 Integer removed = recursiveLoops.remove(top);
                 if (removed != null) {
                     recursiveLoopCount -= removed;
                 }
+                herbrandModel.put(top, gkl);
                 return gkl;
             }
+            gkl = new GroundKappa((Kappa) kl, terms);
+            List<Tuple<HashSet<GroundLambda>, KappaRule>> allDisjuncts = new ArrayList<>();
             for (Map.Entry<Rule, List<List<Literal>>> ent : rule2Bodies.entrySet()) {
                 KappaRule kr = (KappaRule) ent.getKey();
                 HashSet<GroundLambda> grbodi = new HashSet<>();
@@ -176,7 +212,7 @@ public class BottomUpConnector {
                             grbodi.add((GroundLambda) saved);
                             continue;
                         }
-                        GroundLambda solved = (GroundLambda) createGroundLRNN(literal, head2Tails);
+                        GroundLambda solved = (GroundLambda) createGroundLRNN(literal);
                         if (solved != null) {
                             grbodi.add(solved);
                         } else if (caching && (storedRecursiveLoopCount == recursiveLoopCount && solved == null)) {
@@ -199,21 +235,26 @@ public class BottomUpConnector {
                 return null;
             }
         } else {
-            gkl = new GroundLambda((Lambda) kl, terms);
             if (rule2Bodies == null) {
-                gkl.setValueAvg(0.5);
+                SubL subL = new SubL((Lambda) kl, true);
+                subL.setTerms(terms);
+                gkl = facts.getFact(subL);
+                if (gkl == null) {
+                    gkl = new GroundLambda((Lambda) kl, terms);
+                    gkl.setValueAvg(1.0);
+                }
                 openAtomSet.remove(top);
                 Integer removed = recursiveLoops.remove(top);
                 if (removed != null) {
                     recursiveLoopCount -= removed;
                 }
+                herbrandModel.put(top, gkl);
                 return gkl;
             }
+            gkl = new GroundLambda((Lambda) kl, terms);
             HashMap<GroundKappa, Integer> allConjuncts = new HashMap<>();
-
             int count = 0;
             for (Map.Entry<Rule, List<List<Literal>>> ent : rule2Bodies.entrySet()) {   //GroundLambda has just one LambdaRule
-
                 for (List<Literal> grbody : ent.getValue()) {   //all the ground bodies become flattened in the compressed representation
                     count++;
                     List<GroundKappa> body = new ArrayList<>(grbody.size());
@@ -223,7 +264,7 @@ public class BottomUpConnector {
                             body.add((GroundKappa) saved);
                             continue;
                         }
-                        GroundKappa solved = (GroundKappa) createGroundLRNN(literal, head2Tails);
+                        GroundKappa solved = (GroundKappa) createGroundLRNN(literal);
                         if (solved != null) {
                             body.add(solved);
                         } else {
@@ -263,6 +304,7 @@ public class BottomUpConnector {
         if (removed != null) {
             recursiveLoopCount -= removed;
         }
+        herbrandModel.put(top, gkl);
         return gkl;
     }
 
@@ -279,7 +321,7 @@ public class BottomUpConnector {
         if (herbrandModel == null) {
             herbrandModel = getHerbrandModel(rules, facts, ConstantFactory.getConstMap().keySet());
         }
-        for (Literal literal : herbrandModel) {
+        for (Literal literal : herbrandModel.keySet()) {
             if (literal.predicate().equals("exists")) {
                 continue;
             }
@@ -296,10 +338,11 @@ public class BottomUpConnector {
             }
             cache.add(subkl);
         }
+        Glogger.process("lrnn cache created");
         return cache;
     }
 
-    public Set<Literal> getHerbrandModel(List<Rule> rules, String facts, Set<String> allConstants) {
+    public Map<Literal, GroundKL> getHerbrandModel(List<Rule> rules, String facts, Set<String> allConstants) {
         Pair<List<Clause>, Clause> clauseRepresentation = getClauseRepresentationFromLRNNStrings(rules, facts, allConstants);
 
         return getHerbrandModel(clauseRepresentation.r, clauseRepresentation.s);
@@ -307,16 +350,14 @@ public class BottomUpConnector {
 
     public Map<Rule, List<List<Literal>>> getGroundRules(List<Rule> rules, String facts, Set<String> allConstants) {
         Pair<List<Clause>, Clause> clauseRepresentation = getClauseRepresentationFromLRNNStrings(rules, facts, allConstants);
-
         if (herbrandModel == null) {
             herbrandModel = getHerbrandModel(clauseRepresentation.r, clauseRepresentation.s);
         }
-
         return getGroundRules(herbrandModel, rules, clauseRepresentation.r);
     }
 
-    public Map<Rule, List<List<Literal>>> getGroundRules(Set<Literal> herbrand, List<Rule> rules, List<Clause> clauses) {
-        Clause herbrandBase = new Clause(herbrand);
+    public Map<Rule, List<List<Literal>>> getGroundRules(Map<Literal, GroundKL> herbrand, List<Rule> rules, List<Clause> clauses) {
+        Clause herbrandBase = new Clause(herbrand.keySet());
         Map<Rule, List<List<Literal>>> groundRules = new LinkedHashMap<>();
         Matching m = new Matching();
         if (rules.size() != clauses.size()) {
@@ -334,23 +375,24 @@ public class BottomUpConnector {
                 grRules.add(lits);
             }
         }
+        Glogger.process("ground rules created");
         return groundRules;
     }
 
-    public Set<Literal> getHerbrandModel(List<Clause> irules, Clause groundFacts) {
+    public Map<Literal, GroundKL> getHerbrandModel(List<Clause> irules, Clause groundFacts) {
         List<Clause> rules = new ArrayList<>(irules);
         for (Literal l : groundFacts.literals()) {
             rules.add(new Clause(l));
         }
 
-        Set<Literal> herbrand = null;
-        long t1 = System.nanoTime();
-
+        Map<Literal, GroundKL> herbrand = new HashMap<>();
         BottomUpGrounder bug = new BottomUpGrounder();
-        herbrand = bug.herbrandModel(rules);
+        Set<Literal> allLiterals = bug.herbrandModel(rules);
+        for (Literal literal : allLiterals) {
+            herbrand.put(literal, null);
+        }
 
-        long t2 = System.nanoTime();
-        Glogger.process("Herbrand model creation time: " + (t2 - t1) / 1e6 + "ms");
+        Glogger.process("Herbrand model created");
 
         return herbrand;
 
@@ -400,6 +442,7 @@ public class BottomUpConnector {
         sb.append(facts);
 
         Clause ground = Clause.parse(sb.toString());
+        Glogger.process("clause representation created");
         return new Pair<>(clauses, ground);
     }
 
@@ -430,5 +473,9 @@ public class BottomUpConnector {
             literals.add(cl);
         }
         return literals;
+    }
+
+    public Collection<GroundKL> getBtmUpCache() {
+        return herbrandModel.values();
     }
 }
