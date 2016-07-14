@@ -27,7 +27,7 @@ public class SimilarityPredicate extends SpecialPredicate {
         }
     }
 
-    public double getSimilarity(String a, String b) {
+    public static double getSimilarity(String a, String b) {
         if (a.equals(b)) {
             return 1.0;
         }

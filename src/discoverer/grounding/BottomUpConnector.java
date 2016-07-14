@@ -18,6 +18,7 @@ import discoverer.construction.template.rules.Rule;
 import discoverer.construction.template.rules.SubK;
 import discoverer.construction.template.rules.SubKL;
 import discoverer.construction.template.rules.SubL;
+import discoverer.construction.template.specialPredicates.SimilarityPredicate;
 import discoverer.global.Glogger;
 import discoverer.global.Tuple;
 import discoverer.grounding.evaluation.GroundedTemplate;
@@ -138,8 +139,8 @@ public class BottomUpConnector extends Grounder {
             KL kl = TemplateFactory.predicatesByName.get(parseLiteral[0]);
             List<Variable> terms = new ArrayList<>();
             for (int i = 1; i < parseLiteral.length; i++) {
-                    Variable var = ConstantFactory.construct(parseLiteral[i]);
-                    terms.add(var);
+                Variable var = ConstantFactory.construct(parseLiteral[i]);
+                terms.add(var);
             }
             GroundKL gkl = null;
             if (kl instanceof Kappa) {
@@ -477,5 +478,36 @@ public class BottomUpConnector extends Grounder {
 
     public Collection<GroundKL> getBtmUpCache() {
         return herbrandModel.values();
+    }
+
+    public void precalculateSimilars() {
+        Map<String, double[]> embeddings = ConstantFactory.getEmbeddings();
+        List<SubKL> literals = new ArrayList<>();
+        double[] values = new double[embeddings.size() * embeddings.size()];
+        int i = 0;
+        for (Map.Entry<String, double[]> ent1 : embeddings.entrySet()) {
+            for (Map.Entry<String, double[]> ent2 : embeddings.entrySet()) {
+                double value = SimilarityPredicate.getSimilarity(ent1.getKey(), ent2.getKey());
+
+                KL kl = TemplateFactory.predicatesByName.get("@similar/2");
+                List<Variable> terms = new ArrayList<>();
+
+                Variable var = ConstantFactory.construct(ent1.getKey());
+                terms.add(var);
+                var = ConstantFactory.construct(ent2.getKey());
+                terms.add(var);
+
+                GroundKL gkl = null;
+                if (kl instanceof Kappa) {
+                    gkl = new GroundKappa((Kappa) kl, terms);
+                } else {
+                    gkl = new GroundLambda((Lambda) kl, terms);
+                }
+                gkl.setValue(value);
+                gkl.setValueAvg(value);
+                values[i++] = value;
+            }
+        }
+        facts.setWeightedFacts(values, literals);
     }
 }
