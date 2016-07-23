@@ -22,6 +22,9 @@ public class Kappa extends KL implements Serializable {
         if (!Global.isKappaAdaptiveOffset()) {
             initOffset();   //HERE and in the netfactory CHANGE to make possible for adaptive initialization
         }
+        if (Global.KappaFixedZeroOffset) {
+            offset = 0.0;
+        }
     }
 
     public Kappa() {
@@ -59,7 +62,6 @@ public class Kappa extends KL implements Serializable {
         gradient = null;
     }
      */
-    
     public void addRule(KappaRule kr) {
         rules.add(kr);
     }

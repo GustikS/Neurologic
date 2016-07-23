@@ -73,7 +73,7 @@ public class Convertor {
                 Logger.getLogger(Convertor.class.getName()).log(Level.SEVERE, null, ex);
             }
             */
-            String[] ex = TextFileReader.convert(path + "/" + newname + "/examples", 200000);
+            String[] ex = TextFileReader.readFile(path + "/" + newname + "/examples", 200000);
             Templator.createTemplate(ex, path + "/" + newname + "/1", 1, 1);
             Templator.createTemplate(ex, path + "/" + newname + "/2", 2, 2);
             Templator.createTemplate(ex, path + "/" + newname + "/3", 3, 3);
@@ -87,20 +87,20 @@ public class Convertor {
             if (file.isFile()) {
                 new File(path + file.getName() + "-data").mkdirs();
                 convert(path + file.getName(), path + file.getName() + "-data/examples");
-                String[] ex = TextFileReader.convert(path + file.getName() + "-data/examples", 200000);
+                String[] ex = TextFileReader.readFile(path + file.getName() + "-data/examples", 200000);
                 Templator.createTemplate(ex, path + file.getName() + "-data/", 2, 4);
             }
         }
     }
 
     public static void main3(String[] args) {
-        String[] ex = TextFileReader.convert("C:\\Users\\IBM_ADMIN\\Google Drive\\Neuralogic\\sourcecodes\\gusta\\Neurologic\\in\\muta\\cilp\\examples", 10000);
+        String[] ex = TextFileReader.readFile("C:\\Users\\IBM_ADMIN\\Google Drive\\Neuralogic\\sourcecodes\\gusta\\Neurologic\\in\\muta\\cilp\\examples", 10000);
         createCILP(ex, "C:\\Users\\IBM_ADMIN\\Google Drive\\Neuralogic\\sourcecodes\\gusta\\Neurologic\\in\\muta\\cilp\\out");
     }
 
     public static void convert(String in, String out) {
 
-        String[] ex = TextFileReader.convert(in, 10000);
+        String[] ex = TextFileReader.readFile(in, 10000);
 
         //createCILP(ex, out);
         ArrayList<LinkedHashSet<String>> examples = transformExamples(ex);
@@ -306,7 +306,7 @@ public class Convertor {
 
     public static ArrayList<String> doubleToSingle(String in) {
         ArrayList<String> out = new ArrayList<>();
-        String[] ex = TextFileReader.convert(in, 10000);
+        String[] ex = TextFileReader.readFile(in, 10000);
         for (String row : ex) {
             HashMap<String, String> atoms = new HashMap<>();
             String[] split = (row.substring(3, row.length())).split("\\), ");

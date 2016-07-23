@@ -13,6 +13,18 @@ import static templates.Convertor.writeOut;
 import static templates.Convertor.writeOut;
 import static templates.Convertor.writeOut;
 import static templates.Convertor.writeOut;
+import static templates.Convertor.writeOut;
+import static templates.Convertor.writeOut;
+import static templates.Convertor.writeOut;
+import static templates.Convertor.writeOut;
+import static templates.Convertor.writeOut;
+import static templates.Convertor.writeOut;
+import static templates.Convertor.writeOut;
+import static templates.Convertor.writeOut;
+import static templates.Convertor.writeOut;
+import static templates.Convertor.writeOut;
+import static templates.Convertor.writeOut;
+import static templates.Convertor.writeOut;
 
 /**
  * the templator operates on Neurologic example data format, to convert the
@@ -59,7 +71,7 @@ public class Templator extends Convertor {
         String in = "in\\muta\\examples";
         String out = "in\\muta\\rules1";
 
-        String[] ex = TextFileReader.convert(in, 10000);
+        String[] ex = TextFileReader.readFile(in, 10000);
 
         //createRings(ex, out);
         createTemplate(ex, out, 1, 1);

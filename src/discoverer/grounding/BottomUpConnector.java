@@ -95,34 +95,39 @@ public class BottomUpConnector extends Grounder {
 
         this.facts = ifacts;
 
-        head2Tails = new HashMap<>();
         if (groundRuleMap == null) {
-            groundRuleMap = getGroundRules(rules, facts.hash.substring(0, facts.hash.lastIndexOf(".")), ConstantFactory.getConstMap().keySet());
-        }
-        for (Map.Entry<Rule, List<List<Literal>>> ent : groundRuleMap.entrySet()) {
-            for (List<Literal> clause : ent.getValue()) {
-                Literal head = null;
-                List<Literal> body = new LinkedList<>();
-                for (Literal lit : clause) {
-                    if (lit.isNegated()) {
-                        body.add(lit.negation());
-                    } else {
-                        head = lit;
+            head2Tails = new HashMap<>();
+            String substring = null;
+            if (ifacts != null) {
+                substring = facts.hash.substring(0, facts.hash.lastIndexOf("."));
+            }
+            groundRuleMap = getGroundRules(rules, substring, ConstantFactory.getConstMap().keySet());
+
+            for (Map.Entry<Rule, List<List<Literal>>> ent : groundRuleMap.entrySet()) {
+                for (List<Literal> clause : ent.getValue()) {
+                    Literal head = null;
+                    List<Literal> body = new LinkedList<>();
+                    for (Literal lit : clause) {
+                        if (lit.isNegated()) {
+                            body.add(lit.negation());
+                        } else {
+                            head = lit;
+                        }
                     }
-                }
-                Map<Rule, List<List<Literal>>> rule2groundings = head2Tails.get(head);
-                if (rule2groundings == null) {  //there is no such literal as a key
-                    Map<Rule, List<List<Literal>>> ruleWithGroundings = new HashMap<>();
-                    List<List<Literal>> bodies = new ArrayList<>();
-                    bodies.add(body);
-                    ruleWithGroundings.put(ent.getKey(), bodies);
-                    head2Tails.put(head, ruleWithGroundings);
-                } else if (rule2groundings.get(ent.getKey()) == null) { //the literal has no such Rule
-                    List<List<Literal>> bodies = new ArrayList<>();
-                    bodies.add(body);
-                    rule2groundings.put(ent.getKey(), bodies);
-                } else {    // just add the new ground rule to the list of ground rules for the respective Rule of the respective literal
-                    rule2groundings.get(ent.getKey()).add(body);
+                    Map<Rule, List<List<Literal>>> rule2groundings = head2Tails.get(head);
+                    if (rule2groundings == null) {  //there is no such literal as a key
+                        Map<Rule, List<List<Literal>>> ruleWithGroundings = new HashMap<>();
+                        List<List<Literal>> bodies = new ArrayList<>();
+                        bodies.add(body);
+                        ruleWithGroundings.put(ent.getKey(), bodies);
+                        head2Tails.put(head, ruleWithGroundings);
+                    } else if (rule2groundings.get(ent.getKey()) == null) { //the literal has no such Rule
+                        List<List<Literal>> bodies = new ArrayList<>();
+                        bodies.add(body);
+                        rule2groundings.put(ent.getKey(), bodies);
+                    } else {    // just add the new ground rule to the list of ground rules for the respective Rule of the respective literal
+                        rule2groundings.get(ent.getKey()).add(body);
+                    }
                 }
             }
         }
@@ -440,7 +445,9 @@ public class BottomUpConnector extends Grounder {
         for (String constant : allConstants) {
             sb.append("exists(").append(constant).append("),");
         }
-        sb.append(facts);
+        if (facts != null) {
+            sb.append(facts);
+        }
 
         Clause ground = Clause.parse(sb.toString());
         Glogger.process("clause representation created");
@@ -489,12 +496,15 @@ public class BottomUpConnector extends Grounder {
             for (Map.Entry<String, double[]> ent2 : embeddings.entrySet()) {
                 double value = SimilarityPredicate.getSimilarity(ent1.getKey(), ent2.getKey());
 
-                KL kl = TemplateFactory.predicatesByName.get("@similar/2");
+                KL kl = TemplateFactory.predicatesByName.get("similar/3");
                 List<Variable> terms = new ArrayList<>();
 
                 Variable var = ConstantFactory.construct(ent1.getKey());
                 terms.add(var);
                 var = ConstantFactory.construct(ent2.getKey());
+                terms.add(var);
+                
+                var = ConstantFactory.construct(value + "");
                 terms.add(var);
 
                 GroundKL gkl = null;

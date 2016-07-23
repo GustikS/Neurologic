@@ -30,6 +30,11 @@ public class Sample implements Serializable {
         ball = b;
     }
 
+    public Sample(GroundedTemplate proof, double targetVal) {
+        this.ball = proof;
+        this.targetValue = targetVal;
+    }
+
     public Example getExample() {
         return example;
     }
@@ -50,7 +55,7 @@ public class Sample implements Serializable {
         setExample(null);
         setBall(null);
     }
-    
+
     public void deleteNeurons() {
         neuralNetwork = null;
     }

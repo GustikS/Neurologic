@@ -73,7 +73,7 @@ public final class Global {
     public static boolean loadGroundedDataset = false;
     public static boolean uncompressedLambda = false;
     public static boolean fastVersion = true;
-    public static boolean memoryLight = true;  //saves 60% by removing groundKL structures (keeps only neural), makes sense with fastVersion ON only
+    public static boolean memoryLight = false;  //saves 60% by removing groundKL structures (keeps only neural), makes sense with fastVersion ON only
     public static boolean molecularTemplates = true;
     public static boolean NLPtemplate = false;
 
@@ -100,6 +100,7 @@ public final class Global {
     public static boolean embeddings = false;
     public static boolean uniqueGroundLiteralNames = false;
     public static boolean specialPredicates = true;
+    public static boolean KappaFixedZeroOffset = true;
 
     public static void setupThreads() {
         numOfThreads = Runtime.getRuntime().availableProcessors();

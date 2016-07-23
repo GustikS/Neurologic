@@ -19,6 +19,7 @@ import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.PriorityQueue;
 
 /**
@@ -55,7 +56,7 @@ public class NellParser {
             System.out.println("");
         }
         System.out.println("-----------------");
-        System.out.println(generateTemplateFromTriples(rulesFromSeedWord));
+        System.out.println(generateTemplateFromTriples(rulesFromSeedWord, true));
     }
 
     public static ArrayList<String[]> loadFacts(String p) {
@@ -140,7 +141,7 @@ public class NellParser {
                 if (getAbsoluteScore(relation, priorityHash) <= 0) {
                     continue;
                 }
-                */
+                 */
                 //add the relation to output
                 outRules.add(relation);
 
@@ -211,6 +212,36 @@ public class NellParser {
         return score;
     }
 
+    private static String createTriple(String[] triple, int i, boolean withSimilarities) {
+        double conf;
+        try {
+            conf = Double.parseDouble(triple[3]);
+            if (triple[3].equals("NaN")) {
+                conf = 0.1;
+            }
+        } catch (Exception e) {
+            conf = 0.1;
+        }
+        StringBuilder sb = new StringBuilder();
+        sb.append(conf).append(" holdsK(S,P,O) :- holdsL").append(i).append("(S,P,O).\n");
+        if (withSimilarities) {
+            sb.append("1.0 similarK" + i + "s(A,B) :- similar(A,B).\n");
+            sb.append("1.0 similarK" + i + "p(A,B) :- similar(A,B).\n");
+            sb.append("1.0 similarK" + i + "o(A,B) :- similar(A,B).\n");
+
+            sb.append("holdsL").append(i).append("(S,P,O) :- ");
+            sb.append("similarK" + i + "s(S,").append(triple[0].replaceAll(":", "_")).append("),");
+            sb.append("similarK" + i + "p(P,").append(triple[1].replaceAll(":", "_")).append("),");
+            sb.append("similarK" + i + "o(O,").append(triple[2].replaceAll(":", "_")).append(").\n");
+        } else {
+            sb.append("holdsL").append(i).append("(S,P,O) :- ");
+            sb.append("similar(S,").append(triple[0].replaceAll(":", "_")).append("),");
+            sb.append("similar(P,").append(triple[1].replaceAll(":", "_")).append("),");
+            sb.append("similar(O,").append(triple[2].replaceAll(":", "_")).append(").\n");
+        }
+        return sb.toString();
+    }
+
     public static class ConnectionDensityComparator implements Comparator<Tuple> {
 
         @Override
@@ -219,28 +250,27 @@ public class NellParser {
         }
     }
 
-    static String generateTemplateFromTriples(LinkedHashSet<String[]> triples) {
+    static int i = 0;
+    static String generateTemplateFromTriples(LinkedHashSet<String[]> triples, boolean withSimilarities) {
         StringBuilder sb = new StringBuilder();
-        int i = 0;
+        
         for (String[] triple : triples) {
-            double conf;
-            try {
-                conf = Double.parseDouble(triple[3]);
-                if (triple[3].equals("NaN")) {
-                    conf = 0.1;
-                }
-            } catch (Exception e) {
-                conf = 0.1;
-            }
-            sb.append(conf).append(" holdsK(S,P,O) :- holdsL").append(i).append("(S,P,O).\n");
-            sb.append("1.0 similarK" + i + "s(A,B) :- similar(A,B).\n");
-            sb.append("1.0 similarK" + i + "p(A,B) :- similar(A,B).\n");
-            sb.append("1.0 similarK" + i + "o(A,B) :- similar(A,B).\n");
-            sb.append("holdsL").append(i).append("(S,P,O) :- ");
-            sb.append("similarK" + i + "s(S,").append(triple[0].replaceAll(":", "_")).append("),");
-            sb.append("similarK" + i + "p(P,").append(triple[1].replaceAll(":", "_")).append("),");
-            sb.append("similarK" + i + "o(O,").append(triple[2].replaceAll(":", "_")).append(").\n");
+            sb.append(createTriple(triple, i, withSimilarities));
             i++;
+        }
+        return sb.toString();
+    }
+
+    public String expandFeaturesUP(List<String[]> triples) {
+        String concept = triples.get(0)[0];
+        LinkedList<String[]> generalizations = getGeneralizations(concept);
+        int i = 0;
+        StringBuilder sb = new StringBuilder();
+        for (String[] generalization : generalizations) {
+            String general = generalization[2];
+            for (String[] triple : triples) {
+                sb.append(createTriple(new String[]{general, triple[1], triple[2]}, i++, true));
+            }
         }
         return sb.toString();
     }

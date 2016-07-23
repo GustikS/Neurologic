@@ -130,8 +130,7 @@ public class LearnerFast extends Learning {
         Glogger.process("---best template weights so far <- loaded---");
         Results evaluatedNetworks = evaluateNetworks(roundStore, bestWeights);
 
-        Glogger.process(
-                "backpropagation on fold finished");
+        Glogger.process("backpropagation on fold finished");
 
         return evaluatedNetworks;
     }

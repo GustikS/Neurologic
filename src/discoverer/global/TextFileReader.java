@@ -46,7 +46,7 @@ public class TextFileReader {
      * @param maxLineLength
      * @return
      */
-    public static String[] convert(String p, int maxline) {
+    public static String[] readFile(String p, int maxline) {
         if (p == null) {
             return null;
         }
@@ -80,7 +80,7 @@ public class TextFileReader {
      * @param maxline
      * @return 
      */
-    public static String[] convertMultiline(String p, int maxline) {
+    public static String[] readFileMultiline(String p, int maxline) {
         if (p == null) {
             return null;
         }

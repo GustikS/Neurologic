@@ -14,7 +14,7 @@ import org.junit.Test;
 public class ExampleSplitterTest {
     @Test
     public void test() {
-        String[] ex = TextFileReader.convert("../in/muta/examples", 700);
+        String[] ex = TextFileReader.readFile("../in/muta/examples", 700);
 
         ExampleFactory eFactory = new ExampleFactory();
         List<Example> examples = new ArrayList<Example>();

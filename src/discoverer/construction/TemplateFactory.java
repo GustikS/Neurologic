@@ -20,8 +20,8 @@ import discoverer.construction.template.specialPredicates.SpecialPredicate;
 import discoverer.global.Global;
 import discoverer.global.Glogger;
 import discoverer.learning.functions.Activations;
-import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -121,7 +121,7 @@ public class TemplateFactory {
         if (Global.molecularTemplates) {
             network = new MolecularTemplate(kl);  //a wrapper for the last KL literal
         } else if (Global.NLPtemplate) {
-            network = new NLPtemplate(kl, predicatesByName, templateRules);
+            network = new NLPtemplate(kl, predicatesByName, templateRules, new HashSet<>(kFactory.getKappas()));
         } else {
             network = new LiftedTemplate(kl);
         }
@@ -207,7 +207,7 @@ public class TemplateFactory {
      * @return
      */
     private Kappa handleKappaLine(String[][] tokens, String original) {
-        Double w = Double.parseDouble(tokens[0][0]);
+        Double w = Double.parseDouble(tokens[0][0].replace(",", "."));
         Kappa k = kFactory.construct(tokens[1][0]);
         SubK sk = new SubK(k, true);
         for (int i = 1; i < tokens[1].length; i++) {

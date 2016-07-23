@@ -54,6 +54,10 @@ public class Example implements Serializable {
         return constCount;
     }
 
+    public void setExpectedValue(double val) {
+        targetVal = val;
+    }
+    
     public double getExpectedValue() {
         return targetVal;
     }

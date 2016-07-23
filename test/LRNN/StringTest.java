@@ -43,7 +43,7 @@ public class StringTest {
         Global.setWeightInit(Global.weightInitSet.handmade);
         Global.setRg(new Random(1));
         Grounder grounder = new Grounder();
-        String[] rules = TextFileReader.convert("in/strings/easy-rules.txt", Integer.MAX_VALUE);
+        String[] rules = TextFileReader.readFile("in/strings/easy-rules.txt", Integer.MAX_VALUE);
 
         TemplateFactory nf = new TemplateFactory();
         MolecularTemplate net = (MolecularTemplate) nf.construct(rules);
@@ -51,7 +51,7 @@ public class StringTest {
         Dotter.draw(net.last, "strings");
 
         ExampleFactory eFactory = new ExampleFactory();
-        String[] examples = TextFileReader.convert("in/strings/easy-examples.txt", Integer.MAX_VALUE);
+        String[] examples = TextFileReader.readFile("in/strings/easy-examples.txt", Integer.MAX_VALUE);
         Example e = eFactory.construct(examples[0]);
 
         GroundedTemplate b = grounder.groundTemplate(net.last, e);
@@ -66,7 +66,7 @@ public class StringTest {
         Global.setKappaActivation(Global.activationSet.sig);
         Global.setWeightInit(Global.weightInitSet.handmade);
         Global.setRg(new Random(1));
-        String[] rules = TextFileReader.convert("in/strings/easy-rules.txt", Integer.MAX_VALUE);
+        String[] rules = TextFileReader.readFile("in/strings/easy-rules.txt", Integer.MAX_VALUE);
         Grounder grounder = new Grounder();
 
         TemplateFactory nf = new TemplateFactory();
@@ -75,7 +75,7 @@ public class StringTest {
         Dotter.draw(net.last, "strings");
 
         ExampleFactory eFactory = new ExampleFactory();
-        String[] ex = TextFileReader.convert("in/strings/easy-examples.txt", Integer.MAX_VALUE);
+        String[] ex = TextFileReader.readFile("in/strings/easy-examples.txt", Integer.MAX_VALUE);
         
         for (int i = 0; i < ex.length; i++) {
             Example e = eFactory.construct(ex[i]);

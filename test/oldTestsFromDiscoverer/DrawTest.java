@@ -23,7 +23,7 @@ public class DrawTest {
         Global.setKappaActivation(Global.activationSet.sig);
         Global.setWeightInit(Global.weightInitSet.handmade);
         Global.setRg(new Random(1));
-        String[] rules = TextFileReader.convert("in/strings/easy-rules.txt", Integer.MAX_VALUE);
+        String[] rules = TextFileReader.readFile("in/strings/easy-rules.txt", Integer.MAX_VALUE);
         
         TemplateFactory nf = new TemplateFactory();
         MolecularTemplate last = nf.construct(rules);

@@ -26,7 +26,7 @@ public class GroundDrawTest {
         Global.setKappaActivation(Global.activationSet.id);
         Global.setWeightInit(Global.weightInitSet.handmade);
         Global.setRg(new Random(1));
-        String[] rules = TextFileReader.convert("in/strings/easy-rules2.txt", Integer.MAX_VALUE);
+        String[] rules = TextFileReader.readFile("in/strings/easy-rules2.txt", Integer.MAX_VALUE);
         
         TemplateFactory nf = new TemplateFactory();
         LiftedTemplate net = nf.construct(rules);
@@ -34,7 +34,7 @@ public class GroundDrawTest {
         //Dotter.draw(net.last, "strings");
         
         ExampleFactory eFactory = new ExampleFactory();
-        String[] examples = TextFileReader.convert("in/strings/easy-examples.txt", Integer.MAX_VALUE);
+        String[] examples = TextFileReader.readFile("in/strings/easy-examples.txt", Integer.MAX_VALUE);
         Example e = eFactory.construct(examples[0]);
 
         GroundedTemplate b = Grounder.groundTemplate(net.last, e);

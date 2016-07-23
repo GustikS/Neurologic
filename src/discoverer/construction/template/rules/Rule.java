@@ -83,7 +83,7 @@ public abstract class Rule implements Serializable {
             if (newVar.isBind() && !headVar.isBind()) { //regular binding
                 bind(headVar, newVar.getBind());
             } else if (!newVar.isBind() && headVar.isBind()) {  //reverse binding! - this can only happend in forwardchecker! (unbound queries)
-               // bind(newVar, headVar.getBind());  - NOPE, this is not smart, reverse binding cannot work generally like that, better to upgrade forwardchecker to return subsets of constants for each variable!
+              //  bind(newVar, headVar.getBind()); // - NOPE, this is not smart, reverse binding cannot work generally like that, better to upgrade forwardchecker to return subsets of constants for each variable!
             } else if (newVar.isBind() && headVar.isBind() && newVar.getBind() != headVar.getBind()) {   //different binds - not unificable!
                 return false;
             } //else do nothing - both binds are same (either bound or unbound)

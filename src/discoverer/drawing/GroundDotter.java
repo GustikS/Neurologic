@@ -148,6 +148,7 @@ public class GroundDotter extends Dotter {
             //dot.add(s);
             for (GroundLambda gl : t.x) {
                 String ss = "\"" + gk.toString(constantNames) + "\nvalAVG: " + df.format(gk.getValueAvg()) + "\noffset: " + df.format(gk.getGeneral().offset) + "\" -> " + "\"" + gl.toString(constantNames) + "\nvalAvg: " + df.format(gl.getValueAvg()) + "\n#ground: " + gl.getConjunctsCountForAvg() + "\"" + " [ label = \"" + df.format(t.y.getWeight()) + "\" ];";
+                //String ss = "\"kapR{" + t.x + "}" + "\" -> " + "\"" + gl.toString(constantNames) + "\nvalAvg: " + df.format(gl.getValueAvg()) + "\n#ground: " + gl.getConjunctsCountForAvg() + "\"" + " [ label = \"" + df.format(t.y.getWeight()) + "\" ];";
                 dot.add(ss);
             }
         }
@@ -165,7 +166,7 @@ public class GroundDotter extends Dotter {
             return;
         }
         for (Map.Entry<GroundKappa, Integer> t : gl.getConjunctsAvg().entrySet()) {
-            String s = "\"" + gl.toString(constantNames) + "\nvalAvg: " + df.format(gl.getValueAvg()) + "\n#ground: " + gl.getConjunctsCountForAvg() + "\"" + " -> \"" + t.getKey().toString(constantNames) + "\nvalAVG: " + df.format(t.getKey().getValueAvg()) + "\noffset: " + (t.getKey().isElement() ? "N/A" : df.format(t.getKey().getGeneral().offset)) + "\"" + " [ label = \"" + df.format(t.getValue()) + "x\" ];";
+            String s = "\"" + gl.toString(constantNames) + "\nvalAvg: " + df.format(gl.getValueAvg()) + "\n#ground: " + gl.getConjunctsCountForAvg() + "\"" + " -> \"" + t.getKey().toString(constantNames) + "\nvalAVG: " + df.format(t.getKey().getValueAvg()) + "\noffset: " + (df.format(t.getKey().getGeneral().offset)) + "\"" + " [ label = \"" + df.format(t.getValue()) + "x\" ];";
             dot.add(s);
             drawAvg(t.getKey());
         }

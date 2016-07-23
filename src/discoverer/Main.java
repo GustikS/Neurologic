@@ -26,11 +26,11 @@ public class Main {
     //cutoff on example number
     private static final String defaultMaxExamples = "100000";  //we can decrease the overall number of examples (stratified) for speedup
     //
-    public static String defaultLearningSteps = "1000";  //learnSteps per epocha
+    public static String defaultLearningSteps = "5000";  //learnSteps per epocha
     public static String defaultLearningEpochs = "1";  //learn epochae = grounding cycles
     //  learnEpochae * LearningSteps = learning steps for AVG variant
     private static final String defaultFolds = "1"; // 1 = training only
-    private static final String defaultLearningRate = "0.3"; //0.05 default from Vojta, it's good to increase, reasonable <0.1 , 1>
+    private static final String defaultLearningRate = "0.1"; //0.05 default from Vojta, it's good to increase, reasonable <0.1 , 1>
     //learnRate = 5 -> gets stuck very soon (<=10 steps) around 23% acc (+ jumping), unable to learnOn
     //learnRate = 1 -> plato around 600 steps with 10% acc (+ BIG jumping +-3%, but also +10%)
     //learnRate = 0.5 -> plato around 1000 steps with 8% acc (+ jumping +-3%) -> can break into some best results (0.3%) with saving
@@ -452,13 +452,13 @@ public class Main {
         String tt = cmd.getOptionValue("test");
         if (tt != null) {
             Settings.setTestSet(tt);
-            test = TextFileReader.convert(tt, maxReadline);
+            test = TextFileReader.readFile(tt, maxReadline);
         }
 
         //get rules one by one from a file
         String rls = cmd.getOptionValue("r");
         Settings.setRules(rls);
-        String[] rules = TextFileReader.convert(rls, maxReadline);
+        String[] rules = TextFileReader.readFile(rls, maxReadline);
         if (rules.length == 0) {
             Glogger.err("no rules");
         }
@@ -473,7 +473,7 @@ public class Main {
         //pretrained template with some lifted literals in common (will be mapped onto new template)
         String pretrained = cmd.getOptionValue("t");
         Settings.setPretrained(pretrained);
-        String[] pretrainedRules = TextFileReader.convert(pretrained, maxReadline);
+        String[] pretrainedRules = TextFileReader.readFile(pretrained, maxReadline);
         if (pretrainedRules != null) {
             Glogger.out("pretrained= " + pretrained + " of length: " + pretrainedRules.length);
         }
@@ -496,9 +496,9 @@ public class Main {
         String[] exs = null;
         Settings.setDataset(exampleFile);
         if (Global.multiLine) {
-            exs = TextFileReader.convertMultiline(exampleFile, maxReadline);
+            exs = TextFileReader.readFileMultiline(exampleFile, maxReadline);
         } else {
-            exs = TextFileReader.convert(exampleFile, maxReadline);
+            exs = TextFileReader.readFile(exampleFile, maxReadline);
         }
 
         if (exs.length == 0) {

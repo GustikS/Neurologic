@@ -30,6 +30,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
@@ -44,7 +45,7 @@ import javax.swing.JFrame;
 public class LiftedTemplate extends LightTemplate implements Serializable {
 
     public LinkedHashSet<Rule> rules = new LinkedHashSet<>();   //=for network input/output file
-    private HashSet<Kappa> kappas = new HashSet<>();
+    protected Set<Kappa> kappas = new HashSet<>();
     private HashSet<Lambda> lambdas = new HashSet<>();
     public HashMap<Integer, String> constantNames;
 
@@ -194,7 +195,7 @@ public class LiftedTemplate extends LightTemplate implements Serializable {
     /**
      * @return the kappas
      */
-    public HashSet<Kappa> getKappas() {
+    public Set<Kappa> getKappas() {
         return kappas;
     }
 
