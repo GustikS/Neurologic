@@ -35,7 +35,7 @@ public class TemplateFactory {
     public LambdaFactory lFactory = new LambdaFactory();
     public VariableFactory vFactory = new VariableFactory();
 
-    private LinkedList<Rule> templateRules = new LinkedList<>();
+    public LinkedList<Rule> templateRules = new LinkedList<>();
 
     public static Map<String, SpecialPredicate> specialPredicateNames;
     public static Map<KL, SpecialPredicate> specialPredicatesMap;

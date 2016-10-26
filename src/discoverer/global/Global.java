@@ -64,7 +64,7 @@ public final class Global {
     private static boolean GUI = false;
     private static mergingOptions merging = null;
 
-    public static boolean exporting = false;
+    public static boolean exporting = true;
     public static boolean createWeightMatrix = true;   //matrix of neural weight for printing with Matlab etc.
 
     public static boolean drawing = false;
@@ -80,7 +80,7 @@ public final class Global {
     public static boolean multiLine = false; //example can spread to multiple lines, delimited by empty line (\n\n)
     public static boolean parallelGrounding = false;
     public static boolean deterministicGrounding = true;
-    public static boolean parallelTraining = true; //experimental!!
+    public static boolean parallelTraining = false; //experimental!!
     public static int numOfThreads = 4;
     public static boolean batchMode = false;
 
@@ -99,8 +99,9 @@ public final class Global {
     public static boolean recursion = false;
     public static boolean embeddings = false;
     public static boolean uniqueGroundLiteralNames = false;
-    public static boolean specialPredicates = true;
-    public static boolean KappaFixedZeroOffset = true;
+    public static boolean specialPredicates = false;
+    public static boolean KappaFixedZeroOffset = false;
+    public static boolean internalValidation = false;
 
     public static void setupThreads() {
         numOfThreads = Runtime.getRuntime().availableProcessors();

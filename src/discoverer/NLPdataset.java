@@ -16,6 +16,7 @@ import discoverer.construction.template.KL;
 import discoverer.construction.template.LiftedTemplate;
 import static discoverer.construction.template.LightTemplate.weightFolder;
 import discoverer.construction.template.NLPtemplate;
+import discoverer.construction.template.rules.Rule;
 import discoverer.construction.template.rules.SubKL;
 import discoverer.crossvalidation.Crossvalidation;
 import discoverer.crossvalidation.NeuralCrossvalidation;
@@ -40,9 +41,13 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
@@ -61,9 +66,11 @@ public class NLPdataset extends Main {
     //facts
     public static Example facts;
 
-    private boolean exportCache = true;
+    private boolean exportCache = false;
 
     public String embeddingsPath = "./in/embeddings.csv";
+
+    public static boolean predicateInvention = true;
 
     public static void main(String[] args) {
         Glogger.resultsDir = "./results/";
@@ -88,7 +95,7 @@ public class NLPdataset extends Main {
         //start learning
         String[] results = dataset.learnOn(queries);
         //dataset.evaluate();
-        
+
         dataset.export(results, "NLP");
     }
 
@@ -101,14 +108,73 @@ public class NLPdataset extends Main {
         Global.molecularTemplates = false;
         Global.weightedFacts = true;
 
-        Global.templateConstants = true;
-        Global.recursion = true;
-
+        //Global.templateConstants = true;
+        //Global.recursion = true;
         //Global.alldiff = true;
         //Global.embeddings = true;
         //Global.cacheEnabled = true;
-        templateFactory = new TemplateFactory();
-        template = (NLPtemplate) templateFactory.construct(iRules);
+        if (predicateInvention) {
+            templateFactory = new TemplateFactory();
+            NLPtemplate construct = (NLPtemplate) templateFactory.construct(iFacts);
+            List<Rule> factRules = templateFactory.getRules();
+            HashMap<String, HashSet<Rule>> specific = construct.createRelevantRules(factRules);
+
+            templateFactory.templateRules = new LinkedList<>();
+            template = (NLPtemplate) templateFactory.construct(iRules);
+            LinkedHashSet<Rule> common = new LinkedHashSet<>();
+            common.addAll(templateFactory.getRules());
+            
+            /*
+            String[] result = Arrays.copyOf(iFacts, iFacts.length + iRules.length);
+            System.arraycopy(iRules, 0, result, iFacts.length, iRules.length);
+            
+            templateFactory.templateRules = new LinkedList<>();
+            template = (NLPtemplate) templateFactory.construct(result);
+             */
+            
+            //template.rules.addAll(common);
+            template.rules.addAll(factRules);
+            
+            template.commonRules = common;
+            template.relevantRules = specific;
+            
+            
+
+            ExampleFactory eFactory = new ExampleFactory();
+            facts = eFactory.construct("1.0 fact(a,b).");
+            if (Global.weightedFacts) {
+                facts.setWeightedFacts(new double[]{1.0}, templateFactory.constructFacts("1.0 fact(a,b)."));
+            }
+        } else {
+            templateFactory = new TemplateFactory();
+            template = (NLPtemplate) templateFactory.construct(iRules);
+            //contruct a fact store = actually like a one huge example graph
+            ExampleFactory eFactory = new ExampleFactory();
+            double[] weights = new double[iFacts.length];
+            StringBuilder sb = new StringBuilder("1.0 ");
+            for (int i = 0; i < iFacts.length; i++) {
+                int expLen = getWeightLen(iFacts[i]);
+                if (expLen > 0) {
+                    weights[i] = Double.parseDouble(iFacts[i].substring(0, expLen));
+                } else {
+                    weights[i] = 1;
+                }
+                sb.append(iFacts[i].substring(expLen, iFacts[i].length())).append(",");
+            }
+            sb.replace(sb.length() - 1, sb.length(), ".");
+
+            facts = eFactory.construct(sb.toString());
+
+            if (Global.weightedFacts) {
+                facts.setWeightedFacts(weights, templateFactory.constructFacts(sb.toString()));
+            }
+        }
+
+        for (Map.Entry<String, Integer> ent : ExampleFactory.getConstMap().entrySet()) {
+            ConstantFactory.construct(ent.getKey());
+        }
+
+        template.constantNames = facts.constantNames;
 
         if (Global.drawing) {
             Dotter.draw(template.KLs.values(), "initNLPtemplate");
@@ -121,33 +187,6 @@ public class NLPdataset extends Main {
         if (iFacts == null) {
             return;
         }
-
-        //contruct a fact store = actually like a one huge example graph
-        ExampleFactory eFactory = new ExampleFactory();
-        double[] weights = new double[iFacts.length];
-        StringBuilder sb = new StringBuilder("1.0 ");
-        for (int i = 0; i < iFacts.length; i++) {
-            int expLen = getWeightLen(iFacts[i]);
-            if (expLen > 0) {
-                weights[i] = Double.parseDouble(iFacts[i].substring(0, expLen));
-            } else {
-                weights[i] = 1;
-            }
-            sb.append(iFacts[i].substring(expLen, iFacts[i].length())).append(",");
-        }
-        sb.replace(sb.length() - 1, sb.length(), ".");
-
-        facts = eFactory.construct(sb.toString());
-
-        if (Global.weightedFacts) {
-            facts.setWeightedFacts(weights, templateFactory.constructFacts(sb.toString()));
-        }
-
-        for (Map.Entry<String, Integer> ent : ExampleFactory.getConstMap().entrySet()) {
-            ConstantFactory.construct(ent.getKey());
-        }
-
-        template.constantNames = facts.constantNames;
     }
 
     private void evaluate() {
@@ -172,7 +211,8 @@ public class NLPdataset extends Main {
 
             GroundedTemplate proof;
             if (Global.bottomUp) {
-                proof = template.queryBottomUp(templateFactory.getRules(), facts, query.substring(wLen, query.length()));
+                System.out.println(i);
+                proof = template.queryBottomUp(facts, query.substring(wLen, query.length()));
             } else {
                 String[][] queryTokens = Parser.parseQuery(query.substring(wLen, query.length()));
                 String signature = queryTokens[0][0];
@@ -188,8 +228,7 @@ public class NLPdataset extends Main {
             }
 
             if (Global.drawing) {
-            //    GroundDotter.draw(proof, i + "beforeLearning_" + names.get(i));
-                i++;
+                GroundDotter.draw(proof, i + "beforeLearning_" + names.get(i));
             }
             Sample sample = new Sample(proof, targetValue);
             Example example = new Example();
@@ -197,13 +236,19 @@ public class NLPdataset extends Main {
             example.constantNames = template.constantNames;
             sample.setExample(example);
             samples.add(sample);
+            i++;
         }
 
         i = 0;
         if (Global.fastVersion) {
             LiftedDataset ld = new LiftedDataset();
-            ld.sampleSplitter = new SampleSplitter(1, samples);
+            ld.sampleSplitter = new SampleSplitter(Settings.folds, samples);
             ld.template = template;
+
+            if (Global.saveGroundedDataset) {
+                ld.saveDataset(Settings.getDataset().replaceAll("-", "/") + ".ser");
+            }
+
             NeuralDataset nd = new NeuralDataset(ld);
             if (Global.drawing) {
                 for (Sample sam : nd.sampleSplitter.samples) {
@@ -212,6 +257,7 @@ public class NLPdataset extends Main {
 
             }
             Crossvalidation cv = new NeuralCrossvalidation(nd);
+            //cv.crossvalidate(nd);
             cv.trainTestFold(template, samples, samples, 0);
 
             LiftedTemplate templ = (LiftedTemplate) nd.template;
@@ -222,7 +268,7 @@ public class NLPdataset extends Main {
                 Evaluator.evaluateAvg(sam.getBall());
             }
             samples = nd.sampleSplitter.samples;
-            
+
         } else {
             List<Sample> learningSamples = new ArrayList<>();
             learningSamples.addAll(samples);
@@ -254,7 +300,7 @@ public class NLPdataset extends Main {
                 GroundDotter.draw(sample.getBall(), i + "afterEvaluation_" + names.get(i));
             }
             stats.add(new Result(res, sample.targetValue));
-            results[i] = res + " <- " + names.get(i);
+            results[i] = (int) sample.targetValue + " " + res + " <- " + names.get(i);
             Glogger.out(results[i]);
             i++;
         }
@@ -267,8 +313,8 @@ public class NLPdataset extends Main {
             ConstantFactory.exportEmbeddings(destination);
         }
         template.exportTemplate(destination);
-        template.exportWeightMatrix(destination);
-        template.exportValueMatrix(destination, ((BottomUpConnector) template.prover).getBtmUpCache());
+//        template.exportWeightMatrix(destination);
+//        template.exportValueMatrix(destination, ((BottomUpConnector) template.prover).getBtmUpCache());
         BufferedWriter writer = null;
         try {
             writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(weightFolder + destination + "-facts.w"), "utf-8"));
@@ -351,4 +397,5 @@ public class NLPdataset extends Main {
             }
         }
     }
+
 }

@@ -16,6 +16,7 @@ public class LearningStep {
     private Double majorityErr;
     private Double dispersion;
     private Double mse;
+    private Double auc;
 
     double sum100 = 0;
     int count100 = 0;
@@ -110,6 +111,20 @@ public class LearningStep {
      */
     public void setMse(Double mse) {
         this.mse = mse;
+    }
+
+    /**
+     * @return the auc
+     */
+    public Double getAuc() {
+        return auc;
+    }
+
+    /**
+     * @param auc the auc to set
+     */
+    public void setAuc(Double auc) {
+        this.auc = auc;
     }
 
 }

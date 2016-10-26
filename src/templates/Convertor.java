@@ -46,7 +46,7 @@ public class Convertor {
     //static String out = "in\\ncigi\\examples";
     private static boolean cutTogeneral = false;
     //static String path = "C:\\Users\\IBM_ADMIN\\Google Drive\\Neuralogic\\sourcecodes\\gusta\\extra-data\\NCIGI\\DATA\\out\\";
-    static String path = "C:\\Users\\gusta\\googledrive\\Github\\LRNN\\Neurologic\\in\\nci";
+    static String path = "C:\\Users\\gusta\\googledrive\\Github\\LRNN\\in\\nci";
 
     public static void main2(String[] args) {
         File[] files = new File(path).listFiles();
@@ -63,20 +63,33 @@ public class Convertor {
         File[] files = new File(path).listFiles();
 
         for (File file : files) {
+            //String newname = file.getName();
+
             String newname = file.getName();
-            /*
-            String newname = file.getName().substring(0, file.getName().indexOf(".txt"));
-            new File(path + "/" + newname).mkdir();
+            new File("C:\\Users\\gusta\\googledrive\\Github\\LRNN\\in\\jair\\" + newname).mkdir();
             try {
-                Files.copy(new File(path + "/" + file.getName() + "/examples").toPath(), new File(path + "/" + newname + "/examples").toPath(), StandardCopyOption.REPLACE_EXISTING);
+                Files.copy(new File(path + "/" + file.getName() + "/examples").toPath(), new File("C:\\Users\\gusta\\googledrive\\Github\\LRNN\\in\\jair\\" + newname + "/examples").toPath(), StandardCopyOption.REPLACE_EXISTING);
             } catch (IOException ex) {
                 Logger.getLogger(Convertor.class.getName()).log(Level.SEVERE, null, ex);
             }
-            */
-            String[] ex = TextFileReader.readFile(path + "/" + newname + "/examples", 200000);
+
+            System.out.println(newname);
+            
+            String[] ex = TextFileReader.readFile("C:\\Users\\gusta\\googledrive\\Github\\LRNN\\in\\jair" + "/" + newname + "/examples", 200000);
+            
+            Templator.createTemplate(ex, "C:\\Users\\gusta\\googledrive\\Github\\LRNN\\in\\jair" + "/" + newname + "/atomic1", 1, 1);
+            
+            Templator.createTemplate(ex, "C:\\Users\\gusta\\googledrive\\Github\\LRNN\\in\\jair" + "/" + newname + "/atomic3", 3, 1);
+            
+            Templator.createTemplate(ex, "C:\\Users\\gusta\\googledrive\\Github\\LRNN\\in\\jair" + "/" + newname + "/trichain3", 3, 3);
+
+            //TreeTemplate.createTemplate(i, path + "/" + newname + "/examples", path + "/" + newname + "/trees" + i);
+            
+            /*
             Templator.createTemplate(ex, path + "/" + newname + "/1", 1, 1);
             Templator.createTemplate(ex, path + "/" + newname + "/2", 2, 2);
             Templator.createTemplate(ex, path + "/" + newname + "/3", 3, 3);
+             */
         }
     }
 
@@ -193,10 +206,12 @@ public class Convertor {
                 newLit = split[5] + "(" + getNumber(split[1], split[2]) + ")";
                 newEx.add(newLit);
             } else // our default format bond(d59_23, d59_5, 0), or some other bond = keep it
-            if (literal.contains("(") && !literal.contains(")")) {
-                newEx.add(literal + ")");
-            } else {
-                newEx.add(literal);
+            {
+                if (literal.contains("(") && !literal.contains(")")) {
+                    newEx.add(literal + ")");
+                } else {
+                    newEx.add(literal);
+                }
             }
         } else if (literal.startsWith("atom")) { //e.g., atom(tr000, tr000_4)
             //skip this thing

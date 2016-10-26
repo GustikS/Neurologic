@@ -15,7 +15,10 @@ import discoverer.learning.Results;
 import discoverer.learning.Sample;
 import discoverer.learning.learners.LearnerStructured;
 import discoverer.learning.learners.Learning;
+import java.io.IOException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -63,6 +66,11 @@ public class NeuralCrossvalidation extends Crossvalidation {
         Results res;
         LearnerFast learner = new LearnerFast();
         res = learner.solveFast(network, examples);
+        try {
+            res.computeAUC();
+        } catch (IOException ex) {
+            Logger.getLogger(Crossvalidation.class.getName()).log(Level.SEVERE, null, ex);
+        }
         res.training = res.actualResult;
         return res;
     }

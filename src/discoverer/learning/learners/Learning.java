@@ -30,9 +30,12 @@ import discoverer.learning.Weights;
 import discoverer.learning.backprop.BackpropDown;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Perform learning algorithm

@@ -48,7 +48,7 @@ public class Templator extends Convertor {
     public static String bondID = "DMY"; // this is a flows object identifier
     //------------------------------------------------------
 
-    static String[] variables = new String[]{"A", "B", "C", "D", "E", "F", "G"}; //some  for variables
+    static String[] variables = new String[]{"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N"}; //some  for variables
     static String defWeight = "0.0";
 
     static HashSet<String> atoms = new HashSet();
@@ -64,17 +64,19 @@ public class Templator extends Convertor {
     //static String in = "in\\ncigi\\examples";
     //static String out = "in\\ncigi\\literals";
     static String[] featuresTemplate = null;    //this can put some default part of template to the end
+    private static boolean growing = true;
+    private static boolean growing2 = true;
 
     public static void main(String[] args) {
         //template = FileToStringListJava6.convert("C:\\Users\\IBM_ADMIN\\Google Drive\\Neuralogic\\sourcecodes\\gusta\\Neurologic\\in\\genericTemplate.txt", 10000);
 
-        String in = "in\\muta\\examples";
-        String out = "in\\muta\\rules1";
+        String in = "..\\in\\nci\\gi50_screen_786_0\\examples";
+        String out = "..\\in\\nci\\gi50_screen_786_0\\template";
 
         String[] ex = TextFileReader.readFile(in, 10000);
 
         //createRings(ex, out);
-        createTemplate(ex, out, 1, 1);
+        createTemplate(ex, out, 3, 5);
     }
 
     static ArrayList<String> atomComb = new ArrayList<>();
@@ -94,6 +96,12 @@ public class Templator extends Convertor {
         if (randomFeatures) {
             int cc = Math.min(graphletsCount - featCount, (int) (Math.pow(atomClusters, chainSize) * Math.pow(bondClusters, chainSize - 1)) / 2);
             createRandomGraphlets(cc);
+        } else if (growing2) {
+            //int maxFeatSize = featSize;
+            //for (featSize = 1; featSize <= maxFeatSize; featSize += 2) {
+            createGrowingGraphlets(new ArrayList<String>(), 0);
+            //}
+            //featSize = maxFeatSize;
         } else {
             createGraphlets(new ArrayList<String>(), 0);
         }
@@ -115,6 +123,44 @@ public class Templator extends Convertor {
     static ArrayList<String> features = new ArrayList<>();
     static int f = 0;
     static int atomIndex = 0;
+
+    public static void createGrowingGraphlets(ArrayList<String> rule, int position) {
+        String localid = "";
+        /*
+        if (!bondID.equals("")) {
+            localid = bondID + ",";
+        }
+         */
+        if (position == featSize) {
+            StringBuilder fin = new StringBuilder();
+            fin.append("lambda_").append(prefix).append(f++).append("(").append(bondID).append(") :- ");
+            for (int i = 0; i < rule.size(); i++) {
+                fin.append(rule.get(i));
+            }
+            fin.replace(fin.lastIndexOf(","), fin.lastIndexOf(",") + 1, ".");
+            features.add(fin.toString());
+            return;
+        }
+        if (position % 2 == 0) { //alternate atom-bond clusters
+            rule.add(kappaPrefix + "Kappa_" + prefix + (position / 2 + 1) + "(" + variables[atomIndex] + "), ");
+            createGrowingGraphlets(rule, ++position);
+            position--;
+            rule.remove(rule.size() - 1);
+
+        } else {
+            if (bondTypes) {
+                rule.add(bondPrefix + "(" + localid + variables[atomIndex] + "," + variables[++atomIndex] + ",B" + (atomIndex - 1) + "), bondKappa_" + prefix + (position / 2 + 1) + "(B" + (atomIndex - 1) + "), ");
+            } else {
+                rule.add(bondPrefix + "(" + localid + variables[atomIndex] + "," + variables[++atomIndex] + "), ");
+            }
+
+            createGrowingGraphlets(rule, ++position);
+            position--;
+            rule.remove(rule.size() - 1);
+            atomIndex--;
+
+        }
+    }
 
     /**
      * creates chains of atoms of a given length
@@ -316,11 +362,13 @@ public class Templator extends Convertor {
         ArrayList<String> rows2;
         if (randomFeatures) {
             rows2 = makeRandomFeatures(from, to, atomrules, bondrules);
+        } else if (growing) {
+            rows2 = makeGrowingFeatures(from, to, atomrules, bondrules);
         } else {
             rows2 = makeFullFeatures(from, to, atomrules, bondrules, atomClusters, bondClusters);
         }
         rows.addAll(rows2);
-        writeOut(rows, out + "rules");
+        writeOut(rows, out);
     }
 
     public static ArrayList<String> makeFullFeatures(int from, int to, ArrayList<String> atomrules, ArrayList<String> bondrules, int atomC, int bondC) {
@@ -352,6 +400,40 @@ public class Templator extends Convertor {
             } else {
                 ArrayList<String> feats = createFeatures(i);
                 rows.addAll(feats);
+            }
+        }
+        return rows;
+    }
+
+    private static ArrayList<String> makeGrowingFeatures(int repeats, int maxSize, ArrayList<String> atomrules, ArrayList<String> bondrules) {
+        ArrayList<String> rows = new ArrayList<>();
+
+        for (int i = 0; i < repeats; i++) {  //chain length
+            String preprefix = i + "_";
+            for (int j = 1; j <= maxSize; j++) {
+                prefix = preprefix + variables[j-1];
+                
+                atomClusters = j;
+                bondClusters = j - 1;
+
+                ArrayList<String> atomCl = createKappaClusters(atomrules, atomClusters, "atom");
+                rows.addAll(atomCl);
+                if (bondTypes) {
+                    ArrayList<String> bondCl = createKappaClusters(bondrules, bondClusters, "bond");
+                    rows.addAll(bondCl);
+                }
+                //ArrayList<String> otherClusters = createKappaClusters(otherrules, clusterCount);
+
+                //writeOut(clusters, out + "clusters");
+                if (featuresTemplate != null) {
+                    for (int k = 0; k < featuresTemplate.length; k++) {
+                        rows.add(featuresTemplate[k]);
+                    }
+                } else {
+                    ArrayList<String> feats = createFeatures(j);
+                    rows.addAll(feats);
+
+                }
             }
         }
         return rows;
@@ -473,7 +555,7 @@ public class Templator extends Convertor {
         return sb.toString();
     }
 
-    private static void makeBaseUniverse(String[] ex, String out) {
+    public static void makeBaseUniverse(String[] ex, String out) {
         for (int i = 0; i < ex.length; i++) {
             String example = ex[i];
             ArrayList<String> newEx = new ArrayList<>();
@@ -483,16 +565,17 @@ public class Templator extends Convertor {
             //dictionary resolvation:
             //String[] literals = example.substring(2).replaceAll("[ .]", "").split("\\)[,]");
             String str = example.substring(example.indexOf(" ")).replaceAll(" ", "");
-            str = str.substring(0, str.length()-1);
+            str = str.substring(0, str.length() - 1);
             String[] literals = str.split("\\)[,]");
 
             createSignatures(literals);
 
         }
-
+/*
         writeOut(atomSignatures, out + "_atoms");
         writeOut(bondSignatures, out + "_bonds");
         writeOut(otherSignatures, out + "_other");
-    }
+*/  
+}
 
 }

@@ -5,6 +5,7 @@
  */
 package discoverer.grounding;
 
+import discoverer.NLPdataset;
 import discoverer.construction.ConstantFactory;
 import discoverer.construction.Parser;
 import discoverer.construction.TemplateFactory;
@@ -13,44 +14,31 @@ import discoverer.construction.example.Example;
 import discoverer.construction.template.KL;
 import discoverer.construction.template.Kappa;
 import discoverer.construction.template.Lambda;
-import discoverer.construction.template.rules.KappaRule;
-import discoverer.construction.template.rules.Rule;
-import discoverer.construction.template.rules.SubK;
-import discoverer.construction.template.rules.SubKL;
-import discoverer.construction.template.rules.SubL;
+import discoverer.construction.template.rules.*;
 import discoverer.construction.template.specialPredicates.SimilarityPredicate;
 import discoverer.global.Glogger;
 import discoverer.global.Tuple;
-import discoverer.grounding.evaluation.GroundedTemplate;
 import discoverer.grounding.network.GroundKL;
 import discoverer.grounding.network.GroundKappa;
 import discoverer.grounding.network.GroundLambda;
 import ida.ilp.logic.Clause;
 import ida.ilp.logic.Literal;
-import ida.ilp.logic.LogicUtils;
 import ida.ilp.logic.Term;
 import ida.ilp.logic.io.PrologParser;
 import ida.ilp.logic.subsumption.Matching;
 import ida.utils.tuples.Pair;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedHashMap;
-import java.util.LinkedHashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import supertweety.lrnn.grounder.BottomUpGrounder;
 
+import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
- *
  * @author Gusta
  */
 public class BottomUpConnector extends Grounder {
+
+    boolean recalculateHerbrand = NLPdataset.predicateInvention;
 
     Map<Literal, GroundKL> herbrandModel;
     Map<Rule, List<List<Literal>>> groundRuleMap;
@@ -64,30 +52,11 @@ public class BottomUpConnector extends Grounder {
 
     Example facts;
 
-    String[] extraRules = new String[]{"similar(X,X)"};
-
-    public static void main(String[] args) {
-        String[] rules = new String[]{
-            "0.96875 holdsK(S,P,O) :- holdsL1(S,P,O)",
-            "1.0 similarK1s(A,B) :- similar(A,B)",
-            "1.0 similarK1p(A,B) :- similar(A,B)",
-            "1.0 similarK1o(A,B) :- similar(A,B)",
-            "holdsL1(S,P,O) :- similarK1s(S,concept:mammal:tiger),similarK1p(P,concept:animalistypeofanimal),similarK1o(O,concept:mammal:cats)",
-            "similar(X,X)"
-        };
-        String[] facts = new String[]{"nic(dummy)"};
-        Set<String> allConstants = new HashSet<>();
-        allConstants.add("concept:mammal:tiger");
-        allConstants.add("concept:animalistypeofanimal");
-        allConstants.add("concept:mammal:cats");
-        /*
-        Set<Literal> herbrandModel = getHerbrandModel(rules, facts, allConstants);
-        for (Literal literal : herbrandModel) {
-            System.out.println(literal);
-        }
-         */    }
-
+    //String[] extraRules = new String[]{"similar(X,X)"};
+    String[] extraRules = new String[]{};
+    
     public GroundKL getGroundLRNN(List<Rule> rules, Example ifacts, String query) {
+
         cache = new HashMap<>();
         openAtomSet = new HashSet<>();
         recursiveLoopCount = 0;
@@ -95,7 +64,7 @@ public class BottomUpConnector extends Grounder {
 
         this.facts = ifacts;
 
-        if (groundRuleMap == null) {
+        if (recalculateHerbrand || groundRuleMap == null) {
             head2Tails = new HashMap<>();
             String substring = null;
             if (ifacts != null) {
@@ -139,7 +108,7 @@ public class BottomUpConnector extends Grounder {
             }
         }
         if (start == null) {
-            Glogger.err("Warning, there are no entailing rules found for this query literal! - returning just the literal itself");
+            Glogger.err("Warning, there are no entailing rules found for this query literal! - returning just the literal itself: " + query);
             String[] parseLiteral = Parser.parseLiteral(query);
             KL kl = TemplateFactory.predicatesByName.get(parseLiteral[0]);
             List<Variable> terms = new ArrayList<>();
@@ -163,6 +132,8 @@ public class BottomUpConnector extends Grounder {
     }
 
     private GroundKL createGroundLRNN(Literal top) {
+
+//        System.out.println(top);
         int storedRecursiveLoopCount = recursiveLoopCount;
 
         KL kl = TemplateFactory.predicatesByName.get(top.predicate() + "/" + top.arity());
@@ -356,7 +327,7 @@ public class BottomUpConnector extends Grounder {
 
     public Map<Rule, List<List<Literal>>> getGroundRules(List<Rule> rules, String facts, Set<String> allConstants) {
         Pair<List<Clause>, Clause> clauseRepresentation = getClauseRepresentationFromLRNNStrings(rules, facts, allConstants);
-        if (herbrandModel == null) {
+        if (recalculateHerbrand || herbrandModel == null) {
             herbrandModel = getHerbrandModel(clauseRepresentation.r, clauseRepresentation.s);
         }
         return getGroundRules(herbrandModel, rules, clauseRepresentation.r);
@@ -365,14 +336,16 @@ public class BottomUpConnector extends Grounder {
     public Map<Rule, List<List<Literal>>> getGroundRules(Map<Literal, GroundKL> herbrand, List<Rule> rules, List<Clause> clauses) {
         Clause herbrandBase = new Clause(herbrand.keySet());
         Map<Rule, List<List<Literal>>> groundRules = new LinkedHashMap<>();
-        Matching m = new Matching();
+        ArrayList herbrandInList = new ArrayList<Clause>();
+        herbrandInList.add(herbrandBase);
+        Matching m = new Matching(herbrandInList);
         if (rules.size() != clauses.size()) {
             Glogger.err("warning - mismatch in size matching of rule and clause lists: " + rules.size() + " vs " + clauses.size());
         }
         for (int i = 0; i < rules.size(); i++) {
             List<List<Literal>> grRules = new ArrayList<>();
             groundRules.put(rules.get(i), grRules);
-            Pair<Term[], List<Term[]>> pair = m.allSubstitutions(removeNegationsFromClause(clauses.get(i)), herbrandBase);
+            Pair<Term[], List<Term[]>> pair = m.allSubstitutions(removeNegationsFromClause(clauses.get(i)), 0, Integer.MAX_VALUE);
             for (Term[] substitution : pair.s) {
 
                 //Clause grRule = LogicUtils.substitute(clauses.get(i), pair.r, substitution);
@@ -394,8 +367,14 @@ public class BottomUpConnector extends Grounder {
         Map<Literal, GroundKL> herbrand = new HashMap<>();
         BottomUpGrounder bug = new BottomUpGrounder();
         Set<Literal> allLiterals = bug.herbrandModel(rules);
+//        for (Literal l : groundFacts.literals()) {
+//            allLiterals.add(l);
+//        }
         for (Literal literal : allLiterals) {
             herbrand.put(literal, null);
+//            if (literal.predicate().equals("holdsK")){
+//                System.out.println(literal);
+//            }
         }
 
         Glogger.process("Herbrand model created");
@@ -503,7 +482,7 @@ public class BottomUpConnector extends Grounder {
                 terms.add(var);
                 var = ConstantFactory.construct(ent2.getKey());
                 terms.add(var);
-                
+
                 var = ConstantFactory.construct(value + "");
                 terms.add(var);
 

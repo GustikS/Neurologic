@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<xs:schema version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    
+    <!-- enumeration of possible activation functions -->    
+    <xs:simpleType name="function" final="restriction">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="sig" />
+            <xs:enumeration value="id" />
+            <xs:enumeration value="relu" />
+            <xs:enumeration value="softmax" />
+            
+            <xs:enumeration value="avg" />
+            <xs:enumeration value="max" />
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <!-- weight parameter object -->
+    <xs:complexType name="weight">
+        <xs:sequence>
+            <xs:element name="fixed" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="shared_id" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="learn_rate" type="xs:decimal" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="value" type="xs:decimal"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <!-- template = list of rules -->
+    <xs:element name="rule_set">
+        <xs:complexType>
+            <xs:sequence minOccurs="1" maxOccurs="unbounded">
+                <xs:element name="rule">
+                    <xs:complexType>
+                        <xs:sequence minOccurs="1" maxOccurs="1">
+                            <xs:element name="rule_weight" type="weight" minOccurs="0" maxOccurs="1"/>
+                            <xs:element name="head">
+                                <xs:complexType>
+                                    <xs:sequence minOccurs="1" maxOccurs="1">
+                                        <xs:element name="predicate" type="xs:string" minOccurs="1" maxOccurs="1"/>
+                                        <xs:element name="term" type="xs:string" minOccurs="0" maxOccurs="1"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="activation" type="function" minOccurs="0" maxOccurs="1"/>
+                            <xs:element name="rule_offset" type="weight" minOccurs="0" maxOccurs="1"/>
+                            <xs:element name="body" minOccurs="0" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                                        <xs:element name="literal_weight" type="weight" minOccurs="0" maxOccurs="1"/>
+                                        <xs:element name="predicate" type="xs:string" minOccurs="1" maxOccurs="1"/>
+                                        <xs:element name="term" type="xs:string" minOccurs="0" maxOccurs="1"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <!-- specification of atom offsets at the end -->
+    <xs:element name="offsets">
+        <xs:complexType>
+            <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                <xs:element name="offset">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="predicate_signature" type="xs:string" minOccurs="1" maxOccurs="1"/>
+                            <xs:element name="offset_value" type="weight" minOccurs="1" maxOccurs="1"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+</xs:schema>

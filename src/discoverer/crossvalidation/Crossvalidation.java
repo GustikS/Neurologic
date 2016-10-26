@@ -20,10 +20,13 @@ import discoverer.learning.Sample;
 import discoverer.learning.learners.LearnerCheckback;
 import discoverer.learning.learners.LearnerIterative;
 import discoverer.learning.learners.LearnerStandard;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Wrapper for running test with n-fold stratification
@@ -33,6 +36,8 @@ public class Crossvalidation {
     double testErr = 0;
     double testMaj = 0;
     double trainErr = 0;
+    double trainAUC = 0;
+    double testAUC = 0;
 
     SampleSplitter splitter;
 
@@ -45,7 +50,7 @@ public class Crossvalidation {
         splitter = ss;
         foldResults = new LinkedList<>();
     }
-
+    
     public Results trainTestFold(LightTemplate network, List<Sample> trainEx, List<Sample> testEx, int fold) {
 
         if (Global.exporting) {
@@ -63,20 +68,26 @@ public class Crossvalidation {
         if (Global.exporting) {
             network.exportTemplate("learned-fold" + fold);
             network.exportWeightMatrix("learned-fold" + fold);
-            MolecularTemplate.saveTemplate(network, "learned-fold" + fold);
+//            MolecularTemplate.saveTemplate(network, "learned-fold" + fold);
         }
         if (Global.drawing) {
-            Dotter.draw(network, "learned_fold" + fold);
+//            Dotter.draw(network, "learned_fold" + fold);
         }
 
         Glogger.LogRes("--------------");
         Glogger.LogRes("Fold train error: " + res.training.getError());   //do NOT change the texts here (used in excel macro)
         Glogger.LogRes("Fold test error: " + res.testing.getError());
         Glogger.LogRes("Fold majority error: " + res.majority.getError());
+        
+        Glogger.LogRes("Fold train AUC: " + res.training.getAuc());
+        Glogger.LogRes("Fold test AUC: " + res.testing.getAuc());
 
         trainErr += res.training.getError();
         testErr += res.testing.getError();
         testMaj += res.majority.getError();
+        
+        trainAUC += res.training.getAuc();
+        testAUC += res.testing.getAuc();
 
         return res;
     }
@@ -93,7 +104,7 @@ public class Crossvalidation {
      * @param pretrained
      * @param ex
      */
-    public void crossvalidate(LiftedDataset dataset) {
+    public double crossvalidate(LiftedDataset dataset) {
         long time;
         Glogger.info("starting crossvalidation " + (time = System.currentTimeMillis()));
         for (dataset.sampleSplitter.testFold = 0; dataset.sampleSplitter.testFold < dataset.sampleSplitter.foldCount; dataset.sampleSplitter.testFold++) { //iterating the test fold
@@ -116,13 +127,21 @@ public class Crossvalidation {
         trainErr /= dataset.sampleSplitter.foldCount;
         testErr /= dataset.sampleSplitter.foldCount;
         testMaj /= dataset.sampleSplitter.foldCount;
+        
+        trainAUC /= dataset.sampleSplitter.foldCount;
+        testAUC /= dataset.sampleSplitter.foldCount;
 
         Glogger.LogRes("--------------");
         Glogger.LogRes("Final train error: " + trainErr);   //do NOT change the texts here (used in excel macro)
         Glogger.LogRes("Final test error: " + testErr);
         Glogger.LogRes("Final majority error: " + testMaj);
+        
+        Glogger.LogRes("Final train AUC: " + trainAUC);
+        Glogger.LogRes("Final test AUC: " + testAUC);
 
         Glogger.process("finished learning");
+        
+        return testErr;
     }
 
     private double testMajority(List<Sample> test, List<Sample> train) {
@@ -222,7 +241,7 @@ public class Crossvalidation {
         HashMap<String, Double> ballvalues = new HashMap<>();
         HashMap<String, Double> atoms = new HashMap<>();
 
-        trainResults.results.clear();;
+        trainResults.results.clear();
 
         for (Sample example : examples) {
             GroundedTemplate b = grounder.groundTemplate(network, example.getExample());

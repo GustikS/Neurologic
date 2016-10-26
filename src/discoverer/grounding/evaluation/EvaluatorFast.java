@@ -101,7 +101,7 @@ public class EvaluatorFast extends Evaluator {
                 rn.outputValue = 0.5;
                 return 0.5;
             }
-
+            //System.out.println("bodies: " + rn + " -> " + rn.ruleBodyGroundings.length);
             double[] outerInputs = new double[rn.ruleBodyGroundings.length];
             for (int i = rn.ruleBodyGroundings.length - 1; i >= 0; i--) {
                 //double[] innerInputs = new double[rn.ruleBodyGroundings[i].length];  //inside one body-grounding

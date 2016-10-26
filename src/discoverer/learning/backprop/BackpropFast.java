@@ -100,6 +100,9 @@ public final class BackpropFast {
 
     void deriveBodyGroundings(RuleAggNeuron ruleAggNeuron, double currentLevelDerivative) {
         if (grounding == Global.groundingSet.max) {
+            if (ruleAggNeuron.ruleBodyGroundings.length == 0){
+                return;
+            }
             int i = ruleAggNeuron.maxBodyGroundingIndex;
             double oneGroundRuleDerivative;
             if (Global.adaptiveActivations) {

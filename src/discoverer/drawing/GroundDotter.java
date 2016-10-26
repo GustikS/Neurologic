@@ -36,7 +36,7 @@ public class GroundDotter extends Dotter {
     }
 
     public static void drawMax(GroundedTemplate b) {
-        
+
         constantNames = b.constantNames;
 
         dot.add(intro);
@@ -75,7 +75,7 @@ public class GroundDotter extends Dotter {
     }
 
     public static void drawAVG(GroundedTemplate b, String nam) {
-        
+
         name = nam;
         constantNames = b.constantNames;
 
@@ -147,7 +147,7 @@ public class GroundDotter extends Dotter {
             //String s = "\"" + gk.toString(constantNames) + "\nvalAVG: " + df.format(gk.getValueAvg()) + "\noffset: " + df.format(gk.getGeneral().offset) + "\" -> " + "\"kapR{" + t.x + "}\"" + " [ label = \"" + df.format(t.y.getWeight()) + "\" ];";
             //dot.add(s);
             for (GroundLambda gl : t.x) {
-                String ss = "\"" + gk.toString(constantNames) + "\nvalAVG: " + df.format(gk.getValueAvg()) + "\noffset: " + df.format(gk.getGeneral().offset) + "\" -> " + "\"" + gl.toString(constantNames) + "\nvalAvg: " + df.format(gl.getValueAvg()) + "\n#ground: " + gl.getConjunctsCountForAvg() + "\"" + " [ label = \"" + df.format(t.y.getWeight()) + "\" ];";
+                String ss = "\"" + gk.toString(constantNames) + "\nvalAVG: " + df.format(gk.getValueAvg() == null ? 0 : gk.getValueAvg()) + "\noffset: " + df.format(gk.getGeneral().offset) + "\" -> " + "\"" + gl.toString(constantNames) + "\nvalAvg: " + df.format(gl.getValueAvg() == null ? 0 : gl.getValueAvg()) + "\n#ground: " + gl.getConjunctsCountForAvg() + "\"" + " [ label = \"" + df.format(t.y.getWeight()) + "\" ];";
                 //String ss = "\"kapR{" + t.x + "}" + "\" -> " + "\"" + gl.toString(constantNames) + "\nvalAvg: " + df.format(gl.getValueAvg()) + "\n#ground: " + gl.getConjunctsCountForAvg() + "\"" + " [ label = \"" + df.format(t.y.getWeight()) + "\" ];";
                 dot.add(ss);
             }
@@ -166,7 +166,7 @@ public class GroundDotter extends Dotter {
             return;
         }
         for (Map.Entry<GroundKappa, Integer> t : gl.getConjunctsAvg().entrySet()) {
-            String s = "\"" + gl.toString(constantNames) + "\nvalAvg: " + df.format(gl.getValueAvg()) + "\n#ground: " + gl.getConjunctsCountForAvg() + "\"" + " -> \"" + t.getKey().toString(constantNames) + "\nvalAVG: " + df.format(t.getKey().getValueAvg()) + "\noffset: " + (df.format(t.getKey().getGeneral().offset)) + "\"" + " [ label = \"" + df.format(t.getValue()) + "x\" ];";
+            String s = "\"" + gl.toString(constantNames) + "\nvalAvg: " + df.format(gl.getValueAvg() == null? 0 : gl.getValueAvg()) + "\n#ground: " + gl.getConjunctsCountForAvg() + "\"" + " -> \"" + t.getKey().toString(constantNames) + "\nvalAVG: " + df.format(t.getKey().getValueAvg() == null ? 0 : t.getKey().getValueAvg()) + "\noffset: " + (df.format(t.getKey().getGeneral().offset)) + "\"" + " [ label = \"" + df.format(t.getValue()) + "x\" ];";
             dot.add(s);
             drawAvg(t.getKey());
         }

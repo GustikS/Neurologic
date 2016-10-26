@@ -15,16 +15,16 @@ import java.util.LinkedList;
 public class Configurations {
 
     public static String dataPath = "../in/";
-    public static String ruleFileName = "3rules";
+    public static String ruleFileName = "trichain3";
 
     //private static final String[] data = new String[]{"ptc/mm", "ptc/mr", "ptc/fm", "ptc/fr"};
-    private static final String[] data = getAllDatasetsFrom("C:\\Users\\gusta\\googledrive\\Github\\LRNN\\Neurologic\\in\\nci\\");
+    private static final String[] data = getAllDatasetsFrom("C:\\Users\\gusta\\googledrive\\Github\\LRNN\\in\\jair\\");
     
     //some prepared parameter-value configurations to choose from if one wants to try out a parameter
     public static String[] folds = new String[]{"-f", "1", "5", "10"};
     public static String[] groundings = new String[]{"-gr", "max", "avg"};
-    public static String[] learnRates = new String[]{"-lr", "0.05", "0.4"};
-    public static String[] bpSteps = new String[]{"-ls", "10", "20", "50", "100", "1000", "3000"};
+    public static String[] learnRates = new String[]{"-lr", "0.05", "0.3"};
+    public static String[] bpSteps = new String[]{"-ls", "2000", "10000"};
     public static String[] restarts = new String[]{"-rs", "1", "2", "3"};
     public static String[] epochs = new String[]{"-le", "7", "10"};
     public static String[] activations = new String[]{"-ac", "sig_id", "sig_sig"};

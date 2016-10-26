@@ -26,11 +26,11 @@ public class Main {
     //cutoff on example number
     private static final String defaultMaxExamples = "100000";  //we can decrease the overall number of examples (stratified) for speedup
     //
-    public static String defaultLearningSteps = "5000";  //learnSteps per epocha
+    public static String defaultLearningSteps = "2000";  //learnSteps per epocha
     public static String defaultLearningEpochs = "1";  //learn epochae = grounding cycles
     //  learnEpochae * LearningSteps = learning steps for AVG variant
     private static final String defaultFolds = "1"; // 1 = training only
-    private static final String defaultLearningRate = "0.1"; //0.05 default from Vojta, it's good to increase, reasonable <0.1 , 1>
+    private static final String defaultLearningRate = "0.3"; //0.05 default from Vojta, it's good to increase, reasonable <0.1 , 1>
     //learnRate = 5 -> gets stuck very soon (<=10 steps) around 23% acc (+ jumping), unable to learnOn
     //learnRate = 1 -> plato around 600 steps with 10% acc (+ BIG jumping +-3%, but also +10%)
     //learnRate = 0.5 -> plato around 1000 steps with 8% acc (+ jumping +-3%) -> can break into some best results (0.3%) with saving
@@ -190,17 +190,17 @@ public class Main {
         OptionBuilder.withDescription("learning rate decay over time (default: " + defaultLearnDecay + " )");
         OptionBuilder.hasArg();
         options.addOption(OptionBuilder.create("lrd"));
-        
+
         OptionBuilder.withLongOpt("embeddings");
         OptionBuilder.withDescription("Enable/load embeddings from a predefined csv file at ./in/embeddings.csv");
         OptionBuilder.hasArg();
         options.addOption(OptionBuilder.create("emb"));
-        
+
         OptionBuilder.withLongOpt("debug");
         OptionBuilder.withDescription("Enable debug mode (=detailed output)");
         OptionBuilder.hasArg();
         options.addOption(OptionBuilder.create("debug"));
-        
+
         OptionBuilder.withLongOpt("drawing");
         OptionBuilder.withDescription("Enable picture drawing/exporting into ./images");
         OptionBuilder.hasArg();
@@ -210,12 +210,12 @@ public class Main {
         OptionBuilder.withDescription("Differently named variables in a single rule must bind to different constants");
         OptionBuilder.hasArg();
         options.addOption(OptionBuilder.create("alldiff"));
-        
+
         OptionBuilder.withLongOpt("bottomUp");
         OptionBuilder.withDescription("Use bottom-up grounder (from Ondrej) instead of top-down search (default)");
         OptionBuilder.hasArg();
         options.addOption(OptionBuilder.create("bug"));
-        
+
         return options;
     }
 
@@ -240,8 +240,8 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        args = "-r C:\\Users\\Gusta\\googledrive\\Github\\LRNN\\in\\mutagenesis\\3rules -e C:\\Users\\Gusta\\googledrive\\Github\\LRNN\\in\\mutagenesis\\examples -gr avg".split(" ");
-        
+//        args = "-r C:\\Users\\Gusta\\googledrive\\Github\\LRNN\\in\\mutagenesis\\3rules -e C:\\Users\\Gusta\\googledrive\\Github\\LRNN\\in\\mutagenesis\\examples -gr avg".split(" ");
+
         //setup all parameters and load all the necessary input files
         List<String[]> inputs = setupFromArguments(args);
         //create logger for all messages within the program
@@ -251,6 +251,36 @@ public class Main {
         String[] exs = inputs.get(1);
         String[] rules = inputs.get(2);
         String[] pretrainedRules = inputs.get(3);
+
+        if (Global.internalValidation) {
+            
+            //Global.exporting = false;
+            //Settings.folds = 2;
+            double minError = 1;
+            int minErrIndex = 0;
+            CommandLine cmd = parseArguments(args);
+            String rls = cmd.getOptionValue("r");
+            for (int i = 1; i < 6; i++) {
+                Settings.setRules(rls.replaceFirst("1", i + ""));
+                Glogger.init();
+                String[] rules2 = TextFileReader.readFile(rls.replaceFirst("1", i + ""), maxReadline);
+                if (rules2.length == 0) {
+                    Glogger.err("no rules for i:=" + i);
+                    break;
+                }
+                LiftedDataset groundedDataset = createDataset(test, exs, rules2, pretrainedRules);
+                double learnOn = learnOn(groundedDataset);
+                if (learnOn < minError) {
+                    minError = learnOn;
+                    minErrIndex = i;
+                }
+            }
+            Glogger.LogTrain("choosing the best internal validation template: " + minErrIndex + " with validation error " + minError);
+            rules = TextFileReader.readFile(rls.replaceFirst("1", minErrIndex + ""), maxReadline);
+            String tmp = cmd.getOptionValue("f", defaultFolds);
+            Settings.setFolds(Integer.parseInt(tmp));
+            Global.exporting = true;
+        }
 
         //create ground networks dataset
         LiftedDataset groundedDataset = createDataset(test, exs, rules, pretrainedRules);
@@ -320,19 +350,19 @@ public class Main {
 
         tmp = cmd.getOptionValue("rs", defaultRestartCount);
         Settings.setRestartCount(Integer.parseInt(tmp));
-        
+
         tmp = cmd.getOptionValue("emb", defaultEmbeddings);
         Settings.setEmbeddings(tmp);
-        
+
         tmp = cmd.getOptionValue("debug", defaultDebug);
         Settings.setDebug(tmp);
-        
+
         tmp = cmd.getOptionValue("draw", defaultDrawing);
         Global.setDrawing(tmp);
-        
+
         tmp = cmd.getOptionValue("alldiff", defaultAlldiff);
         Global.setAlldiff(tmp);
-        
+
         tmp = cmd.getOptionValue("bug", defaultBottomUp);
         Global.setBottomUp(tmp);
     }
@@ -345,7 +375,7 @@ public class Main {
      * @param exs
      * @param rules
      * @param pretrainedRules
-     * @return 
+     * @return
      */
     public static LiftedDataset createDataset(String[] test, String[] exs, String[] rules, String[] pretrainedRules) {
 
@@ -394,7 +424,7 @@ public class Main {
         return sampleSet;
     }
 
-    static void learnOn(LiftedDataset sampleSet) {
+    static double learnOn(LiftedDataset sampleSet) {
         //main
         Crossvalidation cross;
         if (Global.fastVersion) {
@@ -403,7 +433,7 @@ public class Main {
             cross = new Crossvalidation(sampleSet.sampleSplitter);
         }
 
-        cross.crossvalidate(sampleSet);
+        return cross.crossvalidate(sampleSet);
     }
 
     /**

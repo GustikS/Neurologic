@@ -124,7 +124,7 @@ public class SampleSplitter implements Serializable {
     private List<Sample> getPositives(List<Sample> ex) {
         List<Sample> positives = new ArrayList<>();
         for (Sample e : ex) {
-            if (e.targetValue == 1 || e.getExample().getExpectedValue() == 1) {
+            if (e.getExample().getExpectedValue() == 1) {
                 positives.add(e);
             }
         }
@@ -135,7 +135,7 @@ public class SampleSplitter implements Serializable {
     private List<Sample> getNegatives(List<Sample> ex) {
         List<Sample> negatives = new ArrayList<>();
         for (Sample e : ex) {
-            if (e.targetValue == 0 || e.getExample().getExpectedValue() == 0) {
+            if (e.getExample().getExpectedValue() == 0) {
                 negatives.add(e);
             }
         }

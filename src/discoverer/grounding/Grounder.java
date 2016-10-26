@@ -406,6 +406,9 @@ public class Grounder {
         if (debugEnabled) {
             System.out.println("Solving grounded LambdaRule\t" + lr);
         }
+        if (lr.toFullString().contains("Le(E0,X0,Y,E1,X1,Y)")){
+            System.out.println("");
+        }
 
         GroundLambda gl = new GroundLambda(lr.getHead().getParent(), lr.getHead().getTerms());
 
