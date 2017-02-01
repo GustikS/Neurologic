@@ -57,7 +57,7 @@ public class Example implements Serializable {
     public void setExpectedValue(double val) {
         targetVal = val;
     }
-    
+
     public double getExpectedValue() {
         return targetVal;
     }
@@ -149,6 +149,12 @@ public class Example implements Serializable {
     }
 
     public void setWeightedFacts(double[] weights, List<SubKL> literals) {
+        if (weights == null) {
+            weights = new double[literals.size()];
+            for (int i = 0; i < weights.length; i++) {
+                weights[i] = 1;
+            }
+        }
         storedFacts = new LinkedHashMap<>();
         for (int i = 0; i < weights.length; i++) {
             SubKL lit = literals.get(i);

@@ -46,7 +46,8 @@ public class WeightInitializator {
     }
 
     public static double uniform() {
-        double range = 1;
-        return range * Global.getRandomDouble();
+        double range = 2;
+        double offset = -0.5;
+        return range * (Global.getRandomDouble() + offset);
     }
 }

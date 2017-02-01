@@ -25,10 +25,10 @@ public class ScriptGenerator {
     static Writer script;
     static Writer qsub;
 
-    private static final String walltime = "4d";
+    private static final String walltime = "2d";
     //private static final String queue = "-q q_" + walltime + "@wagap.cerit-sc.cz";
     private static final String queue = "";
-    private static final String javaPars = " -XX:+UseSerialGC -XX:NewSize=2000m -Xms4096m -Xmx14g";
+    private static final String javaPars = " -XX:+UseSerialGC -XX:NewSize=2000m -Xms4096m -Xmx15g -Djava.util.concurrent.ForkJoinPool.common.parallelism=1 -Daffinity.reserved=1 ";
     private static final String memory = "16gb";
 
     private static final String procesors = "1";
@@ -41,7 +41,7 @@ public class ScriptGenerator {
 
     public static void main(String[] args) {
         try {
-            String common = "";
+            String common = "-gr avg -ac sig_sig -f 5 -ls 3000 -drawing 0 -alldiff 0 -debug 0 -bug 1 -out ../results/kernel ";
             LinkedList<String[]> scripts = new LinkedList<>();
             scripts.add(Configurations.datasets);
             //scripts.add(Configurations.templates);
@@ -55,7 +55,7 @@ public class ScriptGenerator {
             //scripts.add(Configurations.groundings);
             //scripts.add(Configurations.cumSteps);
             //scripts.add(Configurations.dropouts);
-            generate("jair", "jair", scripts, common);
+            generate("lastJair", "lastJair/kernel", scripts, common);
         } catch (IOException ex) {
             Logger.getLogger(ScriptGenerator.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -82,7 +82,7 @@ public class ScriptGenerator {
 
     private static void createScripts(String neuroDir, String scriptDir, LinkedList<String[]> scripts, String common) throws IOException {
         String path = serverPath + neuroDir;
-        head = path + "/dist/ \nmodule add jdk-8 \njava " + javaPars + " -jar neurologic.jar ";
+        head = path + "/dist/ \nmodule add jdk-8 \nexport OMP_NUM_THREADS=" + procesors + " \njava " + javaPars + " -jar neurologic.jar ";
         qsub = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(metaDir + "/" + scriptDir + "/qsub.sh"), "utf-8"));
 
         LinkedList<String> configurations = Configurations.getConfigurations(scripts);

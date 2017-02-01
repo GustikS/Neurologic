@@ -41,6 +41,7 @@ public class ForwardChecker {
                 clear();
             }
         }
+        runs = 0;
     }
 
     public void printRuns() {

@@ -12,6 +12,8 @@ import discoverer.construction.template.rules.KappaRule;
 import discoverer.construction.template.rules.Rule;
 import discoverer.drawing.GroundDotter;
 import discoverer.global.Global;
+import discoverer.global.Glogger;
+import discoverer.grounding.network.GroundKL;
 import discoverer.grounding.network.groundNetwork.GroundNetwork;
 import discoverer.grounding.network.groundNetwork.GroundNeuron;
 import discoverer.learning.Sample;
@@ -87,6 +89,10 @@ public class NeuralDataset extends LiftedDataset implements Serializable {
             //}
         }
         network.sharedWeights = new double[weightCounter];
+        network.isLearnable = new boolean[weightCounter];
+        for (int i = 0; i < network.isLearnable.length; i++) {
+            network.isLearnable[i] = true;
+        }
     }
 
     /**
@@ -106,6 +112,7 @@ public class NeuralDataset extends LiftedDataset implements Serializable {
                 net.tmpActiveNet = sample.neuralNetwork;
                 net.constantNames = sample.getExample().constantNames;
                 sample.neuralNetwork.createNetwork(sample, net);
+                
             }
             sample.targetValue = sample.getExample().getExpectedValue();
 

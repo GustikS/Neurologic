@@ -46,7 +46,27 @@ public class Convertor {
     //static String out = "in\\ncigi\\examples";
     private static boolean cutTogeneral = false;
     //static String path = "C:\\Users\\IBM_ADMIN\\Google Drive\\Neuralogic\\sourcecodes\\gusta\\extra-data\\NCIGI\\DATA\\out\\";
-    static String path = "C:\\Users\\gusta\\googledrive\\Github\\LRNN\\in\\nci";
+    //static String path = "C:\\Users\\gusta\\googledrive\\Github\\LRNN\\in\\nci";
+    static String path = "C:\\data\\lastjair\\kernels\\";
+
+    public static void main(String[] args) throws IOException {
+        File[] files = new File(path).listFiles();
+
+        for (File file : files) {
+            if (file.isFile()) {
+
+                String[] ex = TextFileReader.readFile(file.getAbsolutePath(), 200000);
+
+                if (ex[0].contains("_kernelTemplate_")) {
+                    Files.copy(file.toPath(), new File(path + "embeddings/" + file.getName()).toPath(), StandardCopyOption.REPLACE_EXISTING);
+                } else if (ex[0].contains("_chargeTemplate_")) {
+                    Files.copy(file.toPath(), new File(path + "charge/" + file.getName()).toPath(), StandardCopyOption.REPLACE_EXISTING);
+                } else if (ex[0].contains("_chargeJointTemplate_")) {
+                    Files.copy(file.toPath(), new File(path + "chargejoint/" + file.getName()).toPath(), StandardCopyOption.REPLACE_EXISTING);
+                }
+            }
+        }
+    }
 
     public static void main2(String[] args) {
         File[] files = new File(path).listFiles();
@@ -59,7 +79,7 @@ public class Convertor {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main0(String[] args) {
         File[] files = new File(path).listFiles();
 
         for (File file : files) {
@@ -74,17 +94,16 @@ public class Convertor {
             }
 
             System.out.println(newname);
-            
+
             String[] ex = TextFileReader.readFile("C:\\Users\\gusta\\googledrive\\Github\\LRNN\\in\\jair" + "/" + newname + "/examples", 200000);
-            
+
             Templator.createTemplate(ex, "C:\\Users\\gusta\\googledrive\\Github\\LRNN\\in\\jair" + "/" + newname + "/atomic1", 1, 1);
-            
+
             Templator.createTemplate(ex, "C:\\Users\\gusta\\googledrive\\Github\\LRNN\\in\\jair" + "/" + newname + "/atomic3", 3, 1);
-            
+
             Templator.createTemplate(ex, "C:\\Users\\gusta\\googledrive\\Github\\LRNN\\in\\jair" + "/" + newname + "/trichain3", 3, 3);
 
             //TreeTemplate.createTemplate(i, path + "/" + newname + "/examples", path + "/" + newname + "/trees" + i);
-            
             /*
             Templator.createTemplate(ex, path + "/" + newname + "/1", 1, 1);
             Templator.createTemplate(ex, path + "/" + newname + "/2", 2, 2);
@@ -93,15 +112,14 @@ public class Convertor {
         }
     }
 
-    public static void main0(String[] args) {
+    public static void main1(String[] args) {
         File[] files = new File(path).listFiles();
 
         for (File file : files) {
             if (file.isFile()) {
-                new File(path + file.getName() + "-data").mkdirs();
-                convert(path + file.getName(), path + file.getName() + "-data/examples");
-                String[] ex = TextFileReader.readFile(path + file.getName() + "-data/examples", 200000);
-                Templator.createTemplate(ex, path + file.getName() + "-data/", 2, 4);
+                String ddr = path + file.getName().substring(file.getName().lastIndexOf("screen_") + 7, file.getName().length() - 4);
+                new File(ddr).mkdirs();
+                convert(path + file.getName(), ddr + "/examplesCharge");
             }
         }
     }
@@ -119,7 +137,7 @@ public class Convertor {
         ArrayList<LinkedHashSet<String>> examples = transformExamples(ex);
 
         writeOut(examples, out);
-        writeOut(allLiterals, out + "_literalSet");
+        //writeOut(allLiterals, out + "_literalSet");
     }
 
     static void createCILP(String[] ex, String out) {
@@ -206,18 +224,21 @@ public class Convertor {
                 newLit = split[5] + "(" + getNumber(split[1], split[2]) + ")";
                 newEx.add(newLit);
             } else // our default format bond(d59_23, d59_5, 0), or some other bond = keep it
-            {
-                if (literal.contains("(") && !literal.contains(")")) {
+             if (literal.contains("(") && !literal.contains(")")) {
                     newEx.add(literal + ")");
                 } else {
                     newEx.add(literal);
                 }
-            }
         } else if (literal.startsWith("atom")) { //e.g., atom(tr000, tr000_4)
             //skip this thing
         } else if (literal.startsWith("atm")) { // e.g., atm(8, C.3, 0.167)
             newLit = split[2].toLowerCase().replace(".", "_") + "(" + split[1] + ")";
             newEx.add(newLit);
+            //add the charge!
+            newEx.add("charge(" + split[1] + "," + split[3] + ")");
+            if (Double.parseDouble(split[3]) < -0.5) {
+                System.out.println(split[3]);
+            }
         } else {    //some unknown literal, probably some specific atom/bond type
             if (cutTogeneral) {
                 String head = literal.substring(0, literal.indexOf("("));

@@ -54,7 +54,7 @@ public final class Global {
     private static boolean learnDecay;    //learn rate decay yes or no  
     //---
     private static boolean checkback = false;    //compatibility test with Vojta's version (keep false unless testing)
-    private static boolean outputFolds = false;
+    private static boolean outputFolds = true;
     //convergence criteria for AVG (max is within function bellow)
     private static double convergenceLimit = 0.01;
     private static int history = 200;
@@ -65,13 +65,15 @@ public final class Global {
     private static mergingOptions merging = null;
 
     public static boolean exporting = true;
-    public static boolean createWeightMatrix = true;   //matrix of neural weight for printing with Matlab etc.
+    public static boolean createWeightMatrix = false;   //matrix of neural weight for printing with Matlab etc.
 
     public static boolean drawing = false;
     public static boolean longName = false;
     public static boolean saveGroundedDataset = false;
     public static boolean loadGroundedDataset = false;
-    public static boolean uncompressedLambda = false;
+    
+    public static boolean uncompressedLambda = true;
+    
     public static boolean fastVersion = true;
     public static boolean memoryLight = false;  //saves 60% by removing groundKL structures (keeps only neural), makes sense with fastVersion ON only
     public static boolean molecularTemplates = true;
@@ -95,11 +97,11 @@ public final class Global {
     //---Structure Learning parameters
     public static boolean regularizedBackprop = false;
     public static boolean weightedFacts = false;
-    public static boolean templateConstants = false;
+    public static boolean templateConstants = true;
     public static boolean recursion = false;
     public static boolean embeddings = false;
     public static boolean uniqueGroundLiteralNames = false;
-    public static boolean specialPredicates = false;
+    public static boolean specialPredicates = true;
     public static boolean KappaFixedZeroOffset = false;
     public static boolean internalValidation = false;
 

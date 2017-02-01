@@ -5,6 +5,7 @@
  */
 package discoverer;
 
+import discoverer.construction.ConstantFactory;
 import discoverer.crossvalidation.SampleSplitter;
 import discoverer.construction.ExampleFactory;
 import discoverer.construction.TemplateFactory;
@@ -39,6 +40,8 @@ import java.util.List;
  */
 public class LiftedDataset implements Serializable {
 
+    TemplateFactory nf;
+    
     public LiftedTemplate template;
 
     String[] pretrained = null;
@@ -92,7 +95,7 @@ public class LiftedDataset implements Serializable {
 
     public final LiftedTemplate createNetwork(String[] rules, String name) {
         //factory + subfactories initialization
-        TemplateFactory nf = null;
+        nf = null;
         //constructs the whole L-K network from rules with support of grounded classes and element mappers, return LAST line rule's literal(=KL)!
         LiftedTemplate template = null;
 
@@ -139,7 +142,7 @@ public class LiftedDataset implements Serializable {
             }
         }
         Collections.shuffle(examples, Global.getRg());
-
+        
         if (maxExamples > examples.size()) {
             return examples;
         }

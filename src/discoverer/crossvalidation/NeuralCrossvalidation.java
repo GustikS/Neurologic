@@ -6,6 +6,7 @@
 package discoverer.crossvalidation;
 
 import discoverer.LiftedDataset;
+import discoverer.construction.template.LiftedTemplate;
 import discoverer.construction.template.LightTemplate;
 import discoverer.global.Global;
 import discoverer.grounding.evaluation.EvaluatorFast;
@@ -72,6 +73,10 @@ public class NeuralCrossvalidation extends Crossvalidation {
             Logger.getLogger(Crossvalidation.class.getName()).log(Level.SEVERE, null, ex);
         }
         res.training = res.actualResult;
+
+        LiftedTemplate templ = (LiftedTemplate) network;
+        templ.setWeightsFromArray(templ.weightMapping, templ.sharedWeights);
+
         return res;
     }
 }

@@ -70,7 +70,8 @@ public class NLPdataset extends Main {
 
     public String embeddingsPath = "./in/embeddings.csv";
 
-    public static boolean predicateInvention = true;
+    public static boolean factRules = false;
+    public static boolean selectingFacts = false;
 
     public static void main(String[] args) {
         Glogger.resultsDir = "./results/";
@@ -87,16 +88,22 @@ public class NLPdataset extends Main {
         String[] queries = inputs.get(0);
         String[] facts = inputs.get(1);
         String[] rules = inputs.get(2);
-        //String[] pretrainedRules = inputs.get(3);
+
+        String[] testQueries = inputs.get(3);
 
         //create ground networks dataset
         NLPdataset dataset = new NLPdataset(facts, rules);
 
         //start learning
         String[] results = dataset.learnOn(queries);
-        //dataset.evaluate();
+        //dataset.export(results, "NLPtrain");
 
-        dataset.export(results, "NLP");
+        /*
+        Settings.learningSteps = 0;
+        String[] results2 = dataset.learnOn(testQueries);
+        //dataset.evaluate();
+        dataset.export(results2, "NLPtest");
+         */
     }
 
     private NLPdataset(String[] iFacts, String[] iRules) {
@@ -113,7 +120,7 @@ public class NLPdataset extends Main {
         //Global.alldiff = true;
         //Global.embeddings = true;
         //Global.cacheEnabled = true;
-        if (predicateInvention) {
+        if (factRules) {
             templateFactory = new TemplateFactory();
             NLPtemplate construct = (NLPtemplate) templateFactory.construct(iFacts);
             List<Rule> factRules = templateFactory.getRules();
@@ -123,7 +130,7 @@ public class NLPdataset extends Main {
             template = (NLPtemplate) templateFactory.construct(iRules);
             LinkedHashSet<Rule> common = new LinkedHashSet<>();
             common.addAll(templateFactory.getRules());
-            
+
             /*
             String[] result = Arrays.copyOf(iFacts, iFacts.length + iRules.length);
             System.arraycopy(iRules, 0, result, iFacts.length, iRules.length);
@@ -131,17 +138,15 @@ public class NLPdataset extends Main {
             templateFactory.templateRules = new LinkedList<>();
             template = (NLPtemplate) templateFactory.construct(result);
              */
-            
             //template.rules.addAll(common);
             template.rules.addAll(factRules);
-            
+
             template.commonRules = common;
             template.relevantRules = specific;
-            
-            
 
             ExampleFactory eFactory = new ExampleFactory();
             facts = eFactory.construct("1.0 fact(a,b).");
+            construct.createRelevantFacts(facts);
             if (Global.weightedFacts) {
                 facts.setWeightedFacts(new double[]{1.0}, templateFactory.constructFacts("1.0 fact(a,b)."));
             }
@@ -177,7 +182,7 @@ public class NLPdataset extends Main {
         template.constantNames = facts.constantNames;
 
         if (Global.drawing) {
-            Dotter.draw(template.KLs.values(), "initNLPtemplate");
+        //    Dotter.draw(template.KLs.values(), "initNLPtemplate");
         }
 
         if (Global.embeddings) {
@@ -212,6 +217,7 @@ public class NLPdataset extends Main {
             GroundedTemplate proof;
             if (Global.bottomUp) {
                 System.out.println(i);
+                Glogger.LogTrain("exampleGrounded: " + i);
                 proof = template.queryBottomUp(facts, query.substring(wLen, query.length()));
             } else {
                 String[][] queryTokens = Parser.parseQuery(query.substring(wLen, query.length()));
@@ -257,15 +263,21 @@ public class NLPdataset extends Main {
 
             }
             Crossvalidation cv = new NeuralCrossvalidation(nd);
-            //cv.crossvalidate(nd);
-            cv.trainTestFold(template, samples, samples, 0);
+            if (Settings.folds > 1) {
+                cv.crossvalidate(nd);
+            } else {
+                cv.trainTestFold(template, samples, samples, 0);
+            }
 
             LiftedTemplate templ = (LiftedTemplate) nd.template;
             templ.setWeightsFromArray(templ.weightMapping, templ.sharedWeights);    //map the learned weights back to original logical structures (rules)
-
+            i=0;
             //map learned outputs back to ball Avg outputs (just to make sure), samples should be in the same order (it's the same SampleSplitter)
             for (Sample sam : nd.sampleSplitter.samples) {
                 Evaluator.evaluateAvg(sam.getBall());
+                if (Global.drawing) {
+                    GroundDotter.draw(sam.getBall(), i + "afterEvaluation_" + names.get(i++));
+                }
             }
             samples = nd.sampleSplitter.samples;
 
@@ -285,26 +297,26 @@ public class NLPdataset extends Main {
 
                 }
             }
-        }
 
-        i = 0;
-        for (Sample sample : samples) {
-            template.evaluateProof(sample.getBall());
-            double res;
-            if (Global.getGrounding() == Global.groundingSet.max) {
-                res = sample.getBall().valMax;
-            } else {
-                res = sample.getBall().valAvg;
+            i = 0;
+            for (Sample sample : samples) {
+                template.evaluateProof(sample.getBall());
+                double res;
+                if (Global.getGrounding() == Global.groundingSet.max) {
+                    res = sample.getBall().valMax;
+                } else {
+                    res = sample.getBall().valAvg;
+                }
+                if (Global.drawing) {
+                    GroundDotter.draw(sample.getBall(), i + "afterEvaluation_" + names.get(i));
+                }
+                stats.add(new Result(res, sample.targetValue));
+                results[i] = (int) sample.targetValue + " " + res + " <- " + names.get(i);
+                Glogger.out(results[i]);
+                i++;
             }
-            if (Global.drawing) {
-                GroundDotter.draw(sample.getBall(), i + "afterEvaluation_" + names.get(i));
-            }
-            stats.add(new Result(res, sample.targetValue));
-            results[i] = (int) sample.targetValue + " " + res + " <- " + names.get(i);
-            Glogger.out(results[i]);
-            i++;
+            Glogger.process("Saved training error as best of all restarts =\t" + stats.getLearningError() + " (maj: " + stats.getMajorityClass() + ")" + " (th: " + stats.getThreshold() + ")" + " (disp: " + stats.getDispersion() + ")");
         }
-        Glogger.process("Saved training error as best of all restarts =\t" + stats.getLearningError() + " (maj: " + stats.getMajorityClass() + ")" + " (th: " + stats.getThreshold() + ")" + " (disp: " + stats.getDispersion() + ")");
         return results;
     }
 

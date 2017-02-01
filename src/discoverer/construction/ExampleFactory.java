@@ -5,6 +5,7 @@ import discoverer.construction.ElementMapper;
 import discoverer.construction.Parser;
 import discoverer.construction.example.Example;
 import discoverer.global.Global;
+import discoverer.global.TextFileReader;
 import java.util.*;
 
 /**
@@ -22,6 +23,8 @@ public class ExampleFactory {
     private static int elId;
     //position of actual(increasing) literal in example
     private static int possId;
+
+    private static String staticFacts;
 
     public static Map<String, Integer> getConstMap() {
         return constMap;
@@ -45,6 +48,9 @@ public class ExampleFactory {
         constId = ConstantFactory.getConstCount();
         elId = ElementMapper.getElCount();
         possId = 0;
+
+        //nasty hack
+        staticFacts = Arrays.toString(TextFileReader.readFile("../in/electrons/staticFacts.txt", 10000000)).replaceAll("\\[", "").replaceAll("\\]", "");
     }
 
     /**
@@ -55,14 +61,17 @@ public class ExampleFactory {
      * @return
      */
     public Example construct(String ex) {
+        if (staticFacts != null) {
+            ex = ex.substring(0, ex.length() - 1) + "," + staticFacts + ".";
+        }
         //resets all example-related hashmaps for IDs
         clear();
 
         double w = Parser.extractWeight(ex);
         ex = ex.trim().substring(ex.indexOf(" "), ex.length());
-        
+
         Example e = new Example(w, idMap, ex);
-        
+
         String[][] tokens = Parser.parseExample(ex);
 
         //new example, contains idMap of literal IDs -> occurences

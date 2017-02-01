@@ -89,7 +89,7 @@ public class GroundDotter extends Dotter {
 
         dot.add(outro);
         writeToFile();
-        convertToImage();
+        //convertToImage();
         visited.clear();
         dot.clear();
     }

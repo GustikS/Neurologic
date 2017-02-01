@@ -150,10 +150,10 @@ public class LiftedTemplate extends LightTemplate implements Serializable {
             return;
         }
         LinkedList<String> kapString = new LinkedList<>();
-        test = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(weightFolder + name + "-offsets.w"), "utf-8"));
+        //test = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(weightFolder + name + "-offsets.w"), "utf-8"));
 
         for (Kappa kap : getKappas()) {
-            kapString.add(kap + " : " + kap.getOffset() + "\n");
+            kapString.add(kap.name + " " + kap.getOffset() + "\n");
         }
         Collections.sort(kapString);
         for (String ks : kapString) {
@@ -177,8 +177,9 @@ public class LiftedTemplate extends LightTemplate implements Serializable {
                 sb.append(rulzz.get(i).toFullString()).append("\n");
             }
             test.write(sb.toString());
-            test.close();
+            
             exportOffsets(test, name);
+            test.close();
         } catch (UnsupportedEncodingException ex) {
             Logger.getLogger(Saver.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {

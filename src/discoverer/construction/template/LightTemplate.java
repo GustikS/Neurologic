@@ -37,8 +37,10 @@ public class LightTemplate implements Serializable {
 
     public double[] sharedWeights; //the shared sharedWeights
 
+    public boolean[] isLearnable;
+
     public HashMap<String, Integer> name2weight;
-    
+
     public static String weightFolder = Global.weightFolder;
 
     public LightTemplate() {
@@ -47,6 +49,11 @@ public class LightTemplate implements Serializable {
     public LightTemplate(double[] sharedW, HashMap<String, Integer> name2weights) {
         sharedWeights = sharedW;
         name2weight = name2weights;
+
+        isLearnable = new boolean[sharedW.length];
+        for (int i = 0; i < isLearnable.length; i++) {
+            isLearnable[i] = true;
+        }
     }
 
     /**
@@ -55,7 +62,9 @@ public class LightTemplate implements Serializable {
      */
     public void invalidateWeights() {
         for (int i = 0; i < sharedWeights.length; i++) {
-            sharedWeights[i] = WeightInitializator.getWeight();
+            if (isLearnable[i]) {
+                sharedWeights[i] = WeightInitializator.getWeight();
+            }
         }
     }
 
@@ -119,10 +128,10 @@ public class LightTemplate implements Serializable {
         StringBuilder sb = new StringBuilder();
         try {
             test = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(weightFolder + name + "-wector.w"), "utf-8"));
-            
+
             SortedSet<Map.Entry<String, Integer>> sorted = Global.sortByValues(name2weight);
             for (Map.Entry<String, Integer> n2w : sorted) {
-                String rule = n2w.getKey().substring(n2w.getKey().indexOf(" ")+1, n2w.getKey().length());
+                String rule = n2w.getKey().substring(n2w.getKey().indexOf(" ") + 1, n2w.getKey().length());
                 sb.append(rule).append("; ");
             }
             sb.append("\n");

@@ -5,21 +5,29 @@
  */
 package discoverer;
 
+import static discoverer.NLPdataset.facts;
+import discoverer.construction.ConstantFactory;
+import discoverer.construction.TemplateFactory;
 import discoverer.crossvalidation.SampleSplitter;
 import discoverer.construction.example.Example;
 import discoverer.construction.template.LiftedTemplate;
 import discoverer.construction.template.LightTemplate;
 import discoverer.construction.template.MolecularTemplate;
+import discoverer.drawing.Dotter;
+import discoverer.drawing.GroundDotter;
 import discoverer.global.Global;
 import discoverer.global.Glogger;
 import discoverer.global.Settings;
+import discoverer.grounding.BottomUpConnector;
 import discoverer.grounding.ForwardChecker;
 import discoverer.grounding.Grounder;
+import discoverer.grounding.evaluation.Evaluator;
 import discoverer.grounding.evaluation.GroundedTemplate;
 import discoverer.grounding.evaluation.struct.GroundNetworkParser;
 import discoverer.grounding.network.GroundKL;
 import discoverer.learning.Sample;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
@@ -40,19 +48,20 @@ public class GroundedDataset extends LiftedDataset {
 
     /**
      * Used e.g. for regrounding existing examples with a new template
+     *
      * @param inExamples
-     * @param newTemplate 
+     * @param newTemplate
      */
     public GroundedDataset(List<Example> inExamples, String[] newTemplate) {
         super(newTemplate, null);
-        
+
         Glogger.process("created new lifted template structure");
         examples = inExamples;
         Glogger.process("copied example structures");
-        
+
         samples = prepareGroundings(examples, template);
         Glogger.process("prepared network groundings");
-        
+
         sampleSplitter = new SampleSplitter(Settings.folds, samples);
     }
 
@@ -109,7 +118,32 @@ public class GroundedDataset extends LiftedDataset {
         Glogger.process("searching for initial substition prove-trees for each example...");
 
         //Global.savesomething(template, "cc");
-        if (Global.parallelGrounding) {
+        if (Global.bottomUp) {
+
+            BottomUpConnector prover = new BottomUpConnector();
+            prover.recalculateHerbrand = true;
+
+            int i = 0;
+            for (Example e : examples) {
+                ConstantFactory.clearConstantFactory();
+                ConstantFactory.construct("a");
+                
+                e.setWeightedFacts(null, nf.constructFacts(e.toString() + " " + e.hash));
+                
+                
+                e.storedFacts = new LinkedHashMap<>();
+                GroundedTemplate b = new GroundedTemplate();
+                Glogger.info("# example " + i++ + " : " + e.storedFacts.size());
+                b.setLast(prover.getGroundLRNN(new ArrayList(template.rules), e, "finalKappa(a)"));
+                b.constantNames = e.constantNames;
+                Glogger.info("cacheSize #" + prover.getBtmUpCache().size());
+                sampleStore.add(new Sample(e, b));
+                Evaluator.evaluateAvg(b);
+                
+                //GroundDotter.draw(b,"b" + i);
+                
+            }
+        } else if (Global.parallelGrounding) {
             Glogger.process("Parallel threads workfold splitting");
             List<List<Example>> workFolds = (List<List<Example>>) SampleSplitter.splitExampleList(examples, Global.numOfThreads);
             ExecutorService exec = Executors.newFixedThreadPool(Global.numOfThreads);
@@ -132,6 +166,7 @@ public class GroundedDataset extends LiftedDataset {
                                 GroundedTemplate b = grounder.groundTemplate(net.last, e);
                                 Glogger.info("example #" + omg[0]++ + " on thread " + thrd + "-> #forward checker runs:(" + grounder.forwardChecker.runs + ")" + " : target: " + e + " , maxVal: " + b.valMax + ", avgVal: " + b.valAvg);
                                 sampleStore.add(new Sample(e, b));
+                                grounder.forwardChecker.printRuns();
                             }
                         }
                     });
@@ -151,6 +186,9 @@ public class GroundedDataset extends LiftedDataset {
                 GroundedTemplate b = grounder.groundTemplate(template.last, e);
                 Glogger.info("example #" + grounder.forwardChecker.exnum++ + " -> #forward checker runs:(" + grounder.forwardChecker.runs + ")" + " : target: " + e + " , maxVal: " + b.valMax + ", avgVal: " + b.valAvg);
                 sampleStore.add(new Sample(e, b));
+                if (Global.drawing){
+                    GroundDotter.draw(b,"a" + grounder.forwardChecker.exnum);
+                }
             }
         }
 

@@ -33,11 +33,20 @@ import java.util.logging.Logger;
  */
 public class Crossvalidation {
 
-    double testErr = 0;
-    double testMaj = 0;
     double trainErr = 0;
-    double trainAUC = 0;
-    double testAUC = 0;
+    double trainMajorityErr = 0;
+    double trainDispersion = 0;
+    double trainMSE = 0;
+    double trainAUCpr = 0;
+    double trainAUCroc = 0;
+
+    double testErr = 0;
+    double testMajorityErr = 0;
+    double testrainMajorityErr = 0;
+    double testDispersion = 0;
+    double testMSE = 0;
+    double testAUCpr = 0;
+    double testAUCroc = 0;
 
     SampleSplitter splitter;
 
@@ -50,11 +59,11 @@ public class Crossvalidation {
         splitter = ss;
         foldResults = new LinkedList<>();
     }
-    
+
     public Results trainTestFold(LightTemplate network, List<Sample> trainEx, List<Sample> testEx, int fold) {
 
         if (Global.exporting) {
-            network.exportWeightMatrix("init-fold" + fold);
+//            network.exportWeightMatrix("init-fold" + fold);
         }
 
         Glogger.process("------------------processing fold " + fold + "----------------------");
@@ -67,7 +76,9 @@ public class Crossvalidation {
 
         if (Global.exporting) {
             network.exportTemplate("learned-fold" + fold);
-            network.exportWeightMatrix("learned-fold" + fold);
+            
+            ((MolecularTemplate) network).createWeightMatrix();
+            ((MolecularTemplate) network).exportWeightMatrix("learned-fold" + fold);
 //            MolecularTemplate.saveTemplate(network, "learned-fold" + fold);
         }
         if (Global.drawing) {
@@ -76,18 +87,37 @@ public class Crossvalidation {
 
         Glogger.LogRes("--------------");
         Glogger.LogRes("Fold train error: " + res.training.getError());   //do NOT change the texts here (used in excel macro)
+        Glogger.LogRes("Fold train threshold: " + res.training.getThresh());
+        Glogger.LogRes("Fold train majority error: " + res.training.getMajorityErr());
+        Glogger.LogRes("Fold train dispersion: " + res.training.getDispersion());
+        Glogger.LogRes("Fold train MSE: " + res.training.getMse());
+        Glogger.LogRes("Fold train AUCpr: " + res.training.getAUCpr());
+        Glogger.LogRes("Fold train AUCroc: " + res.training.getAUCroc());
+
         Glogger.LogRes("Fold test error: " + res.testing.getError());
-        Glogger.LogRes("Fold majority error: " + res.majority.getError());
-        
-        Glogger.LogRes("Fold train AUC: " + res.training.getAuc());
-        Glogger.LogRes("Fold test AUC: " + res.testing.getAuc());
+        Glogger.LogRes("Fold test optimal threshold: " + res.testing.getThresh());
+        Glogger.LogRes("Fold test optimal threshold error: " + res.testing.getRecalculatedThrehError());
+        Glogger.LogRes("Fold test majority error: " + res.testing.getMajorityErr());
+        Glogger.LogRes("Fold test (train-calculated) majority error: " + res.majority.getError());
+        Glogger.LogRes("Fold test dispersion: " + res.testing.getDispersion());
+        Glogger.LogRes("Fold test MSE: " + res.testing.getMse());
+        Glogger.LogRes("Fold test AUCpr: " + res.testing.getAUCpr());
+        Glogger.LogRes("Fold test AUCroc: " + res.testing.getAUCroc());
 
         trainErr += res.training.getError();
+        trainMajorityErr += res.training.getMajorityErr();
+        trainDispersion += res.training.getDispersion();
+        trainMSE += res.training.getMse();
+        trainAUCpr += res.training.getAUCpr();
+        trainAUCroc += res.training.getAUCroc();
+
         testErr += res.testing.getError();
-        testMaj += res.majority.getError();
-        
-        trainAUC += res.training.getAuc();
-        testAUC += res.testing.getAuc();
+        testMajorityErr += res.testing.getMajorityErr();
+        testrainMajorityErr += res.majority.getError();
+        testDispersion += res.testing.getDispersion();
+        testMSE += res.testing.getMse();
+        testAUCpr += res.testing.getAUCpr();
+        testAUCroc += res.testing.getAUCroc();
 
         return res;
     }
@@ -112,35 +142,54 @@ public class Crossvalidation {
             Results foldRes = trainTestFold(dataset.template, dataset.sampleSplitter.getTrain(), dataset.sampleSplitter.getTest(), dataset.sampleSplitter.testFold);
             foldResults.add(foldRes);
 
+            /*
             if (Global.exporting) {
                 LightTemplate.exportSharedWeights(dataset.template.sharedWeights, 99);
                 dataset.saveDataset(Settings.getDataset().replaceAll("-", "/") + ".ser");
             }
-
+             */
+            
             //Invalidator.invalidate(network); //1st
-            dataset.template.invalidateWeights();
+            dataset.template.exportWeightMatrix("matrix");
+            dataset.template.invalidateWeights(); //TODO!!
 
             dataset.template.merge(dataset.pretrainedTemplate); // 2nd
         }
         Glogger.process("finished crossvalidation " + (System.currentTimeMillis() - time));
 
         trainErr /= dataset.sampleSplitter.foldCount;
+        trainMajorityErr /= dataset.sampleSplitter.foldCount;
+        trainDispersion /= dataset.sampleSplitter.foldCount;
+        trainMSE /= dataset.sampleSplitter.foldCount;
+        trainAUCpr /= dataset.sampleSplitter.foldCount;
+        trainAUCroc /= dataset.sampleSplitter.foldCount;
+
         testErr /= dataset.sampleSplitter.foldCount;
-        testMaj /= dataset.sampleSplitter.foldCount;
-        
-        trainAUC /= dataset.sampleSplitter.foldCount;
-        testAUC /= dataset.sampleSplitter.foldCount;
+        testMajorityErr /= dataset.sampleSplitter.foldCount;
+        testrainMajorityErr /= dataset.sampleSplitter.foldCount;
+        testDispersion /= dataset.sampleSplitter.foldCount;
+        testMSE /= dataset.sampleSplitter.foldCount;
+        testAUCpr /= dataset.sampleSplitter.foldCount;
+        testAUCroc /= dataset.sampleSplitter.foldCount;
 
         Glogger.LogRes("--------------");
         Glogger.LogRes("Final train error: " + trainErr);   //do NOT change the texts here (used in excel macro)
+        Glogger.LogRes("Final train majority error: " + trainMajorityErr);
+        Glogger.LogRes("Final train dispersion: " + trainDispersion);
+        Glogger.LogRes("Final train MSE: " + trainMSE);
+        Glogger.LogRes("Final train AUCpr: " + trainAUCpr);
+        Glogger.LogRes("Final train AUCroc: " + trainAUCroc);
+
         Glogger.LogRes("Final test error: " + testErr);
-        Glogger.LogRes("Final majority error: " + testMaj);
-        
-        Glogger.LogRes("Final train AUC: " + trainAUC);
-        Glogger.LogRes("Final test AUC: " + testAUC);
+        Glogger.LogRes("Final test majority error: " + testMajorityErr);
+        Glogger.LogRes("Final test (train-calculated) majority error: " + testrainMajorityErr);
+        Glogger.LogRes("Final test dispersion: " + testDispersion);
+        Glogger.LogRes("Final test MSE: " + testMSE);
+        Glogger.LogRes("Final test AUCpr: " + testAUCpr);
+        Glogger.LogRes("Final test AUCroc: " + testAUCroc);
 
         Glogger.process("finished learning");
-        
+
         return testErr;
     }
 

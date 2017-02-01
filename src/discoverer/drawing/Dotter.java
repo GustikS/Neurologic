@@ -36,9 +36,11 @@ public class Dotter {
 
     public static DecimalFormat df = new DecimalFormat("##.###################");
 
+    static int count = 0;
+    
      static void writeToFile() {
         try {
-            FileWriter fstream = new FileWriter(dotFileName, false);
+            FileWriter fstream = new FileWriter(count++ + dotFileName, false);
             BufferedWriter out = new BufferedWriter(fstream);
             for (String s : dot) {
                 out.write(s);

@@ -39,7 +39,7 @@ public class Main {
     public static final String defaultRestartCount = "1";  //#restarts per fold
     //max-avg
     public static final String defaultGrounding = "avg";    //avg or max
-    public static String defaultActivations = "sig_id";    //lambda_kappa activation functions
+    public static String defaultActivations = "sig_sig";    //lambda_kappa activation functions
     public static String defaultInitialization = "longtail";    //handmade = 0.9:0.1
     //offsets
     public static boolean defaultKappaAdaptiveOffsetOn = false; //kappa offset is initialized based on number of input lambdas
@@ -59,7 +59,8 @@ public class Main {
     private static String defaultEmbeddings = "0";
     private static String defaultDrawing = "0";
     private static String defaultAlldiff = "1";
-    private static String defaultBottomUp = "0";
+    private static String defaultBottomUp = "1";
+    private static String defaultOutput = "../results";
 
     public static Options getOptions() {
         Options options = new Options();
@@ -215,6 +216,11 @@ public class Main {
         OptionBuilder.withDescription("Use bottom-up grounder (from Ondrej) instead of top-down search (default)");
         OptionBuilder.hasArg();
         options.addOption(OptionBuilder.create("bug"));
+        
+        OptionBuilder.withLongOpt("output");
+        OptionBuilder.withDescription("Results directory");
+        OptionBuilder.hasArg();
+        options.addOption(OptionBuilder.create("out"));
 
         return options;
     }
@@ -365,6 +371,9 @@ public class Main {
 
         tmp = cmd.getOptionValue("bug", defaultBottomUp);
         Global.setBottomUp(tmp);
+        
+        tmp = cmd.getOptionValue("out", defaultOutput);
+        Settings.setResultsDir(tmp);
     }
 
     /**
@@ -450,7 +459,7 @@ public class Main {
             rls[i] = rules[i];
         }
         String fin = rls[rls.length - 2].substring(rls[rls.length - 2].indexOf(" "), rls[rls.length - 2].indexOf(")") + 1);
-        rls[rls.length - 1] = "finalLambda :- " + fin + ".";
+        rls[rls.length - 1] = "finalLambda(a) :- " + fin + ".";
 
         return rls;
     }

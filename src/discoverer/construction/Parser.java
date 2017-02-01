@@ -36,7 +36,8 @@ public class Parser {
      * @return
      */
     public static String[][] parseExample(String example) {
-        String[] literals = example.replaceAll("[ .]", "").split("\\)[,]");
+        String[] literals = example.replaceAll("[ ]", "").split("\\)[,]");  //remove all dots - no! because of digitals
+        //String[] literals = example.replaceAll("[ .]", "").split("\\)[,]");
         String[][] tokens = new String[literals.length][];
 
         for (int i = 0; i < literals.length; i++) {

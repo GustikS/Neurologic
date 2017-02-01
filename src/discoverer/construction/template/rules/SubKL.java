@@ -58,7 +58,7 @@ public abstract class SubKL implements Serializable {
 
         SubKL skl = (SubKL) o;
 
-        if (skl.getParent() != this.getParent()) {
+        if (skl.getParent().hashCode() != this.getParent().hashCode()) {
             return false;
         }
 

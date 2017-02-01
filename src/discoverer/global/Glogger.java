@@ -28,7 +28,7 @@ public final class Glogger {
     static Writer training;
     static Writer results;
     static Writer test;
-    public static String resultsDir = "../results";
+    public static String resultsDir = Settings.getResultsDir();
 
     static final boolean timeMeasures = true;
     private static long clock = System.currentTimeMillis();
@@ -82,7 +82,7 @@ public final class Glogger {
             System.out.println("creating directory :" + name);
             boolean result = false;
             try {
-                theDir.mkdir();
+                theDir.mkdirs();
                 result = true;
             } catch (SecurityException se) {
                 Glogger.err(se.getMessage());

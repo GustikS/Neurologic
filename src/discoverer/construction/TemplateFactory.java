@@ -39,8 +39,10 @@ public class TemplateFactory {
 
     public static Map<String, SpecialPredicate> specialPredicateNames;
     public static Map<KL, SpecialPredicate> specialPredicatesMap;
-    
-    public static Map<String,KL> predicatesByName;
+
+    public static Map<String, KL> predicatesByName;
+
+    boolean lambdaFacts = false;
 
     public TemplateFactory() {
         ConstantFactory.clearConstantFactory();
@@ -49,9 +51,13 @@ public class TemplateFactory {
         if (Global.specialPredicates) {
             specialPredicateNames.put("@similar/2", new SimilarityPredicate("@similar"));
             specialPredicateNames.put("@neq/2", new NotEqualPredicate("@neq"));
+            
+            specialPredicateNames.put("@geq/2", new NotEqualPredicate("@geq"));
+            specialPredicateNames.put("@leq/2", new NotEqualPredicate("@leq"));
+            
             specialPredicatesMap = new HashMap<>();
         }
-        
+
         predicatesByName = new HashMap<>();
     }
 
@@ -240,8 +246,14 @@ public class TemplateFactory {
         vFactory.clear();
         List<SubKL> skls = new LinkedList<>();
         for (String[] token : tokens) {
-            Lambda l = lFactory.construct(token[0]);
-            SubL sl = new SubL(l, true);
+            SubKL sl = null;
+            if (lambdaFacts) {
+                Lambda l = lFactory.construct(token[0]);
+                sl = new SubL(l, true);
+            } else {
+                Kappa l = kFactory.construct(token[0]);
+                sl = new SubK(l, true);
+            }
             for (int i = 1; i < token.length; i++) {
                 Variable v = constructTerm(token[i]);
                 sl.addVariable(v);

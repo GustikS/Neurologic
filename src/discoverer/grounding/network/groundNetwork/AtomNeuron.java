@@ -37,14 +37,18 @@ public class AtomNeuron extends GroundNeuron {
         offsetWeightIndex = net.weightMapping.get(grk.getGeneral().toString());
         net.sharedWeights[offsetWeightIndex] = grk.getGeneral().getOffset();
 
-        ArrayList<RuleAggNeuron> dynInputNeurons = new ArrayList<>(grk.getDisjunctsAvg().size()*2); //unfortunatelly we do not know this size in advance, i.e. how many groundings each kapparule has
+        if (grk.getGeneral().toString().equals("holdsK/3") || grk.getGeneral().toString().equals("@eq/2")) {
+        //    net.isLearnable[offsetWeightIndex] = false;
+        }
+
+        ArrayList<RuleAggNeuron> dynInputNeurons = new ArrayList<>(grk.getDisjunctsAvg().size() * 2); //unfortunatelly we do not know this size in advance, i.e. how many groundings each kapparule has
 
         if (grk.getDisjunctsAvg().isEmpty()) {
             //inputNeurons = new RuleAggNeuron[0];    //used as flag for fact neurons -> changed to null instead
             return;
         }
 
-        ArrayList<Integer> dynInputWeightIndices = new ArrayList<>(grk.getDisjunctsAvg().size()*2); //unfortunatelly we do not know this size in advance
+        ArrayList<Integer> dynInputWeightIndices = new ArrayList<>(grk.getDisjunctsAvg().size() * 2); //unfortunatelly we do not know this size in advance
         int i = 0;
         for (Tuple<HashSet<GroundLambda>, KappaRule> grl : grk.getDisjunctsAvg()) {
             for (GroundLambda lambdaHead : grl.x) {
@@ -59,11 +63,14 @@ public class AtomNeuron extends GroundNeuron {
                 Integer idx = net.weightMapping.get(grl.y.toString());  //index to this kapparule's weight
                 dynInputWeightIndices.add(idx);
                 net.sharedWeights[idx] = grl.y.getWeight();
+                if (grl.y.toString().contains("holdsLrek")) {
+                    //    net.isLearnable[idx] = false;
+                }
                 i++;
             }
         }
         inputNeurons = dynInputNeurons.toArray(new RuleAggNeuron[dynInputNeurons.size()]);
-        inputWeightIndices = dynInputWeightIndices.stream().mapToInt(a->a).toArray();   //Integer array to int[]
+        inputWeightIndices = dynInputWeightIndices.stream().mapToInt(a -> a).toArray();   //Integer array to int[]
         net.tmpActiveNet.addNeuron(this); //rather put these leaking "this" at the end of contructor
     }
 }

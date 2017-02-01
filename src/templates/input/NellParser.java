@@ -36,17 +36,20 @@ public class NellParser {
 
     public static void main(String[] args) {
         blacklist.add("concept:haswikipediaurl");
-        blacklist.add("generalizations");
+        //blacklist.add("generalizations");
         loadFacts("C:\\Users\\Gusta\\Downloads\\NELL.08m.995.esv.csv\\NELL.08m.995.esv.csv");
         System.out.println("--------------------------------------------");
         HashSet<String> seedWords = new HashSet<>();
-        seedWords.add("concept:mammal:monkey");
-        seedWords.add("concept:food:banana");
-        seedWords.add("concept:mammal:tiger");
-        seedWords.add("concept:mammal:lion");
-        seedWords.add("concept:mammal:zebra");
-        LinkedHashSet<String[]> rulesFromSeedWord = rulesFromSeedWords(seedWords, 100);
+        //seedWords.add("concept:actor");
+        //seedWords.add("concept:celebrity");
+        //seedWords.add("concept:male");
+        //seedWords.add("generalizations");
+
+        //LinkedHashSet<String[]> rulesFromSeedWord = rulesFromSeedWords(seedWords, 100);
+        LinkedHashSet<String[]> rulesFromSeedWord = getActorsCluster("concept:actor");
+
         System.out.println("--------------------------------------------");
+        /*
         int a = 0;
         for (String[] strings : rulesFromSeedWord) {
             System.out.print(a++ + " ");
@@ -55,8 +58,12 @@ public class NellParser {
             }
             System.out.println("");
         }
+        */
         System.out.println("-----------------");
-        System.out.println(generateTemplateFromTriples(rulesFromSeedWord, true));
+        for (String[] strings : rulesFromSeedWord) {
+            System.out.println("R(" + strings[0] + "," + strings[2] + ")");
+        }
+        //System.out.println(generateTemplateFromTriples(rulesFromSeedWord, true));
     }
 
     public static ArrayList<String[]> loadFacts(String p) {
@@ -111,6 +118,17 @@ public class NellParser {
         return facts;
     }
 
+    public static LinkedHashSet<String[]> getActorsCluster(String seedword) {
+        LinkedHashSet<String[]> outRules = new LinkedHashSet<>();
+        LinkedList<String[]> triples = conceptRelations.get(seedword);
+        for (String[] triple : triples) {
+            if (triple[1].equals("generalizations") && triple[2].equals(seedword)) {
+                outRules.addAll(getGeneralizations(triple[0], 0));
+            }
+        }
+        return outRules;
+    }
+
     public static LinkedHashSet<String[]> rulesFromSeedWords(HashSet<String> seedWords, int limit) {
         LinkedHashSet<String[]> outRules = new LinkedHashSet<>();
         PriorityQueue<Tuple> priorityQueue = new PriorityQueue<>(10, new ConnectionDensityComparator());
@@ -132,7 +150,7 @@ public class NellParser {
             int rels = 0;
 
             //extend the top concept with all its generalizations
-            relations.addAll(getGeneralizations((String) start.x));
+            relations.addAll(getGeneralizations((String) start.x, 10));
 
             //for all its relations
             for (String[] relation : relations) {
@@ -180,7 +198,7 @@ public class NellParser {
         return score;
     }
 
-    private static LinkedList<String[]> getGeneralizations(String concept) {
+    private static LinkedList<String[]> getGeneralizations(String concept, int level) {
         LinkedList<String[]> rules = new LinkedList<>();
         LinkedList<String> generals = new LinkedList<>();
         generals.add(concept);
@@ -197,6 +215,9 @@ public class NellParser {
                     generals.add(relations.get(i)[2]);
                 }
                 i++;
+            }
+            if (level-- == 0) {
+                break;
             }
         }
         return rules;
@@ -251,9 +272,10 @@ public class NellParser {
     }
 
     static int i = 0;
+
     static String generateTemplateFromTriples(LinkedHashSet<String[]> triples, boolean withSimilarities) {
         StringBuilder sb = new StringBuilder();
-        
+
         for (String[] triple : triples) {
             sb.append(createTriple(triple, i, withSimilarities));
             i++;
@@ -263,7 +285,7 @@ public class NellParser {
 
     public String expandFeaturesUP(List<String[]> triples) {
         String concept = triples.get(0)[0];
-        LinkedList<String[]> generalizations = getGeneralizations(concept);
+        LinkedList<String[]> generalizations = getGeneralizations(concept, 10);
         int i = 0;
         StringBuilder sb = new StringBuilder();
         for (String[] generalization : generalizations) {

@@ -58,15 +58,15 @@ public class Electrons {
                 if (orbit.startsWith("[")) {
                     continue;
                 }
-                if (maxLayer == Integer.parseInt(orbit.substring(0, 1))) {
+                //if (maxLayer == Integer.parseInt(orbit.substring(0, 1))) {
                     embedding[dict.get(orbit.substring(1, 2))] = orbit.substring(2, Math.max(orbit.indexOf(" "), orbit.length()));
-                }
+                //}
             }
             electrons.put(symbol, embedding);
         }
         Writer test;
         try {
-            test = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("../electrons/embeds.csv"), "utf-8"));
+            test = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("../electrons/embeds2.csv"), "utf-8"));
             for (Map.Entry<String, String[]> emb : electrons.entrySet()) {
                 test.write(emb.getKey() + ";");
                 for (int i = 0; i < emb.getValue().length; i++) {

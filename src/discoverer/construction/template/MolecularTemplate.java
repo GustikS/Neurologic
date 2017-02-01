@@ -229,7 +229,7 @@ public class MolecularTemplate extends LiftedTemplate implements Serializable {
                 test.write("\n");
             }
             test.close();
-            exportOffsets(test, name);
+//            exportOffsets(test, name);
         } catch (UnsupportedEncodingException ex) {
             Logger.getLogger(Saver.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
@@ -243,7 +243,7 @@ public class MolecularTemplate extends LiftedTemplate implements Serializable {
         }
     }
 
-    private void createWeightMatrix() {
+    public void createWeightMatrix() {
         List<String> kappaRowOrder;
         LinkedHashMap<String, HashMap<String, KappaRule>> kappaLambdaWeights;
         LinkedHashMap<String, Integer> lambda2Column;

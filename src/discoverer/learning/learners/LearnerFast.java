@@ -97,13 +97,17 @@ public class LearnerFast extends Learning {
                         backpropFast = new BackpropFast();  //in the parallel mode we want each thread to have their own weight updates
                         double[] weightUpdates = backpropFast.getWeightUpdates(net.sharedWeights, sample);
                         for (int j = weightUpdates.length - 1; j >= 0; j--) {
-                            batchWeightUpdates[j] += weightUpdates[j];
+                            if (net.isLearnable[j]) {
+                                batchWeightUpdates[j] += weightUpdates[j];
+                            }
                         }
                     } else {
                         double[] weightUpdates = backpropFast.getWeightUpdates(net.sharedWeights, sample);
                         //now update the weights after each sample
                         for (int j = weightUpdates.length - 1; j >= 0; j--) {
-                            net.sharedWeights[j] += weightUpdates[j];
+                            if (net.isLearnable[j]) {
+                                net.sharedWeights[j] += weightUpdates[j];
+                            }
                         }
                     }
                 });
@@ -146,7 +150,7 @@ public class LearnerFast extends Learning {
             bestResult = res.actualResult;
             if (weightMatrixExporting) {
                 liftedTemplate.exportSharedWeights(sharedW, progress);
-                liftedTemplate.exportWeightMatrix("improvement" + progress++);
+//                liftedTemplate.exportWeightMatrix("improvement" + progress++);
             }
         }
     }

@@ -13,6 +13,8 @@ import java.util.Random;
  */
 public class Settings {
 
+    private static String resultsDir;
+    
     public static String grounding;
 
     public static int folds;
@@ -448,6 +450,20 @@ public class Settings {
     public static void setDebug(String aDebug) {
         Global.debugEnabled = Integer.parseInt(aDebug) > 0;
         debug = aDebug;
+    }
+
+    /**
+     * @return the resultsDir
+     */
+    public static String getResultsDir() {
+        return resultsDir;
+    }
+
+    /**
+     * @param aResultsDir the resultsDir to set
+     */
+    public static void setResultsDir(String aResultsDir) {
+        resultsDir = aResultsDir;
     }
 
 }

@@ -52,8 +52,9 @@ public class EvaluatorFast extends Evaluator {
         }
 
         if (an.inputNeurons == null) {
-            an.outputValue = 1;
-            return 1;
+            //an.outputValue = 1;
+            //return 1;
+            return an.outputValue;
         }
 
         if (an.outputValue != 0.0000000) {

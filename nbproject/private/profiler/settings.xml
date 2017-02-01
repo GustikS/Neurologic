@@ -3,11 +3,11 @@
 <properties>
 <comment/>
 <entry key="org.netbeans.modules.profiler.v2.features.ObjectsFeature_SETTINGS_FLAG">true</entry>
+<entry key="ACTIVATED_FEATURES">#org.netbeans.modules.profiler.v2.features.ObjectsFeature@</entry>
 <entry key="org.netbeans.modules.profiler.v2.features.MethodsFeature_SelectedClassesMode_SKIP_JAVA_FLAG">false</entry>
-<entry key="ACTIVATED_FEATURES">#org.netbeans.modules.profiler.v2.features.MethodsFeature@</entry>
-<entry key="org.netbeans.modules.profiler.v2.features.MethodsFeature_SETTINGS_FLAG">true</entry>
-<entry key="org.netbeans.modules.profiler.v2.features.MethodsFeature_MODE_FLAG">SelectedClassesMode</entry>
 <entry key="org.netbeans.modules.profiler.v2.features.MethodsFeature_SelectedClassesMode_SELECTION_FLAG">discoverer.grounding.ForwardChecker,*, discoverer.construction.example.IntArray,*, discoverer.grounding.Grounder,*, discoverer.grounding.network.GroundKappa,*, discoverer.grounding.network.GroundKL,*, discoverer.construction.template.rules.Rule,*, discoverer.construction.example.Example,*, discoverer.grounding.network.GroundLambda,*, </entry>
+<entry key="org.netbeans.modules.profiler.v2.features.MethodsFeature_MODE_FLAG">ProjectClassesMode</entry>
+<entry key="org.netbeans.modules.profiler.v2.features.MethodsFeature_SETTINGS_FLAG">true</entry>
 <entry key="org.netbeans.modules.profiler.v2.features.ObjectsFeature_MODE_FLAG">ProjectClassesMode</entry>
 <entry key="SINGLE_FEATURE">false</entry>
 </properties>

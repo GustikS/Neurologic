@@ -33,7 +33,7 @@ public class NLPtemplates extends NellParser {
 
     public static void main(String[] args) {
         //zoo();
-        createKernelTemplate();
+        createMLNkernelTemplate();
     }
 
     public static void zoo() {
@@ -57,10 +57,10 @@ public class NLPtemplates extends NellParser {
         String queries = nlp.createQueries(vectors, features);
         System.out.println(template);
         System.out.println(queries);
-        
-        String[] groupA = new String[]{"stingray","dogfish"};
+
+        String[] groupA = new String[]{"stingray", "dogfish"};
         String[] groupB = new String[]{"catfish"};
-        
+
         System.out.println(nlp.createMustLinks(groupA, groupB));
     }
 
@@ -129,6 +129,16 @@ public class NLPtemplates extends NellParser {
         return sb.toString();
     }
 
+    public static void createMLNkernelTemplate() {
+        NLPtemplates nlp = new NLPtemplates();
+        ConstantFactory.loadEmbeddings("C:\\Users\\Gusta\\googledrive\\Github\\LRNNoldVersion\\groovytest\\src\\nations\\embeddings\\templates\\creatingEmbeddings\\featsWithRelations\\metacentrum\\relations.csv");
+        System.out.println(nlp.createSimilarity2Elements(ConstantFactory.getEmbeddings()));
+        System.out.println(nlp.createSimilarityKernels());
+        String[] prototypes = TextFileReader.readFile("C:\\Users\\Gusta\\googledrive\\Github\\LRNNoldVersion\\groovytest\\src\\nations\\embeddings\\relations.csv", 1000);
+        System.out.println(nlp.createMLNprotypeTemplate(prototypes));
+        System.out.println(nlp.createMLNgroundRelations(prototypes));
+    }
+
     public static void createKernelTemplate() {
         String[] features = new String[]{"hair", "feathers", "eggs", "milk", "airborne", "aquatic", "predator", "toothed", "backbone", "breathes", "venomous", "fins"};
         String path = "C:\\Users\\Gusta\\googledrive\\Github\\LRNN\\in\\NLP\\animals\\zoo\\zoo.csv";
@@ -141,7 +151,7 @@ public class NLPtemplates extends NellParser {
         String[] prototypes = new String[]{"deer", "sparrow", "honeybee", "cheetah", "octopus", "worm", "herring", "termite"};
 
         NLPtemplates nlp = new NLPtemplates();
-        ConstantFactory.loadEmbeddings("C:\\Users\\Gusta\\googledrive\\Github\\LRNN\\in\\NLP\\animals\\zoo\\embeddings.csv");
+        ConstantFactory.loadEmbeddings("C:\\Users\\Gusta\\googledrive\\Github\\LRNNoldVersion\\in\\NLP\\animals\\zoo\\embeddings.csv");
         System.out.println(nlp.createSimilarity3Elements(ConstantFactory.getEmbeddings()));
         System.out.println(nlp.createSimilarityKernels());
         System.out.println(nlp.createProtypeTemplate3(prototypes, vectors, features));
@@ -187,11 +197,23 @@ public class NLPtemplates extends NellParser {
     public String createSimilarityKernels() {
         StringBuilder sb = new StringBuilder();
         int num = 10;
-        int portion = 2;
+        int portion = 1;
         int a = 0;
         for (int j = -10; j < 10; j = j + portion) {
             sb.append("0.5 similarK(A,B) :- similarKer" + a + "(A,B).\n");
             sb.append("similarKer").append(a++).append("(A,B) :- similarEl(A,B,D), @geq(D,").append(Double.toString(j / 10.0)).append("), @leq(D,").append(Double.toString(1)).append(").\n");
+        }
+        return sb.toString();
+    }
+
+    private String createMLNprotypeTemplate(String[] prototypes) {
+        StringBuilder sb = new StringBuilder();
+
+        for (String prototype : prototypes) {
+            sb.append("1.0 holdsK(S,P,O) :- holdsLr").append(i).append("(S,P,O).\n");
+            sb.append("holdsLr").append(i++).append("(S,P,O) :- similarK(S,").append(prototype).append("),@eq(P,hasFeature),holdsK(").append(prototype).append(",hasFeature,O).\n");
+
+            sb.append("\n");
         }
         return sb.toString();
     }
@@ -268,6 +290,30 @@ public class NLPtemplates extends NellParser {
         sb.append("\n\n");
         sb.append("1.0 holdsK(A,generalizations,C) :- holdsL(A,generalizations,C).\n");
         sb.append("holdsL(A,generalizations,B) :- mustLink(A,X), holdsK(X,generalizations,B).\n");
+        return sb.toString();
+    }
+
+    private String createMLNfeaturePriors(String[] prototypes) {
+        StringBuilder sb = new StringBuilder();
+
+        for (String prototype : prototypes) {
+            sb.append("0.0 holdsK(S,P,O) :- holdsLf").append(i).append("(S,P,O).\n");
+            sb.append("holdsLf").append(i++).append("(S,P,O) :- @eq(P,hasFeature), @eq(O," + prototype + ").\n");
+
+            sb.append("\n");
+        }
+        return sb.toString();
+    }
+
+    private String createMLNgroundRelations(String[] prototypes) {
+        StringBuilder sb = new StringBuilder();
+
+        for (String prototype : prototypes) {
+            sb.append("0.0 holdsK(S,P,O) :- holdsLr").append(i).append("(S,P,O).\n");
+            sb.append("holdsLr").append(i++).append("(S,P,O) :- similarK(S,SS), @eq(P," + prototype + "), similarK(O,OO), factK(SS," + prototype + ",OO).\n");
+
+            sb.append("\n");
+        }
         return sb.toString();
     }
 }

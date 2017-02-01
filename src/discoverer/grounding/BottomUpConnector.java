@@ -16,6 +16,7 @@ import discoverer.construction.template.Kappa;
 import discoverer.construction.template.Lambda;
 import discoverer.construction.template.rules.*;
 import discoverer.construction.template.specialPredicates.SimilarityPredicate;
+import discoverer.global.Global;
 import discoverer.global.Glogger;
 import discoverer.global.Tuple;
 import discoverer.grounding.network.GroundKL;
@@ -38,7 +39,7 @@ import java.util.regex.Pattern;
  */
 public class BottomUpConnector extends Grounder {
 
-    boolean recalculateHerbrand = NLPdataset.predicateInvention;
+    public boolean recalculateHerbrand = NLPdataset.factRules || NLPdataset.selectingFacts;
 
     Map<Literal, GroundKL> herbrandModel;
     Map<Rule, List<List<Literal>>> groundRuleMap;
@@ -50,11 +51,13 @@ public class BottomUpConnector extends Grounder {
     int recursiveLoopCount;
     private LinkedHashMap<Literal, Integer> recursiveLoops;
 
+    boolean recursion = Global.recursion;
+
     Example facts;
 
     //String[] extraRules = new String[]{"similar(X,X)"};
     String[] extraRules = new String[]{};
-    
+
     public GroundKL getGroundLRNN(List<Rule> rules, Example ifacts, String query) {
 
         cache = new HashMap<>();
@@ -134,21 +137,22 @@ public class BottomUpConnector extends Grounder {
     private GroundKL createGroundLRNN(Literal top) {
 
 //        System.out.println(top);
-        int storedRecursiveLoopCount = recursiveLoopCount;
-
         KL kl = TemplateFactory.predicatesByName.get(top.predicate() + "/" + top.arity());
 
-        if (openAtomSet.contains(top)) {
-            Integer recCount = recursiveLoops.get(top);
-            if (recCount == null) {
-                recursiveLoops.put(top, 1);
+        int storedRecursiveLoopCount = recursiveLoopCount;
+        if (recursion) {
+            if (openAtomSet.contains(top)) {
+                Integer recCount = recursiveLoops.get(top);
+                if (recCount == null) {
+                    recursiveLoops.put(top, 1);
+                } else {
+                    recursiveLoops.put(top, recCount + 1);
+                }
+                recursiveLoopCount++;
+                return null;
             } else {
-                recursiveLoops.put(top, recCount + 1);
+                openAtomSet.add(top);
             }
-            recursiveLoopCount++;
-            return null;
-        } else {
-            openAtomSet.add(top);
         }
 
         List<Variable> terms = new ArrayList<>();
@@ -169,11 +173,14 @@ public class BottomUpConnector extends Grounder {
                     gkl = new GroundKappa((Kappa) kl, terms);
                     gkl.setValueAvg(1.0);
                 }
-                openAtomSet.remove(top);
-                Integer removed = recursiveLoops.remove(top);
-                if (removed != null) {
-                    recursiveLoopCount -= removed;
+                if (recursion) {
+                    openAtomSet.remove(top);
+                    Integer removed = recursiveLoops.remove(top);
+                    if (removed != null) {
+                        recursiveLoopCount -= removed;
+                    }
                 }
+
                 herbrandModel.put(top, gkl);
                 return gkl;
             }
@@ -192,7 +199,12 @@ public class BottomUpConnector extends Grounder {
                         GroundLambda solved = (GroundLambda) createGroundLRNN(literal);
                         if (solved != null) {
                             grbodi.add(solved);
-                        } else if (caching && (storedRecursiveLoopCount == recursiveLoopCount && solved == null)) {
+                        }
+                        if (recursion) {
+                            if (storedRecursiveLoopCount == recursiveLoopCount && caching && solved == null) {
+                                cache.put(literal, solved);
+                            }
+                        } else {
                             cache.put(literal, solved);
                         }
                     }
@@ -204,10 +216,12 @@ public class BottomUpConnector extends Grounder {
             if (!allDisjuncts.isEmpty()) {
                 ((GroundKappa) gkl).setDisjunctsAvg(allDisjuncts);
             } else {
-                openAtomSet.remove(top);
-                Integer removed = recursiveLoops.remove(top);
-                if (removed != null) {
-                    recursiveLoopCount -= removed;
+                if (recursion) {
+                    openAtomSet.remove(top);
+                    Integer removed = recursiveLoops.remove(top);
+                    if (removed != null) {
+                        recursiveLoopCount -= removed;
+                    }
                 }
                 return null;
             }
@@ -220,16 +234,21 @@ public class BottomUpConnector extends Grounder {
                     gkl = new GroundLambda((Lambda) kl, terms);
                     gkl.setValueAvg(1.0);
                 }
-                openAtomSet.remove(top);
-                Integer removed = recursiveLoops.remove(top);
-                if (removed != null) {
-                    recursiveLoopCount -= removed;
+                if (recursion) {
+                    openAtomSet.remove(top);
+                    Integer removed = recursiveLoops.remove(top);
+                    if (removed != null) {
+                        recursiveLoopCount -= removed;
+                    }
                 }
+
                 herbrandModel.put(top, gkl);
                 return gkl;
             }
             gkl = new GroundLambda((Lambda) kl, terms);
+
             HashMap<GroundKappa, Integer> allConjuncts = new HashMap<>();
+            List<List<GroundKappa>> groundBodies = new ArrayList<>();
             int count = 0;
             for (Map.Entry<Rule, List<List<Literal>>> ent : rule2Bodies.entrySet()) {   //GroundLambda has just one LambdaRule
                 for (List<Literal> grbody : ent.getValue()) {   //all the ground bodies become flattened in the compressed representation
@@ -242,17 +261,24 @@ public class BottomUpConnector extends Grounder {
                             continue;
                         }
                         GroundKappa solved = (GroundKappa) createGroundLRNN(literal);
+
                         if (solved != null) {
                             body.add(solved);
-                        } else {
+                        }
+                        if (recursion) {
                             if (caching && (storedRecursiveLoopCount == recursiveLoopCount && solved == null)) {
                                 cache.put(literal, solved);
                             }
+                        } else {
+                            cache.put(literal, solved);
+                        }
+                        if (solved == null) {
                             body = null;
                             break;
                         }
                     }
                     if (body != null) {
+                        groundBodies.add(body); //uncompressed version
                         for (GroundKappa gk : body) {
                             Integer get = allConjuncts.get(gk);
                             if (get != null) {
@@ -267,20 +293,28 @@ public class BottomUpConnector extends Grounder {
             if (!allConjuncts.isEmpty()) {
                 ((GroundLambda) gkl).setConjunctsAvg(allConjuncts);
                 ((GroundLambda) gkl).setConjunctsCountForAvg(count);
+                if (Global.uncompressedLambda) {
+                    ((GroundLambda) gkl).fullBodyGroundings = groundBodies;
+                }
             } else {
-                openAtomSet.remove(top);
-                Integer removed = recursiveLoops.remove(top);
-                if (removed != null) {
-                    recursiveLoopCount -= removed;
+                if (recursion) {
+                    openAtomSet.remove(top);
+                    Integer removed = recursiveLoops.remove(top);
+                    if (removed != null) {
+                        recursiveLoopCount -= removed;
+                    }
                 }
                 return null;
             }
         }
-        openAtomSet.remove(top);
-        Integer removed = recursiveLoops.remove(top);
-        if (removed != null) {
-            recursiveLoopCount -= removed;
+        if (recursion) {
+            openAtomSet.remove(top);
+            Integer removed = recursiveLoops.remove(top);
+            if (removed != null) {
+                recursiveLoopCount -= removed;
+            }
         }
+        
         herbrandModel.put(top, gkl);
         return gkl;
     }
@@ -359,6 +393,7 @@ public class BottomUpConnector extends Grounder {
     }
 
     public Map<Literal, GroundKL> getHerbrandModel(List<Clause> irules, Clause groundFacts) {
+        Glogger.info(irules.size() + " : " + groundFacts.countLiterals());
         List<Clause> rules = new ArrayList<>(irules);
         for (Literal l : groundFacts.literals()) {
             rules.add(new Clause(l));
@@ -372,9 +407,7 @@ public class BottomUpConnector extends Grounder {
 //        }
         for (Literal literal : allLiterals) {
             herbrand.put(literal, null);
-//            if (literal.predicate().equals("holdsK")){
-//                System.out.println(literal);
-//            }
+            //     System.out.println(literal);
         }
 
         Glogger.process("Herbrand model created");

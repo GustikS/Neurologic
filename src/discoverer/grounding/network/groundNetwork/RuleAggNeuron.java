@@ -53,6 +53,7 @@ public class RuleAggNeuron extends GroundNeuron {
             //TODO check correctness of the uncompressed version HERE
             for (int j = 0; j < gl.getConjunctsCountForAvg(); j++) {
                 List<GroundKappa> oneBodyGrounding = gl.fullBodyGroundings.get(j);
+                ruleBodyGroundings[j] = new AtomNeuron[oneBodyGrounding.size()];
                 for (int k = 0; k < oneBodyGrounding.size(); k++) {
                     GroundNeuron gn = net.neuronMapping.get(oneBodyGrounding.get(k));
                     if (gn == null) {

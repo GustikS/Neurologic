@@ -16,7 +16,10 @@ public class LearningStep {
     private Double majorityErr;
     private Double dispersion;
     private Double mse;
-    private Double auc;
+    private Double AUCpr;
+    private Double AUCroc;
+    
+    private Double recalculatedThrehError;
 
     double sum100 = 0;
     int count100 = 0;
@@ -114,17 +117,46 @@ public class LearningStep {
     }
 
     /**
-     * @return the auc
+     * @return the AUCpr
      */
-    public Double getAuc() {
-        return auc;
+    public Double getAUCpr() {
+        return AUCpr;
     }
 
     /**
-     * @param auc the auc to set
+     * @param AUCpr the AUCpr to set
      */
-    public void setAuc(Double auc) {
-        this.auc = auc;
+    public void setAUCpr(Double AUCpr) {
+        this.AUCpr = AUCpr;
     }
+
+    /**
+     * @return the AUCroc
+     */
+    public Double getAUCroc() {
+        return AUCroc;
+    }
+
+    /**
+     * @param AUCroc the AUCroc to set
+     */
+    public void setAUCroc(Double AUCroc) {
+        this.AUCroc = AUCroc;
+    }
+
+    /**
+     * @return the recalculatedThrehError
+     */
+    public Double getRecalculatedThrehError() {
+        return recalculatedThrehError;
+    }
+
+    /**
+     * @param recalculatedThrehError the recalculatedThrehError to set
+     */
+    public void setRecalculatedThrehError(Double recalculatedThrehError) {
+        this.recalculatedThrehError = recalculatedThrehError;
+    }
+
 
 }

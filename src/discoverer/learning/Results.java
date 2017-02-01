@@ -197,7 +197,10 @@ public class Results {
                 error += 1.0;
             }
         }
-        actualResult.setError(error / results.size());
+        double testError = error / results.size();
+        computeTrain(); //to also compute dispersion and optimal threshold
+        actualResult.setRecalculatedThrehError(actualResult.getError());
+        actualResult.setError(testError);
     }
 
     void computeMSE() {
@@ -227,18 +230,23 @@ public class Results {
         FileWriter fw = null;
         fw = new FileWriter(new File("auc.txt"));
         for (Result result : results) {
-            fw.write(result.getActual() + " " + (int)result.getExpected() + "\n");
+            fw.write(result.getActual() + " " + (int) result.getExpected() + "\n");
         }
         fw.close();
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         PrintStream orgStream = System.out;
         PrintStream myPrintStream = new PrintStream(baos);
         System.setOut(myPrintStream);
-        AUCCalculator.main(new String[]{"auc.txt","list"});
+        AUCCalculator.main(new String[]{"auc.txt", "list"});
         String toFind = "Area Under the Curve for Precision - Recall is";
         String result = new String(baos.toByteArray(), StandardCharsets.UTF_8);
-        String substring = result.substring(result.indexOf(toFind)+toFind.length(),result.indexOf("\n", result.indexOf(toFind)+toFind.length()));
-        actualResult.setAuc(Double.parseDouble(substring));
+        String substring = result.substring(result.indexOf(toFind) + toFind.length(), result.indexOf("\n", result.indexOf(toFind) + toFind.length()));
+        actualResult.setAUCpr(Double.parseDouble(substring));
+        toFind = "Area Under the Curve for ROC is";
+        result = new String(baos.toByteArray(), StandardCharsets.UTF_8);
+        substring = result.substring(result.indexOf(toFind) + toFind.length(), result.indexOf("\n", result.indexOf(toFind) + toFind.length()));
+        actualResult.setAUCroc(Double.parseDouble(substring));
+
         System.setOut(orgStream);
     }
 

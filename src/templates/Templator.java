@@ -64,19 +64,22 @@ public class Templator extends Convertor {
     //static String in = "in\\ncigi\\examples";
     //static String out = "in\\ncigi\\literals";
     static String[] featuresTemplate = null;    //this can put some default part of template to the end
-    private static boolean growing = true;
+    public static boolean growing = true;
     private static boolean growing2 = true;
+    static boolean kernelTemplate = false;
+
+    static boolean addToNormal = false;
 
     public static void main(String[] args) {
         //template = FileToStringListJava6.convert("C:\\Users\\IBM_ADMIN\\Google Drive\\Neuralogic\\sourcecodes\\gusta\\Neurologic\\in\\genericTemplate.txt", 10000);
 
-        String in = "..\\in\\nci\\gi50_screen_786_0\\examples";
-        String out = "..\\in\\nci\\gi50_screen_786_0\\template";
+        String in = "..\\in\\muta\\examples";
+        String out = "..\\in\\muta\\2chain3";
 
         String[] ex = TextFileReader.readFile(in, 10000);
 
         //createRings(ex, out);
-        createTemplate(ex, out, 3, 5);
+        createTemplate(ex, out, 3, 2);
     }
 
     static ArrayList<String> atomComb = new ArrayList<>();
@@ -109,7 +112,7 @@ public class Templator extends Convertor {
         int lambdas = features.size();
         features.clear();
         for (int i = 0; i < lambdas; i++) {
-            fins.add("0.0 finalKappa(" + bondID + ") :- lambda_" + prefix + i + "(" + bondID + "2).");
+            fins.add("0.0 finalKappa(" + bondID + ") :- lambda_" + prefix + i + "(" + bondID + ").");
         }
         featCount += lambdas;
         return fins;
@@ -336,7 +339,7 @@ public class Templator extends Convertor {
         writeSimple(ringrules, out);
     }
 
-    public static void createTemplate(String[] ex, String out, int from, int to) {
+    public static LinkedHashSet<String> createTemplate(String[] ex, String out, int from, int to) {
 
         makeBaseUniverse(ex, out);
 
@@ -369,6 +372,12 @@ public class Templator extends Convertor {
         }
         rows.addAll(rows2);
         writeOut(rows, out);
+        
+        atomSignatures.clear();
+        bondSignatures.clear();
+        otherSignatures.clear();
+        
+        return rows;
     }
 
     public static ArrayList<String> makeFullFeatures(int from, int to, ArrayList<String> atomrules, ArrayList<String> bondrules, int atomC, int bondC) {
@@ -384,14 +393,16 @@ public class Templator extends Convertor {
             }
             atomClusters = atomC;
 
-            ArrayList<String> atomCl = createKappaClusters(atomrules, atomC, "atom");
-            rows.addAll(atomCl);
+            if (!kernelTemplate || addToNormal) {
+                ArrayList<String> atomCl = createKappaClusters(atomrules, atomC, "atom");
+                rows.addAll(atomCl);
+            }
             if (bondTypes) {
                 ArrayList<String> bondCl = createKappaClusters(bondrules, bondC, "bond");
                 rows.addAll(bondCl);
             }
-            //ArrayList<String> otherClusters = createKappaClusters(otherrules, clusterCount);
 
+            //ArrayList<String> otherClusters = createKappaClusters(otherrules, clusterCount);
             //writeOut(clusters, out + "clusters");
             if (featuresTemplate != null) {
                 for (int j = 0; j < featuresTemplate.length; j++) {
@@ -405,25 +416,27 @@ public class Templator extends Convertor {
         return rows;
     }
 
-    private static ArrayList<String> makeGrowingFeatures(int repeats, int maxSize, ArrayList<String> atomrules, ArrayList<String> bondrules) {
+    public static ArrayList<String> makeGrowingFeatures(int repeats, int maxSize, ArrayList<String> atomrules, ArrayList<String> bondrules) {
         ArrayList<String> rows = new ArrayList<>();
 
         for (int i = 0; i < repeats; i++) {  //chain length
             String preprefix = i + "_";
             for (int j = 1; j <= maxSize; j++) {
-                prefix = preprefix + variables[j-1];
-                
+                prefix = preprefix + variables[j - 1];
+
                 atomClusters = j;
                 bondClusters = j - 1;
 
-                ArrayList<String> atomCl = createKappaClusters(atomrules, atomClusters, "atom");
-                rows.addAll(atomCl);
+                if (!kernelTemplate || addToNormal) {
+                    ArrayList<String> atomCl = createKappaClusters(atomrules, atomClusters, "atom");
+                    rows.addAll(atomCl);
+                }
                 if (bondTypes) {
                     ArrayList<String> bondCl = createKappaClusters(bondrules, bondClusters, "bond");
                     rows.addAll(bondCl);
                 }
-                //ArrayList<String> otherClusters = createKappaClusters(otherrules, clusterCount);
 
+                //ArrayList<String> otherClusters = createKappaClusters(otherrules, clusterCount);
                 //writeOut(clusters, out + "clusters");
                 if (featuresTemplate != null) {
                     for (int k = 0; k < featuresTemplate.length; k++) {
@@ -571,11 +584,11 @@ public class Templator extends Convertor {
             createSignatures(literals);
 
         }
-/*
+        /*
         writeOut(atomSignatures, out + "_atoms");
         writeOut(bondSignatures, out + "_bonds");
         writeOut(otherSignatures, out + "_other");
-*/  
-}
+         */
+    }
 
 }

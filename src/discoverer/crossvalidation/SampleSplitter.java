@@ -51,6 +51,7 @@ public class SampleSplitter implements Serializable {
      */
     public SampleSplitter(int k, List<Sample> ex) {
         numberSamples(ex);
+        Collections.shuffle(ex, Global.getRg()); //omg!!
         folds = new ArrayList<>();
         samples = new ArrayList<>();
         samples.addAll(ex);

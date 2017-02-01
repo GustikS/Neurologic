@@ -36,6 +36,7 @@ import java.io.OutputStreamWriter;
 import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -53,15 +54,17 @@ import java.util.logging.Logger;
  * @author Gusta
  */
 public class NLPtemplate extends LiftedTemplate {
-    
+
     public LinkedHashSet<Rule> commonRules;
     public HashMap<String, HashSet<Rule>> relevantRules;
-    
+
+    public HashMap<String, HashSet<String>> relevantFacts;
+
     public Learning learning = new Learning();
     public Grounder prover;
-    
+
     public Map<String, KL> KLs = new HashMap<>();
-    
+
     boolean clearingCache = true;
 
     /**
@@ -99,23 +102,23 @@ public class NLPtemplate extends LiftedTemplate {
      */
     public GroundedTemplate queryTopDown(KL target, List<Variable> vars, Example facts) {
         prover.example = facts;
-        
+
         if (clearingCache) {
             prover.prepareCache();
         }
         prover.forwardChecker.setupForNewExample(facts);
         SubKL skl = prover.addOpenAtom(target, vars);
         GroundedTemplate answer = target instanceof Kappa ? prover.solveKappaGivenVars((Kappa) target, vars) : prover.solveLambdaGivenVars((Lambda) target, vars);
-        
+
         prover.removeOpenAtom(skl);
-        
+
         prover.forwardChecker.printRuns();
         if (answer == null) {
             Glogger.err("Warning, unentailed query by the template!: ");
             return new GroundedTemplate(Global.getFalseAtomValue());
         }
         answer.constantNames = facts.constantNames;
-        
+
         GroundedTemplate b = answer;
         Set<GroundKL> groundKLs = null;
         if (Global.getGrounding() == Global.groundingSet.avg) {
@@ -128,13 +131,20 @@ public class NLPtemplate extends LiftedTemplate {
 
         return answer;
     }
-    
+
     public GroundedTemplate queryBottomUp(Example facts, String query) {
         List<Rule> relRules = new ArrayList<>(rules);
-        if (NLPdataset.predicateInvention) {
+        Example relFacts = facts;
+        if (NLPdataset.factRules) {
             relRules = selectRelevantRuleSubset(query);
         }
-        GroundKL groundLRNN = ((BottomUpConnector) prover).getGroundLRNN(relRules, facts, query);
+        if (NLPdataset.selectingFacts) {
+            if (relevantFacts == null) {
+                relevantFacts = createRelevantFacts(facts);
+            }
+            relFacts = selectRelevantFactSubset(facts, query);
+        }
+        GroundKL groundLRNN = ((BottomUpConnector) prover).getGroundLRNN(relRules, relFacts, query);
         GroundedTemplate b = new GroundedTemplate();
         b.constantNames = constantNames;
         b.setLast(groundLRNN);
@@ -148,7 +158,7 @@ public class NLPtemplate extends LiftedTemplate {
         b.loadGroundNeurons(groundKLs);   //store all ground L/K in an array for fast and simple operations instead of DFS for each simple pass
         return b;
     }
-    
+
     public void updateWeights(GroundedTemplate proof, double targetVal) {
         Weights newWeights;
         if (Global.getGrounding().equals(Global.groundingSet.avg)) {
@@ -165,7 +175,7 @@ public class NLPtemplate extends LiftedTemplate {
         }
         learning.refreshWeights(newWeights);
     }
-    
+
     public double evaluateProof(GroundedTemplate proof) {
         if (Global.getGrounding().equals(Global.groundingSet.avg)) {
             proof.valAvg = Evaluator.evaluateAvg(proof);  //forward propagation
@@ -175,11 +185,11 @@ public class NLPtemplate extends LiftedTemplate {
             return proof.valMax;
         }
     }
-    
+
     public GroundedTemplate evaluate(Example facts) {
         return prover.groundTemplate(last, facts);
     }
-    
+
     @Override
     public void exportWeightMatrix(String destination) {
         LinkedHashMap<String, LinkedHashMap<String, Double>> weights = new LinkedHashMap<>();
@@ -190,7 +200,7 @@ public class NLPtemplate extends LiftedTemplate {
                 continue;
             }
             KappaRule kr = (KappaRule) rule;
-            
+
             if (kr.getBody().getParent().getRule().getBody().get(0).isElement()) {
                 String row = null;
                 String col = null;
@@ -210,7 +220,7 @@ public class NLPtemplate extends LiftedTemplate {
                 cols.add(col);
             }
         }
-        
+
         BufferedWriter export = null;
         try {
             export = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(weightFolder + destination + "-nlp-weightMatrix.csv"), "utf-8"));
@@ -245,7 +255,7 @@ public class NLPtemplate extends LiftedTemplate {
             }
         }
     }
-    
+
     public void exportValueMatrix(String destination, Collection<GroundKL> cache) {
         LinkedHashMap<String, LinkedHashMap<String, Double>> weights = new LinkedHashMap<>();
         LinkedHashSet<String> cols = new LinkedHashSet<>();
@@ -265,7 +275,7 @@ public class NLPtemplate extends LiftedTemplate {
             }
             String row = constantNames.get(gkl.getTermList()[0]);
             String col = constantNames.get(gkl.getTermList()[2]);
-            
+
             LinkedHashMap<String, Double> getRow = weights.get(row);
             if (getRow == null) {
                 getRow = new LinkedHashMap<>();
@@ -287,7 +297,7 @@ public class NLPtemplate extends LiftedTemplate {
             orderedWeights.put(cls, weights.get(cls));
         }
         orderedWeights.putAll(weights);
-        
+
         for (String col : cols) {
             orderedCols.add(col);
         }
@@ -327,19 +337,22 @@ public class NLPtemplate extends LiftedTemplate {
             }
         }
     }
-    
+
     private List<Rule> selectRelevantRuleSubset(String query) {
         List relRules = new ArrayList();
         String[] parseLiteral = Parser.parseLiteral(query);
         for (int i = 1; i < parseLiteral.length; i++) {
             if (!parseLiteral[i].equals("hasFeature")) {
-                relRules.addAll(relevantRules.get(parseLiteral[i]));
+                HashSet<Rule> get = relevantRules.get(parseLiteral[i]);
+                if (get != null) {
+                    relRules.addAll(get);
+                }
             }
         }
         relRules.addAll(commonRules);
         return relRules;
     }
-    
+
     public HashMap<String, HashSet<Rule>> createRelevantRules(List<Rule> rules) {
         HashMap<String, HashSet<Rule>> kappaConnections = new HashMap<>();
         HashMap<String, HashSet<Rule>> relevantRules = new HashMap<>();
@@ -381,5 +394,45 @@ public class NLPtemplate extends LiftedTemplate {
             }
         });
         return relevantRules;
+    }
+
+    public HashMap<String, HashSet<String>> createRelevantFacts(Example facts) {
+        HashMap<String, HashSet<String>> fcts = new HashMap<>();
+        String[][] parseExample = Parser.parseExample(facts.hash);
+        for (String[] literal : parseExample) {
+            StringBuilder sb = new StringBuilder();
+            sb.append(literal[0].substring(0, literal[0].indexOf("/")) + "(");
+            for (int i = 1; i < literal.length; i++) {
+                sb.append(literal[i] + ",");
+            }
+            sb.replace(sb.length() - 1, sb.length(), ")");
+            for (int i = 1; i < literal.length; i++) {
+                HashSet<String> get = fcts.get(literal[i]);
+                if (get == null) {
+                    get = new HashSet<>();
+                    fcts.put(literal[i], get);
+                }
+                get.add(sb.toString());
+            }
+        }
+        return fcts;
+    }
+
+    private Example selectRelevantFactSubset(Example facts, String query) {
+        StringBuilder sb = new StringBuilder();
+        String[] parseLiteral = Parser.parseLiteral(query);
+        for (int i = 1; i < parseLiteral.length; i++) {
+            if (!parseLiteral[i].equals("hasFeature")) {
+                HashSet<String> get = relevantFacts.get(parseLiteral[i]);
+                if (get != null) {
+                    for (String string : get) {
+                        sb.append(get).append(",");
+                    }
+                }
+            }
+        }
+        sb.replace(sb.length() - 1, sb.length(), ".");
+        facts.hash = sb.toString();
+        return facts;
     }
 }
