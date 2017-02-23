@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/../LRNN/LRNN.iml" filepath="$PROJECT_DIR$/../LRNN/LRNN.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../Logic/Logic.iml" filepath="$PROJECT_DIR$/../Logic/Logic.iml" />
+      <module fileurl="file://$PROJECT_DIR$/StructureLearning.iml" filepath="$PROJECT_DIR$/StructureLearning.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../TreeLiker/TreeLiker.iml" filepath="$PROJECT_DIR$/../TreeLiker/TreeLiker.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../Utils/Utils.iml" filepath="$PROJECT_DIR$/../Utils/Utils.iml" />
+    </modules>
+  </component>
+</project>

@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="logic_src">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../Logic/logic_src.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
