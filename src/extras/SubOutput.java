@@ -1,7 +1,7 @@
 package extras;
 
-import discoverer.construction.template.rules.SubL;
-import discoverer.construction.template.rules.SubK;
+import lrnn.construction.template.rules.SubL;
+import lrnn.construction.template.rules.SubK;
 import java.util.Arrays;
 
 /**

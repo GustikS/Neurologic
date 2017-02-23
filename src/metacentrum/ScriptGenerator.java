@@ -5,19 +5,14 @@
  */
 package metacentrum;
 
-import discoverer.global.Glogger;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStreamWriter;
-import java.io.Writer;
+import lrnn.global.Glogger;
+
+import java.io.*;
 import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
  * @author Gusta
  */
 public class ScriptGenerator {
@@ -25,23 +20,27 @@ public class ScriptGenerator {
     static Writer script;
     static Writer qsub;
 
-    private static final String walltime = "2d";
+    private static String serverPath = "cd /storage/plzen1/home/souregus/neuro_builds/";
+
     //private static final String queue = "-q q_" + walltime + "@wagap.cerit-sc.cz";
     private static final String queue = "";
-    private static final String javaPars = " -XX:+UseSerialGC -XX:NewSize=2000m -Xms4096m -Xmx15g -Djava.util.concurrent.ForkJoinPool.common.parallelism=1 -Daffinity.reserved=1 ";
-    private static final String memory = "16gb";
+
+    private static final String walltime = "4d";
 
     private static final String procesors = "1";
+    private static final String memory = "16gb";
+    private static final String javaPars = " -XX:+UseSerialGC -XX:NewSize=2000m -Xms4096m -Xmx" + memory + " -Djava.util.concurrent.ForkJoinPool.common.parallelism=1 -Daffinity.reserved=1 ";
+
 
     public static String directName;
 
     static String head;
     private static final String metaDir = "../metacentrum";
-    private static String serverPath = "cd /storage/praha1/home/souregus/neuro_builds/";
 
     public static void main(String[] args) {
         try {
-            String common = "-gr avg -ac sig_sig -f 5 -ls 3000 -drawing 0 -alldiff 0 -debug 0 -bug 1 -out ../results/kernel ";
+            //String common = "-gr avg -ac sig_sig -f 5 -ls 3000 -drawing 0 -alldiff 0 -debug 0 -bug 1 -out ../results/kernel ";
+            String common = "";
             LinkedList<String[]> scripts = new LinkedList<>();
             scripts.add(Configurations.datasets);
             //scripts.add(Configurations.templates);
@@ -55,7 +54,7 @@ public class ScriptGenerator {
             //scripts.add(Configurations.groundings);
             //scripts.add(Configurations.cumSteps);
             //scripts.add(Configurations.dropouts);
-            generate("lastJair", "lastJair/kernel", scripts, common);
+            generate("spiNci", "spiNci", scripts, common);
         } catch (IOException ex) {
             Logger.getLogger(ScriptGenerator.class.getName()).log(Level.SEVERE, null, ex);
         }

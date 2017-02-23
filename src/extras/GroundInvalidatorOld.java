@@ -1,10 +1,10 @@
 package extras;
 
-import discoverer.grounding.network.GroundKappa;
-import discoverer.grounding.network.GroundLambda;
-import discoverer.construction.template.rules.KappaRule;
-import discoverer.global.Tuple;
-import discoverer.grounding.evaluation.GroundedTemplate;
+import lrnn.grounding.network.GroundKappa;
+import lrnn.grounding.network.GroundLambda;
+import lrnn.construction.template.rules.KappaRule;
+import lrnn.global.Tuple;
+import lrnn.grounding.evaluation.GroundedTemplate;
 import java.util.HashSet;
 import java.util.Map;
 

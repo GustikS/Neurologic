@@ -5,25 +5,16 @@
  */
 package templates.input;
 
-import discoverer.construction.ConstantFactory;
-import discoverer.construction.TemplateFactory;
-import discoverer.construction.Variable;
-import discoverer.construction.template.KL;
-import discoverer.construction.template.Kappa;
-import discoverer.construction.template.Lambda;
-import discoverer.construction.template.rules.SubKL;
-import discoverer.construction.template.specialPredicates.SimilarityPredicate;
-import discoverer.global.TextFileReader;
-import discoverer.grounding.network.GroundKL;
-import discoverer.grounding.network.GroundKappa;
-import discoverer.grounding.network.GroundLambda;
+import lrnn.construction.ConstantFactory;
+import lrnn.construction.template.specialPredicates.SimilarityPredicate;
+import lrnn.global.TextFileReader;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 /**
  *

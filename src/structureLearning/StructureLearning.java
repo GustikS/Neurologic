@@ -5,24 +5,19 @@
  */
 package structureLearning;
 
-import discoverer.GroundedDataset;
-import discoverer.LiftedDataset;
-import discoverer.Main;
-import discoverer.NeuralDataset;
-import discoverer.construction.template.rules.KappaRule;
-import discoverer.construction.template.rules.Rule;
-import discoverer.construction.template.LiftedTemplate;
-import discoverer.construction.template.LightTemplate;
-import discoverer.crossvalidation.NeuralCrossvalidation;
-import discoverer.crossvalidation.SampleSplitter;
-import discoverer.global.Global;
-import discoverer.global.Glogger;
-import discoverer.global.Settings;
-import discoverer.grounding.evaluation.Evaluator;
-import discoverer.learning.Results;
-import discoverer.learning.Sample;
-import discoverer.learning.learners.LearnerFast;
-import discoverer.learning.learners.LearnerStructured;
+import lrnn.GroundedDataset;
+import lrnn.Main;
+import lrnn.NeuralDataset;
+import lrnn.construction.template.rules.Rule;
+import lrnn.construction.template.LiftedTemplate;
+import lrnn.construction.template.LightTemplate;
+import lrnn.crossvalidation.NeuralCrossvalidation;
+import lrnn.global.Global;
+import lrnn.global.Glogger;
+import lrnn.grounding.evaluation.Evaluator;
+import lrnn.learning.Results;
+import lrnn.learning.Sample;
+import lrnn.learning.learners.LearnerStructured;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -134,7 +129,7 @@ public class StructureLearning {
      * @return - Results object with testing filled
      */
     public Results test(LightTemplate template, List<Sample> samples, Results trainRes) {
-        NeuralCrossvalidation learning = new NeuralCrossvalidation();
+        NeuralCrossvalidation learning = new NeuralCrossvalidation(1);
         Results results = learning.test(template, trainRes, samples);
         return results;
     }

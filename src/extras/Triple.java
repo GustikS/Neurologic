@@ -1,8 +1,8 @@
 package extras;
 
-import discoverer.construction.template.rules.KappaRule;
-import discoverer.grounding.network.GroundLambda;
-import discoverer.grounding.network.GroundKappa;
+import lrnn.construction.template.rules.KappaRule;
+import lrnn.grounding.network.GroundLambda;
+import lrnn.grounding.network.GroundKappa;
 
 public class Triple {
     public final GroundKappa gk;

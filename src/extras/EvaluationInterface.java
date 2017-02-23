@@ -5,13 +5,12 @@
  */
 package extras;
 
-import discoverer.LiftedDataset;
-import discoverer.global.Glogger;
-import discoverer.global.Settings;
-import discoverer.grounding.evaluation.EvaluatorFast;
-import discoverer.learning.Result;
-import discoverer.learning.Results;
-import discoverer.learning.Sample;
+import lrnn.LiftedDataset;
+import lrnn.global.Glogger;
+import lrnn.grounding.evaluation.EvaluatorFast;
+import lrnn.learning.Result;
+import lrnn.learning.Results;
+import lrnn.learning.Sample;
 import java.util.List;
 
 /**

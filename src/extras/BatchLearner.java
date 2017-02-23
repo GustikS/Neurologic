@@ -1,26 +1,5 @@
 package extras;
 
-import discoverer.construction.example.Example;
-import discoverer.construction.template.KL;
-import discoverer.construction.template.Kappa;
-import discoverer.construction.template.MolecularTemplate;
-import discoverer.construction.template.rules.KappaRule;
-import discoverer.global.Global;
-import discoverer.global.Settings;
-import discoverer.grounding.evaluation.GroundedTemplate;
-import discoverer.grounding.Grounder;
-import discoverer.grounding.evaluation.Evaluator;
-import discoverer.learning.Invalidator;
-import discoverer.learning.Result;
-import discoverer.learning.Results;
-import discoverer.learning.Sample;
-import discoverer.learning.Saver;
-import discoverer.learning.Weights;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 /**
  * 
  * @author Gusta

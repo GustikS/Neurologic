@@ -5,8 +5,7 @@
  */
 package templates.input;
 
-import discoverer.global.Global;
-import discoverer.global.TextFileReader;
+import lrnn.global.TextFileReader;
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;

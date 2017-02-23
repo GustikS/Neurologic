@@ -5,9 +5,6 @@
  */
 package extras;
 
-import discoverer.grounding.network.GroundKappa;
-import discoverer.grounding.network.GroundLambda;
-import java.util.List;
 /*
 /**
  * this is cut out from crossvalidation for testing of rings that output max values for LRNN paper

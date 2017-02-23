@@ -1,11 +1,11 @@
 package extras;
 
-import discoverer.construction.template.Kappa;
-import discoverer.construction.template.rules.KappaRule;
-import discoverer.construction.template.Lambda;
-import discoverer.construction.template.rules.SubK;
-import discoverer.construction.example.Example;
-import discoverer.learning.functions.Activations;
+import lrnn.construction.template.Kappa;
+import lrnn.construction.template.rules.KappaRule;
+import lrnn.construction.template.Lambda;
+import lrnn.construction.template.rules.SubK;
+import lrnn.construction.example.Example;
+
 import java.util.WeakHashMap;
 
 /**

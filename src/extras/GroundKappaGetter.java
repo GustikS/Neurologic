@@ -1,12 +1,12 @@
-package discoverer.grounding.evaluation.struct;
+package extras;
 
-import discoverer.grounding.network.GroundKL;
-import discoverer.grounding.network.GroundKappa;
-import discoverer.grounding.network.GroundLambda;
-import discoverer.construction.template.rules.KappaRule;
-import discoverer.global.Tuple;
-import discoverer.grounding.evaluation.GroundedTemplate;
-import java.util.HashSet;
+import lrnn.grounding.network.GroundKL;
+import lrnn.grounding.network.GroundKappa;
+import lrnn.grounding.network.GroundLambda;
+import lrnn.construction.template.rules.KappaRule;
+import lrnn.global.Tuple;
+import lrnn.grounding.evaluation.GroundedTemplate;
+
 import java.util.LinkedHashSet;
 import java.util.Set;
 

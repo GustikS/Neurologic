@@ -5,19 +5,12 @@
  */
 package templates;
 
-import discoverer.construction.ConstantFactory;
-import discoverer.global.TextFileReader;
+import lrnn.global.TextFileReader;
 import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import static templates.Convertor.path;
-import static templates.Templator.makeBaseUniverse;
+
 import templates.input.Similarity;
 
 /**

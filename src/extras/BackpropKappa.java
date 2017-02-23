@@ -1,15 +1,13 @@
 package extras;
 
-import discoverer.grounding.evaluation.GroundedTemplate;
-import discoverer.construction.example.Example;
-import discoverer.grounding.network.GroundKappa;
-import discoverer.grounding.network.GroundLambda;
-import discoverer.construction.template.Kappa;
-import discoverer.construction.template.rules.KappaRule;
-import discoverer.global.Global;
-import discoverer.learning.functions.Activations;
-import discoverer.global.Tuple;
-import discoverer.learning.Weights;
+import lrnn.grounding.evaluation.GroundedTemplate;
+import lrnn.construction.example.Example;
+import lrnn.grounding.network.GroundKappa;
+import lrnn.grounding.network.GroundLambda;
+import lrnn.construction.template.Kappa;
+import lrnn.construction.template.rules.KappaRule;
+import lrnn.global.Tuple;
+import lrnn.learning.Weights;
 import java.util.HashSet;
 import java.util.Set;
 

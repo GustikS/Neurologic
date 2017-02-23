@@ -5,7 +5,7 @@
  */
 package templates;
 
-import discoverer.global.TextFileReader;
+import lrnn.global.TextFileReader;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedHashSet;

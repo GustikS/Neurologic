@@ -1,8 +1,5 @@
 package extras;
 
-import discoverer.construction.template.Kappa;
-import discoverer.construction.template.rules.KappaRule;
-
 /**
  * Experimental!
  * Try to perform RPROP in learning, BAD RESULTS!

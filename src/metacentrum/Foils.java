@@ -5,7 +5,6 @@
  */
 package metacentrum;
 
-import static discoverer.global.AUC.parseAUCfromLog;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -16,13 +15,9 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.io.Writer;
-import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import static metacentrum.ScriptGenerator.head;
-import static metacentrum.ScriptGenerator.qsub;
-import static metacentrum.ScriptGenerator.script;
+
 import templates.Convertor;
 
 /**

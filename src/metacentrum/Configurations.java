@@ -19,7 +19,7 @@ public class Configurations {
     public static String exampleFilename = "examplesGeneral";
 
     //private static final String[] data = new String[]{"ptc/mm", "ptc/mr", "ptc/fm", "ptc/fr"};
-    private static final String[] data = getAllDatasetsFrom("C:\\Users\\Gusta\\googledrive\\Github\\LRNNoldVersion\\in\\jair\\");
+    private static final String[] data = getAllDatasetsFrom("/home/gusta/googledrive/Github/LRNN2.0/in/nci/");
 
     //some prepared parameter-value configurations to choose from if one wants to try out a parameter
     public static String[] folds = new String[]{"-f", "1", "5", "10"};
@@ -42,7 +42,7 @@ public class Configurations {
     public static String[] learnDecay = new String[]{"-lrd", "0", "on"};    //on,number
 
     //datasets
-    public static String[] datasets = setUpDatasets();
+    public static String[] datasets = setUpDatasetsStructureLearning();
     public static String[] templates = new String[]{"-t", "none", "../weights/rules.w"};    //none serves as dummy
 
     public static LinkedList<String> configurations;
@@ -56,11 +56,20 @@ public class Configurations {
         return names;
     }
 
-    public static final String[] setUpDatasets() {
+    public static final String[] setUpDatasetsLRNN() {
         String[] exs = new String[data.length + 1];
         exs[0] = "-e";
         for (int i = 0; i < data.length; i++) {
             exs[i + 1] = dataPath + data[i] + "/" + exampleFilename + " " + "-r " + dataPath + data[i] + "/" + ruleFileName;
+        }
+        return exs;
+    }
+
+    public static final String[] setUpDatasetsStructureLearning() {
+        String[] exs = new String[data.length + 1];
+        exs[0] = "";
+        for (int i = 0; i < data.length; i++) {
+            exs[i + 1] = dataPath + data[i] + "/" + data[i] + ".txt";
         }
         return exs;
     }

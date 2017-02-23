@@ -1,15 +1,12 @@
 package extras;
 
-import discoverer.grounding.evaluation.struct.GroundKappaGetter;
-import discoverer.grounding.evaluation.GroundedTemplate;
-import discoverer.construction.example.Example;
-import discoverer.grounding.network.GroundKappa;
-import discoverer.grounding.network.GroundLambda;
-import discoverer.construction.template.rules.KappaRule;
-import discoverer.global.Global;
-import discoverer.learning.functions.Activations;
-import discoverer.global.Tuple;
-import discoverer.learning.Weights;
+import lrnn.construction.example.Example;
+import lrnn.construction.template.rules.KappaRule;
+import lrnn.global.Tuple;
+import lrnn.grounding.evaluation.GroundedTemplate;
+import lrnn.grounding.network.GroundKappa;
+import lrnn.grounding.network.GroundLambda;
+import lrnn.learning.Weights;
 
 /**
  * active rules from backprop1 replaced with GroundKappaGetter (they are all

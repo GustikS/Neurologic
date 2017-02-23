@@ -5,9 +5,9 @@
  */
 package templates.input;
 
-import discoverer.construction.ConstantFactory;
-import discoverer.construction.template.specialPredicates.SimilarityPredicate;
-import discoverer.global.TextFileReader;
+import lrnn.construction.ConstantFactory;
+import lrnn.construction.template.specialPredicates.SimilarityPredicate;
+import lrnn.global.TextFileReader;
 import java.util.Map;
 
 /**

@@ -1,8 +1,8 @@
 package extras;
 //
-//import discoverer.construction.network.rules.KappaRule;
-//import discoverer.construction.NetworkFactory;
-//import discoverer.grounding.evaluation.Ball;
+//import lrnn.construction.network.rules.KappaRule;
+//import lrnn.construction.NetworkFactory;
+//import lrnn.grounding.evaluation.Ball;
 //
 ///**
 // * Experimetal!
