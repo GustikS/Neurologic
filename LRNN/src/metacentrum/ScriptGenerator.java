@@ -28,14 +28,16 @@ public class ScriptGenerator {
     private static final String walltime = "4d";
 
     private static final String procesors = "1";
-    private static final String memory = "16gb";
-    private static final String javaPars = " -XX:+UseSerialGC -XX:NewSize=2000m -Xms4096m -Xmx" + memory + " -Djava.util.concurrent.ForkJoinPool.common.parallelism=1 -Daffinity.reserved=1 ";
+    private static final String memory = "16g";
+    private static final String javaPars = " -XX:+UseSerialGC -XX:-BackgroundCompilation -XX:NewSize=2000m -Xms4096m -Xmx" + memory + " -Djava.util.concurrent.ForkJoinPool.common.parallelism=1 -Daffinity.reserved=1 ";
 
+    private static String jarName = "StructureLearning.jar";
 
     public static String directName;
 
     static String head;
     private static final String metaDir = "../metacentrum";
+
 
     public static void main(String[] args) {
         try {
@@ -54,7 +56,7 @@ public class ScriptGenerator {
             //scripts.add(Configurations.groundings);
             //scripts.add(Configurations.cumSteps);
             //scripts.add(Configurations.dropouts);
-            generate("spiNci", "spiNci", scripts, common);
+            generate("npi", "npi", scripts, common);
         } catch (IOException ex) {
             Logger.getLogger(ScriptGenerator.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -81,7 +83,7 @@ public class ScriptGenerator {
 
     private static void createScripts(String neuroDir, String scriptDir, LinkedList<String[]> scripts, String common) throws IOException {
         String path = serverPath + neuroDir;
-        head = path + "/dist/ \nmodule add jdk-8 \nexport OMP_NUM_THREADS=" + procesors + " \njava " + javaPars + " -jar neurologic.jar ";
+        head = path + "/dist/ \nmodule add jdk-8 \nexport OMP_NUM_THREADS=" + procesors + " \nsleep 60\njava " + javaPars + " -jar "+jarName+" ";
         qsub = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(metaDir + "/" + scriptDir + "/qsub.sh"), "utf-8"));
 
         LinkedList<String> configurations = Configurations.getConfigurations(scripts);

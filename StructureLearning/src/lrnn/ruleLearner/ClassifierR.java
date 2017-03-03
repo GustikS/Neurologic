@@ -19,6 +19,7 @@ import ida.utils.Sugar;
 import ida.utils.VectorUtils;
 import ida.utils.tuples.Pair;
 import ida.utils.tuples.Triple;
+import lrnn.global.Glogger;
 
 import java.util.*;
 
@@ -84,9 +85,10 @@ public class ClassifierR {
                 unified = rule.unify(query);
             }
             if (unified != null) {
-                final int maxExhaustive = 1000000;
+                final int maxExhaustive = 10000;
                 Pair<Term[], List<Term[]>> substitutions = matching.allSubstitutions(unified, dbIndex, maxExhaustive);
                 if (substitutions.s.size() >= maxExhaustive) {
+                    Glogger.process("searchTreeSampler: fire");
                     Triple<Term[], List<Term[]>, Double> t = matching.searchTreeSampler(unified, dbIndex, sampleSize, sampleStep);
                     substitutions = new Pair<Term[], List<Term[]>>(t.r, t.s);
                 }

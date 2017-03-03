@@ -2,385 +2,385 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8686acc9-2bbf-4fb1-8a19-07e5300e1263" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/grounding/evaluation/Evaluator.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/structureLearning/train" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/structureLearning/StructureLearning.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/templates/input/flow/RealValue.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/private/profiler/settings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/muta.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/gxl2gv.exe" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/../src/templates/input/flow/Flags.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/LRNN/StringTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/extras/Distributions.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/unflatten.exe" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/learning/Result.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/mm2gv.exe" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/template/rules/KappaRule.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/template/rules/LambdaRule.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/structureLearning/templateTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/build-impl.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/electronsNCI.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/templates/Generalizer.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/libgthread-2.0-0.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/strings.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/patchwork.exe" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/libpangocairo-1.0-0.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/extras/Solvator.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/gvplugin_gdiplus.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/private/configs/NLP.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/structureLearning/stats" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/gts.lib" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/template/specialPredicates/SimilarityPredicate.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/learning/Results.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/modelsER/discModel.ucls" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/genfiles.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/templates/input/WebFlowParser.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/examples/Atoms.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Matlab/imgs/finals1.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/templates/input/flow/Flow.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/extras/RingsToxic.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/gvplugin_dot_layout.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../lib/auc.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/getopt.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/zoo1layer.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/learning/functions/ActivationsFast.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/oldTestsFromDiscoverer/DrawTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/NLP.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/extras/EvaluationInterface.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/oldTestsFromDiscoverer/RoundTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/learn_decay.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/grounding/evaluation/EvaluatorFast.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/gvplugin_gd.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/structureLearning/beforeAfter.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/structureLearning/examples2.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/global/Tuple.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/NLP-emb.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/QtGui4.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/libfreetype-6.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/fontconfig_fix.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/MLNnoKernel.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/gvplugin_neato_layout.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/config6" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/nop.exe" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/template/rules/SubK.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/simiarityReasoning.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/fontconfig.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/grounding/network/GroundKappa.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/private/configs/NLP-isa.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/grounding/network/groundNetwork/AtomNeuron.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/metacentrum/Foils.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/jpeg62.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/New Text Document.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/libgmodule-2.0-0.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/crossvalidation/Crossvalidation.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/oldTestsFromDiscoverer/RuleCountTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/templates/input/flow/IP.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/grounding/network/groundNetwork/GroundNeuron.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/learning/backprop/BackpropDown.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/extras/SubOutput.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/template/LightTemplate.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/examples/People.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/global/Glogger.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/football.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/ExampleFactory.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/private/configs/ptcmr-mm.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/drawtest.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/Main.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/mustLinks.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/structureLearning/initTemplate.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/VariableFactory.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/structureLearning/Rdnc0.0-offsets.w" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/template/rules/SubL.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/grounding/ForwardChecker.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/private/configs/flows.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/templates/input/flow/AbstractAttribute.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/librsvg-2-2.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Matlab/imgs/bonds0.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/crossvalidation/NeuralCrossvalidation.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/libgobject-2.0-0.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../dist/README.TXT" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Matlab/imgs/symmetry1.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/templates/input/NellParser.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/grounding/network/groundNetwork/GroundNetwork.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Matlab/displayWeightMatrix.m" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/mutagen.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/example/Combinations.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/libglib-2.0-0.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/Nell.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Matlab/imgs/init0.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/intl.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/fc-list.exe" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/learning/learners/LearnerStructured.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/template/NLPtemplate.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/max.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/private/config.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/template/LiftedTemplate.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/MLNkernelsEvaluation.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/learning/learners/Learning.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Matlab/importLambdaHeaders.m" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/libgdk_pixbuf-2.0-0.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/global/AUC.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/lneato.exe" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/metacentrum/Configurations.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/extras/LearnDecay.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/cdt.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/ltdl.dll" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/../src/extras/GraphViz.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/MLNrelationKernel.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../dist/lib/commons-cli-1.2.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/ccomps.exe" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/oldTestsFromDiscoverer/NetFactoryTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/fc-match.exe" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/serialGC.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Matlab/jair/frompaperMuta.fig" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/config.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/ann.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/flows.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/oldTestsFromDiscoverer/SubKTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/extras/Triple.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/template/specialPredicates/LessOrEqual.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/extras/BatchLearner.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/grounding/Grounder.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../lib/org.json-20120521.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/acyclic.exe" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../lib/commons-cli-1.2.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/TemplateFactory.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/oldTestsFromDiscoverer/ExampleFactoryTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/global/Batch.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/libgdkglext-win32-1.0-0.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/structureLearning/examples.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/templates/input/XSD.xsd" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/extras/GroundKappaGetter.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/libpangoft2-1.0-0.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/grounding/network/GroundLambda.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/private/configs/avg.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/learning/learners/LearnerCheckback.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/private/configs/muta.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/Parser.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/learning/learners/LearnerStandard.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/templates/input/flow/Domain.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/twopi.exe" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/private/private.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/templates/input/flow/Network.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/extras/Rprop.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Matlab/imgs/bonds1.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/zoo2layes.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/extras/SaveLoadTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/ptcmr-mm.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/anselmo.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/prune.exe" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/template/Kappa.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/Variable.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/templates/input/JsonFlowParser.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/templates/input/flow/Bag.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/learning/learners/LearnerFast.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/zoo.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/flowrels.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/template/specialPredicates/SpecialPredicate.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/libpango-1.0-0.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/libxml2.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../dist/lib/BottomUpGrounder.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/LRNN/BackPropAVGTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/learning/LearningStep.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/bcomps.exe" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/learning/functions/Activations.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/template/rules/SubKL.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/gd.tgz" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Matlab/drawSubMatrix.m" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/templates/TreeTemplate.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/Temp.rar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/gvpr.exe" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/animals.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/template/KL.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/gvgen.exe" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/GVedit.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/private/configs/avg-bad.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/iconv.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/Pathplan.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Matlab/imgs/finals0.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/drawing/GroundDotter.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/Element.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/example/Chunks.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/structureLearning/template" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/learning/backprop/BackpropDownAvg.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/libexpat.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/global/TextFileReader.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/oldTestsFromDiscoverer/BackpropTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/GroundedDataset.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/libgdk-win32-2.0-0.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/templates/input/flow/IntValue.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/templates/input/NLPtemplates.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/sccmap.exe" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/fc-cache.exe" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/nationsBatch.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/templates/input/flow/Webflow.java" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/private/configs/football.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/LiftedDataset.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/metacentrum/ScriptGenerator.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/dotty.exe" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/templates/input/StringParser.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/learning/backprop/BackpropStructured.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/gvmap.exe" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/templates/input/Electrons.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/libgio-2.0-0.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/graphml2gv.exe" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../yjp-build.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Matlab/importWeights.m" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/NLPdataset.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/template/specialPredicates/NotEqualPredicate.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/private/configs/drawtest.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/oldTestsFromDiscoverer/ParseRuleTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/extras/FileToStringList.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/template/specialPredicates/GreaterOrEqual.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/libpangowin32-1.0-0.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/MLNkinshipsFull.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/libpng12.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/sig-id.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/ConstantFactory.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/tred.exe" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/libltdl-3.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Matlab/tmp.m" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/oldTestsFromDiscoverer/VariableOrderingTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/grounding/network/groundNetwork/RuleAggNeuron.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/neato.exe" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/glut32.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/learning/learners/LearnerIterative.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/rings.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/MLNkernels.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/grounding/BottomUpConnector.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/NeuralDataset.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/oldTestsFromDiscoverer/ParseExampleTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/gml2gv.exe" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Matlab/imgs/uncompressed.fig" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/MLNnations.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/template/Lambda.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/grounding/evaluation/struct/GroundNetworkParser.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/crossvalidation/SampleSplitter.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/libexpat-1.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/vmalloc.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/extras/BackpropGroundKappa.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/avg.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/gvplugin_pango.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/private/configs/Nell.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/props.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/lefty.exe" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/circo.exe" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/avg-bad.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/libgtkglext-win32-1.0-0.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/zlib1.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/MLNembeddings.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/extras/Estimator.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/template/rules/Rule.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../dist/neurologic.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/libcairo-2.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/libatk-1.0-0.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/smyrna.exe" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/learning/backprop/BackpropFast.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Matlab/jair/frompaperPtcmr.fig" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/mlnNELL.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/nationsOnline.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/grounding/evaluation/struct/Dropout.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/NLP/Recursion.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/templates/input/flow/Protocol.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/oldTestsFromDiscoverer/FileReaderTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/LRNN/SolveEvalAVGTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/gvcolor.exe" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/diffimg.exe" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/NLPnations.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/Graphviz.ini" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Matlab/matrix2embeddings.m" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/template/Kappa.java" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/gvedit.exe" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Matlab/embeddings.m" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/libglade-2.0-0.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/NLP-molekuly.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/gc.exe" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/ptcmr-mr.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/pretrained.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Matlab/importKappaHeaders.m" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/templates/input/Similarity.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../build.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/mingle.exe" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/learning/Sample.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/cgraph.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../loading.xls" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/ElementMapper.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/extras/BackpropKappa.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/oldTestsFromDiscoverer/ExampleSplitterTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/gv2gml.exe" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/libpng14-14.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/grounding/evaluation/GroundedTemplate.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/dijkstra.exe" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/MLNuMLS.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../lib/BottomUpGrounder.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/global/Settings.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/extras/GroundInvalidatorOld.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/private/configs/NLP-emb.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/example/QueryArray.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/extras/InactiveWeightBooster.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/libgtk-win32-2.0-0.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/avg-nci.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/modelsER/discModel.ucls" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/Settings.ini" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/private/configs/avg-nci.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/private/configs/anselmo.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/NLPtrainTest.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/freetype6.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/structureLearning/rules.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/drawing/Dotter.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/private/configs/flowrels.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/fc-cat.exe" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/templates/input/flow/Start.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/learning/Saver.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/structureLearning/export.sh.o1158041" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/oldTestsFromDiscoverer/SolveTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/private/configs/mutagen.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/gts.tgz" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Matlab/test.m" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../manifest.mf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/learning/Weights.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/extras/Invalidator.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/fdp.exe" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/QtCore4.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/project.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Matlab/jair/atomsCompressed.fig" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Matlab/displayProgress.m" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/template/KappaFactory.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/NLP-isa.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/templates/Convertor.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/electrons.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/example/Example.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/gvc.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/structureLearning/test" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/osage.exe" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/sfdp.exe" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/gd.zip" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/template/LambdaFactory.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Matlab/interploation.m" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/example/IntArray.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/templates/Templator.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/templates/input/flow/NumericValuePredicate.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/libfontconfig-1.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/oldTestsFromDiscoverer/SolveAndEvalTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../todos.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/gvplugin_core.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../.gitignore" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/project.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/gvpack.exe" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/yjp-build-impl.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/MLNnationsBatch.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../kernelTemplate" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/fontconfig_fix.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/max.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/libpango-1.0-0.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/grounding/Grounder.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/learning/Weights.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/MLNkinshipsFull.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/libgmodule-2.0-0.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/LiftedDataset.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/rings.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/global/Global.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/vmalloc.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/osage.exe" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/structureLearning/initTemplate.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../Matlab/imgs/symmetry1.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/gml2gv.exe" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/template/rules/Rule.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/gvplugin_dot_layout.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/NLP-isa.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/MLNembeddings.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/prune.exe" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/templates/input/flow/IP.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/neato.exe" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/example/Combinations.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/libpng12.dll" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/../test/structureLearning/randomRules.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/gd.tgz" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/template/KappaFactory.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/template/Lambda.java" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/graphviz_2.38.0-1-saucy_amd64.deb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/zoo1layer.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../dist/lib/BottomUpGrounder.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/Nell.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/grounding/evaluation/GroundedTemplate.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/mutagen.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/ExampleFactory.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/libpng14-14.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/grounding/network/GroundKappa.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/templates/input/flow/AbstractAttribute.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/gv2gml.exe" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/sfdp.exe" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../Matlab/embeddings.m" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/template/rules/SubKL.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/grounding/network/groundNetwork/RuleAggNeuron.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/private/profiler/settings.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/templates/input/Electrons.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/fc-match.exe" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/GVedit.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../loading.xls" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/grounding/evaluation/Evaluator.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/genfiles.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/grounding/BottomUpConnector.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/private/configs/NLP.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/template/LightTemplate.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/acyclic.exe" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/fontconfig.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/twopi.exe" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/gts.tgz" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../lib/org.json-20120521.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/metacentrum/ScriptGenerator.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/gvc.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/football.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/extras/BackpropKappa.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/grounding/evaluation/struct/Dropout.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/crossvalidation/SampleSplitter.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/gvmap.exe" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/libgthread-2.0-0.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/lneato.exe" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/template/rules/LambdaRule.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/gvplugin_neato_layout.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/extras/LearnDecay.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/structureLearning/StructureLearning.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/grounding/ForwardChecker.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/ElementMapper.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/learning/Sample.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/structureLearning/templateTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/oldTestsFromDiscoverer/SubKTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/grounding/evaluation/struct/GroundNetworkParser.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/mm2gv.exe" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/MLNnationsBatch.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/grounding/network/groundNetwork/GroundNetwork.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/private/configs/muta.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/libgdk_pixbuf-2.0-0.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../Matlab/imgs/bonds1.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/grounding/network/GroundLambda.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/template/rules/KappaRule.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../Matlab/tmp.m" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../dist/neurologic.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/zoo2layes.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/learning/backprop/BackpropFast.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/gvpack.exe" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/gvplugin_gd.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/extras/GroundKappaGetter.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/templates/input/flow/Bag.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/extras/FileToStringList.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/gvgen.exe" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/structureLearning/template" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/examples/People.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/learning/learners/LearnerCheckback.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/librsvg-2-2.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../Matlab/imgs/init0.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/templates/input/flow/Network.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/project.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/metacentrum/Foils.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/template/specialPredicates/SpecialPredicate.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/grounding/network/GroundKL.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/fc-cat.exe" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/learning/learners/Learning.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/NLPdataset.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/learning/Results.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/structureLearning/export.sh.o1158041" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/grounding/network/groundNetwork/GroundNeuron.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/electronsNCI.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/learning/backprop/BackpropStructured.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/crossvalidation/NeuralCrossvalidation.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../Matlab/imgs/finals0.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/extras/EvaluationInterface.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/private/configs/ptcmr-mm.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/templates/Generalizer.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/avg-nci.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../lib/auc.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/private/configs/Nell.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/templates/input/flow/Domain.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/private/configs/drawtest.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/libpangoft2-1.0-0.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/build-impl.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../dist/README.TXT" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/learning/backprop/BackpropDown.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/learning/learners/LearnerStructured.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/templates/input/NellParser.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/simiarityReasoning.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/Temp.rar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/NLP.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/ccomps.exe" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/libexpat-1.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/libglade-2.0-0.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/extras/Estimator.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/example/Chunks.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/template/rules/SubK.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/gvpr.exe" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/templates/input/flow/RealValue.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/tred.exe" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../lib/commons-cli-1.2.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/libxml2.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/libgdk-win32-2.0-0.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/Variable.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/private/configs/flows.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/jpeg62.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/oldTestsFromDiscoverer/NetFactoryTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/libpangocairo-1.0-0.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/QtGui4.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/structureLearning/train" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/oldTestsFromDiscoverer/ParseRuleTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/learning/learners/LearnerIterative.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/grounding/evaluation/EvaluatorFast.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../Matlab/importWeights.m" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/global/Settings.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/drawing/GroundDotter.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/example/IntArray.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/MLNkernelsEvaluation.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/libcairo-2.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/extras/RingsToxic.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/animals.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/mustLinks.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/diffimg.exe" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/structureLearning/Rdnc0.0-offsets.w" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../build.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/private/configs/avg-nci.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/ConstantFactory.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/electrons.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/template/specialPredicates/GreaterOrEqual.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/graphml2gv.exe" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/gxl2gv.exe" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/bcomps.exe" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/private/configs/mutagen.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/template/specialPredicates/NotEqualPredicate.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/oldTestsFromDiscoverer/GroundDrawTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/MLNnations.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/NLP-emb.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/ltdl.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/unflatten.exe" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../Matlab/test.m" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/glut32.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/global/TextFileReader.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/learning/Result.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../dist/lib/commons-cli-1.2.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/libgtkglext-win32-1.0-0.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/extras/InactiveWeightBooster.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/mingle.exe" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../Matlab/interploation.m" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/gvplugin_core.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/extras/SaveLoadTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../Matlab/drawSubMatrix.m" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/patchwork.exe" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/libfreetype-6.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/gvplugin_pango.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/New Text Document.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/serialGC.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/NLPnations.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../Matlab/importLambdaHeaders.m" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/oldTestsFromDiscoverer/SolveAndEvalTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/dijkstra.exe" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/templates/input/flow/Start.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/private/config.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/global/Batch.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/private/configs/avg.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/oldTestsFromDiscoverer/ExampleFactoryTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/structureLearning/examples.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/extras/Rprop.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/GroundedDataset.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../Matlab/imgs/finals1.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/drawtest.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/libpangowin32-1.0-0.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/template/LiftedTemplate.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/templates/Convertor.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/sig-id.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/avg.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/oldTestsFromDiscoverer/DrawTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/config.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/libgio-2.0-0.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/LRNN/BackPropAVGTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../.gitignore" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/private/private.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/smyrna.exe" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/metacentrum/Configurations.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../Matlab/jair/frompaperMuta.fig" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/template/LambdaFactory.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/nop.exe" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/private/configs/anselmo.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/templates/input/WebFlowParser.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/gvplugin_gdiplus.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/NLP/Recursion.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/QtCore4.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/templates/input/JsonFlowParser.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/dot.exe" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/example/Example.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/learn_decay.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/NLP-molekuly.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/ptcmr-mm.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/Pathplan.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/MLNuMLS.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../todos.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/libgdkglext-win32-1.0-0.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/grounding/network/groundNetwork/AtomNeuron.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/templates/input/Similarity.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/extras/SubOutput.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/global/Tuple.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/TemplateFactory.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/libgobject-2.0-0.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/NeuralDataset.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/templates/input/flow/Protocol.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/private/configs/avg-bad.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../yjp-build.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/templates/input/flow/Webflow.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/gvcolor.exe" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/intl.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../lib/BottomUpGrounder.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/templates/input/flow/Flow.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/libatk-1.0-0.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/fc-list.exe" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/yjp-build-impl.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/learning/functions/ActivationsFast.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/Element.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/structureLearning/examples2.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../Matlab/displayProgress.m" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/crossvalidation/Crossvalidation.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/oldTestsFromDiscoverer/SolveTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/oldTestsFromDiscoverer/ParseExampleTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/extras/Invalidator.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/flowrels.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/nationsBatch.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/ann.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/learning/functions/Activations.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../Matlab/matrix2embeddings.m" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/learning/learners/LearnerFast.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/template/specialPredicates/LessOrEqual.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/private/configs/flowrels.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/global/Glogger.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/gts.lib" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/exparse.h" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/template/WeightInitializator.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/pretrained.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../Matlab/imgs/uncompressed.fig" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/project.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/learning/backprop/BackpropDownAvg.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/extras/BatchLearner.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/LRNN/StringTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/private/configs/max.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/sccmap.exe" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/learning/Saver.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../manifest.mf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/structureLearning/beforeAfter.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/config6" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/Graphviz.ini" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/gc.exe" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/libltdl-3.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/LRNN/SolveEvalAVGTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/flows.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/templates/input/StringParser.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/oldTestsFromDiscoverer/BackpropTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/structureLearning/test" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/structureLearning/rules.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/private/private.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/templates/input/XSD.xsd" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/template/rules/SubL.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/extras/Solvator.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/ptcmr-mr.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/NLPtrainTest.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../Matlab/importKappaHeaders.m" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/getopt.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/examples/Atoms.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/MLNkernels.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/anselmo.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/template/specialPredicates/SimilarityPredicate.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../Matlab/displayWeightMatrix.m" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/extras/Triple.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/drawing/Dotter.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/libgtk-win32-2.0-0.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/template/KL.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/template/NLPtemplate.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/template/MolecularTemplate.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/dotty.exe" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/lefty.exe" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../Matlab/jair/atomsCompressed.fig" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/private/configs/NLP-emb.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/VariableFactory.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/private/configs/NLP-isa.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/zoo.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/templates/input/flow/IntValue.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/oldTestsFromDiscoverer/RoundTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/MLNnoKernel.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/muta.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/nationsOnline.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/MLNrelationKernel.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/libexpat.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/learning/LearningStep.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/templates/input/flow/NumericValuePredicate.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/iconv.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/extras/BackpropGroundKappa.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/extras/Distributions.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/global/AUC.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/example/QueryArray.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/extras/GroundInvalidatorOld.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../Matlab/imgs/bonds0.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/fc-cache.exe" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/oldTestsFromDiscoverer/VariableOrderingTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/avg-bad.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/templates/TreeTemplate.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/zlib1.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/structureLearning/stats" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../Matlab/jair/frompaperPtcmr.fig" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/Parser.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/oldTestsFromDiscoverer/RuleCountTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/libfontconfig-1.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/props.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../kernelTemplate" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/fdp.exe" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/templates/input/NLPtemplates.java" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/MLNkinships.properties" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/../test/structureLearning/Rdnc0.0-rules.w" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/template/MolecularTemplate.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/grounding/network/GroundKL.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/private/configs/max.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/oldTestsFromDiscoverer/GroundDrawTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/dot.exe" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/global/Global.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/exparse.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/oldTestsFromDiscoverer/FileReaderTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/cdt.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/cgraph.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/oldTestsFromDiscoverer/ExampleSplitterTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/libglib-2.0-0.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/learning/learners/LearnerStandard.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/strings.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/Main.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/circo.exe" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/freetype6.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/templates/Templator.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/mlnNELL.properties" afterPath="" />
     </list>
     <ignored path="RuleLearner.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -405,32 +405,25 @@
       <file leaf-file-name="SoftClusteringSPI.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/lrnn/ruleLearner/SoftClusteringSPI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="990">
-              <caret line="55" column="0" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
+            <state relative-caret-position="128">
+              <caret line="72" column="0" selection-start-line="72" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
               <folding>
-                <element signature="e#0#26398#0" expanded="true" />
+                <element signature="e#0#27390#0" expanded="true" />
                 <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/../LRNN/src/lrnn/Main.java">
+      <file leaf-file-name="SymmetrySaturator.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/lrnn/ruleLearner/SymmetrySaturator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="20" column="6" selection-start-line="20" selection-start-column="6" selection-end-line="20" selection-end-column="6" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ValueToIndex.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../Utils/src/ida/utils/collections/ValueToIndex.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="666">
-              <caret line="52" column="9" selection-start-line="52" selection-start-column="9" selection-end-line="52" selection-end-column="9" />
-              <folding />
+            <state relative-caret-position="162">
+              <caret line="26" column="13" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
+              <folding>
+                <element signature="e#0#3693#0" expanded="false" />
+                <element signature="imports" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -438,8 +431,8 @@
       <file leaf-file-name="Debug.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/lrnn/ruleLearner/Debug.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="594">
-              <caret line="41" column="50" selection-start-line="41" selection-start-column="50" selection-end-line="41" selection-end-column="50" />
+            <state relative-caret-position="650">
+              <caret line="50" column="1" selection-start-line="50" selection-start-column="1" selection-end-line="50" selection-end-column="1" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -447,15 +440,22 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ScriptGenerator.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/lrnn/ruleLearner/Main.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="288">
+              <caret line="95" column="0" selection-start-line="95" selection-start-column="0" selection-end-line="95" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ScriptGenerator.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/../LRNN/src/metacentrum/ScriptGenerator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="522">
-              <caret line="38" column="0" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#4216#0" expanded="false" />
-                <element signature="imports" expanded="false" />
-              </folding>
+            <state relative-caret-position="324">
+              <caret line="30" column="45" selection-start-line="30" selection-start-column="45" selection-end-line="30" selection-end-column="45" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -463,12 +463,9 @@
       <file leaf-file-name="Configurations.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../LRNN/src/metacentrum/Configurations.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1188">
+            <state relative-caret-position="520">
               <caret line="71" column="67" selection-start-line="71" selection-start-column="67" selection-end-line="71" selection-end-column="67" />
-              <folding>
-                <element signature="e#0#4149#0" expanded="false" />
-                <element signature="imports" expanded="false" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -476,7 +473,7 @@
       <file leaf-file-name="Templator.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../LRNN/src/templates/Templator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
+            <state relative-caret-position="-666">
               <caret line="34" column="13" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="13" />
               <folding />
             </state>
@@ -486,8 +483,18 @@
       <file leaf-file-name="Convertor.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../LRNN/src/templates/Convertor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="46" column="50" selection-start-line="46" selection-start-column="8" selection-end-line="46" selection-end-column="50" />
+            <state relative-caret-position="144">
+              <caret line="38" column="56" selection-start-line="38" selection-start-column="56" selection-end-line="38" selection-end-column="56" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SimpleLearner.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/lrnn/ruleLearner/SimpleLearner.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="414">
+              <caret line="184" column="9" selection-start-line="184" selection-start-column="9" selection-end-line="184" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -496,20 +503,8 @@
       <file leaf-file-name="ClassifierR.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/lrnn/ruleLearner/ClassifierR.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="972">
-              <caret line="70" column="0" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#5824#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SimpleLearner.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/lrnn/ruleLearner/SimpleLearner.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1026">
-              <caret line="77" column="44" selection-start-line="77" selection-start-column="44" selection-end-line="77" selection-end-column="44" />
+            <state relative-caret-position="259">
+              <caret line="90" column="63" selection-start-line="90" selection-start-column="63" selection-end-line="90" selection-end-column="63" />
               <folding />
             </state>
           </provider>
@@ -593,12 +588,12 @@
         <option value="$PROJECT_DIR$/../LRNN/src/lrnn/learning/learners/LearnerIterative.java" />
         <option value="$PROJECT_DIR$/../LRNN/src/lrnn/learning/Invalidator.java" />
         <option value="$PROJECT_DIR$/../LRNN/src/lrnn/learning/learners/LearnerCheckback.java" />
-        <option value="$PROJECT_DIR$/src/lrnn/ruleLearner/ClassifierR.java" />
-        <option value="$PROJECT_DIR$/src/lrnn/ruleLearner/Debug.java" />
         <option value="$PROJECT_DIR$/../LRNN/src/metacentrum/Configurations.java" />
-        <option value="$PROJECT_DIR$/../LRNN/src/metacentrum/ScriptGenerator.java" />
-        <option value="$PROJECT_DIR$/src/lrnn/ruleLearner/SoftClusteringSPI.java" />
         <option value="$PROJECT_DIR$/../LRNN/src/lrnn/Main.java" />
+        <option value="$PROJECT_DIR$/src/lrnn/ruleLearner/Debug.java" />
+        <option value="$PROJECT_DIR$/src/lrnn/ruleLearner/ClassifierR.java" />
+        <option value="$PROJECT_DIR$/src/lrnn/ruleLearner/SoftClusteringSPI.java" />
+        <option value="$PROJECT_DIR$/../LRNN/src/metacentrum/ScriptGenerator.java" />
       </list>
     </option>
   </component>
@@ -675,40 +670,10 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RuleLearner" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RuleLearner" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="StructureLearning" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RuleLearner" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="StructureLearning" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lrnn.ruleLearner" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
+      <pane id="ProjectPane">
+        <subPane />
       </pane>
+      <pane id="Scratches" />
       <pane id="Scope">
         <subPane subId="Production">
           <PATH>
@@ -764,9 +729,77 @@
         </subPane>
         <subPane subId="Tests" />
       </pane>
-      <pane id="Scratches" />
-      <pane id="ProjectPane">
-        <subPane />
+      <pane id="PackagesPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="RuleLearner" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="RuleLearner" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="StructureLearning" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="RuleLearner" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="StructureLearning" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="lrnn.ruleLearner" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="RuleLearner" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="LRNN" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="RuleLearner" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="LRNN" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="templates" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="RuleLearner" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="LRNN" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="metacentrum" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
       </pane>
     </panes>
   </component>
@@ -781,7 +814,7 @@
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../LRNN" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
     <property name="recentsLimit" value="5" />
     <property name="dynamic.classpath" value="false" />
     <property name="OverrideImplement.combined" value="true" />
@@ -791,13 +824,13 @@
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.General" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="js-jscs-nodeInterpreter" value="$USER_HOME$/.nvm/versions/node/v5.6.0/bin/node" />
-    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.last.edited" value="Problems" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="extract.method.default.visibility" value="private" />
     <property name="SearchEverywhereHistoryKey" value="connected&#9;PSI&#9;JAVA://lrnn.ruleLearner.SimpleLearner#connected&#10;clause representation created&#9;null&#9;null&#10;Collections.shuffle&#9;null&#9;null&#10;sublist&#9;PSI&#9;JAVA://java.util.SubList" />
   </component>
-  <component name="RunManager" selected="Application.StructureLearning_Main_786">
+  <component name="RunManager" selected="Application.ScriptGenerator">
     <configuration default="false" name="SoftClusteringSPI" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -858,15 +891,6 @@
       <envs />
       <method />
     </configuration>
-    <configuration default="false" name="initBondTriples" type="GroovyScriptRunConfiguration" factoryName="Groovy" temporary="true">
-      <module name="StructureLearning" />
-      <setting name="path" value="file://$PROJECT_DIR$/src/templates/initBondTriples.groovy" />
-      <setting name="vmparams" value="" />
-      <setting name="params" value="" />
-      <setting name="workDir" value="file://$PROJECT_DIR$/src/templates" />
-      <setting name="debug" value="false" />
-      <method />
-    </configuration>
     <configuration default="false" name="ScriptGenerator" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -885,6 +909,15 @@
       <option name="PASS_PARENT_ENVS" value="true" />
       <module name="LRNN" />
       <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="initBondTriples" type="GroovyScriptRunConfiguration" factoryName="Groovy" temporary="true">
+      <module name="StructureLearning" />
+      <setting name="path" value="file://$PROJECT_DIR$/src/templates/initBondTriples.groovy" />
+      <setting name="vmparams" value="" />
+      <setting name="params" value="" />
+      <setting name="workDir" value="file://$PROJECT_DIR$/src/templates" />
+      <setting name="debug" value="false" />
       <method />
     </configuration>
     <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
@@ -1383,7 +1416,7 @@
       </extension>
       <option name="MAIN_CLASS_NAME" value="lrnn.ruleLearner.SoftClusteringSPI" />
       <option name="VM_PARAMETERS" value="" />
-      <option name="PROGRAM_PARAMETERS" value="../in/ptcmr/ptc_mr.txt" />
+      <option name="PROGRAM_PARAMETERS" value="../in/ptcfr/ptc_fr.txt" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
@@ -1443,8 +1476,8 @@
       <item index="6" class="java.lang.String" itemvalue="Application.SoftClusteringSPI" />
       <item index="7" class="java.lang.String" itemvalue="Application.Main" />
       <item index="8" class="java.lang.String" itemvalue="Application.Debug" />
-      <item index="9" class="java.lang.String" itemvalue="Groovy.initBondTriples" />
-      <item index="10" class="java.lang.String" itemvalue="Application.ScriptGenerator" />
+      <item index="9" class="java.lang.String" itemvalue="Application.ScriptGenerator" />
+      <item index="10" class="java.lang.String" itemvalue="Groovy.initBondTriples" />
     </list>
     <recent_temporary>
       <list size="5">
@@ -1503,11 +1536,15 @@
       <workItem from="1487765598167" duration="9604000" />
       <workItem from="1487876190321" duration="12000" />
       <workItem from="1487876509184" duration="714000" />
+      <workItem from="1487880195938" duration="2952000" />
+      <workItem from="1488202426090" duration="15862000" />
+      <workItem from="1488309078581" duration="928000" />
+      <workItem from="1488452767148" duration="11305000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="282122000" />
+    <option name="totallyTimeSpent" value="313169000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1520,16 +1557,17 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="0" width="1922" height="1053" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32939914" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32725322" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32984293" sideWeight="0.5" order="13" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34334764" sideWeight="0.50213444" order="13" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32832617" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" x="23" y="390" width="1874" height="273" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32975295" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.34334764" sideWeight="0.49786553" order="2" side_tool="false" content_ui="tabs" x="23" y="390" width="1874" height="273" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32939914" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -1547,7 +1585,6 @@
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32984293" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32725322" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32939914" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
@@ -1592,33 +1629,15 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/lrnn/ruleLearner/ClassifierR.java</url>
-          <line>89</line>
+          <line>91</line>
           <properties />
           <option name="timeStamp" value="145" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/lrnn/ruleLearner/SoftClusteringSPI.java</url>
-          <line>417</line>
-          <properties />
-          <option name="timeStamp" value="152" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/lrnn/ruleLearner/SoftClusteringSPI.java</url>
-          <line>188</line>
-          <properties />
-          <option name="timeStamp" value="157" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/lrnn/ruleLearner/Debug.java</url>
-          <line>41</line>
-          <properties />
-          <option name="timeStamp" value="158" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="159" />
+      <option name="time" value="166" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1845,13 +1864,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/lrnn/ruleLearner/SymmetrySaturator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="666">
-          <caret line="54" column="44" selection-start-line="54" selection-start-column="44" selection-end-line="54" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/lrnn/ruleLearner/Saturator.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
@@ -1863,17 +1875,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="558">
           <caret line="48" column="0" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#1882#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/lrnn/ruleLearner/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1422">
-          <caret line="95" column="0" selection-start-line="95" selection-start-column="0" selection-end-line="95" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1933,53 +1934,64 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/lrnn/ruleLearner/ClassifierR.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="972">
-          <caret line="70" column="0" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#5824#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../Utils/src/ida/utils/collections/ValueToIndex.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="666">
           <caret line="52" column="9" selection-start-line="52" selection-start-column="9" selection-end-line="52" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../LRNN/src/lrnn/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lrnn/ruleLearner/SymmetrySaturator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="26" column="13" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
+          <folding>
+            <element signature="e#0#3693#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lrnn/ruleLearner/ClassifierR.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="259">
+          <caret line="90" column="63" selection-start-line="90" selection-start-column="63" selection-end-line="90" selection-end-column="63" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/lrnn/ruleLearner/SimpleLearner.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1026">
-          <caret line="77" column="44" selection-start-line="77" selection-start-column="44" selection-end-line="77" selection-end-column="44" />
+        <state relative-caret-position="414">
+          <caret line="184" column="9" selection-start-line="184" selection-start-column="9" selection-end-line="184" selection-end-column="9" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../LRNN/src/templates/Templator.java">
+    <entry file="file://$PROJECT_DIR$/src/lrnn/ruleLearner/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="34" column="13" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="13" />
+        <state relative-caret-position="288">
+          <caret line="95" column="0" selection-start-line="95" selection-start-column="0" selection-end-line="95" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../LRNN/src/templates/Convertor.java">
+    <entry file="file://$PROJECT_DIR$/src/lrnn/ruleLearner/SoftClusteringSPI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="46" column="50" selection-start-line="46" selection-start-column="8" selection-end-line="46" selection-end-column="50" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/lrnn/ruleLearner/Debug.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="594">
-          <caret line="41" column="50" selection-start-line="41" selection-start-column="50" selection-end-line="41" selection-end-column="50" />
+        <state relative-caret-position="128">
+          <caret line="72" column="0" selection-start-line="72" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
           <folding>
+            <element signature="e#0#27390#0" expanded="true" />
             <element signature="imports" expanded="true" />
           </folding>
         </state>
@@ -1987,41 +1999,42 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/../LRNN/src/metacentrum/Configurations.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1188">
+        <state relative-caret-position="520">
           <caret line="71" column="67" selection-start-line="71" selection-start-column="67" selection-end-line="71" selection-end-column="67" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../LRNN/src/templates/Convertor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="38" column="56" selection-start-line="38" selection-start-column="56" selection-end-line="38" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../LRNN/src/templates/Templator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-666">
+          <caret line="34" column="13" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lrnn/ruleLearner/Debug.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="650">
+          <caret line="50" column="1" selection-start-line="50" selection-start-column="1" selection-end-line="50" selection-end-column="1" />
           <folding>
-            <element signature="e#0#4149#0" expanded="false" />
-            <element signature="imports" expanded="false" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../LRNN/src/metacentrum/ScriptGenerator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="522">
-          <caret line="38" column="0" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#4216#0" expanded="false" />
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/lrnn/ruleLearner/SoftClusteringSPI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="990">
-          <caret line="55" column="0" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#26398#0" expanded="true" />
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../LRNN/src/lrnn/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="20" column="6" selection-start-line="20" selection-start-column="6" selection-end-line="20" selection-end-column="6" />
+        <state relative-caret-position="324">
+          <caret line="30" column="45" selection-start-line="30" selection-start-column="45" selection-end-line="30" selection-end-column="45" />
           <folding />
         </state>
       </provider>

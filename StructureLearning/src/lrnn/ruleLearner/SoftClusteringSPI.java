@@ -48,21 +48,22 @@ public class SoftClusteringSPI {
 
     private boolean parallelCrossval = false;   //not working yet! (but with parallel grounding and learning within LRNNs turned on it should run just as fast)
 
-    private int searchBeamSize = 40;
-    private int searchMaxSize = 5;
+    private int searchBeamSize = 20;
+    private int searchMaxSize = 6;
 
-    private int autoencodingSteps = 3000;
+    private int autoencodingSteps = 1000;
     private int trainingSteps = 2000;
 
-    private boolean reinitializeWeightsWithinSPIcycle = false;
+    private boolean reinitializeAllWeightsWithinSPIcycle = false;
+    private boolean reinitializeFinalWeightsWithinSPIcycle = true;
 
     private int atomClusters = 3;
-    private int bondClusters = 2;
+    private int bondClusters = 3;
 
     private int maxSpiCycles = 10;
-    private double minMissedExamples4rule = 10;
+    private double minMissedExamples4ruleLearning = 1;
 
-    private boolean alternating = true;
+    private boolean alternatingClasses = true;
     //----------------------------
 
     private String atomClusterName = "atc";
@@ -72,6 +73,7 @@ public class SoftClusteringSPI {
 
     private int bondId = 0; //this needs to be global i.e. unique id for each bond within the whole dataset!
     ValueToIndex<Pair<String, String>> bondIDs = new ValueToIndex();
+    private double subsampleTripleRules = 1;
 
     public static void main(String[] args) throws IOException {
 
@@ -181,29 +183,30 @@ public class SoftClusteringSPI {
         int iter = 0;
         Pair<Results, String> learningResults = null;
         Set<HornClause> previousClauses = new LinkedHashSet<>();
+        String templPath = "";
         while (true) {
             sl.setDataset(dataset);
             sl.setLanguageBias(dataset.allPredicates());
             sl.setLiteralWeights(clusterValues);
 
-            Quadruple<HornClause, Double, Integer, Double> hornClause = sl.beamSearch(searchBeamSize, searchMaxSize, alternating ? 2 * (iter % 2) - 1 : 0);
+            Quadruple<HornClause, Double, Integer, Double> hornClause = sl.beamSearch(searchBeamSize, searchMaxSize, alternatingClasses ? 2 * (iter % 2) - 1 : 0);
             Glogger.process("Iteration: " + iter + " -> best found weighted horn clause classifier: " + hornClause);
             if (!previousClauses.add(hornClause.r)) break;
 
             template.append(templatePartFromClause(hornClause, iter));
-            String templPath = datasetPath.substring(0, datasetPath.lastIndexOf(".")) + "_template_cycle" + iter + ".txt";
+            templPath = datasetPath.substring(0, datasetPath.lastIndexOf(".")) + "_template_cycle" + iter + ".txt";
             Files.write(Paths.get(templPath), template.toString().getBytes());
 
             learningResults = trainLRNNtemplate(examplesOutPath, templPath, trainingSteps);
-            if (!reinitializeWeightsWithinSPIcycle) {   //reuse previously learned weights?
+            if (!reinitializeAllWeightsWithinSPIcycle) {   //reuse previously learned weights?
                 template = mergeTemplates(template.toString(), new String(Files.readAllBytes(Paths.get(learningResults.s))));
             }
             if (iter >= maxSpiCycles) break;
 
-            Pair<List<Clause>, List<Double>> subset = getMisclassifiedSubset(alternating ? hornClause.t : 0, learningResults.r, reinventedExamples.r, data.r);
-            Glogger.process("Iteration: " + iter + " after weight learning - " + (alternating ? hornClause.t == 1 ? " Number of TN + FN: " : " - Number of TP + FP: " : " Numer of all: ") + subset.s.size() + " examples");
+            Pair<List<Clause>, List<Double>> subset = getMisclassifiedSubset(alternatingClasses ? -1 * hornClause.t : 0, learningResults.r, reinventedExamples.r, data.r);  //-1* = we want the next one
+            Glogger.process("Iteration: " + iter + " after weight learning - " + (alternatingClasses ? hornClause.t == 1 ? " Number of TN + FN: " : " - Number of TP + FP: " : " Numer of all: ") + subset.s.size() + " examples");
             dataset = new MultiExampleDataset(subset.r, subset.s);
-            if (subset.r.size() < minMissedExamples4rule) break;
+            if (subset.r.size() < minMissedExamples4ruleLearning) break;
 
             Pair<Map<String, Double>, Map<String, Map<String, Double>>> newWeightMapping = extractWeightMappingFromTemplate(learningResults.s);
             weightMapping.r.putAll(newWeightMapping.r);   //update all changed offsets if any
@@ -213,6 +216,7 @@ public class SoftClusteringSPI {
             clusterValues = transformToWeightedClusters(data.t, weightMapping).s;
             iter++;
         }
+        learningResults = trainLRNNtemplate(examplesOutPath, templPath, 3 * trainingSteps);
         Glogger.process("...Finished SPI cycle!");
         return learningResults;
     }
@@ -233,8 +237,13 @@ public class SoftClusteringSPI {
                     } else merged.put(split[0].trim(), split[1].trim());
                 } else if (weight.matches("-?\\d+([.,]\\d+)?")) {   //kappa
                     if (i > 0) {
-                        if (merged.containsKey(s.substring(s.indexOf(" ")).trim()))
+                        if (merged.containsKey(s.substring(s.indexOf(" ")).trim())) {
+                            if (reinitializeFinalWeightsWithinSPIcycle && s.contains("finalLambda")) {
+                                double v = Double.parseDouble(weight);
+                                weight = v / Math.abs(v) + "";
+                            }
                             merged.put(s.substring(s.indexOf(" ")).trim(), weight + " ");
+                        }
                     } else merged.put(s.substring(s.indexOf(" ")).trim(), weight + " ");
                 } else {    //lambda
                     if (i > 0) {
@@ -327,6 +336,11 @@ public class SoftClusteringSPI {
         List<Clause> clauses = new ArrayList<>();
         List<Double> targets = new ArrayList<>();
         int i = 0;
+        int tp = 0;
+        int tn = 0;
+        int fp = 0;
+        int fn = 0;
+
         for (Result res : r.results) {
             if (origTargets.get(i) != res.getExpected()) {
                 Glogger.err("SoftClusteringSPI: example labels mismatch! (shuffled?)");
@@ -336,22 +350,26 @@ public class SoftClusteringSPI {
             if (targetClass == 1) {
                 //all negative!
                 if (res.getExpected() == 0) {
+                    tn++;
                     clauses.add(origClauses.get(i));
                     targets.add(origTargets.get(i));
                 }
                 //all false negative!
                 if (res.getExpected() == 1 && classified == 0) {
+                    fn++;
                     clauses.add(origClauses.get(i));
                     targets.add(origTargets.get(i));
                 }
             } else if (targetClass == -1) {
                 //all positive!
                 if (res.getExpected() == 1) {
+                    tp++;
                     clauses.add(origClauses.get(i));
                     targets.add(origTargets.get(i));
                 }
                 //all false positive!
                 if (res.getExpected() == 0 && classified == 1) {
+                    fp++;
                     clauses.add(origClauses.get(i));
                     targets.add(origTargets.get(i));
                 }
@@ -361,6 +379,7 @@ public class SoftClusteringSPI {
             }
             i++;
         }
+        Glogger.process("Misclassified subset consists of: " + tp + " TP; " + tn + " TN; " + fp + " FP; " + fn + " FN; ");
         return new Pair<>(clauses, targets);
     }
 
@@ -529,7 +548,8 @@ public class SoftClusteringSPI {
         for (int i = 0; i < atomClusters; i++) {
             for (int j = i; j < atomClusters; j++) {
                 for (int k = 0; k < bondClusters; k++) {
-                    rules.append("finalLambda" + a++ + "(a) :- " + atomClusterName + i + "(A), " + atomClusterName + j + "(B), " + bondClusterName + k + "(C).\n");
+                    if (Global.getRandomDouble() < subsampleTripleRules)
+                        rules.append("finalLambda" + a++ + "(a) :- " + atomClusterName + i + "(A), " + atomClusterName + j + "(B), " + bondClusterName + k + "(C).\n");
                 }
             }
         }

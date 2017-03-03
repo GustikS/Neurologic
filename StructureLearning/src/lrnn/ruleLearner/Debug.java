@@ -15,10 +15,7 @@ import ida.ilp.logic.Constant;
 import ida.ilp.logic.Literal;
 import ida.ilp.logic.LogicUtils;
 
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.StandardCopyOption;
 import java.util.Collection;
 
 /**
@@ -38,14 +35,16 @@ public class Debug {
     }
 
     public static void main(String[] args) throws IOException {
-        String path = "../in/nci/";
-        File[] files = new File(path).listFiles();
+        printBrackets("","", 4);
+    }
 
-        for (File file : files) {
-            if (file.isFile()) {
-                File mkdirs = new File(path + "/" + file.getName().substring(12, file.getName().indexOf(".")));
-                mkdirs.mkdirs();
-                Files.copy(file.toPath(), new File(mkdirs.toPath() + "/" + file.getName().substring(12, file.getName().length())).toPath(), StandardCopyOption.REPLACE_EXISTING);
+    private static void printBrackets(String left, String right, int i) {
+        if (i <= 0) {
+            System.out.println(left + right);
+        } else {
+            printBrackets(left + "(", ")" + right, i - 1);
+            if (right.length() > 0) {
+                printBrackets(left + right.charAt(0),right.substring(1), i);
             }
         }
     }
