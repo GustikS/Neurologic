@@ -20,6 +20,7 @@ public class ScriptGenerator {
     static Writer script;
     static Writer qsub;
 
+    //-­W cgroup=true
     private static String serverPath = "cd /storage/plzen1/home/souregus/neuro_builds/";
 
     //private static final String queue = "-q q_" + walltime + "@wagap.cerit-sc.cz";

@@ -190,7 +190,7 @@ public class SoftClusteringSPI {
             sl.setLiteralWeights(clusterValues);
 
             Quadruple<HornClause, Double, Integer, Double> hornClause = sl.beamSearch(searchBeamSize, searchMaxSize, alternatingClasses ? 2 * (iter % 2) - 1 : 0);
-            Glogger.process("Iteration: " + iter + " -> best found weighted horn clause classifier: " + hornClause);
+            Glogger.LogTrain("Iteration: " + iter + " -> best found weighted horn clause classifier: " + hornClause);
             if (!previousClauses.add(hornClause.r)) break;
 
             template.append(templatePartFromClause(hornClause, iter));
@@ -204,7 +204,7 @@ public class SoftClusteringSPI {
             if (iter >= maxSpiCycles) break;
 
             Pair<List<Clause>, List<Double>> subset = getMisclassifiedSubset(alternatingClasses ? -1 * hornClause.t : 0, learningResults.r, reinventedExamples.r, data.r);  //-1* = we want the next one
-            Glogger.process("Iteration: " + iter + " after weight learning - " + (alternatingClasses ? hornClause.t == 1 ? " Number of TN + FN: " : " - Number of TP + FP: " : " Numer of all: ") + subset.s.size() + " examples");
+            Glogger.LogTrain("Iteration: " + iter + " after weight learning - " + (alternatingClasses ? hornClause.t == 1 ? " Number of TN + FN: " : " - Number of TP + FP: " : " Numer of all: ") + subset.s.size() + " examples");
             dataset = new MultiExampleDataset(subset.r, subset.s);
             if (subset.r.size() < minMissedExamples4ruleLearning) break;
 

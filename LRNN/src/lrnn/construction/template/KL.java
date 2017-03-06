@@ -15,6 +15,7 @@ public abstract class KL extends Element implements Serializable {
 
     private Integer id;
     public boolean special = false;
+    public boolean hasLearnableOffset = true;
 
     public KL() {
     }

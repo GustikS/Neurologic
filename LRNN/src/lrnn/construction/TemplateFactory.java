@@ -1,30 +1,15 @@
 package lrnn.construction;
 
-import lrnn.construction.template.rules.LambdaRule;
-import lrnn.construction.template.rules.KappaRule;
-import lrnn.construction.template.rules.SubL;
-import lrnn.construction.template.rules.SubK;
-import lrnn.construction.template.KL;
-import lrnn.construction.template.Kappa;
-import lrnn.construction.template.KappaFactory;
-import lrnn.construction.template.Lambda;
-import lrnn.construction.template.LambdaFactory;
-import lrnn.construction.template.LiftedTemplate;
-import lrnn.construction.template.MolecularTemplate;
-import lrnn.construction.template.NLPtemplate;
-import lrnn.construction.template.rules.Rule;
-import lrnn.construction.template.rules.SubKL;
+import lrnn.construction.template.*;
+import lrnn.construction.template.rules.*;
 import lrnn.construction.template.specialPredicates.NotEqualPredicate;
 import lrnn.construction.template.specialPredicates.SimilarityPredicate;
 import lrnn.construction.template.specialPredicates.SpecialPredicate;
 import lrnn.global.Global;
 import lrnn.global.Glogger;
 import lrnn.learning.functions.Activations;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+
+import java.util.*;
 
 /**
  * Factory for whole network
@@ -51,10 +36,10 @@ public class TemplateFactory {
         if (Global.specialPredicates) {
             specialPredicateNames.put("@similar/2", new SimilarityPredicate("@similar"));
             specialPredicateNames.put("@neq/2", new NotEqualPredicate("@neq"));
-            
+
             specialPredicateNames.put("@geq/2", new NotEqualPredicate("@geq"));
             specialPredicateNames.put("@leq/2", new NotEqualPredicate("@leq"));
-            
+
             specialPredicatesMap = new HashMap<>();
         }
 
@@ -75,7 +60,7 @@ public class TemplateFactory {
     public LiftedTemplate construct(String[] rules) {
         KL kl = null;
         HashMap<String, String> activations = new HashMap<>();
-        HashMap<String, Double> offsets = new HashMap<>();
+        HashMap<String, String> offsets = new HashMap<>();
 
         if (Global.isCheckback()) {
             for (int i = 0; i < 42; i++) {  //I know - omfg...but that is for checking only!
@@ -99,7 +84,7 @@ public class TemplateFactory {
             } else if (rules[x].contains("/")) {    //this is offset for Kappa (actually i Lambda) specification
                 String[] split = rules[x].split(" ");
                 try {
-                    offsets.put(split[0].trim(), Double.parseDouble(split[1].trim()));
+                    offsets.put(split[0].trim(), (split[1].trim()));
                 } catch (Exception ex) {
                     Glogger.err("Couldn't parse offset from " + rules[x]);
                 }
@@ -114,8 +99,13 @@ public class TemplateFactory {
             }
         }
         //setup offsets if specified for some literals
-        for (Map.Entry<String, Double> ent : offsets.entrySet()) {
-            predicatesByName.get(ent.getKey()).offset = ent.getValue();
+        for (Map.Entry<String, String> ent : offsets.entrySet()) {
+            if (ent.getValue().contains("<")) {
+                predicatesByName.get(ent.getKey()).offset = Double.parseDouble(ent.getValue().replaceAll("<", "").replaceAll(">", ""));
+                predicatesByName.get(ent.getKey()).hasLearnableOffset = false;
+            } else {
+                predicatesByName.get(ent.getKey()).offset = Double.parseDouble(ent.getValue());
+            }
         }
         //setup activation functions - new feature!
         for (Map.Entry<String, String> ent : activations.entrySet()) {
@@ -213,6 +203,8 @@ public class TemplateFactory {
      * @return
      */
     private Kappa handleKappaLine(String[][] tokens, String original) {
+        boolean learnable = !tokens[0][0].contains("<");
+        tokens[0][0].replaceAll("<", "").replaceAll(">", "");
         Double w = Double.parseDouble(tokens[0][0].replace(",", "."));
         Kappa k = kFactory.construct(tokens[1][0]);
         SubK sk = new SubK(k, true);
@@ -221,6 +213,7 @@ public class TemplateFactory {
             sk.addVariable(v);
         }
         KappaRule kr = new KappaRule(w);
+        kr.learnableWeight = learnable;
         kr.setHead(sk);
         templateRules.addFirst(kr);
 

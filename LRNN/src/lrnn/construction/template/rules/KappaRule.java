@@ -22,6 +22,7 @@ public class KappaRule extends Rule implements Serializable {
     private SubL body;
     private boolean drawn;
     private String string;
+    public boolean learnableWeight = true;
 
     @Override
     public String toString() {

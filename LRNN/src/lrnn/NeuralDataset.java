@@ -17,10 +17,7 @@ import lrnn.grounding.network.groundNetwork.GroundNeuron;
 import lrnn.learning.Sample;
 
 import java.io.Serializable;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * This is a lightweight dataset representation - this class contains only all
@@ -77,20 +74,23 @@ public class NeuralDataset extends LiftedDataset implements Serializable {
      */
     final void createSharedWeights(LiftedTemplate network) {
         int weightCounter = 0;
+        List<Boolean> learnable = new ArrayList<>();
         for (Rule rule : network.rules) {
             if (rule instanceof KappaRule) {
                 network.weightMapping.put(((KappaRule) rule).toString(), weightCounter++);
+                learnable.add(((KappaRule) rule).learnableWeight);
             }
         }
         for (Kappa kappa : network.getKappas()) {
             //if (!kappa.getRules().isEmpty()) {    // - nope, let's learn Kappa elements offsets too in the fast version! :)
             network.weightMapping.put(kappa.toString(), weightCounter++);
+            learnable.add(kappa.hasLearnableOffset);
             //}
         }
         network.sharedWeights = new double[weightCounter];
         network.isLearnable = new boolean[weightCounter];
-        for (int i = 0; i < network.isLearnable.length; i++) {
-            network.isLearnable[i] = true;
+        for (int i = 0; i < weightCounter; i++) {
+            network.isLearnable[i] = learnable.get(i);
         }
     }
 

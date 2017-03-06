@@ -105,7 +105,8 @@ public class Results {
         }
         //---------
         double sumPos = 0, sumNeg = 0, bestErr = results.size();
-        int numPos = results.size()-bad;
+        double negValues = 0, posValues = 0;
+        int numPos = results.size() - bad;
         int numNeg = bad;
         int bestIndex = -1;
         int j = 0;
@@ -121,8 +122,10 @@ public class Results {
             do {
                 if (results.get(j).getExpected() == 1.0) {
                     sumPos++;
+                    posValues += results.get(j).getActual();
                 } else if (results.get(j).getExpected() == 0.0) {
                     sumNeg++;
+                    negValues += results.get(j).getActual();
                 } else {
                     throw new IllegalStateException();
                 }
@@ -131,7 +134,7 @@ public class Results {
         }
         actualResult.setError(bestErr);
         actualResult.setThresh(results.get(bestIndex).getActual());
-        actualResult.setDispersion(Math.abs((sumNeg / numNeg) - (sumPos / numPos)));
+        actualResult.setDispersion(Math.abs((negValues / numNeg) - (posValues / numPos)));
         /*//--------------
 
         int bestErr = results.size();
@@ -273,7 +276,13 @@ public class Results {
         PrintStream orgStream = System.out;
         PrintStream myPrintStream = new PrintStream(baos);
         System.setOut(myPrintStream);
-        AUCCalculator.main(new String[]{Global.outputFolder + "auc.txt", "list"});
+        try {
+            AUCCalculator.main(new String[]{Global.outputFolder + "auc.txt", "list"});
+        }catch (Exception e){
+            Glogger.err("Problem with AUC calculation");
+            System.setOut(orgStream);
+            return;
+        }
         String toFind = "Area Under the Curve for Precision - Recall is";
         String result = new String(baos.toByteArray(), StandardCharsets.UTF_8);
         String substring = result.substring(result.indexOf(toFind) + toFind.length(), result.indexOf("\n", result.indexOf(toFind) + toFind.length()));

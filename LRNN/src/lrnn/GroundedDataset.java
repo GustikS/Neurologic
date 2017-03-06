@@ -138,7 +138,6 @@ public class GroundedDataset extends LiftedDataset {
                 if (Global.drawing) {
                     GroundDotter.draw(b, "b" + i);
                 }
-
             }
         } else if (Global.parallelGrounding) {
             Glogger.process("Parallel threads workfold splitting");
