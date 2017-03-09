@@ -5,7 +5,9 @@
  */
 package lrnn;
 
+import ida.ilp.logic.Constant;
 import lrnn.construction.ConstantFactory;
+import lrnn.construction.ExampleFactory;
 import lrnn.construction.example.Example;
 import lrnn.construction.template.LiftedTemplate;
 import lrnn.construction.template.MolecularTemplate;
@@ -22,10 +24,7 @@ import lrnn.grounding.evaluation.struct.GroundNetworkParser;
 import lrnn.grounding.network.GroundKL;
 import lrnn.learning.Sample;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
@@ -130,7 +129,9 @@ public class GroundedDataset extends LiftedDataset {
                 GroundedTemplate b = new GroundedTemplate();
                 Glogger.info("# example " + i++ + " : " + e.storedFacts.size());
                 b.setLast(prover.getGroundLRNN(new ArrayList(template.rules), e, "finalKappa(a)"));
-                b.constantNames = e.constantNames;
+
+                b.constantNames = ConstantFactory.getConstantNames();
+
                 Glogger.info("cacheSize #" + prover.getBtmUpCache().size());
                 sampleStore.add(new Sample(e, b));
                 Evaluator.evaluateAvg(b);

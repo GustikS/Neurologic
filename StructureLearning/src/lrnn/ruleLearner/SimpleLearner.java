@@ -31,6 +31,10 @@ import java.util.*;
  */
 public class SimpleLearner {
 
+    private boolean connectedOnly = true;
+
+    private int minSupport = 1;
+
     private Dataset dataset;
 
     private Map<Literal, Double> literalWeights = new HashMap<Literal, Double>();
@@ -59,6 +63,8 @@ public class SimpleLearner {
 
     //+1 = positive classifier, -1 = negative classifier, 0 = both
     public Quadruple<HornClause, Double, Integer, Double> beamSearch(int beamSize, int maxSize, int targetClass) {
+
+        MultiMap<HornClause,Literal> badRefinements = new MultiMap<HornClause, Literal>();
         Set<IsoClauseWrapper> processed = new HashSet<IsoClauseWrapper>();
         Set<Pair<String, Integer>> queryPredicates = this.dataset.queryPredicates();
 
@@ -76,7 +82,7 @@ public class SimpleLearner {
         for (int i = 1; i <= maxSize; i++) {
             List<HornClause> candidates = new ArrayList<HornClause>();
             for (HornClause old : current) {
-                candidates.addAll(refinements(old));
+                candidates.addAll(refinements(old, badRefinements.get(old)));
             }
             candidates = filterIsomorphic(candidates);
 
@@ -129,10 +135,10 @@ public class SimpleLearner {
         return retVal;
     }
 
-    private List<HornClause> refinements(HornClause hc) {
+    private List<HornClause> refinements(HornClause hc, Set<Literal> badRefinements) {
         Set<IsoClauseWrapper> set = new HashSet<IsoClauseWrapper>();
         for (Pair<String, Integer> predicate : allAllowedPredicates) {
-            for (HornClause newHc : refinements(hc, predicate)) {
+            for (HornClause newHc : refinements(hc, predicate, badRefinements)) {
                 set.add(new IsoClauseWrapper(newHc.toClause()));
             }
         }
@@ -155,28 +161,35 @@ public class SimpleLearner {
         return retVal;
     }
 
-    private List<HornClause> refinements(HornClause hc, Pair<String, Integer> predicate) {
+    private List<HornClause> refinements(HornClause hc, Pair<String,Integer> predicate, Set<Literal> badRefinements){
         long m1 = System.currentTimeMillis();
-        Map<IsoClauseWrapper, Literal> refinements = new HashMap<IsoClauseWrapper, Literal>();
+        Map<IsoClauseWrapper,Literal> refinements = new HashMap<IsoClauseWrapper,Literal>();
         Set<Variable> variables = hc.variables();
         Set<Variable> freshVariables = LogicUtils.freshVariables(variables, predicate.s);
         Literal freshLiteral = LogicUtils.newLiteral(predicate.r, predicate.s, freshVariables).negation();
         Clause originalClause = hc.toClause();
         Clause init = new Clause(Sugar.union(originalClause.literals(), freshLiteral));
         refinements.put(new IsoClauseWrapper(init), freshLiteral);
-        for (int i = 0; i < predicate.s; i++) {
-            Map<IsoClauseWrapper, Literal> newRefinements = new HashMap<IsoClauseWrapper, Literal>();
-            for (Map.Entry<IsoClauseWrapper, Literal> entry : refinements.entrySet()) {
-                Variable x = (Variable) entry.getValue().get(i);
-                for (Variable v : entry.getKey().getOriginalClause().variables()) {
-                    if (v != x) {
+
+        for (int i = 0; i < predicate.s; i++){
+            Map<IsoClauseWrapper,Literal> newRefinements = new HashMap<IsoClauseWrapper, Literal>();
+            for (Map.Entry<IsoClauseWrapper,Literal> entry : refinements.entrySet()){
+                Variable x = (Variable)entry.getValue().get(i);
+                for (Variable v : entry.getKey().getOriginalClause().variables()){
+                    if (v != x){
                         Clause substituted = LogicUtils.substitute(entry.getKey().getOriginalClause(), x, v);
-                        if (substituted.countLiterals() > originalClause.countLiterals()) {
+                        Literal newLiteral = LogicUtils.substitute(entry.getValue(), x, v);
+                        if (substituted.countLiterals() > originalClause.countLiterals() && !badRefinements.contains(newLiteral) &&
+                                !substituted.containsLiteral(newLiteral.negation())) {
                             HornClause candidate = new HornClause(substituted);
-                            if (dataset.numExistentialMatches(candidate, 1) > 0) {
+                            if (dataset.numExistentialMatches(candidate, minSupport) >= minSupport) {
                                 Clause candClause = candidate.toClause();
-                                newRefinements.put(new IsoClauseWrapper(candClause), LogicUtils.substitute(entry.getValue(), x, v));
+                                newRefinements.put(new IsoClauseWrapper(candClause), newLiteral);
+                            } else {
+                                badRefinements.add(newLiteral);
                             }
+                        } else {
+                            //System.out.println("bad: "+newLiteral+" for "+hc);
                         }
                     }
                 }
@@ -184,9 +197,9 @@ public class SimpleLearner {
             refinements.putAll(newRefinements);
         }
         Set<IsoClauseWrapper> refinementSet;
-        if (this.saturator != null) {
+        if (this.saturator != null){
             Set<IsoClauseWrapper> saturatedRefinements = new HashSet<IsoClauseWrapper>();
-            for (IsoClauseWrapper icw : refinements.keySet()) {
+            for (IsoClauseWrapper icw : refinements.keySet()){
                 saturatedRefinements.add(new IsoClauseWrapper(saturator.saturate(icw.getOriginalClause())));
             }
             refinementSet = saturatedRefinements;
@@ -194,8 +207,8 @@ public class SimpleLearner {
             refinementSet = refinements.keySet();
         }
         List<HornClause> retVal = new ArrayList<HornClause>();
-        for (IsoClauseWrapper icw : refinementSet) {
-            if (!connected || icw.getOriginalClause().connectedComponents().size() == 1) {
+        for (IsoClauseWrapper icw : refinementSet){
+            if ((!this.connectedOnly || icw.getOriginalClause().connectedComponents().size() == 1)) {
                 retVal.add(new HornClause(icw.getOriginalClause()));
             }
         }

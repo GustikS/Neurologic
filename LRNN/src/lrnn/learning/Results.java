@@ -281,6 +281,8 @@ public class Results {
         }catch (Exception e){
             Glogger.err("Problem with AUC calculation");
             System.setOut(orgStream);
+            actualResult.setAUCpr(0.0);
+            actualResult.setAUCroc(0.0);
             return;
         }
         String toFind = "Area Under the Curve for Precision - Recall is";

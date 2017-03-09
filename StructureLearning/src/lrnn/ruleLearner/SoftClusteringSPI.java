@@ -14,6 +14,7 @@ import ida.ilp.logic.Clause;
 import ida.ilp.logic.Constant;
 import ida.ilp.logic.Literal;
 import ida.ilp.logic.io.PseudoPrologParser;
+import ida.utils.CommandLine;
 import ida.utils.Sugar;
 import ida.utils.collections.ValueToIndex;
 import ida.utils.tuples.Pair;
@@ -44,11 +45,11 @@ import java.util.stream.Stream;
 public class SoftClusteringSPI {
 
     Crossvalidation crossValidation;
-    int folds = 5;
+    int folds = 1;
 
     private boolean parallelCrossval = false;   //not working yet! (but with parallel grounding and learning within LRNNs turned on it should run just as fast)
 
-    private int searchBeamSize = 20;
+    private int searchBeamSize = 10;
     private int searchMaxSize = 6;
 
     private int autoencodingSteps = 1000;
@@ -77,12 +78,19 @@ public class SoftClusteringSPI {
 
     public static void main(String[] args) throws IOException {
 
+        Map<String, String> arguments = CommandLine.parseParams(args);
+
         Global.setSeed(1);
-        Settings.setDataset(args[0]);
+        Settings.setDataset(arguments.get("-dataset"));
+
         //create logger for all messages within the program
         Glogger.init();
 
         SoftClusteringSPI lc = new SoftClusteringSPI();
+        lc.autoencodingSteps = arguments.get("-aes") == null? lc.autoencodingSteps : Integer.parseInt(arguments.get("-aes"));
+        lc.searchBeamSize = arguments.get("-aes") == null? lc.searchBeamSize : Integer.parseInt(arguments.get("-sbs"));
+        lc.searchMaxSize = arguments.get("-aes") == null? lc.searchMaxSize : Integer.parseInt(arguments.get("-sms"));
+        lc.trainingSteps = arguments.get("-aes") == null? lc.trainingSteps : Integer.parseInt(arguments.get("-trs"));
 
         File datasetPath = new File(args[0]);
 

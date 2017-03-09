@@ -6,6 +6,7 @@ import lrnn.learning.Saver;
 
 import java.io.*;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,6 +19,14 @@ public class ConstantFactory {
     private static Map<String, Variable> constMap = new HashMap<String, Variable>();    //this is static, needs to be cleaned between runs!!
     private static Map<String, double[]> embeddings;
     private static int nextConst = 0;
+
+    public static Map<Integer,String> getConstantNames(){
+        Map<Integer,String> names = new LinkedHashMap<>();
+        for (Map.Entry<String, Variable> ent : constMap.entrySet()) {
+            names.put(ent.getValue().getBind(),ent.getKey());
+        }
+        return names;
+    }
 
     public static void loadEmbeddings(String destination) {
         setEmbeddings(TextFileReader.loadEmbeddings(destination));
