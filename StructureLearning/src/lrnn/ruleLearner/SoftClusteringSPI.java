@@ -37,7 +37,6 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * Created by gusta on 31.1.17.
@@ -45,18 +44,20 @@ import java.util.stream.Stream;
 public class SoftClusteringSPI {
 
     Crossvalidation crossValidation;
-    int folds = 1;
+
+    boolean trainTestOnly = false;
+    int folds = 5;
 
     private boolean parallelCrossval = false;   //not working yet! (but with parallel grounding and learning within LRNNs turned on it should run just as fast)
 
-    private int searchBeamSize = 10;
-    private int searchMaxSize = 6;
+    int searchBeamSize = 20;
+    int searchMaxSize = 5;
 
-    private int autoencodingSteps = 1000;
-    private int trainingSteps = 2000;
+    int autoencodingSteps = 0;
+    int trainingSteps = 2000;
 
     private boolean reinitializeAllWeightsWithinSPIcycle = false;
-    private boolean reinitializeFinalWeightsWithinSPIcycle = true;
+    private boolean reinitializeTopLayerWeightsWithinSPIcycle = true;
 
     private int atomClusters = 3;
     private int bondClusters = 3;
@@ -67,12 +68,12 @@ public class SoftClusteringSPI {
     private boolean alternatingClasses = true;
     //----------------------------
 
-    private String atomClusterName = "atc";
-    private String bondClusterName = "bc";
-    private String tmpConstant = "a";
+    String atomClusterName = "atc";
+    String bondClusterName = "bc";
+    String tmpConstant = "a";
     private double weightMultiplier = 1;
 
-    private int bondId = 0; //this needs to be global i.e. unique id for each bond within the whole dataset!
+    private int bondId = 0;
     ValueToIndex<Pair<String, String>> bondIDs = new ValueToIndex();
     private double subsampleTripleRules = 1;
 
@@ -87,19 +88,18 @@ public class SoftClusteringSPI {
         Glogger.init();
 
         SoftClusteringSPI lc = new SoftClusteringSPI();
-        lc.autoencodingSteps = arguments.get("-aes") == null? lc.autoencodingSteps : Integer.parseInt(arguments.get("-aes"));
-        lc.searchBeamSize = arguments.get("-aes") == null? lc.searchBeamSize : Integer.parseInt(arguments.get("-sbs"));
-        lc.searchMaxSize = arguments.get("-aes") == null? lc.searchMaxSize : Integer.parseInt(arguments.get("-sms"));
-        lc.trainingSteps = arguments.get("-aes") == null? lc.trainingSteps : Integer.parseInt(arguments.get("-trs"));
+        lc.autoencodingSteps = arguments.get("-aes") == null ? lc.autoencodingSteps : Integer.parseInt(arguments.get("-aes"));
+        lc.searchBeamSize = arguments.get("-sbs") == null ? lc.searchBeamSize : Integer.parseInt(arguments.get("-sbs"));
+        lc.searchMaxSize = arguments.get("-sms") == null ? lc.searchMaxSize : Integer.parseInt(arguments.get("-sms"));
+        lc.trainingSteps = arguments.get("-trs") == null ? lc.trainingSteps : Integer.parseInt(arguments.get("-trs"));
 
-        File datasetPath = new File(args[0]);
-
+        File datasetPath = new File(arguments.get("-dataset"));
         lc.crossvalidate(datasetPath);
     }
 
-    private Crossvalidation crossvalidate(File datasetPath) throws IOException {
+    Crossvalidation crossvalidate(File datasetPath) throws IOException {
         List<Sample> samples = Files.lines(datasetPath.toPath()).map(line ->
-                new Sample(new Example(line.substring(line.indexOf(" ") + 1) + "."), line.substring(0, line.indexOf(" ")).equals("+") ? 1.0 : 0.0))
+                new Sample(new Example(line.substring(line.indexOf(" ") + 1) + "."), line.substring(0, line.indexOf(" ")).matches("[1\\+]") ? 1.0 : 0.0))
                 .collect(Collectors.toList());
 
         //stratified(!) crossvalidation split
@@ -107,13 +107,18 @@ public class SoftClusteringSPI {
         List<String> foldPaths = ss.outputSplits(datasetPath.getParent());
         crossValidation = new NeuralCrossvalidation(ss);
 
+        //List<String> foldPaths = trainTestOnly ? allFoldPaths.subList(0, 1) : allFoldPaths;
+
+        /*
         Stream<String> foldStream;
         if (parallelCrossval) {
             foldStream = foldPaths.parallelStream();
         } else {
             foldStream = foldPaths.stream();
         }
-        foldStream.forEach((testFold) -> {
+        */
+
+        for (String testFold : foldPaths) {
             String testFoldPath = testFold + "_transformed.txt";
             try {
                 datasetsETL(testFold, testFoldPath);
@@ -121,7 +126,7 @@ public class SoftClusteringSPI {
                 e.printStackTrace();
             }
 
-            String trainSet = foldPaths.stream().filter(foldPath -> (!foldPath.equals(testFold) || folds == 1)).map(trainFold -> {
+            String trainSet = foldPaths.stream().filter(foldPath -> (!foldPath.equals(testFold) || foldPaths.size() == 1)).map(trainFold -> {
                 try {
                     return new String(Files.readAllBytes(Paths.get(trainFold)));
                 } catch (IOException e) {
@@ -129,6 +134,7 @@ public class SoftClusteringSPI {
                 }
                 return "";
             }).collect(Collectors.joining("\n"));
+
             try {
                 File train = new File(testFold + "-test/trainSet.txt");
                 train.getParentFile().mkdirs();
@@ -139,10 +145,16 @@ public class SoftClusteringSPI {
                 Results testFoldResults = testLRNNtemplate(testFoldPath, trainResults);
                 Glogger.process("Finished fold " + testFold);
                 crossValidation.loadFoldStats(testFoldResults);
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        });
+            if (trainTestOnly) {
+                crossValidation.foldCount = 1;
+                break;
+            }
+        }
+
         crossValidation.finalizeCrossvalStats();
         return crossValidation;
     }
@@ -186,10 +198,13 @@ public class SoftClusteringSPI {
         MultiExampleDataset dataset = new MultiExampleDataset(reinventedExamples.r, data.r);
         Map<Literal, Double> clusterValues = reinventedExamples.s;
 
-        StringBuilder template = mergeTemplates(initialAutoencoding.t.toString(), new String(Files.readAllBytes(Paths.get(learnedInitialTemplatePath))));
+        String a = initialAutoencoding.t.toString();
+        String b = new String(Files.readAllBytes(Paths.get(learnedInitialTemplatePath)));
+        StringBuilder template = mergeTemplates(a, b);
 
-        int iter = 0;
-        Pair<Results, String> learningResults = null;
+        int iter = 1;
+        Pair<Results, String> actualResult = null;
+        Pair<Results, String> bestResult = null;
         Set<HornClause> previousClauses = new LinkedHashSet<>();
         String templPath = "";
         while (true) {
@@ -199,34 +214,41 @@ public class SoftClusteringSPI {
 
             Quadruple<HornClause, Double, Integer, Double> hornClause = sl.beamSearch(searchBeamSize, searchMaxSize, alternatingClasses ? 2 * (iter % 2) - 1 : 0);
             Glogger.LogTrain("Iteration: " + iter + " -> best found weighted horn clause classifier: " + hornClause);
-            if (!previousClauses.add(hornClause.r)) break;
+
+            //if (!previousClauses.add(hornClause.r)) break;
 
             template.append(templatePartFromClause(hornClause, iter));
             templPath = datasetPath.substring(0, datasetPath.lastIndexOf(".")) + "_template_cycle" + iter + ".txt";
             Files.write(Paths.get(templPath), template.toString().getBytes());
 
-            learningResults = trainLRNNtemplate(examplesOutPath, templPath, trainingSteps);
+            actualResult = trainLRNNtemplate(examplesOutPath, templPath, trainingSteps);
+            if (bestResult == null || actualResult.r.actualResult.isBetterThen(bestResult.r.actualResult)) {
+                bestResult = actualResult;
+            }
             if (!reinitializeAllWeightsWithinSPIcycle) {   //reuse previously learned weights?
-                template = mergeTemplates(template.toString(), new String(Files.readAllBytes(Paths.get(learningResults.s))));
+                template = mergeTemplates(template.toString(), new String(Files.readAllBytes(Paths.get(actualResult.s))));
             }
             if (iter >= maxSpiCycles) break;
 
-            Pair<List<Clause>, List<Double>> subset = getMisclassifiedSubset(alternatingClasses ? -1 * hornClause.t : 0, learningResults.r, reinventedExamples.r, data.r);  //-1* = we want the next one
+            Pair<List<Clause>, List<Double>> subset = getMisclassifiedSubset(alternatingClasses ? -1 * hornClause.t : 0, actualResult.r, reinventedExamples.r, data.r);  //-1* = we want the next one
             Glogger.LogTrain("Iteration: " + iter + " after weight learning - " + (alternatingClasses ? hornClause.t == 1 ? " Number of TN + FN: " : " - Number of TP + FP: " : " Numer of all: ") + subset.s.size() + " examples");
             dataset = new MultiExampleDataset(subset.r, subset.s);
             if (subset.r.size() < minMissedExamples4ruleLearning) break;
 
-            Pair<Map<String, Double>, Map<String, Map<String, Double>>> newWeightMapping = extractWeightMappingFromTemplate(learningResults.s);
+            Pair<Map<String, Double>, Map<String, Map<String, Double>>> newWeightMapping = extractWeightMappingFromTemplate(actualResult.s);
             weightMapping.r.putAll(newWeightMapping.r);   //update all changed offsets if any
             for (Map.Entry<String, Map<String, Double>> ent : newWeightMapping.s.entrySet()) {  //update all changed weights if any
-                weightMapping.s.get(ent.getKey()).putAll(ent.getValue());
+                if (weightMapping.s.containsKey(ent.getKey()))
+                    weightMapping.s.get(ent.getKey()).putAll(ent.getValue());
+                else
+                    weightMapping.s.put(ent.getKey(), ent.getValue());
             }
             clusterValues = transformToWeightedClusters(data.t, weightMapping).s;
             iter++;
         }
-        learningResults = trainLRNNtemplate(examplesOutPath, templPath, 3 * trainingSteps);
+        bestResult = trainLRNNtemplate(examplesOutPath, bestResult.s, 3 * trainingSteps);
         Glogger.process("...Finished SPI cycle!");
-        return learningResults;
+        return actualResult;
     }
 
     private StringBuilder mergeTemplates(String previous, String learned) {
@@ -246,7 +268,7 @@ public class SoftClusteringSPI {
                 } else if (weight.matches("-?\\d+([.,]\\d+)?")) {   //kappa
                     if (i > 0) {
                         if (merged.containsKey(s.substring(s.indexOf(" ")).trim())) {
-                            if (reinitializeFinalWeightsWithinSPIcycle && s.contains("finalLambda")) {
+                            if (reinitializeTopLayerWeightsWithinSPIcycle && s.contains("finalLambda")) {
                                 double v = Double.parseDouble(weight);
                                 weight = v / Math.abs(v) + "";
                             }
@@ -289,7 +311,7 @@ public class SoftClusteringSPI {
 
 
     private Results testLRNNtemplate(String testFold, Pair<Results, String> trainResults) {
-        String[] args = new String[]{"-e", testFold, "-r", trainResults.s};
+        String[] args = new String[]{"-e", testFold, "-r", trainResults.s, "-draw", "0"};
         List<String[]> inputs = lrnn.Main.setupFromArguments(args);
 
         String[] test = inputs.get(0);
@@ -309,7 +331,7 @@ public class SoftClusteringSPI {
     }
 
     private Pair<Results, String> trainLRNNtemplate(String examplesPath, String rulesPath, int learningSteps) {
-        String[] args = new String[]{"-e", examplesPath, "-r", rulesPath, "-ls", "" + learningSteps};
+        String[] args = new String[]{"-e", examplesPath, "-r", rulesPath, "-ls", "" + learningSteps, "-draw", "0"};
         List<String[]> inputs = lrnn.Main.setupFromArguments(args);
 
         //Global.shuffleExamples = false; //we want to keep the order of the input examples
@@ -320,12 +342,17 @@ public class SoftClusteringSPI {
         String[] pretrainedRules = inputs.get(3);
 
         //create ground networks dataset
-        lrnn.LiftedDataset dataset = lrnn.Main.createDataset(test, exs, rules, pretrainedRules);
-
-        //start learning
-        Results foldRes = crossValidation.train(dataset.template, dataset.sampleSplitter.samples);
-        //also test n the same samples to properly extract misclassified ones
-        foldRes = crossValidation.test(dataset.template, foldRes, dataset.sampleSplitter.samples);
+        lrnn.LiftedDataset dataset = null;
+        Results foldRes = null;
+        if (learningSteps > 0) {
+            dataset = lrnn.Main.createDataset(test, exs, rules, pretrainedRules);
+            //start learning
+            foldRes = crossValidation.train(dataset.template, dataset.sampleSplitter.samples);
+            //also test n the same samples to properly extract misclassified ones
+            foldRes = crossValidation.test(dataset.template, foldRes, dataset.sampleSplitter.samples);
+        } else {
+            dataset = new lrnn.LiftedDataset(rules, pretrainedRules);
+        }
 
         String exportPath = rulesPath.substring(0, rulesPath.lastIndexOf(".")) + "_learned";
         dataset.template.weightFolder = "";
@@ -392,6 +419,9 @@ public class SoftClusteringSPI {
     }
 
     public Clause transform(Clause c) {
+        //bondId = 0;
+        //bondIDs = new ValueToIndex();
+
         List<Literal> literals = new ArrayList<>();
         for (Literal l : c.literals()) {
             if (l.predicate().equals("bond")) {
@@ -453,7 +483,7 @@ public class SoftClusteringSPI {
         for (Clause clause : clauses) {
             Set<Literal> lits = new HashSet<>();
             for (Literal l : clause.literals()) {
-                if (l.arity() == 1) {
+                if (l.arity() == 1 && !l.predicate().startsWith("rel")) {
                     Map<String, Double> clusterWeights = weightMapping.s.get(l.predicate());
                     for (Map.Entry<String, Double> clusterWeight : clusterWeights.entrySet()) {
                         Literal cl = new Literal(clusterWeight.getKey(), l.get(0));

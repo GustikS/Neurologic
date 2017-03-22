@@ -31,7 +31,7 @@ public class LiftedTemplate extends LightTemplate implements Serializable {
     public LinkedHashSet<Rule> rules = new LinkedHashSet<>();   //=for network input/output file
     protected Set<Kappa> kappas = new HashSet<>();
     private HashSet<Lambda> lambdas = new HashSet<>();
-    public HashMap<Integer, String> constantNames;
+    public Map<Integer, String> constantNames;
 
     //------------
     public HashMap<String, Integer> weightMapping;  //Kappa offsets and KappaRule's weights to indicies in sharedWeights

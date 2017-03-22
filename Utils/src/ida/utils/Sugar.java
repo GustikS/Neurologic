@@ -537,7 +537,7 @@ public class Sugar {
     }
 
     /**
-     * Creates a new map by merging the given maps.
+     * Creates a new map by transforming the given maps.
      * @param <R> type of key-elements
      * @param <S> type of value-elements
      * @param maps the maps to be merged into the new map

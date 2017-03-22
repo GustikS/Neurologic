@@ -94,12 +94,12 @@ public class MultiExampleDataset implements Dataset {
             }
         });
 
-        /*
+/*
         System.out.println("---------------------------------");
         for (Pair<Double, Integer> pair : pairs) {
             System.out.println(pair);
         }
-        */
+*/
 
         int numPos = VectorUtils.occurrences(this.targets, 1.0);
         int numNeg = this.targets.length - numPos;

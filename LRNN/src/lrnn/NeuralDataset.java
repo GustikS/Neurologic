@@ -109,7 +109,7 @@ public class NeuralDataset extends LiftedDataset implements Serializable {
                 sample.neuralNetwork = new GroundNetwork();
                 sample.neuralNetwork.allNeurons = new GroundNeuron[sample.getBall().groundNeurons.size()];  //only higher layer (no-fact) neurons!
                 net.tmpActiveNet = sample.neuralNetwork;
-                net.constantNames = sample.getExample().constantNames;
+                net.constantNames = sample.getBall().constantNames;
                 sample.neuralNetwork.createNetwork(sample, net);
                 
             }

@@ -2,7 +2,105 @@
 <project version="4">
   <component name="ChangeListManager">
     <list id="f96a9b28-46cc-4d89-b53b-8308750a0ddb" name="Default" comment="" />
-    <list default="true" id="47211e3e-80c4-4815-b810-2aceecb71d59" name="Rejected commit: Default" comment="init LRNN changes for structure learning..." />
+    <list default="true" id="47211e3e-80c4-4815-b810-2aceecb71d59" name="Rejected commit: Default" comment="init LRNN changes for structure learning...">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../NeuroLogic/.idea/compiler.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../NeuroLogic/.idea/copyright/profiles_settings.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../NeuroLogic/.idea/misc.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../NeuroLogic/.idea/modules.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../NeuroLogic/.idea/uiDesigner.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../NeuroLogic/.idea/vcs.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../NeuroLogic/Logical/Logical.iml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../NeuroLogic/Logical/src/constructs/example/AtomQuery.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../NeuroLogic/Logical/src/constructs/example/CompositeQuery.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../NeuroLogic/Logical/src/constructs/example/GroundExample.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../NeuroLogic/Logical/src/constructs/example/LiftedExample.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../NeuroLogic/Logical/src/constructs/example/WeightedFact.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../NeuroLogic/Logical/src/constructs/template/Atom.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../NeuroLogic/Logical/src/constructs/template/BodyAtom.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../NeuroLogic/Logical/src/constructs/template/Template.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../NeuroLogic/Logical/src/constructs/template/WeightedRule.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../NeuroLogic/Logical/src/constructs/template/transforming/LinearChainReducer.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../NeuroLogic/Logical/src/constructs/template/transforming/SimpleTemplateMerger.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../NeuroLogic/Logical/src/constructs/template/transforming/TemplateMerging.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../NeuroLogic/Logical/src/constructs/template/transforming/TemplateReducing.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../NeuroLogic/Logical/src/grounding/Grounder.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../NeuroLogic/Logical/src/grounding/bottomUp/BottomUp.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../NeuroLogic/Logical/src/grounding/bottomUp/HerbrandModel.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../NeuroLogic/Logical/src/grounding/topDown/TopDown.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../NeuroLogic/Neural/Neural.iml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../NeuroLogic/Neural/src/networks/evaluation/functions/Activation.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../NeuroLogic/Neural/src/networks/evaluation/functions/Sigmoid.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../NeuroLogic/Neural/src/networks/evaluation/values/MatrixValue.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../NeuroLogic/Neural/src/networks/evaluation/values/ScalarValue.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../NeuroLogic/Neural/src/networks/evaluation/values/StringValue.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../NeuroLogic/Neural/src/networks/evaluation/values/Value.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../NeuroLogic/Neural/src/networks/evaluation/values/VectorValue.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../NeuroLogic/Neural/src/networks/structure/NeuralLayer.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../NeuroLogic/Neural/src/networks/structure/NeuralNetwork.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../NeuroLogic/Neural/src/networks/structure/Neuron.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../NeuroLogic/Neural/src/networks/structure/Weight.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../NeuroLogic/Neural/src/networks/structure/lrnnTypes/AggregationNeuron.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../NeuroLogic/Neural/src/networks/structure/lrnnTypes/AtomNeuron.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../NeuroLogic/Neural/src/networks/structure/lrnnTypes/FactNeuron.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../NeuroLogic/Neural/src/networks/structure/lrnnTypes/NegationNeuron.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../NeuroLogic/Neural/src/networks/structure/lrnnTypes/QueryNeuron.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../NeuroLogic/Neural/src/networks/structure/lrnnTypes/RuleNeuron.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../NeuroLogic/Neural/src/networks/structure/standardTypes/FeedForwardNetwork.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../NeuroLogic/Neural/src/networks/structure/transforming/CycleBreaking.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../NeuroLogic/Neural/src/networks/structure/transforming/IsoValueNetworkCompressor.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../NeuroLogic/Neural/src/networks/structure/transforming/NetworkMerging.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../NeuroLogic/Neural/src/networks/structure/transforming/NetworkReducing.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../NeuroLogic/Neural/src/networks/structure/transforming/SimpleCycleBreaker.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../NeuroLogic/Neural/src/training/Backprop.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../NeuroLogic/Neural/src/training/NeuralModel.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../NeuroLogic/Neural/src/training/NeuralSample.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../NeuroLogic/Neural/src/training/Training.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../NeuroLogic/Neural/src/training/results/ClassificationResults.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../NeuroLogic/Neural/src/training/results/DetailedClassificationResults.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../NeuroLogic/Neural/src/training/results/Progress.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../NeuroLogic/Neural/src/training/results/RegressionResults.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../NeuroLogic/Neural/src/training/results/Results.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../NeuroLogic/Neural/src/training/trainingStrategies/SimpleTrainer.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../NeuroLogic/NeuroLogic.iml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../NeuroLogic/src/Main.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../NeuroLogic/src/drawing/Drawer.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../NeuroLogic/src/drawing/NeuralNetDrawer.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../NeuroLogic/src/drawing/TemplateDrawer.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../NeuroLogic/src/learning/Classifier.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../NeuroLogic/src/learning/Learner.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../NeuroLogic/src/learning/LearningSample.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../NeuroLogic/src/learning/Query.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../NeuroLogic/src/learning/Regressor.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../NeuroLogic/src/learning/crossvalidation/Crossvalidation.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../NeuroLogic/src/learning/crossvalidation/FoldRunStats.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../NeuroLogic/src/learning/crossvalidation/splitting/SplittingStrategy.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../NeuroLogic/src/learning/crossvalidation/splitting/StratifiedSplitter.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../NeuroLogic/src/metacentrum/AutomatedEvaluator.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../NeuroLogic/src/parsing/ExampleParser.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../NeuroLogic/src/parsing/JsonTemplateParser.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../NeuroLogic/src/parsing/PlainTextExampleParser.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../NeuroLogic/src/parsing/PlainTextQueryParser.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../NeuroLogic/src/parsing/PlainTextTemplateParser.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../NeuroLogic/src/parsing/QueryParser.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../NeuroLogic/src/parsing/SQLdumpExampleParser.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../NeuroLogic/src/parsing/TemplateParser.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../NeuroLogic/src/pipelines/Pipeline.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../NeuroLogic/src/pipelines/Stage.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../NeuroLogic/src/settings/Settings.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../NeuroLogic/src/utils/CommandLine.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../NeuroLogic/src/utils/Logger.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/lrnn/NeuralDataset.java" afterPath="$PROJECT_DIR$/src/lrnn/NeuralDataset.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/lrnn/construction/example/Example.java" afterPath="$PROJECT_DIR$/src/lrnn/construction/example/Example.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/lrnn/construction/template/LiftedTemplate.java" afterPath="$PROJECT_DIR$/src/lrnn/construction/template/LiftedTemplate.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/lrnn/crossvalidation/Crossvalidation.java" afterPath="$PROJECT_DIR$/src/lrnn/crossvalidation/Crossvalidation.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/metacentrum/ScriptGenerator.java" afterPath="$PROJECT_DIR$/src/metacentrum/ScriptGenerator.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../StructureLearning/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../StructureLearning/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../StructureLearning/src/lrnn/ruleLearner/MultiExampleDataset.java" afterPath="$PROJECT_DIR$/../StructureLearning/src/lrnn/ruleLearner/MultiExampleDataset.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../StructureLearning/src/lrnn/ruleLearner/SoftClusteringSPI.java" afterPath="$PROJECT_DIR$/../StructureLearning/src/lrnn/ruleLearner/SoftClusteringSPI.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Utils/src/ida/utils/Sugar.java" afterPath="$PROJECT_DIR$/../Utils/src/ida/utils/Sugar.java" />
+    </list>
     <ignored path="LRNN.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -26,8 +124,8 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/lrnn/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
-              <caret line="437" column="0" selection-start-line="437" selection-start-column="0" selection-end-line="437" selection-end-column="0" />
+            <state relative-caret-position="168">
+              <caret line="284" column="0" selection-start-line="284" selection-start-column="0" selection-end-line="284" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -36,8 +134,18 @@
       <file leaf-file-name="GroundedDataset.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/lrnn/GroundedDataset.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="383">
-              <caret line="132" column="0" selection-start-line="132" selection-start-column="0" selection-end-line="132" selection-end-column="0" />
+            <state relative-caret-position="333">
+              <caret line="73" column="0" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="NeuralDataset.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/lrnn/NeuralDataset.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="285">
+              <caret line="113" column="16" selection-start-line="113" selection-start-column="16" selection-end-line="113" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -46,19 +154,44 @@
       <file leaf-file-name="Example.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/lrnn/construction/example/Example.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
-              <caret line="27" column="36" selection-start-line="27" selection-start-column="36" selection-end-line="27" selection-end-column="36" />
+            <state relative-caret-position="348">
+              <caret line="39" column="17" selection-start-line="39" selection-start-column="17" selection-end-line="39" selection-end-column="17" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BottomUpConnector.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/lrnn/grounding/BottomUpConnector.java">
+      <file leaf-file-name="SampleSplitter.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/lrnn/crossvalidation/SampleSplitter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="293">
-              <caret line="158" column="0" selection-start-line="158" selection-start-column="0" selection-end-line="158" selection-end-column="0" />
+            <state relative-caret-position="438">
+              <caret line="96" column="0" selection-start-line="96" selection-start-column="0" selection-end-line="96" selection-end-column="0" />
+              <folding>
+                <element signature="e#5098#5099#0" expanded="true" />
+                <element signature="e#5140#5141#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LiftedTemplate.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/lrnn/construction/template/LiftedTemplate.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-432">
+              <caret line="48" column="41" selection-start-line="48" selection-start-column="41" selection-end-line="48" selection-end-column="41" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="NeuralCrossvalidation.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/lrnn/crossvalidation/NeuralCrossvalidation.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+              <folding>
+                <element signature="e#936#937#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -66,28 +199,8 @@
       <file leaf-file-name="NLPdataset.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/lrnn/NLPdataset.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
-              <caret line="165" column="8" selection-start-line="165" selection-start-column="8" selection-end-line="165" selection-end-column="8" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="NLPtemplate.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/lrnn/construction/template/NLPtemplate.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5">
-              <caret line="130" column="28" selection-start-line="130" selection-start-column="28" selection-end-line="130" selection-end-column="28" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GroundedTemplate.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/lrnn/grounding/evaluation/GroundedTemplate.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="212">
-              <caret line="27" column="31" selection-start-line="27" selection-start-column="31" selection-end-line="27" selection-end-column="31" />
+            <state relative-caret-position="370">
+              <caret line="225" column="23" selection-start-line="225" selection-start-column="23" selection-end-line="225" selection-end-column="23" />
               <folding />
             </state>
           </provider>
@@ -96,31 +209,19 @@
       <file leaf-file-name="Crossvalidation.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/lrnn/crossvalidation/Crossvalidation.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="167">
-              <caret line="114" column="0" selection-start-line="114" selection-start-column="0" selection-end-line="114" selection-end-column="0" />
+            <state relative-caret-position="168">
+              <caret line="144" column="26" selection-start-line="144" selection-start-column="26" selection-end-line="144" selection-end-column="26" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Results.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/lrnn/learning/Results.java">
+      <file leaf-file-name="LiftedDataset.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/lrnn/LiftedDataset.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="267">
-              <caret line="285" column="19" selection-start-line="285" selection-start-column="19" selection-end-line="285" selection-end-column="19" />
+            <state relative-caret-position="198">
+              <caret line="118" column="0" selection-start-line="118" selection-start-column="0" selection-end-line="118" selection-end-column="0" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ConstantFactory.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/lrnn/construction/ConstantFactory.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="288">
-              <caret line="25" column="61" selection-start-line="25" selection-start-column="61" selection-end-line="25" selection-end-column="61" />
-              <folding>
-                <element signature="e#411#429#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -158,6 +259,10 @@
         <option value="$PROJECT_DIR$/src/lrnn/GroundedDataset.java" />
         <option value="$PROJECT_DIR$/src/lrnn/construction/ConstantFactory.java" />
         <option value="$PROJECT_DIR$/src/lrnn/learning/Results.java" />
+        <option value="$PROJECT_DIR$/src/lrnn/NeuralDataset.java" />
+        <option value="$PROJECT_DIR$/src/lrnn/construction/template/LiftedTemplate.java" />
+        <option value="$PROJECT_DIR$/src/lrnn/construction/example/Example.java" />
+        <option value="$PROJECT_DIR$/src/lrnn/crossvalidation/Crossvalidation.java" />
       </list>
     </option>
   </component>
@@ -172,7 +277,7 @@
     <option name="width" value="1922" />
     <option name="height" value="1053" />
   </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
     <OptionsSetting value="true" id="Remove" />
     <OptionsSetting value="true" id="Checkout" />
@@ -198,6 +303,8 @@
     </navigator>
     <panes>
       <pane id="Scope" />
+      <pane id="Scratches" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -316,15 +423,13 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="aspect.path.notification.shown" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="js-jscs-nodeInterpreter" value="$USER_HOME$/.nvm/versions/node/v5.6.0/bin/node" />
-    <property name="settings.editor.selected.configurable" value="vcs.Git" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -750,7 +855,7 @@
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" value="lrnn.Main" />
       <option name="VM_PARAMETERS" value="" />
-      <option name="PROGRAM_PARAMETERS" value="-e $PROJECT_DIR$/../in/Honza_debug/examples.txt -r $PROJECT_DIR$/../in/Honza_debug/rules.txt -draw 1" />
+      <option name="PROGRAM_PARAMETERS" value="-e $PROJECT_DIR$/../in/debug/honza/scrabble/examples.txt -r $PROJECT_DIR$/../in/debug/honza/scrabble/rules.txt -draw 0" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
@@ -786,7 +891,9 @@
       <workItem from="1487874029944" duration="88000" />
       <workItem from="1487874144388" duration="967000" />
       <workItem from="1487880170195" duration="23000" />
-      <workItem from="1489088141624" duration="3681000" />
+      <workItem from="1489088141624" duration="5473000" />
+      <workItem from="1489408658659" duration="229000" />
+      <workItem from="1490183795427" duration="1310000" />
     </task>
     <task id="LOCAL-00001" summary="init LRNN changes for structure learning">
       <created>1487754527732</created>
@@ -813,7 +920,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="12854000" />
+    <option name="totallyTimeSpent" value="16185000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="0" width="1922" height="1053" extended-state="6" />
@@ -826,24 +933,24 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32975295" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32975295" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.8464017" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16595517" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32975295" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39957035" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.39957035" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32975295" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -883,7 +990,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="9" />
+      <option name="time" value="16" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -892,53 +999,11 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/extras/GroundKappaGetter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="30" column="37" selection-start-line="30" selection-start-column="37" selection-end-line="30" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/extras/BackpropGroundKappa.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="2" column="40" selection-start-line="2" selection-start-column="40" selection-end-line="2" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/lrnn/global/TextFileReader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1044">
-          <caret line="59" column="36" selection-start-line="59" selection-start-column="36" selection-end-line="59" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../Utils/src/ida/utils/UniqueIDs.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="558">
-          <caret line="48" column="0" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../Utils/src/ida/utils/collections/ValueToIndex.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="558">
-          <caret line="46" column="33" selection-start-line="46" selection-start-column="33" selection-end-line="46" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/lrnn/construction/ConstantFactory.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#411#429#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -946,7 +1011,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
           <caret line="32" column="13" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -955,7 +1019,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="396">
           <caret line="30" column="37" selection-start-line="30" selection-start-column="37" selection-end-line="30" selection-end-column="37" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -963,7 +1026,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="36">
           <caret line="2" column="40" selection-start-line="2" selection-start-column="40" selection-end-line="2" selection-end-column="40" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -971,7 +1033,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1044">
           <caret line="59" column="36" selection-start-line="59" selection-start-column="36" selection-end-line="59" selection-end-column="36" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -979,7 +1040,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="558">
           <caret line="48" column="0" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -987,7 +1047,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -995,7 +1054,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1006,7 +1064,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
           <caret line="32" column="13" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1018,7 +1075,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
           <caret line="32" column="13" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1027,7 +1083,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
           <caret line="32" column="13" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1041,7 +1096,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="396">
           <caret line="30" column="37" selection-start-line="30" selection-start-column="37" selection-end-line="30" selection-end-column="37" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1049,7 +1103,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="36">
           <caret line="2" column="40" selection-start-line="2" selection-start-column="40" selection-end-line="2" selection-end-column="40" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1057,7 +1110,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1044">
           <caret line="59" column="36" selection-start-line="59" selection-start-column="36" selection-end-line="59" selection-end-column="36" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1065,7 +1117,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="558">
           <caret line="48" column="0" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1073,7 +1124,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="558">
           <caret line="46" column="33" selection-start-line="46" selection-start-column="33" selection-end-line="46" selection-end-column="33" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1081,7 +1131,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="167">
           <caret line="20" column="25" selection-start-line="20" selection-start-column="25" selection-end-line="20" selection-end-column="25" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1097,15 +1146,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="203">
           <caret line="77" column="0" selection-start-line="77" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/lrnn/construction/template/LiftedTemplate.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="33" column="36" selection-start-line="33" selection-start-column="36" selection-end-line="33" selection-end-column="36" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1113,39 +1153,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="176">
           <caret line="110" column="0" selection-start-line="110" selection-start-column="0" selection-end-line="110" selection-end-column="0" />
-          <folding>
-            <element signature="e#4009#4010#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/lrnn/construction/template/NLPtemplate.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5">
-          <caret line="130" column="28" selection-start-line="130" selection-start-column="28" selection-end-line="130" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/lrnn/NLPdataset.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="165" column="8" selection-start-line="165" selection-start-column="8" selection-end-line="165" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/lrnn/construction/example/Example.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="27" column="36" selection-start-line="27" selection-start-column="36" selection-end-line="27" selection-end-column="36" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/lrnn/grounding/evaluation/GroundedTemplate.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="212">
+        <state relative-caret-position="285">
           <caret line="27" column="31" selection-start-line="27" selection-start-column="31" selection-end-line="27" selection-end-column="31" />
           <folding />
         </state>
@@ -1153,50 +1166,128 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/lrnn/construction/ConstantFactory.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
+        <state relative-caret-position="240">
           <caret line="25" column="61" selection-start-line="25" selection-start-column="61" selection-end-line="25" selection-end-column="61" />
-          <folding>
-            <element signature="e#411#429#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/lrnn/grounding/BottomUpConnector.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
+        <state relative-caret-position="1920">
           <caret line="158" column="0" selection-start-line="158" selection-start-column="0" selection-end-line="158" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/lrnn/GroundedDataset.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="383">
-          <caret line="132" column="0" selection-start-line="132" selection-start-column="0" selection-end-line="132" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/lrnn/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="437" column="0" selection-start-line="437" selection-start-column="0" selection-end-line="437" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/lrnn/crossvalidation/Crossvalidation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="167">
-          <caret line="114" column="0" selection-start-line="114" selection-start-column="0" selection-end-line="114" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/lrnn/learning/Results.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="267">
-          <caret line="285" column="19" selection-start-line="285" selection-start-column="19" selection-end-line="285" selection-end-column="19" />
+        <state relative-caret-position="1230">
+          <caret line="206" column="9" selection-start-line="206" selection-start-column="9" selection-end-line="206" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lrnn/learning/Sample.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="280">
+          <caret line="42" column="19" selection-start-line="42" selection-start-column="19" selection-end-line="42" selection-end-column="19" />
+          <folding>
+            <element signature="e#1036#1037#0" expanded="true" />
+            <element signature="e#1066#1067#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lrnn/construction/template/NLPtemplate.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="318">
+          <caret line="144" column="26" selection-start-line="144" selection-start-column="26" selection-end-line="144" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lrnn/construction/template/LiftedTemplate.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-432">
+          <caret line="48" column="41" selection-start-line="48" selection-start-column="41" selection-end-line="48" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lrnn/NLPdataset.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="370">
+          <caret line="225" column="23" selection-start-line="225" selection-start-column="23" selection-end-line="225" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lrnn/construction/example/Example.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="348">
+          <caret line="39" column="17" selection-start-line="39" selection-start-column="17" selection-end-line="39" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lrnn/crossvalidation/Crossvalidation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="144" column="26" selection-start-line="144" selection-start-column="26" selection-end-line="144" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lrnn/crossvalidation/NeuralCrossvalidation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+          <folding>
+            <element signature="e#936#937#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lrnn/LiftedDataset.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="118" column="0" selection-start-line="118" selection-start-column="0" selection-end-line="118" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lrnn/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="284" column="0" selection-start-line="284" selection-start-column="0" selection-end-line="284" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lrnn/crossvalidation/SampleSplitter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="438">
+          <caret line="96" column="0" selection-start-line="96" selection-start-column="0" selection-end-line="96" selection-end-column="0" />
+          <folding>
+            <element signature="e#5098#5099#0" expanded="true" />
+            <element signature="e#5140#5141#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lrnn/GroundedDataset.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="333">
+          <caret line="73" column="0" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lrnn/NeuralDataset.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="113" column="16" selection-start-line="113" selection-start-column="16" selection-end-line="113" selection-end-column="16" />
           <folding />
         </state>
       </provider>

@@ -26,7 +26,7 @@ import java.util.Map;
  */
 public class Crossvalidation {
 
-    int foldCount = 5;
+    public int foldCount = 5;
 
     double trainErr = 0;
     double trainMajorityErr = 0;

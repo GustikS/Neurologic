@@ -25,7 +25,7 @@ public class Example implements Serializable {
     private int constCount;
     public String hash;
     //new feature - constant IDs to their original names!
-    public HashMap<Integer, String> constantNames = new HashMap<>();
+    public Map<Integer, String> constantNames = new HashMap<>();
     //in case of weighted facts, set of all facts with weights
     public HashMap<SubKL, GroundKL> storedFacts;
 
