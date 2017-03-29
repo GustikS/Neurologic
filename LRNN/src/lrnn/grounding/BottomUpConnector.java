@@ -7,6 +7,7 @@ package lrnn.grounding;
 
 import ida.ilp.logic.Clause;
 import ida.ilp.logic.Literal;
+import ida.ilp.logic.LogicUtils;
 import ida.ilp.logic.Term;
 import ida.ilp.logic.io.PrologParser;
 import ida.ilp.logic.subsumption.Matching;
@@ -171,6 +172,7 @@ public class BottomUpConnector extends Grounder {
                 if (gkl == null) {
                     gkl = new GroundKappa((Kappa) kl, terms);
                     gkl.setValueAvg(1.0);
+                    gkl.setValue(1.0);
                 }
                 if (recursion) {
                     openAtomSet.remove(top);
@@ -214,6 +216,11 @@ public class BottomUpConnector extends Grounder {
             }
             if (!allDisjuncts.isEmpty()) {
                 ((GroundKappa) gkl).setDisjunctsAvg(allDisjuncts);
+                List<Tuple<GroundLambda, KappaRule>> l = new ArrayList<>();
+                for (Tuple<HashSet<GroundLambda>, KappaRule> ald : allDisjuncts) {
+                    l.add(new Tuple(ald.x.iterator().next(), ald.y));
+                }
+                ((GroundKappa) gkl).setDisjuncts(l);
             } else {
                 if (recursion) {
                     openAtomSet.remove(top);
@@ -232,6 +239,7 @@ public class BottomUpConnector extends Grounder {
                 if (gkl == null) {
                     gkl = new GroundLambda((Lambda) kl, terms);
                     gkl.setValueAvg(1.0);
+                    gkl.setValue(1.0);
                 }
                 if (recursion) {
                     openAtomSet.remove(top);
@@ -290,6 +298,7 @@ public class BottomUpConnector extends Grounder {
                 }
             }
             if (!allConjuncts.isEmpty()) {
+                ((GroundLambda) gkl).setConjuncts(new ArrayList<>(allConjuncts.keySet()));
                 ((GroundLambda) gkl).setConjunctsAvg(allConjuncts);
                 ((GroundLambda) gkl).setConjunctsCountForAvg(count);
                 if (Global.uncompressedLambda) {
@@ -379,12 +388,15 @@ public class BottomUpConnector extends Grounder {
             List<List<Literal>> grRules = new ArrayList<>();
             groundRules.put(rules.get(i), grRules);
             Pair<Term[], List<Term[]>> pair = m.allSubstitutions(removeNegationsFromClause(clauses.get(i)), 0, Integer.MAX_VALUE);
+            Set<Set<Literal>> setCheck = new HashSet<>();
             for (Term[] substitution : pair.s) {
 
-                //Clause grRule = LogicUtils.substitute(clauses.get(i), pair.r, substitution);
+                Clause grRule = LogicUtils.substitute(clauses.get(i), pair.r, substitution);
                 List<Literal> lits = getMySubstitutions(clauses.get(i), pair.r, substitution);
-
-                grRules.add(lits);
+                Set<Literal> check = new HashSet<>(lits);
+                if (setCheck.add(check)) {
+                    grRules.add(lits);  //add only truly unique ground rule bodies in terms of the contained literals (ignore literal order = kill symmetries)
+                }
             }
         }
         Glogger.process("ground rules created");

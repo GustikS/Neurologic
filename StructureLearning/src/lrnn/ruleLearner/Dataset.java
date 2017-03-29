@@ -11,7 +11,6 @@
 package lrnn.ruleLearner;
 
 import ida.ilp.logic.Literal;
-import ida.utils.MutableDouble;
 import ida.utils.tuples.Pair;
 
 import java.util.Map;
@@ -22,9 +21,7 @@ import java.util.Set;
  */
 public interface Dataset {
 
-    public double error(ClassifierR classifier, Map<Literal,Double> literalWeights);
-
-    public double error(ClassifierR classifier, Map<Literal,Double> literalWeights, MutableDouble outThreshold);
+    public double error(ClassifierR classifier, Map<Literal,Double> literalWeights, String whatError);
 
     public int numExistentialMatches(HornClause hc, int maxNum);
 

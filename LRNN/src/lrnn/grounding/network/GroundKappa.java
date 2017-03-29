@@ -93,6 +93,10 @@ public class GroundKappa extends GroundKL {
         this.disjunctsAvg = disjunctsAvg;
     }
 
+    public void setDisjuncts(List<Tuple<GroundLambda, KappaRule>> disjuncts) {
+        this.disjuncts = disjuncts;
+    }
+
     /*
     @Override
     public void transform2Arrays() {

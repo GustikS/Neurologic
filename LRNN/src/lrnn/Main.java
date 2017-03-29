@@ -19,7 +19,7 @@ public class Main {
     //cutoff on example number
     private static final String defaultMaxExamples = "1000000";  //we can decrease the overall number of examples (stratified) for speedup
     //
-    public static String defaultLearningSteps = "1000";  //learnSteps per epocha
+    public static String defaultLearningSteps = "10000";  //learnSteps per epocha
     public static String defaultLearningEpochs = "1";  //learn epochae = grounding cycles
     //  learnEpochae * LearningSteps = learning steps for AVG variant
     private static final String defaultFolds = "1"; // 1 = training only
@@ -33,13 +33,13 @@ public class Main {
     //max-avg
     public static final String defaultGrounding = "avg";    //avg or max
     public static String defaultActivations = "sig_sig";    //lambda_kappa activation functions
-    public static String defaultInitialization = "longtail";    //handmade = 0.9:0.1
+    public static String defaultInitialization = "longtail";    //handmade = 0.9:0.1 ; uniform = uniform ; longtail = longtail distribution
     //offsets
     public static boolean defaultKappaAdaptiveOffsetOn = false; //kappa offset is initialized based on number of input lambdas
     public static String defaultKappaAdaptiveOffset = "0";  //must stay zero as default if defaultKappaAdaptiveOffsetOn = false    
     public static String defaultLambdaAdaptiveOffset = "1"; //lambda offset add to the -1* (number of input kappas)
 
-    public static String defaultSeed = "1"; //seeds the whole algorithm (shuffling, etc.), should make it completely deterministic
+    public static String defaultSeed = "2"; //seeds the whole algorithm (shuffling, etc.), should make it completely deterministic
 
     private static String defaultSaving = "1"; // >0 => saving of template is ON after each bp-step (minibatch)  --> adds 10% extra computation time
 

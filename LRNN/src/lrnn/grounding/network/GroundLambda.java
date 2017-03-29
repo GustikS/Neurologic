@@ -3,11 +3,9 @@ package lrnn.grounding.network;
 import lrnn.construction.Variable;
 import lrnn.construction.template.KL;
 import lrnn.global.Global;
+
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Grounded node -- lambda = rule neuron
@@ -125,5 +123,10 @@ public class GroundLambda extends GroundKL implements Serializable {
      */
     public boolean isElement() {
         return conjuncts.isEmpty() && conjunctsAvg.isEmpty();
+    }
+
+    public void setConjuncts(List<GroundKappa> conjuncts) {
+        this.conjuncts = conjuncts;
+
     }
 }

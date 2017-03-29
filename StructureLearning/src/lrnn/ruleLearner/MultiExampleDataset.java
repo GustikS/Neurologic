@@ -54,17 +54,38 @@ public class MultiExampleDataset implements Dataset {
 
     /**
      * Analytically find weights for the last layer of classifiers by minimizing MSE given current classifier and all the previous
+     *
      * @param classifier
      * @param literalWeights
      * @return
      */
     public double optimalMSE(ClassifierR classifier, Map<Literal, Double> literalWeights) {
-        double retVal = 0;
+
+        double[][] logistInput = new double[examples.size()][];
         for (int i = 0; i < examples.size(); i++) {
-            double prediction = classifier.prediction(i, queries == null ? null : queries.get(i), matching, literalWeights);
-            retVal += Sugar.square(prediction - targets[i]);
+            double[] predictions = classifier.predictions(i, queries == null ? null : queries.get(i), matching, literalWeights);
+            logistInput[i] = predictions;
         }
-        return retVal;
+
+
+        boolean[] out = new boolean[targets.length];
+        int pos = 0;
+        for (int i = 0; i < out.length; i++) {
+            if (targets[i] > 0) {
+                out[i] = true;
+                pos++;
+            } else {
+                out[i] = false;
+            }
+        }
+
+        double error = 1;
+        LogisticRegressionPoly logres = new LogisticRegressionPoly(logistInput, out, 1);
+        classifier.coeffs = logres.w;
+        error = logres.error(logres.w) / examples.size();
+
+        return error;
+
     }
 
     public double rmse(ClassifierR classifier, Map<Literal, Double> literalWeights) {
@@ -76,12 +97,20 @@ public class MultiExampleDataset implements Dataset {
         return retVal;
     }
 
-
-    public double error(ClassifierR classifier, Map<Literal, Double> literalWeights) {
-        return this.error(classifier, literalWeights, new MutableDouble(Double.NaN));
+    public double error(ClassifierR classifier, Map<Literal, Double> literalWeights, String whatError) {
+        switch (whatError) {
+            case "rmse":
+                return this.rmse(classifier, literalWeights);
+            case "acc":
+                return this.accError(classifier, literalWeights, new MutableDouble(Double.NaN));
+            case "MSE":
+                return this.optimalMSE(classifier, literalWeights);
+            default:
+                return this.rmse(classifier, literalWeights);
+        }
     }
 
-    public double error(ClassifierR classifier, Map<Literal, Double> literalWeights, MutableDouble outThreshold) {
+    public double accError(ClassifierR classifier, Map<Literal, Double> literalWeights, MutableDouble outThreshold) {
         double sumPos = 0, sumNeg = 0, bestErr = examples.size();
         List<Pair<Double, Integer>> pairs = new ArrayList<Pair<Double, Integer>>();
         for (int i = 0; i < examples.size(); i++) {

@@ -1,12 +1,12 @@
 package lrnn.grounding.evaluation;
 
-import lrnn.global.Global;
-import lrnn.grounding.network.GroundKappa;
-import lrnn.grounding.network.GroundLambda;
 import lrnn.construction.template.rules.KappaRule;
-import lrnn.learning.functions.Activations;
+import lrnn.global.Global;
 import lrnn.global.Tuple;
 import lrnn.grounding.network.GroundKL;
+import lrnn.grounding.network.GroundKappa;
+import lrnn.grounding.network.GroundLambda;
+import lrnn.learning.functions.Activations;
 
 import java.util.*;
 
@@ -74,6 +74,7 @@ public class Evaluator {
 
         //out = gk.getGeneral().getOffset();
         ArrayList<Double> inputs = new ArrayList<>(gk.getDisjuncts().size());
+
         for (Tuple<GroundLambda, KappaRule> t : gk.getDisjuncts()) {
             //out += evaluate(t.x) * t.y.getWeight();
             inputs.add(evaluateMax(t.x) * t.y.getWeight());
@@ -169,7 +170,7 @@ public class Evaluator {
             gl.setValueAvg(0.0);
             return 0;
         }
-        
+
         if (gl.isElement()) {
             return gl.getValueAvg();
             //return gk.getValue(); //-should be the same
@@ -183,7 +184,7 @@ public class Evaluator {
         //out = gl.getGeneral().getOffset();
         ArrayList<Double> inputs = new ArrayList<>(gl.getConjunctsAvg().size());
         //double avg = 0;
-        if (Global.uncompressedLambda){
+        if (Global.uncompressedLambda) {
             double avg = 0;
             for (List<GroundKappa> gks : gl.fullBodyGroundings) {
                 inputs.clear();

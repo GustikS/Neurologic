@@ -1,6 +1,7 @@
 package constructs.template;
 
 import constructs.example.WeightedFact;
+import settings.Settings;
 
 import java.util.Set;
 
@@ -17,5 +18,11 @@ public class Template {
         this.rules = rules;
         this.facts = facts;
         this.atoms = atoms;
+    }
+
+    public Template preprocess(Settings settings){
+        Template preprocessed = this;
+        if (settings.reduceTemplate) preprocessed = settings.templateReducer.reduce(preprocessed);
+        return preprocessed;
     }
 }

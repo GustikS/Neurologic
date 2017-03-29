@@ -9,7 +9,7 @@ import java.util.Collection;
  */
 public class StratifiedSplitter implements SplittingStrategy {
     @Override
-    public Collection<Collection<LearningSample>> splitIntoFolds(Iterable<LearningSample> samples) {
+    public Collection<Collection<LearningSample>> splitIntoFolds(Collection<LearningSample> samples) {
         return null;
     }
 }

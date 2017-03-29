@@ -109,7 +109,7 @@ public class Main {
         sl.setSaturator(symmetrySaturator);
 
 
-        System.out.println("RESULT: " + sl.beamSearch(20, 10, 0));
+        System.out.println("RESULT: " + sl.beamSearch(20, 10));
     }
 
 }

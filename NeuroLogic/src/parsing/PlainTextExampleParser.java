@@ -1,9 +1,9 @@
 package parsing;
 
-import constructs.example.GroundExample;
+import learning.Example;
 
 import java.io.Reader;
-import java.util.List;
+import java.util.stream.Stream;
 
 /**
  * Created by gusta on 14.3.17.
@@ -16,7 +16,7 @@ public class PlainTextExampleParser implements ExampleParser {
     }
 
     @Override
-    public List<GroundExample> parseExamples(Reader reader) {
+    public Stream<Example> parseExamples(Reader reader) {
         return null;
     }
 }

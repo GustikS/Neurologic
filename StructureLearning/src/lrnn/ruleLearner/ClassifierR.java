@@ -21,14 +21,17 @@ import ida.utils.tuples.Pair;
 import ida.utils.tuples.Triple;
 import lrnn.global.Glogger;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by kuzelkao_cardiff on 20/01/17.
  */
 public class ClassifierR {
 
-    private double[] coeffs;
+    double[] coeffs;
 
     private int sampleSize = 100, sampleStep = 1;
 
@@ -59,6 +62,8 @@ public class ClassifierR {
     };
 
     public ClassifierR() {
+        this.coeffs = new double[0];
+        this.rules = new HornClause[0];
     }
 
     public ClassifierR(HornClause hc, double coeff) {
@@ -75,7 +80,7 @@ public class ClassifierR {
     }
 
     public double[] predictions(int dbIndex, Literal query, Matching matching, Map<Literal, Double> weights) {
-        double[] retVal = new double[coeffs.length];
+        double[] retVal = new double[rules.length];
         int i = 0;
         for (HornClause rule : this.rules) {
             Clause unified;
@@ -160,5 +165,13 @@ public class ClassifierR {
 
     public Sugar.Fun<double[], Double> getgStar() {
         return gStar;
+    }
+
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < rules().length; i++) {
+            sb.append(coeffs[i] + " " + rules[i]).append("; ");
+        }
+        return sb.toString();
     }
 }

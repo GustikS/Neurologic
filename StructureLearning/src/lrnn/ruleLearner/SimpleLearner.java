@@ -15,14 +15,13 @@ import ida.ilp.logic.Literal;
 import ida.ilp.logic.LogicUtils;
 import ida.ilp.logic.Variable;
 import ida.ilp.logic.special.IsoClauseWrapper;
-import ida.utils.MutableDouble;
 import ida.utils.Sugar;
 import ida.utils.collections.MultiMap;
 import ida.utils.tuples.Pair;
-import ida.utils.tuples.Quadruple;
 import lrnn.global.Glogger;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Does not handle constants. Constants need to be handled as unary literals. But you're free to implement this functionality :)
@@ -31,13 +30,15 @@ import java.util.*;
  */
 public class SimpleLearner {
 
+    String errorMeasure = "acc";
+
     private boolean connectedOnly = true;
 
     private int minSupport = 1;
 
-    private Dataset dataset;
+    Dataset dataset;
 
-    private Map<Literal, Double> literalWeights = new HashMap<Literal, Double>();
+    Map<Literal, Double> literalWeights = new HashMap<Literal, Double>();
 
     private Set<Pair<String, Integer>> allAllowedPredicates;
 
@@ -45,9 +46,12 @@ public class SimpleLearner {
 
     private Saturator saturator;
 
-    private static Random random = new Random(SimpleLearner.class.getName().hashCode());
+    static Random random = new Random(SimpleLearner.class.getName().hashCode());
 
-    public SimpleLearner() {
+    int targetClass = 0;
+
+    public SimpleLearner(String errorMeasure) {
+        this.errorMeasure = errorMeasure;
     }
 
     public SimpleLearner(Dataset dataset) {
@@ -60,11 +64,10 @@ public class SimpleLearner {
         this.literalWeights = literalWeights;
     }
 
-
     //+1 = positive classifier, -1 = negative classifier, 0 = both
-    public Quadruple<HornClause, Double, Integer, Double> beamSearch(int beamSize, int maxSize, int targetClass) {
+    public Pair<ClassifierR,Double> beamSearch(int beamSize, int maxSize) {
 
-        MultiMap<HornClause,Literal> badRefinements = new MultiMap<HornClause, Literal>();
+        MultiMap<HornClause, Literal> badRefinements = new MultiMap<HornClause, Literal>();
         Set<IsoClauseWrapper> processed = new HashSet<IsoClauseWrapper>();
         Set<Pair<String, Integer>> queryPredicates = this.dataset.queryPredicates();
 
@@ -77,7 +80,8 @@ public class SimpleLearner {
                 current.add(new HornClause(new Clause(LogicUtils.newLiteral(predicate.r, predicate.s))));
             }
         }
-        Quadruple<HornClause, Double, Integer, Double> best = new Quadruple();
+
+        Pair<ClassifierR, Double> best = new Pair<>();
         history.putAll(0, current);
         for (int i = 1; i <= maxSize; i++) {
             List<HornClause> candidates = new ArrayList<HornClause>();
@@ -86,50 +90,51 @@ public class SimpleLearner {
             }
             candidates = filterIsomorphic(candidates);
 
-            List<HornClause> top = selectTop(candidates, beamSize, best, targetClass);
-            history.putAll(i, top);
-            current = top;
-            for (HornClause hc : top) {
+            List<Pair<ClassifierR, Double>> top = selectTop(candidates, beamSize, best);
+            history.putAll(i, top.stream().map(q -> q.r.rules()[q.r.rules().length-1]).collect(Collectors.toList()));
+            current = top.stream().map(q -> q.r.rules()[q.r.rules().length-1]).collect(Collectors.toList());
+            for (Pair<ClassifierR, Double> hc : top) {
                 Glogger.info("in top: " + hc);
             }
+
             Glogger.info("Best so far: " + best);
         }
         return best;
     }
 
-    private List<HornClause> selectTop(List<HornClause> list, int num, Quadruple<HornClause, Double, Integer, Double> outBest, int targetClass) {
-        List<Quadruple<HornClause, Double, Integer, Double>> rules = new ArrayList<>();
+    List<Pair<ClassifierR, Double>> selectTop(List<HornClause> list, int num, Pair<ClassifierR, Double> outBest) {
+        List<Pair<ClassifierR, Double>> rules = new ArrayList<>();
         for (HornClause hc : list) {
 
             if (targetClass > 0) {
-                MutableDouble thresh1 = new MutableDouble(Double.NaN);
-                double err1 = dataset.error(new ClassifierR(hc, 1), this.literalWeights, thresh1);
-                rules.add(new Quadruple(hc, err1, 1, thresh1));
+                ClassifierR cl1 = new ClassifierR(hc, 1);
+                double err1 = dataset.error(cl1, this.literalWeights, errorMeasure);
+                rules.add(new Pair(cl1, err1));
             } else if (targetClass < 0) {
-                MutableDouble thresh2 = new MutableDouble(Double.NaN);
-                double err2 = dataset.error(new ClassifierR(hc, -1), this.literalWeights, thresh2);
-                rules.add(new Quadruple(hc, err2, -1, thresh2));
+                ClassifierR cl1 = new ClassifierR(hc, -1);
+                double err1 = dataset.error(cl1, this.literalWeights, errorMeasure);
+                rules.add(new Pair(cl1, err1));
             } else {
-                MutableDouble thresh1 = new MutableDouble(Double.NaN);
-                double err1 = dataset.error(new ClassifierR(hc, 1), this.literalWeights, thresh1);
-                MutableDouble thresh2 = new MutableDouble(Double.NaN);
-                double err2 = dataset.error(new ClassifierR(hc, -1), this.literalWeights, thresh2);
+                ClassifierR cl1 = new ClassifierR(hc, 1);
+                double err1 = dataset.error(cl1, this.literalWeights, errorMeasure);
+                ClassifierR cl2 = new ClassifierR(hc, -1);
+                double err2 = dataset.error(cl1, this.literalWeights, errorMeasure);
                 if (err1 < err2) {
-                    rules.add(new Quadruple(hc, err1, 1, thresh1));
+                    rules.add(new Pair(cl1, err1));
                 } else {
-                    rules.add(new Quadruple(hc, err2, -1, thresh2));
+                    rules.add(new Pair(cl2, err2));
                 }
             }
         }
 
         Collections.shuffle(rules, this.random);
         Collections.sort(rules, (o1, o2) -> o1.s.compareTo(o2.s));
-        List<HornClause> retVal = new ArrayList<HornClause>();
+        List<Pair<ClassifierR, Double>> retVal = new ArrayList<>();
         for (int i = 0; i < Math.min(num, rules.size()); i++) {
-            retVal.add(rules.get(i).r);
+            retVal.add(rules.get(i));
         }
         if (retVal.size() > 0 && outBest != null && (outBest.r == null || outBest.s > rules.get(0).s)) {
-            outBest.set(retVal.get(0), rules.get(0).s, rules.get(0).t, rules.get(0).u);
+            outBest.set(retVal.get(0).r, rules.get(0).s);
         }
         System.out.println();
         return retVal;
@@ -161,9 +166,9 @@ public class SimpleLearner {
         return retVal;
     }
 
-    private List<HornClause> refinements(HornClause hc, Pair<String,Integer> predicate, Set<Literal> badRefinements){
+    private List<HornClause> refinements(HornClause hc, Pair<String, Integer> predicate, Set<Literal> badRefinements) {
         long m1 = System.currentTimeMillis();
-        Map<IsoClauseWrapper,Literal> refinements = new HashMap<IsoClauseWrapper,Literal>();
+        Map<IsoClauseWrapper, Literal> refinements = new HashMap<IsoClauseWrapper, Literal>();
         Set<Variable> variables = hc.variables();
         Set<Variable> freshVariables = LogicUtils.freshVariables(variables, predicate.s);
         Literal freshLiteral = LogicUtils.newLiteral(predicate.r, predicate.s, freshVariables).negation();
@@ -171,12 +176,12 @@ public class SimpleLearner {
         Clause init = new Clause(Sugar.union(originalClause.literals(), freshLiteral));
         refinements.put(new IsoClauseWrapper(init), freshLiteral);
 
-        for (int i = 0; i < predicate.s; i++){
-            Map<IsoClauseWrapper,Literal> newRefinements = new HashMap<IsoClauseWrapper, Literal>();
-            for (Map.Entry<IsoClauseWrapper,Literal> entry : refinements.entrySet()){
-                Variable x = (Variable)entry.getValue().get(i);
-                for (Variable v : entry.getKey().getOriginalClause().variables()){
-                    if (v != x){
+        for (int i = 0; i < predicate.s; i++) {
+            Map<IsoClauseWrapper, Literal> newRefinements = new HashMap<IsoClauseWrapper, Literal>();
+            for (Map.Entry<IsoClauseWrapper, Literal> entry : refinements.entrySet()) {
+                Variable x = (Variable) entry.getValue().get(i);
+                for (Variable v : entry.getKey().getOriginalClause().variables()) {
+                    if (v != x) {
                         Clause substituted = LogicUtils.substitute(entry.getKey().getOriginalClause(), x, v);
                         Literal newLiteral = LogicUtils.substitute(entry.getValue(), x, v);
                         if (substituted.countLiterals() > originalClause.countLiterals() && !badRefinements.contains(newLiteral) &&
@@ -197,9 +202,9 @@ public class SimpleLearner {
             refinements.putAll(newRefinements);
         }
         Set<IsoClauseWrapper> refinementSet;
-        if (this.saturator != null){
+        if (this.saturator != null) {
             Set<IsoClauseWrapper> saturatedRefinements = new HashSet<IsoClauseWrapper>();
-            for (IsoClauseWrapper icw : refinements.keySet()){
+            for (IsoClauseWrapper icw : refinements.keySet()) {
                 saturatedRefinements.add(new IsoClauseWrapper(saturator.saturate(icw.getOriginalClause())));
             }
             refinementSet = saturatedRefinements;
@@ -207,7 +212,7 @@ public class SimpleLearner {
             refinementSet = refinements.keySet();
         }
         List<HornClause> retVal = new ArrayList<HornClause>();
-        for (IsoClauseWrapper icw : refinementSet){
+        for (IsoClauseWrapper icw : refinementSet) {
             if ((!this.connectedOnly || icw.getOriginalClause().connectedComponents().size() == 1)) {
                 retVal.add(new HornClause(icw.getOriginalClause()));
             }

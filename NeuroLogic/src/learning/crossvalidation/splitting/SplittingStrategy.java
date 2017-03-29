@@ -8,5 +8,5 @@ import java.util.Collection;
  * Created by gusta on 8.3.17.
  */
 public interface SplittingStrategy {
-    Collection<Collection<LearningSample>> splitIntoFolds(Iterable<LearningSample> samples);
+    Collection<Collection<LearningSample>> splitIntoFolds(Collection<LearningSample> samples);
 }

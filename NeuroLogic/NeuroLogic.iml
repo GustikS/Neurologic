@@ -10,5 +10,6 @@
     <orderEntry type="module" module-name="Neural" />
     <orderEntry type="module" module-name="Logical" />
     <orderEntry type="module" module-name="Utils" />
+    <orderEntry type="module" module-name="Logic" />
   </component>
 </module>

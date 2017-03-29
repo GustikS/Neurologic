@@ -7,6 +7,7 @@ package lrnn.grounding.network.groundNetwork;
 
 import lrnn.construction.template.LiftedTemplate;
 import lrnn.construction.template.rules.KappaRule;
+import lrnn.global.Global;
 import lrnn.global.Tuple;
 import lrnn.grounding.network.GroundKappa;
 import lrnn.grounding.network.GroundLambda;
@@ -28,7 +29,11 @@ public class AtomNeuron extends GroundNeuron {
         name = grk.toString(net.constantNames);
         activation = grk.getGeneral().activation;
 
-        outputValue = grk.getValueAvg();
+        if (Global.getGrounding().equals(Global.groundingSet.avg)) {
+            outputValue = grk.getValueAvg();
+        } else if (Global.getGrounding().equals(Global.groundingSet.max)){
+            outputValue = grk.getValue();
+        }
 
         groundParentsCount = grk.getGroundParents();
         offsetWeightIndex = net.weightMapping.get(grk.getGeneral().toString());

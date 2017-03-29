@@ -5,9 +5,7 @@
  */
 package lrnn;
 
-import ida.ilp.logic.Constant;
 import lrnn.construction.ConstantFactory;
-import lrnn.construction.ExampleFactory;
 import lrnn.construction.example.Example;
 import lrnn.construction.template.LiftedTemplate;
 import lrnn.construction.template.MolecularTemplate;
@@ -24,7 +22,10 @@ import lrnn.grounding.evaluation.struct.GroundNetworkParser;
 import lrnn.grounding.network.GroundKL;
 import lrnn.learning.Sample;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
@@ -134,7 +135,11 @@ public class GroundedDataset extends LiftedDataset {
 
                 Glogger.info("cacheSize #" + prover.getBtmUpCache().size());
                 sampleStore.add(new Sample(e, b));
-                Evaluator.evaluateAvg(b);
+                if (Global.getGrounding().equals(Global.groundingSet.avg)) {
+                    Evaluator.evaluateAvg(b);
+                } else {
+                    Evaluator.evaluateMax(b);
+                }
 
                 if (Global.drawing) {
                     GroundDotter.draw(b, "b" + i);
@@ -195,7 +200,7 @@ public class GroundedDataset extends LiftedDataset {
         Set<GroundKL> neurons = null;
         for (Sample result : sampleStore) {
             GroundedTemplate b = result.getBall();
-            if (Global.getGrounding() == Global.groundingSet.avg) {
+            if (Global.getGrounding() == Global.groundingSet.avg || Global.bottomUp) {
                 neurons = GroundNetworkParser.parseAVG(b);
             } else if (Global.getGrounding() == Global.groundingSet.max) {
                 neurons = GroundNetworkParser.parseMAX(b);

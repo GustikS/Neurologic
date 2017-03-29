@@ -224,7 +224,7 @@ public class Results {
         }
         double error = 0;
         for (Result res : results) {
-            double clas = res.getActual() >= training.getThresh() ? 1.0 : 0.0;
+            double clas = res.getActual() > training.getThresh() ? 1.0 : 0.0;
             Glogger.info("Example Classified -> " + clas + " Expected -> " + res.getExpected() + " Out -> " + res.getActual() + " Thresh -> " + training.getThresh());
             if (clas != res.getExpected()) {
                 error += 1.0;

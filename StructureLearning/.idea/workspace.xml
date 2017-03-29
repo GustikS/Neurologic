@@ -2,385 +2,63 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8686acc9-2bbf-4fb1-8a19-07e5300e1263" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/learning/backprop/BackpropDownAvg.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/learning/Weights.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/ElementMapper.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/learning/Result.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/sig-id.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/example/QueryArray.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/gts.tgz" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/fc-list.exe" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/intl.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/extras/Solvator.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/nationsOnline.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/libfreetype-6.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Matlab/interploation.m" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/MLNuMLS.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/unflatten.exe" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/modelsER/discModel.ucls" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/template/WeightInitializator.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/football.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/electrons.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/graphviz_2.38.0-1-saucy_amd64.deb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/LiftedDataset.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/exparse.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/zlib1.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/template/LiftedTemplate.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/osage.exe" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/learning/Sample.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/structureLearning/templateTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/libgthread-2.0-0.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/global/Settings.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../lib/BottomUpGrounder.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/template/LambdaFactory.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/examples/Atoms.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/structureLearning/rules.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/oldTestsFromDiscoverer/ExampleSplitterTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/libpng12.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/template/LightTemplate.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/grounding/network/groundNetwork/GroundNetwork.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/diffimg.exe" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/Graphviz.ini" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/build-impl.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../build.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/crossvalidation/SampleSplitter.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/template/rules/SubK.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/MLNkinshipsFull.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/templates/input/flow/IP.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/global/Tuple.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/extras/Rprop.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/drawing/Dotter.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/libcairo-2.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/structureLearning/examples.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/example/Example.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/vmalloc.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/learning/Saver.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/extras/RingsToxic.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/grounding/network/GroundKL.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/learning/Results.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/mm2gv.exe" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/electronsNCI.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/extras/BackpropKappa.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/MLNnoKernel.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/VariableFactory.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/freetype6.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/drawing/GroundDotter.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/templates/input/flow/Network.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/grounding/evaluation/struct/GroundNetworkParser.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/nationsBatch.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/rings.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/structureLearning/initTemplate.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/learning/backprop/BackpropStructured.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/private/configs/avg-nci.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/sccmap.exe" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/cgraph.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/templates/input/WebFlowParser.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/libgdkglext-win32-1.0-0.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/templates/input/XSD.xsd" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/libglade-2.0-0.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/bcomps.exe" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Matlab/imgs/finals0.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../lib/auc.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/gvpack.exe" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/gts.lib" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/templates/input/flow/Flags.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/prune.exe" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/structureLearning/beforeAfter.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/templates/input/flow/Bag.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/templates/input/flow/IntValue.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/LRNN/StringTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/crossvalidation/Crossvalidation.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/serialGC.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/anselmo.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/template/rules/LambdaRule.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/templates/input/JsonFlowParser.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/templates/TreeTemplate.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/QtCore4.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/template/NLPtemplate.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/MLNrelationKernel.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/gc.exe" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/libfontconfig-1.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/sfdp.exe" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/libgtkglext-win32-1.0-0.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/structureLearning/examples2.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/grounding/network/groundNetwork/RuleAggNeuron.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/oldTestsFromDiscoverer/RoundTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/yjp-build-impl.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/structureLearning/Rdnc0.0-rules.w" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/NeuralDataset.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/grounding/network/GroundLambda.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/gvplugin_core.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/oldTestsFromDiscoverer/FileReaderTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/libgio-2.0-0.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../kernelTemplate" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/extras/InactiveWeightBooster.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/private/configs/flowrels.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/templates/Convertor.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/private/config.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/extras/GroundInvalidatorOld.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/NLP-molekuly.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/libpng14-14.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/structureLearning/randomRules.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/learning/learners/Learning.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/private/profiler/settings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/gvplugin_neato_layout.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/gxl2gv.exe" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/lefty.exe" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/extras/GraphViz.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/global/TextFileReader.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/grounding/BottomUpConnector.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/libexpat.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/NLP-emb.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/NLPtrainTest.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Matlab/imgs/bonds0.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/libgdk-win32-2.0-0.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/libgobject-2.0-0.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/template/specialPredicates/NotEqualPredicate.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/fontconfig.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/zoo.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/QtGui4.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/libpangowin32-1.0-0.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/fc-cat.exe" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/oldTestsFromDiscoverer/ParseRuleTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../manifest.mf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/template/specialPredicates/GreaterOrEqual.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/libgtk-win32-2.0-0.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Matlab/importLambdaHeaders.m" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/simiarityReasoning.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../lib/commons-cli-1.2.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/oldTestsFromDiscoverer/SolveAndEvalTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/examples/People.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/dotty.exe" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/templates/input/flow/Flow.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/iconv.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/tred.exe" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../dist/neurologic.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Matlab/imgs/init0.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/Variable.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/templates/input/flow/RealValue.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/gml2gv.exe" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/MLNkernelsEvaluation.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/jpeg62.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/getopt.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Matlab/importWeights.m" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/grounding/network/GroundKappa.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Matlab/matrix2embeddings.m" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/mlnNELL.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/fontconfig_fix.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/template/KappaFactory.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/global/Global.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/ptcmr-mr.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/avg-nci.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/flows.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/NLP/Recursion.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/structureLearning/stats" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/private/configs/avg.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/oldTestsFromDiscoverer/BackpropTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/LRNN/BackPropAVGTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/Parser.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/private/private.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/gvmap.exe" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/MLNnations.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/template/Kappa.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/mustLinks.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/drawtest.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/metacentrum/Foils.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/MLNkinships.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/nop.exe" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/fc-cache.exe" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/templates/input/NLPtemplates.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Matlab/jair/frompaperPtcmr.fig" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/learning/learners/LearnerStructured.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Matlab/imgs/finals1.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Matlab/tmp.m" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/learning/functions/ActivationsFast.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/private/configs/Nell.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/template/rules/SubL.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/gvcolor.exe" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/Nell.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/fc-match.exe" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/metacentrum/Configurations.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/max.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/libgmodule-2.0-0.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../dist/README.TXT" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/private/configs/NLP-isa.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/template/MolecularTemplate.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/private/configs/mutagen.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/ann.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/templates/Templator.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/oldTestsFromDiscoverer/RuleCountTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/templates/input/NellParser.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/gvc.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/libexpat-1.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/NLPnations.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Matlab/jair/atomsCompressed.fig" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/templates/input/flow/Protocol.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/NLPdataset.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/acyclic.exe" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/global/AUC.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/libltdl-3.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/Main.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/templates/input/flow/Domain.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/templates/input/StringParser.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/grounding/Grounder.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/learning/backprop/BackpropFast.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/glut32.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/learning/learners/LearnerStandard.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/extras/Triple.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/GVedit.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/grounding/evaluation/GroundedTemplate.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/ExampleFactory.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/NLP.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/structureLearning/test" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/grounding/network/groundNetwork/AtomNeuron.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/ccomps.exe" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/example/Chunks.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/libpangoft2-1.0-0.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../dist/lib/BottomUpGrounder.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/structureLearning/export.sh.o1158041" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/gd.tgz" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/gvgen.exe" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/mingle.exe" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/NLP-isa.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/private/configs/muta.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/strings.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/neato.exe" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/templates/input/flow/Webflow.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Matlab/embeddings.m" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/gvplugin_pango.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/gvplugin_dot_layout.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/example/Combinations.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/templates/Generalizer.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/private/configs/NLP-emb.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/oldTestsFromDiscoverer/DrawTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/graphml2gv.exe" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/templates/input/Similarity.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/template/KL.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/oldTestsFromDiscoverer/SolveTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../lib/org.json-20120521.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/fdp.exe" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/libpango-1.0-0.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/template/Lambda.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/props.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Matlab/imgs/uncompressed.fig" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/oldTestsFromDiscoverer/ExampleFactoryTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/extras/Distributions.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/muta.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/genfiles.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/template/specialPredicates/LessOrEqual.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../yjp-build.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/MLNnationsBatch.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/libxml2.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/gvplugin_gdiplus.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/extras/BatchLearner.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../dist/lib/commons-cli-1.2.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Matlab/displayProgress.m" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/Element.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/avg.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/grounding/network/groundNetwork/GroundNeuron.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/private/configs/ptcmr-mm.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/structureLearning/template" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/templates/input/flow/Start.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Matlab/displayWeightMatrix.m" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/lneato.exe" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../loading.xls" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../todos.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/extras/Estimator.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/private/configs/football.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/extras/BackpropGroundKappa.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/smyrna.exe" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/oldTestsFromDiscoverer/VariableOrderingTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/private/configs/avg-bad.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/global/Glogger.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/grounding/ForwardChecker.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/oldTestsFromDiscoverer/GroundDrawTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/Temp.rar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/gvedit.exe" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/zoo2layes.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/oldTestsFromDiscoverer/SubKTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/private/configs/max.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/templates/input/flow/NumericValuePredicate.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/extras/EvaluationInterface.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/learn_decay.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/patchwork.exe" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/MLNembeddings.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/private/private.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/libatk-1.0-0.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/circo.exe" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Matlab/test.m" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/ConstantFactory.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/structureLearning/StructureLearning.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Matlab/imgs/bonds1.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/grounding/evaluation/EvaluatorFast.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/libgdk_pixbuf-2.0-0.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/dijkstra.exe" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/New Text Document.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/ptcmr-mm.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/learning/backprop/BackpropDown.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Matlab/imgs/symmetry1.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/config.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/example/IntArray.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Matlab/importKappaHeaders.m" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/librsvg-2-2.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/dot.exe" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/private/configs/drawtest.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/MLNkernels.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/mutagen.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/template/specialPredicates/SpecialPredicate.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/template/rules/SubKL.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/GroundedDataset.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/cdt.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/template/rules/Rule.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/private/configs/anselmo.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/libpangocairo-1.0-0.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/extras/GroundKappaGetter.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Matlab/drawSubMatrix.m" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/templates/input/Electrons.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/project.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/extras/Invalidator.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Matlab/jair/frompaperMuta.fig" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/gd.zip" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/structureLearning/train" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/extras/SubOutput.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/avg-bad.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../.gitignore" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/gv2gml.exe" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/Settings.ini" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/private/configs/NLP.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/flowrels.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/gvpr.exe" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/LRNN/SolveEvalAVGTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/TemplateFactory.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/metacentrum/ScriptGenerator.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/learning/learners/LearnerIterative.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/private/configs/flows.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/oldTestsFromDiscoverer/NetFactoryTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/structureLearning/Rdnc0.0-offsets.w" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/oldTestsFromDiscoverer/ParseExampleTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/learning/LearningStep.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/ltdl.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/grounding/evaluation/struct/Dropout.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/twopi.exe" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/zoo1layer.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/templates/input/flow/AbstractAttribute.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/config6" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/extras/FileToStringList.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/pretrained.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/project.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/extras/LearnDecay.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/template/specialPredicates/SimilarityPredicate.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/crossvalidation/NeuralCrossvalidation.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../test/extras/SaveLoadTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../nbproject/configs/animals.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/gvplugin_gd.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/global/Batch.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/learning/learners/LearnerFast.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/learning/learners/LearnerCheckback.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/learning/functions/Activations.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/grounding/evaluation/Evaluator.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/discoverer/construction/template/rules/KappaRule.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/libglib-2.0-0.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../graphviz/bin/Pathplan.dll" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../NeuroLogic/src/learning/Example.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../NeuroLogic/src/parsing/DefaultQueryExampleParser.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../NeuroLogic/src/pipelines/SampleProcess.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../NeuroLogic/src/pipelines/StandardLearningPipeline.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../NeuroLogic/src/settings/SourceFiles.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../NeuroLogic/src/utils/Utilities.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/lrnn/ruleLearner/ContextAwareLearner.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/lrnn/ruleLearner/GraphColoring.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/lrnn/ruleLearner/LogisticRegression.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/lrnn/ruleLearner/LogisticRegressionPoly.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/lrnn/ruleLearner/RelationalTemplateSPI.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../NeuroLogic/src/pipelines/Stage.java" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/../NeuroLogic/src/metacentrum/AutomatedEvaluator.java" afterPath="$PROJECT_DIR$/../NeuroLogic/src/metacentrum/AutoEvaluator.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../LRNN/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../LRNN/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../LRNN/src/lrnn/GroundedDataset.java" afterPath="$PROJECT_DIR$/../LRNN/src/lrnn/GroundedDataset.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../LRNN/src/lrnn/Main.java" afterPath="$PROJECT_DIR$/../LRNN/src/lrnn/Main.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../LRNN/src/lrnn/construction/Parser.java" afterPath="$PROJECT_DIR$/../LRNN/src/lrnn/construction/Parser.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../LRNN/src/lrnn/grounding/BottomUpConnector.java" afterPath="$PROJECT_DIR$/../LRNN/src/lrnn/grounding/BottomUpConnector.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../LRNN/src/lrnn/grounding/evaluation/Evaluator.java" afterPath="$PROJECT_DIR$/../LRNN/src/lrnn/grounding/evaluation/Evaluator.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../LRNN/src/lrnn/grounding/network/GroundKappa.java" afterPath="$PROJECT_DIR$/../LRNN/src/lrnn/grounding/network/GroundKappa.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../LRNN/src/lrnn/grounding/network/GroundLambda.java" afterPath="$PROJECT_DIR$/../LRNN/src/lrnn/grounding/network/GroundLambda.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../LRNN/src/lrnn/grounding/network/groundNetwork/AtomNeuron.java" afterPath="$PROJECT_DIR$/../LRNN/src/lrnn/grounding/network/groundNetwork/AtomNeuron.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../LRNN/src/lrnn/grounding/network/groundNetwork/RuleAggNeuron.java" afterPath="$PROJECT_DIR$/../LRNN/src/lrnn/grounding/network/groundNetwork/RuleAggNeuron.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../LRNN/src/lrnn/learning/Results.java" afterPath="$PROJECT_DIR$/../LRNN/src/lrnn/learning/Results.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../NeuroLogic/Logical/src/constructs/example/AtomQuery.java" afterPath="$PROJECT_DIR$/../NeuroLogic/Logical/src/constructs/example/AtomQuery.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../NeuroLogic/Logical/src/constructs/example/CompositeQuery.java" afterPath="$PROJECT_DIR$/../NeuroLogic/Logical/src/constructs/example/CompositeQuery.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../NeuroLogic/Logical/src/constructs/example/GroundExample.java" afterPath="$PROJECT_DIR$/../NeuroLogic/Logical/src/constructs/example/GroundExample.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../NeuroLogic/Logical/src/constructs/template/Template.java" afterPath="$PROJECT_DIR$/../NeuroLogic/Logical/src/constructs/template/Template.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../NeuroLogic/Logical/src/constructs/template/transforming/LinearChainReducer.java" afterPath="$PROJECT_DIR$/../NeuroLogic/Logical/src/constructs/template/transforming/LinearChainReducer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../NeuroLogic/Logical/src/grounding/Grounder.java" afterPath="$PROJECT_DIR$/../NeuroLogic/Logical/src/grounding/Grounder.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../NeuroLogic/Logical/src/grounding/bottomUp/BottomUp.java" afterPath="$PROJECT_DIR$/../NeuroLogic/Logical/src/grounding/bottomUp/BottomUp.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../NeuroLogic/Logical/src/grounding/topDown/TopDown.java" afterPath="$PROJECT_DIR$/../NeuroLogic/Logical/src/grounding/topDown/TopDown.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/networks/structure/NeuralNetwork.java" afterPath="$PROJECT_DIR$/../NeuroLogic/Neural/src/networks/structure/NeuralNetwork.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/networks/structure/lrnnTypes/QueryNeuron.java" afterPath="$PROJECT_DIR$/../NeuroLogic/Neural/src/networks/structure/lrnnTypes/QueryNeuron.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../NeuroLogic/NeuroLogic.iml" afterPath="$PROJECT_DIR$/../NeuroLogic/NeuroLogic.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../NeuroLogic/src/Main.java" afterPath="$PROJECT_DIR$/../NeuroLogic/src/Main.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../NeuroLogic/src/learning/LearningSample.java" afterPath="$PROJECT_DIR$/../NeuroLogic/src/learning/LearningSample.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../NeuroLogic/src/learning/Query.java" afterPath="$PROJECT_DIR$/../NeuroLogic/src/learning/Query.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../NeuroLogic/src/learning/crossvalidation/splitting/SplittingStrategy.java" afterPath="$PROJECT_DIR$/../NeuroLogic/src/learning/crossvalidation/splitting/SplittingStrategy.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../NeuroLogic/src/learning/crossvalidation/splitting/StratifiedSplitter.java" afterPath="$PROJECT_DIR$/../NeuroLogic/src/learning/crossvalidation/splitting/StratifiedSplitter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../NeuroLogic/src/parsing/ExampleParser.java" afterPath="$PROJECT_DIR$/../NeuroLogic/src/parsing/ExampleParser.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../NeuroLogic/src/parsing/PlainTextExampleParser.java" afterPath="$PROJECT_DIR$/../NeuroLogic/src/parsing/PlainTextExampleParser.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../NeuroLogic/src/parsing/PlainTextQueryParser.java" afterPath="$PROJECT_DIR$/../NeuroLogic/src/parsing/PlainTextQueryParser.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../NeuroLogic/src/parsing/QueryParser.java" afterPath="$PROJECT_DIR$/../NeuroLogic/src/parsing/QueryParser.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../NeuroLogic/src/parsing/SQLdumpExampleParser.java" afterPath="$PROJECT_DIR$/../NeuroLogic/src/parsing/SQLdumpExampleParser.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../NeuroLogic/src/pipelines/Pipeline.java" afterPath="$PROJECT_DIR$/../NeuroLogic/src/pipelines/Pipeline.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../NeuroLogic/src/settings/Settings.java" afterPath="$PROJECT_DIR$/../NeuroLogic/src/settings/Settings.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../NeuroLogic/src/utils/Logger.java" afterPath="$PROJECT_DIR$/../NeuroLogic/src/utils/Logger.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/lrnn/ruleLearner/ClassifierR.java" afterPath="$PROJECT_DIR$/src/lrnn/ruleLearner/ClassifierR.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/lrnn/ruleLearner/Dataset.java" afterPath="$PROJECT_DIR$/src/lrnn/ruleLearner/Dataset.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/lrnn/ruleLearner/Debug.java" afterPath="$PROJECT_DIR$/src/lrnn/ruleLearner/Debug.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/lrnn/ruleLearner/Main.java" afterPath="$PROJECT_DIR$/src/lrnn/ruleLearner/Main.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/lrnn/ruleLearner/MultiExampleDataset.java" afterPath="$PROJECT_DIR$/src/lrnn/ruleLearner/MultiExampleDataset.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/lrnn/ruleLearner/SimpleLearner.java" afterPath="$PROJECT_DIR$/src/lrnn/ruleLearner/SimpleLearner.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/lrnn/ruleLearner/SoftClusteringSPI.java" afterPath="$PROJECT_DIR$/src/lrnn/ruleLearner/SoftClusteringSPI.java" />
     </list>
     <ignored path="RuleLearner.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -402,11 +80,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="SoftClusteringSPI.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="SoftClusteringSPI.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/lrnn/ruleLearner/SoftClusteringSPI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="368">
-              <caret line="58" column="65" selection-start-line="58" selection-start-column="65" selection-end-line="58" selection-end-column="65" />
+            <state relative-caret-position="4122">
+              <caret line="237" column="0" selection-start-line="237" selection-start-column="0" selection-end-line="237" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -414,11 +92,36 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Literal.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../Logic/src/ida/ilp/logic/Literal.java">
+      <file leaf-file-name="LogisticRegressionPoly.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/lrnn/ruleLearner/LogisticRegressionPoly.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="39" column="19" selection-start-line="39" selection-start-column="19" selection-end-line="39" selection-end-column="19" />
+            <state relative-caret-position="558">
+              <caret line="39" column="18" selection-start-line="39" selection-start-column="18" selection-end-line="39" selection-end-column="18" />
+              <folding>
+                <element signature="e#5137#5138#0" expanded="true" />
+                <element signature="e#5192#5193#0" expanded="true" />
+                <element signature="e#9201#9202#0" expanded="true" />
+                <element signature="e#9245#9246#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GroundedDataset.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../LRNN/src/lrnn/GroundedDataset.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="427">
+              <caret line="197" column="0" selection-start-line="197" selection-start-column="0" selection-end-line="197" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SQLdumpExampleParser.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/../NeuroLogic/src/parsing/SQLdumpExampleParser.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="36">
+              <caret line="2" column="7" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -426,88 +129,66 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Crossvalidation.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../LRNN/src/lrnn/crossvalidation/Crossvalidation.java">
+      <file leaf-file-name="GraphColoring.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/lrnn/ruleLearner/GraphColoring.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-129">
-              <caret line="162" column="14" selection-start-line="162" selection-start-column="8" selection-end-line="162" selection-end-column="14" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Results.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../LRNN/src/lrnn/learning/Results.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="20" column="17" selection-start-line="20" selection-start-column="17" selection-end-line="20" selection-end-column="17" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LearningStep.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../LRNN/src/lrnn/learning/LearningStep.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="39" column="0" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../LRNN/src/lrnn/Main.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-8">
-              <caret line="43" column="26" selection-start-line="43" selection-start-column="26" selection-end-line="43" selection-end-column="26" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SimpleLearner.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/lrnn/ruleLearner/SimpleLearner.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-8">
-              <caret line="70" column="0" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
+            <state relative-caret-position="1512">
+              <caret line="92" column="0" selection-start-line="92" selection-start-column="0" selection-end-line="92" selection-end-column="0" />
               <folding>
-                <element signature="e#2710#2731#0" expanded="true" />
-                <element signature="e#2788#2806#0" expanded="true" />
-                <element signature="e#2956#2977#0" expanded="true" />
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ScriptGenerator.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../LRNN/src/metacentrum/ScriptGenerator.java">
+      <file leaf-file-name="TemplateFactory.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../LRNN/src/lrnn/construction/TemplateFactory.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="505">
-              <caret line="113" column="1" selection-start-line="113" selection-start-column="1" selection-end-line="113" selection-end-column="1" />
+            <state relative-caret-position="1710">
+              <caret line="106" column="0" selection-start-line="106" selection-start-column="0" selection-end-line="106" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Global.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../LRNN/src/lrnn/global/Global.java">
+      <file leaf-file-name="Dataset.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/lrnn/ruleLearner/Dataset.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-8">
-              <caret line="42" column="29" selection-start-line="42" selection-start-column="29" selection-end-line="42" selection-end-column="29" />
+            <state relative-caret-position="198">
+              <caret line="23" column="18" selection-start-line="23" selection-start-column="18" selection-end-line="23" selection-end-column="18" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ContextAwareLearner.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/lrnn/ruleLearner/ContextAwareLearner.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="432">
+              <caret line="38" column="0" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
               <folding>
-                <element signature="e#15677#15678#0" expanded="true" />
-                <element signature="e#15704#15705#0" expanded="true" />
+                <element signature="e#1382#1383#0" expanded="true" />
+                <element signature="e#1410#1411#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Settings.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../LRNN/src/lrnn/global/Settings.java">
+      <file leaf-file-name="ClassifierR.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/lrnn/ruleLearner/ClassifierR.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-8">
-              <caret line="328" column="27" selection-start-line="328" selection-start-column="27" selection-end-line="328" selection-end-column="27" />
+            <state relative-caret-position="1116">
+              <caret line="90" column="13" selection-start-line="90" selection-start-column="13" selection-end-line="90" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MultiExampleDataset.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/lrnn/ruleLearner/MultiExampleDataset.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="126">
+              <caret line="161" column="0" selection-start-line="161" selection-start-column="0" selection-end-line="161" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -546,12 +227,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/../LRNN/src/discoverer/learning/learners/LearnerFast.java" />
-        <option value="$PROJECT_DIR$/../LRNN/src/discoverer/crossvalidation/NeuralCrossvalidation.java" />
-        <option value="$PROJECT_DIR$/../LRNN/src/discoverer/learning/Results.java" />
-        <option value="$PROJECT_DIR$/../LRNN/src/discoverer/construction/ExampleFactory.java" />
-        <option value="$PROJECT_DIR$/../LRNN/src/discoverer/learning/Sample.java" />
-        <option value="$PROJECT_DIR$/../LRNN/src/discoverer/construction/example/Example.java" />
         <option value="$PROJECT_DIR$/../LRNN/src/discoverer/NLPdataset.java" />
         <option value="$PROJECT_DIR$/../LRNN/src/discoverer/construction/template/LiftedTemplate.java" />
         <option value="$PROJECT_DIR$/../LRNN/src/discoverer/Main.java" />
@@ -571,31 +246,37 @@
         <option value="$PROJECT_DIR$/../LRNN/src/lrnn/drawing/Dotter.java" />
         <option value="$PROJECT_DIR$/../LRNN/src/lrnn/drawing/GroundDotter.java" />
         <option value="$PROJECT_DIR$/../LRNN/src/lrnn/grounding/evaluation/Evaluator.java" />
-        <option value="$PROJECT_DIR$/src/lrnn/ruleLearner/Main.java" />
         <option value="$PROJECT_DIR$/../LRNN/src/lrnn/learning/learners/LearnerStandard.java" />
         <option value="$PROJECT_DIR$/../LRNN/src/lrnn/learning/learners/LearnerIterative.java" />
         <option value="$PROJECT_DIR$/../LRNN/src/lrnn/learning/Invalidator.java" />
         <option value="$PROJECT_DIR$/../LRNN/src/lrnn/learning/learners/LearnerCheckback.java" />
-        <option value="$PROJECT_DIR$/../LRNN/src/lrnn/Main.java" />
-        <option value="$PROJECT_DIR$/src/lrnn/ruleLearner/Debug.java" />
-        <option value="$PROJECT_DIR$/src/lrnn/ruleLearner/ClassifierR.java" />
         <option value="$PROJECT_DIR$/../LRNN/src/lrnn/global/Glogger.java" />
         <option value="$PROJECT_DIR$/../LRNN/src/lrnn/GroundedDataset.java" />
         <option value="$PROJECT_DIR$/../LRNN/src/lrnn/crossvalidation/NeuralCrossvalidation.java" />
-        <option value="$PROJECT_DIR$/../LRNN/src/lrnn/learning/Results.java" />
-        <option value="$PROJECT_DIR$/../LRNN/src/lrnn/construction/Parser.java" />
         <option value="$PROJECT_DIR$/../LRNN/src/lrnn/construction/template/rules/KappaRule.java" />
         <option value="$PROJECT_DIR$/../LRNN/src/lrnn/construction/template/KL.java" />
         <option value="$PROJECT_DIR$/../LRNN/src/lrnn/construction/TemplateFactory.java" />
         <option value="$PROJECT_DIR$/../LRNN/src/lrnn/NeuralDataset.java" />
-        <option value="$PROJECT_DIR$/src/lrnn/ruleLearner/SimpleLearner.java" />
-        <option value="$PROJECT_DIR$/src/lrnn/ruleLearner/MultiExampleDataset.java" />
         <option value="$PROJECT_DIR$/../LRNN/src/metacentrum/Configurations.java" />
         <option value="$PROJECT_DIR$/src/lrnn/ruleLearner/TemplateGenerator.java" />
         <option value="$PROJECT_DIR$/src/lrnn/ruleLearner/RelationalTemplateGenerator.java" />
-        <option value="$PROJECT_DIR$/src/lrnn/ruleLearner/RelationalTemplateSPI.java" />
         <option value="$PROJECT_DIR$/../LRNN/src/lrnn/crossvalidation/Crossvalidation.java" />
         <option value="$PROJECT_DIR$/../LRNN/src/metacentrum/ScriptGenerator.java" />
+        <option value="$PROJECT_DIR$/src/lrnn/ruleLearner/Debug.java" />
+        <option value="$PROJECT_DIR$/src/lrnn/ruleLearner/RelationalTemplateSPI.java" />
+        <option value="$PROJECT_DIR$/../LRNN/src/lrnn/learning/Results.java" />
+        <option value="$PROJECT_DIR$/../LRNN/src/lrnn/Main.java" />
+        <option value="$PROJECT_DIR$/src/lrnn/ruleLearner/LogisticRegression.java" />
+        <option value="$PROJECT_DIR$/src/lrnn/ruleLearner/LogisticLearner.java" />
+        <option value="$PROJECT_DIR$/src/lrnn/ruleLearner/Dataset.java" />
+        <option value="$PROJECT_DIR$/src/lrnn/ruleLearner/Main.java" />
+        <option value="$PROJECT_DIR$/src/lrnn/ruleLearner/GraphColoring.java" />
+        <option value="$PROJECT_DIR$/src/lrnn/ruleLearner/SimpleLearner.java" />
+        <option value="$PROJECT_DIR$/../LRNN/src/lrnn/construction/Parser.java" />
+        <option value="$PROJECT_DIR$/src/lrnn/ruleLearner/MultiExampleDataset.java" />
+        <option value="$PROJECT_DIR$/src/lrnn/ruleLearner/LogisticRegressionPoly.java" />
+        <option value="$PROJECT_DIR$/src/lrnn/ruleLearner/ContextAwareLearner.java" />
+        <option value="$PROJECT_DIR$/src/lrnn/ruleLearner/ClassifierR.java" />
         <option value="$PROJECT_DIR$/src/lrnn/ruleLearner/SoftClusteringSPI.java" />
       </list>
     </option>
@@ -647,7 +328,7 @@
     <OptionsSetting value="true" id="Update" />
     <OptionsSetting value="true" id="Status" />
     <OptionsSetting value="true" id="Edit" />
-    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="2" id="Add" />
     <ConfirmationsSetting value="0" id="Remove" />
   </component>
   <component name="ProjectReloadState">
@@ -675,6 +356,54 @@
     <panes>
       <pane id="ProjectPane">
         <subPane />
+      </pane>
+      <pane id="PackagesPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="RuleLearner" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="RuleLearner" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="StructureLearning" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="RuleLearner" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="StructureLearning" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="templates" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="RuleLearner" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="StructureLearning" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="lrnn.ruleLearner" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
       </pane>
       <pane id="Scope">
         <subPane subId="Production">
@@ -732,178 +461,6 @@
         <subPane subId="Tests" />
       </pane>
       <pane id="Scratches" />
-      <pane id="PackagesPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RuleLearner" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RuleLearner" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="StructureLearning" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RuleLearner" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="StructureLearning" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RuleLearner" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="StructureLearning" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lrnn.ruleLearner" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RuleLearner" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="LRNN" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RuleLearner" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="LRNN" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RuleLearner" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="LRNN" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="structureLearning" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RuleLearner" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="LRNN" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="metacentrum" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RuleLearner" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="LRNN" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lrnn" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RuleLearner" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="LRNN" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lrnn" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="learning" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RuleLearner" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="LRNN" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lrnn" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="learning" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="learners" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RuleLearner" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="LRNN" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lrnn" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="grounding" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -917,7 +474,7 @@
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../LRNN" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="recentsLimit" value="5" />
     <property name="dynamic.classpath" value="false" />
     <property name="OverrideImplement.combined" value="true" />
@@ -933,7 +490,7 @@
     <property name="extract.method.default.visibility" value="private" />
     <property name="SearchEverywhereHistoryKey" value="java.util.Function&#9;PSI&#9;JAVA://java.util.function.BiFunction&#10;connected&#9;PSI&#9;JAVA://lrnn.ruleLearner.SimpleLearner#connected&#10;clause representation created&#9;null&#9;null&#10;Collections.shuffle&#9;null&#9;null&#10;sublist&#9;PSI&#9;JAVA://java.util.SubList" />
   </component>
-  <component name="RunManager" selected="Application.structure_786">
+  <component name="RunManager" selected="Application.GraphColoringLearn">
     <configuration default="false" name="ScriptGenerator" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -965,6 +522,66 @@
       <option name="VM_PARAMETERS" value="" />
       <option name="PROGRAM_PARAMETERS" value="-dataset ../in/relational/hepa/hepatitis.txt -sbs 20 -sms 10" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="StructureLearning" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="Debug" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="lrnn.ruleLearner.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="MAIN_CLASS_NAME" value="lrnn.ruleLearner.Debug" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="StructureLearning" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="GraphColoringLearn" type="Application" factoryName="Application" temporary="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="lrnn.ruleLearner.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="MAIN_CLASS_NAME" value="lrnn.ruleLearner.GraphColoring" />
+      <option name="VM_PARAMETERS" value="" />
+      <option name="PROGRAM_PARAMETERS" value="-dataset ../in/coloring/exampleEdges.txt -sbs 30" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="StructureLearning" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="LogisticRegressionPoly" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="lrnn.ruleLearner.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="MAIN_CLASS_NAME" value="lrnn.ruleLearner.LogisticRegressionPoly" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="ENABLE_SWING_INSPECTOR" value="false" />
@@ -1520,20 +1137,47 @@
       <envs />
       <method />
     </configuration>
-    <list size="8">
+    <configuration default="false" name="GraphColoringGenerate" type="Application" factoryName="Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="lrnn.ruleLearner.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="MAIN_CLASS_NAME" value="lrnn.ruleLearner.GraphColoring" />
+      <option name="VM_PARAMETERS" value="" />
+      <option name="PROGRAM_PARAMETERS" value="../in/coloring/.txt" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="StructureLearning" />
+      <envs />
+      <method />
+    </configuration>
+    <list size="12">
       <item index="0" class="java.lang.String" itemvalue="Application.LRNN_Main" />
       <item index="1" class="java.lang.String" itemvalue="Application.StructureLearning_Main_test" />
       <item index="2" class="java.lang.String" itemvalue="Application.StructureLearning_Main_ptcmr" />
       <item index="3" class="java.lang.String" itemvalue="Application.HornClause" />
       <item index="4" class="java.lang.String" itemvalue="Application.SymmetrySaturator" />
       <item index="5" class="java.lang.String" itemvalue="Application.structure_786" />
-      <item index="6" class="java.lang.String" itemvalue="Application.ScriptGenerator" />
-      <item index="7" class="java.lang.String" itemvalue="Application.RelationalTemplateSPI" />
+      <item index="6" class="java.lang.String" itemvalue="Application.GraphColoringGenerate" />
+      <item index="7" class="java.lang.String" itemvalue="Application.ScriptGenerator" />
+      <item index="8" class="java.lang.String" itemvalue="Application.RelationalTemplateSPI" />
+      <item index="9" class="java.lang.String" itemvalue="Application.Debug" />
+      <item index="10" class="java.lang.String" itemvalue="Application.GraphColoringLearn" />
+      <item index="11" class="java.lang.String" itemvalue="Application.LogisticRegressionPoly" />
     </list>
     <recent_temporary>
-      <list size="2">
-        <item index="0" class="java.lang.String" itemvalue="Application.ScriptGenerator" />
-        <item index="1" class="java.lang.String" itemvalue="Application.RelationalTemplateSPI" />
+      <list size="5">
+        <item index="0" class="java.lang.String" itemvalue="Application.GraphColoringLearn" />
+        <item index="1" class="java.lang.String" itemvalue="Application.LogisticRegressionPoly" />
+        <item index="2" class="java.lang.String" itemvalue="Application.Debug" />
+        <item index="3" class="java.lang.String" itemvalue="Application.ScriptGenerator" />
+        <item index="4" class="java.lang.String" itemvalue="Application.RelationalTemplateSPI" />
       </list>
     </recent_temporary>
   </component>
@@ -1596,12 +1240,15 @@
       <workItem from="1489580433019" duration="22303000" />
       <workItem from="1489743125864" duration="15982000" />
       <workItem from="1489920907538" duration="24385000" />
+      <workItem from="1490206316090" duration="29101000" />
+      <workItem from="1490606052109" duration="39785000" />
+      <workItem from="1490805524385" duration="231000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
     <option name="enabled" value="true" />
-    <option name="totallyTimeSpent" value="427927000" />
+    <option name="totallyTimeSpent" value="497044000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1614,27 +1261,27 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="0" width="1922" height="1053" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32939914" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32725322" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23250808" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34334764" sideWeight="0.50213444" order="13" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32975295" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28969958" sideWeight="0.49786553" order="2" side_tool="false" content_ui="tabs" x="23" y="390" width="1874" height="273" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26372445" sideWeight="0.49786553" order="2" side_tool="false" content_ui="tabs" x="23" y="390" width="1874" height="273" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32938644" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32939914" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16275346" sideWeight="0.49468893" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16275346" sideWeight="0.49468893" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24919957" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Time Tracking" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32977587" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Time Tracking" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32977587" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31223175" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31216362" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.14727855" sideWeight="0.5053111" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1644,7 +1291,7 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20600858" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20559742" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -1676,6 +1323,9 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <option name="LAST_COMMIT_MESSAGE" value="" />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
@@ -1686,34 +1336,34 @@
           <option name="timeStamp" value="63" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/lrnn/ruleLearner/ClassifierR.java</url>
-          <line>91</line>
+          <url>file://$PROJECT_DIR$/src/lrnn/ruleLearner/SoftClusteringSPI.java</url>
+          <line>262</line>
           <properties />
-          <option name="timeStamp" value="145" />
+          <option name="timeStamp" value="232" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/lrnn/ruleLearner/GraphColoring.java</url>
+          <line>98</line>
+          <properties />
+          <option name="timeStamp" value="246" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/lrnn/ruleLearner/SoftClusteringSPI.java</url>
-          <line>313</line>
+          <line>229</line>
           <properties />
-          <option name="timeStamp" value="199" />
+          <option name="timeStamp" value="289" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/lrnn/ruleLearner/SoftClusteringSPI.java</url>
-          <line>238</line>
+          <url>file://$PROJECT_DIR$/src/lrnn/ruleLearner/MultiExampleDataset.java</url>
+          <line>83</line>
           <properties />
-          <option name="timeStamp" value="205" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/lrnn/ruleLearner/SoftClusteringSPI.java</url>
-          <line>214</line>
-          <properties />
-          <option name="timeStamp" value="209" />
+          <option name="timeStamp" value="300" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="211" />
+      <option name="time" value="301" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1722,132 +1372,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../LRNN/src/lrnn/NLPdataset.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-648">
-          <caret line="43" column="13" selection-start-line="43" selection-start-column="13" selection-end-line="43" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../LRNN/src/lrnn/learning/Weights.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1296">
-          <caret line="78" column="16" selection-start-line="78" selection-start-column="16" selection-end-line="78" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../LRNN/src/lrnn/learning/Saver.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="17" column="16" selection-start-line="17" selection-start-column="16" selection-end-line="17" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/lrnn/ruleLearner/Dataset.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="22" column="17" selection-start-line="22" selection-start-column="17" selection-end-line="22" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../LRNN/src/lrnn/NeuralDataset.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1386">
-          <caret line="93" column="9" selection-start-line="93" selection-start-column="9" selection-end-line="93" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../LRNN/src/lrnn/grounding/network/groundNetwork/GroundNetwork.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../LRNN/src/lrnn/grounding/network/groundNetwork/GroundNeuron.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../LRNN/src/lrnn/learning/Sample.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="20" column="17" selection-start-line="20" selection-start-column="17" selection-end-line="20" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../LRNN/src/lrnn/learning/Invalidator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/lrnn/ruleLearner/HornClause.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#4384#0" expanded="false" />
-            <element signature="imports" expanded="false" />
-            <element signature="e#2798#2799#0" expanded="false" />
-            <element signature="e#2877#2878#0" expanded="false" />
-            <element signature="e#3261#3262#0" expanded="false" />
-            <element signature="e#3293#3294#0" expanded="false" />
-            <element signature="e#3320#3321#0" expanded="false" />
-            <element signature="e#3352#3353#0" expanded="false" />
-            <element signature="e#4058#4059#0" expanded="false" />
-            <element signature="e#4150#4151#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../Logic/src/ida/ilp/logic/HornClause.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="486">
-          <caret line="35" column="39" selection-start-line="35" selection-start-column="39" selection-end-line="35" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../Utils/src/ida/utils/CommandLine.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="25" column="13" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../Utils/src/ida/utils/IntegerFunction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="27" column="22" selection-start-line="27" selection-start-column="22" selection-end-line="27" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../Utils/src/ida/utils/Statistics.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="357" column="13" selection-start-line="357" selection-start-column="13" selection-end-line="357" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../Utils/src/ida/utils/StringUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="157" column="1" selection-start-line="157" selection-start-column="1" selection-end-line="157" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../Utils/src/ida/utils/Sugar.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="33" column="13" selection-start-line="33" selection-start-column="13" selection-end-line="33" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../Utils/src/ida/utils/UniqueIDs.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
@@ -1889,13 +1413,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../LRNN/src/lrnn/construction/TemplateFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="765">
-          <caret line="62" column="0" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../LRNN/src/lrnn/LiftedDataset.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="420">
@@ -1914,25 +1431,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../Logic/src/ida/ilp/logic/subsumption/Matching.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="62" column="7" selection-start-line="62" selection-start-column="7" selection-end-line="62" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../LRNN/src/lrnn/grounding/BottomUpGrounder.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2490">
           <caret line="184" column="28" selection-start-line="184" selection-start-column="28" selection-end-line="184" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../LRNN/src/lrnn/GroundedDataset.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="366">
-          <caret line="130" column="0" selection-start-line="130" selection-start-column="0" selection-end-line="130" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1952,42 +1454,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/lrnn/ruleLearner/ClassifierR.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1320">
-          <caret line="111" column="0" selection-start-line="111" selection-start-column="0" selection-end-line="111" selection-end-column="0" />
-          <folding>
-            <element signature="e#2507#2508#0" expanded="false" />
-            <element signature="e#2570#2571#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../LRNN/src/lrnn/crossvalidation/NeuralCrossvalidation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="810">
-          <caret line="76" column="32" selection-start-line="76" selection-start-column="32" selection-end-line="76" selection-end-column="32" />
-          <folding>
-            <element signature="e#0#2750#0" expanded="false" />
-            <element signature="imports" expanded="false" />
-            <element signature="e#773#774#0" expanded="false" />
-            <element signature="e#801#802#0" expanded="false" />
-            <element signature="e#856#857#0" expanded="false" />
-            <element signature="e#881#882#0" expanded="false" />
-            <element signature="e#936#937#0" expanded="false" />
-            <element signature="e#977#978#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/lrnn/ruleLearner/MultiExampleDataset.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1230">
-          <caret line="101" column="2" selection-start-line="101" selection-start-column="2" selection-end-line="101" selection-end-column="2" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../LRNN/src/metacentrum/Configurations.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
@@ -2003,67 +1469,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="19590">
           <caret line="1373" column="0" selection-start-line="1373" selection-start-column="0" selection-end-line="1373" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#54151#0" expanded="false" />
-            <element signature="imports" expanded="false" />
-            <element signature="e#6252#6253#0" expanded="false" />
-            <element signature="e#6320#6321#0" expanded="false" />
-            <element signature="e#10189#10190#0" expanded="false" />
-            <element signature="e#10216#10217#0" expanded="false" />
-            <element signature="e#10398#10399#0" expanded="false" />
-            <element signature="e#10430#10431#0" expanded="false" />
-            <element signature="e#10907#10908#0" expanded="false" />
-            <element signature="e#10945#10946#0" expanded="false" />
-            <element signature="e#13541#13542#0" expanded="false" />
-            <element signature="e#13596#13597#0" expanded="false" />
-            <element signature="e#15414#15415#0" expanded="false" />
-            <element signature="e#15459#15460#0" expanded="false" />
-            <element signature="e#24549#24550#0" expanded="false" />
-            <element signature="e#24603#24604#0" expanded="false" />
-            <element signature="e#30347#30348#0" expanded="false" />
-            <element signature="e#30384#30385#0" expanded="false" />
-            <element signature="e#30684#30685#0" expanded="false" />
-            <element signature="e#30716#30717#0" expanded="false" />
-            <element signature="e#31041#31042#0" expanded="false" />
-            <element signature="e#31086#31087#0" expanded="false" />
-            <element signature="e#33262#33263#0" expanded="false" />
-            <element signature="e#33304#33305#0" expanded="false" />
-            <element signature="e#33338#33339#0" expanded="false" />
-            <element signature="e#33375#33376#0" expanded="false" />
-            <element signature="e#33413#33414#0" expanded="false" />
-            <element signature="e#33454#33455#0" expanded="false" />
-            <element signature="e#38943#38944#0" expanded="false" />
-            <element signature="e#38994#38995#0" expanded="false" />
-            <element signature="e#39436#39437#0" expanded="false" />
-            <element signature="e#39481#39482#0" expanded="false" />
-            <element signature="e#39886#39887#0" expanded="false" />
-            <element signature="e#39960#39961#0" expanded="false" />
-            <element signature="e#40600#40601#0" expanded="false" />
-            <element signature="e#40658#40659#0" expanded="false" />
-            <element signature="e#42227#42228#0" expanded="false" />
-            <element signature="e#42280#42281#0" expanded="false" />
-            <element signature="e#42326#42327#0" expanded="false" />
-            <element signature="e#42383#42384#0" expanded="false" />
-            <element signature="e#44775#44776#0" expanded="false" />
-            <element signature="e#44842#44843#0" expanded="false" />
-            <element signature="e#46390#46391#0" expanded="false" />
-            <element signature="e#46455#46456#0" expanded="false" />
-            <element signature="e#51499#51500#0" expanded="false" />
-            <element signature="e#51557#51558#0" expanded="false" />
-            <element signature="e#51597#51598#0" expanded="false" />
-            <element signature="e#51690#51691#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../Logic/src/ida/ilp/logic/io/PseudoPrologParser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="55" column="0" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#3797#0" expanded="false" />
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2071,7 +1476,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
           <caret line="42" column="7" selection-start-line="42" selection-start-column="7" selection-end-line="42" selection-end-column="7" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2079,7 +1483,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="49" column="44" selection-start-line="49" selection-start-column="44" selection-end-line="49" selection-end-column="44" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2087,25 +1490,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
           <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/lrnn/ruleLearner/RelationalTemplateSPI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="900">
-          <caret line="74" column="0" selection-start-line="74" selection-start-column="0" selection-end-line="74" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/lrnn/ruleLearner/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="25" column="13" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2127,48 +1511,88 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/../LRNN/src/lrnn/global/Global.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-8">
+        <state relative-caret-position="540">
           <caret line="42" column="29" selection-start-line="42" selection-start-column="29" selection-end-line="42" selection-end-column="29" />
           <folding>
-            <element signature="e#15677#15678#0" expanded="true" />
-            <element signature="e#15704#15705#0" expanded="true" />
+            <element signature="e#15677#15678#0" expanded="false" />
+            <element signature="e#15704#15705#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../LRNN/src/lrnn/global/Settings.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-8">
+        <state relative-caret-position="4260">
           <caret line="328" column="27" selection-start-line="328" selection-start-column="27" selection-end-line="328" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../LRNN/src/lrnn/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-8">
-          <caret line="43" column="26" selection-start-line="43" selection-start-column="26" selection-end-line="43" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/lrnn/ruleLearner/SimpleLearner.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-8">
-          <caret line="70" column="0" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
           <folding>
-            <element signature="e#2710#2731#0" expanded="true" />
-            <element signature="e#2788#2806#0" expanded="true" />
-            <element signature="e#2956#2977#0" expanded="true" />
+            <element signature="e#0#11137#0" expanded="false" />
+            <element signature="e#3917#3918#0" expanded="false" />
+            <element signature="e#3949#3950#0" expanded="false" />
+            <element signature="e#4225#4226#0" expanded="false" />
+            <element signature="e#4253#4254#0" expanded="false" />
+            <element signature="e#4354#4355#0" expanded="false" />
+            <element signature="e#4384#4385#0" expanded="false" />
+            <element signature="e#4469#4470#0" expanded="false" />
+            <element signature="e#4505#4506#0" expanded="false" />
+            <element signature="e#4614#4615#0" expanded="false" />
+            <element signature="e#4652#4653#0" expanded="false" />
+            <element signature="e#4739#4740#0" expanded="false" />
+            <element signature="e#4776#4777#0" expanded="false" />
+            <element signature="e#4889#4890#0" expanded="false" />
+            <element signature="e#4929#4930#0" expanded="false" />
+            <element signature="e#5015#5016#0" expanded="false" />
+            <element signature="e#5050#5051#0" expanded="false" />
+            <element signature="e#5164#5165#0" expanded="false" />
+            <element signature="e#5203#5204#0" expanded="false" />
+            <element signature="e#5291#5292#0" expanded="false" />
+            <element signature="e#5323#5324#0" expanded="false" />
+            <element signature="e#5443#5444#0" expanded="false" />
+            <element signature="e#5481#5482#0" expanded="false" />
+            <element signature="e#5573#5574#0" expanded="false" />
+            <element signature="e#5607#5608#0" expanded="false" />
+            <element signature="e#5908#5909#0" expanded="false" />
+            <element signature="e#5939#5940#0" expanded="false" />
+            <element signature="e#6220#6221#0" expanded="false" />
+            <element signature="e#6250#6251#0" expanded="false" />
+            <element signature="e#6554#6555#0" expanded="false" />
+            <element signature="e#6584#6585#0" expanded="false" />
+            <element signature="e#6881#6882#0" expanded="false" />
+            <element signature="e#6908#6909#0" expanded="false" />
+            <element signature="e#7169#7170#0" expanded="false" />
+            <element signature="e#7199#7200#0" expanded="false" />
+            <element signature="e#7478#7479#0" expanded="false" />
+            <element signature="e#7504#7505#0" expanded="false" />
+            <element signature="e#7765#7766#0" expanded="false" />
+            <element signature="e#7796#7797#0" expanded="false" />
+            <element signature="e#8065#8066#0" expanded="false" />
+            <element signature="e#8092#8093#0" expanded="false" />
+            <element signature="e#8357#8358#0" expanded="false" />
+            <element signature="e#8387#8388#0" expanded="false" />
+            <element signature="e#8662#8663#0" expanded="false" />
+            <element signature="e#8696#8697#0" expanded="false" />
+            <element signature="e#8821#8822#0" expanded="false" />
+            <element signature="e#8863#8864#0" expanded="false" />
+            <element signature="e#8947#8948#0" expanded="false" />
+            <element signature="e#8977#8978#0" expanded="false" />
+            <element signature="e#9295#9296#0" expanded="false" />
+            <element signature="e#9328#9329#0" expanded="false" />
+            <element signature="e#9691#9692#0" expanded="false" />
+            <element signature="e#9719#9720#0" expanded="false" />
+            <element signature="e#9823#9824#0" expanded="false" />
+            <element signature="e#9893#9894#0" expanded="false" />
+            <element signature="e#9977#9978#0" expanded="false" />
+            <element signature="e#10007#10008#0" expanded="false" />
+            <element signature="e#10119#10120#0" expanded="false" />
+            <element signature="e#10193#10194#0" expanded="false" />
+            <element signature="e#10283#10284#0" expanded="false" />
+            <element signature="e#10316#10317#0" expanded="false" />
+            <element signature="e#10623#10624#0" expanded="false" />
+            <element signature="e#10651#10652#0" expanded="false" />
+            <element signature="e#10935#10936#0" expanded="false" />
+            <element signature="e#10968#10969#0" expanded="false" />
+            <element signature="e#11092#11093#0" expanded="false" />
+            <element signature="e#11132#11133#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../LRNN/src/lrnn/crossvalidation/Crossvalidation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-129">
-          <caret line="162" column="14" selection-start-line="162" selection-start-column="8" selection-end-line="162" selection-end-column="14" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2180,34 +1604,361 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../LRNN/src/lrnn/learning/Results.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="20" column="17" selection-start-line="20" selection-start-column="17" selection-end-line="20" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../LRNN/src/lrnn/learning/LearningStep.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
+        <state relative-caret-position="495">
           <caret line="39" column="0" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#0#3125#0" expanded="false" />
+            <element signature="e#760#761#0" expanded="false" />
+            <element signature="e#789#790#0" expanded="false" />
+            <element signature="e#888#889#0" expanded="false" />
+            <element signature="e#924#925#0" expanded="false" />
+            <element signature="e#997#998#0" expanded="false" />
+            <element signature="e#1025#1026#0" expanded="false" />
+            <element signature="e#1120#1121#0" expanded="false" />
+            <element signature="e#1154#1155#0" expanded="false" />
+            <element signature="e#1239#1240#0" expanded="false" />
+            <element signature="e#1273#1274#0" expanded="false" />
+            <element signature="e#1392#1393#0" expanded="false" />
+            <element signature="e#1438#1439#0" expanded="false" />
+            <element signature="e#1521#1522#0" expanded="false" />
+            <element signature="e#1554#1555#0" expanded="false" />
+            <element signature="e#1669#1670#0" expanded="false" />
+            <element signature="e#1713#1714#0" expanded="false" />
+            <element signature="e#1759#1760#0" expanded="false" />
+            <element signature="e#1823#1824#0" expanded="false" />
+            <element signature="e#2124#2125#0" expanded="false" />
+            <element signature="e#2150#2151#0" expanded="false" />
+            <element signature="e#2237#2238#0" expanded="false" />
+            <element signature="e#2267#2268#0" expanded="false" />
+            <element signature="e#2340#2341#0" expanded="false" />
+            <element signature="e#2368#2369#0" expanded="false" />
+            <element signature="e#2463#2464#0" expanded="false" />
+            <element signature="e#2497#2498#0" expanded="false" />
+            <element signature="e#2572#2573#0" expanded="false" />
+            <element signature="e#2601#2602#0" expanded="false" />
+            <element signature="e#2700#2701#0" expanded="false" />
+            <element signature="e#2736#2737#0" expanded="false" />
+            <element signature="e#2843#2844#0" expanded="false" />
+            <element signature="e#2888#2889#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../LRNN/src/metacentrum/ScriptGenerator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="505">
+        <state relative-caret-position="1560">
           <caret line="113" column="1" selection-start-line="113" selection-start-column="1" selection-end-line="113" selection-end-column="1" />
-          <folding />
+          <folding>
+            <element signature="e#0#4899#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../Logic/src/ida/ilp/logic/Literal.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
+        <state relative-caret-position="270">
           <caret line="39" column="19" selection-start-line="39" selection-start-column="19" selection-end-line="39" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#13484#0" expanded="false" />
+            <element signature="e#3921#3922#0" expanded="false" />
+            <element signature="e#3956#3957#0" expanded="false" />
+            <element signature="e#4294#4295#0" expanded="false" />
+            <element signature="e#4338#4339#0" expanded="false" />
+            <element signature="e#5432#5433#0" expanded="false" />
+            <element signature="e#5467#5468#0" expanded="false" />
+            <element signature="e#5899#5900#0" expanded="false" />
+            <element signature="e#5931#5932#0" expanded="false" />
+            <element signature="e#6302#6303#0" expanded="false" />
+            <element signature="e#6368#6369#0" expanded="false" />
+            <element signature="e#11399#11400#0" expanded="false" />
+            <element signature="e#11424#11425#0" expanded="false" />
+            <element signature="e#12378#12379#0" expanded="false" />
+            <element signature="e#12411#12412#0" expanded="false" />
+            <element signature="e#13335#13336#0" expanded="false" />
+            <element signature="e#13412#13413#0" expanded="false" />
+            <element signature="e#13445#13446#0" expanded="false" />
+            <element signature="e#13480#13481#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../LRNN/src/lrnn/construction/template/LiftedTemplate.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1005">
+          <caret line="24" column="68" selection-start-line="24" selection-start-column="68" selection-end-line="24" selection-end-column="68" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Logic/src/ida/ilp/logic/subsumption/Matching.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="211">
+          <caret line="353" column="38" selection-start-line="353" selection-start-column="38" selection-end-line="353" selection-end-column="38" />
+          <folding>
+            <element signature="e#0#39559#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#1861#1890#0" expanded="false" />
+            <element signature="e#2707#2708#0" expanded="false" />
+            <element signature="e#2764#2765#0" expanded="false" />
+            <element signature="e#3782#3783#0" expanded="false" />
+            <element signature="e#3831#3832#0" expanded="false" />
+            <element signature="e#10516#10517#0" expanded="false" />
+            <element signature="e#10568#10569#0" expanded="false" />
+            <element signature="e#10850#10851#0" expanded="false" />
+            <element signature="e#10909#10910#0" expanded="false" />
+            <element signature="e#11188#11189#0" expanded="false" />
+            <element signature="e#11246#11247#0" expanded="false" />
+            <element signature="e#11431#11432#0" expanded="false" />
+            <element signature="e#11478#11479#0" expanded="false" />
+            <element signature="e#12079#12080#0" expanded="false" />
+            <element signature="e#12113#12114#0" expanded="false" />
+            <element signature="e#20018#20027#0" expanded="false" />
+            <element signature="e#20351#20368#0" expanded="false" />
+            <element signature="e#20467#20479#0" expanded="false" />
+            <element signature="e#20706#20715#0" expanded="false" />
+            <element signature="e#21058#21075#0" expanded="false" />
+            <element signature="e#21180#21192#0" expanded="false" />
+            <element signature="e#21459#21467#0" expanded="false" />
+            <element signature="e#21928#21937#0" expanded="false" />
+            <element signature="e#22243#22252#0" expanded="false" />
+            <element signature="e#22755#22756#0" expanded="false" />
+            <element signature="e#22800#22801#0" expanded="false" />
+            <element signature="e#23114#23115#0" expanded="false" />
+            <element signature="e#23164#23165#0" expanded="false" />
+            <element signature="e#23566#23575#0" expanded="false" />
+            <element signature="e#25678#25710#0" expanded="false" />
+            <element signature="e#25894#25902#0" expanded="false" />
+            <element signature="e#26165#26174#0" expanded="false" />
+            <element signature="e#26248#26464#0" expanded="false" />
+            <element signature="e#26463#26464#0" expanded="false" />
+            <element signature="e#26537#26753#0" expanded="false" />
+            <element signature="e#26752#26753#0" expanded="false" />
+            <element signature="e#27121#27129#0" expanded="false" />
+            <element signature="e#29444#29472#0" expanded="false" />
+            <element signature="e#29492#29500#0" expanded="false" />
+            <element signature="e#30563#30571#0" expanded="false" />
+            <element signature="e#33628#33638#0" expanded="false" />
+            <element signature="e#33914#33925#0" expanded="false" />
+            <element signature="e#34137#34148#0" expanded="false" />
+            <element signature="e#34255#34264#0" expanded="false" />
+            <element signature="e#37110#37120#0" expanded="false" />
+            <element signature="e#37396#37407#0" expanded="false" />
+            <element signature="e#37617#37628#0" expanded="false" />
+            <element signature="e#37735#37744#0" expanded="false" />
+            <element signature="e#39311#39312#0" expanded="false" />
+            <element signature="e#39347#39348#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lrnn/ruleLearner/Debug.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="31" column="116" selection-start-line="31" selection-start-column="116" selection-end-line="31" selection-end-column="116" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///usr/lib/jvm/java-8-oracle/src.zip!/java/nio/file/Files.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-8">
+          <caret line="3285" column="23" selection-start-line="3285" selection-start-column="23" selection-end-line="3285" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Logic/src/ida/ilp/logic/io/PseudoPrologParser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-8">
+          <caret line="53" column="0" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
+          <folding>
+            <element signature="e#2531#2552#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lrnn/ruleLearner/RelationalTemplateSPI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-8">
+          <caret line="103" column="0" selection-start-line="103" selection-start-column="0" selection-end-line="103" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Utils/src/ida/utils/tuples/Quadruple.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="211">
+          <caret line="78" column="16" selection-start-line="78" selection-start-column="16" selection-end-line="78" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../LRNN/src/lrnn/crossvalidation/Crossvalidation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="411">
+          <caret line="323" column="24" selection-start-line="323" selection-start-column="24" selection-end-line="323" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../LRNN/src/lrnn/crossvalidation/NeuralCrossvalidation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="57" column="21" selection-start-line="57" selection-start-column="21" selection-end-line="57" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../LRNN/src/lrnn/learning/Results.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3030">
+          <caret line="216" column="21" selection-start-line="216" selection-start-column="21" selection-end-line="216" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Utils/src/ida/utils/collections/MultiMap.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="720">
+          <caret line="71" column="0" selection-start-line="71" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///usr/lib/jvm/java-8-oracle/src.zip!/java/lang/String.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="28425">
+          <caret line="1966" column="0" selection-start-line="1966" selection-start-column="0" selection-end-line="1966" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../LRNN/src/lrnn/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-8">
+          <caret line="50" column="45" selection-start-line="50" selection-start-column="45" selection-end-line="50" selection-end-column="45" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lrnn/ruleLearner/LogisticRegression.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-8">
+          <caret line="38" column="31" selection-start-line="38" selection-start-column="31" selection-end-line="38" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lrnn/ruleLearner/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="513">
+          <caret line="109" column="0" selection-start-line="109" selection-start-column="0" selection-end-line="109" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lrnn/ruleLearner/SimpleLearner.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="486">
+          <caret line="89" column="13" selection-start-line="89" selection-start-column="13" selection-end-line="89" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#1863#1880#0" expanded="false" />
+            <element signature="e#2174#2175#0" expanded="false" />
+            <element signature="e#2222#2223#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../LRNN/src/lrnn/construction/template/KappaFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-11">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../LRNN/src/lrnn/construction/template/Kappa.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../LRNN/src/lrnn/construction/template/rules/KappaRule.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../LRNN/src/lrnn/construction/Parser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2160">
+          <caret line="120" column="5" selection-start-line="120" selection-start-column="5" selection-end-line="120" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lrnn/ruleLearner/LogisticRegressionPoly.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="558">
+          <caret line="39" column="18" selection-start-line="39" selection-start-column="18" selection-end-line="39" selection-end-column="18" />
+          <folding>
+            <element signature="e#5137#5138#0" expanded="true" />
+            <element signature="e#5192#5193#0" expanded="true" />
+            <element signature="e#9201#9202#0" expanded="true" />
+            <element signature="e#9245#9246#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../LRNN/src/lrnn/construction/TemplateFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1710">
+          <caret line="106" column="0" selection-start-line="106" selection-start-column="0" selection-end-line="106" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lrnn/ruleLearner/Dataset.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="23" column="18" selection-start-line="23" selection-start-column="18" selection-end-line="23" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lrnn/ruleLearner/ClassifierR.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1116">
+          <caret line="90" column="13" selection-start-line="90" selection-start-column="13" selection-end-line="90" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lrnn/ruleLearner/ContextAwareLearner.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="38" column="0" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
+          <folding>
+            <element signature="e#1382#1383#0" expanded="true" />
+            <element signature="e#1410#1411#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lrnn/ruleLearner/GraphColoring.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1512">
+          <caret line="92" column="0" selection-start-line="92" selection-start-column="0" selection-end-line="92" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -2216,8 +1967,34 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/lrnn/ruleLearner/SoftClusteringSPI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="58" column="65" selection-start-line="58" selection-start-column="65" selection-end-line="58" selection-end-column="65" />
+        <state relative-caret-position="4122">
+          <caret line="237" column="0" selection-start-line="237" selection-start-column="0" selection-end-line="237" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lrnn/ruleLearner/MultiExampleDataset.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="161" column="0" selection-start-line="161" selection-start-column="0" selection-end-line="161" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../LRNN/src/lrnn/GroundedDataset.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="427">
+          <caret line="197" column="0" selection-start-line="197" selection-start-column="0" selection-end-line="197" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../NeuroLogic/src/parsing/SQLdumpExampleParser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="2" column="7" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
