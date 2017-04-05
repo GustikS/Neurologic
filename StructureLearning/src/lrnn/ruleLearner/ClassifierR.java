@@ -15,11 +15,11 @@ import ida.ilp.logic.Literal;
 import ida.ilp.logic.LogicUtils;
 import ida.ilp.logic.Term;
 import ida.ilp.logic.subsumption.Matching;
-import ida.utils.Sugar;
 import ida.utils.VectorUtils;
 import ida.utils.tuples.Pair;
 import ida.utils.tuples.Triple;
 import lrnn.global.Glogger;
+import lrnn.learning.functions.ActivationsFast;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -37,6 +37,7 @@ public class ClassifierR {
 
     private HornClause[] rules;
 
+    /*
     private Sugar.Fun<double[], Double> gConj = new Sugar.Fun<double[], Double>() {
         @Override
         public Double apply(double[] doubles) {
@@ -60,6 +61,7 @@ public class ClassifierR {
             return VectorUtils.mean(doubles);
         }
     };
+    */
 
     public ClassifierR() {
         this.coeffs = new double[0];
@@ -111,10 +113,11 @@ public class ClassifierR {
                         }
                         k++;
                     }
-                    agg[j] = this.getgConj().apply(bodyGrounding);
+                    //agg[j] = this.getgConj().apply(bodyGrounding);
+                    agg[j] = ActivationsFast.lambdaActivation(bodyGrounding, -bodyGrounding.length + 1);
                     j++;
                 }
-                retVal[i] = this.getgStar().apply(agg);
+                retVal[i] = ActivationsFast.aggregation(agg);
             } else {
                 retVal[i] = 0;
             }
@@ -131,18 +134,6 @@ public class ClassifierR {
         return retVal;
     }
 
-    public void setgConj(Sugar.Fun<double[], Double> gConj) {
-        this.gConj = gConj;
-    }
-
-    public void setgDisj(Sugar.Fun<double[], Double> gDisj) {
-        this.gDisj = gDisj;
-    }
-
-    public void setgStar(Sugar.Fun<double[], Double> gStar) {
-        this.gStar = gStar;
-    }
-
     public double[] coefficients() {
         return this.coeffs;
     }
@@ -155,6 +146,7 @@ public class ClassifierR {
         this.rules[index] = rule;
     }
 
+    /*
     public Sugar.Fun<double[], Double> getgConj() {
         return gConj;
     }
@@ -166,6 +158,7 @@ public class ClassifierR {
     public Sugar.Fun<double[], Double> getgStar() {
         return gStar;
     }
+    */
 
     public String toString() {
         StringBuilder sb = new StringBuilder();

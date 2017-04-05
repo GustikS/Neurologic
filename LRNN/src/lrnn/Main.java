@@ -37,7 +37,7 @@ public class Main {
     //offsets
     public static boolean defaultKappaAdaptiveOffsetOn = false; //kappa offset is initialized based on number of input lambdas
     public static String defaultKappaAdaptiveOffset = "0";  //must stay zero as default if defaultKappaAdaptiveOffsetOn = false    
-    public static String defaultLambdaAdaptiveOffset = "1"; //lambda offset add to the -1* (number of input kappas)
+    public static String defaultLambdaAdaptiveOffset = "1"; //lambda offset to add to the -1* (number of input kappas)
 
     public static String defaultSeed = "2"; //seeds the whole algorithm (shuffling, etc.), should make it completely deterministic
 

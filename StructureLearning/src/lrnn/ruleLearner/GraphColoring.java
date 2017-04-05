@@ -34,6 +34,10 @@ import java.util.Set;
  */
 public class GraphColoring extends RelationalTemplateSPI {
 
+    private boolean correctClusters = true;
+    private int numShadows = 3;
+    private int numColors = 3;
+
     MultiMap<String, String> createColors(int colorCount, int shadowCount) {
         MultiMap<String, String> colors = new MultiMap<>();
         for (int i = 0; i < colorCount; i++) {
@@ -52,14 +56,14 @@ public class GraphColoring extends RelationalTemplateSPI {
                 if (sse1.getKey().equals(sse2.getKey())) {
                     for (String s1 : sse1.getValue()) {
                         for (String s2 : sse2.getValue()) {
-                            examples.add("1 " + sse1.getKey() + s1 + "("+exampleCount+"v1),edge("+exampleCount+"v1,"+exampleCount+"v2)," + sse2.getKey() + s2 + "("+exampleCount+"v2).");
+                            examples.add("1 " + sse1.getKey() + s1 + "(" + exampleCount + "v1),edge(" + exampleCount + "v1," + exampleCount + "v2)," + sse2.getKey() + s2 + "(" + exampleCount + "v2).");
                             exampleCount++;
                         }
                     }
                 } else {
                     for (String s1 : sse1.getValue()) {
                         for (String s2 : sse2.getValue()) {
-                            examples.add("0 " + sse1.getKey() + s1 + "("+exampleCount+"v1),edge("+exampleCount+"v1,"+exampleCount+"v2)," + sse2.getKey() + s2 + "("+exampleCount+"v2).");
+                            examples.add("0 " + sse1.getKey() + s1 + "(" + exampleCount + "v1),edge(" + exampleCount + "v1," + exampleCount + "v2)," + sse2.getKey() + s2 + "(" + exampleCount + "v2).");
                             exampleCount++;
                         }
                     }
@@ -72,7 +76,7 @@ public class GraphColoring extends RelationalTemplateSPI {
     public static void main(String[] args) throws IOException {
         Map<String, String> arguments = CommandLine.parseParams(args);
 
-        Global.setSeed(1);
+        Global.setSeed(2);
         Settings.setDataset(arguments.get("-dataset"));
 
         //create logger for all messages within the program
@@ -94,18 +98,18 @@ public class GraphColoring extends RelationalTemplateSPI {
     public static void main2(String[] args) throws IOException {
         String outPath = args[0];
         GraphColoring gc = new GraphColoring();
-        MultiMap<String, String> colors = gc.createColors(3, 3);
+        MultiMap<String, String> colors = gc.createColors(gc.numColors, gc.numShadows);
         List<String> exampleEdges = gc.createExampleEdges(colors);
-        String examplesPath = outPath.substring(0, outPath.lastIndexOf(".")) + "exampleEdges.txt";
+        String examplesPath = outPath.substring(0, outPath.lastIndexOf(".")) + "exampleEdges2.txt";
         Files.write(Paths.get(examplesPath), exampleEdges, StandardOpenOption.CREATE);
         Pair<List<String>, StringBuilder> rules = gc.createTemplate(colors);
-        String rulesPath = outPath.substring(0, outPath.lastIndexOf(".")) + "edgeRules.txt";
+        String rulesPath = outPath.substring(0, outPath.lastIndexOf(".")) + "edgeRules2.txt";
         Files.write(Paths.get(rulesPath), rules.r, StandardOpenOption.CREATE);
     }
 
     public Triple<String, String, StringBuilder> createInitialTemplatesAndExamples(List<Clause> clauses, String outPath, int atomClusters, int bondClusters) throws IOException {
         GraphColoring gc = new GraphColoring();
-        MultiMap<String, String> colors = gc.createColors(3, 3);
+        MultiMap<String, String> colors = gc.createColors(numColors, numShadows);
         List<String> exampleEdges = gc.createExampleEdges(colors);
         String examplesPath = outPath.substring(0, outPath.lastIndexOf(".")) + "exampleEdges.txt";
         Files.write(Paths.get(examplesPath), exampleEdges, StandardOpenOption.CREATE);
@@ -121,14 +125,15 @@ public class GraphColoring extends RelationalTemplateSPI {
             for (Map.Entry<String, Set<String>> sse2 : colors.entrySet()) {
                 if (sse1.getKey().equals(sse2.getKey())) {
                     for (String s2 : sse2.getValue()) {
-                        rules.add("0.0 " + sse1.getKey() + "(X) :- " + sse2.getKey() + s2 + "(X).");
+                        rules.add((correctClusters ? "5" : 1000 * (Global.getRg().nextDouble() - 0.5)) + " " + sse1.getKey() + "(X) :- " + sse2.getKey() + s2 + "(X).");
                     }
                 } else {
                     for (String s2 : sse2.getValue()) {
-                        rules.add("0.0 " + sse1.getKey() + "(X) :- " + sse2.getKey() + s2 + "(X).");
+                        rules.add((correctClusters ? "0.000001" : 1000 * (Global.getRg().nextDouble() - 0.5)) + " " + sse1.getKey() + "(X) :- " + sse2.getKey() + s2 + "(X).");
                     }
                 }
             }
+            rules.add(sse1.getKey() + "/1 0.000001");
         }
         StringBuilder sb = new StringBuilder();
         for (String rule : rules) {

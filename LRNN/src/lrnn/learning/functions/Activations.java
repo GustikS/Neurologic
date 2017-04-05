@@ -83,10 +83,14 @@ public class Activations {
     }
 
     public static final double sigmoid(double x) {
-        return (1 / (1 + Math.exp(-x)));
+        if (x > 100) return 1.0;
+        if (x < -100) return 0.0;
+        return (1 / (1 + Math.exp(-6 * x - 0.5)));      //TODO
     }
 
     public static final double sigmoidDerived(double x) {
+        if (x > 100) return 0.0;
+        if (x < -100) return 0.0;
         double sx = sigmoid(x);
         return sx * (1 - sx);
     }

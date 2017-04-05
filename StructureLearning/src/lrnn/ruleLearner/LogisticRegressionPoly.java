@@ -10,6 +10,8 @@
 
 package lrnn.ruleLearner;
 
+import lrnn.learning.functions.Activations;
+
 import java.util.Arrays;
 
 /* A logistic regression algorithm for binary classification implemented using Newton's method and
@@ -20,7 +22,7 @@ public class LogisticRegressionPoly {
 
 
     private final int maxiter = 10000;
-    private final double tolerance = 0.00001;
+    private final double tolerance = 0.000001;
 
     double w[]; //the weights for the logistic regression
     int degree; // degree of polynomial used for preprocessing
@@ -39,12 +41,12 @@ public class LogisticRegressionPoly {
             x[i][1] = 1;
             x[i][2] = 1;
         }
-        double[] y = new double[]{1,1,1,0,0,1};
+        double[] y = new double[]{1, 1, 1, 0, 0, 1};
         boolean[] out = new boolean[y.length];
         for (int i = 0; i < y.length; i++) {
             out[i] = y[i] > 0;
         }
-        LogisticRegressionPoly lr = new LogisticRegressionPoly(x,out,1);
+        LogisticRegressionPoly lr = new LogisticRegressionPoly(x, out, 1);
         System.out.println(Arrays.toString(lr.w));
         double error = lr.error(lr.w);
         System.out.println(error);
@@ -53,6 +55,16 @@ public class LogisticRegressionPoly {
     //create a logistic regression for binary classification on the given inputand output
     //with polynomial expansion of the given degree
     public LogisticRegressionPoly(double in[][], boolean out[], int degree) {
+
+        /*
+        for (int i = 0; i < in.length; i++) {
+            for (int j = 0; j < in[i].length; j++) {
+                System.out.print(in[i][j] + ";");
+            }
+            System.out.println(out[i]?1:0);
+        }
+        */
+
         this.degree = degree;
 
         input = new double[in.length][];
@@ -90,8 +102,8 @@ public class LogisticRegressionPoly {
             //assuming w = alpha * (poscenter- negcenter) with b in the last slot
             //solve for alpha and b so that poscenter returns 0.75 and negcenter returns 0.25
             double alphab[] = lineIntersection(pp - pn, 1, sinv(0.75), pn - nn, 1, sinv(0.25));
-            if (alphab == null){
-                alphab = new double[]{0,1};
+            if (alphab == null || Math.abs(alphab[0]) > 1000000000000.0) {
+                alphab = new double[]{0, 1};
                 //throw new ArithmeticException("the examples are not divisible at all - just calculate majority error!");
             }
             w = new double[input[0].length];
@@ -201,21 +213,29 @@ public class LogisticRegressionPoly {
 
     //sigmoid/logistic function
     public static double s(double x) {
+        return Activations.sigmoid(x);
+        /*
         if (x > 100) return 1.0;
         if (x < -100) return 0.0;
         double ex = Math.exp(x);
         return ex / (ex + 1);
+        */
     }
 
     //derivative of sigmoid/logistic function
     public static double ds(double x) {
+        return Activations.sigmoidDerived(x);
+        /*
+        if (x > 100) return 0.0;
+        if (x < -100) return 0.0;
         double ex = Math.exp(x);
         return ex / ((ex + 1) * (ex + 1));
+        */
     }
 
     //second derivative of sigmoid/logistic function
     public static double dds(double x) {
-        double ex = Math.exp(x);
+        double ex = Math.exp(-6 * x - 0.5);
         return (ex * (1 - ex)) / ((ex + 1) * (ex + 1) * (ex + 1));
     }
 

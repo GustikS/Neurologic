@@ -61,10 +61,12 @@ public class MultiExampleDataset implements Dataset {
      */
     public double optimalMSE(ClassifierR classifier, Map<Literal, Double> literalWeights) {
 
+        System.out.println(classifier + "-------------------");
         double[][] logistInput = new double[examples.size()][];
         for (int i = 0; i < examples.size(); i++) {
             double[] predictions = classifier.predictions(i, queries == null ? null : queries.get(i), matching, literalWeights);
             logistInput[i] = predictions;
+            System.out.println("values for " + examples.get(i) + " : " + Arrays.toString(predictions));
         }
 
 
@@ -79,11 +81,15 @@ public class MultiExampleDataset implements Dataset {
             }
         }
 
+        if (classifier.rules()[0].toString().contains("edge(V1, V2), cl1(V2), cl0(V1)")) {    //first interesting
+            System.out.println();
+        }
+
         double error = 1;
         LogisticRegressionPoly logres = new LogisticRegressionPoly(logistInput, out, 1);
         classifier.coeffs = logres.w;
         error = logres.error(logres.w) / examples.size();
-
+        System.out.println("-------------" + classifier + " error: " + error);
         return error;
 
     }
@@ -153,6 +159,10 @@ public class MultiExampleDataset implements Dataset {
                 }
                 i++;
             } while (i < pairs.size() - 1 && pairs.get(i).r.doubleValue() == pairs.get(i - 1).r.doubleValue());
+        }
+        double thresh = pairs.get(bestIndex).r.doubleValue();
+        if (bestIndex - 1 >= 0) {
+            thresh = (thresh + pairs.get(bestIndex - 1).r.doubleValue()) / 2;
         }
         outThreshold.set(pairs.get(bestIndex).r);
         System.out.print(".");

@@ -26,7 +26,6 @@ import java.util.List;
 import java.util.stream.Stream;
 
 /**
- *
  * @author Gusta
  */
 public class LearnerFast extends Learning {
@@ -56,6 +55,8 @@ public class LearnerFast extends Learning {
         Stream<Sample> stream;
 
         Glogger.clock("starting to solveFast");
+
+        Results beginning = evaluateNetworks(roundStore, net.sharedWeights);
 
         for (int a = 0; a < restartCount; a++) {    //restarting the whole procedure
             Glogger.process("---------------------------SolveFast--------------------------------------");
@@ -161,7 +162,7 @@ public class LearnerFast extends Learning {
             results.add(new Result(sam.neuralNetwork.outputNeuron.outputValue, sam.targetValue));
         }
         Glogger.LogTrain("backprop step : ", new Double[]{results.getLearningError(), results.getDispersion(), results.getMajorityClass(), results.getThreshold()});
-        Glogger.process("All Ground Networks Evaluation : train error " + results.getLearningError() + " (maj: " + results.getMajorityClass() + ")" + " (disp: " + results.getDispersion() + ")");
+        Glogger.process("All Ground Networks Evaluation : train error " + results.getLearningError() + " (maj: " + results.getMajorityClass() + ")" + " (disp: " + results.getDispersion() + ")" + " (mse: " + results.getMSE() + ")");
         return results;
     }
 

@@ -18,6 +18,7 @@ import ida.ilp.logic.special.IsoClauseWrapper;
 import ida.utils.Sugar;
 import ida.utils.collections.MultiMap;
 import ida.utils.tuples.Pair;
+import lrnn.global.Global;
 import lrnn.global.Glogger;
 
 import java.util.*;
@@ -46,7 +47,7 @@ public class SimpleLearner {
 
     private Saturator saturator;
 
-    static Random random = new Random(SimpleLearner.class.getName().hashCode());
+    static Random random = Global.getRg();
 
     int targetClass = 0;
 

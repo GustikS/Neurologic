@@ -16,9 +16,8 @@ package lrnn.ruleLearner;
 public class Utils {
 
 
-
-    public static double sigmoid(double d){
-        return 1/(1+Math.exp(-d));
+    public static double sigmoid(double d) {
+        return 1 / (1 + Math.exp(-6 * d));
     }
 
 }

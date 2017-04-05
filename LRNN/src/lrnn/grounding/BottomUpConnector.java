@@ -7,7 +7,6 @@ package lrnn.grounding;
 
 import ida.ilp.logic.Clause;
 import ida.ilp.logic.Literal;
-import ida.ilp.logic.LogicUtils;
 import ida.ilp.logic.Term;
 import ida.ilp.logic.io.PrologParser;
 import ida.ilp.logic.subsumption.Matching;
@@ -391,7 +390,7 @@ public class BottomUpConnector extends Grounder {
             Set<Set<Literal>> setCheck = new HashSet<>();
             for (Term[] substitution : pair.s) {
 
-                Clause grRule = LogicUtils.substitute(clauses.get(i), pair.r, substitution);
+                //Clause grRule = LogicUtils.substitute(clauses.get(i), pair.r, substitution);
                 List<Literal> lits = getMySubstitutions(clauses.get(i), pair.r, substitution);
                 Set<Literal> check = new HashSet<>(lits);
                 if (setCheck.add(check)) {

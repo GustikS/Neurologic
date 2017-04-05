@@ -30,6 +30,7 @@ import lrnn.learning.LearningStep;
 import lrnn.learning.Result;
 import lrnn.learning.Results;
 import lrnn.learning.Sample;
+import lrnn.learning.functions.ActivationsFast;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -82,7 +83,7 @@ public class SoftClusteringSPI {
 
         Map<String, String> arguments = CommandLine.parseParams(args);
 
-        Global.setSeed(1);
+        Global.setSeed(2);
         Settings.setDataset(arguments.get("-dataset"));
 
         //create logger for all messages within the program
@@ -236,13 +237,17 @@ public class SoftClusteringSPI {
             Files.write(Paths.get(templPath), template.toString().getBytes());
 
             actualResult = trainLRNNtemplate(examplesOutPath, templPath, trainingSteps);
+
             if (bestResult == null || actualResult.r.actualResult.isBetterThen(bestResult.r.actualResult)) {
                 bestResult = actualResult;
             }
+            if (bestResult.r != null && bestResult.r.actualResult.getMse() < 0.000001) break;
+
             if (!reinitializeAllWeightsWithinSPIcycle) {   //reuse previously learned weights?
                 template = mergeTemplates(template.toString(), new String(Files.readAllBytes(Paths.get(actualResult.s))), false);
             }
             if (iter >= maxSpiCycles) break;
+
 
             Pair<List<Clause>, List<Double>> subset = getMisclassifiedSubset(alternatingClasses ? (int) (-1 * actualClassifier.coeffs[actualClassifier.coefficients().length - 1]) : 0, actualResult.r, reinventedExamples.r, data.r);  //-1* = we want the next one
             Glogger.LogTrain("Iteration: " + iter + " after weight learning - " + (alternatingClasses ? (int) (actualClassifier.coeffs[actualClassifier.coefficients().length - 1]) == 1 ? " Number of TN + FN: " : " - Number of TP + FP: " : " Numer of all: ") + subset.s.size() + " examples");
@@ -485,13 +490,13 @@ public class SoftClusteringSPI {
         String line;
         while ((line = br.readLine()) != null) {
             String[] split = line.split(" ");
-            if (split[0].matches("-?\\d+([.,]\\d+)?")) { //weighted kappa clause to a cluster
+            if (split[0].matches("-?\\d+([.,]\\d+)?([eE]-?\\d+)?")) { //weighted kappa clause to a cluster
                 double weight = Double.parseDouble(split[0]);
                 String atomType = split[3].substring(0, split[3].indexOf("("));
                 String cluster = split[1].substring(0, split[1].indexOf("("));
                 res.putIfAbsent(atomType, new HashMap<>());
                 res.get(atomType).put(cluster, weight);
-            } else if (split[1].matches("-?\\d+([.,]\\d+)?")) { //offset
+            } else if (split[1].matches("-?\\d+([.,]\\d+)?([eE]-?\\d+)?")) { //offset
                 String kappa = split[0].substring(0, split[0].indexOf("/"));
                 double offset = Double.parseDouble(split[1]);
                 offsets.put(kappa, offset);
@@ -521,7 +526,7 @@ public class SoftClusteringSPI {
                         Literal cl = new Literal(clusterWeight.getKey(), l.get(0));
                         lits.add(cl);
                         Double offset = weightMapping.r.get(clusterWeight.getKey());
-                        weights.put(cl, cls.getgDisj().apply(new double[]{clusterWeight.getValue(), offset})); //get value (=sigm(input+offset)), not just weight
+                        weights.put(cl, ActivationsFast.kappaActivation(new double[]{clusterWeight.getValue()}, offset)); //get value (=sigm(input+offset)), not just weight
                     }
                 } else {
                     lits.add(l);

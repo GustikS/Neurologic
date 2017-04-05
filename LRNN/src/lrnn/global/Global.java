@@ -296,8 +296,8 @@ public final class Global {
      * @param aSeed the seed to set
      */
     public static void setSeed(int aSeed) {
-        Global.setRg(new Random(Global.getSeed()));
         seed = aSeed;
+        Global.setRg(new Random(seed));
     }
 
     /**

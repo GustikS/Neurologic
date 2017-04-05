@@ -2,6 +2,7 @@ package lrnn.construction.template;
 
 import lrnn.construction.template.rules.LambdaRule;
 import lrnn.global.Global;
+
 import java.io.Serializable;
 
 /**
@@ -29,7 +30,7 @@ public class Lambda extends KL implements Serializable {
      */
     public void setRule(LambdaRule lr) {
         rule = lr;
-        setOffset(-rule.getBodyLen() + Global.getInitLambdaAdaptiveOffset() + 0.0);
+        setOffset(-rule.getBodyLen() + Global.getInitLambdaAdaptiveOffset());
         //initialW = 0.0;
     }
 

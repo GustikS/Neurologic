@@ -89,6 +89,13 @@ public class Results {
         return actualResult.getDispersion();
     }
 
+    public double getMSE() {
+        if (actualResult.getMse() == null) {
+            computeMSE();
+        }
+        return actualResult.getMse();
+    }
+
     /**
      * including computing (moving) threshold
      */
@@ -133,7 +140,11 @@ public class Results {
             } while (j < results.size() - 1 && results.get(j).getActual() == results.get(j - 1).getActual());
         }
         actualResult.setError(bestErr);
-        actualResult.setThresh(results.get(bestIndex).getActual());
+        double thresh = results.get(bestIndex).getActual();
+        if (bestIndex - 1 >= 0) {
+            thresh = (thresh + results.get(bestIndex - 1).getActual()) / 2;
+        }
+        actualResult.setThresh(thresh);
         actualResult.setDispersion(Math.abs((negValues / numNeg) - (posValues / numPos)));
         /*//--------------
 
@@ -224,7 +235,7 @@ public class Results {
         }
         double error = 0;
         for (Result res : results) {
-            double clas = res.getActual() > training.getThresh() ? 1.0 : 0.0;
+            double clas = res.getActual() >= training.getThresh() ? 1.0 : 0.0;
             Glogger.info("Example Classified -> " + clas + " Expected -> " + res.getExpected() + " Out -> " + res.getActual() + " Thresh -> " + training.getThresh());
             if (clas != res.getExpected()) {
                 error += 1.0;
@@ -278,7 +289,7 @@ public class Results {
         System.setOut(myPrintStream);
         try {
             AUCCalculator.main(new String[]{Global.outputFolder + "auc.txt", "list"});
-        }catch (Exception e){
+        } catch (Exception e) {
             Glogger.err("Problem with AUC calculation");
             System.setOut(orgStream);
             actualResult.setAUCpr(0.0);
