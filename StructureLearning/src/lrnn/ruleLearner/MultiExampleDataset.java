@@ -158,7 +158,7 @@ public class MultiExampleDataset implements Dataset {
                     throw new IllegalStateException();
                 }
                 i++;
-            } while (i < pairs.size() - 1 && pairs.get(i).r.doubleValue() == pairs.get(i - 1).r.doubleValue());
+            } while (i < pairs.size() && pairs.get(i).r.doubleValue() == pairs.get(i - 1).r.doubleValue());
         }
         double thresh = pairs.get(bestIndex).r.doubleValue();
         if (bestIndex - 1 >= 0) {

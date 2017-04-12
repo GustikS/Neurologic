@@ -54,11 +54,13 @@ public class NLPdataset extends Main {
 
     public String embeddingsPath = "./in/embeddings.csv";
 
-    public static boolean factRules = false;
+    public static boolean factRules = true;
     public static boolean selectingFacts = false;
 
     public static void main(String[] args) {
-        Glogger.resultsDir = "./results/";
+        Global.exporting = true;
+        Glogger.resultsDir = "../lrnn_output/";
+        Global.setSeed(4);
         //setup all parameters and load all the necessary input files
         List<String[]> inputs = setupFromArguments(args);
         //create logger for all messages within the program
@@ -91,9 +93,9 @@ public class NLPdataset extends Main {
     }
 
     private NLPdataset(String[] iFacts, String[] iRules) {
-        outputFolder = "./weights/";
+        outputFolder = "../lrnn_output/";
         //outputFolder = "./weights/";
-        Dotter.outPath = "./images/";
+        Dotter.outPath = "../images/";
 
         Global.NLPtemplate = true;
         Global.molecularTemplates = false;

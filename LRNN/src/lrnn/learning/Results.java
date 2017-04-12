@@ -134,10 +134,10 @@ public class Results {
                     sumNeg++;
                     negValues += results.get(j).getActual();
                 } else {
-                    throw new IllegalStateException();
+                    //throw new IllegalStateException();
                 }
                 j++;
-            } while (j < results.size() - 1 && results.get(j).getActual() == results.get(j - 1).getActual());
+            } while (j < results.size() && results.get(j).getActual() == results.get(j - 1).getActual());
         }
         actualResult.setError(bestErr);
         double thresh = results.get(bestIndex).getActual();

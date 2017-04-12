@@ -204,7 +204,7 @@ public class TemplateFactory {
      */
     private Kappa handleKappaLine(String[][] tokens, String original) {
         boolean learnable = !tokens[0][0].contains("<");
-        tokens[0][0].replaceAll("<", "").replaceAll(">", "");
+        tokens[0][0] = tokens[0][0].replaceAll("<", "").replaceAll(">", "");
         Double w = Double.parseDouble(tokens[0][0].replace(",", "."));
         Kappa k = kFactory.construct(tokens[1][0]);
         SubK sk = new SubK(k, true);

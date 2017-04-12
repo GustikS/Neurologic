@@ -125,11 +125,11 @@ public class GraphColoring extends RelationalTemplateSPI {
             for (Map.Entry<String, Set<String>> sse2 : colors.entrySet()) {
                 if (sse1.getKey().equals(sse2.getKey())) {
                     for (String s2 : sse2.getValue()) {
-                        rules.add((correctClusters ? "5" : 1000 * (Global.getRg().nextDouble() - 0.5)) + " " + sse1.getKey() + "(X) :- " + sse2.getKey() + s2 + "(X).");
+                        rules.add((correctClusters ? "0.0" : 1000 * (Global.getRg().nextDouble() - 0.5)) + " " + sse1.getKey() + "(X) :- " + sse2.getKey() + s2 + "(X).");
                     }
                 } else {
                     for (String s2 : sse2.getValue()) {
-                        rules.add((correctClusters ? "0.000001" : 1000 * (Global.getRg().nextDouble() - 0.5)) + " " + sse1.getKey() + "(X) :- " + sse2.getKey() + s2 + "(X).");
+                        rules.add((correctClusters ? "0.0" : 1000 * (Global.getRg().nextDouble() - 0.5)) + " " + sse1.getKey() + "(X) :- " + sse2.getKey() + s2 + "(X).");
                     }
                 }
             }

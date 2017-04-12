@@ -43,7 +43,7 @@ import java.util.stream.Collectors;
  */
 public class SoftClusteringSPI {
 
-    private String errorMeasure = "MSE";
+    private String errorMeasure = "acc";
 
     Crossvalidation crossValidation;
 
@@ -83,7 +83,7 @@ public class SoftClusteringSPI {
 
         Map<String, String> arguments = CommandLine.parseParams(args);
 
-        Global.setSeed(2);
+        Global.setSeed(3);
         Settings.setDataset(arguments.get("-dataset"));
 
         //create logger for all messages within the program

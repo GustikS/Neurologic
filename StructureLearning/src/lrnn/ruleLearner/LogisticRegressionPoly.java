@@ -21,8 +21,8 @@ import java.util.Arrays;
 public class LogisticRegressionPoly {
 
 
-    private final int maxiter = 10000;
-    private final double tolerance = 0.000001;
+    private final int maxiter = 1000;
+    private final double tolerance = 0.00001;
 
     double w[]; //the weights for the logistic regression
     int degree; // degree of polynomial used for preprocessing

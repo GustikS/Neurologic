@@ -26,7 +26,7 @@ import java.util.Map;
  */
 public class Crossvalidation {
 
-    public int foldCount = 5;
+    public int foldCount;
 
     double trainErr = 0;
     double trainMajorityErr = 0;
@@ -75,8 +75,8 @@ public class Crossvalidation {
         if (Global.exporting) {
             network.exportTemplate("learned-fold" + fold);
             
-            ((MolecularTemplate) network).createWeightMatrix();
-            ((MolecularTemplate) network).exportWeightMatrix("learned-fold" + fold);
+//            ((MolecularTemplate) network).createWeightMatrix();
+//            ((MolecularTemplate) network).exportWeightMatrix("learned-fold" + fold);
 //            MolecularTemplate.saveTemplate(network, "learned-fold" + fold);
         }
         if (Global.drawing) {

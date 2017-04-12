@@ -161,7 +161,7 @@ public class LearnerFast extends Learning {
             //writeOutNeurons(gnet.allNeurons);
             results.add(new Result(sam.neuralNetwork.outputNeuron.outputValue, sam.targetValue));
         }
-        Glogger.LogTrain("backprop step : ", new Double[]{results.getLearningError(), results.getDispersion(), results.getMajorityClass(), results.getThreshold()});
+        Glogger.LogTrain("backprop step : ", new Double[]{results.getLearningError(), results.getDispersion(), results.getMajorityClass(), results.getThreshold(), results.getMSE()});
         Glogger.process("All Ground Networks Evaluation : train error " + results.getLearningError() + " (maj: " + results.getMajorityClass() + ")" + " (disp: " + results.getDispersion() + ")" + " (mse: " + results.getMSE() + ")");
         return results;
     }

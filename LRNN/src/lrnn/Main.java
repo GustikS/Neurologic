@@ -19,7 +19,7 @@ public class Main {
     //cutoff on example number
     private static final String defaultMaxExamples = "1000000";  //we can decrease the overall number of examples (stratified) for speedup
     //
-    public static String defaultLearningSteps = "10000";  //learnSteps per epocha
+    public static String defaultLearningSteps = "3000";  //learnSteps per epocha
     public static String defaultLearningEpochs = "1";  //learn epochae = grounding cycles
     //  learnEpochae * LearningSteps = learning steps for AVG variant
     private static final String defaultFolds = "1"; // 1 = training only
@@ -39,7 +39,7 @@ public class Main {
     public static String defaultKappaAdaptiveOffset = "0";  //must stay zero as default if defaultKappaAdaptiveOffsetOn = false    
     public static String defaultLambdaAdaptiveOffset = "1"; //lambda offset to add to the -1* (number of input kappas)
 
-    public static String defaultSeed = "2"; //seeds the whole algorithm (shuffling, etc.), should make it completely deterministic
+    public static String defaultSeed = "1"; //seeds the whole algorithm (shuffling, etc.), should make it completely deterministic
 
     private static String defaultSaving = "1"; // >0 => saving of template is ON after each bp-step (minibatch)  --> adds 10% extra computation time
 
@@ -390,7 +390,7 @@ public class Main {
         }
 
         if (sampleSet == null) {
-            if (test == null) {
+            if (test == null || test.length==0) {
                 Glogger.info("no test set, will do " + Settings.folds + "-fold crossvalidation");
                 sampleSet = new GroundedDataset(exs, rules, pretrainedRules);
             } else {
@@ -485,6 +485,9 @@ public class Main {
         if (tt != null) {
             Settings.setTestSet(tt);
             test = TextFileReader.readFile(tt, maxReadline);
+            if (test.length==0){
+                Glogger.err("Test set is empty or invalid!");
+            }
         }
 
         //get rules one by one from a file

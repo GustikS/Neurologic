@@ -64,7 +64,7 @@ public final class Glogger {
                 test.close();
 
                 training = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(resultsDir + "/training_" + file.toString() + ".csv"), "utf-8"));
-                training.write("state, learning_error, dispersion, majority_error, threshold \n");
+                training.write("state, learning_error, dispersion, majority_error, threshold, mse \n");
                 results = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(resultsDir + "/results_" + file.toString() + ".csv"), "utf-8"));
                 LogRes(options.toString());
                 training.flush();

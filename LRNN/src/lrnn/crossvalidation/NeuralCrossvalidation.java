@@ -8,6 +8,7 @@ package lrnn.crossvalidation;
 import lrnn.LiftedDataset;
 import lrnn.construction.template.LiftedTemplate;
 import lrnn.construction.template.LightTemplate;
+import lrnn.global.Glogger;
 import lrnn.grounding.evaluation.EvaluatorFast;
 import lrnn.learning.Result;
 import lrnn.learning.Results;
@@ -49,14 +50,16 @@ public class NeuralCrossvalidation extends Crossvalidation {
     @Override
     public Results test(LightTemplate net, Results trainResults, List<Sample> testExamples) {
         //we do not ground again here
-
+        Glogger.LogTrain("test set results");
         trainResults.clearResultList();
         for (Sample sample : testExamples) {
             double eval = EvaluatorFast.evaluateFast(sample.neuralNetwork, net.sharedWeights);
             trainResults.add(new Result(eval, sample.targetValue));
+            Glogger.LogTrain("Example #" + sample.position + " expected: " + sample.targetValue + " ; actual " + eval);
         }
         trainResults.computeTest();
         trainResults.testing = trainResults.actualResult;
+
         /*
          Glogger.LogRes("Fold Train error : " + trainResults.getLearningError());
          Glogger.LogRes("Fold Test error : " + error);
