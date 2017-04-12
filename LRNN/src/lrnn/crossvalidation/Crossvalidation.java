@@ -1,13 +1,13 @@
 package lrnn.crossvalidation;
 
 import lrnn.LiftedDataset;
-import lrnn.global.Global;
 import lrnn.construction.template.KL;
 import lrnn.construction.template.LightTemplate;
 import lrnn.construction.template.MolecularTemplate;
+import lrnn.global.Global;
 import lrnn.global.Glogger;
-import lrnn.grounding.evaluation.GroundedTemplate;
 import lrnn.grounding.Grounder;
+import lrnn.grounding.evaluation.GroundedTemplate;
 import lrnn.learning.LearningStep;
 import lrnn.learning.Result;
 import lrnn.learning.Results;
@@ -74,7 +74,7 @@ public class Crossvalidation {
 
         if (Global.exporting) {
             network.exportTemplate("learned-fold" + fold);
-            
+
 //            ((MolecularTemplate) network).createWeightMatrix();
 //            ((MolecularTemplate) network).exportWeightMatrix("learned-fold" + fold);
 //            MolecularTemplate.saveTemplate(network, "learned-fold" + fold);
@@ -142,21 +142,25 @@ public class Crossvalidation {
     public double crossvalidate(LiftedDataset dataset) {
         long time;
         Glogger.info("starting crossvalidation " + (time = System.currentTimeMillis()));
-        for (dataset.sampleSplitter.testFold = 0; dataset.sampleSplitter.testFold < dataset.sampleSplitter.foldCount; dataset.sampleSplitter.testFold++) { //iterating the test fold
-
+        if (dataset.sampleSplitter.testFold == 1) {   //train-test mode
             Results foldRes = trainTestFold(dataset.template, dataset.sampleSplitter.getTrain(), dataset.sampleSplitter.getTest(), dataset.sampleSplitter.testFold);
+        } else {    //crossvalidation mode
+            for (dataset.sampleSplitter.testFold = 0; dataset.sampleSplitter.testFold < dataset.sampleSplitter.foldCount; dataset.sampleSplitter.testFold++) { //iterating the test fold
+
+                Results foldRes = trainTestFold(dataset.template, dataset.sampleSplitter.getTrain(), dataset.sampleSplitter.getTest(), dataset.sampleSplitter.testFold);
             /*
             if (Global.exporting) {
                 LightTemplate.exportSharedWeights(dataset.template.sharedWeights, 99);
                 dataset.saveDataset(Settings.getDataset().replaceAll("-", "/") + ".ser");
             }
              */
-            
-            //Invalidator.invalidate(network); //1st
-            dataset.template.exportWeightMatrix("matrix");
-            dataset.template.invalidateWeights(); //TODO!!
 
-            dataset.template.merge(dataset.pretrainedTemplate); // 2nd
+                //Invalidator.invalidate(network); //1st
+                dataset.template.exportWeightMatrix("matrix");
+                dataset.template.invalidateWeights(); //TODO!!
+
+                dataset.template.merge(dataset.pretrainedTemplate); // 2nd
+            }
         }
         Glogger.process("finished crossvalidation " + (System.currentTimeMillis() - time));
 

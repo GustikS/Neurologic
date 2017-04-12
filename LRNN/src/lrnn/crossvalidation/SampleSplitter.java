@@ -25,10 +25,12 @@ public class SampleSplitter implements Serializable {
 
     public SampleSplitter(List<Sample> train, List<Sample> test) {
         folds = new ArrayList<>();
+        numberSamples(test);
+        numberSamples(train);
         folds.add(train);
         folds.add(test);
         testFold = 1;
-        foldCount = 2; //should be checked
+        foldCount = 1; //should be checked
         samples = new ArrayList<>(train.size() + test.size());
         samples.addAll(train);
         samples.addAll(test);
