@@ -96,13 +96,8 @@ public class LearningStep {
         if (bestResult == null) {
             return true;
         }
-        if (error < bestResult.error) {
+        if (mse < bestResult.mse) {
             return true;
-        }
-        if (error == bestResult.error) {
-            if (mse < bestResult.mse) {
-                return true;
-            }
         }
         return false;
     }

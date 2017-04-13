@@ -81,7 +81,7 @@ public class NeuralCrossvalidation extends Crossvalidation {
             double eval = EvaluatorFast.evaluateFast(sample.neuralNetwork, network.sharedWeights);
             Glogger.LogTrain("Example #" + sample.position + "; expected: ; " + sample.targetValue + " ; actual: ; " + eval);
         }
-        
+
         try {
             res.computeAUC();
         } catch (Exception ex) {
