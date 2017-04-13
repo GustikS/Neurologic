@@ -25,8 +25,8 @@ public class SampleSplitter implements Serializable {
 
     public SampleSplitter(List<Sample> train, List<Sample> test) {
         folds = new ArrayList<>();
-        numberSamples(test);
         numberSamples(train);
+        numberSamples(test);
         folds.add(train);
         folds.add(test);
         testFold = 1;
@@ -168,7 +168,7 @@ public class SampleSplitter implements Serializable {
         List<Sample> tmp = new ArrayList<Sample>();
         int i = 0;
         for (List<Sample> fold : folds) {
-            if (i++ != testFold || foldCount == 1) {    //or just a training set (that shouldnt cause anything in crossval)
+            if (i++ != testFold || (foldCount == 1 && testFold != 1)) {    //or just a training set (that shouldnt cause anything in crossval)
                 tmp.addAll(fold);
             }
         }

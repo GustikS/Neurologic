@@ -50,12 +50,12 @@ public class NeuralCrossvalidation extends Crossvalidation {
     @Override
     public Results test(LightTemplate net, Results trainResults, List<Sample> testExamples) {
         //we do not ground again here
-        Glogger.LogTrain("test set results");
+        Glogger.LogTrain("test set results...");
         trainResults.clearResultList();
         for (Sample sample : testExamples) {
             double eval = EvaluatorFast.evaluateFast(sample.neuralNetwork, net.sharedWeights);
             trainResults.add(new Result(eval, sample.targetValue));
-            Glogger.LogTrain("Example #" + sample.position + " expected: " + sample.targetValue + " ; actual " + eval);
+            Glogger.LogTrain("Example #" + sample.position + "; expected: ; " + sample.targetValue + " ; actual: ; " + eval);
         }
         trainResults.computeTest();
         trainResults.testing = trainResults.actualResult;

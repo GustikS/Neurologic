@@ -55,6 +55,7 @@ public class LearnerFast extends Learning {
         Stream<Sample> stream;
 
         Glogger.clock("starting to solveFast");
+        Glogger.LogTrain("Starting to train...");
 
         Results beginning = evaluateNetworks(roundStore, net.sharedWeights);
 
@@ -125,8 +126,9 @@ public class LearnerFast extends Learning {
         net.sharedWeights = bestWeights; //=LOADING the final best model from training
 
         Glogger.process("---best template weights so far <- loaded---");
+        Glogger.LogTrain("Evaluating with the best weights found during training...");
         Results evaluatedNetworks = evaluateNetworks(roundStore, bestWeights);
-
+        Glogger.LogTrain("...training finished!");
         Glogger.process("backpropagation on fold finished");
 
         return evaluatedNetworks;

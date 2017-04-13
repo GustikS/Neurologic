@@ -111,7 +111,6 @@ public class NeuralDataset extends LiftedDataset implements Serializable {
                 net.tmpActiveNet = sample.neuralNetwork;
                 net.constantNames = sample.getBall().constantNames;
                 sample.neuralNetwork.createNetwork(sample, net);
-                
             }
             sample.targetValue = sample.getExample().getExpectedValue();
 
