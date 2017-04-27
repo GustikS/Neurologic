@@ -82,7 +82,7 @@ public class Main {
     }
 
     public static void main(String[] args) throws Exception {
-        Reader reader = new FileReader("../in/ptcmr/ptc_mr.txt");
+        Reader reader = new FileReader("../in/ptc/ptcmr/ptc_mr.txt");
         List<Double> targets = new ArrayList<Double>();
         List<Clause> clauses = new ArrayList<Clause>();
         for (Pair<Clause, String> pair : PseudoPrologParser.read(reader)) {

@@ -13,6 +13,7 @@ package lrnn.ruleLearner;
 import ida.ilp.logic.Clause;
 import ida.ilp.logic.Constant;
 import ida.ilp.logic.Literal;
+import ida.ilp.logic.Variable;
 import ida.ilp.logic.io.PseudoPrologParser;
 import ida.utils.CommandLine;
 import ida.utils.Sugar;
@@ -26,6 +27,7 @@ import lrnn.crossvalidation.SampleSplitter;
 import lrnn.global.Global;
 import lrnn.global.Glogger;
 import lrnn.global.Settings;
+import lrnn.grounding.network.GroundKL;
 import lrnn.learning.LearningStep;
 import lrnn.learning.Result;
 import lrnn.learning.Results;
@@ -53,7 +55,7 @@ public class SoftClusteringSPI {
     private boolean parallelCrossval = false;   //not working yet! (but with parallel grounding and learning within LRNNs turned on it should run just as fast)
 
     int searchBeamSize = 20;
-    int searchMaxSize = 5;
+    int searchMaxSize = 3;
 
     int autoencodingSteps = 0;
     int trainingSteps = 2000;
@@ -68,10 +70,17 @@ public class SoftClusteringSPI {
     private double minMissedExamples4ruleLearning = 1;
 
     private boolean alternatingClasses = true;
+
+    private boolean normalizeMseCoefs = true;
+
+    private boolean allHeads = true;
+    private int maxHeadArity = 1;
+
+    int ruleIndex = 0;
     //----------------------------
 
-    String atomClusterName = "atc";
-    String bondClusterName = "bc";
+    String atomClusterName = "clA";
+    String bondClusterName = "clB";
     String tmpConstant = "a";
     private double weightMultiplier = 1;
 
@@ -79,11 +88,13 @@ public class SoftClusteringSPI {
     ValueToIndex<Pair<String, String>> bondIDs = new ValueToIndex();
     private double subsampleTripleRules = 1;
 
+
     public static void main(String[] args) throws IOException {
 
         Map<String, String> arguments = CommandLine.parseParams(args);
 
         Global.setSeed(3);
+
         Settings.setDataset(arguments.get("-dataset"));
 
         //create logger for all messages within the program
@@ -248,26 +259,61 @@ public class SoftClusteringSPI {
             }
             if (iter >= maxSpiCycles) break;
 
+            if (allHeads) {
+                reinventedExamples = getExtendedExamples(reinventedExamples, examplesOutPath, templPath);   //compute the extended cluster values
+                clusterValues = reinventedExamples.s;
+            } else {
+                Pair<Map<String, Double>, Map<String, Map<String, Double>>> newWeightMapping = extractWeightMappingFromTemplate(actualResult.s);
+                weightMapping.r.putAll(newWeightMapping.r);   //update all changed offsets if any
+                for (Map.Entry<String, Map<String, Double>> ent : newWeightMapping.s.entrySet()) {  //update all changed weights if any
+                    if (weightMapping.s.containsKey(ent.getKey()))
+                        weightMapping.s.get(ent.getKey()).putAll(ent.getValue());
+                    else
+                        weightMapping.s.put(ent.getKey(), ent.getValue());
+                }
+                clusterValues = transformToWeightedClusters(data.t, weightMapping).s;
+            }
 
             Pair<List<Clause>, List<Double>> subset = getMisclassifiedSubset(alternatingClasses ? (int) (-1 * actualClassifier.coeffs[actualClassifier.coefficients().length - 1]) : 0, actualResult.r, reinventedExamples.r, data.r);  //-1* = we want the next one
             Glogger.LogTrain("Iteration: " + iter + " after weight learning - " + (alternatingClasses ? (int) (actualClassifier.coeffs[actualClassifier.coefficients().length - 1]) == 1 ? " Number of TN + FN: " : " - Number of TP + FP: " : " Numer of all: ") + subset.s.size() + " examples");
             dataset = new MultiExampleDataset(subset.r, subset.s);
             if (subset.r.size() < minMissedExamples4ruleLearning) break;
 
-            Pair<Map<String, Double>, Map<String, Map<String, Double>>> newWeightMapping = extractWeightMappingFromTemplate(actualResult.s);
-            weightMapping.r.putAll(newWeightMapping.r);   //update all changed offsets if any
-            for (Map.Entry<String, Map<String, Double>> ent : newWeightMapping.s.entrySet()) {  //update all changed weights if any
-                if (weightMapping.s.containsKey(ent.getKey()))
-                    weightMapping.s.get(ent.getKey()).putAll(ent.getValue());
-                else
-                    weightMapping.s.put(ent.getKey(), ent.getValue());
-            }
-            clusterValues = transformToWeightedClusters(data.t, weightMapping).s;
             iter++;
         }
         bestResult = trainLRNNtemplate(examplesOutPath, bestResult.s, 3 * trainingSteps);
         Glogger.process("...Finished SPI cycle!");
         return actualResult;
+    }
+
+    private Pair<List<Clause>, Map<Literal, Double>> getExtendedExamples(Pair<List<Clause>, Map<Literal, Double>> reinventedExamples, String examplesOutPath, String templPath) {
+        String[] args = new String[]{"-e", examplesOutPath, "-r", templPath, "-draw", "0"};
+        List<String[]> inputs = lrnn.Main.setupFromArguments(args);
+
+        String[] test = inputs.get(0);
+        String[] exs = inputs.get(1);
+        String[] rules = inputs.get(2);
+        String[] pretrainedRules = inputs.get(3);
+
+        //Global.learnableElements = true;
+        lrnn.LiftedDataset dataset = lrnn.Main.createDataset(test, exs, rules, pretrainedRules);
+        //Global.learnableElements = false;
+
+        Map<Literal, Double> literalValues = new LinkedHashMap<>();
+        List<Clause> extClauses = new ArrayList<>();
+        for (int i = 0; i < dataset.sampleSplitter.samples.size(); i++) {
+            Map<Literal, Double> tmp = new LinkedHashMap<>();
+            for (GroundKL groundLiteral : dataset.sampleSplitter.samples.get(i).getBall().groundLiterals) {
+                tmp.put(Literal.parseLiteral(groundLiteral.toString(dataset.sampleSplitter.samples.get(i).getBall().constantNames)), Global.getGrounding() == Global.groundingSet.avg ? groundLiteral.getValueAvg() : groundLiteral.getValue());
+            }
+            literalValues.putAll(tmp);
+            Set<Literal> lits = new HashSet<>();
+            lits.addAll(reinventedExamples.r.get(i).literals());    //merge with previous clause (non-extended) version
+            lits.addAll(tmp.keySet());
+            extClauses.add(new Clause(lits.stream().filter(lit -> (lit.predicate().startsWith("cl") || lit.predicate().startsWith("bond"))).collect(Collectors.toList())));
+        }
+
+        return new Pair<>(extClauses, literalValues);
     }
 
     private StringBuilder mergeTemplates(String previous, String learned, boolean adding) {
@@ -360,17 +406,30 @@ public class SoftClusteringSPI {
         String[] rules = inputs.get(2);
         String[] pretrainedRules = inputs.get(3);
 
+        if (allHeads) {
+            List<String> newrules = new ArrayList<>();
+            for (String rule : rules) {
+                if (!rule.contains("dummy")) {
+                    newrules.add(rule);
+                }
+            }
+            rules = newrules.toArray(new String[newrules.size()]);
+        }
+
         //create ground networks dataset
         lrnn.LiftedDataset dataset = null;
         Results foldRes = null;
         if (learningSteps > 0) {
+
             dataset = lrnn.Main.createDataset(test, exs, rules, pretrainedRules);
             //start learning
             foldRes = crossValidation.train(dataset.template, dataset.sampleSplitter.samples);
             //also test n the same samples to properly extract misclassified ones
             foldRes = crossValidation.test(dataset.template, foldRes, dataset.sampleSplitter.samples);
         } else {
+
             dataset = new lrnn.LiftedDataset(rules, pretrainedRules);
+
         }
 
         String exportPath = rulesPath.substring(0, rulesPath.lastIndexOf(".")) + "_learned";
@@ -384,17 +443,72 @@ public class SoftClusteringSPI {
 
         if (classifier.rules().length > 1) iter = 1;
         StringBuilder templ = new StringBuilder();
+
+        if (allHeads) {
+            if (errorMeasure.equals("MSE")) {
+                ruleIndex = 0;
+            }
+            List<HornClause> newHcs = new ArrayList<>();
+            for (HornClause hc : classifier.rules()) {
+                if (hc.head() == null) {
+                    Set<Literal> allHeads = new HashSet<>();
+                    List<Variable> vars = hc.variables().stream().collect(Collectors.toList());
+                    int lev = getMaximalLiteralLevel(hc);
+                    addAllHeads("head" + (lev), vars, new ArrayList<>(), allHeads);
+                    for (Literal head : allHeads) {
+                        templ.append(head + " :- " + hc.body() + ".\n");
+                        for (int i = 0; i < atomClusters; i++) {
+                            templ.append("0.0 cluster" + (lev + 1) + "L" + i + "(" + Arrays.toString(head.arguments()).replaceAll("\\[", "").replaceAll("]", "") + ")" + " :- " + head + ".\n");
+                        }
+                    }
+                    for (int i = 0; i < atomClusters; i++) {
+                        templ.append("dummy" + (lev + 1) + "L" + i + "(a) :- cluster" + (lev + 1) + "L" + i + "(" + Arrays.toString(allHeads.iterator().next().arguments()).replaceAll("\\[", "").replaceAll("]", "") + ").\n");
+                        templ.append("0.00000001 finalKappa(a) :- dummy" + (lev + 1) + "L" + i + "(a).\n");
+                    }
+                    //break;
+                }
+            }
+        }
+
+
         for (int i = 0; i < classifier.rules().length; i++) {
             templ.append("finalLambda").append(iter + i).append("(").append(tmpConstant).append(") :- ").append(classifier.rules()[i].body().toString().replaceAll(" ", "")).append(".\n");
-            templ.append(classifier.coefficients()[i]).append(" finalKappa(").append(tmpConstant).append(") :- finalLambda").append(iter + i).append("(").append(tmpConstant).append(").\n");
+            templ.append(normalizeMseCoefs ? classifier.coefficients()[i] / Math.abs(classifier.coefficients()[i]) : classifier.coefficients()[i]).append(" finalKappa(").append(tmpConstant).append(") :- finalLambda").append(iter + i).append("(").append(tmpConstant).append(").\n");
         }
         if (classifier.coefficients().length > classifier.rules().length) {
-            templ.append("finalKappa/1 " + classifier.coeffs[classifier.rules().length] + "\n");
+            templ.append("finalKappa/1 " + (normalizeMseCoefs ? classifier.coeffs[classifier.rules().length] / Math.abs(classifier.coeffs[classifier.rules().length]) : classifier.coeffs[classifier.rules().length]) + "\n");
             if (classifier.coefficients().length > classifier.rules().length + 1)
                 Glogger.err("Classifier has more coefficients than rules+offset!");
         }
 
+
         return templ;
+    }
+
+
+    private int getMaximalLiteralLevel(HornClause hc) {
+        int maxLevel = 0;
+        for (Literal literal : hc.body().literals()) {
+            if (literal.predicate().startsWith("cluster")) {
+                int level = Integer.parseInt(literal.predicate().substring(7, literal.predicate().indexOf("L")));
+                if (level > maxLevel) {
+                    maxLevel = level;
+                }
+            }
+        }
+        return maxLevel;
+    }
+
+    private void addAllHeads(String headName, List<Variable> allVars, List<Variable> selectedVars, Set<Literal> heads) {
+        if (selectedVars.size() == maxHeadArity) {
+            heads.add(new Literal(headName + "L" + ruleIndex++, selectedVars));
+            return;
+        }
+        for (int i = 0; i < allVars.size(); i++) {
+            selectedVars.add(allVars.get(i));
+            addAllHeads(headName, allVars, selectedVars, heads);
+            selectedVars.remove(allVars.get(i));
+        }
     }
 
     private Pair<List<Clause>, List<Double>> getMisclassifiedSubset(int targetClass, Results r, List<Clause> origClauses, List<Double> origTargets) {

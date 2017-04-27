@@ -43,6 +43,7 @@ public class Configurations {
 
     //datasets
     public static String[] datasets = setUpDatasetsStructureLearning();
+    //public static String[] datasets = setUpDatasetsLRNN();
     public static String[] templates = new String[]{"-t", "none", "../weights/rules.w"};    //none serves as dummy
 
     public static LinkedList<String> configurations;

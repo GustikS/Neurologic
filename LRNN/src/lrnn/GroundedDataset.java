@@ -102,15 +102,13 @@ public class GroundedDataset extends LiftedDataset {
      *
      * @param examples examples
      * @param template
-     * @param net
-     * @param last     output node
      * @return list with balls from first run
      */
     public final List<Sample> prepareGroundings(List<Example> examples, LiftedTemplate template) {
         //find max. and average substitution for all examples
         List<Sample> sampleStore = new ArrayList<>(examples.size());
 
-        Glogger.process("searching for initial substition prove-trees for each example...");
+        Glogger.process("searching for initial substition proof-trees for each example...");
 
         //Global.savesomething(template, "cc");
         if (Global.bottomUp) {
@@ -207,7 +205,7 @@ public class GroundedDataset extends LiftedDataset {
             }
             b.loadGroundNeurons(neurons);   //store all ground L/K in an array for fast and simple operations instead of DFS for each simple pass
             if (Global.learnableElements) {
-                b.groundNeurons.addAll(GroundNetworkParser.elements);  //also include fact neurons in the evaluation (as in neural)
+                b.groundLiterals.addAll(GroundNetworkParser.elements);  //also include fact neurons in the evaluation (as in neural)
             }
         }
         return sampleStore;

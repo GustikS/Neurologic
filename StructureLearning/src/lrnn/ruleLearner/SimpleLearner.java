@@ -66,7 +66,7 @@ public class SimpleLearner {
     }
 
     //+1 = positive classifier, -1 = negative classifier, 0 = both
-    public Pair<ClassifierR,Double> beamSearch(int beamSize, int maxSize) {
+    public Pair<ClassifierR, Double> beamSearch(int beamSize, int maxSize) {
 
         MultiMap<HornClause, Literal> badRefinements = new MultiMap<HornClause, Literal>();
         Set<IsoClauseWrapper> processed = new HashSet<IsoClauseWrapper>();
@@ -92,14 +92,15 @@ public class SimpleLearner {
             candidates = filterIsomorphic(candidates);
 
             List<Pair<ClassifierR, Double>> top = selectTop(candidates, beamSize, best);
-            history.putAll(i, top.stream().map(q -> q.r.rules()[q.r.rules().length-1]).collect(Collectors.toList()));
-            current = top.stream().map(q -> q.r.rules()[q.r.rules().length-1]).collect(Collectors.toList());
+            history.putAll(i, top.stream().map(q -> q.r.rules()[q.r.rules().length - 1]).collect(Collectors.toList()));
+            current = top.stream().map(q -> q.r.rules()[q.r.rules().length - 1]).collect(Collectors.toList());
             for (Pair<ClassifierR, Double> hc : top) {
                 Glogger.info("in top: " + hc);
             }
 
             Glogger.info("Best so far: " + best);
         }
+
         return best;
     }
 

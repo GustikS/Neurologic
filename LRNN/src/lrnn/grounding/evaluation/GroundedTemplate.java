@@ -21,7 +21,7 @@ public class GroundedTemplate implements Serializable {
     private Set<KappaRule> activeRules;
     //public Set<Double> inputsMax = new HashSet<>();
     //public Set<Double> inputsAvg = new HashSet<>();
-    public List<GroundKL> groundNeurons;    //only neurons, no fact neurons!
+    public List<GroundKL> groundLiterals;    //only neurons, no fact neurons!
     
     public Map<Integer,String> constantNames;   //constantnames mapping back from their IDs for debugging and drawing
 
@@ -30,7 +30,7 @@ public class GroundedTemplate implements Serializable {
         valAvg = null;
         activeRules = new HashSet<KappaRule>();
         lastAvg = new HashSet<>();
-        groundNeurons = new ArrayList<>();
+        groundLiterals = new ArrayList<>();
     }
 
     public GroundedTemplate(double d) {
@@ -149,12 +149,12 @@ public class GroundedTemplate implements Serializable {
 
     public void loadGroundNeurons(Set<GroundKL> neurons) {
         //GroundNetworkParser.parseMAX(this);
-        groundNeurons.clear();
-        groundNeurons.addAll(neurons);
+        groundLiterals.clear();
+        groundLiterals.addAll(neurons);
     }
 
     public void invalidateNeurons() {
-        for (GroundKL gkl : groundNeurons) {
+        for (GroundKL gkl : groundLiterals) {
             gkl.invalidate();
         }
     }

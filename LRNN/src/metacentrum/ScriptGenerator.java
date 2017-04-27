@@ -27,14 +27,14 @@ public class ScriptGenerator {
     //-­W cgroup=true
     private static String serverPath = "cd /storage/plzen1/home/souregus/neuro_builds/";
 
-    private static final String hours = "168";
+    private static final String hours = "48";
 
 
     private static final String procesors = "1";
     private static final String memory = "16";
     private static final String javaPars = " -XX:+UseSerialGC -XX:-BackgroundCompilation -XX:NewSize=2000m -Xms4096m -Xmx" + memory + "g -Djava.util.concurrent.ForkJoinPool.common.parallelism=1 -Daffinity.reserved=1 ";
 
-    private static String jarName = "StructureLearning.jar";
+    private static String jarName = "neurologic.jar";
 
     public static String directName;
 
@@ -52,7 +52,7 @@ public class ScriptGenerator {
 
         try {
             //String common = "-gr avg -ac sig_sig -f 5 -ls 3000 -drawing 0 -alldiff 0 -debug 0 -bug 1 -out ../results/kernel ";
-            String common = "-sbs 20 -sms 5 -aes 0 -dataset ";
+            String common = "-sbs 20 -sms 3 -aes 0 -dataset ";
             LinkedList<String[]> scripts = new LinkedList<>();
             scripts.add(Configurations.datasets);
             //scripts.add(Configurations.templates);
@@ -66,7 +66,7 @@ public class ScriptGenerator {
             //scripts.add(Configurations.groundings);
             //scripts.add(Configurations.cumSteps);
             //scripts.add(Configurations.dropouts);
-            generate("mlj2", "mlj2", scripts, common);
+            generate("struct_acc", "struct_acc", scripts, common);
         } catch (IOException ex) {
             Logger.getLogger(ScriptGenerator.class.getName()).log(Level.SEVERE, null, ex);
         }

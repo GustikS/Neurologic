@@ -123,7 +123,7 @@ public class NLPtemplate extends LiftedTemplate {
             groundKLs = GroundNetworkParser.parseMAX(b);
         }
         b.loadGroundNeurons(groundKLs);   //store all ground L/K in an array for fast and simple operations instead of DFS for each simple pass
-        //b.groundNeurons.addAll(GroundNetworkParser.elements);  //no, do not add the fact neurons as their values will get invalidated then
+        //b.groundLiterals.addAll(GroundNetworkParser.elements);  //no, do not add the fact neurons as their values will get invalidated then
 
         return answer;
     }

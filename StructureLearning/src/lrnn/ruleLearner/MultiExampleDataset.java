@@ -61,12 +61,12 @@ public class MultiExampleDataset implements Dataset {
      */
     public double optimalMSE(ClassifierR classifier, Map<Literal, Double> literalWeights) {
 
-        System.out.println(classifier + "-------------------");
+        //System.out.println(classifier + "-------------------");
         double[][] logistInput = new double[examples.size()][];
         for (int i = 0; i < examples.size(); i++) {
             double[] predictions = classifier.predictions(i, queries == null ? null : queries.get(i), matching, literalWeights);
             logistInput[i] = predictions;
-            System.out.println("values for " + examples.get(i) + " : " + Arrays.toString(predictions));
+        //    System.out.println("values for " + examples.get(i) + " : " + Arrays.toString(predictions));
         }
 
 
@@ -82,14 +82,14 @@ public class MultiExampleDataset implements Dataset {
         }
 
         if (classifier.rules()[0].toString().contains("edge(V1, V2), cl1(V2), cl0(V1)")) {    //first interesting
-            System.out.println();
+        //    System.out.println();
         }
 
         double error = 1;
         LogisticRegressionPoly logres = new LogisticRegressionPoly(logistInput, out, 1);
         classifier.coeffs = logres.w;
         error = logres.error(logres.w) / examples.size();
-        System.out.println("-------------" + classifier + " error: " + error);
+        //System.out.println("-------------" + classifier + " error: " + error);
         return error;
 
     }

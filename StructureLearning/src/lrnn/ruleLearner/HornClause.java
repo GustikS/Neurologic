@@ -90,6 +90,9 @@ public class HornClause {
     public Literal head(){
         return this.head;
     }
+    public void setHead(Literal head){
+        this.head = head;
+    }
 
     public Clause body(){
         return this.body;

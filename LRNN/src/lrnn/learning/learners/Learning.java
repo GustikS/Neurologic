@@ -237,7 +237,7 @@ public class Learning {
     }
 
     private void writeOutNeurons(Sample result) {
-        for (GroundKL gkl : result.getBall().groundNeurons) {
+        for (GroundKL gkl : result.getBall().groundLiterals) {
             System.out.println(gkl.toString() + " , " + gkl.getValueAvg());
         }
 
