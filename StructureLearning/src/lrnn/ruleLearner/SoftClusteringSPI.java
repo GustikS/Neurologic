@@ -21,6 +21,7 @@ import ida.utils.collections.ValueToIndex;
 import ida.utils.tuples.Pair;
 import ida.utils.tuples.Triple;
 import lrnn.construction.example.Example;
+import lrnn.construction.template.WeightInitializator;
 import lrnn.crossvalidation.Crossvalidation;
 import lrnn.crossvalidation.NeuralCrossvalidation;
 import lrnn.crossvalidation.SampleSplitter;
@@ -45,7 +46,7 @@ import java.util.stream.Collectors;
  */
 public class SoftClusteringSPI {
 
-    private String errorMeasure = "acc";
+    private String errorMeasure = "MSE";
 
     Crossvalidation crossValidation;
 
@@ -63,6 +64,8 @@ public class SoftClusteringSPI {
     private boolean reinitializeAllWeightsWithinSPIcycle = false;
     private boolean reinitializeTopLayerWeightsWithinSPIcycle = true;
 
+    private boolean reinitUnusedClusters = true;
+
     private int atomClusters = 3;
     private int bondClusters = 3;
 
@@ -73,7 +76,7 @@ public class SoftClusteringSPI {
 
     private boolean normalizeMseCoefs = true;
 
-    private boolean allHeads = true;
+    private boolean deepLearning = true;
     private int maxHeadArity = 1;
 
     int ruleIndex = 0;
@@ -255,11 +258,21 @@ public class SoftClusteringSPI {
             if (bestResult.r != null && bestResult.r.actualResult.getMse() < 0.000001) break;
 
             if (!reinitializeAllWeightsWithinSPIcycle) {   //reuse previously learned weights?
-                template = mergeTemplates(template.toString(), new String(Files.readAllBytes(Paths.get(actualResult.s))), false);
+                if (reinitUnusedClusters) {
+                    template = mergeTemplates(template.toString(), initialAutoencoding.t.toString(), false);
+                    StringBuilder sb = new StringBuilder();
+                    for (String s : template.toString().split("\n")) {
+                        sb.append(s.replaceAll("0\\.0", WeightInitializator.getWeight() + "") + "\n");
+                    }
+                    template = sb;
+                }
+                template = mergeTemplates(template.toString(), new String(Files.readAllBytes(Paths.get(actualResult.s))), true);
+                templPath = templPath.substring(0, templPath.lastIndexOf(".")) + "_merged.txt";
+                Files.write(Paths.get(templPath), template.toString().getBytes());
             }
             if (iter >= maxSpiCycles) break;
 
-            if (allHeads) {
+            if (deepLearning) {
                 reinventedExamples = getExtendedExamples(reinventedExamples, examplesOutPath, templPath);   //compute the extended cluster values
                 clusterValues = reinventedExamples.s;
             } else {
@@ -317,6 +330,9 @@ public class SoftClusteringSPI {
     }
 
     private StringBuilder mergeTemplates(String previous, String learned, boolean adding) {
+        previous = previous.replaceAll(", ", ",");
+        learned = learned.replaceAll(", ", ",");
+
         LinkedHashMap<String, String> merged = new LinkedHashMap<>();
         String[] strings = {previous, learned};
         for (int i = 0; i < strings.length; i++) {
@@ -406,15 +422,15 @@ public class SoftClusteringSPI {
         String[] rules = inputs.get(2);
         String[] pretrainedRules = inputs.get(3);
 
-        if (allHeads) {
-            List<String> newrules = new ArrayList<>();
-            for (String rule : rules) {
-                if (!rule.contains("dummy")) {
-                    newrules.add(rule);
-                }
+        //if (deepLearning) {
+        List<String> newrules = new ArrayList<>();
+        for (String rule : rules) {
+            if (!rule.contains("dummy")) {
+                newrules.add(rule);
             }
-            rules = newrules.toArray(new String[newrules.size()]);
         }
+        rules = newrules.toArray(new String[newrules.size()]);
+        //}
 
         //create ground networks dataset
         lrnn.LiftedDataset dataset = null;
@@ -444,7 +460,7 @@ public class SoftClusteringSPI {
         if (classifier.rules().length > 1) iter = 1;
         StringBuilder templ = new StringBuilder();
 
-        if (allHeads) {
+        if (deepLearning) {
             if (errorMeasure.equals("MSE")) {
                 ruleIndex = 0;
             }
@@ -722,6 +738,8 @@ public class SoftClusteringSPI {
                 rules.append(defaultWeight + " " + atomClusterName + i + "(X) :- " + e1 + "(X).\n");
             }
             rules.append(atomClusterName + i + "/1 " + defaultWeight + "\n");
+            rules.append("dummy_baseA" + i + "(a) :- " + atomClusterName + i + "(X).\n");
+            rules.append("0.00000001 finalKappa(a) :- dummy_baseA" + i + "(a).\n");
         }
         rules.append("\n");
         for (int i = 0; i < bondClusters; i++) {
@@ -729,6 +747,8 @@ public class SoftClusteringSPI {
                 rules.append(defaultWeight + " " + bondClusterName + i + "(X) :- " + r + "(X).\n");
             }
             rules.append(bondClusterName + i + "/1 " + defaultWeight + "\n");
+            rules.append("dummy_baseB" + i + "(a) :- " + bondClusterName + i + "(X).\n");
+            rules.append("0.00000001 finalKappa(a) :- dummy_baseB" + i + "(a).\n");
         }
         StringBuilder softClusterBase = new StringBuilder(rules.toString() + "\n");
 
