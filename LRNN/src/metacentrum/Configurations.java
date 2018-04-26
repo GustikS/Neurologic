@@ -18,14 +18,14 @@ public class Configurations {
     public static String ruleFileName = "kernelTemplate";
     public static String exampleFilename = "examplesGeneral";
 
-    //private static final String[] data = new String[]{"ptc/mm", "ptc/mr", "ptc/fm", "ptc/fr"};
-    private static final String[] data = getAllDatasetsFrom("/home/gusta/googledrive/Github/LRNN2.0/in/nci/");
+    //private static final String[] data = new String[]{"choline"};
+    private static final String[] data = getAllDatasetsFrom("/home/gusta/googledrive/NeuraLogic/datasets/ashwin_results/4data/");
 
     //some prepared parameter-value configurations to choose from if one wants to try out a parameter
     public static String[] folds = new String[]{"-f", "1", "5", "10"};
     public static String[] groundings = new String[]{"-gr", "max", "avg"};
-    public static String[] learnRates = new String[]{"-lr", "0.05", "0.3"};
-    public static String[] bpSteps = new String[]{"-ls", "2000", "10000"};
+    public static String[] learnRates = new String[]{"-lr", "0.01", "0.05", "0.1", "0.3", "0.5"};
+    public static String[] bpSteps = new String[]{"-ls", "1000", "2000"};
     public static String[] restarts = new String[]{"-rs", "1", "2", "3"};
     public static String[] epochs = new String[]{"-le", "7", "10"};
     public static String[] activations = new String[]{"-ac", "sig_id", "sig_sig"};
@@ -41,12 +41,19 @@ public class Configurations {
     public static String[] cumSteps = new String[]{"-cum", "0", "diff"};    //on,diff,number
     public static String[] learnDecay = new String[]{"-lrd", "0", "on"};    //on,number
 
+    public static String[] beamSize = new String[]{"-sbs", "10", "20"};
+    public static String[] ruleLength = new String[]{"-sms", "3", "4"};
+    public static String[] structCycles = new String[]{"-cyc", "5", "10"};
+    public static String[] clusters = new String[]{"-cls", "3", "5"};
+
     //datasets
     public static String[] datasets = setUpDatasetsStructureLearning();
     //public static String[] datasets = setUpDatasetsLRNN();
-    public static String[] templates = new String[]{"-t", "none", "../weights/rules.w"};    //none serves as dummy
+    public static String[] templates = new String[]{"-r", "../in/mutagenesis/1rules", "../in/mutagenesis/2rules", "../in/mutagenesis/3rules"};    //none serves as dummy
 
     public static LinkedList<String> configurations;
+    //for structure learning
+    private static boolean uniqueSuffix = true;
 
     public static final String[] getAllDatasetsFrom(String path) {
         File[] files = new File(path).listFiles();
@@ -68,9 +75,9 @@ public class Configurations {
 
     public static final String[] setUpDatasetsStructureLearning() {
         String[] exs = new String[data.length + 1];
-        exs[0] = "";
+        exs[0] = "-dataset";
         for (int i = 0; i < data.length; i++) {
-            exs[i + 1] = dataPath + data[i] + "/" + data[i] + ".txt";
+            exs[i + 1] = dataPath + data[i];// + "/" + data[i] + ".txt";
         }
         return exs;
     }
@@ -101,7 +108,11 @@ public class Configurations {
         for (String conf : config) {
             res.append(conf);
         }
-        return res.toString();
+        String suffix = "";
+        if (uniqueSuffix){
+            suffix = "-suf " + res.toString().replaceAll("-","").replaceAll(" ","").replaceAll("/","").replaceAll("\\.","");
+        }
+        return res.toString() + suffix;
     }
 
 }

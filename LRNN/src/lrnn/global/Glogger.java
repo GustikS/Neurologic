@@ -28,6 +28,10 @@ public final class Glogger {
     static Writer training;
     static Writer results;
     static Writer test;
+    static Writer predictions;
+
+    public static String suffix = "";
+
     public static String resultsDir = Settings.getResultsDir();
 
     static final boolean timeMeasures = true;
@@ -49,6 +53,7 @@ public final class Glogger {
             file.append(options);
         } else {
             file.append(Settings.getDataset());
+            file.append(Settings.getRules());
         }
 
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd_HH-mm");
@@ -63,11 +68,15 @@ public final class Glogger {
                 test.write("metacetrum file test : " + time);
                 test.close();
 
-                training = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(resultsDir + "/training_" + file.toString() + ".csv"), "utf-8"));
+                training = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(resultsDir + "/training_" + file.toString() + "_" + suffix + ".csv"), "utf-8"));
                 training.write("state, learning_error, dispersion, majority_error, threshold, mse \n");
-                results = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(resultsDir + "/results_" + file.toString() + ".csv"), "utf-8"));
+                results = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(resultsDir + "/results_" + file.toString() + "_" + suffix + ".csv"), "utf-8"));
                 LogRes(options.toString());
                 training.flush();
+
+                predictions = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(resultsDir + "/predictions_" + file.toString() + "_" + suffix + ".csv"), "utf-8"));
+                predictions.write("id, label, prediction\n");
+                predictions.flush();
             } catch (UnsupportedEncodingException | FileNotFoundException ex) {
                 Logger.getLogger(Glogger.class.getName()).log(Level.SEVERE, null, ex);
             } catch (IOException ex) {
@@ -131,6 +140,19 @@ public final class Glogger {
         try {
             results.write(res + "\n");
             results.flush();
+        } catch (IOException ex) {
+            Logger.getLogger(Glogger.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public static final void LogPred(String res) {
+        out(res);
+        if (!Global.exporting) {
+            return;
+        }
+        try {
+            predictions.write(res + "\n");
+            predictions.flush();
         } catch (IOException ex) {
             Logger.getLogger(Glogger.class.getName()).log(Level.SEVERE, null, ex);
         }

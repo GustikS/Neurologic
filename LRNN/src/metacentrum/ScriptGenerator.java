@@ -27,11 +27,11 @@ public class ScriptGenerator {
     //-­W cgroup=true
     private static String serverPath = "cd /storage/plzen1/home/souregus/neuro_builds/";
 
-    private static final String hours = "48";
+    private static final String hours = "4";
 
 
     private static final String procesors = "1";
-    private static final String memory = "16";
+    private static final String memory = "8";
     private static final String javaPars = " -XX:+UseSerialGC -XX:-BackgroundCompilation -XX:NewSize=2000m -Xms4096m -Xmx" + memory + "g -Djava.util.concurrent.ForkJoinPool.common.parallelism=1 -Daffinity.reserved=1 ";
 
     private static String jarName = "neurologic.jar";
@@ -52,9 +52,10 @@ public class ScriptGenerator {
 
         try {
             //String common = "-gr avg -ac sig_sig -f 5 -ls 3000 -drawing 0 -alldiff 0 -debug 0 -bug 1 -out ../results/kernel ";
-            String common = "-sbs 20 -sms 3 -aes 0 -dataset ";
+            //String common = "-gr avg -ac sig_id -f 5 -alldiff 0 -debug 0 -bug 0 -e ../in/mutagenesis/examples ";
+            String common = "-aes 0 ";
             LinkedList<String[]> scripts = new LinkedList<>();
-            scripts.add(Configurations.datasets);
+
             //scripts.add(Configurations.templates);
             //scripts.add(Configurations.seeds);
             //scripts.add(Configurations.sgd);
@@ -66,7 +67,13 @@ public class ScriptGenerator {
             //scripts.add(Configurations.groundings);
             //scripts.add(Configurations.cumSteps);
             //scripts.add(Configurations.dropouts);
-            generate("struct_acc", "struct_acc", scripts, common);
+            //scripts.add(Configurations.ruleLength);
+            //scripts.add(Configurations.beamSize);
+            scripts.add(Configurations.structCycles);
+            //scripts.add(Configurations.bpSteps);
+            scripts.add(Configurations.clusters);
+            scripts.add(Configurations.datasets);
+            generate("ashwin5", "ashwin5", scripts, common);
         } catch (IOException ex) {
             Logger.getLogger(ScriptGenerator.class.getName()).log(Level.SEVERE, null, ex);
         }

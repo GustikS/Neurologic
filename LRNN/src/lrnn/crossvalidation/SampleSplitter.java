@@ -6,12 +6,14 @@ import lrnn.global.Glogger;
 import lrnn.learning.Sample;
 
 import java.io.*;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 /**
  * Splitter for performing stratified n-fold crossval
@@ -22,6 +24,23 @@ public class SampleSplitter implements Serializable {
     public int testFold = 0;
     public List<List<Sample>> folds;
     public List<Sample> samples;
+
+    public SampleSplitter(File[] foldsPaths) {
+        folds = new ArrayList<>();
+        samples = new ArrayList<>();
+        for (File path : foldsPaths) {
+            try {
+                List<Sample> samples = Files.lines(new File(path + "/test.txt").toPath()).map(line ->
+                        new Sample(new Example(line.substring(line.indexOf(" ") + 1) + (line.charAt(line.length() - 1) == '.' ? "" : ".")), line.substring(0, line.indexOf(" ")).matches("[1\\+]") ? 1.0 : 0.0))
+                        .collect(Collectors.toList());
+                folds.add(samples);
+                samples.addAll(samples);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        foldCount = foldsPaths.length;
+    }
 
     public SampleSplitter(List<Sample> train, List<Sample> test) {
         folds = new ArrayList<>();

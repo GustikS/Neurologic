@@ -104,7 +104,9 @@ public class TemplateFactory {
                 predicatesByName.get(ent.getKey()).offset = Double.parseDouble(ent.getValue().replaceAll("<", "").replaceAll(">", ""));
                 predicatesByName.get(ent.getKey()).hasLearnableOffset = false;
             } else {
-                predicatesByName.get(ent.getKey()).offset = Double.parseDouble(ent.getValue());
+                if (predicatesByName.containsKey(ent.getKey())) {
+                    predicatesByName.get(ent.getKey()).offset = Double.parseDouble(ent.getValue());
+                }
             }
         }
         //setup activation functions - new feature!

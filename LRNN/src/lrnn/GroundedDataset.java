@@ -117,6 +117,7 @@ public class GroundedDataset extends LiftedDataset {
             prover.recalculateHerbrand = true;
 
             int i = 0;
+            double avg_herbrand_size = 0;
             for (Example e : examples) {
                 ConstantFactory.clearConstantFactory();
                 ConstantFactory.construct("a");
@@ -132,6 +133,7 @@ public class GroundedDataset extends LiftedDataset {
                 b.constantNames = ConstantFactory.getConstantNames();
 
                 Glogger.info("cacheSize #" + prover.getBtmUpCache().size());
+                avg_herbrand_size += prover.getBtmUpCache().size();
                 sampleStore.add(new Sample(e, b));
                 if (Global.getGrounding().equals(Global.groundingSet.avg)) {
                     Evaluator.evaluateAvg(b);
@@ -143,6 +145,7 @@ public class GroundedDataset extends LiftedDataset {
                     GroundDotter.draw(b, "b" + i);
                 }
             }
+            Glogger.info("=====avg_herbrand_size: " + avg_herbrand_size/i);
         } else if (Global.parallelGrounding) {
             Glogger.process("Parallel threads workfold splitting");
             List<List<Example>> workFolds = (List<List<Example>>) SampleSplitter.splitExampleList(examples, Global.numOfThreads);

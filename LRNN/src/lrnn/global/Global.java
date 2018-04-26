@@ -20,13 +20,13 @@ public final class Global {
      */
     private static Random rg;
 
-    public static boolean bottomUp = false;  //bottom-up grounding - whoa!
+    public static boolean bottomUp = true;  //bottom-up grounding - whoa!
 
     public static boolean cacheEnabled = true; //false -> creates trees instead of networks
     private static boolean forwardCheckEnabled = true; //do not try to turn this off (super-slow, and maybe also grounding may change due to alldiff=true (not sure))
     public static boolean debugEnabled = false;  //very detailed info (too slow for an actual run)
     private static boolean infoEnabled = true;
-    private static boolean pruning = true;  //for AVG grounding and results , pruning=false is necessary!
+    private static boolean pruning = false;  //for AVG grounding and results , pruning=false is necessary!
     private static double falseAtomValue = -1;   //non-entailed example output
     //public static boolean lambdaSigmoid = false;
     private static double initLambdaAdaptiveOffset;
@@ -94,7 +94,7 @@ public final class Global {
     public static boolean recursion = false;
     public static boolean embeddings = false;
     public static boolean uniqueGroundLiteralNames = false;
-    public static boolean specialPredicates = true;
+    public static boolean specialPredicates = false;
     public static boolean KappaFixedZeroOffset = false;
     public static boolean internalValidation = false;
     public static boolean shuffleExamples = true;   //this makes sense to be false only for checking purposes

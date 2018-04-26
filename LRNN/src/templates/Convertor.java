@@ -16,11 +16,7 @@ import java.io.UnsupportedEncodingException;
 import java.io.Writer;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.LinkedHashSet;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -297,7 +293,7 @@ public class Convertor {
         }
     }
 
-    public static void writeSimple(ArrayList<String> examples, String outfile) {
+    public static void writeSimple(List<String> examples, String outfile) {
         Writer test;
         try {
             test = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(outfile), "utf-8"));

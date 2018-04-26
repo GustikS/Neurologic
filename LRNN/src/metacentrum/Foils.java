@@ -5,23 +5,13 @@
  */
 package metacentrum;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.OutputStreamWriter;
-import java.io.UnsupportedEncodingException;
-import java.io.Writer;
+import templates.Convertor;
+
+import java.io.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import templates.Convertor;
-
 /**
- *
  * @author Gusta
  */
 public class Foils {
@@ -33,7 +23,7 @@ public class Foils {
         //String path = "C:\\Users\\IBM_ADMIN\\Google Drive\\Neuralogic\\sourcecodes\\gusta\\extra-data\\NCIGI\\DATA\\out\\nfoil\\conv";
         //nFoil(path);
         getAccuracyNfoil("C:\\Users\\IBM_ADMIN\\Google Drive\\Neuralogic\\sourcecodes\\gusta\\extra-data\\NCIGI\\DATA\\out\\nfoil\\nfoilResults");
-        
+
         //String path = "C:\\Users\\IBM_ADMIN\\Google Drive\\Neuralogic\\sourcecodes\\gusta\\extra-data\\NCIGI\\DATA\\out\\nfoil\\kfoil";
         //kFoil(path);
         //getAccuracyKfoil("C:\\Users\\IBM_ADMIN\\Google Drive\\Neuralogic\\sourcecodes\\gusta\\extra-data\\NCIGI\\DATA\\out\\nfoil\\kfoil\\archive");

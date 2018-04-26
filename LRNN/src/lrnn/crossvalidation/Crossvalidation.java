@@ -28,20 +28,20 @@ public class Crossvalidation {
 
     public int foldCount;
 
-    double trainErr = 0;
-    double trainMajorityErr = 0;
-    double trainDispersion = 0;
-    double trainMSE = 0;
-    double trainAUCpr = 0;
-    double trainAUCroc = 0;
+    public double trainErr = 0;
+    public double trainMajorityErr = 0;
+    public double trainDispersion = 0;
+    public double trainMSE = 0;
+    public double trainAUCpr = 0;
+    public double trainAUCroc = 0;
 
-    double testErr = 0;
-    double testMajorityErr = 0;
-    double testrainMajorityErr = 0;
-    double testDispersion = 0;
-    double testMSE = 0;
-    double testAUCpr = 0;
-    double testAUCroc = 0;
+    public double testErr = 0;
+    public double testMajorityErr = 0;
+    public double testrainMajorityErr = 0;
+    public double testDispersion = 0;
+    public double testMSE = 0;
+    public double testAUCpr = 0;
+    public double testAUCroc = 0;
 
     SampleSplitter splitter;
 

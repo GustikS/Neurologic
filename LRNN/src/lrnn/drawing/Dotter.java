@@ -1,5 +1,6 @@
 package lrnn.drawing;
 
+import extras.GraphViz;
 import lrnn.construction.template.*;
 import lrnn.construction.template.rules.KappaRule;
 import lrnn.construction.template.rules.LambdaRule;
@@ -7,6 +8,7 @@ import lrnn.construction.template.rules.SubK;
 import lrnn.global.Glogger;
 
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.text.DecimalFormat;
 import java.util.*;
@@ -16,7 +18,7 @@ import java.util.*;
  */
 public class Dotter {
 
-    //public static String path = "./graphviz/bin/";	// Windows
+    //public static String path = "../graphviz/bin/";	// Windows
     public static String path = "";	// linux
     public static String outPath = "../images/";
     public static String imgtype = "png";
@@ -65,12 +67,13 @@ public class Dotter {
         }
     }
 
-//   private static void drawImage() {
-//        GraphViz gv = new GraphViz("dot");
-//        String type = "gif";
-//        File out = new File("out." + type); // out.gif in this example
-//        gv.writeGraphToFile(gv.getGraph(gv.getDotSource(), type), out);
-//    }
+   private static void drawImage() {
+        GraphViz gv = new GraphViz("dot");
+        String type = "gif";
+        File out = new File("out." + type); // out.gif in this example
+        gv.writeGraphToFile(gv.getGraph(gv.getDotSource(), type), out);
+    }
+
     public static void draw(KL kl, Set<KappaRule> s) {
         actives = s;
         dot.add(intro);
