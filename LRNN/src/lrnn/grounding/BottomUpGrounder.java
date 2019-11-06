@@ -24,13 +24,17 @@ import java.util.Set;
 public class BottomUpGrounder {
 
     public Set<Literal> herbrandModel(List<? extends Clause> clauses) {
+        //herbrand model maps predicates to ground literal sets
         MultiMap<Pair<String, Integer>, Literal> herbrand = new MultiMap<Pair<String, Integer>, Literal>();
         Pair<List<Clause>, List<Literal>> rulesAndFacts = rulesAndFacts(clauses);
         List<Clause> rules = rulesAndFacts.r;
+
+        // add all existing unit ground literals (facts) to herbrand set
         for (Literal groundLiteral : rulesAndFacts.s) {
             herbrand.put(new Pair<String, Integer>(groundLiteral.predicate(), groundLiteral.arity()), groundLiteral);
         }
 
+        //rule heads map to empty sets at the beginning
         Set<Pair<String, Integer>> headSignatures = new HashSet<Pair<String, Integer>>();
         for (Clause rule : rules) {
             Literal head = head(rule);
@@ -42,27 +46,33 @@ public class BottomUpGrounder {
         do {
             int herbrandSize0 = VectorUtils.sum(herbrand.sizes());
             Glogger.debug("herbrandSize0: " + herbrandSize0);
+
+            //get all valid literals from current herbrand in to matching
             Matching matching = new Matching(Sugar.<Clause>list(new Clause(Sugar.flatten(herbrand.values()))));
             for (Pair<String, Integer> predicate : headSignatures) {
                 //may overwrite the previous ones which is actually what we want
-                matching.getEngine().addCustomPredicate(new TupleNotIn(predicate.r, predicate.s, herbrand.get(predicate)));
+                matching.getEngine().addCustomPredicate(new TupleNotIn(predicate.r, predicate.s, herbrand.get(predicate))); //predicate that evaluates to true if the head-mapping set does not containt such a literal yet
             }
             for (Clause rule : rules) {
                 Literal head = head(rule);
                 Pair<String, Integer> headSignature = new Pair<String, Integer>(head.predicate(), head.arity());
+                // solution consumer = automatically add all found valid substitutions of the head literal into the berbrand map
                 SolutionConsumer solutionConsumer = new HerbrandSolutionConsumer(head, headSignature, herbrand);
                 matching.getEngine().addSolutionConsumer(solutionConsumer);
+                // if the rule head is already ground
                 if (LogicUtils.isGround(head)) {
                     Clause query = new Clause(flipSigns(rule.literals()));
+                    // add it to herbrand if the rule body is true
                     if (matching.subsumption(query, 0)) {
                         herbrand.put(headSignature, head);
                     }
                 } else {
+                    //if it is not ground, extend the rule with restriction that the head substitution solution must not be contained in the herbrand yet (for speedup instead of just adding them to the set?)
                     Clause query = new Clause(flipSigns(Sugar.union(rule.literals(), new Literal(tupleNotInPredicateName(head.predicate(), head.arity()), true, head.arguments()))));
                     Pair<Term[], List<Term[]>> substitutions;
                     do {
                         //not super optimal but the rule grounding will dominate the runtime anyway...
-                        substitutions = matching.allSubstitutions(query, 0, 512);
+                        substitutions = matching.allSubstitutions(query, 0, 512); //then find (and secretly add) all NEW substitutions for the head literal
                     } while (substitutions.s.size() > 0);
                 }
                 matching.getEngine().removeSolutionConsumer(solutionConsumer);

@@ -20,7 +20,11 @@ public final class Global {
      */
     private static Random rg;
 
+    public static boolean uncompressedLambda = false;    //todo this has an effect on learning (mainly speed obviously)
     public static boolean bottomUp = true;  //bottom-up grounding - whoa!
+    public static boolean parallelTraining = false; //experimental!!
+
+    //-------------------------
 
     public static boolean cacheEnabled = true; //false -> creates trees instead of networks
     private static boolean forwardCheckEnabled = true; //do not try to turn this off (super-slow, and maybe also grounding may change due to alldiff=true (not sure))
@@ -29,9 +33,7 @@ public final class Global {
     private static boolean pruning = false;  //for AVG grounding and results , pruning=false is necessary!
     private static double falseAtomValue = -1;   //non-entailed example output
     //public static boolean lambdaSigmoid = false;
-    private static double initLambdaAdaptiveOffset;
-    private static double initKappaAdaptiveOffset;
-    private static boolean kappaAdaptiveOffset;
+
     /**
      * stochastic gradient descend (shuffling examples at each learning step)
      */
@@ -65,17 +67,15 @@ public final class Global {
     public static boolean saveGroundedDataset = false;
     public static boolean loadGroundedDataset = false;
 
-    public static boolean uncompressedLambda = true;
-
     public static boolean fastVersion = true;
     public static boolean memoryLight = false;  //saves 60% by removing groundKL structures (keeps only neural), makes sense with fastVersion ON only
+
     public static boolean molecularTemplates = true;
     public static boolean NLPtemplate = false;
 
     public static boolean multiLine = false; //example can spread to multiple lines, delimited by empty line (\n\n)
     public static boolean parallelGrounding = false;
     public static boolean deterministicGrounding = true;
-    public static boolean parallelTraining = false; //experimental!!
     public static int numOfThreads = 4;
     public static boolean batchMode = false;
 
@@ -83,7 +83,12 @@ public final class Global {
     //alldiff has significant performance speedup, but relativeVariableSelection doesnt seem to make any difference...
     public static boolean alldiff = true;
     public static final boolean adaptiveActivations = false;
+
     public static boolean learnableElements = false;
+
+    private static double initLambdaAdaptiveOffset; //these are set through the Main class
+    private static double initKappaAdaptiveOffset;
+    private static boolean kappaAdaptiveOffset;
 
     public static String outputFolder = Settings.resultsDir;
 

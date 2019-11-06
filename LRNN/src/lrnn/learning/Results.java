@@ -138,6 +138,7 @@ public class Results {
                 }
                 j++;
             } while (j < results.size() && results.get(j).getActual() == results.get(j - 1).getActual());
+
         }
         actualResult.setError(bestErr);
         double thresh = results.get(bestIndex).getActual();

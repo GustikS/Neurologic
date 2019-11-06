@@ -66,6 +66,7 @@ public class BottomUpConnector extends Grounder {
 
         this.facts = ifacts;
 
+        // fill heads2tails structure
         if (recalculateHerbrand || groundRuleMap == null) {
             head2Tails = new HashMap<>();
             String substring = null;

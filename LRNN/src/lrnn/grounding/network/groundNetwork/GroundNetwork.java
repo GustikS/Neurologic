@@ -7,13 +7,14 @@ package lrnn.grounding.network.groundNetwork;
 
 import lrnn.construction.template.LiftedTemplate;
 import lrnn.global.Global;
+import lrnn.global.Glogger;
 import lrnn.grounding.network.GroundKappa;
 import lrnn.grounding.network.GroundLambda;
 import lrnn.learning.Sample;
+
 import java.io.Serializable;
 
 /**
- *
  * @author Gusta
  */
 public class GroundNetwork implements Serializable {
@@ -36,11 +37,26 @@ public class GroundNetwork implements Serializable {
             outputNeuron = new RuleAggNeuron(gl, net);
             //Global.neuralDataset.neuronMapping.put(gl, outputNeuron);
         }
+        Glogger.info("Network created: " + allNeurons.length);
+        Glogger.info("True neuron count:" + getRealCount());
         return this;
     }
 
     void addNeuron(GroundNeuron gn) {
         allNeurons[neuronCounter++] = gn;
+    }
+
+    public int getRealCount() {
+        int count = 0;
+        for (int i = allNeurons.length - 1; i >= 0; i--) {
+            count++;
+            if (allNeurons[i] instanceof RuleAggNeuron) {
+                RuleAggNeuron neuron = (RuleAggNeuron) allNeurons[i];
+                if (neuron.ruleBodyGroundings != null)
+                    count += neuron.ruleBodyGroundings.length;
+            }
+        }
+        return count;
     }
 
     public void invalidateNeuronValues() {
