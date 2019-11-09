@@ -7,11 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="47211e3e-80c4-4815-b810-2aceecb71d59" name="Rejected commit: Default" comment="working lrnn 2018">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lrnn/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lrnn/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lrnn/construction/template/Lambda.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lrnn/construction/template/Lambda.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lrnn/global/Global.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lrnn/global/Global.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../NeuraLogic/.gitignore" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../NeuraLogic/.idea/compiler.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../NeuraLogic/.idea/copyright (2)/profiles_settings.xml" beforeDir="false" />
@@ -195,9 +191,6 @@
       <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/utils/CommandLine.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/utils/Logger.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/utils/Utilities.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../StructureLearning/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../StructureLearning/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../StructureLearning/src/lrnn/ruleLearner/GraphColoring.java" beforeDir="false" afterPath="$PROJECT_DIR$/../StructureLearning/src/lrnn/ruleLearner/GraphColoring.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../StructureLearning/src/lrnn/ruleLearner/SoftClusteringSPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/../StructureLearning/src/lrnn/ruleLearner/SoftClusteringSPI.java" afterDir="false" />
     </list>
     <list id="f96a9b28-46cc-4d89-b53b-8308750a0ddb" name="Default" comment="" />
     <ignored path="LRNN.iws" />
@@ -242,11 +235,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/lrnn/grounding/evaluation/EvaluatorFast.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1905">
-              <caret line="141" lean-forward="true" selection-start-line="141" selection-end-line="141" />
-              <folding>
-                <marker date="1487878455655" expanded="true" signature="4959:5097" ph="//..." />
-              </folding>
+            <state relative-caret-position="1995">
+              <caret line="141" selection-start-line="141" selection-end-line="141" />
             </state>
           </provider>
         </entry>
@@ -260,11 +250,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/lrnn/global/Global.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="173">
-              <caret line="39" column="29" selection-start-line="39" selection-start-column="29" selection-end-line="39" selection-end-column="29" />
+            <state relative-caret-position="495">
+              <caret line="39" column="31" lean-forward="true" selection-start-line="39" selection-start-column="31" selection-end-line="39" selection-end-column="31" />
               <folding>
                 <element signature="e#13130#13131#0" expanded="true" />
                 <element signature="e#13177#13178#0" expanded="true" />
@@ -280,8 +270,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/lrnn/learning/learners/LearnerFast.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="353">
-              <caret line="91" column="70" lean-forward="true" selection-start-line="91" selection-start-column="70" selection-end-line="91" selection-end-column="70" />
+            <state relative-caret-position="1035">
+              <caret line="91" column="70" selection-start-line="91" selection-start-column="70" selection-end-line="91" selection-end-column="70" />
             </state>
           </provider>
         </entry>
@@ -289,8 +279,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/lrnn/learning/Results.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="113">
-              <caret line="129" column="58" lean-forward="true" selection-start-line="129" selection-start-column="58" selection-end-line="129" selection-end-column="58" />
+            <state relative-caret-position="1725">
+              <caret line="129" column="58" selection-start-line="129" selection-start-column="58" selection-end-line="129" selection-end-column="58" />
             </state>
           </provider>
         </entry>
@@ -304,11 +294,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/lrnn/learning/backprop/BackpropFast.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="308">
-              <caret line="35" lean-forward="true" selection-start-line="35" selection-end-line="35" />
+            <state relative-caret-position="406">
+              <caret line="73" lean-forward="true" selection-start-line="73" selection-end-line="73" />
             </state>
           </provider>
         </entry>
@@ -316,7 +306,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/lrnn/construction/template/Lambda.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="339">
+            <state relative-caret-position="375">
               <caret line="32" column="64" selection-start-line="32" selection-start-column="64" selection-end-line="32" selection-end-column="64" />
             </state>
           </provider>
@@ -325,8 +315,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/lrnn/construction/template/KL.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
+            <state relative-caret-position="285">
+              <caret line="21" selection-start-line="21" selection-end-line="21" />
               <folding>
                 <element signature="e#780#781#0" expanded="true" />
                 <element signature="e#809#810#0" expanded="true" />
@@ -340,8 +330,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/lrnn/construction/template/Kappa.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="489">
-              <caret line="42" column="16" lean-forward="true" selection-start-line="42" selection-start-column="16" selection-end-line="42" selection-end-column="16" />
+            <state relative-caret-position="585">
+              <caret line="42" column="16" selection-start-line="42" selection-start-column="16" selection-end-line="42" selection-end-column="16" />
             </state>
           </provider>
         </entry>
@@ -365,8 +355,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/lrnn/global/Settings.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="158">
-              <caret line="298" column="26" lean-forward="true" selection-start-line="298" selection-start-column="26" selection-end-line="298" selection-end-column="26" />
+            <state relative-caret-position="3870">
+              <caret line="298" column="26" selection-start-line="298" selection-start-column="26" selection-end-line="298" selection-end-column="26" />
               <folding>
                 <element signature="e#6220#6221#0" expanded="true" />
                 <element signature="e#6250#6251#0" expanded="true" />
@@ -500,8 +490,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -741,6 +729,8 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1385,7 +1375,7 @@
     <frame x="1919" y="0" width="1922" height="1080" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25453576" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22465315" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="UI Designer" order="2" />
       <window_info id="Palette&#9;" order="3" />
@@ -1394,12 +1384,12 @@
       <window_info id="Image Layers" order="6" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3451613" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.40229884" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.40229884" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.42110762" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32975295" />
-      <window_info anchor="bottom" id="Version Control" order="7" weight="0.8459052" />
+      <window_info anchor="bottom" id="Version Control" order="7" weight="0.38244513" />
       <window_info anchor="bottom" id="Tool Output" order="8" />
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.3297414" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" weight="0.32903227" />
@@ -1435,6 +1425,14 @@
               </option>
               <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
                 <collection />
+              </option>
+              <option name="COLUMN_ORDER">
+                <list>
+                  <option value="0" />
+                  <option value="1" />
+                  <option value="2" />
+                  <option value="3" />
+                </list>
               </option>
             </State>
           </value>
@@ -1865,10 +1863,49 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/lrnn/learning/Result.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="27" selection-start-line="27" selection-end-line="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lrnn/construction/template/WeightInitializator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="31" selection-start-line="11" selection-start-column="31" selection-end-line="11" selection-end-column="31" />
+          <folding>
+            <element signature="e#725#726#0" expanded="true" />
+            <element signature="e#790#791#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/lrnn/grounding/network/groundNetwork/RuleAggNeuron.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="555">
           <caret line="46" column="8" selection-start-line="46" selection-start-column="8" selection-end-line="46" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lrnn/grounding/evaluation/EvaluatorFast.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1995">
+          <caret line="141" selection-start-line="141" selection-end-line="141" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lrnn/learning/learners/LearnerFast.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1035">
+          <caret line="91" column="70" selection-start-line="91" selection-start-column="70" selection-end-line="91" selection-end-column="70" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lrnn/learning/Results.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1725">
+          <caret line="129" column="58" selection-start-line="129" selection-start-column="58" selection-end-line="129" selection-end-column="58" />
         </state>
       </provider>
     </entry>
@@ -1879,10 +1916,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/lrnn/learning/Result.java">
+    <entry file="file://$PROJECT_DIR$/src/lrnn/construction/template/Lambda.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="27" selection-start-line="27" selection-end-line="27" />
+        <state relative-caret-position="375">
+          <caret line="32" column="64" selection-start-line="32" selection-start-column="64" selection-end-line="32" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lrnn/construction/template/KL.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="21" selection-start-line="21" selection-end-line="21" />
+          <folding>
+            <element signature="e#780#781#0" expanded="true" />
+            <element signature="e#809#810#0" expanded="true" />
+            <element signature="e#850#851#0" expanded="true" />
+            <element signature="e#878#879#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lrnn/construction/template/Kappa.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="585">
+          <caret line="42" column="16" selection-start-line="42" selection-start-column="16" selection-end-line="42" selection-end-column="16" />
         </state>
       </provider>
     </entry>
@@ -1900,86 +1957,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/lrnn/construction/template/WeightInitializator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="31" selection-start-line="11" selection-start-column="31" selection-end-line="11" selection-end-column="31" />
-          <folding>
-            <element signature="e#725#726#0" expanded="true" />
-            <element signature="e#790#791#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/lrnn/construction/template/Kappa.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="489">
-          <caret line="42" column="16" lean-forward="true" selection-start-line="42" selection-start-column="16" selection-end-line="42" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/lrnn/grounding/evaluation/EvaluatorFast.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1905">
-          <caret line="141" lean-forward="true" selection-start-line="141" selection-end-line="141" />
-          <folding>
-            <marker date="1487878455655" expanded="true" signature="4959:5097" ph="//..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/lrnn/learning/Results.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="113">
-          <caret line="129" column="58" lean-forward="true" selection-start-line="129" selection-start-column="58" selection-end-line="129" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/lrnn/construction/template/KL.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
-          <folding>
-            <element signature="e#780#781#0" expanded="true" />
-            <element signature="e#809#810#0" expanded="true" />
-            <element signature="e#850#851#0" expanded="true" />
-            <element signature="e#878#879#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/lrnn/construction/template/Lambda.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="339">
-          <caret line="32" column="64" selection-start-line="32" selection-start-column="64" selection-end-line="32" selection-end-column="64" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/lrnn/global/Global.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="173">
-          <caret line="39" column="29" selection-start-line="39" selection-start-column="29" selection-end-line="39" selection-end-column="29" />
-          <folding>
-            <element signature="e#13130#13131#0" expanded="true" />
-            <element signature="e#13177#13178#0" expanded="true" />
-            <element signature="e#14274#14275#0" expanded="true" />
-            <element signature="e#14300#14301#0" expanded="true" />
-            <element signature="e#15807#15808#0" expanded="true" />
-            <element signature="e#15834#15835#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/lrnn/global/Settings.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="158">
-          <caret line="298" column="26" lean-forward="true" selection-start-line="298" selection-start-column="26" selection-end-line="298" selection-end-column="26" />
+        <state relative-caret-position="3870">
+          <caret line="298" column="26" selection-start-line="298" selection-start-column="26" selection-end-line="298" selection-end-column="26" />
           <folding>
             <element signature="e#6220#6221#0" expanded="true" />
             <element signature="e#6250#6251#0" expanded="true" />
             <element signature="e#8821#8822#0" expanded="true" />
             <element signature="e#8863#8864#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lrnn/learning/backprop/BackpropFast.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="406">
+          <caret line="73" lean-forward="true" selection-start-line="73" selection-end-line="73" />
         </state>
       </provider>
     </entry>
@@ -1990,17 +1984,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/lrnn/learning/learners/LearnerFast.java">
+    <entry file="file://$PROJECT_DIR$/src/lrnn/global/Global.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="353">
-          <caret line="91" column="70" lean-forward="true" selection-start-line="91" selection-start-column="70" selection-end-line="91" selection-end-column="70" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/lrnn/learning/backprop/BackpropFast.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="35" lean-forward="true" selection-start-line="35" selection-end-line="35" />
+        <state relative-caret-position="495">
+          <caret line="39" column="31" lean-forward="true" selection-start-line="39" selection-start-column="31" selection-end-line="39" selection-end-column="31" />
+          <folding>
+            <element signature="e#13130#13131#0" expanded="true" />
+            <element signature="e#13177#13178#0" expanded="true" />
+            <element signature="e#14274#14275#0" expanded="true" />
+            <element signature="e#14300#14301#0" expanded="true" />
+            <element signature="e#15807#15808#0" expanded="true" />
+            <element signature="e#15834#15835#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
