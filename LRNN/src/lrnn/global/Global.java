@@ -20,7 +20,7 @@ public final class Global {
      */
     private static Random rg;
 
-    public static boolean uncompressedLambda = true;    //todo this has an effect on learning (mainly speed obviously)
+    public static boolean uncompressedLambda = false;    //todo this has an effect on learning (mainly speed obviously)
     public static boolean bottomUp = true;  //bottom-up grounding - whoa!
     public static boolean parallelTraining = false; //experimental!!
 

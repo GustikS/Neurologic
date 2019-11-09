@@ -6,191 +6,8 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="47211e3e-80c4-4815-b810-2aceecb71d59" name="Rejected commit: Default" comment="working lrnn 2018">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/.idea/compiler.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/.idea/copyright (2)/profiles_settings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/.idea/copyright/profiles_settings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Logical/Logical.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Logical/src/constructs/example/AtomQuery.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Logical/src/constructs/example/CompositeQuery.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Logical/src/constructs/example/GroundExample.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Logical/src/constructs/example/LiftedExample.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Logical/src/constructs/example/WeightedFact.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Logical/src/constructs/template/Atom.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Logical/src/constructs/template/BodyAtom.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Logical/src/constructs/template/Template.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Logical/src/constructs/template/WeightedRule.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Logical/src/constructs/template/transforming/LinearChainReducer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Logical/src/constructs/template/transforming/SimpleTemplateMerger.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Logical/src/constructs/template/transforming/TemplateMerging.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Logical/src/constructs/template/transforming/TemplateReducing.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Logical/src/grounding/Grounder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Logical/src/grounding/bottomUp/BottomUp.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Logical/src/grounding/bottomUp/HerbrandModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Logical/src/grounding/topDown/TopDown.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/NeuraLogic.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Neural/Neural.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Neural/src/networks/evaluation/functions/Activation.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Neural/src/networks/evaluation/functions/Sigmoid.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Neural/src/networks/evaluation/values/MatrixValue.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Neural/src/networks/evaluation/values/ScalarValue.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Neural/src/networks/evaluation/values/StringValue.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Neural/src/networks/evaluation/values/Value.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Neural/src/networks/evaluation/values/VectorValue.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Neural/src/networks/structure/NeuralLayer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Neural/src/networks/structure/NeuralNetwork.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Neural/src/networks/structure/Neuron.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Neural/src/networks/structure/Weight.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Neural/src/networks/structure/lrnnTypes/AggregationNeuron.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Neural/src/networks/structure/lrnnTypes/AtomNeuron.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Neural/src/networks/structure/lrnnTypes/FactNeuron.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Neural/src/networks/structure/lrnnTypes/NegationNeuron.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Neural/src/networks/structure/lrnnTypes/QueryNeuron.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Neural/src/networks/structure/lrnnTypes/RuleNeuron.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Neural/src/networks/structure/standardTypes/FeedForwardNetwork.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Neural/src/networks/structure/transforming/CycleBreaking.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Neural/src/networks/structure/transforming/IsoValueNetworkCompressor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Neural/src/networks/structure/transforming/NetworkMerging.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Neural/src/networks/structure/transforming/NetworkReducing.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Neural/src/networks/structure/transforming/SimpleCycleBreaker.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Neural/src/training/Backprop.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Neural/src/training/NeuralModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Neural/src/training/NeuralSample.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Neural/src/training/Training.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Neural/src/training/results/ClassificationResults.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Neural/src/training/results/DetailedClassificationResults.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Neural/src/training/results/Progress.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Neural/src/training/results/RegressionResults.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Neural/src/training/results/Results.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Neural/src/training/trainingStrategies/SimpleTrainer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/src/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/src/drawing/Drawer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/src/drawing/NeuralNetDrawer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/src/drawing/TemplateDrawer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/src/learning/Classifier.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/src/learning/Example.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/src/learning/Learner.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/src/learning/LearningSample.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/src/learning/Query.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/src/learning/Regressor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/src/learning/crossvalidation/Crossvalidation.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/src/learning/crossvalidation/FoldRunStats.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/src/learning/crossvalidation/splitting/SplittingStrategy.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/src/learning/crossvalidation/splitting/StratifiedSplitter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/src/parsing/DefaultQueryExampleParser.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/src/parsing/ExampleParser.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/src/parsing/JsonTemplateParser.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/src/parsing/PlainTextExampleParser.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/src/parsing/PlainTextQueryParser.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/src/parsing/PlainTextTemplateParser.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/src/parsing/QueryParser.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/src/parsing/SQLdumpExampleParser.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/src/parsing/TemplateParser.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/src/pipelines/Pipeline.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/src/pipelines/SampleProcess.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/src/pipelines/StandardLearningPipeline.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/src/settings/Settings.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/src/settings/SourceFiles.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/src/utils/CommandLine.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/src/utils/Logger.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/src/utils/Utilities.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/.idea/compiler.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/.idea/copyright/profiles_settings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Logical/Logical.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Logical/src/constructs/example/AtomQuery.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Logical/src/constructs/example/CompositeQuery.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Logical/src/constructs/example/GroundExample.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Logical/src/constructs/example/LiftedExample.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Logical/src/constructs/example/WeightedFact.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Logical/src/constructs/template/Atom.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Logical/src/constructs/template/BodyAtom.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Logical/src/constructs/template/Template.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Logical/src/constructs/template/WeightedRule.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Logical/src/constructs/template/transforming/LinearChainReducer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Logical/src/constructs/template/transforming/SimpleTemplateMerger.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Logical/src/constructs/template/transforming/TemplateMerging.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Logical/src/constructs/template/transforming/TemplateReducing.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Logical/src/grounding/Grounder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Logical/src/grounding/bottomUp/BottomUp.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Logical/src/grounding/bottomUp/HerbrandModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Logical/src/grounding/topDown/TopDown.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/Neural.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/networks/evaluation/functions/Activation.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/networks/evaluation/functions/Sigmoid.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/networks/evaluation/values/MatrixValue.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/networks/evaluation/values/ScalarValue.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/networks/evaluation/values/StringValue.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/networks/evaluation/values/Value.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/networks/evaluation/values/VectorValue.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/networks/structure/NeuralLayer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/networks/structure/NeuralNetwork.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/networks/structure/Neuron.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/networks/structure/Weight.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/networks/structure/lrnnTypes/AggregationNeuron.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/networks/structure/lrnnTypes/AtomNeuron.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/networks/structure/lrnnTypes/FactNeuron.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/networks/structure/lrnnTypes/NegationNeuron.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/networks/structure/lrnnTypes/QueryNeuron.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/networks/structure/lrnnTypes/RuleNeuron.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/networks/structure/standardTypes/FeedForwardNetwork.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/networks/structure/transforming/CycleBreaking.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/networks/structure/transforming/IsoValueNetworkCompressor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/networks/structure/transforming/NetworkMerging.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/networks/structure/transforming/NetworkReducing.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/networks/structure/transforming/SimpleCycleBreaker.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/training/Backprop.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/training/NeuralModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/training/NeuralSample.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/training/Training.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/training/results/ClassificationResults.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/training/results/DetailedClassificationResults.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/training/results/Progress.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/training/results/RegressionResults.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/training/results/Results.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/training/trainingStrategies/SimpleTrainer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/drawing/Drawer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/drawing/NeuralNetDrawer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/drawing/TemplateDrawer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/learning/Classifier.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/learning/Example.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/learning/Learner.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/learning/LearningSample.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/learning/Query.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/learning/Regressor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/learning/crossvalidation/Crossvalidation.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/learning/crossvalidation/FoldRunStats.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/learning/crossvalidation/splitting/SplittingStrategy.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/learning/crossvalidation/splitting/StratifiedSplitter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/metacentrum/AutoEvaluator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/parsing/DefaultQueryExampleParser.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/parsing/ExampleParser.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/parsing/JsonTemplateParser.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/parsing/PlainTextExampleParser.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/parsing/PlainTextQueryParser.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/parsing/PlainTextTemplateParser.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/parsing/QueryParser.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/parsing/SQLdumpExampleParser.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/parsing/TemplateParser.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/pipelines/Pipeline.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/pipelines/SampleProcess.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/pipelines/StandardLearningPipeline.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/settings/Settings.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/settings/SourceFiles.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/utils/CommandLine.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/utils/Logger.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/utils/Utilities.java" beforeDir="false" />
+    <list default="true" id="47211e3e-80c4-4815-b810-2aceecb71d59" name="Rejected commit: Default" comment="cleaning after merge">
+      <change beforePath="$PROJECT_DIR$/src/lrnn/global/Global.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lrnn/global/Global.java" afterDir="false" />
     </list>
     <list id="f96a9b28-46cc-4d89-b53b-8308750a0ddb" name="Default" comment="" />
     <ignored path="LRNN.iws" />
@@ -241,20 +58,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/lrnn/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="173">
-              <caret line="46" column="26" selection-start-line="46" selection-start-column="26" selection-end-line="46" selection-end-column="26" />
+            <state relative-caret-position="120">
+              <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/lrnn/global/Global.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="495">
-              <caret line="39" column="31" lean-forward="true" selection-start-line="39" selection-start-column="31" selection-end-line="39" selection-end-column="31" />
+            <state relative-caret-position="240">
+              <caret line="22" column="52" selection-start-line="22" selection-start-column="52" selection-end-line="22" selection-end-column="52" />
               <folding>
                 <element signature="e#13130#13131#0" expanded="true" />
                 <element signature="e#13177#13178#0" expanded="true" />
@@ -739,7 +556,7 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1572456410530" />
     <property name="js-jscs-nodeInterpreter" value="$USER_HOME$/.nvm/versions/node/v5.6.0/bin/node" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Stažené/lrnn2602/NeuraLogic2" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../StructureLearning" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -758,7 +575,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.LRNN_Main">
+  <component name="RunManager" selected="Application.coloring">
     <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android Application">
       <module name="" />
       <option name="DEPLOY" value="true" />
@@ -1076,7 +893,6 @@
       <option name="MAIN_CLASS_NAME" value="lrnn.Main" />
       <module name="LRNN" />
       <option name="PROGRAM_PARAMETERS" value="-e ../in/coloring/exampleEdges2.txt -r ../in/coloring/edgeRules.txt -draw 1 -sd 5" />
-      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -1356,7 +1172,14 @@
       <option name="project" value="LOCAL" />
       <updated>1573060623763</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="cleaning after merge">
+      <created>1573301692819</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1573301692820</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -1373,7 +1196,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1919" y="0" width="1922" height="1080" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22465315" />
       <window_info id="Structure" order="1" weight="0.25" />
@@ -1384,7 +1206,7 @@
       <window_info id="Image Layers" order="6" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3451613" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.40229884" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.40229884" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.42110762" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -1473,7 +1295,8 @@
     <MESSAGE value="mse set as a min error/best template/model selection criterion" />
     <MESSAGE value="working version of lrnn for football" />
     <MESSAGE value="working lrnn1.0 2019 - good for benchmarking" />
-    <option name="LAST_COMMIT_MESSAGE" value="working lrnn1.0 2019 - good for benchmarking" />
+    <MESSAGE value="cleaning after merge" />
+    <option name="LAST_COMMIT_MESSAGE" value="cleaning after merge" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1977,17 +1800,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/lrnn/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="173">
-          <caret line="46" column="26" selection-start-line="46" selection-start-column="26" selection-end-line="46" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/lrnn/global/Global.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="39" column="31" lean-forward="true" selection-start-line="39" selection-start-column="31" selection-end-line="39" selection-end-column="31" />
+        <state relative-caret-position="240">
+          <caret line="22" column="52" selection-start-line="22" selection-start-column="52" selection-end-line="22" selection-end-column="52" />
           <folding>
             <element signature="e#13130#13131#0" expanded="true" />
             <element signature="e#13177#13178#0" expanded="true" />
@@ -1996,6 +1812,13 @@
             <element signature="e#15807#15808#0" expanded="true" />
             <element signature="e#15834#15835#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lrnn/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
         </state>
       </provider>
     </entry>
