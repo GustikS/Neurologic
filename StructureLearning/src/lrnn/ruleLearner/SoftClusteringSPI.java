@@ -46,20 +46,22 @@ import java.util.stream.Collectors;
  */
 public class SoftClusteringSPI {
 
-    private String errorMeasure = "MSE";
+    String errorMeasure = "MSE";
+
+    String suffix = "";
 
     Crossvalidation crossValidation;
 
     boolean trainTestOnly = false;
-    int folds = 5;
+    int folds = 10;
 
     private boolean parallelCrossval = false;   //not working yet! (but with parallel grounding and learning within LRNNs turned on it should run just as fast)
 
-    int searchBeamSize = 20;
+    int searchBeamSize = 10;
     int searchMaxSize = 3;
 
     int autoencodingSteps = 0;
-    int trainingSteps = 2000;
+    int trainingSteps = 1000;
 
     private boolean reinitializeAllWeightsWithinSPIcycle = false;
     private boolean reinitializeTopLayerWeightsWithinSPIcycle = true;
@@ -69,14 +71,14 @@ public class SoftClusteringSPI {
     private int atomClusters = 3;
     private int bondClusters = 3;
 
-    private int maxSpiCycles = 10;
+    private int maxSpiCycles = 5;
     private double minMissedExamples4ruleLearning = 1;
 
     private boolean alternatingClasses = true;
 
     private boolean normalizeMseCoefs = true;
 
-    private boolean deepLearning = true;
+    private boolean deepLearning = false;
     private int maxHeadArity = 1;
 
     int ruleIndex = 0;
@@ -91,26 +93,55 @@ public class SoftClusteringSPI {
     ValueToIndex<Pair<String, String>> bondIDs = new ValueToIndex();
     private double subsampleTripleRules = 1;
 
+    public boolean datasetAlreadyTransformed = true;
+    public boolean preparedCrossval = false;
+
 
     public static void main(String[] args) throws IOException {
 
         Map<String, String> arguments = CommandLine.parseParams(args);
 
-        Global.setSeed(3);
+        Global.setSeed(1);
 
         Settings.setDataset(arguments.get("-dataset"));
+        SoftClusteringSPI lc = new SoftClusteringSPI();
+        lc.suffix = arguments.get("-suf") == null ? lc.suffix : arguments.get("-suf");
+        lc.atomClusters = arguments.get("-cls") == null ? lc.atomClusters : Integer.parseInt(arguments.get("-cls"));
+
+        Glogger.suffix = lc.suffix;
 
         //create logger for all messages within the program
         Glogger.init();
 
-        SoftClusteringSPI lc = new SoftClusteringSPI();
+
         lc.autoencodingSteps = arguments.get("-aes") == null ? lc.autoencodingSteps : Integer.parseInt(arguments.get("-aes"));
         lc.searchBeamSize = arguments.get("-sbs") == null ? lc.searchBeamSize : Integer.parseInt(arguments.get("-sbs"));
         lc.searchMaxSize = arguments.get("-sms") == null ? lc.searchMaxSize : Integer.parseInt(arguments.get("-sms"));
-        lc.trainingSteps = arguments.get("-trs") == null ? lc.trainingSteps : Integer.parseInt(arguments.get("-trs"));
+        lc.trainingSteps = arguments.get("-ls") == null ? lc.trainingSteps : Integer.parseInt(arguments.get("-ls"));
+        lc.maxSpiCycles = arguments.get("-cyc") == null ? lc.maxSpiCycles : Integer.parseInt(arguments.get("-cyc"));
+
+
 
         File datasetPath = new File(arguments.get("-dataset"));
-        lc.crossvalidate(datasetPath);
+        if (lc.preparedCrossval) {
+            File[] folds = datasetPath.listFiles(File::isDirectory);
+            lc.crossvalidate(folds);
+        } else {
+            lc.crossvalidate(datasetPath);
+        }
+    }
+
+    Crossvalidation crossvalidate(File[] foldsPaths) throws IOException {
+        crossValidation = new NeuralCrossvalidation(foldsPaths.length);
+        for (File path : foldsPaths) {
+            Pair<Results, String> trainResults = cycleSPI(new File(path + "/train.txt").getPath());
+            //test resulting template
+            Results testFoldResults = testLRNNtemplate(new File(path + "/test.txt").getPath(), trainResults);
+            Glogger.process("Finished fold " + path);
+            crossValidation.loadFoldStats(testFoldResults);
+        }
+        crossValidation.finalizeCrossvalStats();
+        return crossValidation;
     }
 
     Crossvalidation crossvalidate(File datasetPath) throws IOException {
@@ -142,7 +173,7 @@ public class SoftClusteringSPI {
             }).collect(Collectors.joining("\n"));
 
             try {
-                File train = new File(testFold + "-test/trainSet.txt");
+                File train = new File(testFold + suffix + "-test/trainSet.txt");
                 train.getParentFile().mkdirs();
                 Files.write(train.toPath(), trainSet.getBytes());
                 //train SPI
@@ -246,7 +277,7 @@ public class SoftClusteringSPI {
             } else {
                 template.append(templatePartFromClassifier(actualClassifier, iter));
             }
-            templPath = datasetPath.substring(0, datasetPath.lastIndexOf(".")) + "_template_cycle" + iter + ".txt";
+            templPath = datasetPath.substring(0, datasetPath.lastIndexOf(".")) + "_template_cycle" + iter + suffix + ".txt";
 
             Files.write(Paths.get(templPath), template.toString().getBytes());
 
@@ -267,7 +298,7 @@ public class SoftClusteringSPI {
                     template = sb;
                 }
                 template = mergeTemplates(template.toString(), new String(Files.readAllBytes(Paths.get(actualResult.s))), true);
-                templPath = templPath.substring(0, templPath.lastIndexOf(".")) + "_merged.txt";
+                templPath = templPath.substring(0, templPath.lastIndexOf(".")) + suffix + "_merged.txt";
                 Files.write(Paths.get(templPath), template.toString().getBytes());
             }
             if (iter >= maxSpiCycles) break;
@@ -294,7 +325,7 @@ public class SoftClusteringSPI {
 
             iter++;
         }
-        bestResult = trainLRNNtemplate(examplesOutPath, bestResult.s, 3 * trainingSteps);
+        bestResult = trainLRNNtemplate(examplesOutPath, bestResult.s, 4 * trainingSteps);
         Glogger.process("...Finished SPI cycle!");
         return actualResult;
     }
@@ -448,7 +479,7 @@ public class SoftClusteringSPI {
 
         }
 
-        String exportPath = rulesPath.substring(0, rulesPath.lastIndexOf(".")) + "_learned";
+        String exportPath = rulesPath.substring(0, rulesPath.lastIndexOf(".")) + suffix + "_learned";
         dataset.template.weightFolder = "";
         dataset.template.exportTemplate(exportPath);
         return new Pair<>(foldRes, exportPath + ".txt");
@@ -584,8 +615,9 @@ public class SoftClusteringSPI {
 
         List<Literal> literals = new ArrayList<>();
         for (Literal l : c.literals()) {
-            if (l.predicate().equals("bond")) {
+            if (l.predicate().equals("bond") && !datasetAlreadyTransformed) {
                 int bondID = -1;
+                // get bondID
                 if (l.get(0).name().compareTo(l.get(1).name()) < 0) {
                     if (bondIDs.containsValue(new Pair<>(l.get(0).name(), l.get(1).name()))) {
                         bondID = bondIDs.getIndex(new Pair<>(l.get(0).name(), l.get(1).name()));
@@ -604,10 +636,13 @@ public class SoftClusteringSPI {
                     }
                 }
                 Constant bond = Constant.construct("b" + bondID);
+
                 literals.add(new Literal("bond", l.get(0), l.get(1), bond));
                 literals.add(new Literal(l.get(2).name(), l.get(0)));
                 literals.add(new Literal(l.get(3).name(), l.get(1)));
                 literals.add(new Literal(l.get(4).name(), bond));
+            } else if (datasetAlreadyTransformed) {
+                literals.add(l);
             }
         }
         return new Clause(literals);
@@ -650,7 +685,7 @@ public class SoftClusteringSPI {
         for (Clause clause : clauses) {
             Set<Literal> lits = new HashSet<>();
             for (Literal l : clause.literals()) {
-                if (l.arity() == 1 && !l.predicate().startsWith("rel")) {
+                if (l.arity() == 1 /*&& !l.predicate().startsWith("rel") && (l.predicate().startsWith("atm") || l.predicate().matches("^[0-9]")) */) {
                     Map<String, Double> clusterWeights = weightMapping.s.get(l.predicate());
                     for (Map.Entry<String, Double> clusterWeight : clusterWeights.entrySet()) {
                         Literal cl = new Literal(clusterWeight.getKey(), l.get(0));
@@ -677,62 +712,82 @@ public class SoftClusteringSPI {
      */
     public Triple<String, String, StringBuilder> createInitialTemplatesAndExamples(List<Clause> clauses, String outPath, int atomClusters, int bondClusters) throws IOException {
         String defaultWeight = "0.0";
+        Set<String> attributes = new HashSet<>();
         Set<String> entities = new HashSet<>();
         Set<String> relations = new HashSet<>();
 
         Map<Clause, Integer> examples = new LinkedHashMap<>();
 
         double globalCount = 0;
-
-        //positive examples
-        for (Clause c : clauses) {
-            for (Literal literal : c.literals()) {
-                if (literal.arity() == 5) {//bond
-                    entities.add(literal.get(2).name());
-                    entities.add(literal.get(3).name());
-                    relations.add(literal.get(4).name());
-
-                    Clause clause = new Clause(new Literal(literal.get(2).name(), Constant.construct(tmpConstant)), new Literal(literal.get(3).name(), Constant.construct(tmpConstant)), new Literal(literal.get(4).name(), Constant.construct(tmpConstant)));
-                    Integer count = examples.get(clause);
-                    if (count == null) {
-                        count = 0;
+        String queriesPath = "";
+        if (datasetAlreadyTransformed) {
+            for (Clause c : clauses) {
+                for (Literal literal : c.literals()) {
+                    if (literal.predicate().equals("bond")) {//bond
+                        relations.add(literal.get(2).name());
+                    } else if (literal.predicate().startsWith("atm_")) {
+                        entities.add(literal.predicate());
+                    } else if (literal.toString().contains("dummy")) {
+                        attributes.add(literal.predicate());
+                    } else if (literal.arity() == 1 && !relations.contains(literal.predicate())) {
+                        entities.add(literal.predicate());
                     }
-                    examples.put(clause, ++count);
-                    globalCount += 1;
                 }
             }
-        }
-        //negative examples
-        for (String e1 : entities) {
-            for (String e2 : entities) {
-                for (String rel : relations) {
-                    Clause c = new Clause(new Literal(e1, Constant.construct(tmpConstant)), new Literal(e2, Constant.construct(tmpConstant)), new Literal(rel, Constant.construct(tmpConstant)));
-                    examples.putIfAbsent(c, 0);
-                }
-            }
-        }
-        globalCount /= examples.size(); //avg occurrence of a bond
+        } else {
+            //positive examples
+            for (Clause c : clauses) {
+                for (Literal literal : c.literals()) {
+                    if (literal.arity() == 5) {//bond
+                        entities.add(literal.get(2).name());
+                        entities.add(literal.get(3).name());
+                        relations.add(literal.get(4).name());
 
-        //print out examples with sampling and labels according to how often the bond appeared
-        StringBuilder exampleQueries = new StringBuilder();
-        for (Map.Entry<Clause, Integer> cle : examples.entrySet()) {
-            if (cle.getValue() > globalCount)
-                for (int i = (int) (globalCount + 1); i < cle.getValue(); i++) {
-                    exampleQueries.append("1.0 " + cle.getKey().toString() + ".\n");
-                }
-            else {
-                for (int i = (int) globalCount; i > cle.getValue(); i--) {
-                    exampleQueries.append("0.0 " + cle.getKey().toString() + ".\n");
+                        Clause clause = new Clause(new Literal(literal.get(2).name(), Constant.construct(tmpConstant)), new Literal(literal.get(3).name(), Constant.construct(tmpConstant)), new Literal(literal.get(4).name(), Constant.construct(tmpConstant)));
+                        Integer count = examples.get(clause);
+                        if (count == null) {
+                            count = 0;
+                        }
+                        examples.put(clause, ++count);
+                        globalCount += 1;
+                    }
                 }
             }
-        }
-        String queriesPath = outPath.substring(0, outPath.lastIndexOf(".")) + "_initQueries.txt";
-        PrintWriter pw = new PrintWriter(queriesPath);
-        pw.print(exampleQueries.toString());
-        pw.close();
+            //negative examples
+            for (String e1 : entities) {
+                for (String e2 : entities) {
+                    for (String rel : relations) {
+                        Clause c = new Clause(new Literal(e1, Constant.construct(tmpConstant)), new Literal(e2, Constant.construct(tmpConstant)), new Literal(rel, Constant.construct(tmpConstant)));
+                        examples.putIfAbsent(c, 0);
+                    }
+                }
+            }
+            globalCount /= examples.size(); //avg occurrence of a bond
 
+            //print out examples with sampling and labels according to how often the bond appeared
+            StringBuilder exampleQueries = new StringBuilder();
+            for (Map.Entry<Clause, Integer> cle : examples.entrySet()) {
+                if (cle.getValue() > globalCount)
+                    for (int i = (int) (globalCount + 1); i < cle.getValue(); i++) {
+                        exampleQueries.append("1.0 " + cle.getKey().toString() + ".\n");
+                    }
+                else {
+                    for (int i = (int) globalCount; i > cle.getValue(); i--) {
+                        exampleQueries.append("0.0 " + cle.getKey().toString() + ".\n");
+                    }
+                }
+            }
+            queriesPath = outPath.substring(0, outPath.lastIndexOf(".")) + suffix + "_initQueries.txt";
+            PrintWriter pw = new PrintWriter(queriesPath);
+            pw.print(exampleQueries.toString());
+            pw.close();
+        }
         //rule part = template
         StringBuilder rules = new StringBuilder();
+        //zero arity = propositional attributes - plug in to final log.reg.
+        for (String att : attributes) {
+            rules.append("0.0 finalKappa(a) :- " + att + "(X).\n");
+        }
         for (int i = 0; i < atomClusters; i++) {
             for (String e1 : entities) {
                 rules.append(defaultWeight + " " + atomClusterName + i + "(X) :- " + e1 + "(X).\n");
@@ -766,7 +821,7 @@ public class SoftClusteringSPI {
         for (int i = 0; i < a; i++) {
             rules.append(defaultWeight + " " + "finalKappa(a) :- finalLambda" + i + "(a).\n");
         }
-        String rulesPath = outPath.substring(0, outPath.lastIndexOf(".")) + "_initRules.txt";
+        String rulesPath = outPath.substring(0, outPath.lastIndexOf(".")) + suffix + "_initRules.txt";
         PrintWriter pw2 = new PrintWriter(rulesPath);
         pw2.print(rules.toString());
         pw2.close();

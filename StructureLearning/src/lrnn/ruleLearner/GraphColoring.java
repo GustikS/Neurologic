@@ -15,6 +15,7 @@ import ida.utils.CommandLine;
 import ida.utils.collections.MultiMap;
 import ida.utils.tuples.Pair;
 import ida.utils.tuples.Triple;
+import lrnn.crossvalidation.Crossvalidation;
 import lrnn.global.Global;
 import lrnn.global.Glogger;
 import lrnn.global.Settings;
@@ -35,8 +36,9 @@ import java.util.Set;
 public class GraphColoring extends RelationalTemplateSPI {
 
     private boolean correctClusters = true;
-    private int numShadows = 3;
+
     private int numColors = 3;
+    private int numShadows = 3;
 
     MultiMap<String, String> createColors(int colorCount, int shadowCount) {
         MultiMap<String, String> colors = new MultiMap<>();
@@ -74,25 +76,39 @@ public class GraphColoring extends RelationalTemplateSPI {
     }
 
     public static void main(String[] args) throws IOException {
+        double trainerr = 0;
+
         Map<String, String> arguments = CommandLine.parseParams(args);
 
-        Global.setSeed(2);
-        Settings.setDataset(arguments.get("-dataset"));
+        int num = 2;
+        int perfect = 0;
+        for (int i = 2; i <=num; i++) {
 
-        //create logger for all messages within the program
-        Glogger.init();
 
-        GraphColoring lc = new GraphColoring();
-        lc.folds = 1;
-        lc.autoencodingSteps = 0;
+            Global.setSeed(i);
+            Settings.setDataset(arguments.get("-dataset"));
 
-        lc.searchBeamSize = arguments.get("-sbs") == null ? lc.searchBeamSize : Integer.parseInt(arguments.get("-sbs"));
-        lc.searchMaxSize = arguments.get("-sms") == null ? lc.searchMaxSize : Integer.parseInt(arguments.get("-sms"));
-        lc.trainingSteps = arguments.get("-trs") == null ? lc.trainingSteps : Integer.parseInt(arguments.get("-trs"));
+            //create logger for all messages within the program
+            Glogger.init();
 
-        File datasetPath = new File(arguments.get("-dataset"));
+            GraphColoring lc = new GraphColoring();
+            lc.folds = 1;
+            lc.autoencodingSteps = 0;
+            lc.errorMeasure = "MSE";
 
-        lc.crossvalidate(datasetPath);
+            lc.searchBeamSize = arguments.get("-sbs") == null ? lc.searchBeamSize : Integer.parseInt(arguments.get("-sbs"));
+            lc.searchMaxSize = arguments.get("-sms") == null ? lc.searchMaxSize : Integer.parseInt(arguments.get("-sms"));
+            lc.trainingSteps = arguments.get("-trs") == null ? lc.trainingSteps : Integer.parseInt(arguments.get("-trs"));
+
+            File datasetPath = new File(arguments.get("-dataset"));
+
+            Crossvalidation cross = lc.crossvalidate(datasetPath);
+            trainerr+= cross.trainErr;
+            if (cross.trainErr < 0.01){
+                perfect++;
+            }
+        }
+        System.out.println("FINAL TRAIN ERROR: "+ trainerr/num + " with perfect shots: "+perfect);
     }
 
     public static void main2(String[] args) throws IOException {
@@ -100,10 +116,10 @@ public class GraphColoring extends RelationalTemplateSPI {
         GraphColoring gc = new GraphColoring();
         MultiMap<String, String> colors = gc.createColors(gc.numColors, gc.numShadows);
         List<String> exampleEdges = gc.createExampleEdges(colors);
-        String examplesPath = outPath.substring(0, outPath.lastIndexOf(".")) + "exampleEdges2.txt";
+        String examplesPath = outPath.substring(0, outPath.lastIndexOf(".")) + "exampleEdges43.txt";
         Files.write(Paths.get(examplesPath), exampleEdges, StandardOpenOption.CREATE);
         Pair<List<String>, StringBuilder> rules = gc.createTemplate(colors);
-        String rulesPath = outPath.substring(0, outPath.lastIndexOf(".")) + "edgeRules2.txt";
+        String rulesPath = outPath.substring(0, outPath.lastIndexOf(".")) + "edgeRules43.txt";
         Files.write(Paths.get(rulesPath), rules.r, StandardOpenOption.CREATE);
     }
 
