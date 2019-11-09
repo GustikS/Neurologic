@@ -17,7 +17,7 @@ import java.util.List;
 public class Main {
 
     //cutoff on example number
-    private static final String defaultMaxExamples = "100000";  //we can decrease the overall number of examples (stratified) for speedup
+    private static final String defaultMaxExamples = "10000";  //we can decrease the overall number of examples (stratified) for speedup   //todo now draw and walkthrough NNs
     //
     public static String defaultLearningSteps = "3000";  //learnSteps per epocha
     public static String defaultLearningEpochs = "1";  //learn epochae = grounding cycles
@@ -36,10 +36,10 @@ public class Main {
     public static String defaultInitialization = "uniform";    //handmade = 0.9:0.1 ; uniform = uniform ; longtail = longtail distribution  //todo this has some effect, esp. in combination wth the offsets
     //offsets
     public static boolean defaultKappaAdaptiveOffsetOn = false; //kappa offset is initialized based on number of input lambdas
-    public static String defaultKappaAdaptiveOffset = "0";  //must stay zero as default if defaultKappaAdaptiveOffsetOn = false
-    public static String defaultLambdaAdaptiveOffset = "0"; //lambda offset to add to the -1* (number of input kappas)  //todo this affects learning very much (probably saturation of sigmoids)
+    public static String defaultKappaAdaptiveOffset = "0";  //must stay zero as default if defaultKappaAdaptiveOffsetOn = false //todo keep ZERO!
+    public static String defaultLambdaAdaptiveOffset = "0"; //lambda offset to add to the -1* (number of input kappas)  //todo this affects learning very much (probably saturation of sigmoids), better keep it ZERO!
 
-    public static String defaultSeed = "1"; //seeds the whole algorithm (shuffling, etc.), should make it completely deterministic
+    public static String defaultSeed = "0"; //seeds the whole algorithm (shuffling, etc.), should make it completely deterministic
 
     private static String defaultSaving = "1"; // >0 => saving of template is ON after each bp-step (minibatch)  --> adds 10% extra computation time
 

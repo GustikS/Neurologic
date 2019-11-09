@@ -30,7 +30,7 @@ public class Lambda extends KL implements Serializable {
      */
     public void setRule(LambdaRule lr) {
         rule = lr;
-        setOffset(-rule.getBodyLen() + Global.getInitLambdaAdaptiveOffset());
+        setOffset(-rule.getBodyLen() + Global.getInitLambdaAdaptiveOffset());   //todo now
         //initialW = 0.0;
     }
 

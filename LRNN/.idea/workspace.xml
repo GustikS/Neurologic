@@ -6,129 +6,198 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="47211e3e-80c4-4815-b810-2aceecb71d59" name="Rejected commit: Default" comment="mse set as a min error/best template/model selection criterion">
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/templates/NCItoAleph.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/../StructureLearning/src/templates/ashwin2.groovy" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/../StructureLearning/src/templates/ashwin_fix.groovy" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/../StructureLearning/src/templates/ashwin_muta.groovy" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/lrnn/GroundedDataset.java" afterPath="$PROJECT_DIR$/src/lrnn/GroundedDataset.java" />
-      <change beforePath="$PROJECT_DIR$/src/lrnn/Main.java" afterPath="$PROJECT_DIR$/src/lrnn/Main.java" />
-      <change beforePath="$PROJECT_DIR$/src/lrnn/construction/TemplateFactory.java" afterPath="$PROJECT_DIR$/src/lrnn/construction/TemplateFactory.java" />
-      <change beforePath="$PROJECT_DIR$/src/lrnn/crossvalidation/Crossvalidation.java" afterPath="$PROJECT_DIR$/src/lrnn/crossvalidation/Crossvalidation.java" />
-      <change beforePath="$PROJECT_DIR$/src/lrnn/crossvalidation/NeuralCrossvalidation.java" afterPath="$PROJECT_DIR$/src/lrnn/crossvalidation/NeuralCrossvalidation.java" />
-      <change beforePath="$PROJECT_DIR$/src/lrnn/crossvalidation/SampleSplitter.java" afterPath="$PROJECT_DIR$/src/lrnn/crossvalidation/SampleSplitter.java" />
-      <change beforePath="$PROJECT_DIR$/src/lrnn/drawing/Dotter.java" afterPath="$PROJECT_DIR$/src/lrnn/drawing/Dotter.java" />
-      <change beforePath="$PROJECT_DIR$/src/lrnn/global/Global.java" afterPath="$PROJECT_DIR$/src/lrnn/global/Global.java" />
-      <change beforePath="$PROJECT_DIR$/src/lrnn/global/Glogger.java" afterPath="$PROJECT_DIR$/src/lrnn/global/Glogger.java" />
-      <change beforePath="$PROJECT_DIR$/src/lrnn/learning/functions/Activations.java" afterPath="$PROJECT_DIR$/src/lrnn/learning/functions/Activations.java" />
-      <change beforePath="$PROJECT_DIR$/src/metacentrum/Configurations.java" afterPath="$PROJECT_DIR$/src/metacentrum/Configurations.java" />
-      <change beforePath="$PROJECT_DIR$/src/metacentrum/Foils.java" afterPath="$PROJECT_DIR$/src/metacentrum/Foils.java" />
-      <change beforePath="$PROJECT_DIR$/src/metacentrum/ScriptGenerator.java" afterPath="$PROJECT_DIR$/src/metacentrum/ScriptGenerator.java" />
-      <change beforePath="$PROJECT_DIR$/src/templates/Convertor.java" afterPath="$PROJECT_DIR$/src/templates/Convertor.java" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/.idea/copyright (2)/profiles_settings.xml" afterPath="$PROJECT_DIR$/../NeuraLogic/.idea/copyright (2)/profiles_settings.xml" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Logical/src/constructs/example/AtomQuery.java" afterPath="$PROJECT_DIR$/../NeuraLogic/Logical/src/constructs/example/AtomQuery.java" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Logical/src/constructs/example/GroundExample.java" afterPath="$PROJECT_DIR$/../NeuraLogic/Logical/src/constructs/example/GroundExample.java" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Logical/src/constructs/template/Template.java" afterPath="$PROJECT_DIR$/../NeuraLogic/Logical/src/constructs/template/Template.java" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Logical/src/constructs/template/WeightedRule.java" afterPath="$PROJECT_DIR$/../NeuraLogic/Logical/src/constructs/template/WeightedRule.java" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Logical/src/grounding/Grounder.java" afterPath="$PROJECT_DIR$/../NeuraLogic/Logical/src/grounding/Grounder.java" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Logical/src/grounding/bottomUp/BottomUp.java" afterPath="$PROJECT_DIR$/../NeuraLogic/Logical/src/grounding/bottomUp/BottomUp.java" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Logical/src/grounding/topDown/TopDown.java" afterPath="$PROJECT_DIR$/../NeuraLogic/Logical/src/grounding/topDown/TopDown.java" />
-      <change beforePath="$PROJECT_DIR$/../NeuraLogic/src/learning/Query.java" afterPath="$PROJECT_DIR$/../NeuraLogic/src/learning/Query.java" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/.gitignore" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/.idea/compiler.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/.idea/copyright/profiles_settings.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/.idea/misc.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/.idea/modules.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/.idea/uiDesigner.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/.idea/vcs.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Logical/Logical.iml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Logical/src/constructs/example/AtomQuery.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Logical/src/constructs/example/CompositeQuery.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Logical/src/constructs/example/GroundExample.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Logical/src/constructs/example/LiftedExample.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Logical/src/constructs/example/WeightedFact.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Logical/src/constructs/template/Atom.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Logical/src/constructs/template/BodyAtom.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Logical/src/constructs/template/Template.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Logical/src/constructs/template/WeightedRule.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Logical/src/constructs/template/transforming/LinearChainReducer.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Logical/src/constructs/template/transforming/SimpleTemplateMerger.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Logical/src/constructs/template/transforming/TemplateMerging.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Logical/src/constructs/template/transforming/TemplateReducing.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Logical/src/grounding/Grounder.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Logical/src/grounding/bottomUp/BottomUp.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Logical/src/grounding/bottomUp/HerbrandModel.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Logical/src/grounding/topDown/TopDown.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/Neural.iml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/networks/evaluation/functions/Activation.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/networks/evaluation/functions/Sigmoid.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/networks/evaluation/values/MatrixValue.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/networks/evaluation/values/ScalarValue.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/networks/evaluation/values/StringValue.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/networks/evaluation/values/Value.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/networks/evaluation/values/VectorValue.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/networks/structure/NeuralLayer.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/networks/structure/NeuralNetwork.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/networks/structure/Neuron.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/networks/structure/Weight.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/networks/structure/lrnnTypes/AggregationNeuron.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/networks/structure/lrnnTypes/AtomNeuron.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/networks/structure/lrnnTypes/FactNeuron.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/networks/structure/lrnnTypes/NegationNeuron.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/networks/structure/lrnnTypes/QueryNeuron.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/networks/structure/lrnnTypes/RuleNeuron.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/networks/structure/standardTypes/FeedForwardNetwork.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/networks/structure/transforming/CycleBreaking.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/networks/structure/transforming/IsoValueNetworkCompressor.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/networks/structure/transforming/NetworkMerging.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/networks/structure/transforming/NetworkReducing.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/networks/structure/transforming/SimpleCycleBreaker.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/training/Backprop.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/training/NeuralModel.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/training/NeuralSample.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/training/Training.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/training/results/ClassificationResults.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/training/results/DetailedClassificationResults.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/training/results/Progress.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/training/results/RegressionResults.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/training/results/Results.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/training/trainingStrategies/SimpleTrainer.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/Main.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/drawing/Drawer.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/drawing/NeuralNetDrawer.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/drawing/TemplateDrawer.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/learning/Classifier.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/learning/Example.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/learning/Learner.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/learning/LearningSample.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/learning/Query.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/learning/Regressor.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/learning/crossvalidation/Crossvalidation.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/learning/crossvalidation/FoldRunStats.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/learning/crossvalidation/splitting/SplittingStrategy.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/learning/crossvalidation/splitting/StratifiedSplitter.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/metacentrum/AutoEvaluator.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/parsing/DefaultQueryExampleParser.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/parsing/ExampleParser.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/parsing/JsonTemplateParser.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/parsing/PlainTextExampleParser.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/parsing/PlainTextQueryParser.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/parsing/PlainTextTemplateParser.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/parsing/QueryParser.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/parsing/SQLdumpExampleParser.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/parsing/TemplateParser.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/pipelines/Pipeline.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/pipelines/SampleProcess.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/pipelines/StandardLearningPipeline.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/settings/Settings.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/settings/SourceFiles.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/utils/CommandLine.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/utils/Logger.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/utils/Utilities.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../StructureLearning/src/lrnn/ruleLearner/GraphColoring.java" afterPath="$PROJECT_DIR$/../StructureLearning/src/lrnn/ruleLearner/GraphColoring.java" />
-      <change beforePath="$PROJECT_DIR$/../StructureLearning/src/lrnn/ruleLearner/SoftClusteringSPI.java" afterPath="$PROJECT_DIR$/../StructureLearning/src/lrnn/ruleLearner/SoftClusteringSPI.java" />
+    <list default="true" id="47211e3e-80c4-4815-b810-2aceecb71d59" name="Rejected commit: Default" comment="working lrnn 2018">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lrnn/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lrnn/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lrnn/construction/template/Lambda.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lrnn/construction/template/Lambda.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lrnn/global/Global.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lrnn/global/Global.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuraLogic/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuraLogic/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuraLogic/.idea/copyright (2)/profiles_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuraLogic/.idea/copyright/profiles_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuraLogic/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuraLogic/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuraLogic/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuraLogic/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Logical/Logical.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Logical/src/constructs/example/AtomQuery.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Logical/src/constructs/example/CompositeQuery.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Logical/src/constructs/example/GroundExample.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Logical/src/constructs/example/LiftedExample.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Logical/src/constructs/example/WeightedFact.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Logical/src/constructs/template/Atom.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Logical/src/constructs/template/BodyAtom.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Logical/src/constructs/template/Template.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Logical/src/constructs/template/WeightedRule.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Logical/src/constructs/template/transforming/LinearChainReducer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Logical/src/constructs/template/transforming/SimpleTemplateMerger.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Logical/src/constructs/template/transforming/TemplateMerging.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Logical/src/constructs/template/transforming/TemplateReducing.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Logical/src/grounding/Grounder.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Logical/src/grounding/bottomUp/BottomUp.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Logical/src/grounding/bottomUp/HerbrandModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Logical/src/grounding/topDown/TopDown.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuraLogic/NeuraLogic.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Neural/Neural.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Neural/src/networks/evaluation/functions/Activation.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Neural/src/networks/evaluation/functions/Sigmoid.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Neural/src/networks/evaluation/values/MatrixValue.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Neural/src/networks/evaluation/values/ScalarValue.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Neural/src/networks/evaluation/values/StringValue.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Neural/src/networks/evaluation/values/Value.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Neural/src/networks/evaluation/values/VectorValue.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Neural/src/networks/structure/NeuralLayer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Neural/src/networks/structure/NeuralNetwork.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Neural/src/networks/structure/Neuron.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Neural/src/networks/structure/Weight.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Neural/src/networks/structure/lrnnTypes/AggregationNeuron.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Neural/src/networks/structure/lrnnTypes/AtomNeuron.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Neural/src/networks/structure/lrnnTypes/FactNeuron.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Neural/src/networks/structure/lrnnTypes/NegationNeuron.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Neural/src/networks/structure/lrnnTypes/QueryNeuron.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Neural/src/networks/structure/lrnnTypes/RuleNeuron.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Neural/src/networks/structure/standardTypes/FeedForwardNetwork.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Neural/src/networks/structure/transforming/CycleBreaking.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Neural/src/networks/structure/transforming/IsoValueNetworkCompressor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Neural/src/networks/structure/transforming/NetworkMerging.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Neural/src/networks/structure/transforming/NetworkReducing.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Neural/src/networks/structure/transforming/SimpleCycleBreaker.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Neural/src/training/Backprop.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Neural/src/training/NeuralModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Neural/src/training/NeuralSample.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Neural/src/training/Training.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Neural/src/training/results/ClassificationResults.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Neural/src/training/results/DetailedClassificationResults.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Neural/src/training/results/Progress.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Neural/src/training/results/RegressionResults.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Neural/src/training/results/Results.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuraLogic/Neural/src/training/trainingStrategies/SimpleTrainer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuraLogic/src/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuraLogic/src/drawing/Drawer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuraLogic/src/drawing/NeuralNetDrawer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuraLogic/src/drawing/TemplateDrawer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuraLogic/src/learning/Classifier.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuraLogic/src/learning/Example.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuraLogic/src/learning/Learner.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuraLogic/src/learning/LearningSample.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuraLogic/src/learning/Query.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuraLogic/src/learning/Regressor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuraLogic/src/learning/crossvalidation/Crossvalidation.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuraLogic/src/learning/crossvalidation/FoldRunStats.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuraLogic/src/learning/crossvalidation/splitting/SplittingStrategy.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuraLogic/src/learning/crossvalidation/splitting/StratifiedSplitter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuraLogic/src/parsing/DefaultQueryExampleParser.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuraLogic/src/parsing/ExampleParser.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuraLogic/src/parsing/JsonTemplateParser.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuraLogic/src/parsing/PlainTextExampleParser.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuraLogic/src/parsing/PlainTextQueryParser.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuraLogic/src/parsing/PlainTextTemplateParser.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuraLogic/src/parsing/QueryParser.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuraLogic/src/parsing/SQLdumpExampleParser.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuraLogic/src/parsing/TemplateParser.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuraLogic/src/pipelines/Pipeline.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuraLogic/src/pipelines/SampleProcess.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuraLogic/src/pipelines/StandardLearningPipeline.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuraLogic/src/settings/Settings.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuraLogic/src/settings/SourceFiles.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuraLogic/src/utils/CommandLine.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuraLogic/src/utils/Logger.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuraLogic/src/utils/Utilities.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuroLogic/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuroLogic/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuroLogic/.idea/copyright/profiles_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuroLogic/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuroLogic/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuroLogic/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuroLogic/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Logical/Logical.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Logical/src/constructs/example/AtomQuery.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Logical/src/constructs/example/CompositeQuery.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Logical/src/constructs/example/GroundExample.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Logical/src/constructs/example/LiftedExample.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Logical/src/constructs/example/WeightedFact.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Logical/src/constructs/template/Atom.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Logical/src/constructs/template/BodyAtom.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Logical/src/constructs/template/Template.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Logical/src/constructs/template/WeightedRule.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Logical/src/constructs/template/transforming/LinearChainReducer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Logical/src/constructs/template/transforming/SimpleTemplateMerger.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Logical/src/constructs/template/transforming/TemplateMerging.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Logical/src/constructs/template/transforming/TemplateReducing.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Logical/src/grounding/Grounder.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Logical/src/grounding/bottomUp/BottomUp.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Logical/src/grounding/bottomUp/HerbrandModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Logical/src/grounding/topDown/TopDown.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/Neural.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/networks/evaluation/functions/Activation.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/networks/evaluation/functions/Sigmoid.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/networks/evaluation/values/MatrixValue.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/networks/evaluation/values/ScalarValue.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/networks/evaluation/values/StringValue.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/networks/evaluation/values/Value.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/networks/evaluation/values/VectorValue.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/networks/structure/NeuralLayer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/networks/structure/NeuralNetwork.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/networks/structure/Neuron.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/networks/structure/Weight.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/networks/structure/lrnnTypes/AggregationNeuron.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/networks/structure/lrnnTypes/AtomNeuron.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/networks/structure/lrnnTypes/FactNeuron.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/networks/structure/lrnnTypes/NegationNeuron.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/networks/structure/lrnnTypes/QueryNeuron.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/networks/structure/lrnnTypes/RuleNeuron.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/networks/structure/standardTypes/FeedForwardNetwork.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/networks/structure/transforming/CycleBreaking.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/networks/structure/transforming/IsoValueNetworkCompressor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/networks/structure/transforming/NetworkMerging.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/networks/structure/transforming/NetworkReducing.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/networks/structure/transforming/SimpleCycleBreaker.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/training/Backprop.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/training/NeuralModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/training/NeuralSample.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/training/Training.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/training/results/ClassificationResults.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/training/results/DetailedClassificationResults.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/training/results/Progress.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/training/results/RegressionResults.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/training/results/Results.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuroLogic/Neural/src/training/trainingStrategies/SimpleTrainer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/drawing/Drawer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/drawing/NeuralNetDrawer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/drawing/TemplateDrawer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/learning/Classifier.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/learning/Example.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/learning/Learner.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/learning/LearningSample.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/learning/Query.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/learning/Regressor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/learning/crossvalidation/Crossvalidation.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/learning/crossvalidation/FoldRunStats.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/learning/crossvalidation/splitting/SplittingStrategy.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/learning/crossvalidation/splitting/StratifiedSplitter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/metacentrum/AutoEvaluator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/parsing/DefaultQueryExampleParser.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/parsing/ExampleParser.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/parsing/JsonTemplateParser.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/parsing/PlainTextExampleParser.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/parsing/PlainTextQueryParser.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/parsing/PlainTextTemplateParser.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/parsing/QueryParser.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/parsing/SQLdumpExampleParser.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/parsing/TemplateParser.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/pipelines/Pipeline.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/pipelines/SampleProcess.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/pipelines/StandardLearningPipeline.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/settings/Settings.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/settings/SourceFiles.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/utils/CommandLine.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/utils/Logger.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NeuroLogic/src/utils/Utilities.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../StructureLearning/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../StructureLearning/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../StructureLearning/src/lrnn/ruleLearner/GraphColoring.java" beforeDir="false" afterPath="$PROJECT_DIR$/../StructureLearning/src/lrnn/ruleLearner/GraphColoring.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../StructureLearning/src/lrnn/ruleLearner/SoftClusteringSPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/../StructureLearning/src/lrnn/ruleLearner/SoftClusteringSPI.java" afterDir="false" />
     </list>
     <list id="f96a9b28-46cc-4d89-b53b-8308750a0ddb" name="Default" comment="" />
     <ignored path="LRNN.iws" />
@@ -136,7 +205,6 @@
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path=".idea/dataSources.local.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
-    <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -162,104 +230,149 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Activations.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/lrnn/learning/functions/Activations.java">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/lrnn/grounding/network/groundNetwork/RuleAggNeuron.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="453">
-              <caret line="79" column="0" lean-forward="false" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="555">
+              <caret line="46" column="8" selection-start-line="46" selection-start-column="8" selection-end-line="46" selection-end-column="8" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ActivationsFast.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/lrnn/learning/functions/ActivationsFast.java">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/lrnn/grounding/evaluation/EvaluatorFast.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2832">
-              <caret line="25" column="27" lean-forward="false" selection-start-line="25" selection-start-column="27" selection-end-line="25" selection-end-column="27" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Global.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/lrnn/global/Global.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="840">
-              <caret line="74" column="91" lean-forward="false" selection-start-line="74" selection-start-column="91" selection-end-line="74" selection-end-column="91" />
+            <state relative-caret-position="1905">
+              <caret line="141" lean-forward="true" selection-start-line="141" selection-end-line="141" />
               <folding>
-                <element signature="e#20368#20385#0" expanded="true" />
+                <marker date="1487878455655" expanded="true" signature="4959:5097" ph="//..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LearnerFast.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/lrnn/learning/learners/LearnerFast.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="266">
-              <caret line="138" column="35" lean-forward="true" selection-start-line="138" selection-start-column="35" selection-end-line="138" selection-end-column="35" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LearnerStandard.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/lrnn/learning/learners/LearnerStandard.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="274">
-              <caret line="99" column="16" lean-forward="false" selection-start-line="99" selection-start-column="16" selection-end-line="99" selection-end-column="16" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Learning.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/lrnn/learning/learners/Learning.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="101">
-              <caret line="98" column="22" lean-forward="false" selection-start-line="98" selection-start-column="22" selection-end-line="98" selection-end-column="22" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LearningStep.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/lrnn/learning/LearningStep.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="521">
-              <caret line="120" column="7" lean-forward="true" selection-start-line="120" selection-start-column="7" selection-end-line="120" selection-end-column="7" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/lrnn/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="465">
-              <caret line="40" column="0" lean-forward="true" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="173">
+              <caret line="46" column="26" selection-start-line="46" selection-start-column="26" selection-end-line="46" selection-end-column="26" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Variable.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/lrnn/construction/Variable.java">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/lrnn/global/Global.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="675">
-              <caret line="47" column="20" lean-forward="false" selection-start-line="47" selection-start-column="20" selection-end-line="47" selection-end-column="20" />
-              <folding />
+            <state relative-caret-position="173">
+              <caret line="39" column="29" selection-start-line="39" selection-start-column="29" selection-end-line="39" selection-end-column="29" />
+              <folding>
+                <element signature="e#13130#13131#0" expanded="true" />
+                <element signature="e#13177#13178#0" expanded="true" />
+                <element signature="e#14274#14275#0" expanded="true" />
+                <element signature="e#14300#14301#0" expanded="true" />
+                <element signature="e#15807#15808#0" expanded="true" />
+                <element signature="e#15834#15835#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="VariableFactory.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/lrnn/construction/VariableFactory.java">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/lrnn/learning/learners/LearnerFast.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="353">
+              <caret line="91" column="70" lean-forward="true" selection-start-line="91" selection-start-column="70" selection-end-line="91" selection-end-column="70" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/lrnn/learning/Results.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="113">
+              <caret line="129" column="58" lean-forward="true" selection-start-line="129" selection-start-column="58" selection-end-line="129" selection-end-column="58" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/lrnn/learning/functions/Activations.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1200">
+              <caret line="87" selection-start-line="87" selection-end-line="87" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/lrnn/learning/backprop/BackpropFast.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="308">
+              <caret line="35" lean-forward="true" selection-start-line="35" selection-end-line="35" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/lrnn/construction/template/Lambda.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="339">
+              <caret line="32" column="64" selection-start-line="32" selection-start-column="64" selection-end-line="32" selection-end-column="64" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/lrnn/construction/template/KL.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="240">
+              <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
+              <folding>
+                <element signature="e#780#781#0" expanded="true" />
+                <element signature="e#809#810#0" expanded="true" />
+                <element signature="e#850#851#0" expanded="true" />
+                <element signature="e#878#879#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/lrnn/construction/template/Kappa.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="489">
+              <caret line="42" column="16" lean-forward="true" selection-start-line="42" selection-start-column="16" selection-end-line="42" selection-end-column="16" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/extras/GraphViz.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="75">
+              <caret line="11" column="17" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#958#959#0" expanded="true" />
+                <element signature="e#998#999#0" expanded="true" />
+                <element signature="e#1172#1173#0" expanded="true" />
+                <element signature="e#1211#1212#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/lrnn/global/Settings.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="158">
+              <caret line="298" column="26" lean-forward="true" selection-start-line="298" selection-start-column="26" selection-end-line="298" selection-end-column="26" />
+              <folding>
+                <element signature="e#6220#6221#0" expanded="true" />
+                <element signature="e#6250#6251#0" expanded="true" />
+                <element signature="e#8821#8822#0" expanded="true" />
+                <element signature="e#8863#8864#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -268,12 +381,40 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>paral</find>
-      <find>number</find>
-      <find>templa</find>
-      <find>rules</find>
-      <find>_</find>
+      <find>allS</find>
+      <find>inva</find>
+      <find>Couldn't recognize activaiton function</find>
+      <find>permut</find>
+      <find>permu</find>
+      <find>symm</find>
+      <find>symme</find>
+      <find>equals</find>
+      <find>limi</find>
+      <find>uncom</find>
+      <find>limit</find>
+      <find>row</find>
+      <find>example</find>
+      <find>ground LRNN created</find>
+      <find>graphviz</find>
+      <find>linux</find>
+      <find>System.getProperty(&quot;os.name&quot;)</find>
+      <find>dispersion</find>
+      <find>1-fold</find>
+      <find>testC</find>
+      <find>compres</find>
+      <find>prun</find>
+      <find>prunin</find>
+      <find>deca</find>
+      <find>kappa</find>
+      <find>todo next</find>
+      <find>todo no</find>
+      <find>draw</find>
+      <find>lambda</find>
+      <find>fact</find>
     </findStrings>
+    <dirStrings>
+      <dir>$PROJECT_DIR$/lrnn_results</dir>
+    </dirStrings>
   </component>
   <component name="Git.Settings">
     <option name="PREVIOUS_COMMIT_AUTHORS">
@@ -288,11 +429,6 @@
       </map>
     </option>
     <option name="WARN_ABOUT_CRLF" value="false" />
-  </component>
-  <component name="GradleLocalSettings">
-    <option name="externalProjectsViewState">
-      <projects_view />
-    </option>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -310,26 +446,33 @@
         <option value="$PROJECT_DIR$/src/lrnn/grounding/network/groundNetwork/AtomNeuron.java" />
         <option value="$PROJECT_DIR$/src/lrnn/grounding/network/groundNetwork/RuleAggNeuron.java" />
         <option value="$PROJECT_DIR$/src/lrnn/grounding/network/GroundKappa.java" />
-        <option value="$PROJECT_DIR$/src/lrnn/grounding/network/GroundLambda.java" />
         <option value="$PROJECT_DIR$/src/lrnn/grounding/evaluation/Evaluator.java" />
-        <option value="$PROJECT_DIR$/src/lrnn/grounding/BottomUpConnector.java" />
         <option value="$PROJECT_DIR$/src/lrnn/construction/TemplateFactory.java" />
-        <option value="$PROJECT_DIR$/src/lrnn/learning/Results.java" />
         <option value="$PROJECT_DIR$/src/lrnn/crossvalidation/Crossvalidation.java" />
-        <option value="$PROJECT_DIR$/src/lrnn/NeuralDataset.java" />
         <option value="$PROJECT_DIR$/src/lrnn/crossvalidation/SampleSplitter.java" />
-        <option value="$PROJECT_DIR$/src/lrnn/learning/learners/LearnerFast.java" />
         <option value="$PROJECT_DIR$/src/lrnn/learning/LearningStep.java" />
         <option value="$PROJECT_DIR$/src/lrnn/construction/Parser.java" />
         <option value="$PROJECT_DIR$/src/metacentrum/Configurations.java" />
         <option value="$PROJECT_DIR$/src/metacentrum/ScriptGenerator.java" />
         <option value="$PROJECT_DIR$/src/lrnn/GroundedDataset.java" />
-        <option value="$PROJECT_DIR$/src/lrnn/drawing/Dotter.java" />
         <option value="$PROJECT_DIR$/src/lrnn/crossvalidation/NeuralCrossvalidation.java" />
         <option value="$PROJECT_DIR$/src/lrnn/global/Glogger.java" />
         <option value="$PROJECT_DIR$/src/lrnn/learning/functions/Activations.java" />
-        <option value="$PROJECT_DIR$/src/lrnn/global/Global.java" />
+        <option value="$PROJECT_DIR$/src/lrnn/grounding/network/GroundLambda.java" />
+        <option value="$PROJECT_DIR$/src/lrnn/grounding/BottomUpConnector.java" />
+        <option value="$PROJECT_DIR$/src/lrnn/learning/backprop/BackpropStructured.java" />
+        <option value="$PROJECT_DIR$/src/lrnn/learning/Weights.java" />
+        <option value="$PROJECT_DIR$/src/lrnn/learning/learners/Learning.java" />
+        <option value="$PROJECT_DIR$/src/lrnn/grounding/evaluation/EvaluatorFast.java" />
+        <option value="$PROJECT_DIR$/src/extras/GraphViz.java" />
+        <option value="$PROJECT_DIR$/src/lrnn/grounding/network/groundNetwork/GroundNetwork.java" />
+        <option value="$PROJECT_DIR$/src/lrnn/drawing/Dotter.java" />
+        <option value="$PROJECT_DIR$/src/lrnn/learning/Results.java" />
+        <option value="$PROJECT_DIR$/src/lrnn/NeuralDataset.java" />
+        <option value="$PROJECT_DIR$/src/lrnn/learning/learners/LearnerFast.java" />
+        <option value="$PROJECT_DIR$/src/lrnn/construction/template/Lambda.java" />
         <option value="$PROJECT_DIR$/src/lrnn/Main.java" />
+        <option value="$PROJECT_DIR$/src/lrnn/global/Global.java" />
       </list>
     </option>
   </component>
@@ -346,32 +489,52 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-1" />
-    <option name="y" value="1440" />
-    <option name="width" value="1922" />
+    <option name="x" value="1789" />
+    <option name="width" value="1920" />
     <option name="height" value="1053" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
-    <navigator currentView="ProjectPane" proportions="" version="1">
-      <flattenPackages />
-      <showMembers />
-      <showModules />
-      <showLibraryContents />
-      <hideEmptyPackages />
-      <abbreviatePackageNames />
-      <autoscrollToSource />
-      <autoscrollFromSource />
-      <sortByType />
-      <manualOrder />
+    <navigator proportions="" version="1">
+      <autoscrollFromSource ProjectPane="true" />
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
+            <path>
+              <item name="LRNN" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Logic" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="LRNN" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Logic" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="LRNN" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Logic" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="ida" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="LRNN" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Logic" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="ida" type="462c0819:PsiDirectoryNode" />
+              <item name="ilp" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="LRNN" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Logic" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="ida" type="462c0819:PsiDirectoryNode" />
+              <item name="ilp" type="462c0819:PsiDirectoryNode" />
+              <item name="logic" type="462c0819:PsiDirectoryNode" />
+            </path>
             <path>
               <item name="LRNN" type="b2602c69:ProjectViewProjectNode" />
               <item name="LRNN" type="462c0819:PsiDirectoryNode" />
@@ -380,6 +543,12 @@
               <item name="LRNN" type="b2602c69:ProjectViewProjectNode" />
               <item name="LRNN" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="LRNN" type="b2602c69:ProjectViewProjectNode" />
+              <item name="LRNN" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="extras" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="LRNN" type="b2602c69:ProjectViewProjectNode" />
@@ -437,7 +606,47 @@
               <item name="LRNN" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="lrnn" type="462c0819:PsiDirectoryNode" />
+              <item name="grounding" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="LRNN" type="b2602c69:ProjectViewProjectNode" />
+              <item name="LRNN" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="lrnn" type="462c0819:PsiDirectoryNode" />
+              <item name="grounding" type="462c0819:PsiDirectoryNode" />
+              <item name="evaluation" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="LRNN" type="b2602c69:ProjectViewProjectNode" />
+              <item name="LRNN" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="lrnn" type="462c0819:PsiDirectoryNode" />
+              <item name="grounding" type="462c0819:PsiDirectoryNode" />
+              <item name="network" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="LRNN" type="b2602c69:ProjectViewProjectNode" />
+              <item name="LRNN" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="lrnn" type="462c0819:PsiDirectoryNode" />
+              <item name="grounding" type="462c0819:PsiDirectoryNode" />
+              <item name="network" type="462c0819:PsiDirectoryNode" />
+              <item name="groundNetwork" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="LRNN" type="b2602c69:ProjectViewProjectNode" />
+              <item name="LRNN" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="lrnn" type="462c0819:PsiDirectoryNode" />
               <item name="learning" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="LRNN" type="b2602c69:ProjectViewProjectNode" />
+              <item name="LRNN" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="lrnn" type="462c0819:PsiDirectoryNode" />
+              <item name="learning" type="462c0819:PsiDirectoryNode" />
+              <item name="backprop" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="LRNN" type="b2602c69:ProjectViewProjectNode" />
@@ -455,25 +664,97 @@
               <item name="learning" type="462c0819:PsiDirectoryNode" />
               <item name="learners" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="LRNN" type="b2602c69:ProjectViewProjectNode" />
+              <item name="LRNN" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="LRNN" type="b2602c69:ProjectViewProjectNode" />
+              <item name="LRNN" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="input" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="LRNN" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Utils" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="LRNN" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Utils" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="LRNN" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Utils" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="ida" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="LRNN" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Utils" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="ida" type="462c0819:PsiDirectoryNode" />
+              <item name="utils" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="LRNN" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+            </path>
+            <path>
+              <item name="LRNN" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="&lt; 1.8 &gt;" type="70bed36:NamedLibraryElementNode" />
+            </path>
+            <path>
+              <item name="LRNN" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="&lt; 1.8 &gt;" type="70bed36:NamedLibraryElementNode" />
+              <item name="rt.jar" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="LRNN" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="&lt; 1.8 &gt;" type="70bed36:NamedLibraryElementNode" />
+              <item name="rt.jar" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="LRNN" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="&lt; 1.8 &gt;" type="70bed36:NamedLibraryElementNode" />
+              <item name="rt.jar" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="lang" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="LRNN" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="&lt; 1.8 &gt;" type="70bed36:NamedLibraryElementNode" />
+              <item name="rt.jar" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="util" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="aspect.path.notification.shown" value="true" />
+    <property name="SearchEverywhereHistoryKey" value="getWe&#9;PSI&#9;JAVA://lrnn.construction.Parser#getWeightLen" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1572456410530" />
     <property name="js-jscs-nodeInterpreter" value="$USER_HOME$/.nvm/versions/node/v5.6.0/bin/node" />
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Font" />
-    <property name="settings.editor.splitter.proportion" value="0.2" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Stažené/lrnn2602/NeuraLogic2" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="SearchEverywhereHistoryKey" value="getWe&#9;PSI&#9;JAVA://lrnn.construction.Parser#getWeightLen" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Font" />
+    <property name="settings.editor.splitter.proportion" value="0.2" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -487,265 +768,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.fotbal3">
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <module />
-    </configuration>
-    <configuration name="786-fully" type="Application" factoryName="Application">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="MAIN_CLASS_NAME" value="lrnn.Main" />
-      <option name="VM_PARAMETERS" value="" />
-      <option name="PROGRAM_PARAMETERS" value="-e ../in/786_0/examples -r ../in/786_0/normalFully -gr avg -draw 0 -bug 1 -debug 0" />
-      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="LRNN" />
-      <envs />
-    </configuration>
-    <configuration name="LRNN_Main" type="Application" factoryName="Application">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="MAIN_CLASS_NAME" value="lrnn.Main" />
-      <option name="VM_PARAMETERS" value="" />
-      <option name="PROGRAM_PARAMETERS" value="-e ../in/mutagenesis/examples -r ../in/mutagenesis/3rulesUp -gr avg -draw 0 -bug 1 -debug 0" />
-      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="LRNN" />
-      <envs />
-    </configuration>
-    <configuration name="ScriptGenerator" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="metacentrum.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="MAIN_CLASS_NAME" value="metacentrum.ScriptGenerator" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="LRNN" />
-      <envs />
-    </configuration>
-    <configuration default="true" type="Application" factoryName="Application">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="" />
-      <envs />
-    </configuration>
-    <configuration name="coloring" type="Application" factoryName="Application">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="MAIN_CLASS_NAME" value="lrnn.Main" />
-      <option name="VM_PARAMETERS" value="" />
-      <option name="PROGRAM_PARAMETERS" value="-e ../in/coloring/exampleEdges2.txt -r ../in/coloring/edgeRules.txt -draw 1 -sd 5" />
-      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="LRNN" />
-      <envs />
-    </configuration>
-    <configuration name="fotbal" type="Application" factoryName="Application">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="MAIN_CLASS_NAME" value="lrnn.Main" />
-      <option name="VM_PARAMETERS" value="" />
-      <option name="PROGRAM_PARAMETERS" value="-e ../in/fotbal/matches.txt -r ../in/fotbal/template1.txt -draw 0 -wi uniform -ls 1000" />
-      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="LRNN" />
-      <envs />
-    </configuration>
-    <configuration name="fotbal2" type="Application" factoryName="Application">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="MAIN_CLASS_NAME" value="lrnn.Main" />
-      <option name="VM_PARAMETERS" value="" />
-      <option name="PROGRAM_PARAMETERS" value="-e $USER_HOME$/data/fotbal/W/train/predicates_10.txt -r $USER_HOME$/data/fotbal/templates/template1.txt -test $USER_HOME$/data/fotbal/W/test/predicates_15.txt -draw 0 -wi uniform -ls 1000" />
-      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="LRNN" />
-      <envs />
-    </configuration>
-    <configuration name="fotbal3" type="Application" factoryName="Application">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="MAIN_CLASS_NAME" value="lrnn.Main" />
-      <option name="VM_PARAMETERS" value="" />
-      <option name="PROGRAM_PARAMETERS" value="-e $PROJECT_DIR$/../../../NeuraLogic/for_gustaf/W/2009.txt -r $PROJECT_DIR$/../../../NeuraLogic/for_gustaf/T2.txt -ac sig_id -bug 0 -f 1 -ls 3000 -lr 0.1" />
-      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="LRNN" />
-      <envs />
-    </configuration>
-    <configuration name="muta-fully" type="Application" factoryName="Application">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="MAIN_CLASS_NAME" value="lrnn.Main" />
-      <option name="VM_PARAMETERS" value="" />
-      <option name="PROGRAM_PARAMETERS" value="-e ../in/trees/examples.txt -r ../in/trees/rules.txt -gr avg -draw 1 -debug 0 -f 1" />
-      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="LRNN" />
-      <envs />
-    </configuration>
-    <configuration name="ptc-fully" type="Application" factoryName="Application">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="MAIN_CLASS_NAME" value="lrnn.Main" />
-      <option name="VM_PARAMETERS" value="" />
-      <option name="PROGRAM_PARAMETERS" value="-e ../in/mutagenesis/examples -r ../in/mutagenesis/chargeJointTemplate -gr avg -draw 0 -bug 1 -debug 0" />
-      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="LRNN" />
-      <envs />
-    </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <module name="" />
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="METHOD_NAME" />
-      <option name="TEST_OBJECT" value="class" />
-      <option name="VM_PARAMETERS" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
-    </configuration>
-    <configuration default="true" type="GrailsRunConfigurationType" factoryName="Grails">
-      <setting name="vmparams" value="" />
-      <setting name="cmdLine" value="run-app" />
-      <setting name="passParentEnv" value="true" />
-      <setting name="launchBrowser" value="true" />
-      <setting name="launchBrowserUrl" value="" />
-      <setting name="depsClasspath" value="false" />
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-    </configuration>
-    <configuration default="true" type="JUnit" factoryName="JUnit">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <module name="" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="METHOD_NAME" />
-      <option name="TEST_OBJECT" value="class" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
-    </configuration>
-    <configuration default="true" type="JetRunConfigurationType" factoryName="Kotlin">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="LRNN" />
-      <envs />
-    </configuration>
-    <configuration default="true" type="Remote" factoryName="Remote">
-      <option name="USE_SOCKET_TRANSPORT" value="true" />
-      <option name="SERVER_MODE" value="false" />
-      <option name="SHMEM_ADDRESS" value="javadebug" />
-      <option name="HOST" value="localhost" />
-      <option name="PORT" value="5005" />
-    </configuration>
-    <configuration default="true" type="TestNG" factoryName="TestNG">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <module name="" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="SUITE_NAME" />
-      <option name="PACKAGE_NAME" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="METHOD_NAME" />
-      <option name="GROUP_NAME" />
-      <option name="TEST_OBJECT" value="CLASS" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <option name="OUTPUT_DIRECTORY" />
-      <option name="ANNOTATION_TYPE" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <option name="USE_DEFAULT_REPORTERS" value="false" />
-      <option name="PROPERTIES_FILE" />
-      <envs />
-      <properties />
-      <listeners />
-    </configuration>
-    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
-      <module name="" />
-      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
-      <option name="PROGRAM_PARAMETERS" />
-      <predefined_log_file id="idea.log" enabled="true" />
-    </configuration>
+  <component name="RunManager" selected="Application.LRNN_Main">
     <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android Application">
       <module name="" />
       <option name="DEPLOY" value="true" />
@@ -792,6 +815,31 @@
         <option name="GAPID_DISABLE_PCS" value="false" />
       </Profilers>
       <method />
+    </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
     </configuration>
     <configuration default="true" type="ArquillianTestNG" factoryName="">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
@@ -897,21 +945,14 @@
       <option name="trusted" value="true" />
       <method />
     </configuration>
-    <configuration default="true" type="GradleRunConfiguration" factoryName="Gradle">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list />
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <method />
+    <configuration default="true" type="GrailsRunConfigurationType" factoryName="Grails">
+      <setting name="vmparams" value="" />
+      <setting name="cmdLine" value="run-app" />
+      <setting name="passParentEnv" value="true" />
+      <setting name="launchBrowser" value="true" />
+      <setting name="launchBrowserUrl" value="" />
+      <setting name="depsClasspath" value="false" />
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
     </configuration>
     <configuration default="true" type="JUnitTestDiscovery" factoryName="JUnit Test Discovery" changeList="All">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
@@ -934,40 +975,7 @@
       <patterns />
       <method />
     </configuration>
-    <configuration default="true" type="JarApplication" factoryName="JAR Application">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <envs />
-      <method />
-    </configuration>
-    <configuration default="true" type="Java Scratch" factoryName="Java Scratch">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="SCRATCH_FILE_ID" value="0" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="" />
-      <envs />
-      <method />
-    </configuration>
     <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
-      <method />
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType" factoryName="Kotlin script">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="filePath" />
-      <option name="vmParameters" />
-      <option name="alternativeJrePath" />
-      <option name="programParameters" />
-      <option name="passParentEnvs" value="true" />
-      <option name="workingDirectory" />
-      <option name="isAlternativeJrePathEnabled" value="false" />
-      <envs />
       <method />
     </configuration>
     <configuration default="true" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
@@ -1004,6 +1012,14 @@
       <listeners />
       <method />
     </configuration>
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <envs />
+    </configuration>
     <configuration default="true" type="js.build_tools.npm" factoryName="npm">
       <command value="run-script" />
       <scripts />
@@ -1017,38 +1033,202 @@
     <configuration default="true" type="osgi.bnd.run" factoryName="Test Launcher (JUnit)">
       <method />
     </configuration>
-    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
-      <node-interpreter>project</node-interpreter>
-      <node-options />
-      <gulpfile />
-      <tasks />
-      <arguments />
-      <envs />
+    <configuration default="true" type="Applet">
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
-    <list size="9">
-      <item index="0" class="java.lang.String" itemvalue="Application.LRNN_Main" />
-      <item index="1" class="java.lang.String" itemvalue="Application.muta-fully" />
-      <item index="2" class="java.lang.String" itemvalue="Application.786-fully" />
-      <item index="3" class="java.lang.String" itemvalue="Application.ptc-fully" />
-      <item index="4" class="java.lang.String" itemvalue="Application.coloring" />
-      <item index="5" class="java.lang.String" itemvalue="Application.fotbal" />
-      <item index="6" class="java.lang.String" itemvalue="Application.fotbal2" />
-      <item index="7" class="java.lang.String" itemvalue="Application.fotbal3" />
-      <item index="8" class="java.lang.String" itemvalue="Application.ScriptGenerator" />
+    <configuration name="786-fully" type="Application" factoryName="Application">
+      <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="MAIN_CLASS_NAME" value="lrnn.Main" />
+      <module name="LRNN" />
+      <option name="PROGRAM_PARAMETERS" value="-e ../in/786_0/examples -r ../in/786_0/normalFully -gr avg -draw 0 -bug 1 -debug 0" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LRNN_Main" type="Application" factoryName="Application">
+      <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="MAIN_CLASS_NAME" value="lrnn.Main" />
+      <module name="LRNN" />
+      <option name="PROGRAM_PARAMETERS" value="-e ../in/mutagenesis/examples -r ../in/mutagenesis/3rulesUp -gr avg -draw 0 -bug 1 -debug 0" />
+      <option name="VM_PARAMETERS" value="-Xms2G -Xmx4G" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ScriptGenerator" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="metacentrum.ScriptGenerator" />
+      <module name="LRNN" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="metacentrum.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="coloring" type="Application" factoryName="Application">
+      <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="MAIN_CLASS_NAME" value="lrnn.Main" />
+      <module name="LRNN" />
+      <option name="PROGRAM_PARAMETERS" value="-e ../in/coloring/exampleEdges2.txt -r ../in/coloring/edgeRules.txt -draw 1 -sd 5" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="fotbal" type="Application" factoryName="Application">
+      <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="MAIN_CLASS_NAME" value="lrnn.Main" />
+      <module name="LRNN" />
+      <option name="PROGRAM_PARAMETERS" value="-e ../in/fotbal/matches.txt -r ../in/fotbal/template1.txt -draw 0 -wi uniform -ls 1000" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="fotbal2" type="Application" factoryName="Application">
+      <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="MAIN_CLASS_NAME" value="lrnn.Main" />
+      <module name="LRNN" />
+      <option name="PROGRAM_PARAMETERS" value="-e $USER_HOME$/data/fotbal/W/train/predicates_10.txt -r $USER_HOME$/data/fotbal/templates/template1.txt -test $USER_HOME$/data/fotbal/W/test/predicates_15.txt -draw 0 -wi uniform -ls 1000" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="fotbal3" type="Application" factoryName="Application">
+      <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="MAIN_CLASS_NAME" value="lrnn.Main" />
+      <module name="LRNN" />
+      <option name="PROGRAM_PARAMETERS" value="-e $PROJECT_DIR$/../../../NeuraLogic/for_gustaf/W/2009.txt -r $PROJECT_DIR$/../../../NeuraLogic/for_gustaf/T2.txt -ac sig_id -bug 0 -f 1 -ls 3000 -lr 0.1" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="jenda" type="Application" factoryName="Application">
+      <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="MAIN_CLASS_NAME" value="lrnn.Main" />
+      <module name="LRNN" />
+      <option name="PROGRAM_PARAMETERS" value="-e ../in/debug/honza/jenda/examples_raw.pl -r ../in/debug/honza/jenda/rules_raw.pl -draw 0 -wi uniform -ls 1000" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="muta-fully" type="Application" factoryName="Application">
+      <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="MAIN_CLASS_NAME" value="lrnn.Main" />
+      <module name="LRNN" />
+      <option name="PROGRAM_PARAMETERS" value="-e ../in/trees/examples.txt -r ../in/trees/rules.txt -gr avg -draw 1 -debug 0 -f 1" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ptc-fully" type="Application" factoryName="Application">
+      <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="MAIN_CLASS_NAME" value="lrnn.Main" />
+      <module name="LRNN" />
+      <option name="PROGRAM_PARAMETERS" value="-e ../in/mutagenesis/examples -r ../in/mutagenesis/chargeJointTemplate -gr avg -draw 0 -bug 1 -debug 0" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType" factoryName="Kotlin script">
+      <option name="filePath" />
+      <option name="vmParameters" />
+      <option name="alternativeJrePath" />
+      <option name="programParameters" />
+      <option name="passParentEnvs" value="true" />
+      <option name="workingDirectory" />
+      <option name="isAlternativeJrePathEnabled" value="false" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="WORKING_DIRECTORY" />
+      <module name="" />
+      <option name="filePath" />
+      <option name="vmParameters" />
+      <option name="alternativeJrePath" />
+      <option name="programParameters" />
+      <option name="passParentEnvs" value="true" />
+      <option name="workingDirectory" />
+      <option name="isAlternativeJrePathEnabled" value="false" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="WORKING_DIRECTORY" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="TestNG">
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType">
+      <module name="" />
+      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
+      <option name="PROGRAM_PARAMETERS" />
+      <predefined_log_file enabled="true" id="idea.log" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.786-fully" />
+      <item itemvalue="Application.LRNN_Main" />
+      <item itemvalue="Application.coloring" />
+      <item itemvalue="Application.fotbal2" />
+      <item itemvalue="Application.fotbal3" />
+      <item itemvalue="Application.fotbal" />
+      <item itemvalue="Application.jenda" />
+      <item itemvalue="Application.muta-fully" />
+      <item itemvalue="Application.ptc-fully" />
+      <item itemvalue="Application.ScriptGenerator" />
     </list>
-    <recent_temporary>
-      <list size="1">
-        <item index="0" class="java.lang.String" itemvalue="Application.ScriptGenerator" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SbtLocalSettings">
     <option name="externalProjectsViewState">
       <projects_view />
     </option>
-  </component>
-  <component name="ShelveChangesManager" show_recycled="false">
-    <option name="remove_strategy" value="false" />
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -1091,7 +1271,30 @@
       <workItem from="1524482726175" duration="17509000" />
       <workItem from="1524665398023" duration="3470000" />
       <workItem from="1524735319067" duration="2719000" />
-      <workItem from="1524739678305" duration="8706000" />
+      <workItem from="1524739678305" duration="9175000" />
+      <workItem from="1524754016453" duration="3516000" />
+      <workItem from="1526030810429" duration="47000" />
+      <workItem from="1526286518227" duration="1333000" />
+      <workItem from="1526389280615" duration="26000" />
+      <workItem from="1533113407994" duration="942000" />
+      <workItem from="1533115891452" duration="104000" />
+      <workItem from="1533149746878" duration="455000" />
+      <workItem from="1534578232538" duration="5570000" />
+      <workItem from="1534750331520" duration="1242000" />
+      <workItem from="1534939101857" duration="672000" />
+      <workItem from="1535356130585" duration="1789000" />
+      <workItem from="1535617554293" duration="21000" />
+      <workItem from="1535621273218" duration="1712000" />
+      <workItem from="1535708634400" duration="599000" />
+      <workItem from="1539695200919" duration="12938000" />
+      <workItem from="1540376809794" duration="3470000" />
+      <workItem from="1540895963735" duration="19207000" />
+      <workItem from="1541174662929" duration="3258000" />
+      <workItem from="1541597994161" duration="6622000" />
+      <workItem from="1544445724821" duration="2497000" />
+      <workItem from="1544533609888" duration="1289000" />
+      <workItem from="1545133317129" duration="597000" />
+      <workItem from="1545315653890" duration="30000" />
     </task>
     <task id="LOCAL-00001" summary="init LRNN changes for structure learning">
       <created>1487754527732</created>
@@ -1149,11 +1352,25 @@
       <option name="project" value="LOCAL" />
       <updated>1492097091058</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="working version of lrnn for football">
+      <created>1524752888397</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1524752888397</updated>
+    </task>
+    <task id="LOCAL-00010" summary="working lrnn1.0 2019 - good for benchmarking">
+      <created>1573060623763</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1573060623763</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="127074000" />
+    <option name="totallyTimeSpent" value="195479000" />
   </component>
   <component name="TodoView" selected-index="1">
     <todo-panel id="selected-file">
@@ -1165,38 +1382,43 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1" y="1440" width="1922" height="1053" extended-state="6" />
+    <frame x="1919" y="0" width="1922" height="1080" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32975295" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Tool Output" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3286638" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297414" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32977587" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.8459052" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32543105" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297414" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2171825" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32977587" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="ANTLR Preview" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2497332" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33405173" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34524715" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25453576" />
+      <window_info id="Structure" order="1" weight="0.25" />
+      <window_info id="UI Designer" order="2" />
+      <window_info id="Palette&#9;" order="3" />
+      <window_info id="Capture Tool" order="4" />
+      <window_info id="Favorites" order="5" side_tool="true" />
+      <window_info id="Image Layers" order="6" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3451613" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.40229884" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.42110762" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32975295" />
+      <window_info anchor="bottom" id="Version Control" order="7" weight="0.8459052" />
+      <window_info anchor="bottom" id="Tool Output" order="8" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.3297414" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" weight="0.32903227" />
+      <window_info anchor="bottom" id="ANTLR Preview" order="11" />
+      <window_info anchor="bottom" id="Messages" order="12" weight="0.32795697" />
+      <window_info anchor="bottom" id="Statistic" order="13" weight="0.3291536" />
+      <window_info anchor="bottom" id="Tail" order="14" />
+      <window_info anchor="bottom" id="Run with VisualVM" order="15" />
+      <window_info anchor="bottom" id="Debug with VisualVM" order="16" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.2497332" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Capture Analysis" order="4" />
+      <window_info anchor="right" id="Designer" order="5" />
+      <window_info anchor="right" id="Database" order="6" weight="0.32977587" />
+      <window_info anchor="right" id="Theme Preview" order="7" />
+      <window_info anchor="right" id="Maven Projects" order="8" weight="0.32924226" />
+      <window_info anchor="right" id="Maven" order="9" weight="0.32924226" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1219,6 +1441,20 @@
         </entry>
       </map>
     </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list />
+          </value>
+        </entry>
+        <entry key="User">
+          <value>
+            <list />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="Vcs.Log.UiProperties">
     <option name="RECENTLY_FILTERED_USER_GROUPS">
@@ -1227,9 +1463,6 @@
     <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
       <collection />
     </option>
-  </component>
-  <component name="VcsContentAnnotationSettings">
-    <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
@@ -1240,7 +1473,9 @@
     <MESSAGE value="train-test evaluation mode debugged more properly..." />
     <MESSAGE value="train set evaluation reporting" />
     <MESSAGE value="mse set as a min error/best template/model selection criterion" />
-    <option name="LAST_COMMIT_MESSAGE" value="mse set as a min error/best template/model selection criterion" />
+    <MESSAGE value="working version of lrnn for football" />
+    <MESSAGE value="working lrnn1.0 2019 - good for benchmarking" />
+    <option name="LAST_COMMIT_MESSAGE" value="working lrnn1.0 2019 - good for benchmarking" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1264,417 +1499,508 @@
           <option name="timeStamp" value="63" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/lrnn/grounding/BottomUpGrounder.java</url>
-          <line>40</line>
-          <properties />
-          <option name="timeStamp" value="65" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/lrnn/drawing/Dotter.java</url>
           <line>59</line>
           <properties />
           <option name="timeStamp" value="69" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/lrnn/learning/learners/LearnerFast.java</url>
-          <line>140</line>
+          <url>file://$PROJECT_DIR$/src/lrnn/construction/TemplateFactory.java</url>
+          <line>113</line>
           <properties />
-          <option name="timeStamp" value="71" />
+          <option name="timeStamp" value="74" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/lrnn/construction/TemplateFactory.java</url>
+          <line>82</line>
+          <properties />
+          <option name="timeStamp" value="78" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="72" />
     </breakpoint-manager>
-    <watches-manager />
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="head" />
+        <watch expression="rule" />
+        <watch expression="herbrandSize0" />
+        <watch expression="headSignatures" />
+        <watch expression="rules" />
+        <watch expression="rulesAndFacts" />
+        <watch expression="rules" />
+        <watch expression="rulesAndFacts" />
+        <watch expression="rulesAndFacts" />
+        <watch expression="((RuleAggNeuron[])((AtomNeuron[])((RuleAggNeuron[])((AtomNeuron)sample.neuralNetwork.outputNeuron).inputNeurons)[0].inputNeuronsCompressed)[3].inputNeurons)[0].name" custom="lrnn.grounding.network.groundNetwork.RuleAggNeuron[],lrnn.grounding.network.groundNetwork.AtomNeuron[],lrnn.grounding.network.groundNetwork.AtomNeuron" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
     <option name="FILTER_TARGETS" value="false" />
   </component>
+  <component name="debuggerHistoryManager">
+    <expressions id="evaluateCodeFragment">
+      <expression>
+        <expression-string>sharedWeights[an.inputWeightIndices[i]]</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
+    </expressions>
+    <expressions id="evaluateExpression">
+      <expression>
+        <expression-string>oneBodyGrounding.size()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>gl.getConjuncts().size()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>gl.getConjunctsCountForAvg()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>split[0].trim()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+    </expressions>
+  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/lrnn/grounding/evaluation/struct/GroundNetworkParser.java" />
-    <entry file="file://$PROJECT_DIR$/src/lrnn/grounding/evaluation/Evaluator.java" />
-    <entry file="file://$PROJECT_DIR$/src/lrnn/construction/example/Example.java">
+    <entry file="file://$PROJECT_DIR$/src/lrnn/learning/Sample.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="422">
-          <caret line="47" column="0" lean-forward="false" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
+        <state relative-caret-position="105">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/lrnn/learning/Results.java">
+    <entry file="file://$PROJECT_DIR$/src/lrnn/learning/Saver.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="174">
-          <caret line="50" column="16" lean-forward="false" selection-start-line="50" selection-start-column="16" selection-end-line="50" selection-end-column="16" />
+        <state relative-caret-position="105">
+          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lrnn/learning/backprop/BackpropDown.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="885">
+          <caret line="75" column="42" selection-start-line="75" selection-start-column="42" selection-end-line="75" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Utils/src/ida/utils/Parallel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1560">
+          <caret line="112" column="9" selection-start-line="112" selection-start-column="9" selection-end-line="112" selection-end-column="9" />
+          <folding>
+            <element signature="e#0#4783#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lrnn/construction/template/KappaFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="31" selection-start-line="31" selection-end-line="31" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/lrnn/construction/Parser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1800">
-          <caret line="120" column="5" lean-forward="false" selection-start-line="120" selection-start-column="5" selection-end-line="120" selection-end-column="5" />
+        <state relative-caret-position="1320">
+          <caret line="88" selection-start-line="88" selection-end-line="88" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/lrnn/construction/ExampleFactory.java">
+    <entry file="jar:///usr/lib/jvm/java-8-oracle/src.zip!/java/util/List.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="930">
-          <caret line="70" column="0" lean-forward="false" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
+        <state relative-caret-position="874">
+          <caret line="116" column="10" selection-start-line="116" selection-start-column="10" selection-end-line="116" selection-end-column="10" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../Utils/src/ida/utils/VectorUtils.java">
+    <entry file="jar:///usr/lib/jvm/java-8-oracle/src.zip!/java/util/HashSet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
-          <caret line="642" column="22" lean-forward="false" selection-start-line="642" selection-start-column="22" selection-end-line="642" selection-end-column="22" />
+        <state relative-caret-position="279">
+          <caret line="90" column="17" selection-start-line="90" selection-start-column="17" selection-end-line="90" selection-end-column="17" />
+          <folding>
+            <element signature="e#3740#3741#0" expanded="true" />
+            <element signature="e#3777#3778#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../Utils/src/ida/utils/collections/MultiMap.java">
+    <entry file="jar:///usr/lib/jvm/java-8-oracle/src.zip!/java/util/AbstractSet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3435">
-          <caret line="264" column="38" lean-forward="false" selection-start-line="264" selection-start-column="38" selection-end-line="264" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/lrnn/grounding/BottomUpConnector.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2160">
-          <caret line="174" column="17" lean-forward="false" selection-start-line="174" selection-start-column="17" selection-end-line="174" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/metacentrum/ScriptGenerator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1020">
-          <caret line="77" column="58" lean-forward="false" selection-start-line="77" selection-start-column="58" selection-end-line="77" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/metacentrum/Configurations.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/lrnn/grounding/Grounder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4215">
-          <caret line="310" column="56" lean-forward="false" selection-start-line="310" selection-start-column="56" selection-end-line="310" selection-end-column="56" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../Logic/src/ida/ilp/logic/Variable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="29" column="13" lean-forward="false" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../Logic/src/ida/ilp/logic/Term.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="25" column="17" lean-forward="false" selection-start-line="25" selection-start-column="17" selection-end-line="25" selection-end-column="17" />
+        <state relative-caret-position="-581">
+          <caret line="93" column="13" lean-forward="true" selection-start-line="93" selection-start-column="13" selection-end-line="93" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../Logic/src/ida/ilp/logic/Clause.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="45" column="88" lean-forward="false" selection-start-line="45" selection-start-column="88" selection-end-line="45" selection-end-column="88" />
+        <state relative-caret-position="195">
+          <caret line="34" column="35" selection-start-line="34" selection-start-column="35" selection-end-line="34" selection-end-column="35" />
+          <folding>
+            <element signature="e#1619#1628#0" expanded="true" />
+            <element signature="e#6790#6791#0" expanded="true" />
+            <element signature="e#6821#6822#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Utils/src/ida/utils/Sugar.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="309">
+          <caret line="473" column="29" selection-start-line="473" selection-start-column="29" selection-end-line="473" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lrnn/global/Glogger.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="25" column="19" selection-start-line="25" selection-start-column="19" selection-end-line="25" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lrnn/grounding/network/GroundLambda.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="18" column="35" selection-start-line="18" selection-start-column="35" selection-end-line="18" selection-end-column="35" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/lrnn/grounding/BottomUpGrounder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="690">
-          <caret line="62" column="24" lean-forward="false" selection-start-line="62" selection-start-column="24" selection-end-line="62" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/lrnn/drawing/GroundDotter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="19" column="13" lean-forward="false" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/extras/GraphViz.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="16" column="59" lean-forward="false" selection-start-line="16" selection-start-column="59" selection-end-line="16" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/extras/EvaluationInterface.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/lrnn/NLPdataset.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="134" column="37" lean-forward="false" selection-start-line="134" selection-start-column="37" selection-end-line="134" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/lrnn/construction/template/NLPtemplate.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3500">
-          <caret line="336" column="47" lean-forward="false" selection-start-line="336" selection-start-column="47" selection-end-line="336" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/lib/commons-cli-1.2.jar!/org/apache/commons/cli/CommandLine.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1305">
-          <caret line="106" column="18" lean-forward="false" selection-start-line="106" selection-start-column="18" selection-end-line="106" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/lrnn/global/Tuple.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/lrnn/construction/Element.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="22" lean-forward="false" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/lrnn/construction/ElementMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/lrnn/construction/ConstantFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="615">
-          <caret line="50" column="53" lean-forward="false" selection-start-line="50" selection-start-column="53" selection-end-line="50" selection-end-column="53" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/lrnn/GroundedDataset.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="720">
-          <caret line="93" column="37" lean-forward="false" selection-start-line="93" selection-start-column="37" selection-end-line="93" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/lrnn/grounding/network/groundNetwork/GroundNetwork.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="26" column="0" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/lrnn/learning/Sample.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="50">
-          <caret line="12" column="15" lean-forward="false" selection-start-line="12" selection-start-column="15" selection-end-line="12" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/lrnn/crossvalidation/SampleSplitter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="210" column="13" lean-forward="false" selection-start-line="210" selection-start-column="13" selection-end-line="210" selection-end-column="13" />
+        <state relative-caret-position="135">
+          <caret line="25" column="30" selection-start-line="25" selection-start-column="30" selection-end-line="25" selection-end-column="30" />
           <folding>
-            <element signature="e#5892#5893#0" expanded="false" />
-            <element signature="e#5918#5919#0" expanded="false" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/lrnn/global/TextFileReader.java">
+    <entry file="jar:///usr/lib/jvm/java-8-oracle/src.zip!/java/lang/String.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="35">
-          <caret line="80" column="15" lean-forward="false" selection-start-line="80" selection-start-column="15" selection-end-line="80" selection-end-column="15" />
-          <folding />
+        <state relative-caret-position="-13">
+          <caret line="110" column="19" selection-start-line="110" selection-start-column="19" selection-end-line="110" selection-end-column="19" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/lrnn/NeuralDataset.java">
+    <entry file="file://$PROJECT_DIR$/src/templates/input/StringParser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="478">
-          <caret line="70" column="71" lean-forward="false" selection-start-line="70" selection-start-column="71" selection-end-line="70" selection-end-column="71" />
-          <folding />
+        <state relative-caret-position="405">
+          <caret line="41" column="92" selection-start-line="41" selection-start-column="92" selection-end-line="41" selection-end-column="92" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lrnn/grounding/network/GroundKL.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="690">
+          <caret line="55" column="18" selection-start-line="55" selection-start-column="18" selection-end-line="55" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lrnn/grounding/network/groundNetwork/AtomNeuron.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="690">
+          <caret line="58" selection-start-line="58" selection-end-line="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lrnn/grounding/network/groundNetwork/GroundNeuron.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lrnn/grounding/BottomUpConnector.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1860">
+          <caret line="154" column="13" selection-start-line="154" selection-start-column="13" selection-end-line="154" selection-end-column="13" />
+          <folding>
+            <element signature="e#0#22011#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lrnn/grounding/evaluation/Evaluator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/lrnn/crossvalidation/Crossvalidation.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2430">
-          <caret line="67" column="0" lean-forward="false" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="292">
+          <caret line="105" column="69" selection-start-line="105" selection-start-column="69" selection-end-line="105" selection-end-column="69" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/lrnn/crossvalidation/NeuralCrossvalidation.java">
+    <entry file="file://$PROJECT_DIR$/src/lrnn/learning/LearningStep.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="58" column="23" lean-forward="false" selection-start-line="58" selection-start-column="23" selection-end-line="58" selection-end-column="23" />
+        <state relative-caret-position="150">
+          <caret line="14" column="19" selection-start-line="14" selection-start-column="19" selection-end-line="14" selection-end-column="19" />
           <folding>
-            <element signature="e#964#965#0" expanded="false" />
-            <element signature="e#1005#1006#0" expanded="false" />
+            <element signature="e#997#998#0" expanded="true" />
+            <element signature="e#1025#1026#0" expanded="true" />
+            <element signature="e#1120#1121#0" expanded="true" />
+            <element signature="e#1154#1155#0" expanded="true" />
+            <element signature="e#1521#1522#0" expanded="true" />
+            <element signature="e#1554#1555#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lrnn/LiftedDataset.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="296">
+          <caret line="115" column="68" selection-start-line="115" selection-start-column="68" selection-end-line="115" selection-end-column="68" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lrnn/construction/template/LiftedTemplate.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="263">
+          <caret line="80" column="19" selection-start-line="80" selection-start-column="19" selection-end-line="80" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lrnn/learning/learners/LearnerStandard.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="263">
+          <caret line="136" selection-start-line="136" selection-end-line="136" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lrnn/grounding/network/groundNetwork/GroundNetwork.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="549">
+          <caret line="63" selection-start-line="63" selection-end-line="63" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lrnn/construction/TemplateFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="332">
+          <caret line="97" column="25" lean-forward="true" selection-start-line="97" selection-start-column="25" selection-end-line="97" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lrnn/construction/template/rules/LambdaRule.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="257">
+          <caret line="21" column="15" selection-start-line="21" selection-start-column="15" selection-end-line="21" selection-end-column="15" />
+          <folding>
+            <element signature="e#472#473#0" expanded="true" />
+            <element signature="e#506#507#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lrnn/learning/Weights.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="40" column="9" selection-start-line="40" selection-start-column="9" selection-end-line="40" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///usr/lib/jvm/java-8-oracle/src.zip!/java/util/Random.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="257">
+          <caret line="530" column="18" selection-start-line="530" selection-start-column="18" selection-end-line="530" selection-end-column="18" />
+          <folding>
+            <element signature="e#21068#21069#0" expanded="true" />
+            <element signature="e#21142#21143#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lrnn/drawing/GroundDotter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1530">
+          <caret line="114" column="50" selection-start-line="114" selection-start-column="50" selection-end-line="114" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lrnn/drawing/Dotter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1020">
+          <caret line="68" selection-start-line="68" selection-end-line="68" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lrnn/GroundedDataset.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1740">
+          <caret line="143" column="27" selection-start-line="143" selection-start-column="27" selection-end-line="143" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lrnn/learning/functions/ActivationsFast.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="167">
+          <caret line="225" column="31" selection-start-line="225" selection-start-column="31" selection-end-line="225" selection-end-column="31" />
+          <folding>
+            <element signature="e#5149#5150#0" expanded="true" />
+            <element signature="e#5194#5195#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lrnn/NeuralDataset.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1515">
+          <caret line="117" selection-start-line="117" selection-end-line="117" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lrnn/grounding/network/groundNetwork/RuleAggNeuron.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="555">
+          <caret line="46" column="8" selection-start-line="46" selection-start-column="8" selection-end-line="46" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lrnn/learning/functions/Activations.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1200">
+          <caret line="87" selection-start-line="87" selection-end-line="87" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lrnn/learning/Result.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="27" selection-start-line="27" selection-end-line="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/extras/GraphViz.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="11" column="17" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#958#959#0" expanded="true" />
+            <element signature="e#998#999#0" expanded="true" />
+            <element signature="e#1172#1173#0" expanded="true" />
+            <element signature="e#1211#1212#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lrnn/construction/template/WeightInitializator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="31" selection-start-line="11" selection-start-column="31" selection-end-line="11" selection-end-column="31" />
+          <folding>
+            <element signature="e#725#726#0" expanded="true" />
+            <element signature="e#790#791#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lrnn/construction/template/Kappa.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="489">
+          <caret line="42" column="16" lean-forward="true" selection-start-line="42" selection-start-column="16" selection-end-line="42" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lrnn/grounding/evaluation/EvaluatorFast.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1905">
+          <caret line="141" lean-forward="true" selection-start-line="141" selection-end-line="141" />
+          <folding>
+            <marker date="1487878455655" expanded="true" signature="4959:5097" ph="//..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lrnn/learning/Results.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="113">
+          <caret line="129" column="58" lean-forward="true" selection-start-line="129" selection-start-column="58" selection-end-line="129" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lrnn/construction/template/KL.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
+          <folding>
+            <element signature="e#780#781#0" expanded="true" />
+            <element signature="e#809#810#0" expanded="true" />
+            <element signature="e#850#851#0" expanded="true" />
+            <element signature="e#878#879#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lrnn/construction/template/Lambda.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="339">
+          <caret line="32" column="64" selection-start-line="32" selection-start-column="64" selection-end-line="32" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lrnn/global/Global.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="173">
+          <caret line="39" column="29" selection-start-line="39" selection-start-column="29" selection-end-line="39" selection-end-column="29" />
+          <folding>
+            <element signature="e#13130#13131#0" expanded="true" />
+            <element signature="e#13177#13178#0" expanded="true" />
+            <element signature="e#14274#14275#0" expanded="true" />
+            <element signature="e#14300#14301#0" expanded="true" />
+            <element signature="e#15807#15808#0" expanded="true" />
+            <element signature="e#15834#15835#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/lrnn/global/Settings.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="35" column="31" lean-forward="false" selection-start-line="35" selection-start-column="26" selection-end-line="35" selection-end-column="31" />
+        <state relative-caret-position="158">
+          <caret line="298" column="26" lean-forward="true" selection-start-line="298" selection-start-column="26" selection-end-line="298" selection-end-column="26" />
           <folding>
-            <element signature="e#8947#8948#0" expanded="false" />
-            <element signature="e#8977#8978#0" expanded="false" />
-            <element signature="e#10119#10120#0" expanded="false" />
-            <element signature="e#10193#10194#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/lrnn/global/Glogger.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="49" column="29" lean-forward="false" selection-start-line="49" selection-start-column="29" selection-end-line="49" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/lrnn/LiftedDataset.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="765">
-          <caret line="68" column="19" lean-forward="false" selection-start-line="68" selection-start-column="19" selection-end-line="68" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/lrnn/drawing/Dotter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="720">
-          <caret line="59" column="0" lean-forward="false" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/lrnn/learning/Saver.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="945">
-          <caret line="73" column="0" lean-forward="false" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/lrnn/construction/template/rules/SubK.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="840">
-          <caret line="63" column="19" lean-forward="false" selection-start-line="63" selection-start-column="19" selection-end-line="63" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/lrnn/construction/TemplateFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="16" column="13" lean-forward="false" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/lrnn/construction/Variable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="675">
-          <caret line="47" column="20" lean-forward="false" selection-start-line="47" selection-start-column="20" selection-end-line="47" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/lrnn/construction/VariableFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/lrnn/learning/functions/ActivationsFast.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2832">
-          <caret line="25" column="27" lean-forward="false" selection-start-line="25" selection-start-column="27" selection-end-line="25" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/lrnn/learning/functions/Activations.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="453">
-          <caret line="79" column="0" lean-forward="false" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/lrnn/learning/learners/LearnerStandard.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="274">
-          <caret line="99" column="16" lean-forward="false" selection-start-line="99" selection-start-column="16" selection-end-line="99" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/lrnn/learning/learners/Learning.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="101">
-          <caret line="98" column="22" lean-forward="false" selection-start-line="98" selection-start-column="22" selection-end-line="98" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/lrnn/learning/learners/LearnerFast.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="138" column="35" lean-forward="true" selection-start-line="138" selection-start-column="35" selection-end-line="138" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/lrnn/learning/LearningStep.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="521">
-          <caret line="120" column="7" lean-forward="true" selection-start-line="120" selection-start-column="7" selection-end-line="120" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/lrnn/global/Global.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="840">
-          <caret line="74" column="91" lean-forward="false" selection-start-line="74" selection-start-column="91" selection-end-line="74" selection-end-column="91" />
-          <folding>
-            <element signature="e#20368#20385#0" expanded="true" />
+            <element signature="e#6220#6221#0" expanded="true" />
+            <element signature="e#6250#6251#0" expanded="true" />
+            <element signature="e#8821#8822#0" expanded="true" />
+            <element signature="e#8863#8864#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/lrnn/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="40" column="0" lean-forward="true" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="173">
+          <caret line="46" column="26" selection-start-line="46" selection-start-column="26" selection-end-line="46" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lrnn/learning/learners/LearnerFast.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="353">
+          <caret line="91" column="70" lean-forward="true" selection-start-line="91" selection-start-column="70" selection-end-line="91" selection-end-column="70" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lrnn/learning/backprop/BackpropFast.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="35" lean-forward="true" selection-start-line="35" selection-end-line="35" />
         </state>
       </provider>
     </entry>
@@ -1738,7 +2064,6 @@
             <option name="proportions">
               <list>
                 <option value="0.2" />
-                <option value="0.6" />
               </list>
             </option>
           </splitter-proportions>
