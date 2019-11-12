@@ -39,19 +39,20 @@ public class Main {
     public static String defaultKappaAdaptiveOffset = "0";  //must stay zero as default if defaultKappaAdaptiveOffsetOn = false //todo keep ZERO!
     public static String defaultLambdaAdaptiveOffset = "0"; //lambda offset to add to the -1* (number of input kappas)  //todo this affects learning very much (probably saturation of sigmoids), better keep it ZERO!
 
+    private static String defaultAlldiff = "1"; //todo this is of course btter to be turned on, but for pairty check with LRNN2.0 it can be turned off
+
     public static String defaultSeed = "0"; //seeds the whole algorithm (shuffling, etc.), should make it completely deterministic
 
     private static String defaultSaving = "1"; // >0 => saving of template is ON after each bp-step (minibatch)  --> adds 10% extra computation time
 
     public static String defaultDropoutRate = "0";  // >0 => dropout is ON, at the particular rate
-    private static String defaultSGD = "1";     // >0 => stochastic gradient descend is ON
+    private static String defaultSGD = "1";     // >0 => stochastic gradient descend is ON  //todo debugging
     private static String defaultCumSteps = "0"; // "on" or number of steps, <= 0 => OFF
     private static String defaultLearnDecay = "0"; // >0 => learnRate decay strategy is ON
     private static int maxReadline = 1000000; //cut-of reading input files (not used)
     private static String defaultDebug = "0";
     private static String defaultEmbeddings = "0";
     private static String defaultDrawing = "0";
-    private static String defaultAlldiff = "1";
     private static String defaultBottomUp = "1";
     private static String defaultOutput = "./lrnn_results";
 

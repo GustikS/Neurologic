@@ -159,7 +159,7 @@ public class LearnerFast extends Learning {
             }
             sam.neuralNetwork.outputNeuron.outputValue = EvaluatorFast.evaluateFast(sam.neuralNetwork, sharedW);
 
-            //System.out.println(gnet.name + "\n" + gnet.outputNeuron.outputValue);
+            System.out.println(sam.targetValue + " : " + sam.neuralNetwork.outputNeuron.outputValue);
             //writeOutNeurons(gnet.allNeurons);
             results.add(new Result(sam.neuralNetwork.outputNeuron.outputValue, sam.targetValue));
         }

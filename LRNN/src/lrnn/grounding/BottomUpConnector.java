@@ -388,14 +388,21 @@ public class BottomUpConnector extends Grounder {
             List<List<Literal>> grRules = new ArrayList<>();
             groundRules.put(rules.get(i), grRules);
             Pair<Term[], List<Term[]>> pair = m.allSubstitutions(removeNegationsFromClause(clauses.get(i)), 0, Integer.MAX_VALUE);
-            Set<Set<Literal>> setCheck = new HashSet<>();
-            for (Term[] substitution : pair.s) {
+            if (Global.alldiff) {
+                Set<Set<Literal>> setCheck = new HashSet<>();
+                for (Term[] substitution : pair.s) {
 
-                //Clause grRule = LogicUtils.substitute(clauses.get(i), pair.r, substitution);
-                List<Literal> lits = getMySubstitutions(clauses.get(i), pair.r, substitution);
-                Set<Literal> check = new HashSet<>(lits);
-                if (setCheck.add(check)) {
-                    grRules.add(lits);  //add only truly unique ground rule bodies in terms of the contained literals (ignore literal order = kill symmetries)
+                    //Clause grRule = LogicUtils.substitute(clauses.get(i), pair.r, substitution);
+                    List<Literal> lits = getMySubstitutions(clauses.get(i), pair.r, substitution);
+                    Set<Literal> check = new HashSet<>(lits);
+                    if (setCheck.add(check)) {
+                        grRules.add(lits);  //add only truly unique ground rule bodies in terms of the contained literals (ignore literal order = kill symmetries)
+                    }
+                }
+            } else {
+                for (Term[] substitution : pair.s) {
+                    List<Literal> lits = getMySubstitutions(clauses.get(i), pair.r, substitution);
+                    grRules.add(lits);
                 }
             }
         }

@@ -20,7 +20,7 @@ public final class Global {
      */
     private static Random rg;
 
-    public static boolean uncompressedLambda = false;    //todo this has an effect on learning (mainly speed obviously)
+    public static boolean uncompressedLambda = true;    //todo this has an effect on learning (mainly speed obviously)
     public static boolean bottomUp = true;  //bottom-up grounding - whoa!
     public static boolean parallelTraining = false; //experimental!!
 
@@ -163,7 +163,7 @@ public final class Global {
 
     public static enum weightInitSet {
 
-        handmade, longtail, uniform
+        handmade, longtail, uniform, constant
     }
 
     ;
@@ -233,6 +233,9 @@ public final class Global {
                 break;
             case "uniform":
                 setWeightInit(weightInitSet.uniform);
+                break;
+            case "constant":
+                setWeightInit(weightInitSet.constant);
                 break;
             default:
                 throw new AssertionError();

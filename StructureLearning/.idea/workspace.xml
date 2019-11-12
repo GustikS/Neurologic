@@ -6,13 +6,7 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dcf7c45a-85bc-4d1e-a7b8-1770bb08db3d" name="Default" comment="reinitializing unused soft clusters in multi-layer structure learning and proper clusterweights transfer">
-      <change afterPath="$PROJECT_DIR$/../TreeLiker/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TreeLiker/.idea/copyright/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TreeLiker/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TreeLiker/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-    </list>
+    <list default="true" id="dcf7c45a-85bc-4d1e-a7b8-1770bb08db3d" name="Default" comment="adding intellij configs" />
     <manually-removed-from-ignored>
       <directory path="$PROJECT_DIR$/out/" />
     </manually-removed-from-ignored>
@@ -151,8 +145,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3315">
-              <caret line="221" column="13" lean-forward="true" selection-start-line="221" selection-start-column="13" selection-end-line="221" selection-end-column="13" />
+            <state relative-caret-position="3465">
+              <caret line="231" column="13" selection-start-line="231" selection-start-column="13" selection-end-line="231" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -318,9 +312,9 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="add_unversioned_files" value="true" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1573308651874" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1573308724608" />
     <property name="js-jscs-nodeInterpreter" value="$USER_HOME$/.nvm/versions/node/v5.6.0/bin/node" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Stažené/Neurologic-master (2)/Neurologic/StructureLearning" />
     <property name="project.structure.last.edited" value="Problems" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -944,7 +938,14 @@
       <option name="project" value="LOCAL" />
       <updated>1573307732247</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="adding intellij configs">
+      <created>1573308701252</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1573308701252</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -961,7 +962,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1919" y="0" width="1922" height="1080" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4942717" visible="true" weight="0.2673426" />
       <window_info id="Structure" order="1" weight="0.249694" />
@@ -1079,10 +1079,12 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_NEW_TODO" value="false" />
     <MESSAGE value="multi-layer structure learning" />
     <MESSAGE value="reinitializing unused soft clusters in multi-layer structure learning and proper clusterweights transfer" />
     <MESSAGE value="repairing structure learning dependencies" />
-    <option name="LAST_COMMIT_MESSAGE" value="repairing structure learning dependencies" />
+    <MESSAGE value="adding intellij configs" />
+    <option name="LAST_COMMIT_MESSAGE" value="adding intellij configs" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1603,8 +1605,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3315">
-          <caret line="221" column="13" lean-forward="true" selection-start-line="221" selection-start-column="13" selection-end-line="221" selection-end-column="13" />
+        <state relative-caret-position="3465">
+          <caret line="231" column="13" selection-start-line="231" selection-start-column="13" selection-end-line="231" selection-end-column="13" />
         </state>
       </provider>
     </entry>

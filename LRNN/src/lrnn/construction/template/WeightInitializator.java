@@ -20,9 +20,15 @@ public class WeightInitializator {
                 return longTail();
             case uniform:
                 return uniform();
+            case constant:
+                return constant();
             default:
                 throw new AssertionError();
         }
+    }
+
+    private static double constant() {
+        return 0.1;
     }
 
     public static double getHandMade() {
