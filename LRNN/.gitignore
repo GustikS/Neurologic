@@ -9,3 +9,4 @@
 /images
 /out*
 .idea/workspace.xml
+!/.idea/runConfigurations

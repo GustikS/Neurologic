@@ -10,6 +10,7 @@ import org.apache.commons.cli.*;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.ForkJoinPool;
 
 /**
  * Main class Params handling and calling appropriate methods
@@ -39,7 +40,9 @@ public class Main {
     public static String defaultKappaAdaptiveOffset = "0";  //must stay zero as default if defaultKappaAdaptiveOffsetOn = false //todo keep ZERO!
     public static String defaultLambdaAdaptiveOffset = "0"; //lambda offset to add to the -1* (number of input kappas)  //todo this affects learning very much (probably saturation of sigmoids), better keep it ZERO!
 
-    private static String defaultAlldiff = "1"; //todo this is of course btter to be turned on, but for pairty check with LRNN2.0 it can be turned off
+    private static String defaultAlldiff = "1"; //todo this is of course better to be turned on, but for pairty check with LRNN2.0 it can be turned off
+
+    private static String defaultCompressed = "1";    //todo compressed/uncompress lambdas, mainly for speed but also affects learning a bit
 
     public static String defaultSeed = "0"; //seeds the whole algorithm (shuffling, etc.), should make it completely deterministic
 
@@ -210,7 +213,12 @@ public class Main {
         OptionBuilder.withDescription("Use bottom-up grounder (from Ondrej) instead of top-down search (default)");
         OptionBuilder.hasArg();
         options.addOption(OptionBuilder.create("bug"));
-        
+
+        OptionBuilder.withLongOpt("compress");
+        OptionBuilder.withDescription("Use compressed representation in ruleAgg neurons (Lambda)");
+        OptionBuilder.hasArg();
+        options.addOption(OptionBuilder.create("comp"));
+
         OptionBuilder.withLongOpt("output");
         OptionBuilder.withDescription("Results directory");
         OptionBuilder.hasArg();
@@ -241,6 +249,7 @@ public class Main {
 
     public static void main(String[] args) {
 //        args = "-r C:\\Users\\Gusta\\googledrive\\Github\\LRNN\\in\\mutagenesis\\3rules -e C:\\Users\\Gusta\\googledrive\\Github\\LRNN\\in\\mutagenesis\\examples -gr avg".split(" ");
+        System.out.println("getParallelism=" + ForkJoinPool.commonPool().getParallelism());
 
         //setup all parameters and load all the necessary input files
         List<String[]> inputs = setupFromArguments(args);
@@ -253,7 +262,7 @@ public class Main {
         String[] pretrainedRules = inputs.get(3);
 
         if (Global.internalValidation) {
-            
+
             //Global.exporting = false;
             //Settings.folds = 2;
             double minError = 1;
@@ -365,7 +374,10 @@ public class Main {
 
         tmp = cmd.getOptionValue("bug", defaultBottomUp);
         Global.setBottomUp(tmp);
-        
+
+        tmp = cmd.getOptionValue("comp", defaultCompressed);
+        Global.setCompressed(tmp);
+
         tmp = cmd.getOptionValue("out", defaultOutput);
         Settings.setResultsDir(tmp);
     }
@@ -391,10 +403,10 @@ public class Main {
         }
 
         if (sampleSet == null) {
-            if (test == null || test.length==0) {
+            if (test == null || test.length == 0) {
                 Glogger.info("no test set, will do " + Settings.folds + "-fold crossvalidation");
                 sampleSet = new GroundedDataset(exs, rules, pretrainedRules);
-            } else if (test != null && test.length==0 && exs != null && exs.length != 0){
+            } else if (test != null && test.length == 0 && exs != null && exs.length != 0) {
                 Glogger.info("test and train set provided, will do simple train-test evaluation as (1-fold) crossvalidation");
                 sampleSet = new GroundedDataset(exs, test, rules, pretrainedRules);
             } else {
@@ -489,7 +501,7 @@ public class Main {
         if (tt != null) {
             Settings.setTestSet(tt);
             test = TextFileReader.readFile(tt, maxReadline);
-            if (test.length==0){
+            if (test.length == 0) {
                 Glogger.err("Test set is empty or invalid!");
             }
         }

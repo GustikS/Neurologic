@@ -1,0 +1,13 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="LRNN_diffcheck" type="Application" factoryName="Application">
+    <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
+    <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+    <option name="MAIN_CLASS_NAME" value="lrnn.Main" />
+    <module name="LRNN" />
+    <option name="PROGRAM_PARAMETERS" value="-e ../in/mutagenesis/examples3 -r ../in/mutagenesis/3rulesUp -alldiff 0 -wi constant -sgd 0 -comp 0 -gr avg -draw 0 -bug 1 -debug 0 -seed 1" />
+    <option name="VM_PARAMETERS" value="-Xmx1G" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

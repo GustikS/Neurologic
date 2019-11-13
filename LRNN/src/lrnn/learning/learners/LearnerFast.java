@@ -23,6 +23,7 @@ import lrnn.learning.backprop.BackpropFast;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.ForkJoinPool;
 import java.util.stream.Stream;
 
 /**
@@ -59,6 +60,8 @@ public class LearnerFast extends Learning {
 
         Results beginning = evaluateNetworks(roundStore, net.sharedWeights);
 
+        ForkJoinPool myPool = new ForkJoinPool(4);
+
         for (int a = 0; a < restartCount; a++) {    //restarting the whole procedure
             Glogger.process("---------------------------SolveFast--------------------------------------");
             Glogger.process("------------Restart: " + a);
@@ -75,7 +78,9 @@ public class LearnerFast extends Learning {
                 } else {
                     stream = roundStore.stream();
                 }
-                stream.filter((sample) -> !(sample.neuralNetwork == null)).forEach((sample) -> {
+                Stream<Sample> finalStream = stream;
+//                myPool.submit(() ->
+                finalStream.filter((sample) -> !(sample.neuralNetwork == null)).forEach((sample) -> {
                     //un-entailed sample
                     //for each example network
                     GroundNetwork gnet = sample.neuralNetwork;
@@ -105,6 +110,7 @@ public class LearnerFast extends Learning {
                         }
                     }
                 });
+//                );
                 if (Global.batchMode) {
                     for (int j = batchWeightUpdates.length - 1; j >= 0; j--) {
                         net.sharedWeights[j] += batchWeightUpdates[j];
@@ -159,7 +165,8 @@ public class LearnerFast extends Learning {
             }
             sam.neuralNetwork.outputNeuron.outputValue = EvaluatorFast.evaluateFast(sam.neuralNetwork, sharedW);
 
-            System.out.println(sam.targetValue + " : " + sam.neuralNetwork.outputNeuron.outputValue);
+            if (!Global.alldiff)    //probably a debugging mode then...
+                System.out.println(sam.targetValue + " : " + sam.neuralNetwork.outputNeuron.outputValue);
             //writeOutNeurons(gnet.allNeurons);
             results.add(new Result(sam.neuralNetwork.outputNeuron.outputValue, sam.targetValue));
         }
